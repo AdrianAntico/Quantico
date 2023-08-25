@@ -9006,6 +9006,7 @@ server <- function(input, output, session) {
     Page <- tryCatch({as.integer(gsub("[^\\d]+", "", input$tabss, perl=TRUE))}, error = function(x) 0L)
     if(length(DataList) > 0L) {
       DataOuts <- tryCatch({input[[paste0("DataOutputSelection", Page)]]}, error = function(x) NULL)
+      DataOuts <<- DataOuts
       if(length(DataOuts) > 0L && any(DataOuts != "No Data Loaded")) {
 
         # Reactable collection list
@@ -9078,42 +9079,47 @@ server <- function(input, output, session) {
       }
     }
   }, ignoreInit = TRUE)
-  shiny::observeEvent({eval(TablesReportOutputExpression)}, {
-    if(Debug) print("Tables Markdown 1")
-    Page <- tryCatch({as.integer(gsub("[^\\d]+", "", input$tabss, perl=TRUE))}, error = function(x) 0L)
-    if(length(DataList) > 0L) {
-      shiny::withProgress(message = 'Tables Reporting Has Begun..', value = 0, {
-
-        if(Debug) {
-          print(length(DataOutputList))
-        }
-
-        # Run DataMuse:::Shiny.ML.ReportOutput
-        if(Debug) {
-          DataMuse:::TablesReport(
-            DataOutputList = DataOutputList,
-            OutputPath = WorkingDirectory)
-        } else {
-          tryCatch({
-            DataMuse:::TablesReport(
-              DataOutputList = DataOutputList,
-              OutputPath = WorkingDirectory)
-          }, error = function(x) NULL)
-        }
-
-        # Code Collect
-        MachineLearningCode <- DataMuse:::Shiny.CodePrint.Collect(y = MachineLearningCode, x = paste0(
-          "\n",
-          "# Tables RMarkdown Build\n",
-          "DataMuse:::TablesReport(\n\n  ",
-          "DataOutputList = ", DataMuse:::CEP(input[[paste0("DataOutputSelection", Page)]]), ",\n  ",
-          "OutputPath = ", DataMuse:::CEP(WorkingDirectory), ")\n"))
-
-        if(Debug) print("ML Markdown 2")
-      })
-    }
-
-  }, ignoreInit = TRUE)
+  # shiny::observeEvent({eval(TablesReportOutputExpression)}, {
+  #   if(Debug) print("Tables Markdown 1")
+  #   Page <- tryCatch({as.integer(gsub("[^\\d]+", "", input$tabss, perl=TRUE))}, error = function(x) 0L)
+  #   if(length(DataList) > 0L) {
+  #     shiny::withProgress(message = 'Tables Reporting Has Begun..', value = 0, {
+  #
+  #       if(Debug) {
+  #         print(length(DataList))
+  #       }
+  #
+  #       saveRDS(object = DataOuts, file = file.path(WorkingDirectory, "DataOuts.rds"))
+  #       saveRDS(object = DataList, file = file.path(WorkingDirectory, "DataList.rds"))
+  #
+  #       # Run DataMuse:::Shiny.ML.ReportOutput
+  #       if(Debug) {
+  #         DataMuse:::TablesReport(
+  #           DataOuts = DataOuts,
+  #           DataList = DataList,
+  #           OutputPath = WorkingDirectory)
+  #       } else {
+  #         tryCatch({
+  #           DataMuse:::TablesReport(
+  #             DataOuts = DataOuts,
+  #             DataList = DataList,
+  #             OutputPath = WorkingDirectory)
+  #         }, error = function(x) NULL)
+  #       }
+  #
+  #       # Code Collect
+  #       MachineLearningCode <- DataMuse:::Shiny.CodePrint.Collect(y = MachineLearningCode, x = paste0(
+  #         "\n",
+  #         "# Tables RMarkdown Build\n",
+  #         "DataMuse:::TablesReport(\n\n  ",
+  #         "DataOutputList = ", DataMuse:::CEP(input[[paste0("DataOutputSelection", Page)]]), ",\n  ",
+  #         "OutputPath = ", DataMuse:::CEP(WorkingDirectory), ")\n"))
+  #
+  #       if(Debug) print("ML Markdown 2")
+  #     })
+  #   }
+  #
+  # }, ignoreInit = TRUE)
 
   #                                      ----
 

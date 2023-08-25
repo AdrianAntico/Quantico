@@ -289,7 +289,7 @@ PlottingReport <- function(PlotOutputList = NULL,
 # ----
 
 # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
-# Plotting Reports                                                ----
+# Tables Reports                                                  ----
 # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
 
 #' @title Run_Tables_Report
@@ -299,15 +299,18 @@ PlottingReport <- function(PlotOutputList = NULL,
 #' @author Adrian Antico
 #' @family Reports
 #'
+#' @param DataOuts NULL
 #' @param DataOutputList NULL
 #' @param OutputPath Path to directory where the html will be saved
 #'
 #' @noRd
-Run_Tables_Report <- function(DataOutputList = NULL,
+Run_Tables_Report <- function(DataOuts = NULL,
+                              DataList = NULL,
                               OutputPath = NULL) {
 
   appDir <- system.file("r-markdowns", package = "DataMuse")
-  DataOutputList <- DataOutputList
+  DataList <- DataList
+  DataOuts <- DataOuts
   OutputPathName <- file.path(OutputPath, paste0('Tables-', gsub(pattern = ":", "_", Sys.time()), '.html'))
   rmarkdown::render(
     input = file.path(appDir, 'Tables.Rmd'),
@@ -321,15 +324,18 @@ Run_Tables_Report <- function(DataOutputList = NULL,
 #' @author Adrian Antico
 #' @family Reports
 #'
-#' @param DataOutputList NULL
+#' @param DataOuts NULL
+#' @param DataList NULL
 #' @param OutputPath List of output objects
 #'
 #' @export
-TablesReport <- function(DataOutputList = NULL,
+TablesReport <- function(DataOuts = NULL,
+                         DataList = NULL,
                          OutputPath = NULL) {
 
   Run_Tables_Report(
-    DataOutputList = DataOutputList,
+    DataOuts = DataOuts,
+    DataList = DataList,
     OutputPath = OutputPath)
 }
 

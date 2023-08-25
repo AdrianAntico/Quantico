@@ -318,26 +318,42 @@ a:hover {
 ```
 
 ```{r DataOutputList, echo=FALSE}
-if(length(DataOutputList) > 0L) {
-  for(i in seq_along(DataOutputList)) eval(DataOutputList[[i]])
+x <- list()
+for(i in DataOuts) {# i = DataOuts[1]
+  x[[i]] <- reactable::reactable(
+    width = 950,
+    data = DataList[[i]]$data,
+    compact = TRUE,
+    defaultPageSize = 10,
+    wrap = FALSE,
+    filterable = TRUE,
+    fullWidth = FALSE,
+    highlight = TRUE,
+    pagination = TRUE,
+    resizable = TRUE,
+    searchable = TRUE,
+    selection = "multiple",
+    showPagination = TRUE,
+    showSortable = TRUE,
+    showSortIcon = TRUE,
+    sortable = TRUE,
+    striped = TRUE,
+    theme = reactable::reactableTheme(
+      color = 'black',
+      backgroundColor = "#4f4f4f26",
+      borderColor = "#dfe2e5",
+      stripedColor = "#4f4f4f8f",
+      highlightColor = "#8989898f",
+      cellPadding = "8px 12px",
+      style = list(
+        fontFamily = "-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif"
+      ),
+      searchInputStyle = list(width = "100%")
+    )
+  )
 }
-```
 
-```{js, echo=FALSE}
-setTimeout(function() {
-  var codes = document.querySelectorAll('.dataTables_wrapper');
-  var code, i, d, s, p;
-  for (i = 0; i < codes.length; i++) {
-    code = codes[i];
-    p = code.parentNode;
-    d = document.createElement('details');
-    s = document.createElement('summary');
-    s.innerText = 'Details';
-    // <details><summary>Details</summary></details>
-    d.appendChild(s);
-    // move the code into <details>
-    p.replaceChild(d, code);
-    d.appendChild(code);
-  }
-});
+x
+
+
 ```

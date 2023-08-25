@@ -4,10 +4,12 @@
 \alias{TablesReport}
 \title{TablesReport}
 \usage{
-TablesReport(DataOutputList = NULL, OutputPath = NULL)
+TablesReport(DataOuts = NULL, DataList = NULL, OutputPath = NULL)
 }
 \arguments{
-\item{DataOutputList}{NULL}
+\item{DataOuts}{NULL}
+
+\item{DataList}{NULL}
 
 \item{OutputPath}{List of output objects}
 }

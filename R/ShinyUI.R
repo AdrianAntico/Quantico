@@ -17759,18 +17759,18 @@ DataPanels <- function(id, Page, AppWidth=12L, DL = NULL) {
 
           shiny::column(
             width = 1L, align = 'center',
-            style = "padding-top: 2px; padding-left: 0px; padding-right: 0px; background-color: #0000;",
+            style = "padding-top: 65px; padding-left: 0px; padding-right: 0px; background-color: #0000;",
             shiny::fluidRow(
               shiny::actionButton(
                 inputId = paste0('DataOutputExecute',Page),
                 label = "Run", icon = shiny::icon("chevron-right")),
             ),
-            shiny::fluidRow(
-              style = "padding-top: 30px;",
-              shiny::actionButton(
-                inputId = paste0('TablesMarkdownExecute',Page),
-                label = "Save", icon = shiny::icon("chevron-right")),
-            ),
+            # shiny::fluidRow(
+            #   style = "padding-top: 30px;",
+            #   shiny::actionButton(
+            #     inputId = paste0('TablesMarkdownExecute',Page),
+            #     label = "Save", icon = shiny::icon("chevron-right")),
+            # ),
             shiny::tags$style(
               paste0(
                 "
@@ -17796,32 +17796,35 @@ DataPanels <- function(id, Page, AppWidth=12L, DL = NULL) {
                   border-radius: 25px;
                   font-size: x-large;
                   }
-                  #", paste0('TablesMarkdownExecute',Page), " {
-                  padding-left: 0px;
-                  padding-right: 0px;
-                  background-color: #858a9c6e;
-                  margin-top: 29px;
-                  height: 50px;
-                  width: 95px;
-                  border-radius: 25px;
-                  font-size: x-large;
-                  }
 
-                  #", paste0('TablesMarkdownExecute',Page), ":hover {
-                  padding-left: 0px;
-                  padding-right: 0px;
-                  background-color: #858a9c6e;
-                  margin-top: 29px;
-                  height: 50px;
-                  width: 95px;
-                  box-shadow: 0px 0px 20px #858a9c6e;
-                  border-radius: 25px;
-                  font-size: x-large;
-                  }
                   "
               )
             )
           ),
+
+          #", paste0('TablesMarkdownExecute',Page), " {
+          # padding-left: 0px;
+          # padding-right: 0px;
+          # background-color: #858a9c6e;
+          #   margin-top: 29px;
+          # height: 50px;
+          # width: 95px;
+          # border-radius: 25px;
+          # font-size: x-large;
+          # }
+          #
+          # #", paste0('TablesMarkdownExecute',Page), ":hover {
+          # padding-left: 0px;
+          # padding-right: 0px;
+          # background-color: #858a9c6e;
+          #   margin-top: 29px;
+          # height: 50px;
+          # width: 95px;
+          # box-shadow: 0px 0px 20px #858a9c6e;
+          # border-radius: 25px;
+          # font-size: x-large;
+          # }
+
 
           shiny::column(
             width = 2L,

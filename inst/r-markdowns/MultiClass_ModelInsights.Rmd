@@ -1,0 +1,1573 @@
+---
+title: "MultiClass ML Report"
+author: "Provided by DataMuse"
+date: "`r format(Sys.time(), '%Y-%m-%d')`"
+output:
+  prettydoc::html_pretty:
+    theme: cayman
+    toc: yes
+    toc_depth: 2
+    fig_caption: yes
+    number_sections: no
+classoption: landscape
+---
+
+```{r Environment, include=FALSE}
+# theme options up top: hpstr, cayman, architect, AutoQuant
+knitr::opts_chunk$set(echo = TRUE)
+temp <- globalenv()
+TempNames <- names(temp)
+for(nam in TempNames) {
+  assign(x = nam, value = eval(temp[[nam]]), envir = .GlobalEnv)
+}
+```
+
+```{css, echo=FALSE}
+@import url('https://fonts.googleapis.com/css2?family=Yusei+Magic&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #000000;
+  background: linear-gradient(180deg, #787989, #b7b8cf);
+}
+
+a {
+  color: #b1c5d8;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+.page-header {
+  color: #fff;
+  text-align: center;
+  background-color: #000121;
+  background-image: linear-gradient(120deg,#000121,#696b76);
+  padding: 1.5rem 2rem;
+}
+.page-header :last-child {
+  margin-bottom: 0.5rem;
+}
+@media screen and (max-width: 42em) {
+  .page-header {
+    padding: 1rem 1rem;
+  }
+}
+
+.project-name {
+  margin-top: 0;
+  margin-bottom: 0.1rem;
+  font-size: 2rem;
+}
+@media screen and (max-width: 42em) {
+  .project-name {
+    font-size: 1.75rem;
+  }
+}
+
+.project-tagline {
+  margin-bottom: 2rem;
+  font-weight: normal;
+  opacity: 0.7;
+  font-size: 1.5rem;
+}
+@media screen and (max-width: 42em) {
+  .project-tagline {
+    font-size: 1.2rem;
+  }
+}
+
+.project-author, .project-date {
+  font-weight: normal;
+  opacity: 0.7;
+  font-size: 1.2rem;
+}
+@media screen and (max-width: 42em) {
+  .project-author, .project-date {
+    font-size: 1rem;
+  }
+}
+
+.main-content, .toc {
+  max-width: 64rem;
+  padding: 2rem 4rem;
+  margin: 0 auto;
+  font-size: 1.1rem;
+}
+
+.toc {
+  padding-bottom: 0;
+}
+.toc .toc-box {
+  padding: 55px;
+  background: linear-gradient(90deg, #000121, #696b76);
+  border: solid 1px #000000;
+  border-radius: 70px;
+  color: white;
+  box-shadow: 8px 5px 10px 0px #000000;
+}
+.toc .toc-box .toc-title {
+  margin: 0 0 0.5rem;
+  text-align: center;
+}
+.toc .toc-box > ul {
+  margin: 0;
+  padding-left: 1.5rem;
+}
+@media screen and (min-width: 42em) and (max-width: 64em) {
+  .toc {
+    padding: 2rem 2rem 0;
+  }
+}
+@media screen and (max-width: 42em) {
+  .toc {
+    padding: 2rem 1rem 0;
+    font-size: 1rem;
+  }
+}
+
+.main-content :first-child {
+  margin-top: 0;
+}
+@media screen and (min-width: 42em) and (max-width: 64em) {
+  .main-content {
+    padding: 2rem;
+  }
+}
+@media screen and (max-width: 42em) {
+  .main-content {
+    padding: 2rem 1rem;
+    font-size: 1rem;
+  }
+}
+.main-content img {
+  max-width: 100%;
+}
+
+.main-content h1  {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  font-weight: bold;
+  color: #070e56;
+}
+
+.main-content h2 {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  font-weight: normal;
+  color: #121e94;
+}
+.main-content h3 {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  font-weight: normal;
+  color: #3745d1;
+}
+.main-content h4 {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  font-weight: normal;
+  color: #374995;
+}
+.main-content h5 {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  font-weight: normal;
+  color: #000000;
+}
+.main-content h6 {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  font-weight: normal;
+  color: #000000;
+}
+
+.main-content p {
+  margin-bottom: 1em;
+}
+.main-content code {
+  padding: 2px 4px;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  color: #2c2c2d;
+  background-color: #f3f6fa;
+  border-radius: 0.3rem;
+}
+.main-content pre {
+  padding: 0.8rem;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font: 1rem Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  color: #2c2c2d;
+  word-wrap: normal;
+  background-color: #e9edf9c9;
+  border: solid 1px #001a35;
+  border-radius: 0.3rem;
+  line-height: 1.45;
+  overflow: auto;
+}
+@media screen and (max-width: 42em) {
+  .main-content pre {
+    font-size: 0.9rem;
+  }
+}
+.main-content pre > code {
+  padding: 0;
+  margin: 0;
+  color: #2c2c2d;
+  word-break: normal;
+  white-space: pre;
+  background: transparent;
+  border: 0;
+}
+@media screen and (max-width: 42em) {
+  .main-content pre > code {
+    font-size: 0.9rem;
+  }
+}
+.main-content pre code,
+.main-content pre tt {
+  display: inline;
+  max-width: initial;
+  padding: 0;
+  margin: 0;
+  overflow: initial;
+  line-height: inherit;
+  word-wrap: normal;
+  background-color: transparent;
+  border: 0;
+}
+.main-content pre code:before, .main-content pre code:after,
+.main-content pre tt:before,
+.main-content pre tt:after {
+  content: normal;
+}
+.main-content ul,
+.main-content ol {
+  margin-top: 0;
+}
+.main-content blockquote {
+  padding: 0 1rem;
+  margin-left: 0;
+  color: #2c2c2d;
+  border-left: 0.3rem solid #dce6f0;
+  font-size: 1.2rem;
+}
+.main-content blockquote > :first-child {
+  margin-top: 0;
+}
+.main-content blockquote > :last-child {
+  margin-bottom: 0;
+}
+@media screen and (max-width: 42em) {
+  .main-content blockquote {
+    font-size: 1.1rem;
+  }
+}
+.main-content table {
+  width: 100%;
+  overflow: auto;
+  word-break: normal;
+  word-break: keep-all;
+  -webkit-overflow-scrolling: touch;
+  border-collapse: collapse;
+  border-spacing: 0;
+  margin: 1rem 0;
+}
+.main-content table th {
+  font-weight: bold;
+  background-color: #159957;
+  color: #fff;
+}
+.main-content table th,
+.main-content table td {
+  padding: 0.5rem 1rem;
+  border-bottom: 1px solid #e9ebec;
+  text-align: left;
+}
+.main-content table tr:nth-child(odd) {
+  background-color: #f2f2f2;
+}
+.main-content dl {
+  padding: 0;
+}
+.main-content dl dt {
+  padding: 0;
+  margin-top: 1rem;
+  font-size: 1rem;
+  font-weight: bold;
+}
+.main-content dl dd {
+  padding: 0;
+  margin-bottom: 1rem;
+}
+.main-content hr {
+  height: 2px;
+  padding: 0;
+  margin: 1rem 0;
+  background-color: #eff0f1;
+  border: 0;
+}
+```
+
+```{r ModelObject_Model_MetaData, echo = FALSE}
+if(!is.null(ModelObject)) {
+  
+  # Model MetaData ----
+
+  ## Model_MetaData_Parameters ----
+  ArgsList <- ModelObject[['ArgsList']]
+  
+  ## Model_MetaData_GridMetrics ----
+  GridMetrics <- ModelObject[['GridMetrics']]
+  
+}
+``` 
+
+```{r ModelObject_DataSets_And_MetaData, echo = FALSE}
+if(!is.null(ModelObject)) {
+  
+  # DataSets
+  TestData <- ModelObject[['TestData']]
+  ValidationData <- ModelObject[['ValidationData']]
+  TrainData <- ModelObject[['TrainData']]
+  
+  # Meta info
+  TargetColumnName <- ModelObject[['ArgsList']][['TargetColumnName']]
+  TargetLevels <- ModelObject[['ArgsList']][['TargetLevels']]
+  PredictionColumnName <- PredictionColumnName
+  if(is.null(FeatureColumnNames)) {
+    FeatureColumnNames <- ModelObject[['ColNames']][[1L]]
+  }
+}
+```
+
+```{r ModelObject_Evaluation_Metrics, echo = FALSE}
+if(!is.null(ModelObject)) {
+  
+  # Evaluation Metrics ----
+  
+  ## MultiClass Metrics ----
+  Test_MultiClassMetrics <- ModelObject[['MultinomialMetrics']][['TestData']]
+  Train_MultiClassMetrics <- ModelObject[['MultinomialMetrics']][['TrainData']]
+
+  # Update Colnames
+  if(!is.null(Test_MultiClassMetrics)) Test_MultiClassMetrics[, Data_Source := 'Test']
+  if(!is.null(Train_MultiClassMetrics)) Train_MultiClassMetrics[, Data_Source := 'Train']
+
+  # Metrics
+  if(is.null(Test_MultiClassMetrics) && is.null(Train_MultiClassMetrics)) {
+    All_MultiClassMetrics <- NULL
+  } else if(!is.null(Test_MultiClassMetrics) && !is.null(Train_MultiClassMetrics)) {
+    All_MultiClassMetrics <- data.table::rbindlist(list(
+      Test_MultiClassMetrics, Train_MultiClassMetrics))
+  } else if(is.null(Test_MultiClassMetrics) && !is.null(Train_MultiClassMetrics)) {
+    All_MultiClassMetrics <- Train_MultiClassMetrics
+  } else if(!is.null(Test_MultiClassMetrics) && is.null(Train_MultiClassMetrics)) {
+    All_MultiClassMetrics <- Test_MultiClassMetrics
+  } else {
+    All_MultiClassMetrics <- NULL
+  }
+  
+  
+  ## Model_Evaluation_Metrics ----
+  EvalMetricsNames <- names(ModelObject[['EvaluationMetrics']])
+  Test_EvalMetricss <- EvalMetricsNames[which(EvalMetricsNames %like% 'TestData_')]
+  Test_EvalMetrics <- list()
+  for(nam in Test_EvalMetricss) Test_EvalMetrics[[nam]] <- ModelObject[['EvaluationMetrics']][[nam]]
+  Train_EvalMetricss <- setdiff(EvalMetricsNames, Test_EvalMetricss)
+  Train_EvalMetrics <- list()
+  for(nam in Train_EvalMetricss) Train_EvalMetrics[[nam]] <- ModelObject[['EvaluationMetrics']][[nam]]
+  
+  ## Model_VarImportanceTable ----
+  if(tolower(Algo) == 'catboost') {
+    
+    # Store data
+    Test_Importance <- ModelObject[['VariableImportance']][['Test_Importance']]
+    Validation_Importance <- ModelObject[['VariableImportance']][['Validation_Importance']]
+    Train_Importance <- ModelObject[['VariableImportance']][['Train_Importance']]
+
+    # Update Colnames
+    if(!is.null(Test_Importance)) data.table::setnames(Test_Importance, old = 'Importance', new = 'Test_Importance', skip_absent = TRUE)
+    if(!is.null(Validation_Importance)) data.table::setnames(Validation_Importance, old = 'Importance', new = 'Validation_Importance', skip_absent = TRUE)
+    if(!is.null(Train_Importance)) data.table::setnames(Train_Importance, old = 'Importance', new = 'Train_Importance', skip_absent = TRUE)
+
+    # CatBoost only
+    if(is.null(Test_Importance) && is.null(Validation_Importance) && is.null(Train_Importance)) {
+      All_Importance <- NULL
+    } else if(!is.null(Test_Importance) && !is.null(Validation_Importance) && !is.null(Train_Importance)) {
+      All_Importance <- merge(Test_Importance, Validation_Importance, by = 'Variable', all = TRUE)
+      All_Importance <- merge(All_Importance, Train_Importance, by = 'Variable', all = TRUE)
+    } else if(!is.null(Test_Importance) && !is.null(Validation_Importance) && is.null(Train_Importance)) {
+      All_Importance <- merge(Test_Importance, Validation_Importance, by = 'Variable', all = TRUE)
+    } else if(!is.null(Test_Importance) && is.null(Validation_Importance) && !is.null(Train_Importance)) {
+      All_Importance <- merge(Test_Importance, Train_Importance, by = 'Variable', all = TRUE)
+    } else if(is.null(Test_Importance) && !is.null(Validation_Importance) && !is.null(Train_Importance)) {
+      All_Importance <- merge(Validation_Importance, Train_Importance, by = 'Variable', all = TRUE)
+    } else if(is.null(Test_Importance) && is.null(Validation_Importance) && !is.null(Train_Importance)) {
+      All_Importance <- Train_Importance
+    } else if(is.null(Test_Importance) && !is.null(Validation_Importance) && is.null(Train_Importance)) {
+      All_Importance <- Validation_Importance
+    } else if(!is.null(Test_Importance) && is.null(Validation_Importance) && is.null(Train_Importance)) {
+      All_Importance <- Test_Importance
+    } else {
+      All_Importance <- NULL
+    }
+
+  } else {
+
+    # Store data (xgb check, )
+    Test_Importance <- ModelObject[['VariableImportance']]
+    Validation_Importance <- NULL
+    Train_Importance <- NULL
+    
+    # Update Colnames
+    if(Algo %in% c("xgboost","lightgbm")) {
+      if(!is.null(Test_Importance)) data.table::setnames(Test_Importance, old = names(Test_Importance)[2], new = 'Test_Importance', skip_absent = TRUE)
+    } else {
+      # h2o col 3 is scaled importance which is preferred
+      if(!is.null(Test_Importance)) data.table::setnames(Test_Importance, old = names(Test_Importance)[3], new = 'Test_Importance', skip_absent = TRUE)
+    }
+    
+    # Non CatBoost only
+    if(!is.null(Test_Importance)) {
+      All_Importance <- Test_Importance
+    } else {
+      All_Importance <- NULL
+    }
+    
+  }
+  
+  All_Interaction <- NULL
+}
+``` 
+
+```{r Generic_Evaluation_Plots, echo = FALSE}
+
+options(warn = -1)
+
+# Evaluation Plots ----
+
+## EvaluationPlots_CalibrationPlot ----
+
+### Test ----
+if(!is.null(TestData)) {
+  Test_EvaluationPlot <- AutoPlots::Plot.Calibration.Line(
+    dt = TestData,
+    AggMethod = "mean",
+    XVar = PredictionColumnName,
+    YVar = TargetColumnName,
+    GroupVar = NULL,
+    YVarTrans = "Identity",
+    XVarTrans = "Identity",
+    FacetRows = 1,
+    FacetCols = 1,
+    FacetLevels = NULL,
+    NumberBins = 21,
+    Height = "600px",
+    Width = "975px",
+    Title = "Calibration Plot: Test Data",
+    ShowLabels = FALSE,
+    Title.YAxis = TargetColumnName,
+    Title.XAxis = "Predict",
+    EchartsTheme = "wef",
+    TimeLine = TRUE,
+    X_Scroll = TRUE,
+    Y_Scroll = TRUE,
+    TextColor = "white",
+    Debug = FALSE)
+
+} else {
+  Test_EvaluationPlot <- NULL
+}
+
+### Train ----
+if(!is.null(TrainData)) {
+  Train_EvaluationPlot <- AutoPlots::Plot.Calibration.Line(
+    dt = TrainData,
+    AggMethod = "mean",
+    XVar = PredictionColumnName,
+    YVar = TargetColumnName,
+    GroupVar = NULL,
+    YVarTrans = "Identity",
+    XVarTrans = "Identity",
+    FacetRows = 1,
+    FacetCols = 1,
+    FacetLevels = NULL,
+    NumberBins = 21,
+    Height = "600px",
+    Width = "975px",
+    Title = "Calibration Plot: Train Data",
+    ShowLabels = FALSE,
+    Title.YAxis = TargetColumnName,
+    Title.XAxis = "Predict",
+    EchartsTheme = "wef",
+    TimeLine = TRUE,
+    X_Scroll = TRUE,
+    Y_Scroll = TRUE,
+    TextColor = "white",
+    Debug = FALSE)
+
+} else {
+  Train_EvaluationPlot <- NULL
+}
+
+## EvaluationPlots_ROC_Plot ----
+
+### TestData ----
+if(!is.null(TestData)) {
+  Test_ROCPlot <- AutoPlots::Plot.ROC(
+    dt = TestData,
+    SampleSize = 10000,
+    XVar = PredictionColumnName,
+    YVar = TargetColumnName,
+    GroupVar = NULL,
+    YVarTrans = "Identity",
+    XVarTrans = "Identity",
+    FacetRows = 1,
+    FacetCols = 1,
+    FacetLevels = NULL,
+    AggMethod = "mean",
+    Height = "600px",
+    Width = "975px",
+    Title = "Calibration Plot: Test Data",
+    ShowLabels = FALSE,
+    Title.YAxis = TargetColumnName,
+    Title.XAxis = "Predict",
+    EchartsTheme = "wef",
+    TimeLine = TRUE,
+    X_Scroll = TRUE,
+    Y_Scroll = TRUE,
+    TextColor = "white",
+    Debug = FALSE)
+  
+} else {
+  Test_ROCPlot <- NULL
+}
+
+### TrainData ----
+if(!is.null(TrainData)) {
+  Train_ROCPlot <- AutoPlots::Plot.ROC(
+    dt = TrainData,
+    SampleSize = 10000,
+    XVar = PredictionColumnName,
+    YVar = TargetColumnName,
+    GroupVar = NULL,
+    YVarTrans = "Identity",
+    XVarTrans = "Identity",
+    FacetRows = 1,
+    FacetCols = 1,
+    FacetLevels = NULL,
+    AggMethod = "mean",
+    Height = "600px",
+    Width = "975px",
+    Title = "Calibration Plot: Train Data",
+    ShowLabels = FALSE,
+    Title.YAxis = TargetColumnName,
+    Title.XAxis = "Predict",
+    EchartsTheme = "wef",
+    TimeLine = TRUE,
+    X_Scroll = TRUE,
+    Y_Scroll = TRUE,
+    TextColor = "white",
+    Debug = FALSE)
+} else {
+  Train_ROCPlot <- NULL
+}
+
+## EvaluationPlots_GainsPlots ----
+
+## Test_CumGainsChart ----
+if(!is.null(TestData)) {
+  Test_CumGainsChart <- AutoPlots::Plot.Gains(
+    dt = TestData,
+    PreAgg = FALSE,
+    XVar = PredictionColumnName,
+    YVar = TargetColumnName,
+    ZVar = "N",
+    GroupVar = NULL,
+    YVarTrans = "Identity",
+    XVarTrans = "Identity",
+    ZVarTrans = "Identity",
+    FacetRows = 1,
+    FacetCols = 1,
+    FacetLevels = NULL,
+    NumberBins = 20,
+    Height = "600px",
+    Width = "975px",
+    Title = "Gains Plot: Test Data",
+    ShowLabels = FALSE,
+    Title.YAxis = TargetColumnName,
+    Title.XAxis = "Predict",
+    EchartsTheme = "wef",
+    TimeLine = TRUE,
+    X_Scroll = TRUE,
+    Y_Scroll = TRUE,
+    TextColor = "white",
+    Debug = FALSE)
+} else {
+  Test_CumGainsChart <- NULL
+}
+
+## Train_CumGainsChart ----
+if(!is.null(TrainData)) {
+  Train_CumGainsChart <- AutoPlots::Plot.Gains(
+    dt = TrainData,
+    PreAgg = FALSE,
+    XVar = PredictionColumnName,
+    YVar = TargetColumnName,
+    ZVar = "N",
+    GroupVar = NULL,
+    YVarTrans = "Identity",
+    XVarTrans = "Identity",
+    ZVarTrans = "Identity",
+    FacetRows = 1,
+    FacetCols = 1,
+    FacetLevels = NULL,
+    NumberBins = 20,
+    Height = "600px",
+    Width = "975px",
+    Title = "Gains Plot: Train Data",
+    ShowLabels = FALSE,
+    Title.YAxis = TargetColumnName,
+    Title.XAxis = "Predict",
+    EchartsTheme = "wef",
+    TimeLine = TRUE,
+    X_Scroll = TRUE,
+    Y_Scroll = TRUE,
+    TextColor = "white",
+    Debug = FALSE)
+} else {
+  Train_CumGainsChart <- NULL
+}
+```
+
+```{r ModelObject_Model_Interpretation, echo = FALSE}
+
+# Model Interpretation ----
+
+## Model_Evaluation_Metrics_NumericVariables ----
+
+### TestData ----
+
+# Plots to Add and Remove
+
+# Extra list mgt + par dep plot for multinomial
+
+# Numeric-Test: Starting batch of plots
+  
+# Name to keep and remove
+Test_ParDepPlots <- list()
+
+# Add Plots to List per User Request
+if(!is.null(TestData) && !is.null(FeatureColumnNames)) {
+  for(g in FeatureColumnNames) {
+    if(is.numeric(TestData[[g]])) {
+      Test_ParDepPlots[[g]] <- AutoPlots::Plot.PartialDependence.Line(
+        dt = TestData,
+        XVar = g,
+        YVar = TargetColumnName,
+        ZVar = 'Predict',
+        YVarTrans = "Identity",
+        XVarTrans = "Identity",
+        ZVarTrans = "Identity",
+        FacetRows = 1,
+        FacetCols = 1,
+        FacetLevels = NULL,
+        GroupVar = NULL,
+        NumberBins = 20,
+        AggMethod = "mean",
+        Height = "600px",
+        Width = "975px",
+        Title = "Partial Dependence Line: Test Data",
+        ShowLabels = FALSE,
+        Title.YAxis = TargetColumnName,
+        Title.XAxis = g,
+        EchartsTheme = "wef",
+        TimeLine = TRUE,
+        X_Scroll = TRUE,
+        Y_Scroll = TRUE,
+        TextColor = "white",
+        Debug = FALSE)
+    }
+  }
+}
+
+
+### TrainData ----
+
+# Plots to Add and Remove
+
+# Extra list mgt + par dep plot for multinomial
+
+# Numeric-Train: Starting batch of plots
+Train_ParDepPlots <- list()
+
+# Add Plots to List per User Request
+if(!is.null(TrainData) && !is.null(FeatureColumnNames)) {
+  for(g in FeatureColumnNames) {
+    if(is.numeric(TestData[[g]])) {
+      Train_ParDepPlots[[g]] <- AutoPlots::Plot.PartialDependence.Line(
+        dt = TrainData,
+        XVar = g,
+        YVar = TargetColumnName,
+        ZVar = 'Predict',
+        YVarTrans = "Identity",
+        XVarTrans = "Identity",
+        ZVarTrans = "Identity",
+        FacetRows = 1,
+        FacetCols = 1,
+        FacetLevels = NULL,
+        GroupVar = NULL,
+        NumberBins = 20,
+        AggMethod = "mean",
+        Height = "600px",
+        Width = "975px",
+        Title = "Partial Dependence Line: Train Data",
+        ShowLabels = FALSE,
+        Title.YAxis = TargetColumnName,
+        Title.XAxis = g,
+        EchartsTheme = "wef",
+        TimeLine = TRUE,
+        X_Scroll = TRUE,
+        Y_Scroll = TRUE,
+        TextColor = "white",
+        Debug = FALSE)
+    }
+  }
+}
+  
+## Model_Evaluation_Metrics_CategoricalVariables ---- 
+
+### Test Data ----
+
+# Starting batch of plots
+Test_ParDepCatPlots <- list()
+  
+# Add Plots
+if(!is.null(TestData) && !is.null(FeatureColumnNames)) {
+  for(g in FeatureColumnNames) {
+    if(is.character(TestData[[g]]) || is.factor(TestData[[g]])) {
+      Test_ParDepCatPlots[[g]] <- tryCatch({AutoPlots::Plot.PartialDependence.HeatMap(
+        dt = TestData,
+        XVar = g,
+        YVar = TargetColumnName,
+        ZVar = 'Predict',
+        YVarTrans = "Identity",
+        XVarTrans = "Identity",
+        ZVarTrans = "Identity",
+        FacetRows = 1,
+        FacetCols = 1,
+        FacetLevels = NULL,
+        GroupVar = NULL,
+        NumberBins = 20,
+        AggMethod = "mean",
+        Height = "600px",
+        Width = "975px",
+        Title = "Partial Dependence Heatmap: Test Data",
+        ShowLabels = FALSE,
+        Title.YAxis = TargetColumnName,
+        Title.XAxis = g,
+        EchartsTheme = "wef",
+        TimeLine = TRUE,
+        X_Scroll = TRUE,
+        Y_Scroll = TRUE,
+        TextColor = "white",
+        Debug = FALSE)}, error = function(x) NULL)
+    }
+  }
+}
+  
+### Train Data ----
+
+# Starting batch of plots
+Train_ParDepCatPlots <- list()
+
+# Add Plots
+if(!is.null(TrainData) && !is.null(FeatureColumnNames)) {
+  for(g in FeatureColumnNames) {
+    if(is.character(TrainData[[g]]) || is.factor(TrainData[[g]])) {
+      Train_ParDepCatPlots[[g]] <- tryCatch({AutoPlots::Plot.PartialDependence.HeatMap(
+        dt = TrainData,
+        XVar = g,
+        YVar = TargetColumnName,
+        ZVar = 'Predict',
+        YVarTrans = "Identity",
+        XVarTrans = "Identity",
+        ZVarTrans = "Identity",
+        FacetRows = 1,
+        FacetCols = 1,
+        FacetLevels = NULL,
+        GroupVar = NULL,
+        NumberBins = 20,
+        AggMethod = "mean",
+        Height = "600px",
+        Width = "975px",
+        Title = "Partial Dependence Heatmap: Train Data",
+        ShowLabels = FALSE,
+        Title.YAxis = TargetColumnName,
+        Title.XAxis = g,
+        EchartsTheme = "wef",
+        TimeLine = TRUE,
+        X_Scroll = TRUE,
+        Y_Scroll = TRUE,
+        TextColor = "white",
+        Debug = FALSE)}, error = function(x) NULL)
+    }
+  }
+}
+
+```
+
+# <font size="6">ML Report Descriptions:</font>
+
+The two main goals with this document are to provide a wide range of output to investigate high level performance and insights, and to deliver a high quality report design layout to increase user experience. The metrics provided are intended to be semi-comprehensive. One can always dig deeper into results to gain further insights. In light of that, the results are intended to provide information that one can come to a reasonable conclusion about their model or to find the areas where they need to dig a little deeper. 
+
+## Evaluation Metrics
+This section contains statistics and variable importance measures to help the user understand model performance at a high level. Train Data results are included and can be used to compare against the Test Data results to identify over / under fitting of models.
+
+## Evaluation Plots 
+This section contains visualizations that span the range of predicted values and the associated accuracies across that range. The predicted values range is broken up into every 5th percentile to provide a wide range for evaluation.
+
+## Model Interpretation sections 
+This section contains visualizations intended to open up the black box of your algorithm. When one inspects coefficients from a regression model, the insights they gain are two-fold: 
+- get an understanding about statistics significance
+- gain an understanding of the variable's effect on the target variable
+However, not all relationships are linear and sometimes the user doesn't specifiy an appropriate model structure to fully capture the nature of the relationship, which can lead to incorrect conclusions about both statistical signifance and the nature of the relationship. These visualizations provide a way to understand what the exact nature of those relationships are (in a visual manner) and if the user chooses, they can attempt to fit the relationship more precisely with an appropriate statistical model in order to gain a better understanding of statistical significance.
+
+# <font size="6">Evaluation Metrics</font>
+<p>
+
+<details><summary>Expand</summary>
+<p>
+
+
+
+##  <font size="5">MultiClass Metrics Tables</font>
+
+<details><summary>MultiClass Metrics</summary>
+<p>
+
+```{r Model_MultiClass_Metrics, echo=FALSE}
+if(!is.null(All_MultiClassMetrics)) {
+  All_MultiClassMetrics <- All_MultiClassMetrics[Data_Source != 'Train']
+  data.table::setcolorder(All_MultiClassMetrics, c(3L, 1L, 2L))
+  reactable::reactable(
+    width = 1075,
+    data = All_MultiClassMetrics,
+    compact = TRUE,
+    defaultPageSize = 10,
+    wrap = FALSE,
+    filterable = TRUE,
+    fullWidth = FALSE,
+    highlight = TRUE,
+    pagination = TRUE,
+    resizable = TRUE,
+    searchable = TRUE,
+    selection = "multiple",
+    showPagination = TRUE,
+    showSortable = TRUE,
+    showSortIcon = TRUE,
+    sortable = TRUE,
+    striped = TRUE,
+    theme = reactable::reactableTheme(
+      color = 'black',
+      backgroundColor = "#4f4f4f26",
+      borderColor = "#dfe2e5",
+      stripedColor = "#4f4f4f8f",
+      highlightColor = "#8989898f",
+      cellPadding = "8px 12px",
+      style = list(
+        fontFamily = "-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif"
+      ),
+      searchInputStyle = list(width = "100%")
+    )
+  )
+} else {
+  print('All_MultiClassMetrics is NULL')
+}
+```
+
+</details>
+</p>
+
+
+##  <font size="5">Binary Metrics 1 vs All Tables</font>
+
+<details><summary>Model Metrics Tables</summary>
+<p>
+
+
+### **TestData**
+<p>
+
+<details><summary>Performance Metrics</summary>
+<p>
+
+```{r Model_Evaluation_Metrics, echo=FALSE}
+if(!is.null(Test_EvalMetrics)) {
+  for(nam in names(Test_EvalMetrics)) {
+    print(nam)
+    reactable::reactable(
+      width = 1075,
+      data = Test_EvalMetrics[[nam]],
+      compact = TRUE,
+      defaultPageSize = 10,
+      wrap = FALSE,
+      filterable = TRUE,
+      fullWidth = FALSE,
+      highlight = TRUE,
+      pagination = TRUE,
+      resizable = TRUE,
+      searchable = TRUE,
+      selection = "multiple",
+      showPagination = TRUE,
+      showSortable = TRUE,
+      showSortIcon = TRUE,
+      sortable = TRUE,
+      striped = TRUE,
+      theme = reactable::reactableTheme(
+        color = 'black',
+        backgroundColor = "#4f4f4f26",
+        borderColor = "#dfe2e5",
+        stripedColor = "#4f4f4f8f",
+        highlightColor = "#8989898f",
+        cellPadding = "8px 12px",
+        style = list(
+          fontFamily = "-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif"
+        ),
+        searchInputStyle = list(width = "100%")
+      )
+    )
+  }
+} else {
+  print('Test_EvalMetrics is NULL')
+}
+```
+
+</details>
+</p>
+
+
+### **TrainData + ValidationData**
+<p>
+
+<details><summary>Performance Metrics</summary>
+<p>
+
+```{r Model_Evaluation_Metrics_Train, echo=FALSE}
+if(!is.null(Train_EvalMetrics)) {
+  for(nam in names(Train_EvalMetrics)) {
+    print(nam)
+    reactable::reactable(
+      width = 1075,
+      data = Train_EvalMetrics[[nam]],
+      compact = TRUE,
+      defaultPageSize = 10,
+      wrap = FALSE,
+      filterable = TRUE,
+      fullWidth = FALSE,
+      highlight = TRUE,
+      pagination = TRUE,
+      resizable = TRUE,
+      searchable = TRUE,
+      selection = "multiple",
+      showPagination = TRUE,
+      showSortable = TRUE,
+      showSortIcon = TRUE,
+      sortable = TRUE,
+      striped = TRUE,
+      theme = reactable::reactableTheme(
+        color = 'black',
+        backgroundColor = "#4f4f4f26",
+        borderColor = "#dfe2e5",
+        stripedColor = "#4f4f4f8f",
+        highlightColor = "#8989898f",
+        cellPadding = "8px 12px",
+        style = list(
+          fontFamily = "-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif"
+        ),
+        searchInputStyle = list(width = "100%")
+      )
+    )
+  }
+} else {
+  print('Train_EvalMetrics is NULL')
+}
+```
+
+</details>
+</p>
+
+
+
+
+
+
+##  <font size="5">Variable Importance Table</font>
+
+<details><summary>Variable Importance</summary>
+<p>
+
+```{r Model_VarImportanceTable, echo=FALSE}
+if(!is.null(All_Importance)) {
+  data.table::setorderv(x = All_Importance, cols = names(All_Importance)[2L], order = -1L, na.last = TRUE)
+  reactable::reactable(
+    width = 1075,
+    data = All_Importance,
+    compact = TRUE,
+    defaultPageSize = 10,
+    wrap = FALSE,
+    filterable = TRUE,
+    fullWidth = FALSE,
+    highlight = TRUE,
+    pagination = TRUE,
+    resizable = TRUE,
+    searchable = TRUE,
+    selection = "multiple",
+    showPagination = TRUE,
+    showSortable = TRUE,
+    showSortIcon = TRUE,
+    sortable = TRUE,
+    striped = TRUE,
+    theme = reactable::reactableTheme(
+      color = 'black',
+      backgroundColor = "#4f4f4f26",
+      borderColor = "#dfe2e5",
+      stripedColor = "#4f4f4f8f",
+      highlightColor = "#8989898f",
+      cellPadding = "8px 12px",
+      style = list(
+        fontFamily = "-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif"
+      ),
+      searchInputStyle = list(width = "100%")
+    )
+  )
+} else {
+  print("No Importance data was provided")
+}
+```
+
+</details>
+</p>
+
+
+##  <font size="5">Interaction Importance Table</font>
+<p>
+
+<details><summary>Interaction Importance</summary>
+<p>
+
+```{r Model_IntImportanceTable, echo=FALSE}
+if(exists("All_Interaction") && !is.null(All_Interaction)) {
+  data.table::setorderv(x = All_Interaction, cols = names(All_Interaction)[3L], order = -1L, na.last = TRUE)
+  reactable::reactable(
+    width = 1075,
+    data = All_Interaction,
+    compact = TRUE,
+    defaultPageSize = 10,
+    wrap = FALSE,
+    filterable = TRUE,
+    fullWidth = FALSE,
+    highlight = TRUE,
+    pagination = TRUE,
+    resizable = TRUE,
+    searchable = TRUE,
+    selection = "multiple",
+    showPagination = TRUE,
+    showSortable = TRUE,
+    showSortIcon = TRUE,
+    sortable = TRUE,
+    striped = TRUE,
+    theme = reactable::reactableTheme(
+      color = 'black',
+      backgroundColor = "#4f4f4f26",
+      borderColor = "#dfe2e5",
+      stripedColor = "#4f4f4f8f",
+      highlightColor = "#8989898f",
+      cellPadding = "8px 12px",
+      style = list(
+        fontFamily = "-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif"
+      ),
+      searchInputStyle = list(width = "100%")
+    )
+  )
+} else {
+  print('Interaction importance is only available with CatBoost')
+}
+```
+
+</details>
+</p>
+
+
+</details>
+</p>
+
+
+# <font size="6">Evaluation Plots</font>
+<p>
+
+<details><summary>Expand</summary>
+<p>
+
+
+
+## <font size="5">Variable Importance Plots</font>
+<p>
+
+<details><summary>Expand</summary>
+<p>
+
+```{r EvaluationPlots_VIPlot, echo=FALSE}
+if(!is.null(Test_Importance)) {
+  if("Train_Importance" %in% names(Test_Importance)) data.table::setnames(Test_Importance, 'Train_Importance', 'Importance', skip_absent = TRUE)
+  if("Test_Importance" %in% names(Test_Importance)) data.table::setnames(Test_Importance, "Test_Importance", "Importance", skip_absent = TRUE)
+  AutoPlots::Plot.VariableImportance(
+    dt = Test_Importance,
+    XVar = "Importance",
+    YVar = "Variable",
+    GroupVar = NULL,
+    YVarTrans = "Identity",
+    XVarTrans = "Identity",
+    FacetRows = 1,
+    FacetCols = 1,
+    FacetLevels = NULL,
+    AggMethod = "mean",
+    Height = "600px",
+    Width = "975px",
+    Title = "Variable Importance Plot: Test Data",
+    ShowLabels = FALSE,
+    Title.YAxis = NULL,
+    Title.XAxis = NULL,
+    EchartsTheme = "wef",
+    TimeLine = FALSE,
+    X_Scroll = TRUE,
+    Y_Scroll = TRUE,
+    TextColor = "white",
+    title.fontSize = 22,
+    title.fontWeight = "bold",
+    title.textShadowColor = "#63aeff",
+    title.textShadowBlur = 3,
+    title.textShadowOffsetY = 1,
+    title.textShadowOffsetX = -1,
+    xaxis.fontSize = 14,
+    yaxis.fontSize = 14,
+    Debug = FALSE)
+} else {
+  print("Test_Importance is NULL")
+}
+if(!is.null(Validation_Importance)) {
+  if("Validation_Importance" %in% names(Validation_Importance)) data.table::setnames(Validation_Importance, 'Validation_Importance', 'Importance', skip_absent = TRUE)
+  if("Test_Importance" %in% names(Validation_Importance)) data.table::setnames(Validation_Importance, "Test_Importance", "Importance", skip_absent = TRUE)
+  AutoPlots::Plot.VariableImportance(
+    dt = Validation_Importance,
+    XVar = "Importance",
+    YVar = "Variable",
+    GroupVar = NULL,
+    YVarTrans = "Identity",
+    XVarTrans = "Identity",
+    FacetRows = 1,
+    FacetCols = 1,
+    FacetLevels = NULL,
+    AggMethod = "mean",
+    Height = "600px",
+    Width = "975px",
+    Title = "Variable Importance Plot: Validation Data",
+    ShowLabels = FALSE,
+    Title.YAxis = NULL,
+    Title.XAxis = NULL,
+    EchartsTheme = "wef",
+    TimeLine = FALSE,
+    X_Scroll = TRUE,
+    Y_Scroll = TRUE,
+    TextColor = "white",
+    title.fontSize = 22,
+    title.fontWeight = "bold",
+    title.textShadowColor = "#63aeff",
+    title.textShadowBlur = 3,
+    title.textShadowOffsetY = 1,
+    title.textShadowOffsetX = -1,
+    xaxis.fontSize = 14,
+    yaxis.fontSize = 14,
+    Debug = FALSE)
+}
+if(!is.null(Train_Importance)) {
+  if("Train_Importance" %in% names(Train_Importance)) data.table::setnames(Train_Importance, 'Train_Importance', 'Importance', skip_absent = TRUE)
+  if("Test_Importance" %in% names(Train_Importance)) data.table::setnames(Train_Importance, "Test_Importance", "Importance", skip_absent = TRUE)
+  AutoPlots::Plot.VariableImportance(
+    dt = Train_Importance,
+    XVar = "Importance",
+    YVar = "Variable",
+    GroupVar = NULL,
+    YVarTrans = "Identity",
+    XVarTrans = "Identity",
+    FacetRows = 1,
+    FacetCols = 1,
+    FacetLevels = NULL,
+    AggMethod = "mean",
+    Height = "600px",
+    Width = "975px",
+    Title = "Variable Importance Plot: Train Data",
+    ShowLabels = FALSE,
+    Title.YAxis = NULL,
+    Title.XAxis = NULL,
+    EchartsTheme = "wef",
+    TimeLine = FALSE,
+    X_Scroll = TRUE,
+    Y_Scroll = TRUE,
+    TextColor = "white",
+    title.fontSize = 22,
+    title.fontWeight = "bold",
+    title.textShadowColor = "#63aeff",
+    title.textShadowBlur = 3,
+    title.textShadowOffsetY = 1,
+    title.textShadowOffsetX = -1,
+    xaxis.fontSize = 14,
+    yaxis.fontSize = 14,
+    Debug = FALSE)
+  
+}
+```
+
+</details>
+</p>
+
+
+## <font size="5">Calibration Plots</font>
+<p>
+
+<details><summary>Expand</summary>
+<p>
+
+### **TestData**
+<p>
+
+<details><summary>Calibration Plot</summary>
+<p>
+
+```{r EvaluationPlots_CalibrationPlot, echo=FALSE}
+if(!is.null(Test_EvaluationPlot)) {
+  eval(Test_EvaluationPlot)
+} else {
+  print('Test_EvaluationPlot is NULL or TestData is NULL')
+}
+```
+
+</details>
+</p>
+
+### **TrainData** + **ValidationData**
+<p>
+
+<details><summary>Calibration Plot</summary>
+<p>
+
+```{r EvaluationPlots_CalibrationPlot_Train, echo=FALSE}
+if(!is.null(Train_EvaluationPlot)) {
+  eval(Train_EvaluationPlot)
+} else {
+  print('Train Data was not supplied')
+}
+```
+
+</details>
+</p>
+
+
+
+
+## <font size="5">ROC Plots</font>
+<p>
+
+<details><summary>Expand</summary>
+<p>
+
+### **TestData**
+<p>
+
+<details><summary>ROC Plots</summary>
+<p>
+
+```{r ROC_Plot, echo=FALSE}
+if(!is.null(Test_ROCPlot)) {
+  eval(Test_ROCPlot)
+} else {
+  print('Test_ROCPlot is NULL or TestData is NULL')
+}
+```
+
+</details>
+</p>
+
+### **TrainData** + **ValidationData**
+<p>
+
+<details><summary>Expand</summary>
+<p>
+
+```{r ROC_Plot_Train, echo=FALSE}
+if(!is.null(Train_EvaluationPlot)) {
+  eval(Train_ROCPlot)
+} else {
+  print('Train Data was not supplied')
+}
+```
+
+</details>
+</p>
+
+
+
+
+## <font size="5">Lift & Gains Plots</font>
+<p>
+
+<details><summary>Expand</summary>
+<p>
+
+### **TestData**
+<p>
+
+<details><summary>Lift & Gains Plots</summary>
+<p>
+
+```{r Lift and Gains, echo=FALSE}
+if(!is.null(Test_CumGainsChart)) {
+  eval(Test_CumGainsChart)
+} else {
+  print('Test_CumGainsChart is NULL or TestData is NULL')
+}
+```
+
+</details>
+</p>
+
+### **TrainData** + **ValidationData**
+<p>
+
+<details><summary>Expand</summary>
+<p>
+
+```{r Lift and Gains_Train, echo=FALSE}
+if(!is.null(Test_CumGainsChart)) {
+  eval(Train_CumGainsChart)
+} else {
+  print('Train Data was not supplied')
+}
+```
+
+</details>
+</p>
+
+
+
+
+
+
+# <font size="6">Model Interpretation</font>
+<p>
+
+<details><summary>Expand</summary>
+<p>
+
+
+
+## <font size="5">Partial Dependence Plots: Numeric-Features</font> 
+<p>
+
+<details><summary>Expand</summary>
+<p>
+
+
+### Partial Dependence Line Plots
+<p>
+
+<details><summary>Expand</summary>
+<p>
+
+
+#### **TestData**
+<p>
+
+<details><summary>Partital Dependence Line Plots</summary>
+<p>
+
+```{r Model_Evaluation_Metrics_NumericVariables, echo=FALSE}
+options(warn = -1)
+if(!is.null(Test_ParDepPlots) && length(Test_ParDepPlots) > 0) {
+  echarts4r::e_arrange(Test_ParDepPlots)
+} else {
+  print('Test_ParDepPlots is NULL and TestData is NULL')
+}
+options(warn = 1)
+```
+
+</details>
+</p>
+
+
+#### **TrainData** + **ValidationData**
+<p>
+
+<details><summary>Partital Dependence Line Plots</summary>
+<p>
+
+```{r Model_Evaluation_Metrics_NumericVariables_Train, echo=FALSE}
+options(warn = -1)
+if(!is.null(Train_ParDepPlots) && length(Train_ParDepPlots) > 0) {
+  echarts4r::e_arrange(Train_ParDepPlots)
+} else {
+  print('Train Data was not supplied')
+}
+options(warn = 1)
+```
+
+</details>
+</p>
+
+
+
+## <font size="5">Partial Partial Dependence Plots: Categorical-Features</font>
+<p>
+
+<details><summary>Expand</summary>
+<p>
+
+
+### **TestData**
+<p>
+
+<details><summary>Partital Dependence Bar Plots</summary>
+<p>
+
+```{r Model_Evaluation_Metrics_CategoricalVariables, echo=FALSE}
+options(warn = -1)
+if(!is.null(Test_ParDepCatPlots) && length(Test_ParDepCatPlots) > 0) {
+  echarts4r::e_arrange(Test_ParDepCatPlots)
+} else {
+  print('Categorical variables were not supplied')
+}
+options(warn = 1)
+```
+
+</details>
+</p>
+
+
+### **TrainData** + **ValidationData**
+<p>
+
+<details><summary>Partital Dependence Bar Plots</summary>
+<p>
+
+```{r Model_Evaluation_Metrics_CategoricalVariables_Train, echo=FALSE}
+options(warn = -1)
+if(!is.null(Train_ParDepCatPlots) && length(Train_ParDepCatPlots) > 0) {
+  echarts4r::e_arrange(Train_ParDepCatPlots)
+} else {
+  print('Train Data was not supplied')
+}
+options(warn = 1)
+```
+
+</details>
+</p>
+
+
+</details>
+</p>
+
+
+
+</details>
+</p>
+
+
+
+
+
+
+# <font size="6">Model MetaData</font>
+<p>
+
+<details><summary>Expand</summary>
+<p>
+
+
+## <font size="5">Parameters and Settings</font> 
+
+<details><summary>Model Parameters</summary>
+<p>
+
+```{r Model_MetaData_Parameters, echo=FALSE}
+if(!is.null(ArgsList)) {
+  for(nam in names(ArgsList)) print(paste0(nam, ": ", ArgsList[[nam]]))
+} else {
+  txt <- paste0(ModelID, "_ArgsList.Rdata")
+  print(paste0('ArgsList is NULL'))
+}
+```
+
+
+
+## <font size="5">Grid Tuning Metrics</font>
+
+<details><summary>Grid Tuning Metrics</summary>
+<p>
+
+```{r Model_MetaData_GridMetrics, echo=FALSE}
+if(!is.null(GridMetrics)) {
+  reactable::reactable(
+    width = 1075,
+    data = GridMetrics[order(-MetricValue)],
+    compact = TRUE,
+    defaultPageSize = 10,
+    wrap = FALSE,
+    filterable = TRUE,
+    fullWidth = TRUE,
+    highlight = TRUE,
+    pagination = TRUE,
+    resizable = TRUE,
+    searchable = TRUE,
+    selection = "multiple",
+    showPagination = TRUE,
+    showSortable = TRUE,
+    showSortIcon = TRUE,
+    sortable = TRUE,
+    striped = TRUE,
+    theme = reactable::reactableTheme(
+      color = 'black',
+      backgroundColor = "#4f4f4f26",
+      borderColor = "#dfe2e5",
+      stripedColor = "#4f4f4f8f",
+      highlightColor = "#8989898f",
+      cellPadding = "8px 12px",
+      style = list(
+        fontFamily = "-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif"
+      ),
+      searchInputStyle = list(width = "100%")
+    )
+  )
+  
+} else {
+  print("GridTuning was not conducted")
+}
+```
+
+</details>
+</p>
+
+
+
+</details>
+</p>
+

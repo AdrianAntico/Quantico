@@ -5612,51 +5612,6 @@ server <- function(input, output, session) {
       }
     })
   }, ignoreInit = TRUE)
-  shiny::observeEvent(input$CatBoostReport, {
-
-    if(Debug) print('ML REPORT HERE')
-
-    # Args
-    TargetType <- DataMuse:::ReturnParam(xx=tryCatch({input[['CatBoost_TargetType']]}, error=function(x) NULL), Type='character', Default='MultiClass')
-    TargetColumnName <- DataMuse:::ReturnParam(xx=tryCatch({input[['CatBoost_TargetColumnName']]}, error=function(x) NULL), Type='character', Default=NULL)
-    FeatureColNames <- DataMuse:::ReturnParam(xx=tryCatch({input[['CatBoost_FeatureColNames']]}, error=function(x) NULL), Type='character', Default=NULL)
-    ModelID <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0('CatBoost_ModelID')]]}, error=function(x) NULL), Type='character', Default='Model_1')
-    if(TargetType %in% 'binary_classification') TT <- 'classification' else TT <- tolower(TargetType)
-
-    # Build and return report
-    if(length(TargetType) > 0L && length(TargetColumnName) > 0L && length(FeatureColNames) > 0L && length(ModelOutputList) > 0L) {
-
-      if(Debug) {print('ML REPORT HERE 1');print(TargetColumnName);print(FeatureColNames);print(if(CatBoost_TargetType %in% 'binary_classification') 'p1' else 'Predict');print(CatBoost_TargetType)}
-
-      # Build report
-      AutoQuant::ModelInsightsReport(
-        TargetColumnName = TargetColumnName,
-        PredictionColumnName = if(TargetType %in% 'binary_classification') 'p1' else 'Predict',
-        FeatureColumnNames = FeatureColNames,
-        TargetType = TargetType,
-        ModelID = ModelID,
-        Algo = 'catboost',
-        OutputPath = WorkingDirectory,
-        ModelObject = ModelOutputList)
-
-      # Code Collect
-      CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
-        "\n",
-        "# ML Build Model\n",
-        "AutoQuant::ModelInsightsReport(\n\n  ",
-        "TargetColumnName = ", DataMuse:::CEP(TargetColumnName), "\n  ",
-        "PredictionColumnName = ", DataMuse:::CEP(PredictionColumnName), ",\n  ",
-        "FeatureColumnNames = ", DataMuse:::CEP(FeatureColumnNames), ",\n  ",
-        "TargetType = ", DataMuse:::CEP(TargetType), ",\n  ",
-        "ModelID = ", DataMuse:::CEP(ModelID), ",\n  ",
-        "Algo = 'catboost',\n  ",
-        "OutputPath = getwd(),\n  ",
-        "ModelObject = ModelOutputList)\n"))
-      shinyWidgets::sendSweetAlert(session, title = NULL, text = NULL, type = NULL, btn_labels = "Success", btn_colors = NULL, html = FALSE, closeOnClickOutside = TRUE, showCloseButton = TRUE, width = "40%")
-    } else {
-      shinyWidgets::sendSweetAlert(session, title = NULL, text = NULL, type = NULL, btn_labels = "Unable to build", btn_colors = NULL, html = FALSE, closeOnClickOutside = TRUE, showCloseButton = TRUE, width = "40%")
-    }
-  }, ignoreInit = TRUE)
 
   # XGBoostMLParams
   shiny::observeEvent(input$BuildModels_XGBoost,  {
@@ -5730,51 +5685,6 @@ server <- function(input, output, session) {
       }
     })
   }, ignoreInit = TRUE)
-  shiny::observeEvent(input$XGBoostReport, {
-
-    if(Debug) print('ML REPORT HERE')
-
-    # Args
-    TargetType <- DataMuse:::ReturnParam(xx=tryCatch({input[['XGBoost_TargetType']]}, error=function(x) NULL), Type='character', Default='MultiClass')
-    TargetColumnName <- DataMuse:::ReturnParam(xx=tryCatch({input[['XGBoost_TargetColumnName']]}, error=function(x) NULL), Type='character', Default=NULL)
-    FeatureColNames <- DataMuse:::ReturnParam(xx=tryCatch({input[['XGBoost_FeatureColNames']]}, error=function(x) NULL), Type='character', Default=NULL)
-    ModelID <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0('XGBoost_ModelID')]]}, error=function(x) NULL), Type='character', Default='Model_1')
-    if(TargetType %in% 'binary_classification') TT <- 'classification' else TT <- tolower(TargetType)
-
-    # Build and return report
-    if(length(TargetType) > 0L && length(TargetColumnName) > 0L && length(FeatureColNames) > 0L && length(ModelOutputList) > 0L) {
-
-      if(Debug) {print('ML REPORT HERE 1');print(TargetColumnName);print(FeatureColNames);print(if(CatBoost_TargetType %in% 'binary_classification') 'p1' else 'Predict');print(CatBoost_TargetType)}
-
-      # Build report
-      AutoQuant::ModelInsightsReport(
-        TargetColumnName = TargetColumnName,
-        PredictionColumnName = if(TargetType %in% 'binary_classification') 'p1' else 'Predict',
-        FeatureColumnNames = FeatureColNames,
-        TargetType = TargetType,
-        ModelID = ModelID,
-        Algo = 'xgboost',
-        OutputPath = WorkingDirectory,
-        ModelObject = ModelOutputList)
-
-      # Code Collect
-      CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
-        "\n",
-        "# ML Build Model\n",
-        "AutoQuant::ModelInsightsReport(\n\n  ",
-        "TargetColumnName = ", DataMuse:::CEP(TargetColumnName), "\n  ",
-        "PredictionColumnName = ", DataMuse:::CEP(PredictionColumnName), ",\n  ",
-        "FeatureColumnNames = ", DataMuse:::CEP(FeatureColumnNames), ",\n  ",
-        "TargetType = ", DataMuse:::CEP(TargetType), ",\n  ",
-        "ModelID = ", DataMuse:::CEP(ModelID), ",\n  ",
-        "Algo = 'xgboost',\n  ",
-        "OutputPath = getwd(),\n  ",
-        "ModelObject = ModelOutputList)\n"))
-      shinyWidgets::sendSweetAlert(session, title = NULL, text = NULL, type = NULL, btn_labels = "Success", btn_colors = NULL, html = FALSE, closeOnClickOutside = TRUE, showCloseButton = TRUE, width = "40%")
-    } else {
-      shinyWidgets::sendSweetAlert(session, title = NULL, text = NULL, type = NULL, btn_labels = "Unable to build", btn_colors = NULL, html = FALSE, closeOnClickOutside = TRUE, showCloseButton = TRUE, width = "40%")
-    }
-  }, ignoreInit = TRUE)
 
   # LightGBM
   shiny::observeEvent(input$BuildModels_LightGBM, {
@@ -5847,51 +5757,6 @@ server <- function(input, output, session) {
         }
       }
     })
-  }, ignoreInit = TRUE)
-  shiny::observeEvent(input$LightGBMReport, {
-
-    if(Debug) print('ML REPORT HERE')
-
-    # Args
-    TargetType <- DataMuse:::ReturnParam(xx=tryCatch({input[['LightGBM_TargetType']]}, error=function(x) NULL), Type='character', Default='MultiClass')
-    TargetColumnName <- DataMuse:::ReturnParam(xx=tryCatch({input[['LightGBM_TargetColumnName']]}, error=function(x) NULL), Type='character', Default=NULL)
-    FeatureColNames <- DataMuse:::ReturnParam(xx=tryCatch({input[['LightGBM_FeatureColNames']]}, error=function(x) NULL), Type='character', Default=NULL)
-    ModelID <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0('LightGBM_ModelID')]]}, error=function(x) NULL), Type='character', Default='Model_1')
-    if(TargetType %in% 'binary_classification') TT <- 'classification' else TT <- tolower(TargetType)
-
-    # Build and return report
-    if(length(TargetType) > 0L && length(TargetColumnName) > 0L && length(FeatureColNames) > 0L && length(ModelOutputList) > 0L) {
-
-      if(Debug) {print('ML REPORT HERE 1');print(TargetColumnName);print(FeatureColNames);print(if(CatBoost_TargetType %in% 'binary_classification') 'p1' else 'Predict');print(CatBoost_TargetType)}
-
-      # Build report
-      AutoQuant::ModelInsightsReport(
-        TargetColumnName = TargetColumnName,
-        PredictionColumnName = if(TargetType %in% 'binary_classification') 'p1' else 'Predict',
-        FeatureColumnNames = FeatureColNames,
-        TargetType = TargetType,
-        ModelID = ModelID,
-        Algo = 'LightGBMMLParams',
-        OutputPath = WorkingDirectory,
-        ModelObject = ModelOutputList)
-
-      # Code Collect
-      CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
-        "\n",
-        "# ML Build Model\n",
-        "AutoQuant::ModelInsightsReport(\n\n  ",
-        "TargetColumnName = ", DataMuse:::CEP(TargetColumnName), "\n  ",
-        "PredictionColumnName = ", DataMuse:::CEP(PredictionColumnName), ",\n  ",
-        "FeatureColumnNames = ", DataMuse:::CEP(FeatureColumnNames), ",\n  ",
-        "TargetType = ", DataMuse:::CEP(TargetType), ",\n  ",
-        "ModelID = ", DataMuse:::CEP(ModelID), ",\n  ",
-        "Algo = 'LightGBMMLParams',\n  ",
-        "OutputPath = getwd(),\n  ",
-        "ModelObject = ModelOutputList)\n"))
-      shinyWidgets::sendSweetAlert(session, title = NULL, text = NULL, type = NULL, btn_labels = "Success", btn_colors = NULL, html = FALSE, closeOnClickOutside = TRUE, showCloseButton = TRUE, width = "40%")
-    } else {
-      shinyWidgets::sendSweetAlert(session, title = NULL, text = NULL, type = NULL, btn_labels = "Unable to build", btn_colors = NULL, html = FALSE, closeOnClickOutside = TRUE, showCloseButton = TRUE, width = "40%")
-    }
   }, ignoreInit = TRUE)
 
   # H2O_DRF

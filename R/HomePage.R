@@ -556,11 +556,15 @@ HomePage <- function(id, Page, AppWidth=12L) {
                       * Density
                       * Box
                       * Pie
+                      * Donut
+                      * Rosetype
+                      * Wordcloud
                       * Area
-                      * Candlestick (requires polygon api)
                       * Line
                       * River
                       * Step
+                      * Autocorrelation
+                      * PartialAutocorr
                       * Bar
                       * Stacked Bar
                       * 3D Bar
@@ -4806,7 +4810,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
         shiny::fluidRow(
           shiny::h3("Enjoy the view", style = "padding-left: 45px")
         )
-      )
+      ),
     )
   ) # closes box
 }

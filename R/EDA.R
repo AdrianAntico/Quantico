@@ -10,7 +10,7 @@
 #' @param DataList DataList stores data in app
 #' @param ArgsList ArgsList
 #' @param CodeList CodeList from app
-#' @param Debug DebugFC from app
+#' @param Debug DebugFC from app a
 #'
 #' @return a list of columns names by data type
 #'
@@ -30,6 +30,7 @@ Shiny.EDA.ReportOutput <- function(input,
   if(!exists("CodeList")) return(NULL)
   OutputList <- list()
 
+  # Comment
   # Args Mgt
   if(Debug) print("Shiny.EDA.ReportOutput 2")
   data <- DataList[[DataMuse:::ReturnParam(xx = tryCatch({input[[paste0("EDAData", Page)]]}, error = function(x) NULL), Type = "character", Default = NULL)]][['data']]

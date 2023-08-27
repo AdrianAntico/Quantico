@@ -240,7 +240,7 @@ ui <- shinydashboard::dashboardPage(
                           InputID = 'BackgroundImageSelect', Label = NULL,
                           Multiple = TRUE, MaxVars = 1L, SelectedDefault = 'PalmTreesLake',
                           CloseAfterSelect = FALSE,
-                          Choices = unique(c('None',sort(c('NorthernLights','River','FoggyMountains','CatMoon','PalmTreesLake','MountainLake','FoggyTrees','GreenWoods','Liminal-Train','Dock-Mountains-Sunset','GoldenGateBridge','OpenForBusiness','SailBoat','Europe','Vacation','BeachCave','Vespa','PerformanceReview','Lightning','Country','Getaway','Outrun','Havana','Liminal-Diner')))))
+                          Choices = unique(c('None',sort(c('River','FoggyMountains','CatMoon','PalmTreesLake','MountainLake','FoggyTrees','GreenWoods','Liminal-Train','Dock-Mountains-Sunset','SailBoat','Europe','Vacation','BeachCave','Vespa','PerformanceReview','Lightning','Country','Getaway','Outrun','Havana')))))
                       )
                     ),
                     shiny::fluidRow(

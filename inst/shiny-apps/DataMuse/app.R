@@ -240,7 +240,7 @@ ui <- shinydashboard::dashboardPage(
                           InputID = 'BackgroundImageSelect', Label = NULL,
                           Multiple = TRUE, MaxVars = 1L, SelectedDefault = 'PalmTreesLake',
                           CloseAfterSelect = FALSE,
-                          Choices = unique(c('None','ThreeBlackCats_mosaic', sort(c('NorthernLights','River','FoggyMountains','CatMoon','PalmTreesLake','MountainLake','FoggyTrees','GreenWoods','Liminal-Train','Dock-Mountains-Sunset','GoldenGateBridge','OpenForBusiness','SailBoat','Europe','Vacation','BeachCave','CloudyNight','Vespa','PerformanceReview','Lightning','Country','Getaway','Outrun','Havana','Liminal-Diner')))))
+                          Choices = unique(c('None',sort(c('NorthernLights','River','FoggyMountains','CatMoon','PalmTreesLake','MountainLake','FoggyTrees','GreenWoods','Liminal-Train','Dock-Mountains-Sunset','GoldenGateBridge','OpenForBusiness','SailBoat','Europe','Vacation','BeachCave','Vespa','PerformanceReview','Lightning','Country','Getaway','Outrun','Havana','Liminal-Diner')))))
                       )
                     ),
                     shiny::fluidRow(
@@ -7541,7 +7541,7 @@ server <- function(input, output, session) {
                     Choices <- c(TRUE,FALSE)
                     Label <- "Timeline"
                   } else if(sbe == "BackgroundImageSelect") {
-                    Choices <- unique(c('None', sort(c('NorthernLights','River','FoggyMountains','CatMoon','PalmTreesLake','MountainLake','FoggyTrees','GreenWoods','Liminal-Street','Liminal-Train','Dock-Mountains-Sunset','GoldenGateBridge','OpenForBusiness','RainyWindow','SailBoat','Europe','Vacation','BeachCave','CloudyNight','CatEyes','Vespa','PerformanceReview','Lightning','Country','Getaway','Outrun','Vaporwave','Havana','Limbo','Transition','Liminal-Hotel','Liminal-Diner'))))
+                    Choices <- unique(c('None', sort(c('River','FoggyMountains','CatMoon','PalmTreesLake','MountainLake','FoggyTrees','GreenWoods','Liminal-Train','Dock-Mountains-Sunset','SailBoat','Europe','Vacation','BeachCave','Vespa','PerformanceReview','Lightning','Country','Getaway','Outrun','Havana'))))
                     Label <- NULL
                   } else if(sbe == "CssSelect") {
                     Choices <- c('day-light-blue','light-gray','medium-gray','dark-gray','piano-black','yellow','yellow-green','green','green-blue','light-blue','dodger-blue','blue','blue-purple','purple','pink','red')

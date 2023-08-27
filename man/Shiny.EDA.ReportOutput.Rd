@@ -24,7 +24,7 @@ Shiny.EDA.ReportOutput(
 
 \item{CodeList}{CodeList from app}
 
-\item{Debug}{DebugFC from app}
+\item{Debug}{DebugFC from app a}
 
 \item{ArgsList}{ArgsList}
 }

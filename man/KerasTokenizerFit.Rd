@@ -49,7 +49,7 @@ Tokenize and Fit with the one function. Convert column of long text within rows 
 Tokenize_Object <- DataMuse:::KerasTokenizerFit(
   Fit_Text = x_train_text,
   Fit_Object = NULL,
-  Tok_num_words = NULL,
+  Tok_num_words = NULL, # comment
   Tok_filters = "!\"#$\%&()*+,-./:;<=>?@[\\\\]^_`{|}~\t\n",
   Tok_lower = TRUE,
   Tok_split = " ",

@@ -17530,13 +17530,11 @@ PlotDropDownContents <- function(id,
                                  H3Color = '#0088a7') {
 
   PlotList <- list()
-  PlotList[["Standard Plots"]] <- c(
-    "",
-    'HistogramPlot','DensityPlot','BoxPlot','PiePlot','DonutPlot','RosetypePlot','WordCloud',
-    'LinePlot','AreaPlot','StepPlot','RiverPlot',
-    'BarPlot','StackedBarPlot','BarPlot3D',
-    'HeatMapPlot','CorrelogramPlot','Autocorrelation','PartialAutocorr',
-    'ScatterPlot','ScatterPlot3D','CopulaPlot','CopulaPlot3D')
+  PlotList[["Distribution"]] <- c("", 'HistogramPlot','DensityPlot','BoxPlot','WordCloud')
+  PlotList[["Composition"]] <- c('PiePlot','DonutPlot','RosetypePlot')
+  PlotList[["Time Series"]] <- c('LinePlot','AreaPlot','StepPlot','RiverPlot','Autocorrelation','PartialAutocorr')
+  PlotList[["Aggregate"]] <- c('BarPlot','StackedBarPlot','BarPlot3D','HeatMapPlot')
+  PlotList[["Relationship"]] <- c('CorrelogramPlot','ScatterPlot','ScatterPlot3D','CopulaPlot','CopulaPlot3D')
   PlotList[["ML Evaluation"]] <- c(
     'Residuals','ResidScatter',
     'PartialDependenceLine','PartialDependenceHeatMap',

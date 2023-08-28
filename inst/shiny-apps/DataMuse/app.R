@@ -223,7 +223,7 @@ ui <- shinydashboard::dashboardPage(
                       shiny::tags$span(shiny::tags$b('Table & Plots Font Color')),
                       shiny::column(
                         12L, align = 'left', style = "padding-left: 0px; padding-right: 0px;",
-                        shiny.fluent::ColorPicker.shinyInput("ColorFont", value = "#e2e2e2"),
+                        shiny.fluent::ColorPicker.shinyInput("ColorFont", value = "#dcdce3"),
                         DataMuse:::BlankRow(12)
                       )
                     )
@@ -262,93 +262,93 @@ ui <- shinydashboard::dashboardPage(
                     #       Multiple = TRUE, MaxVars = 1L, SelectedDefault = 'Poincare', CloseAfterSelect = FALSE)
                     #   )
                     # )
-                  ),
+                  )#,
 
-                  shiny::tags$details(
-                    shiny::tags$summary(shiny::tags$span(shiny::tags$b('R Packages'))),
-                    shiny::fluidRow(
-                      shiny::column(
-                        12L,
-                        DataMuse::BlankLine(12L),
-                        shiny::fluidRow(
-                          class = "PackageLinks",
-                          style="padding-left: 20px; min-height: 35px",
-                          shiny::tagList(
-                            shiny::fluidRow(
-                              shiny::column(
-                                12L,
-                                shiny::tags$h3("DataMuse"))),
-                            shiny::HTML("<a class='github-button' href='https://github.com/AdrianAntico/DataMuse' data-color-scheme='no-preference: dark; light: light; dark: dark;' data-icon='octicon-star' data-size='large' aria-label='Star AdrianAntico/DataMuse on GitHub'>Star</a>"),
-                            shiny::HTML("<a class='github-button' href='https://github.com/AdrianAntico/DataMuse/issues' data-color-scheme='no-preference: dark; light: light; dark: dark;' data-icon='octicon-issue-opened' data-size='large' aria-label='Issue AdrianAntico/DataMuse on GitHub'>Issue</a>")
-                          )),
-                        DataMuse:::BlankRow(12L),
-                        shiny::fluidRow(
-                          class = "PackageLinks",
-                          style="padding-left: 20px; min-height: 35px",
-                          shiny::tagList(
-                            shiny::fluidRow(
-                              shiny::column(
-                                12L,
-                                shiny::tags$h3("Rodeo"))),
-                            shiny::HTML("<a class='github-button' href='https://github.com/AdrianAntico/DataMuse' data-color-scheme='no-preference: dark; light: light; dark: dark;' data-icon='octicon-star' data-size='large' aria-label='Star AdrianAntico/Rodeo on GitHub'>Star</a>"),
-                            shiny::HTML("<a class='github-button' href='https://github.com/AdrianAntico/Rodeo/issues' data-color-scheme='no-preference: dark; light: light; dark: dark;' data-icon='octicon-issue-opened' data-size='large' aria-label='Issue AdrianAntico/Rodeo on GitHub'>Issue</a>")
-                          )
-                        ),
-                        DataMuse:::BlankRow(12L),
-                        shiny::fluidRow(
-                          class = "PackageLinks",
-                          style="padding-left: 20px; min-height: 35px",
-                          shiny::tagList(
-                            shiny::fluidRow(
-                              shiny::column(
-                                12L,
-                                shiny::tags$h3("AutoPlots"))),
-                            shiny::HTML("<a class='github-button' href='https://github.com/AdrianAntico/AutoPlots' data-color-scheme='no-preference: dark; light: light; dark: dark;' data-icon='octicon-star' data-size='large' aria-label='Star AdrianAntico/AutoPlots on GitHub'>Star</a>"),
-                            shiny::HTML("<a class='github-button' href='https://github.com/AdrianAntico/AutoPlots/issues' data-color-scheme='no-preference: dark; light: light; dark: dark;' data-icon='octicon-issue-opened' data-size='large' aria-label='Issue AdrianAntico/AutoPlots on GitHub'>Issue</a>")
-                          )
-                        ),
-                        DataMuse:::BlankRow(12L),
-                        shiny::fluidRow(
-                          class = "PackageLinks",
-                          style="padding-left: 20px; min-height: 35px",
-                          shiny::tagList(
-                            shiny::fluidRow(
-                              shiny::column(
-                                12L,
-                                shiny::tags$h3("AutoQuant"))),
-                            shiny::HTML("<a class='github-button' href='https://github.com/AdrianAntico/AutoQuant' data-color-scheme='no-preference: dark; light: light; dark: dark;' data-icon='octicon-star' data-size='large' aria-label='Star AdrianAntico/AutoQuant on GitHub'>Star</a>"),
-                            shiny::HTML("<a class='github-button' href='https://github.com/AdrianAntico/AutoQuant/issues' data-color-scheme='no-preference: dark; light: light; dark: dark;' data-icon='octicon-issue-opened' data-size='large' aria-label='Issue AdrianAntico/AutoQuant on GitHub'>Issue</a>")
-                          )
-                        ),
-                        # DataMuse:::BlankRow(12L),
-                        # shiny::fluidRow(
-                        #   class = "PackageLinks",
-                        #   style="padding-left: 20px; min-height: 35px",
-                        #   shiny::tagList(
-                        #     shiny::fluidRow(
-                        #       shiny::column(
-                        #         12L,
-                        #         shiny::tags$h3("AutoForecast"))),
-                        #     shiny::HTML("<a class='github-button' href='https://github.com/AdrianAntico/AutoForecasting' data-color-scheme='no-preference: dark; light: light; dark: dark;' data-icon='octicon-star' data-size='large' aria-label='Star AdrianAntico/AutoForecasting on GitHub'>Star</a>"),
-                        #     shiny::HTML("<a class='github-button' href='https://github.com/AdrianAntico/AutoForecasting/issues' data-color-scheme='no-preference: dark; light: light; dark: dark;' data-icon='octicon-issue-opened' data-size='large' aria-label='Issue AdrianAntico/AutoForecasting on GitHub'>Issue</a>")
-                        #   )
-                        # ),
-                        DataMuse:::BlankRow(12L),
-                        shiny::fluidRow(
-                          class = "PackageLinks",
-                          style="padding-left: 20px; min-height: 35px",
-                          shiny::tagList(
-                            shiny::fluidRow(
-                              shiny::column(
-                                12L,
-                                shiny::tags$h3("AutoNLP"))),
-                            shiny::HTML("<a class='github-button' href='https://github.com/AdrianAntico/AutoNLP' data-color-scheme='no-preference: dark; light: light; dark: dark;' data-icon='octicon-star' data-size='large' aria-label='Star AdrianAntico/AutoNLP on GitHub'>Star</a>"),
-                            shiny::HTML("<a class='github-button' href='https://github.com/AdrianAntico/AutoNLP/issues' data-color-scheme='no-preference: dark; light: light; dark: dark;' data-icon='octicon-issue-opened' data-size='large' aria-label='Issue AdrianAntico/AutoNLP on GitHub'>Issue</a>")
-                          )
-                        ) # end fluid row
-                      ) # end column
-                    ) # end fluid row
-                  ) # R Packages Details
+                  # shiny::tags$details(
+                  #   shiny::tags$summary(shiny::tags$span(shiny::tags$b('R Packages'))),
+                  #   shiny::fluidRow(
+                  #     shiny::column(
+                  #       12L,
+                  #       DataMuse::BlankLine(12L),
+                  #       shiny::fluidRow(
+                  #         class = "PackageLinks",
+                  #         style="padding-left: 20px; min-height: 35px",
+                  #         shiny::tagList(
+                  #           shiny::fluidRow(
+                  #             shiny::column(
+                  #               12L,
+                  #               shiny::tags$h3("DataMuse"))),
+                  #           shiny::HTML("<a class='github-button' href='https://github.com/AdrianAntico/DataMuse' data-color-scheme='no-preference: dark; light: light; dark: dark;' data-icon='octicon-star' data-size='large' aria-label='Star AdrianAntico/DataMuse on GitHub'>Star</a>"),
+                  #           shiny::HTML("<a class='github-button' href='https://github.com/AdrianAntico/DataMuse/issues' data-color-scheme='no-preference: dark; light: light; dark: dark;' data-icon='octicon-issue-opened' data-size='large' aria-label='Issue AdrianAntico/DataMuse on GitHub'>Issue</a>")
+                  #         )),
+                  #       DataMuse:::BlankRow(12L),
+                  #       shiny::fluidRow(
+                  #         class = "PackageLinks",
+                  #         style="padding-left: 20px; min-height: 35px",
+                  #         shiny::tagList(
+                  #           shiny::fluidRow(
+                  #             shiny::column(
+                  #               12L,
+                  #               shiny::tags$h3("Rodeo"))),
+                  #           shiny::HTML("<a class='github-button' href='https://github.com/AdrianAntico/DataMuse' data-color-scheme='no-preference: dark; light: light; dark: dark;' data-icon='octicon-star' data-size='large' aria-label='Star AdrianAntico/Rodeo on GitHub'>Star</a>"),
+                  #           shiny::HTML("<a class='github-button' href='https://github.com/AdrianAntico/Rodeo/issues' data-color-scheme='no-preference: dark; light: light; dark: dark;' data-icon='octicon-issue-opened' data-size='large' aria-label='Issue AdrianAntico/Rodeo on GitHub'>Issue</a>")
+                  #         )
+                  #       ),
+                  #       DataMuse:::BlankRow(12L),
+                  #       shiny::fluidRow(
+                  #         class = "PackageLinks",
+                  #         style="padding-left: 20px; min-height: 35px",
+                  #         shiny::tagList(
+                  #           shiny::fluidRow(
+                  #             shiny::column(
+                  #               12L,
+                  #               shiny::tags$h3("AutoPlots"))),
+                  #           shiny::HTML("<a class='github-button' href='https://github.com/AdrianAntico/AutoPlots' data-color-scheme='no-preference: dark; light: light; dark: dark;' data-icon='octicon-star' data-size='large' aria-label='Star AdrianAntico/AutoPlots on GitHub'>Star</a>"),
+                  #           shiny::HTML("<a class='github-button' href='https://github.com/AdrianAntico/AutoPlots/issues' data-color-scheme='no-preference: dark; light: light; dark: dark;' data-icon='octicon-issue-opened' data-size='large' aria-label='Issue AdrianAntico/AutoPlots on GitHub'>Issue</a>")
+                  #         )
+                  #       ),
+                  #       DataMuse:::BlankRow(12L),
+                  #       shiny::fluidRow(
+                  #         class = "PackageLinks",
+                  #         style="padding-left: 20px; min-height: 35px",
+                  #         shiny::tagList(
+                  #           shiny::fluidRow(
+                  #             shiny::column(
+                  #               12L,
+                  #               shiny::tags$h3("AutoQuant"))),
+                  #           shiny::HTML("<a class='github-button' href='https://github.com/AdrianAntico/AutoQuant' data-color-scheme='no-preference: dark; light: light; dark: dark;' data-icon='octicon-star' data-size='large' aria-label='Star AdrianAntico/AutoQuant on GitHub'>Star</a>"),
+                  #           shiny::HTML("<a class='github-button' href='https://github.com/AdrianAntico/AutoQuant/issues' data-color-scheme='no-preference: dark; light: light; dark: dark;' data-icon='octicon-issue-opened' data-size='large' aria-label='Issue AdrianAntico/AutoQuant on GitHub'>Issue</a>")
+                  #         )
+                  #       ),
+                  #       # DataMuse:::BlankRow(12L),
+                  #       # shiny::fluidRow(
+                  #       #   class = "PackageLinks",
+                  #       #   style="padding-left: 20px; min-height: 35px",
+                  #       #   shiny::tagList(
+                  #       #     shiny::fluidRow(
+                  #       #       shiny::column(
+                  #       #         12L,
+                  #       #         shiny::tags$h3("AutoForecast"))),
+                  #       #     shiny::HTML("<a class='github-button' href='https://github.com/AdrianAntico/AutoForecasting' data-color-scheme='no-preference: dark; light: light; dark: dark;' data-icon='octicon-star' data-size='large' aria-label='Star AdrianAntico/AutoForecasting on GitHub'>Star</a>"),
+                  #       #     shiny::HTML("<a class='github-button' href='https://github.com/AdrianAntico/AutoForecasting/issues' data-color-scheme='no-preference: dark; light: light; dark: dark;' data-icon='octicon-issue-opened' data-size='large' aria-label='Issue AdrianAntico/AutoForecasting on GitHub'>Issue</a>")
+                  #       #   )
+                  #       # ),
+                  #       DataMuse:::BlankRow(12L),
+                  #       shiny::fluidRow(
+                  #         class = "PackageLinks",
+                  #         style="padding-left: 20px; min-height: 35px",
+                  #         shiny::tagList(
+                  #           shiny::fluidRow(
+                  #             shiny::column(
+                  #               12L,
+                  #               shiny::tags$h3("AutoNLP"))),
+                  #           shiny::HTML("<a class='github-button' href='https://github.com/AdrianAntico/AutoNLP' data-color-scheme='no-preference: dark; light: light; dark: dark;' data-icon='octicon-star' data-size='large' aria-label='Star AdrianAntico/AutoNLP on GitHub'>Star</a>"),
+                  #           shiny::HTML("<a class='github-button' href='https://github.com/AdrianAntico/AutoNLP/issues' data-color-scheme='no-preference: dark; light: light; dark: dark;' data-icon='octicon-issue-opened' data-size='large' aria-label='Issue AdrianAntico/AutoNLP on GitHub'>Issue</a>")
+                  #         )
+                  #       ) # end fluid row
+                  #     ) # end column
+                  #   ) # end fluid row
+                  # ) # R Packages Details
                 ) # Settings Details
               ), # fluid Row: Closes out sidebar; below are contact details
 
@@ -605,36 +605,52 @@ server <- function(input, output, session) {
   shiny::observeEvent(input$CssSelect, {
     if(input$CssSelect == "day-light-blue") {
       shiny::updateSelectInput(session = session, inputId = "EchartsTheme", label = "Plots Theme", choices = EchartThemes, selected = "macarons")
+      shiny.fluent::updateColorPicker.shinyInput(session = session, inputId = "ColorFont", value = "#161617")
     } else if(input$CssSelect == "light-gray") {
       shiny::updateSelectInput(session, inputId = "EchartsTheme", label = "Plots Theme", choices = EchartThemes, selected = "tech-blue")
+      shiny.fluent::updateColorPicker.shinyInput(session = session, inputId = "ColorFont", value = "#dcdce3")
     } else if(input$CssSelect == "medium-gray") {
       shiny::updateSelectInput(session = session, inputId = "EchartsTheme", label = "Plots Theme", choices = EchartThemes, selected = "wef")
+      shiny.fluent::updateColorPicker.shinyInput(session = session, inputId = "ColorFont", value = "#dcdce3")
     } else if(input$CssSelect == "dark-gray") {
       shiny::updateSelectInput(session = session, inputId = "EchartsTheme", label = "Plots Theme", choices = EchartThemes, selected = "shine")
+      shiny.fluent::updateColorPicker.shinyInput(session = session, inputId = "ColorFont", value = "#dcdce3")
     } else if(input$CssSelect == "piano-black") {
       shiny::updateSelectInput(session = session, inputId = "EchartsTheme", label = "Plots Theme", choices = EchartThemes, selected = "helianthus")
+      shiny.fluent::updateColorPicker.shinyInput(session = session, inputId = "ColorFont", value = "#dcdce3")
     } else if(input$CssSelect == "yellow") {
       shiny::updateSelectInput(session = session, inputId = "EchartsTheme", label = "Plots Theme", choices = EchartThemes, selected = "bee-inspired")
+      shiny.fluent::updateColorPicker.shinyInput(session = session, inputId = "ColorFont", value = "#dcdce3")
     } else if(input$CssSelect == "yellow-green") {
       shiny::updateSelectInput(session = session, inputId = "EchartsTheme", label = "Plots Theme", choices = EchartThemes, selected = "fresh-cut")
+      shiny.fluent::updateColorPicker.shinyInput(session = session, inputId = "ColorFont", value = "#dcdce3")
     } else if(input$CssSelect == "green") {
       shiny::updateSelectInput(session = session, inputId = "EchartsTheme", label = "Plots Theme", choices = EchartThemes, selected = "infographic")
+      shiny.fluent::updateColorPicker.shinyInput(session = session, inputId = "ColorFont", value = "#dcdce3")
     } else if(input$CssSelect == "green-blue") {
       shiny::updateSelectInput(session = session, inputId = "EchartsTheme", label = "Plots Theme", choices = EchartThemes, selected = "mint")
+      shiny.fluent::updateColorPicker.shinyInput(session = session, inputId = "ColorFont", value = "#dcdce3")
     } else if(input$CssSelect == "light-blue") {
       shiny::updateSelectInput(session = session, inputId = "EchartsTheme", label = "Plots Theme", choices = EchartThemes, selected = "walden")
+      shiny.fluent::updateColorPicker.shinyInput(session = session, inputId = "ColorFont", value = "#dcdce3")
     } else if(input$CssSelect == "dodger-blue") {
       shiny::updateSelectInput(session = session, inputId = "EchartsTheme", label = "Plots Theme", choices = EchartThemes, selected = "walden")
+      shiny.fluent::updateColorPicker.shinyInput(session = session, inputId = "ColorFont", value = "#dcdce3")
     } else if(input$CssSelect == "blue") {
       shiny::updateSelectInput(session = session, inputId = "EchartsTheme", label = "Plots Theme", choices = EchartThemes, selected = "walden")
+      shiny.fluent::updateColorPicker.shinyInput(session = session, inputId = "ColorFont", value = "#dcdce3")
     } else if(input$CssSelect == "blue-purple") {
       shiny::updateSelectInput(session = session, inputId = "EchartsTheme", label = "Plots Theme", choices = EchartThemes, selected = "macarons")
+      shiny.fluent::updateColorPicker.shinyInput(session = session, inputId = "ColorFont", value = "#dcdce3")
     } else if(input$CssSelect == "purple") {
       shiny::updateSelectInput(session = session, inputId = "EchartsTheme", label = "Plots Theme", choices = EchartThemes, selected = "walden")
+      shiny.fluent::updateColorPicker.shinyInput(session = session, inputId = "ColorFont", value = "#dcdce3")
     } else if(input$CssSelect == "pink") {
       shiny::updateSelectInput(session = session, inputId = "EchartsTheme", label = "Plots Theme", choices = EchartThemes, selected = "wonderland")
+      shiny.fluent::updateColorPicker.shinyInput(session = session, inputId = "ColorFont", value = "#dcdce3")
     } else if(input$CssSelect == "red") {
       shiny::updateSelectInput(session = session, inputId = "EchartsTheme", label = "Plots Theme", choices = EchartThemes, selected = "red")
+      shiny.fluent::updateColorPicker.shinyInput(session = session, inputId = "ColorFont", value = "#dcdce3")
     }
   })
 
@@ -5795,7 +5811,6 @@ server <- function(input, output, session) {
           MachineLearningCode <- Output$CodeList; MachineLearningCode <<- MachineLearningCode
           ModelOutputList <- Output$ModelOutputList; ModelOutputList <<- ModelOutputList
           DataList <<- Output$DataList; ArgsList <<- Output$ArgsList; rm(Output); gc()
-
           for(i in seq_len(NumTabs)) DataMuse::PickerInput(session, input, Update = TRUE, InputID = paste0("EDAData", i), Label = 'Data Selection', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
           for(i in seq_len(NumTabs)) DataMuse::PickerInput(session, input, Update = TRUE, InputID = paste0("DataOutputSelection", i), Label = 'Display Data', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
           for(i in seq_len(NumTabs)) DataMuse::PickerInput(session, input, Update = TRUE, InputID = paste0("MLReportsModelSelection", i), Label = 'Model Selection', Choices = names(ModelOutputList), Multiple = TRUE, MaxVars = 100L)
@@ -8413,7 +8428,7 @@ server <- function(input, output, session) {
     }
   }, ignoreInit = TRUE)
 
-  # Export Local Rdata
+  # Export Local Model
   shiny::observeEvent(input$SaveLocalDataRdata,{
     SaveData <- DataMuse:::ReturnParam(xx = tryCatch({shiny::req(input$SaveData_SelectDataRdata)}, error = function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
     SaveFileName <- SaveData # DataMuse:::ReturnParam(xx = tryCatch({shiny::req(input$SaveFileNameRdata)}, error = function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)

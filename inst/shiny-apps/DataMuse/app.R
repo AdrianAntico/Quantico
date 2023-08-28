@@ -160,23 +160,24 @@ ui <- shinydashboard::dashboardPage(
                     shiny::fluidRow(DataMuse:::FC_XGBoostCARMA(id = 'XGBoostCARMA', Align = 'left')),
                     shiny::fluidRow(DataMuse:::FC_LightGBMCARMA(id = 'LightGBMCARMA', Align = 'left')),
                     DataMuse::BlankRow(12L)
-                  ),
-                  shiny::tags$details(
-                    DataMuse::BlankLine(12L),
-                    shiny::tags$summary(shiny::tags$span(shiny::tags$b('Intermittent Demand'))),
-                    shiny::fluidRow(DataMuse:::FC_CatBoostCARMAID(id = 'CatBoostCARMAID', Align = 'left')),
-                    shiny::fluidRow(DataMuse:::FC_XGBoostCARMAID(id = 'XGBoostCARMAID', Align = 'left')),
-                    shiny::fluidRow(DataMuse:::FC_LightGBMCARMAID(id = 'LightGBMCARMAID', Align = 'left')),
-                    DataMuse::BlankRow(12L)
-                  ),
-                  shiny::tags$details(
-                    DataMuse::BlankLine(12L),
-                    shiny::tags$summary(shiny::tags$span(shiny::tags$b('Funnel / Cohort'))),
-                    shiny::fluidRow(DataMuse:::FC_CatBoostCARMAFUN(id = 'CatBoostCARMAFUN', Align = 'left')),
-                    shiny::fluidRow(DataMuse:::FC_XGBoostCARMAFUN(id = 'XGBoostCARMAFUN', Align = 'left')),
-                    shiny::fluidRow(DataMuse:::FC_LightGBMCARMAFUN(id = 'LightGBMCARMAFUN', Align = 'left')),
-                    DataMuse::BlankRow(12L)
                   )
+                  #,
+                  # shiny::tags$details(
+                  #   DataMuse::BlankLine(12L),
+                  #   shiny::tags$summary(shiny::tags$span(shiny::tags$b('Intermittent Demand'))),
+                  #   shiny::fluidRow(DataMuse:::FC_CatBoostCARMAID(id = 'CatBoostCARMAID', Align = 'left')),
+                  #   shiny::fluidRow(DataMuse:::FC_XGBoostCARMAID(id = 'XGBoostCARMAID', Align = 'left')),
+                  #   shiny::fluidRow(DataMuse:::FC_LightGBMCARMAID(id = 'LightGBMCARMAID', Align = 'left')),
+                  #   DataMuse::BlankRow(12L)
+                  # ),
+                  # shiny::tags$details(
+                  #   DataMuse::BlankLine(12L),
+                  #   shiny::tags$summary(shiny::tags$span(shiny::tags$b('Funnel / Cohort'))),
+                  #   shiny::fluidRow(DataMuse:::FC_CatBoostCARMAFUN(id = 'CatBoostCARMAFUN', Align = 'left')),
+                  #   shiny::fluidRow(DataMuse:::FC_XGBoostCARMAFUN(id = 'XGBoostCARMAFUN', Align = 'left')),
+                  #   shiny::fluidRow(DataMuse:::FC_LightGBMCARMAFUN(id = 'LightGBMCARMAFUN', Align = 'left')),
+                  #   DataMuse::BlankRow(12L)
+                  # )
                 ),
 
                 DataMuse:::BlankRow(12L),

@@ -8659,6 +8659,8 @@ server <- function(input, output, session) {
 
         }
       })
+    } else {
+      shinyWidgets::sendSweetAlert(session, title = NULL, text = NULL, type = NULL, btn_labels = "No data are available to report", btn_colors = NULL, html = FALSE, closeOnClickOutside = TRUE, showCloseButton = TRUE, width = "40%")
     }
 
   }, ignoreInit = TRUE)
@@ -8808,6 +8810,8 @@ server <- function(input, output, session) {
 
         }
       })
+    } else {
+      shinyWidgets::sendSweetAlert(session, title = NULL, text = NULL, type = NULL, btn_labels = "No models are available to report", btn_colors = NULL, html = FALSE, closeOnClickOutside = TRUE, showCloseButton = TRUE, width = "40%")
     }
 
   }, ignoreInit = TRUE)
@@ -9194,7 +9198,7 @@ server <- function(input, output, session) {
     if(Debug) print("EDA Markdown 1")
     Page <- tryCatch({as.integer(gsub("[^\\d]+", "", input$tabss, perl=TRUE))}, error = function(x) 0L)
     if(length(DataList) > 0L) {
-      shiny::withProgress(message = 'EDA Reporting Has Begun..', value = 0, {
+      shiny::withProgress(message = 'Plots Reporting Has Begun..', value = 0, {
 
         if(Debug) {
           print(length(DisplayPlots))
@@ -9222,8 +9226,9 @@ server <- function(input, output, session) {
             "DataMuse:::EDAReport(\n\n  ",
             "PlotOutputList = ", DataMuse:::CEP(input[[paste0("EDAData", Page)]]), ",\n  ",
             "OutputPath = ", DataMuse:::CEP(WorkingDirectory), ")\n"))
+        } else {
+          shinyWidgets::sendSweetAlert(session, title = NULL, text = NULL, type = NULL, btn_labels = "No plots are available to report", btn_colors = NULL, html = FALSE, closeOnClickOutside = TRUE, showCloseButton = TRUE, width = "40%")
         }
-
         if(Debug) print("ML Markdown 2")
       })
     }

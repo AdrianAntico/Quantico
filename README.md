@@ -83,7 +83,7 @@ devtools::install_github("AdrianAntico/AutoPlots", upgrade = FALSE, dependencies
 devtools::install_github("AdrianAntico/Rodeo", upgrade = FALSE, dependencies = FALSE, force = TRUE)
 devtools::install_github("AdrianAntico/AutoQuant", upgrade = FALSE, dependencies = FALSE, force = TRUE)
 devtools::install_github("AdrianAntico/esquisse", upgrade = FALSE, dependencies = FALSE, force = TRUE)
-devtools::install_github("AdrianAntico/DataMuse", upgrade = FALSE, dependencies = FALSE, force = TRUE, auth_token = "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")
+devtools::install_github("AdrianAntico/DataMuse", upgrade = FALSE, dependencies = FALSE, force = TRUE, auth_token = "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")
 ```
 
 ## Quickstart

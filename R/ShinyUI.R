@@ -17899,6 +17899,7 @@ MLPanels <- function(id, Page, AppWidth=12L, MOL = NULL) {
   shiny::tabPanel(
     title = paste0('ML ',Page),
     icon = shiny::icon('wand-magic-sparkles'),
+
     DataMuse::BlankRow(12L),
     shinydashboard::box(
       title = NULL, solidHeader = TRUE, collapsible = FALSE, status = 'danger', width = 12L, class = "OutputPaneBox",

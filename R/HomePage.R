@@ -1,3 +1,92 @@
+# Images <- Swiper4r::Swiper4rWrapper(
+#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/Histogram.PNG?raw=true", width = "300", height = "300")),
+#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/Density.PNG?raw=true", width = "300", height = "300")),
+#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/BoxPlot.PNG?raw=true", width = "300", height = "300")),
+#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/PiePlot.PNG?raw=true", width = "300", height = "300")),
+#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/AreaPlot.PNG?raw=true", width = "300", height = "300")),
+#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/LinePlot.PNG?raw=true", width = "300", height = "300")),
+#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/RiverPlot.PNG?raw=true", width = "300", height = "300")),
+#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/StepPlot.PNG?raw=true", width = "300", height = "300")),
+#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/BarPlot.PNG?raw=true", width = "300", height = "300")),
+#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/StackedBarPlot.PNG?raw=true", width = "300", height = "300")),
+#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/BarPlot3D.PNG?raw=true", width = "300", height = "300")),
+#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/ScatterPlot.PNG?raw=true", width = "300", height = "300")),
+#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/ScatterPlot3D.PNG?raw=true", width = "300", height = "300")),
+#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/CopulaPlot.PNG?raw=true", width = "300", height = "300")),
+#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/CopulaPlot3D.PNG?raw=true", width = "300", height = "300")),
+#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/Heatmap.PNG?raw=true", width = "300", height = "300")),
+#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/CorrelogramPlot.PNG?raw=true", width = "300", height = "300")),
+#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/zz_ResidualHistogram.PNG?raw=true", width = "300", height = "300")),
+#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/zz_ResidualScatter.PNG?raw=true", width = "300", height = "300")),
+#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/zz_CalibrationLine.PNG?raw=true", width = "300", height = "300")),
+#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/zz_CalibrationBox.PNG?raw=true", width = "300", height = "300")),
+#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/zz_PartialDependenceLine.PNG?raw=true", width = "300", height = "300")),
+#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/zz_PartialDependenceHeatmap.PNG?raw=true", width = "300", height = "300")),
+#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/zz_VariableImportance.PNG?raw=true", width = "300", height = "300")),
+#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/zz_ShapleyImportance.PNG?raw=true", width = "300", height = "300")),
+#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/zz_ROC.PNG?raw=true", width = "300", height = "300")),
+#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/zz_ConfusionMatrix.PNG?raw=true", width = "300", height = "300")),
+#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/zz_Lift.PNG?raw=true", width = "300", height = "300")),
+#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/zz_Gains.PNG?raw=true", width = "300", height = "300")),
+#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/day-light-blue_wef.PNG?raw=true", width = "300", height = "300")),
+#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/light-gray_wef.PNG?raw=true", width = "300", height = "300")),
+#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/medium-gray_wef.PNG?raw=true", width = "300", height = "300")),
+#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/dark-gray_wef.PNG?raw=true", width = "300", height = "300")),
+#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/piano-black_wef.PNG?raw=true", width = "300", height = "300")),
+#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/yellow_bee-inspired.PNG?raw=true", width = "300", height = "300")),
+#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/yellow-green_forest.PNG?raw=true", width = "300", height = "300")),
+#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/green_green.PNG?raw=true", width = "300", height = "300")),
+#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/green-blue_green.PNG?raw=true", width = "300", height = "300")),
+#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/light-blue_walden.PNG?raw=true", width = "300", height = "300")),
+#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/dodger-blue_walden.PNG?raw=true", width = "300", height = "300")),
+#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/blue_walden.PNG?raw=true", width = "300", height = "300")),
+#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/blue-purple_macarons.PNG?raw=true", width = "300", height = "300")),
+#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/purple_walden.PNG?raw=true", width = "300", height = "300")),
+#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/pink_wonderland.PNG?raw=true", width = "300", height = "300")),
+#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/red_red.PNG?raw=true", width = "300", height = "300")),
+#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/auritus.PNG?raw=true", width = "300", height = "300")),
+#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/azul.PNG?raw=true", width = "300", height = "300")),
+#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/bee-inspired.PNG?raw=true", width = "300", height = "300")),
+#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/blue.PNG?raw=true", width = "300", height = "300")),
+#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/caravan.PNG?raw=true", width = "300", height = "300")),
+#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/carp.PNG?raw=true", width = "300", height = "300")),
+#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/chalk.PNG?raw=true", width = "300", height = "300")),
+#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/cool.PNG?raw=true", width = "300", height = "300")),
+#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/dark-bold.PNG?raw=true", width = "300", height = "300")),
+#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/dark.PNG?raw=true", width = "300", height = "300")),
+#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/eduardo.PNG?raw=true", width = "300", height = "300")),
+#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/essos.PNG?raw=true", width = "300", height = "300")),
+#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/forest.PNG?raw=true", width = "300", height = "300")),
+#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/fresh-cut.PNG?raw=true", width = "300", height = "300")),
+#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/fruit.PNG?raw=true", width = "300", height = "300")),
+#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/gray.PNG?raw=true", width = "300", height = "300")),
+#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/green.PNG?raw=true", width = "300", height = "300")),
+#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/halloween.PNG?raw=true", width = "300", height = "300")),
+#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/helianthus.PNG?raw=true", width = "300", height = "300")),
+#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/infographic.PNG?raw=true", width = "300", height = "300")),
+#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/inspired.PNG?raw=true", width = "300", height = "300")),
+#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/jazz.PNG?raw=true", width = "300", height = "300")),
+#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/london.PNG?raw=true", width = "300", height = "300")),
+#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/macarons.PNG?raw=true", width = "300", height = "300")),
+#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/macarons2.PNG?raw=true", width = "300", height = "300")),
+#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/mint.PNG?raw=true", width = "300", height = "300")),
+#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/purple-passion.PNG?raw=true", width = "300", height = "300")),
+#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/red-velvet.PNG?raw=true", width = "300", height = "300")),
+#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/red.PNG?raw=true", width = "300", height = "300")),
+#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/roma.PNG?raw=true", width = "300", height = "300")),
+#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/royal.PNG?raw=true", width = "300", height = "300")),
+#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/sakura.PNG?raw=true", width = "300", height = "300")),
+#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/shine.PNG?raw=true", width = "300", height = "300")),
+#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/tech-blue.PNG?raw=true", width = "300", height = "300")),
+#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/vintage.PNG?raw=true", width = "300", height = "300")),
+#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/walden.PNG?raw=true", width = "300", height = "300")),
+#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/wef.PNG?raw=true", width = "300", height = "300")),
+#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/weforum.PNG?raw=true", width = "300", height = "300")),
+#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/westeros.PNG?raw=true", width = "300", height = "300")),
+#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/wonderland.PNG?raw=true", width = "300", height = "300"))
+# )
+
+
 #' @title HomePage
 #'
 #' @description Panels
@@ -330,16 +419,16 @@ HomePage <- function(id, Page, AppWidth=12L) {
                   style = "padding-left: 5px",
                   shiny::tags$summary(shiny::tags$span(shiny::tags$b('Forecasting'))),
                   DataMuse::BlankLine(12L),
-                  shiny::a(shiny::icon("newspaper"), href="#forecasting", "Forecasting"),
-                  shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#catboostpanel", "CatBoost Panel")),
-                  shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#xgboostpanel", "XGBoost Panel")),
-                  shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#lightgbmpanel", "LightGBM Panel")),
-                  shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#catboostidemand", "CatBoost IDemand")),
-                  shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#xgboostidemand", "XGBoost IDemand")),
-                  shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#lightgbmidemand", "LightGBM IDemand")),
-                  shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#catboostfunnel", "CatBoost Funnel")),
-                  shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#xgboostfunnel", "XGBoost Funnel")),
-                  shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#lightgbmfunnel", "LightGBM Funnel"))
+                  shiny::a(shiny::icon("newspaper"), href="#forecasting", "Forecasting")
+                  # shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#catboostpanel", "CatBoost Panel")),
+                  # shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#xgboostpanel", "XGBoost Panel")),
+                  # shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#lightgbmpanel", "LightGBM Panel")),
+                  # shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#catboostidemand", "CatBoost IDemand")),
+                  # shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#xgboostidemand", "XGBoost IDemand")),
+                  # shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#lightgbmidemand", "LightGBM IDemand")),
+                  # shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#catboostfunnel", "CatBoost Funnel")),
+                  # shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#xgboostfunnel", "XGBoost Funnel")),
+                  # shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#lightgbmfunnel", "LightGBM Funnel"))
                 ),
 
                 #  ----
@@ -4798,6 +4887,31 @@ HomePage <- function(id, Page, AppWidth=12L) {
       )
     ),
 
+    ################################################# ----
+    # Home                                            ----
+    ################################################# ----
+    # shiny::tabPanel(
+    #   title = "Showcase",
+    #   icon = shiny::icon("mountain-sun"),
+    #   shiny::fluidRow(
+    #     width=12L,
+    #     style="padding-left: 15px",
+    #     id = "PlotAddButtonsUILocation",
+    #     DataMuse::BlankRow(12),
+    #     DataMuse::BlankRow(12),
+    #     shiny::fluidRow(
+    #       Swiper4r::Swiper4r(
+    #         Images, height = "600px", width = "1100px",effect = "cube",
+    #         autoplay = list(delay = 2500, disableOnInteraction = FALSE),
+    #         id = "CAROUSEL"
+    #       )
+    #     )
+    #   )
+    # ),
+
+    ################################################# ----
+    # View                                            ----
+    ################################################# ----
     shiny::tabPanel(
       title = "View",
       icon = shiny::icon("mountain-sun"),
@@ -4810,7 +4924,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
         shiny::fluidRow(
           shiny::h3("Enjoy the view", style = "padding-left: 45px")
         )
-      ),
+      )
     )
   ) # closes box
 }

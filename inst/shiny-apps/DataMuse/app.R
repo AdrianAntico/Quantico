@@ -3,8 +3,8 @@ library(AutoQuant);library(Rodeo);library(data.table);library(shiny);library(mag
 ButtonStyle <- "color:#FFFFFF; border-color:#FFFFFF; border-style:solid; border-width:0.1px; border-radius:30px; font-size:14px;"
 SessionButtonStyle <- "width:100%; color:#FFFFFF; border-color:#FFFFFF; border-style:solid; border-width:0px; border-radius:3%; font-size:14px; background-color: #6c6c6c;"
 LocalButtonStyle <- "width:100%; color:#FFFFFF; border-color:#FFFFFF; border-style:solid; border-width:0px; border-radius:3%; font-size:14px; background-color: #6c6c6c;"
-PostGREButtonStyle <- "width:100%; color:#FFFFFF; border-color:#FFFFFF; border-style:solid; border-width:0px; border-radius:3%; font-size:14px; background-color: #6c6c6c;"
-CloudButtonStyle <- "width:100%; color:#FFFFFF; border-color:#FFFFFF; border-style:solid; border-width:0px; border-radius:3%; font-size:14px; background-color: #6c6c6c;"
+PostGREButtonStyle <- "width:100%; color:#FFFFFF; border-color:#FFFFFF; border-style:solid; border-width:0px; font-size:14px; background-color: #6c6c6c;"
+CloudButtonStyle <- "width:100%; color:#FFFFFF; border-color:#FFFFFF; border-style:solid; border-width:0px; font-size:14px; background-color: #6c6c6c;"
 EchartThemes <- c("auritus","azul","bee-inspired","blue","caravan","carp","chalk","cool","dark-bold","dark","eduardo", "essos","forest","fresh-cut","fruit","gray","green","halloween","helianthus","infographic","inspired","jazz","london","macarons","macarons2","mint","purple-passion","red-velvet","red","roma","royal","sakura","shine","tech-blue","vintage","walden","wef","weforum","westeros","wonderland")
 LogoStyle <- "max-width: 98.5%; height: auto; max-height: 143px; padding-left: 0px; padding-right: 0px; border-radius: 30px; padding-bottom: 0px; background-color: #0000; box-shadow: 0px 0px 0px 0px #7bc1ff; padding-top: 5px;"
 LogoBoxStyle <- "padding-left: 15px; padding-right: 16px; border-radius: 30px; margin-right:0px; min-height: 168px;"
@@ -189,8 +189,8 @@ ui <- shinydashboard::dashboardPage(
                     shiny::column(6L, align = 'center', shiny::actionButton(inputId = "RemoveDataTab", label = "Data Tab", icon = shiny::icon(name = "minus"), style = CloudButtonStyle))),
                   DataMuse::BlankRow(12L),
                   shiny::fluidRow(
-                    shiny::column(6L, align = 'center', shiny::actionButton(inputId = "NewPlotTab", label = "Plot Tab", icon = shiny::icon(name = "plus"), style = SessionButtonStyle)),
-                    shiny::column(6L, align = 'center', shiny::actionButton(inputId = "RemovePlotTab", label = "Plot Tab", icon = shiny::icon(name = "minus"), style = LocalButtonStyle))),
+                    shiny::column(6L, align = 'center', shiny::actionButton(inputId = "NewPlotTab", label = "Plot Tab", icon = shiny::icon(name = "plus"), style = PostGREButtonStyle)),
+                    shiny::column(6L, align = 'center', shiny::actionButton(inputId = "RemovePlotTab", label = "Plot Tab", icon = shiny::icon(name = "minus"), style = CloudButtonStyle))),
                   DataMuse::BlankRow(12L),
                   shiny::fluidRow(
                     shiny::column(6L, align = 'center', shiny::actionButton(inputId = "NewEDATab", label = "EDA Tab", icon = shiny::icon(name = "plus"), style = PostGREButtonStyle)),

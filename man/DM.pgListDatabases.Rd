@@ -21,7 +21,7 @@ DM.pgListDatabases(
 \item{Password}{See args from related functions}
 }
 \description{
-DM.pgListDatabases list of available databases
+PostGRE DM.pgListDatabases list of available databases
 }
 \seealso{
 Other Database: 

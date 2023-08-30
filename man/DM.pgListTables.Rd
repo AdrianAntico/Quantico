@@ -24,7 +24,7 @@ DM.pgListTables(
 \item{Password}{See args from related functions}
 }
 \description{
-DM.pgListTables will list all tables with an associated db
+PostGRE DM.pgListTables will list all tables with an associated db
 }
 \seealso{
 Other Database: 

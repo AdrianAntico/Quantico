@@ -33,7 +33,7 @@ DM.pgRemoveCreateAppend(
 \item{Password}{See args from related functions}
 }
 \description{
-DM.pgRemoveCreateAppend will DROP the table specified
+PostGRE DM.pgRemoveCreateAppend will DROP the table specified
 }
 \seealso{
 Other Database: 

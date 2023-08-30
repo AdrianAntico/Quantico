@@ -31,7 +31,7 @@ DM.pgAppend(
 \item{Password}{If Connection is NULL then this must be supplied. password}
 }
 \description{
-DM.pgAppend get data from a database table
+PostGRE DM.pgAppend get data from a database table
 }
 \examples{
 \dontrun{

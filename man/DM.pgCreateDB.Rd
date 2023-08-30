@@ -24,7 +24,7 @@ DM.pgCreateDB(
 \item{Password}{See args from related functions}
 }
 \description{
-DM.pgCreateDB will create a database with a name supplied by user
+PostGRE DM.pgCreateDB will create a database with a name supplied by user
 }
 \seealso{
 Other Database: 

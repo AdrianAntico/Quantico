@@ -33,7 +33,7 @@ DM.pgCreateTable(
 \item{Password}{user password}
 }
 \description{
-DM.pgCreateTable get data from a database table
+PostGRE DM.pgCreateTable get data from a database table
 }
 \examples{
 \dontrun{

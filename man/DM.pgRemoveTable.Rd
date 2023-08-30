@@ -27,7 +27,7 @@ DM.pgRemoveTable(
 \item{Password}{If Connection is NULL then this must be supplied. user password}
 }
 \description{
-DM.pgRemoveTable will DROP the table specified
+PostGRE DM.pgRemoveTable will DROP the table specified
 }
 \examples{
 \dontrun{

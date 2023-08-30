@@ -44,7 +44,7 @@ DM.pgQuery(
 \item{DBName}{If Connection is NULL then this must be supplied. dbname}
 }
 \description{
-DM.pgQuery get data from a database table
+PostGRE DM.pgQuery get data from a database table
 }
 \examples{
 \dontrun{

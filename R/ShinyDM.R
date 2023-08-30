@@ -1,3 +1,7 @@
+# @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
+# CSV / Local                                                                                          ----
+# @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
+
 #' @title LoadCSV or Load Parquet
 #'
 #' @description Use this function to import csv's, track the time it was imported, and remove other objects
@@ -158,6 +162,14 @@ DM.DataListUpdate <- function(dl, dn, Sample = TRUE, SampleSize = 1000) {
   return(dl)
 }
 
+# ----
+
+# ----
+
+# @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
+# ALL Querying                                                                                         ----
+# @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
+
 #' @title QueryBuilder
 #'
 #' @description QueryBuilder will build a query string that can be executed
@@ -310,7 +322,7 @@ QueryBuilder <- function(DB = NULL,
 
 #' @title DM.pgQuery
 #'
-#' @description DM.pgQuery get data from a database table
+#' @description PostGRE DM.pgQuery get data from a database table
 #'
 #' @author Adrian Antico
 #' @family Database
@@ -397,7 +409,7 @@ DM.pgQuery <- function(Host = NULL,
 
 #' @title DM.pgAppend
 #'
-#' @description DM.pgAppend get data from a database table
+#' @description PostGRE DM.pgAppend get data from a database table
 #'
 #' @author Adrian Antico
 #' @family Database
@@ -478,9 +490,17 @@ DM.pgAppend <- function(data = NULL,
   suppressWarnings(DBI::dbDisconnect(Connection))
 }
 
+# ----
+
+# ----
+
+# @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
+# POSTGRE Tables                                                                                       ----
+# @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
+
 #' @title DM.pgCreateTable
 #'
-#' @description DM.pgCreateTable get data from a database table
+#' @description PostGRE DM.pgCreateTable get data from a database table
 #'
 #' @author Adrian Antico
 #' @family Database
@@ -550,7 +570,7 @@ DM.pgCreateTable <- function(data = NULL,
 
 #' @title DM.pgRemoveTable
 #'
-#' @description DM.pgRemoveTable will DROP the table specified
+#' @description PostGRE DM.pgRemoveTable will DROP the table specified
 #'
 #' @author Adrian Antico
 #' @family Database
@@ -601,7 +621,7 @@ DM.pgRemoveTable <- function(DataBase = NULL,
 
 #' @title DM.pgRemoveCreateAppend
 #'
-#' @description DM.pgRemoveCreateAppend will DROP the table specified
+#' @description PostGRE DM.pgRemoveCreateAppend will DROP the table specified
 #'
 #' @author Adrian Antico
 #' @family Database
@@ -676,7 +696,7 @@ DM.pgRemoveCreateAppend <- function(data = NULL,
 
 #' @title DM.pgListTables
 #'
-#' @description DM.pgListTables will list all tables with an associated db
+#' @description PostGRE DM.pgListTables will list all tables with an associated db
 #'
 #' @author Adrian Antico
 #' @family Database
@@ -713,7 +733,7 @@ DM.pgListTables <- function(DataBase = NULL,
 
 #' @title DM.pgTableColnames
 #'
-#' @description DM.pgTableColnames will list all column names from a table
+#' @description PostGRE DM.pgTableColnames will list all column names from a table
 #'
 #' @author Adrian Antico
 #' @family Database
@@ -747,9 +767,17 @@ DM.pgTableColnames <- function(Host = NULL,
   }
 }
 
+# ----
+
+# ----
+
+# @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
+# POSTGRE Databases                                                                                    ----
+# @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
+
 #' @title DM.pgCreateDB
 #'
-#' @description DM.pgCreateDB will create a database with a name supplied by user
+#' @description PostGRE DM.pgCreateDB will create a database with a name supplied by user
 #'
 #' @author Adrian Antico
 #' @family Database
@@ -781,9 +809,38 @@ DM.pgCreateDB <- function(DataBase = NULL,
   suppressWarnings(DBI::dbDisconnect(Connection))
 }
 
+#' @title DM.pgDropDB
+#'
+#' @description PostGRE DM.pgDropDB Drop selected database if it exists
+#'
+#' @author Adrian Antico
+#' @family Database
+#' @param DataBase name of db
+#' @param Host See args from related functions
+#' @param User See args from related functions
+#' @param Port See args from related functions
+#' @param Password See args from related functions
+#'
+#' @export
+DM.pgDropDB <- function(DataBase = NULL,
+                        Host = 'localhost',
+                        Port = 5432,
+                        User = 'postgres',
+                        Password = '') {
+
+  # Connect to db
+  Connection <- DBI::dbConnect(
+    RPostgres::Postgres(), host = Host, dbname = NULL,
+    user = User, port = Port, password = Password)
+
+  # Create database
+  x <- DBI::dbSendQuery(conn = Connection, statement = paste0("DROP DATABASE IF EXISTS ", shQuote(DataBase)))
+  suppressWarnings(DBI::dbDisconnect(Connection))
+}
+
 #' @title DM.pgListDatabases
 #'
-#' @description DM.pgListDatabases list of available databases
+#' @description PostGRE DM.pgListDatabases list of available databases
 #'
 #' @author Adrian Antico
 #' @family Database
@@ -815,37 +872,12 @@ DM.pgListDatabases <- function(Host = 'localhost',
   return(x)
 }
 
-#' @title DM.pgDropDB
-#'
-#' @description DM.pgDropDB Drop selected database if it exists
-#'
-#' @author Adrian Antico
-#' @family Database
-#' @param DataBase name of db
-#' @param Host See args from related functions
-#' @param User See args from related functions
-#' @param Port See args from related functions
-#' @param Password See args from related functions
-#'
-#' @export
-DM.pgDropDB <- function(DataBase = NULL,
-                        Host = 'localhost',
-                        Port = 5432,
-                        User = 'postgres',
-                        Password = '') {
+# ----
 
-  # Connect to db
-  Connection <- DBI::dbConnect(
-    RPostgres::Postgres(), host = Host, dbname = NULL,
-    user = User, port = Port, password = Password)
-
-  # Create database
-  x <- DBI::dbSendQuery(conn = Connection, statement = paste0("DROP DATABASE IF EXISTS ", shQuote(DataBase)))
-  suppressWarnings(DBI::dbDisconnect(Connection))
-}
+# ----
 
 #' @noRd
-Post_Query_Helper <- function(RefTable){
+Post_Query_Helper <- function(RefTable) {
   .RefTable <- RefTable
   str1 <- "SELECT * FROM "
   str2 <- '"public"'
@@ -864,7 +896,7 @@ Post_Query_Helper <- function(RefTable){
 
 
 #' @noRd
-Post_Append_Helper <- function(data, tableName){
+Post_Append_Helper <- function(data, tableName) {
   AutoQuant::PostGRE_AppendData(
     data = data,
     Table = tableName,

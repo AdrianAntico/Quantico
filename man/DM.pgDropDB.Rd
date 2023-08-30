@@ -24,7 +24,7 @@ DM.pgDropDB(
 \item{Password}{See args from related functions}
 }
 \description{
-DM.pgDropDB Drop selected database if it exists
+PostGRE DM.pgDropDB Drop selected database if it exists
 }
 \seealso{
 Other Database: 

@@ -32,7 +32,7 @@ DM.pgTableColnames(
 A character vector of names. Exactly like names R base function for a data.frame
 }
 \description{
-DM.pgTableColnames will list all column names from a table
+PostGRE DM.pgTableColnames will list all column names from a table
 }
 \seealso{
 Other Database: 

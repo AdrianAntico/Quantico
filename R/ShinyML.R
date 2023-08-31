@@ -7688,7 +7688,7 @@ Shiny.FC.SS <- function(input,
     if(check %in% c("numeric", "integer", "character", "factor", "logical")) {
       if(!(tolower(ArgsList[['TimeUnit']]) %chin% c('1min','5min','10min','15min','30min','hour'))) {
         x <- ArgsList[['data']][1L, get(ArgsList[['DateColumnName']])]
-        x1 <- lubridate::guess_formats(x, orders = c('mdY', 'BdY', 'Bdy', 'bdY', 'bdy', 'mdy', 'dby', 'Ymd', 'Ydm'))
+        x1 <- lubridate::guess_formats(x, orders = c('mdY', 'BdY', 'Bdy', 'bdY', 'bdy', 'mdy', 'dby', 'Ymd', 'Ydm','dmy'))
         ArgsList[['data']][, eval(ArgsList[['DateColumnName']]) := as.Date(get(ArgsList[['DateColumnName']]), tryFormats = x1)]
       } else {
         ArgsList[['data']][, eval(ArgsList[['DateColumnName']]) := as.POSIXct(get(ArgsList[['DateColumnName']]))]

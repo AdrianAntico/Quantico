@@ -290,7 +290,7 @@ Shiny.DW.TypeCast <- function(input,output,session,DataList,CodeList,TabCount=5L
 
     # Excel Date
     if(length(ExcelDate) > 0L) {
-      DataList[[SelectData]][["data"]][, eval(ExcelData) := openxlsx::convertToDate(get(ExcelDate))]
+      DataList[[SelectData]][["data"]][, eval(ExcelDate) := openxlsx::convertToDate(get(ExcelDate))]
       CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
         "\n",
         "# Convert to numeric\n",
@@ -342,7 +342,7 @@ Shiny.DW.TypeCast <- function(input,output,session,DataList,CodeList,TabCount=5L
     if(length(Date) > 0L) {
       for(d in Date) {
         x <- DataList[[SelectData]][['data']][1L, get(d)]
-        x1 <- lubridate::guess_formats(x, orders = c('mdY', 'BdY', 'Bdy', 'bdY', 'bdy', 'mdy', 'dby', 'Ymd', 'Ydm'))
+        x1 <- lubridate::guess_formats(x, orders = c('mdY', 'BdY', 'Bdy', 'bdY', 'bdy', 'mdy', 'dby', 'Ymd', 'Ydm', 'dmy'))
         DataList[[SelectData]][['data']][, eval(d) := as.Date(get(d), tryFormats = x1)]
       }
       CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
@@ -350,7 +350,7 @@ Shiny.DW.TypeCast <- function(input,output,session,DataList,CodeList,TabCount=5L
         "# Convert to date\n",
         "for(d in Date) {\n  ",
         "x <- DataList[[", DataMuse:::CEP(SelectData), "]][1L, get(d)]\n  ",
-        "x1 <- lubridate::guess_formats(x, orders = c('mdY', 'BdY', 'Bdy', 'bdY', 'bdy', 'mdy', 'dby', 'Ymd', 'Ydm'))\n  ",
+        "x1 <- lubridate::guess_formats(x, orders = c('mdY', 'BdY', 'Bdy', 'bdY', 'bdy', 'mdy', 'dby', 'Ymd', 'Ydm', 'dmy'))\n  ",
         "DataList[[", DataMuse:::CEP(SelectData), "]][, eval(d) := as.Date(get(d), tryFormats = ", DataMuse:::CEP(x1), "]\n"))
     }
 

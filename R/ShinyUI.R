@@ -18089,7 +18089,7 @@ EDAPanels <- function(id, Page, AppWidth=12L, DL = NULL) {
               style = "min-height: 200px; padding-top: 0px;",
               shiny::fluidRow(
                 style = "padding-top: 30px; padding-bottom: 33px;",
-                DataMuse::PickerInput(InputID = paste0('EDAData',Page), Label = 'Data Selection', Choices = tryCatch(names(DL), error = function(x) NULL), Multiple = FALSE, MaxVars = 1L)
+                DataMuse::PickerInput(InputID = paste0('EDAData',Page), Label = 'Data Selection', Choices = tryCatch(names(DL), error = function(x) NULL), Multiple = TRUE, MaxVars = 1L)
               ),
               shiny::fluidRow(
                 style = "padding-top: 5px; padding-bottom: 50px;",

@@ -288,6 +288,9 @@ Shiny.DW.TypeCast <- function(input,output,session,DataList,CodeList,TabCount=5L
         print(str(DataList[[SelectData]][['data']]))
       }
 
+      # Consumptions data
+      # dt <- data.table::fread("C:/Users/Bizon/Documents/GitHub/rappwd/household_power_consumption.csv")
+      # Numeric <- c("Global_active_power","Global_reactive_power","Voltage","Global_intensity","Sub_metering_1","Sub_metering_2","Sub_metering_3")
       # dt[, paste0(Numeric) := lapply(.SD, as.numeric), .SDcols = c(Numeric)]
       DataList[[SelectData]][['data']][, paste0(Numeric) := lapply(.SD, as.numeric), .SDcols = c(Numeric)]
       CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
@@ -383,7 +386,36 @@ Shiny.DW.TypeCast <- function(input,output,session,DataList,CodeList,TabCount=5L
     # Update meta
     if(Debug) print("Shiny.DW.TypeCast Update meta")
     DataList <- tryCatch({DataMuse:::DM.DataListUpdate(DataList, SelectData)}, error = function(x) DataList)
-    for(i in seq_len(TabCount)) DataMuse::PickerInput(session, input, Update = TRUE, InputID = paste0("EDAData", i), Label = 'Data Selection', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
+    for(i in seq_len(TabCount)) {
+      DataMuse::PickerInput(session, input, Update = TRUE, InputID = paste0("EDAData", i), Label = 'Data Selection', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
+      EDAData <- DataMuse::ReturnParam(xx = tryCatch({input[[paste0("EDAData", i)]]}, error = function(x) NULL), Type = "character", Default = NULL)
+      ChoiceList <- list()
+      dd <- tryCatch({DataList[[EDAData]][['data']]}, error = function(x) NULL)
+      if(data.table::is.data.table(dd)) {
+        ColTypes <- unique(DataMuse:::ColTypes(dd))
+        for(i in seq_along(ColTypes)) ChoiceList[[ColTypes[i]]] <- DataMuse:::ColNameFilter(dd, Types = ColTypes[i])
+        DataMuse::PickerInput(
+          session = session, input = input, Update = TRUE,
+          InputID = paste0('EDAUnivariateVars',i),
+          Label = 'Univariate Vars', Choices = ChoiceList, Multiple = TRUE, MaxVars = 100L)
+        DataMuse::PickerInput(
+          session = session, input = input, Update = TRUE,
+          InputID = paste0('EDACorrVars',i),
+          Label = 'Corr Vars', Choices = ChoiceList, Multiple = TRUE, MaxVars = 100L)
+        DataMuse::PickerInput(
+          session = session, input = input, Update = TRUE,
+          InputID = paste0('EDATrendVars',i),
+          Label = 'Trend Vars', Choices = ChoiceList, Multiple = TRUE, MaxVars = 100L)
+        DataMuse::PickerInput(
+          session = session, input = input, Update = TRUE,
+          InputID = paste0('EDADateVar',i),
+          Label = 'Trend Date Var', Choices = ChoiceList, Multiple = TRUE, MaxVars = 100L)
+        DataMuse::PickerInput(
+          session = session, input = input, Update = TRUE,
+          InputID = paste0('EDAGroupVar',i),
+          Label = 'Trend By-Variable', Choices = ChoiceList, Multiple = TRUE, MaxVars = 100L)
+      }
+    }
     DataMuse::SelectizeInput(session, input, Update = TRUE, InputID = "ScoreML_Data", Label = 'Select Data', Choices = names(DataList))
     for(i in seq_len(TabCount)) DataMuse::PickerInput(session, input, Update = TRUE, InputID = paste0("DataOutputSelection", i), Label = 'Display Data', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
     return(list(

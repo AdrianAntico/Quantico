@@ -161,7 +161,9 @@ LoadAssign <- function(FilePath) {
 #'
 #' @noRd
 ColNameFilter <- function(data, Types = 'all') {
-  if (Types == "all") return(names(data))
+  # Types <- unique(CT)
+  # Types <- "integer"
+  if(Types == "all") return(names(data))
   nam <- c()
   for(t in Types) {
     if(tolower(t) == "numeric") {
@@ -195,8 +197,12 @@ NumericColNames <- function(data) {
 
 #' @noRd
 IntegerColNames <- function(data) {
-  x <- as.list(names(data)[which(sapply(data, is.integer))])
-  if(!identical(x, character(0))) return(x) else return(NULL)
+  x <- list()
+  for(z in names(data)) {
+    xx <- class(data[[z]])[1L]
+    if(xx %in% "integer") x[[length(x) + 1]] <- z
+  }
+  if(length(x) > 0L) return(x) else return(NULL)
 }
 
 #' @noRd

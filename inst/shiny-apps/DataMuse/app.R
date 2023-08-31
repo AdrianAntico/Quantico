@@ -1,4 +1,4 @@
-options(scipen = 999);options(shiny.maxRequestSize = 250000*1024^2)
+options(scipen = 999);options(shiny.maxRequestSize = 250000*1024^2);options(warn = -1)
 library(AutoQuant);library(Rodeo);library(data.table);library(shiny);library(magrittr);library(shinydashboard)
 ButtonStyle <- "color:#FFFFFF; border-color:#FFFFFF; border-style:solid; border-width:0.1px; border-radius:30px; font-size:14px;"
 SessionButtonStyle <- "width:100%; color:#FFFFFF; border-color:#FFFFFF; border-style:solid; border-width:0px; border-radius:3%; font-size:14px; background-color: #6c6c6c;"

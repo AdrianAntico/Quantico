@@ -192,6 +192,28 @@ Run_EDA_Report <- function(data = NULL,
   TrendVars <- TrendVars
   TrendDateVar <- TrendDateVar
   TrendGroupVar <- TrendGroupVar
+
+  if(length(UnivariateVars) > 50L) UnivariateVars <- UnivariateVars[seq_len(50L)]
+  if(length(CorrVars) > 50L) CorrVars <- CorrVars[seq_len(50L)]
+  if(length(TrendVars) > 50L) TrendVars <- TrendVars[seq_len(50L)]
+  if(length(TrendDateVar) > 1L) {
+    for(zzz in TrendDateVar) {
+      if(class(data[[zzz]])[1L] %in% c("Date", "posix", "IDate", "IDateTime")) {
+        TrendDateVar <- zzz
+        break
+      }
+    }
+  } else if(length(TrendDateVar) > 0L) {
+    if(!class(data[[TrendDateVar]])[1L] %in% c("Date", "posix", "IDate", "IDateTime")) {
+      x <- data[1L, get(TrendDateVar)]
+      x1 <- lubridate::guess_formats(x, orders = c('mdY', 'BdY', 'Bdy', 'bdY', 'bdy', 'mdy', 'dby', 'Ymd', 'Ydm', 'dmy'))
+      data[, eval(TrendDateVar) := as.Date(get(TrendDateVar), tryFormats = x1)]
+      if(!class(data[[TrendDateVar]])[1L] %in% c("Date", "posix", "IDate", "IDateTime")) {
+        TrendDateVar <- NULL
+      }
+    }
+  }
+
   OutputPathName <- file.path(OutputPath, paste0('EDAReport-', DataName, '.html'))
   rmarkdown::render(
     input = file.path(appDir, 'EDA.Rmd'),

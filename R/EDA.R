@@ -36,9 +36,29 @@ Shiny.EDA.ReportOutput <- function(input,
   data <- DataList[[DataMuse:::ReturnParam(xx = tryCatch({input[[paste0("EDAData", Page)]]}, error = function(x) NULL), Type = "character", Default = NULL)]][['data']]
   if(!data.table::is.data.table(data)) return(NULL)
   UnivariateVars <- DataMuse:::ReturnParam(xx = tryCatch({input[[paste0("EDAUnivariateVars", Page)]]}, error = function(x) NULL), Type = "character", Default = NULL)
+  if(length(UnivariateVars) > 50L) UnivariateVars <- UnivariateVars[seq_len(50L)]
   CorrVars <- DataMuse:::ReturnParam(xx = tryCatch({input[[paste0("EDACorrVars", Page)]]}, error = function(x) NULL), Type = "character", Default = NULL)
+  if(length(CorrVars) > 50L) CorrVars <- CorrVars[seq_len(50L)]
   TrendVars <- DataMuse:::ReturnParam(xx = tryCatch({input[[paste0("EDATrendVars", Page)]]}, error = function(x) NULL), Type = "character", Default = NULL)
+  if(length(TrendVars) > 50L) TrendVars <- TrendVars[seq_len(50L)]
   TrendDateVar <- DataMuse:::ReturnParam(xx = tryCatch({input[[paste0("EDADateVar", Page)]]}, error = function(x) NULL), Type = "character", Default = NULL)
+  if(length(TrendDateVar) > 1L) {
+    for(zzz in TrendDateVar) {
+      if(class(data[[zzz]])[1L] %in% c("Date", "posix", "IDate", "IDateTime")) {
+        TrendDateVar <- zzz
+        break
+      }
+    }
+  } else if(length(TrendDateVar) > 0L) {
+    if(!class(data[[TrendDateVar]])[1L] %in% c("Date", "posix", "IDate", "IDateTime")) {
+      x <- data[1L, get(TrendDateVar)]
+      x1 <- lubridate::guess_formats(x, orders = c('mdY', 'BdY', 'Bdy', 'bdY', 'bdy', 'mdy', 'dby', 'Ymd', 'Ydm', 'dmy'))
+      data[, eval(TrendDateVar) := as.Date(get(TrendDateVar), tryFormats = x1)]
+      if(!class(data[[TrendDateVar]])[1L] %in% c("Date", "posix", "IDate", "IDateTime")) {
+        TrendDateVar <- NULL
+      }
+    }
+  }
   TrendGroupVar <- DataMuse:::ReturnParam(xx = tryCatch({input[[paste0("EDAGroupVar", Page)]]}, error = function(x) NULL), Type = "character", Default = NULL)
   PlotHeighteda <- DataMuse:::ReturnParam(xx = tryCatch({input[[paste0("PlotHeighteda", Page)]]}, error = function(x) NULL), Type = "numeric", Default = 950)
   PlotWidtheda <- DataMuse:::ReturnParam(xx = tryCatch({input[[paste0("PlotWidtheda", Page)]]}, error = function(x) NULL), Type = "numeric", Default = 1450)

@@ -161,19 +161,27 @@ LoadAssign <- function(FilePath) {
 #'
 #' @noRd
 ColNameFilter <- function(data, Types = 'all') {
-  if(Types == 'all') return(names(data))
+  if (Types == "all") return(names(data))
   nam <- c()
   for(t in Types) {
-    if(tolower(t) == 'numeric') {
+    if(tolower(t) == "numeric") {
       nam <- NumericColNames(data)
-    } else if(tolower(t) == 'character') {
+    } else if(tolower(t) == "integer") {
+      nam <- IntegerColNames(data)
+    } else if(tolower(t) == "character") {
       nam <- CharacterColNames(data)
-    } else if(tolower(t) == 'factor') {
+    } else if(tolower(t) == "factor") {
       nam <- FactorColNames(data)
-    } else if(tolower(t) == 'logical') {
+    } else if(tolower(t) == "logical") {
       nam <- LogicalColNames(data)
-    } else if(tolower(t) %chin% c("date","idate","idatetime","posixct","posix")) {
+    } else if(tolower(t) == "date") {
       nam <- DateColNames(data)
+    } else if(tolower(t) == "idate") {
+      nam <- IDateColNames(data)
+    } else if(tolower(t) == "idatetime") {
+      nam <- IDateTimeColNames(data)
+    } else if(tolower(t) == "posixct") {
+      nam <- POSIXColNames(data)
     }
   }
   return(nam)
@@ -182,6 +190,12 @@ ColNameFilter <- function(data, Types = 'all') {
 #' @noRd
 NumericColNames <- function(data) {
   x <- as.list(names(data)[which(sapply(data, is.numeric))])
+  if(!identical(x, character(0))) return(x) else return(NULL)
+}
+
+#' @noRd
+IntegerColNames <- function(data) {
+  x <- as.list(names(data)[which(sapply(data, is.integer))])
   if(!identical(x, character(0))) return(x) else return(NULL)
 }
 
@@ -208,7 +222,46 @@ DateColNames <- function(data) {
   x <- list()
   counter <- 0L
   for(i in names(data)) {
-    if(class(data[[i]])[1L] %in% c("IDate","Date","date","POSIXct","POSIX")) {
+    if(tolower(class(data[[i]])[1L]) == "date") {
+      counter <- counter + 1L
+      x[[counter]] <- i
+    }
+  }
+  if(length(x) > 0L) return(x) else return(NULL)
+}
+
+#' @noRd
+POSIXColNames <- function(data) {
+  x <- list()
+  counter <- 0L
+  for(i in names(data)) {
+    if(tolower(class(data[[i]])[1L]) == "posixct") {
+      counter <- counter + 1L
+      x[[counter]] <- i
+    }
+  }
+  if(length(x) > 0L) return(x) else return(NULL)
+}
+
+#' @noRd
+IDateColNames <- function(data) {
+  x <- list()
+  counter <- 0L
+  for(i in names(data)) {
+    if(tolower(class(data[[i]])[1L]) == "idate") {
+      counter <- counter + 1L
+      x[[counter]] <- i
+    }
+  }
+  if(length(x) > 0L) return(x) else return(NULL)
+}
+
+#' @noRd
+IDateTimeColNames <- function(data) {
+  x <- list()
+  counter <- 0L
+  for(i in names(data)) {
+    if(tolower(class(data[[i]])[1L]) == "idatetime") {
       counter <- counter + 1L
       x[[counter]] <- i
     }

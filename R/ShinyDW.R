@@ -266,6 +266,7 @@ Shiny.DW.TypeCast <- function(input,output,session,DataList,CodeList,TabCount=5L
   shiny::withProgress(message = 'Shiny.DW.TypeCast has begun..', value = 0, {
 
     if(Debug) print('Shiny.DW.TypeCast')
+    options(warn = -1)
 
     # Pull in values
     SelectData <- DataMuse:::ReturnParam(xx = tryCatch({input$TypeCast_SelectData}, error = function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
@@ -279,8 +280,16 @@ Shiny.DW.TypeCast <- function(input,output,session,DataList,CodeList,TabCount=5L
     Posix <- DataMuse:::ReturnParam(xx = tryCatch({input$TypeCast_Posix}, error = function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
 
     # Numeric
+    if(Debug) print("Shiny.DW.TypeCast Numeric")
     if(length(Numeric) > 0L) {
-      DataList[[SelectData]][, paste0(Numeric) := lapply(.SD, as.numeric), .SDcols = c(Numeric)]
+
+      if(Debug) {
+        print(Numeric)
+        print(str(DataList[[SelectData]][['data']]))
+      }
+
+      # dt[, paste0(Numeric) := lapply(.SD, as.numeric), .SDcols = c(Numeric)]
+      DataList[[SelectData]][['data']][, paste0(Numeric) := lapply(.SD, as.numeric), .SDcols = c(Numeric)]
       CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
         "\n",
         "# Convert to numeric\n",
@@ -289,6 +298,7 @@ Shiny.DW.TypeCast <- function(input,output,session,DataList,CodeList,TabCount=5L
     }
 
     # Excel Date
+    if(Debug) print("Shiny.DW.TypeCast Excel Date")
     if(length(ExcelDate) > 0L) {
       DataList[[SelectData]][["data"]][, eval(ExcelDate) := openxlsx::convertToDate(get(ExcelDate))]
       CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
@@ -299,6 +309,7 @@ Shiny.DW.TypeCast <- function(input,output,session,DataList,CodeList,TabCount=5L
     }
 
     # Integer
+    if(Debug) print("Shiny.DW.TypeCast Integer")
     if(length(Integer) > 0L) {
       DataList[[SelectData]][['data']][, paste0(Integer) := lapply(.SD, as.integer), .SDcols = c(Integer)]
       CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
@@ -309,6 +320,7 @@ Shiny.DW.TypeCast <- function(input,output,session,DataList,CodeList,TabCount=5L
     }
 
     # Character
+    if(Debug) print("Shiny.DW.TypeCast Character")
     if(length(Character) > 0L) {
       DataList[[SelectData]][['data']][, paste0(Character) := lapply(.SD, as.character), .SDcols = c(Character)]
       CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
@@ -319,6 +331,7 @@ Shiny.DW.TypeCast <- function(input,output,session,DataList,CodeList,TabCount=5L
     }
 
     # Factor
+    if(Debug) print("Shiny.DW.TypeCast Factor")
     if(length(Factor) > 0L) {
       DataList[[SelectData]][['data']][, paste0(Factor) := lapply(.SD, as.factor), .SDcols = c(Factor)]
       CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
@@ -329,6 +342,7 @@ Shiny.DW.TypeCast <- function(input,output,session,DataList,CodeList,TabCount=5L
     }
 
     # Logical
+    if(Debug) print("Shiny.DW.TypeCast Logical")
     if(length(Logical) > 0L) {
       DataList[[SelectData]][['data']][, paste0(Logical) := lapply(.SD, as.logical), .SDcols = c(Logical)]
       CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
@@ -339,6 +353,7 @@ Shiny.DW.TypeCast <- function(input,output,session,DataList,CodeList,TabCount=5L
     }
 
     # Date
+    if(Debug) print("Shiny.DW.TypeCast Date")
     if(length(Date) > 0L) {
       for(d in Date) {
         x <- DataList[[SelectData]][['data']][1L, get(d)]
@@ -355,6 +370,7 @@ Shiny.DW.TypeCast <- function(input,output,session,DataList,CodeList,TabCount=5L
     }
 
     # Posix
+    if(Debug) print("Shiny.DW.TypeCast Posix")
     if(length(Posix) > 0L) {
       DataList[[SelectData]][['data']][, paste0(Posix) := lapply(.SD, as.POSIXct), .SDcols = c(Posix)]
       CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
@@ -365,6 +381,7 @@ Shiny.DW.TypeCast <- function(input,output,session,DataList,CodeList,TabCount=5L
     }
 
     # Update meta
+    if(Debug) print("Shiny.DW.TypeCast Update meta")
     DataList <- tryCatch({DataMuse:::DM.DataListUpdate(DataList, SelectData)}, error = function(x) DataList)
     for(i in seq_len(TabCount)) DataMuse::PickerInput(session, input, Update = TRUE, InputID = paste0("EDAData", i), Label = 'Data Selection', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
     DataMuse::SelectizeInput(session, input, Update = TRUE, InputID = "ScoreML_Data", Label = 'Select Data', Choices = names(DataList))

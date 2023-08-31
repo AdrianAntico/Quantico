@@ -93,46 +93,55 @@ Shiny.EDA.ReportOutput <- function(input,
     )
   )
 
+  # Create a sampled dataset to speed up computations
+  if(data[,.N] > 100000L) {
+    data1 <- data[order(runif(.N))][seq_len(100000L)]
+  }
+
   # Numeric
   if(Debug) print("Shiny.EDA.ReportOutput 5")
+
+  # Full Data
   x <- c(); for(i in names(data)) if(class(data[[i]])[1L] %in% c("numeric","integer")) x <- c(x, i)
   UnivariateStats <- data.table::data.table(Variables = x)
   x <- c(); for(i in names(data)) if(class(data[[i]])[1L] %in% c("numeric","integer")) x <- c(x, data[, min(get(i), na.rm = TRUE)])
   UnivariateStats[, Min := round(x,2)]
   x <- c(); for(i in names(data)) if(class(data[[i]])[1L] %in% c("numeric","integer")) x <- c(x, data[, max(get(i), na.rm = TRUE)])
   UnivariateStats[, Max := round(x,2)]
-  x <- c(); for(i in names(data)) if(class(data[[i]])[1L] %in% c("numeric","integer")) x <- c(x, data[, mean(get(i), na.rm = TRUE)])
+
+  # Sampled data
+  x <- c(); for(i in names(data1)) if(class(data1[[i]])[1L] %in% c("numeric","integer")) x <- c(x, data1[, mean(get(i), na.rm = TRUE)])
   UnivariateStats[, Mean := round(x, 2)]
-  x <- c(); for(i in names(data)) if(class(data[[i]])[1L] %in% c("numeric","integer")) x <- c(x, data[, median(get(i), na.rm = TRUE)])
+  x <- c(); for(i in names(data1)) if(class(data1[[i]])[1L] %in% c("numeric","integer")) x <- c(x, data1[, median(get(i), na.rm = TRUE)])
   UnivariateStats[, Median := round(x,2)]
-  x <- c(); for(i in names(data)) if(class(data[[i]])[1L] %in% c("numeric","integer")) x <- c(x, data[, sd(get(i), na.rm = TRUE)])
+  x <- c(); for(i in names(data1)) if(class(data1[[i]])[1L] %in% c("numeric","integer")) x <- c(x, data1[, sd(get(i), na.rm = TRUE)])
   UnivariateStats[, `Standard Deviation` := round(x,2)]
-  x <- c(); for(i in names(data)) if(class(data[[i]])[1L] %in% c("numeric","integer")) x <- c(x, data[, e1071::skewness(get(i), na.rm = TRUE)])
+  x <- c(); for(i in names(data1)) if(class(data1[[i]])[1L] %in% c("numeric","integer")) x <- c(x, data1[, e1071::skewness(get(i), na.rm = TRUE)])
   UnivariateStats[, Skewness := round(x,2)]
-  x <- c(); for(i in names(data)) if(class(data[[i]])[1L] %in% c("numeric","integer")) x <- c(x, data[, e1071::kurtosis(get(i), na.rm = TRUE)])
+  x <- c(); for(i in names(data1)) if(class(data1[[i]])[1L] %in% c("numeric","integer")) x <- c(x, data1[, e1071::kurtosis(get(i), na.rm = TRUE)])
   UnivariateStats[, Kurtosis := round(x,2)]
-  x <- c(); for(i in names(data)) if(class(data[[i]])[1L] %in% c("numeric","integer")) x <- c(x, data[, sd(get(i), na.rm = TRUE) / mean(get(i), na.rm = TRUE)])
+  x <- c(); for(i in names(data1)) if(class(data1[[i]])[1L] %in% c("numeric","integer")) x <- c(x, data1[, sd(get(i), na.rm = TRUE) / mean(get(i), na.rm = TRUE)])
   UnivariateStats[, `Coef of Variation` := round(x,2)]
-  x <- c(); for(i in names(data)) if(class(data[[i]])[1L] %in% c("numeric","integer")) x <- c(x, data[, quantile(get(i), probs = 0.01, na.rm = TRUE)])
+  x <- c(); for(i in names(data1)) if(class(data1[[i]])[1L] %in% c("numeric","integer")) x <- c(x, data1[, quantile(get(i), probs = 0.01, na.rm = TRUE)])
   UnivariateStats[, q01 := round(x,2)]
-  x <- c(); for(i in names(data)) if(class(data[[i]])[1L] %in% c("numeric","integer")) x <- c(x, data[, quantile(get(i), probs = 0.05, na.rm = TRUE)])
+  x <- c(); for(i in names(data1)) if(class(data1[[i]])[1L] %in% c("numeric","integer")) x <- c(x, data1[, quantile(get(i), probs = 0.05, na.rm = TRUE)])
   UnivariateStats[, q05 := round(x,2)]
-  x <- c(); for(i in names(data)) if(class(data[[i]])[1L] %in% c("numeric","integer")) x <- c(x, data[, quantile(get(i), probs = 0.10, na.rm = TRUE)])
+  x <- c(); for(i in names(data1)) if(class(data1[[i]])[1L] %in% c("numeric","integer")) x <- c(x, data1[, quantile(get(i), probs = 0.10, na.rm = TRUE)])
   UnivariateStats[, q10 := round(x,2)]
-  x <- c(); for(i in names(data)) if(class(data[[i]])[1L] %in% c("numeric","integer")) x <- c(x, data[, quantile(get(i), probs = 0.25, na.rm = TRUE)])
+  x <- c(); for(i in names(data1)) if(class(data1[[i]])[1L] %in% c("numeric","integer")) x <- c(x, data1[, quantile(get(i), probs = 0.25, na.rm = TRUE)])
   UnivariateStats[, q25 := round(x,2)]
-  x <- c(); for(i in names(data)) if(class(data[[i]])[1L] %in% c("numeric","integer")) x <- c(x, data[, quantile(get(i), probs = 0.75, na.rm = TRUE)])
+  x <- c(); for(i in names(data1)) if(class(data1[[i]])[1L] %in% c("numeric","integer")) x <- c(x, data1[, quantile(get(i), probs = 0.75, na.rm = TRUE)])
   UnivariateStats[, q75 := round(x,2)]
-  x <- c(); for(i in names(data)) if(class(data[[i]])[1L] %in% c("numeric","integer")) x <- c(x, data[, quantile(get(i), probs = 0.90, na.rm = TRUE)])
+  x <- c(); for(i in names(data1)) if(class(data1[[i]])[1L] %in% c("numeric","integer")) x <- c(x, data1[, quantile(get(i), probs = 0.90, na.rm = TRUE)])
   UnivariateStats[, q90 := round(x,2)]
-  x <- c(); for(i in names(data)) if(class(data[[i]])[1L] %in% c("numeric","integer")) x <- c(x, data[, quantile(get(i), probs = 0.95, na.rm = TRUE)])
+  x <- c(); for(i in names(data1)) if(class(data1[[i]])[1L] %in% c("numeric","integer")) x <- c(x, data1[, quantile(get(i), probs = 0.95, na.rm = TRUE)])
   UnivariateStats[, q95 := round(x,2)]
-  x <- c(); for(i in names(data)) if(class(data[[i]])[1L] %in% c("numeric","integer")) x <- c(x, data[, quantile(get(i), probs = 0.99, na.rm = TRUE)])
+  x <- c(); for(i in names(data1)) if(class(data1[[i]])[1L] %in% c("numeric","integer")) x <- c(x, data1[, quantile(get(i), probs = 0.99, na.rm = TRUE)])
   UnivariateStats[, q99 := round(x,2)]
 
   # Describe Data
   if(Debug) print("Shiny.EDA.ReportOutput 6")
-  OutputList[["Univariate Stats"]] <- reactable::reactable(
+  OutputList[["Univariate Stats"]] <- tryCatch({reactable::reactable(
     data = UnivariateStats,
     compact = TRUE,
     defaultPageSize = 10,
@@ -161,14 +170,14 @@ Shiny.EDA.ReportOutput <- function(input,
       ),
       searchInputStyle = list(width = "100%")
     )
-  )
+  )}, error = function(x) NULL)
 
   # Box Plots
   if(Debug) print("Shiny.EDA.ReportOutput 7")
   for(i in UnivariateVars) {
-    if(class(data[[i]])[1L] %in% c("numeric","integer")) {
-      OutputList[[paste0("Univariate Plots: ", i)]] <- AutoPlots::Plot.Box(
-        dt = data,
+    if(class(data1[[i]])[1L] %in% c("numeric","integer")) {
+      OutputList[[paste0("Univariate Plots: ", i)]] <- tryCatch({AutoPlots::Plot.Box(
+        dt = data1,
         SampleSize = 100000L,
         XVar = TrendGroupVar,
         YVar = i,
@@ -200,17 +209,17 @@ Shiny.EDA.ReportOutput <- function(input,
         xaxis.rotate = 0,
         yaxis.rotate = 0,
         ContainLabel = TRUE,
-        Debug = FALSE)
+        Debug = FALSE)}, error = function(x) NULL)
     }
   }
 
   # Bar Plots
   if(Debug) print("Shiny.EDA.ReportOutput 8")
   for(i in UnivariateVars) {# i = UnivariateVars[1]
-    if(class(data[[i]])[1L] %in% c("factor","character")) {
-      data1 <- data[, list(Counts = .N), by = c(i)]
-      OutputList[[paste0("Univariate Plots: ", i)]] <- AutoPlots::Plot.Bar(
-        dt = data1,
+    if(class(data1[[i]])[1L] %in% c("factor","character")) {
+      data2 <- data1[, list(Counts = .N), by = c(i)]
+      OutputList[[paste0("Univariate Plots: ", i)]] <- tryCatch({AutoPlots::Plot.Bar(
+        dt = data2,
         PreAgg = TRUE,
         XVar = i,
         YVar = "Counts",
@@ -244,16 +253,16 @@ Shiny.EDA.ReportOutput <- function(input,
         xaxis.rotate = 0,
         yaxis.rotate = 0,
         ContainLabel = TRUE,
-        Debug = FALSE)
+        Debug = FALSE)}, error = function(x) NULL)
     }
   }
 
   # Correlation Stats / Plots
   if(Debug) print("Shiny.EDA.ReportOutput 9")
-  x <- c(); for(i in CorrVars) if(class(data[[i]])[1L] %in% c("numeric","integer")) x <- c(x, i)
+  x <- c(); for(i in CorrVars) if(class(data1[[i]])[1L] %in% c("numeric","integer")) x <- c(x, i)
   if(length(x) > 0L) {
-    OutputList[[paste0("Correlogram: ", i)]] <- AutoPlots::Plot.CorrMatrix(
-      dt = data,
+    OutputList[[paste0("Correlogram: ", i)]] <- tryCatch({AutoPlots::Plot.CorrMatrix(
+      dt = data1,
       CorrVars = x,
       CorrVarTrans = "Identity",
       FacetRows = 1,
@@ -280,6 +289,36 @@ Shiny.EDA.ReportOutput <- function(input,
       yaxis.fontSize = 14,
       xaxis.fontSize = 14,
       Debug = FALSE)
+      }, error = function(x) NULL)
+
+    # dt = data1
+    # CorrVars = x
+    # CorrVarTrans = "Identity"
+    # FacetRows = 1
+    # FacetCols = 1
+    # FacetLevels = NULL
+    # Method = "spearman"
+    # PreAgg = FALSE
+    # Height = NULL
+    # Width = NULL
+    # Title = "Correlation Matrix"
+    # ShowLabels = FALSE
+    # Title.YAxis = NULL
+    # Title.XAxis = NULL
+    # EchartsTheme = Theme
+    # X_Scroll = TRUE
+    # Y_Scroll = TRUE
+    # TextColor = "white"
+    # title.fontSize = 22
+    # title.fontWeight = "bold"
+    # title.textShadowColor = "#63aeff"
+    # title.textShadowBlur = 3
+    # title.textShadowOffsetY = 1
+    # title.textShadowOffsetX = -1
+    # yaxis.fontSize = 14
+    # xaxis.fontSize = 14
+    # Debug = FALSE
+
   }
 
   # Trend Stats / Plots
@@ -288,7 +327,7 @@ Shiny.EDA.ReportOutput <- function(input,
     x <- c(); for(i in TrendVars) if(class(data[[i]])[1L] %in% c("numeric","integer")) x <- c(x, i)
     if(length(x) > 0L) {
       for(i in x) {
-        OutputList[[paste0("Trend: ", i)]] <- AutoPlots::Plot.Line(
+        OutputList[[paste0("Trend: ", i)]] <- tryCatch({AutoPlots::Plot.Line(
           dt = data,
           AggMethod = "mean",
           PreAgg = FALSE,
@@ -329,7 +368,7 @@ Shiny.EDA.ReportOutput <- function(input,
           yaxis.rotate = 0,
           ContainLabel = TRUE,
           DarkMode = FALSE,
-          Debug = FALSE)
+          Debug = FALSE)}, error = function(x) NULL)
       }
     }
   }

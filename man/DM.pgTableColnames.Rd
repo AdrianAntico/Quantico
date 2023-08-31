@@ -36,6 +36,7 @@ PostGRE DM.pgTableColnames will list all column names from a table
 }
 \seealso{
 Other Database: 
+\code{\link{DM.SS.DBConnection}()},
 \code{\link{DM.pgAppend}()},
 \code{\link{DM.pgCreateDB}()},
 \code{\link{DM.pgCreateTable}()},
@@ -45,6 +46,14 @@ Other Database:
 \code{\link{DM.pgQuery}()},
 \code{\link{DM.pgRemoveCreateAppend}()},
 \code{\link{DM.pgRemoveTable}()},
+\code{\link{DM.ssAppend}()},
+\code{\link{DM.ssClearTable}()},
+\code{\link{DM.ssCreateDB}()},
+\code{\link{DM.ssCreateTable}()},
+\code{\link{DM.ssDictionaries}()},
+\code{\link{DM.ssDropDB}()},
+\code{\link{DM.ssQuery}()},
+\code{\link{DM.ssRemoveTable}()},
 \code{\link{QueryBuilder}()}
 }
 \author{

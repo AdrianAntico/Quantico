@@ -80,11 +80,15 @@ HomePage <- function(id, Page, AppWidth=12L) {
                     shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#densityplots", "Density Plots")),
                     shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#boxplots", "Box Plots")),
                     shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#pieplots", "Pie Plots")),
+                    shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#donutplots", "Donut Plots")),
+                    shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#rosetypeplots", "Rosetype Plots")),
+                    shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#wordcloudplots", "Word Cloud Plots")),
                     shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#areaplots", "Area Plots")),
-                    #shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#candlestickplots", "Candlestick Plots")),
                     shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#lineplots", "Line Plots")),
                     shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#riverplots", "River Plots")),
                     shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#stepplots", "Step Plots")),
+                    shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#autocorrplots", "Autocorr Plots")),
+                    shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#partialautocorrplots", "PartialAutocorr Plots")),
                     shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#barplots", "Bar Plots")),
                     shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#stackedbarplots", "Stacked Bar Plots")),
                     shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#3dbarplots", "3D Bar Plots")),
@@ -743,6 +747,113 @@ HomePage <- function(id, Page, AppWidth=12L) {
               DataMuse::BlankRow(12),
               DataMuse::BlankRow(12),
 
+
+              # Donut Plots ----
+              shinydashboard::box(
+                title = NULL, solidHeader = TRUE, collapsible = FALSE, status = "danger", width = 12L,
+                shiny::fluidRow(
+                  shiny::column(
+                    width = 12L,
+                    shiny::a(name = "donutplots"),
+                    shiny::h3("Donut Charts"),
+                    shiny::p("Donut Charts types are used when you are looking to understand
+                           the frequency and spread of your data. Data is visualized through
+                           a circular reqion that represents a statistic about each group.")
+                  )
+                ),
+
+                DataMuse::BlankRow(12),
+                shiny::tags$img(
+                  src = "DonutPlot.PNG", # "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/PiePlot.PNG?raw=true",
+                  alt = "DataMuse",
+                  `data-view-component` = "true",
+                  height="100%",
+                  width="100%"),
+                DataMuse::BlankRow(12),
+                DataMuse::BlankRow(12),
+
+                DataMuse::BlankRow(12),
+                shiny::fluidRow(shiny::column(width = 12L, shiny::h3("Donut Plots Usage"))),
+                shiny::markdown(
+                  "
+                * Donut plots requires a numeric Y-Variable and a categorical Group Variable
+                "
+                )
+              ),
+
+              # Rosetype Plots ----
+              shinydashboard::box(
+                title = NULL, solidHeader = TRUE, collapsible = FALSE, status = "danger", width = 12L,
+                shiny::fluidRow(
+                  shiny::column(
+                    width = 12L,
+                    shiny::a(name = "rosetypeplots"),
+                    shiny::h3("Rosetype Charts"),
+                    shiny::p("Rosetype Charts types are used when you are looking to understand
+                           the frequency and spread of your data. Data is visualized through
+                           a circular reqion that represents a statistic about each group.")
+                  )
+                ),
+
+                DataMuse::BlankRow(12),
+                shiny::tags$img(
+                  src = "RosetypePlot.PNG", # "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/PiePlot.PNG?raw=true",
+                  alt = "DataMuse",
+                  `data-view-component` = "true",
+                  height="100%",
+                  width="100%"),
+                DataMuse::BlankRow(12),
+                DataMuse::BlankRow(12),
+
+                DataMuse::BlankRow(12),
+                shiny::fluidRow(shiny::column(width = 12L, shiny::h3("Rosetype Plots Usage"))),
+                shiny::markdown(
+                  "
+                * Rosetype plots requires a numeric Y-Variable and a categorical Group Variable
+                "
+                )
+              ),
+
+              DataMuse::BlankRow(12),
+              DataMuse::BlankRow(12),
+              DataMuse::BlankRow(12),
+
+              # Word Cloud Plots ----
+              shinydashboard::box(
+                title = NULL, solidHeader = TRUE, collapsible = FALSE, status = "danger", width = 12L,
+                shiny::fluidRow(
+                  shiny::column(
+                    width = 12L,
+                    shiny::a(name = "wordcloudplots"),
+                    shiny::h3("Word Cloud Charts"),
+                    shiny::p("Word Cloud types are used when you are looking to understand
+                           the frequency of words utilized in a text column.")
+                  )
+                ),
+
+                DataMuse::BlankRow(12),
+                shiny::tags$img(
+                  src = "WordCloud.PNG",
+                  alt = "DataMuse",
+                  `data-view-component` = "true",
+                  height="100%",
+                  width="100%"),
+                DataMuse::BlankRow(12),
+                DataMuse::BlankRow(12),
+
+                DataMuse::BlankRow(12),
+                shiny::fluidRow(shiny::column(width = 12L, shiny::h3("Rosetype Plots Usage"))),
+                shiny::markdown(
+                  "
+                * Word Cloud plots requires a numeric Y-Variable that is text
+                "
+                )
+              ),
+
+              DataMuse::BlankRow(12),
+              DataMuse::BlankRow(12),
+              DataMuse::BlankRow(12),
+
               # Area Plots ----
               shinydashboard::box(
                 title = NULL, solidHeader = TRUE, collapsible = FALSE, status = "danger", width = 12L,
@@ -889,6 +1000,84 @@ HomePage <- function(id, Page, AppWidth=12L) {
                   "
                 * Step plots requires a numeric Y-Variable and a date X-Variable
                 * Group variables are optional and look good with or without faceting
+                "
+                )
+              ),
+
+              DataMuse::BlankRow(12),
+              DataMuse::BlankRow(12),
+              DataMuse::BlankRow(12),
+
+              # AutoCorr Plots ----
+              shinydashboard::box(
+                title = NULL, solidHeader = TRUE, collapsible = FALSE, status = "danger", width = 12L,
+                shiny::fluidRow(
+                  shiny::column(
+                    width = 12L,
+                    shiny::a(name = "autocorrplots"),
+                    shiny::h3("Autocorrelation Plots"),
+                    shiny::p("Autocorrelation Plot types are used when you are looking to understand
+                           time series data. The output can guide you for determining how big of a window
+                           to utilize for moving averages in a time series model.")
+                  )
+                ),
+
+                DataMuse::BlankRow(12),
+                shiny::tags$img(
+                  src = "AutocorrelationPlot.PNG", # "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/StepPlot.PNG?raw=true",
+                  alt = "DataMuse",
+                  `data-view-component` = "true",
+                  height="100%",
+                  width="100%"),
+                DataMuse::BlankRow(12),
+                DataMuse::BlankRow(12),
+
+                DataMuse::BlankRow(12),
+                shiny::fluidRow(shiny::column(width = 12L, shiny::h3("Step Plots Usage"))),
+                shiny::markdown(
+                  "
+                * Autocorrelation plots requires a numeric Y-Variable and a date X-Variable
+                * Define the time aggregation for your data
+                * Define the max lags to test
+                "
+                )
+              ),
+
+              DataMuse::BlankRow(12),
+              DataMuse::BlankRow(12),
+              DataMuse::BlankRow(12),
+
+              # PartialAutoCorr Plots ----
+              shinydashboard::box(
+                title = NULL, solidHeader = TRUE, collapsible = FALSE, status = "danger", width = 12L,
+                shiny::fluidRow(
+                  shiny::column(
+                    width = 12L,
+                    shiny::a(name = "partialautocorrplots"),
+                    shiny::h3("Partial AutoCorrelation Plots"),
+                    shiny::p("Partial AutoCorrelation Plot types are used when you are looking to understand
+                           time series data. The output can guide you for determining how many lags to utilize
+                           in a time series model.")
+                  )
+                ),
+
+                DataMuse::BlankRow(12),
+                shiny::tags$img(
+                  src = "PartialAutocorrelationPlot.PNG", # "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/StepPlot.PNG?raw=true",
+                  alt = "DataMuse",
+                  `data-view-component` = "true",
+                  height="100%",
+                  width="100%"),
+                DataMuse::BlankRow(12),
+                DataMuse::BlankRow(12),
+
+                DataMuse::BlankRow(12),
+                shiny::fluidRow(shiny::column(width = 12L, shiny::h3("Step Plots Usage"))),
+                shiny::markdown(
+                  "
+                * Partial Autocorrelation plots requires a numeric Y-Variable and a date X-Variable
+                * Define the time aggregation for your data
+                * Define the max lags to test
                 "
                 )
               ),

@@ -14576,7 +14576,6 @@ Plots.ACF.Modal <- function(id, PlotNumber, AppWidth=12L) {
 
                       DataMuse::BlankRow(12L),
                       shiny::fluidRow(
-                        shiny::column(width = 6),
                         shiny::column(width = 6L, align = 'center', DataMuse:::SelectizeInput(InputID = paste0('PlottingTimeUnit', PlotNumber), Label = 'Time Agg Level', Choices = c("hour", "day", "week", "month", "quarter", "year"), SelectedDefault = 'day', Multiple = TRUE, MaxVars = 1))
                       ),
 

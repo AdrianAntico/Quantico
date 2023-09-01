@@ -881,8 +881,10 @@ Shrink_Modal_Fun <- function(id,
                       width = 3L,
                       tags$h4(tags$span(tags$b(paste0('Aggregate Data Inputs'))))
                     ),
+
+                    # Help Button
                     shiny::column(
-                      width = 9L,
+                      width = 8L,
                       align = "right",
                       shinyWidgets::dropdown(
                         shinydashboard::box(
@@ -937,9 +939,21 @@ Shrink_Modal_Fun <- function(id,
                         block = FALSE,
                         no_outline = TRUE
                       )
+                    ),
+
+                    # Agg Data Button
+                    shiny::column(
+                      width = 1L, align = 'right',
+                      style = "padding-top: 4px;padding-right: 50px;",
+                      shiny::actionButton(
+                        inputId = 'DataWrangling_AggregateData',
+                        label = 'Run',
+                        icon = shiny::icon('chevron-right', lib='font-awesome')
+                      )
                     )
                   ),
 
+                  # Inputs
                   DataMuse:::BlankRow(12L),
                   shiny::fluidRow(
                     shiny::column(
@@ -994,18 +1008,6 @@ Shrink_Modal_Fun <- function(id,
 
                   # Blank space
                   DataMuse:::BlankRow(12L),
-
-                  # Agg Data Button
-                  shiny::fluidRow(
-                    shiny::column(
-                      width = 3L,
-                      align = 'center',
-                      tags$h3(tags$b('~ Build Features')),
-                      shiny::actionButton(
-                        inputId = 'DataWrangling_AggregateData',
-                        label = 'Run',
-                        icon = shiny::icon('chevron-right', lib='font-awesome')))),
-
                   DataMuse:::BlankRow(12L),
                   DataMuse:::BlankRow(12L),
                   DataMuse:::BlankRow(12L),
@@ -1027,7 +1029,7 @@ Shrink_Modal_Fun <- function(id,
                       tags$h4(tags$span(tags$b(paste0('Subset Data Inputs'))))
                     ),
                     shiny::column(
-                      width = 9L,
+                      width = 8L,
                       align = "right",
                       shinyWidgets::dropdown(
                         shinydashboard::box(
@@ -1069,6 +1071,17 @@ Shrink_Modal_Fun <- function(id,
                         inputId = NULL,
                         block = FALSE,
                         no_outline = TRUE
+                      )
+                    ),
+
+                    # Agg Data Button
+                    shiny::column(
+                      width = 1L, align = 'right',
+                      style = "padding-top: 4px;padding-right: 50px;",
+                      shiny::actionButton(
+                        inputId = 'DataWrangling_SubsetData',
+                        label = 'Run',
+                        icon = shiny::icon('chevron-right', lib='font-awesome')
                       )
                     )
                   ),
@@ -1175,17 +1188,7 @@ Shrink_Modal_Fun <- function(id,
 
                   # Blank space
                   DataMuse:::BlankRow(12L),
-                  DataMuse::BlankRow(12L),
-                  shiny::fluidRow(
-                    shiny::column(
-                      width = 3L,
-                      align = 'center',
-                      tags$h3(tags$b('~ Build Features')),
-                      shiny::actionButton(
-                        inputId = 'DataWrangling_SubsetData',
-                        label = 'Run',
-                        icon = shiny::icon('chevron-right', lib='font-awesome')))),
-
+                  DataMuse:::BlankRow(12L),
                   DataMuse:::BlankRow(12L),
                   DataMuse:::BlankRow(12L),
                   DataMuse:::BlankRow(12L),
@@ -1208,7 +1211,7 @@ Shrink_Modal_Fun <- function(id,
                       tags$h4(tags$span(tags$b(paste0('Delete Columns'))))
                     ),
                     shiny::column(
-                      width = 9L,
+                      width = 8L,
                       align = "right",
                       shinyWidgets::dropdown(
                         shinydashboard::box(
@@ -1251,6 +1254,17 @@ Shrink_Modal_Fun <- function(id,
                         block = FALSE,
                         no_outline = TRUE
                       )
+                    ),
+
+                    # Agg Data Button
+                    shiny::column(
+                      width = 1L, align = 'right',
+                      style = "padding-top: 4px;padding-right: 50px;",
+                      shiny::actionButton(
+                        inputId = 'DataWranglingButton_DeleteColumns',
+                        label = 'Run',
+                        icon = shiny::icon('chevron-right', lib='font-awesome')
+                      )
                     )
                   ),
 
@@ -1268,16 +1282,6 @@ Shrink_Modal_Fun <- function(id,
 
                   # Blank space
                   DataMuse:::BlankRow(12L),
-                  shiny::fluidRow(
-                    shiny::column(
-                      width = 3L,
-                      align = 'center',
-                      tags$h3(tags$b('~ Build Features')),
-                      shiny::actionButton(
-                        inputId = 'DataWranglingButton_DeleteColumns',
-                        label = 'Run',
-                        icon = shiny::icon('chevron-right', lib='font-awesome')))),
-
                   DataMuse:::BlankRow(12L),
                   DataMuse:::BlankRow(12L),
                   DataMuse:::BlankRow(12L),
@@ -1299,7 +1303,7 @@ Shrink_Modal_Fun <- function(id,
                       tags$h4(tags$span(tags$b(paste0('Sample Data Inputs')))),
                     ),
                     shiny::column(
-                      width = 9L,
+                      width = 8L,
                       align = "right",
                       shinyWidgets::dropdown(
                         shinydashboard::box(
@@ -1341,6 +1345,17 @@ Shrink_Modal_Fun <- function(id,
                         inputId = NULL,
                         block = FALSE,
                         no_outline = TRUE
+                      )
+                    ),
+
+                    # Agg Data Button
+                    shiny::column(
+                      width = 1L, align = 'right',
+                      style = "padding-top: 4px;padding-right: 50px;",
+                      shiny::actionButton(
+                        inputId = 'DataWrangling_SampleData',
+                        label = 'Run',
+                        icon = shiny::icon('chevron-right', lib='font-awesome')
                       )
                     )
                   ),
@@ -1387,18 +1402,6 @@ Shrink_Modal_Fun <- function(id,
 
                   # Blank space
                   DataMuse:::BlankRow(12L),
-
-                  # Sampling Data Button
-                  shiny::fluidRow(
-                    shiny::column(
-                      width = 3L,
-                      align = 'center',
-                      tags$h3(tags$b('~ Build Features')),
-                      shiny::actionButton(
-                        inputId = 'DataWrangling_SampleData',
-                        label = 'Run',
-                        icon = shiny::icon('chevron-right', lib='font-awesome')))),
-
                   DataMuse:::BlankRow(12L),
                   DataMuse:::BlankRow(12L),
                   DataMuse:::BlankRow(12L),
@@ -1483,7 +1486,7 @@ Grow_Modal_Fun <- function(id,
                       tags$h4(tags$span(tags$b(paste0('Join Data'))))
                     ),
                     shiny::column(
-                      width = 9L,
+                      width = 8L,
                       align = "right",
                       shinyWidgets::dropdown(
                         shinydashboard::box(
@@ -1537,6 +1540,17 @@ Grow_Modal_Fun <- function(id,
                         inputId = NULL,
                         block = FALSE,
                         no_outline = TRUE
+                      )
+                    ),
+
+                    # Join Data Button
+                    shiny::column(
+                      width = 1L, align = 'right',
+                      style = "padding-top: 4px;padding-right: 50px;",
+                      shiny::actionButton(
+                        inputId = 'DataWrangling_JoinData',
+                        label = 'Run',
+                        icon = shiny::icon('chevron-right', lib='font-awesome')
                       )
                     )
                   ),
@@ -1602,18 +1616,6 @@ Grow_Modal_Fun <- function(id,
 
                   # Blank space
                   DataMuse:::BlankRow(12L),
-
-                  # Join Data Button
-                  shiny::fluidRow(
-                    shiny::column(
-                      width = 3L,
-                      align = 'center',
-                      tags$h3(tags$b('~ Build Features')),
-                      shiny::actionButton(
-                        inputId = 'DataWrangling_JoinData',
-                        label = 'Run',
-                        icon = shiny::icon('chevron-right', lib='font-awesome')))),
-
                   DataMuse:::BlankRow(12L),
                   DataMuse:::BlankRow(12L),
                   DataMuse:::BlankRow(12L),
@@ -1635,7 +1637,7 @@ Grow_Modal_Fun <- function(id,
                       tags$h4(tags$span(tags$b(paste0('Union Data Inputs'))))
                     ),
                     shiny::column(
-                      width = 9L,
+                      width = 8L,
                       align = "right",
                       shinyWidgets::dropdown(
                         shinydashboard::box(
@@ -1678,6 +1680,17 @@ Grow_Modal_Fun <- function(id,
                         block = FALSE,
                         no_outline = TRUE
                       )
+                    ),
+
+                    # Union Data Button
+                    shiny::column(
+                      width = 1L, align = 'right',
+                      style = "padding-top: 4px;padding-right: 50px;",
+                      shiny::actionButton(
+                        inputId = 'DataWrangling_UnionData',
+                        label = 'Run',
+                        icon = shiny::icon('chevron-right', lib='font-awesome')
+                      )
                     )
                   ),
 
@@ -1713,18 +1726,6 @@ Grow_Modal_Fun <- function(id,
 
                   # Blank space
                   DataMuse:::BlankRow(12L),
-
-                  # Melt Data Button
-                  shiny::fluidRow(
-                    shiny::column(
-                      width = 3L,
-                      align = 'center',
-                      tags$h3(tags$b('~ Build Features')),
-                      shiny::actionButton(
-                        inputId = 'DataWrangling_UnionData',
-                        label = 'Run',
-                        icon = shiny::icon('chevron-right', lib='font-awesome')))),
-
                   DataMuse:::BlankRow(12L),
                   DataMuse:::BlankRow(12L),
                   DataMuse:::BlankRow(12L),
@@ -1817,7 +1818,7 @@ DataSets_Modal_Fun <- function(id,
               id = 'DataSet_TabPanel',
               selected = 'Partition Data',
 
-              # Partition Data
+              # Partition Data ----
               shiny::tabPanel(
                 title = "Partition Data",
                 icon = shiny::icon('code'),
@@ -1831,7 +1832,7 @@ DataSets_Modal_Fun <- function(id,
                       tags$h4(tags$span(tags$b(paste0('Partition Data'))))
                     ),
                     shiny::column(
-                      width = 9L,
+                      width = 8L,
                       align = "right",
                       shinyWidgets::dropdown(
                         shinydashboard::box(
@@ -1880,6 +1881,17 @@ DataSets_Modal_Fun <- function(id,
                         inputId = NULL,
                         block = FALSE,
                         no_outline = TRUE
+                      )
+                    ),
+
+                    # Partition Data Button
+                    shiny::column(
+                      width = 1L, align = 'right',
+                      style = "padding-top: 4px;padding-right: 50px;",
+                      shiny::actionButton(
+                        inputId = 'FeatureEngineeringButton_AutoDataPartition',
+                        label = 'Run',
+                        icon = shiny::icon('chevron-right', lib='font-awesome')
                       )
                     )
                   ),
@@ -1964,18 +1976,6 @@ DataSets_Modal_Fun <- function(id,
 
                   # Blank space
                   DataMuse:::BlankRow(12L),
-
-                  # Build Button
-                  shiny::fluidRow(
-                    shiny::column(
-                      width = 3L,
-                      align = 'center',
-                      tags$h3(tags$b('~ Build Features')),
-                      shiny::actionButton(
-                        inputId = 'FeatureEngineeringButton_AutoDataPartition',
-                        label = 'Run',
-                        icon = shiny::icon('chevron-right', lib='font-awesome')))),
-
                   DataMuse:::BlankRow(12L),
                   DataMuse:::BlankRow(12L),
                   DataMuse:::BlankRow(12L),
@@ -1983,7 +1983,7 @@ DataSets_Modal_Fun <- function(id,
                 )
               ), # end Tab Panel
 
-              # Sort Data
+              # Sort Data ----
               shiny::tabPanel(
                 title = "Sort Data",
                 icon = shiny::icon('code'),
@@ -1997,7 +1997,7 @@ DataSets_Modal_Fun <- function(id,
                       tags$h4(tags$span(tags$b(paste0('Sort Data'))))
                     ),
                     shiny::column(
-                      width = 9L,
+                      width = 8L,
                       align = "right",
                       shinyWidgets::dropdown(
                         shinydashboard::box(
@@ -2039,6 +2039,17 @@ DataSets_Modal_Fun <- function(id,
                         block = FALSE,
                         no_outline = TRUE
                       )
+                    ),
+
+                    # Sort Data Button
+                    shiny::column(
+                      width = 1L, align = 'right',
+                      style = "padding-top: 4px;padding-right: 50px;",
+                      shiny::actionButton(
+                        inputId = 'DataWranglingButton_SortData',
+                        label = 'Run',
+                        icon = shiny::icon('chevron-right', lib='font-awesome')
+                      )
                     )
                   ),
 
@@ -2063,16 +2074,6 @@ DataSets_Modal_Fun <- function(id,
 
                   # Sort Data Button
                   DataMuse:::BlankRow(12L),
-                  shiny::fluidRow(
-                    shiny::column(
-                      width = 3L,
-                      align = 'center',
-                      tags$h3(tags$b('~ Build Features')),
-                      shiny::actionButton(
-                        inputId = 'DataWranglingButton_SortData',
-                        label = 'Run',
-                        icon = shiny::icon('chevron-right', lib='font-awesome')))),
-
                   DataMuse:::BlankRow(12L),
                   DataMuse:::BlankRow(12L),
                   DataMuse:::BlankRow(12L),
@@ -2080,7 +2081,7 @@ DataSets_Modal_Fun <- function(id,
                 )
               ),
 
-              # Model Data Prep
+              # Model Data Prep ----
               shiny::tabPanel(
                 title = "Model Data Prep",
                 icon = shiny::icon('code'),
@@ -2094,7 +2095,7 @@ DataSets_Modal_Fun <- function(id,
                       tags$h4(tags$span(tags$b(paste0('Model Data Prep'))))
                     ),
                     shiny::column(
-                      width = 9L,
+                      width = 8L,
                       align = "right",
                       shinyWidgets::dropdown(
                         shinydashboard::box(
@@ -2143,6 +2144,17 @@ DataSets_Modal_Fun <- function(id,
                         inputId = NULL,
                         block = FALSE,
                         no_outline = TRUE
+                      )
+                    ),
+
+                    # Data Prep Data Button
+                    shiny::column(
+                      width = 1L, align = 'right',
+                      style = "padding-top: 4px;padding-right: 50px;",
+                      shiny::actionButton(
+                        inputId = 'FeatureEngineeringButton_ModelDataPrep',
+                        label = 'Run',
+                        icon = shiny::icon('chevron-right', lib='font-awesome')
                       )
                     )
                   ),
@@ -2239,20 +2251,6 @@ DataSets_Modal_Fun <- function(id,
                       )
                     )
                   ),
-
-
-                  # ModelDataPrep Button
-                  DataMuse:::BlankRow(12L),
-                  shiny::fluidRow(
-                    shiny::column(
-                      width = 3L,
-                      align = 'center',
-                      tags$h3(tags$b('~ Build Features')),
-                      shiny::actionButton(
-                        inputId = 'FeatureEngineeringButton_ModelDataPrep',
-                        label = 'Run',
-                        icon = shiny::icon('chevron-right', lib='font-awesome')))),
-
                   DataMuse:::BlankRow(12L),
                   DataMuse:::BlankRow(12L),
                   DataMuse:::BlankRow(12L),
@@ -2260,7 +2258,7 @@ DataSets_Modal_Fun <- function(id,
                 )
               ), # end Tab Panel Main
 
-              # Remove Data
+              # Remove Data ----
               shiny::tabPanel(
                 title = "Remove Data",
                 icon = shiny::icon('code'),
@@ -2274,7 +2272,7 @@ DataSets_Modal_Fun <- function(id,
                       tags$h4(tags$span(tags$b(paste0('Remove Data Sets'))))
                     ),
                     shiny::column(
-                      width = 9L,
+                      width = 8L,
                       align = "right",
                       shinyWidgets::dropdown(
                         shinydashboard::box(
@@ -2314,9 +2312,19 @@ DataSets_Modal_Fun <- function(id,
                         block = FALSE,
                         no_outline = TRUE
                       )
+                    ),
+
+                    # Remove Data Button
+                    shiny::column(
+                      width = 1L, align = 'right',
+                      style = "padding-top: 4px;padding-right: 50px;",
+                      shiny::actionButton(
+                        inputId = 'DataWrangling_RemoveData',
+                        label = 'Run',
+                        icon = shiny::icon('chevron-right', lib='font-awesome')
+                      )
                     )
                   ),
-
 
                   DataMuse:::BlankRow(12L),
                   shinydashboard::box(
@@ -2326,18 +2334,6 @@ DataSets_Modal_Fun <- function(id,
 
                   # Blank space
                   DataMuse:::BlankRow(12L),
-
-                  # Melt Data Button
-                  shiny::fluidRow(
-                    shiny::column(
-                      width = 3L,
-                      align = 'center',
-                      tags$h3(tags$b('~ Build Features')),
-                      shiny::actionButton(
-                        inputId = 'DataWrangling_RemoveData',
-                        label = 'Run',
-                        icon = shiny::icon('chevron-right', lib='font-awesome')))),
-
                   DataMuse:::BlankRow(12L),
                   DataMuse:::BlankRow(12L),
                   DataMuse:::BlankRow(12L),
@@ -2415,7 +2411,7 @@ Pivot_Modal_Fun <- function(id,
               id = 'Pivot_TabPanel',
               selected = 'Melt Data',
 
-              # Melt Data
+              # Melt Data ----
               shiny::tabPanel(
                 title = "Melt Data",
                 icon = shiny::icon('code'),
@@ -2428,7 +2424,7 @@ Pivot_Modal_Fun <- function(id,
                       tags$h4(tags$span(tags$b(paste0('Melt Data'))))
                     ),
                     shiny::column(
-                      width = 9L,
+                      width = 8L,
                       align = "right",
                       shinyWidgets::dropdown(
                         shinydashboard::box(
@@ -2475,6 +2471,17 @@ Pivot_Modal_Fun <- function(id,
                         inputId = NULL,
                         block = FALSE,
                         no_outline = TRUE
+                      )
+                    ),
+
+                    # Melt Data Button
+                    shiny::column(
+                      width = 1L, align = 'right',
+                      style = "padding-top: 4px;padding-right: 50px;",
+                      shiny::actionButton(
+                        inputId = 'DataWrangling_MeltData',
+                        label = 'Run',
+                        icon = shiny::icon('chevron-right', lib='font-awesome')
                       )
                     )
                   ),
@@ -2573,19 +2580,6 @@ Pivot_Modal_Fun <- function(id,
                           )
                         )
                       ),
-
-                      # Melt Data Button
-                      DataMuse:::BlankRow(12L),
-                      shiny::fluidRow(
-                        shiny::column(
-                          width = 3L,
-                          align = 'center',
-                          tags$h3(tags$b('~ Build Features')),
-                          shiny::actionButton(
-                            inputId = 'DataWrangling_MeltData',
-                            label = 'Run',
-                            icon = shiny::icon('chevron-right', lib='font-awesome')))),
-
                       DataMuse:::BlankRow(12L),
                       DataMuse:::BlankRow(12L),
                       DataMuse:::BlankRow(12L),
@@ -2595,7 +2589,7 @@ Pivot_Modal_Fun <- function(id,
                 )
               ),
 
-              # Cast Data
+              # Cast Data ----
               shiny::tabPanel(
                 title = "Cast Data",
                 icon = shiny::icon('code'),
@@ -2608,7 +2602,7 @@ Pivot_Modal_Fun <- function(id,
                       tags$h4(tags$span(tags$b(paste0('Cast Data'))))
                     ),
                     shiny::column(
-                      width = 9L,
+                      width = 8L,
                       align = "right",
                       shinyWidgets::dropdown(
                         shinydashboard::box(
@@ -2661,6 +2655,17 @@ Pivot_Modal_Fun <- function(id,
                         inputId = NULL,
                         block = FALSE,
                         no_outline = TRUE
+                      )
+                    ),
+
+                    # Cast Data Button
+                    shiny::column(
+                      width = 1L, align = 'right',
+                      style = "padding-top: 4px;padding-right: 50px;",
+                      shiny::actionButton(
+                        inputId = 'DataWrangling_CastData',
+                        label = 'Run',
+                        icon = shiny::icon('chevron-right', lib='font-awesome')
                       )
                     )
                   ),
@@ -2731,19 +2736,6 @@ Pivot_Modal_Fun <- function(id,
                       )
                     )
                   ),
-
-                  # Blank space
-                  DataMuse:::BlankRow(12L),
-                  shiny::fluidRow(
-                    shiny::column(
-                      width = 3L,
-                      align = 'center',
-                      tags$h3(tags$b('~ Build Features')),
-                      shiny::actionButton(
-                        inputId = 'DataWrangling_CastData',
-                        label = 'Run',
-                        icon = shiny::icon('chevron-right', lib='font-awesome')))),
-
                   DataMuse:::BlankRow(12L),
                   DataMuse:::BlankRow(12L),
                   DataMuse:::BlankRow(12L),
@@ -2836,7 +2828,7 @@ Columns_Modal_Fun <- function(id,
                       tags$h4(tags$span(tags$b(paste0('Type Casting'))))
                     ),
                     shiny::column(
-                      width = 9L,
+                      width = 8L,
                       align = "right",
                       shinyWidgets::dropdown(
                         shinydashboard::box(
@@ -2883,6 +2875,17 @@ Columns_Modal_Fun <- function(id,
                         block = FALSE,
                         no_outline = TRUE
                       )
+                    ),
+
+                    # Tyep Cast Data Button
+                    shiny::column(
+                      width = 1L, align = 'right',
+                      style = "padding-top: 4px;padding-right: 50px;",
+                      shiny::actionButton(
+                        inputId = 'DataWranglingButton_TypeCasting',
+                        label = 'Run',
+                        icon = shiny::icon('chevron-right', lib='font-awesome')
+                      )
                     )
                   ),
 
@@ -2920,18 +2923,6 @@ Columns_Modal_Fun <- function(id,
 
                   # Type Cast Build Button
                   DataMuse:::BlankRow(12L),
-                  shiny::fluidRow(
-                    shiny::column(
-                      width = 3L,
-                      align = 'center',
-                      tags$h3(tags$b('~ Build Features')),
-                      shiny::actionButton(
-                        inputId = 'DataWranglingButton_TypeCasting',
-                        label = 'Run',
-                        icon = shiny::icon('chevron-right', lib='font-awesome')
-                      )
-                    )
-                  )
                 )
               ),
 
@@ -2949,7 +2940,7 @@ Columns_Modal_Fun <- function(id,
                       tags$h4(tags$span(tags$b(paste0('Rename Columns'))))
                     ),
                     shiny::column(
-                      width = 9L,
+                      width = 8L,
                       align = "right",
                       shinyWidgets::dropdown(
                         shinydashboard::box(
@@ -2991,6 +2982,17 @@ Columns_Modal_Fun <- function(id,
                         block = FALSE,
                         no_outline = TRUE
                       )
+                    ),
+
+                    # Rename Cols Button
+                    shiny::column(
+                      width = 1L, align = 'right',
+                      style = "padding-top: 4px;padding-right: 50px;",
+                      shiny::actionButton(
+                        inputId = 'DataWranglingButton_RenameColumns',
+                        label = 'Run',
+                        icon = shiny::icon('chevron-right', lib='font-awesome')
+                      )
                     )
                   ),
 
@@ -3007,16 +3009,6 @@ Columns_Modal_Fun <- function(id,
 
                   # Rename Columns Button
                   DataMuse:::BlankRow(12L),
-                  shiny::fluidRow(
-                    shiny::column(
-                      width = 3L,
-                      align = 'center',
-                      tags$h3(tags$b('~ Build Features')),
-                      shiny::actionButton(
-                        inputId = 'DataWranglingButton_RenameColumns',
-                        label = 'Run',
-                        icon = shiny::icon('chevron-right', lib='font-awesome')))),
-
                   DataMuse:::BlankRow(12L),
                   DataMuse:::BlankRow(12L),
                   DataMuse:::BlankRow(12L),
@@ -3038,7 +3030,7 @@ Columns_Modal_Fun <- function(id,
                       tags$h4(tags$span(tags$b(paste0('Time Trend Columns'))))
                     ),
                     shiny::column(
-                      width = 9L,
+                      width = 8L,
                       align = "right",
                       shinyWidgets::dropdown(
                         shinydashboard::box(
@@ -3082,6 +3074,17 @@ Columns_Modal_Fun <- function(id,
                         inputId = NULL,
                         block = FALSE,
                         no_outline = TRUE
+                      )
+                    ),
+
+                    # Time trend Button
+                    shiny::column(
+                      width = 1L, align = 'right',
+                      style = "padding-top: 4px;padding-right: 50px;",
+                      shiny::actionButton(
+                        inputId = 'DataWranglingButton_TimeTrendColumn',
+                        label = 'Run',
+                        icon = shiny::icon('chevron-right', lib='font-awesome')
                       )
                     )
                   ),
@@ -3137,16 +3140,6 @@ Columns_Modal_Fun <- function(id,
 
                   # Blank space
                   DataMuse:::BlankRow(12L),
-                  shiny::fluidRow(
-                    shiny::column(
-                      width = 3L,
-                      align = 'center',
-                      tags$h3(tags$b('~ Build Features')),
-                      shiny::actionButton(
-                        inputId = 'DataWranglingButton_TimeTrendColumn',
-                        label = 'Run',
-                        icon = shiny::icon('chevron-right', lib='font-awesome')))),
-
                   DataMuse:::BlankRow(12L),
                   DataMuse:::BlankRow(12L),
                   DataMuse:::BlankRow(12L),
@@ -3168,7 +3161,7 @@ Columns_Modal_Fun <- function(id,
                       tags$h4(tags$span(tags$b(paste0('Time Trend Columns'))))
                     ),
                     shiny::column(
-                      width = 9L,
+                      width = 8L,
                       align = "right",
                       shinyWidgets::dropdown(
                         shinydashboard::box(
@@ -3209,6 +3202,17 @@ Columns_Modal_Fun <- function(id,
                         block = FALSE,
                         no_outline = TRUE
                       )
+                    ),
+
+                    # Concat Button
+                    shiny::column(
+                      width = 1L, align = 'right',
+                      style = "padding-top: 4px;padding-right: 50px;",
+                      shiny::actionButton(
+                        inputId = 'DataWranglingButton_ConcatColumns',
+                        label = 'Run',
+                        icon = shiny::icon('chevron-right', lib='font-awesome')
+                      )
                     )
                   ),
 
@@ -3222,16 +3226,6 @@ Columns_Modal_Fun <- function(id,
 
                   # Blank space
                   DataMuse:::BlankRow(12L),
-                  shiny::fluidRow(
-                    shiny::column(
-                      width = 3L,
-                      align = 'center',
-                      tags$h3(tags$b('~ Build Features')),
-                      shiny::actionButton(
-                        inputId = 'DataWranglingButton_ConcatColumns',
-                        label = 'Run',
-                        icon = shiny::icon('chevron-right', lib='font-awesome')))),
-
                   DataMuse:::BlankRow(12L),
                   DataMuse:::BlankRow(12L),
                   DataMuse:::BlankRow(12L),
@@ -3325,7 +3319,7 @@ Misc_Modal_Fun <- function(id,
                         tags$h4(tags$span(tags$b(paste0('Meta Programming'))))
                       ),
                       shiny::column(
-                        width = 9L,
+                        width = 8L,
                         align = "right",
                         shinyWidgets::dropdown(
                           shinydashboard::box(
@@ -3372,6 +3366,17 @@ Misc_Modal_Fun <- function(id,
                           block = FALSE,
                           no_outline = TRUE
                         )
+                      ),
+
+                      # Meta Programming Button
+                      shiny::column(
+                        width = 1L, align = 'right',
+                        style = "padding-top: 4px;padding-right: 50px;",
+                        shiny::actionButton(
+                          inputId = 'DataWranglingButton_MetaProgramming',
+                          label = 'Run',
+                          icon = shiny::icon('chevron-right', lib='font-awesome')
+                        )
                       )
                     ),
 
@@ -3404,18 +3409,6 @@ Misc_Modal_Fun <- function(id,
 
                     # Blank space
                     DataMuse:::BlankRow(12L),
-
-                    # Melt Data Button
-                    shiny::fluidRow(
-                      shiny::column(
-                        width = 3L,
-                        align = 'center',
-                        tags$h3(tags$b('~ Build Features')),
-                        shiny::actionButton(
-                          inputId = 'DataWranglingButton_MetaProgramming',
-                          label = 'Run',
-                          icon = shiny::icon('chevron-right', lib='font-awesome')))),
-
                     DataMuse:::BlankRow(12L),
                     DataMuse:::BlankRow(12L),
                     DataMuse:::BlankRow(12L),
@@ -3437,7 +3430,7 @@ Misc_Modal_Fun <- function(id,
                       tags$h4(tags$span(tags$b(paste0('Time Series Fill'))))
                     ),
                     shiny::column(
-                      width = 9L,
+                      width = 8L,
                       align = "right",
                       shinyWidgets::dropdown(
                         shinydashboard::box(
@@ -3482,6 +3475,17 @@ Misc_Modal_Fun <- function(id,
                         inputId = NULL,
                         block = FALSE,
                         no_outline = TRUE
+                      )
+                    ),
+
+                    # TSF Programming Button
+                    shiny::column(
+                      width = 1L, align = 'right',
+                      style = "padding-top: 4px;padding-right: 50px;",
+                      shiny::actionButton(
+                        inputId = 'DataWrangling_TimeSeriesFill',
+                        label = 'Run',
+                        icon = shiny::icon('chevron-right', lib='font-awesome')
                       )
                     )
                   ),
@@ -3550,18 +3554,6 @@ Misc_Modal_Fun <- function(id,
 
                   # Blank space
                   DataMuse:::BlankRow(12L),
-
-                  # Date Variable Build Button
-                  shiny::fluidRow(
-                    shiny::column(
-                      width = 3L,
-                      align = 'center',
-                      tags$h3(tags$b('~ Build Features')),
-                      shiny::actionButton(
-                        inputId = 'DataWrangling_TimeSeriesFill',
-                        label = 'Run',
-                        icon = shiny::icon('chevron-right', lib='font-awesome')))),
-
                   DataMuse:::BlankRow(12L),
                   DataMuse:::BlankRow(12L),
                   DataMuse:::BlankRow(12L),
@@ -3583,7 +3575,7 @@ Misc_Modal_Fun <- function(id,
                       tags$h4(tags$span(tags$b(paste0('Time Series Roll'))))
                     ),
                     shiny::column(
-                      width = 9L,
+                      width = 8L,
                       align = "right",
                       shinyWidgets::dropdown(
                         shinydashboard::box(
@@ -3631,6 +3623,17 @@ Misc_Modal_Fun <- function(id,
                         inputId = NULL,
                         block = FALSE,
                         no_outline = TRUE
+                      )
+                    ),
+
+                    # TSRF Programming Button
+                    shiny::column(
+                      width = 1L, align = 'right',
+                      style = "padding-top: 4px;padding-right: 50px;",
+                      shiny::actionButton(
+                        inputId = 'DataWrangling_TimeSeriesRoll',
+                        label = 'Run',
+                        icon = shiny::icon('chevron-right', lib='font-awesome')
                       )
                     )
                   ),
@@ -3705,16 +3708,6 @@ Misc_Modal_Fun <- function(id,
 
                   # Blank space
                   DataMuse:::BlankRow(12L),
-                  shiny::fluidRow(
-                    shiny::column(
-                      width = 3L,
-                      align = 'center',
-                      tags$h3(tags$b('~ Build Features')),
-                      shiny::actionButton(
-                        inputId = 'DataWrangling_TimeSeriesRoll',
-                        label = 'Run',
-                        icon = shiny::icon('chevron-right', lib='font-awesome')))),
-
                   DataMuse:::BlankRow(12L),
                   DataMuse:::BlankRow(12L),
                   DataMuse:::BlankRow(12L),
@@ -3823,7 +3816,7 @@ Windowing_Modal_Fun <- function(id,
               id = 'Windowing_TabPanel',
               selected = 'Rolling Numeric',
 
-              # Numeric: Auto Lag Roll Stats
+              # Numeric: Auto Lag Roll Stats ----
               shiny::tabPanel(
                 title = "Rolling Numeric",
                 icon = shiny::icon('code'),
@@ -3837,7 +3830,7 @@ Windowing_Modal_Fun <- function(id,
                       tags$h4(tags$span(tags$b(paste0('Rolling Numeric'))))
                     ),
                     shiny::column(
-                      width = 9L,
+                      width = 8L,
                       align = "right",
                       shinyWidgets::dropdown(
                         shinydashboard::box(
@@ -3890,6 +3883,17 @@ Windowing_Modal_Fun <- function(id,
                         inputId = NULL,
                         block = FALSE,
                         no_outline = TRUE
+                      )
+                    ),
+
+                    # Agg Data Button
+                    shiny::column(
+                      width = 1L, align = 'right',
+                      style = "padding-top: 4px;padding-right: 50px;",
+                      shiny::actionButton(
+                        inputId = 'FeatureEngineeringButton_AutoLagRollStats',
+                        label = 'Run',
+                        icon = shiny::icon('chevron-right', lib='font-awesome')
                       )
                     )
                   ),
@@ -3951,16 +3955,6 @@ Windowing_Modal_Fun <- function(id,
 
                   # Windowing Button
                   DataMuse:::BlankRow(12L),
-                  shiny::fluidRow(
-                    shiny::column(
-                      width = 3L,
-                      align = 'center',
-                      tags$h3(tags$b('~ Build Features')),
-                      shiny::actionButton(
-                        inputId = 'TypeCastButton',
-                        label = 'Run',
-                        icon = shiny::icon('chevron-right', lib='font-awesome')))),
-
                   DataMuse:::BlankRow(12L),
                   DataMuse:::BlankRow(12L),
                   DataMuse:::BlankRow(12L),
@@ -3968,7 +3962,7 @@ Windowing_Modal_Fun <- function(id,
                 )
               ),
 
-              # Differencing: Auto Diff Lag N
+              # Differencing: Auto Diff Lag N ----
               shiny::tabPanel(
                 title = "Diff Variables",
                 icon = shiny::icon('code'),
@@ -3982,7 +3976,7 @@ Windowing_Modal_Fun <- function(id,
                       tags$h4(tags$span(tags$b(paste0('Differencing Variables'))))
                     ),
                     shiny::column(
-                      width = 9L,
+                      width = 8L,
                       align = "right",
                       shinyWidgets::dropdown(
                         shinydashboard::box(
@@ -4033,6 +4027,17 @@ Windowing_Modal_Fun <- function(id,
                         block = FALSE,
                         no_outline = TRUE
                       )
+                    ),
+
+                    # Agg Data Button
+                    shiny::column(
+                      width = 1L, align = 'right',
+                      style = "padding-top: 4px;padding-right: 50px;",
+                      shiny::actionButton(
+                        inputId = 'FeatureEngineeringButton_AutoDiff',
+                        label = 'Run',
+                        icon = shiny::icon('chevron-right', lib='font-awesome')
+                      )
                     )
                   ),
 
@@ -4070,16 +4075,6 @@ Windowing_Modal_Fun <- function(id,
 
                   # Blank space
                   DataMuse:::BlankRow(12L),
-                  shiny::fluidRow(
-                    shiny::column(
-                      width = 3L,
-                      align = 'center',
-                      tags$h3(tags$b('~ Build Features')),
-                      shiny::actionButton(
-                        inputId = 'FeatureEngineeringButton_AutoDiff',
-                        label = 'Run',
-                        icon = shiny::icon('chevron-right', lib='font-awesome')))),
-
                   DataMuse:::BlankRow(12L),
                   DataMuse:::BlankRow(12L),
                   DataMuse:::BlankRow(12L),
@@ -4087,7 +4082,7 @@ Windowing_Modal_Fun <- function(id,
                 )
               ),
 
-              # Categorical: Auto Lag Roll Mode
+              # Categorical: Auto Lag Roll Mode ----
               shiny::tabPanel(
                 title = "Categorical Variables",
                 icon = shiny::icon('code'),
@@ -4101,7 +4096,7 @@ Windowing_Modal_Fun <- function(id,
                         tags$h4(tags$span(tags$b(paste0('Rolling Categorical'))))
                       ),
                       shiny::column(
-                        width = 9L,
+                        width = 8L,
                         align = "right",
                         shinyWidgets::dropdown(
                           shinydashboard::box(
@@ -4147,9 +4142,19 @@ Windowing_Modal_Fun <- function(id,
                           block = FALSE,
                           no_outline = TRUE
                         )
+                      ),
+
+                      # Agg Data Button
+                      shiny::column(
+                        width = 1L, align = 'right',
+                        style = "padding-top: 4px;padding-right: 50px;",
+                        shiny::actionButton(
+                          inputId = 'FeatureEngineeringButton_AutoLagRollMode',
+                          label = 'Run',
+                          icon = shiny::icon('chevron-right', lib='font-awesome')
+                        )
                       )
                     ),
-
 
                     DataMuse::BlankRow(12L),
                     shiny::fluidRow(
@@ -4176,25 +4181,15 @@ Windowing_Modal_Fun <- function(id,
                           DataMuse:::BlankRow(12L),
                           shiny::fluidRow(shiny::column(12L, align = 'center', DataMuse:::SelectizeInput(InputID='AutoLagRollMode_WindowingLag', Label='Window Lag', Choices = AutoLagRollMode_WindowingLag_Choices, SelectedDefault = AutoLagRollMode_WindowingLag_Selected, Multiple = TRUE, MaxVars = 1))),
                           DataMuse:::BlankRow(12L),
-                          shiny::fluidRow(shiny::column(12L, align = 'center', DataMuse:::NumericInput(InputID='AutoLagRollMode_Lags', Label='Lags', Value = AutoLagRollMode_Lags_Selected, Multiple = TRUE, Min = 0, Max = 10000, Step = 1))),
+                          shiny::fluidRow(shiny::column(12L, align = 'center', DataMuse:::NumericInput(InputID='AutoLagRollMode_Lags', Label='Lags', Value = AutoLagRollMode_Lags_Selected, Min = 0, Max = 10000, Step = 1))),
                           DataMuse:::BlankRow(12L),
-                          shiny::fluidRow(shiny::column(12L, align = 'center', DataMuse:::NumericInput(InputID='AutoLagRollMode_ModePeriods', Label='Window Sizes', Value = AutoLagRollMode_ModePeriods_Selected, Multiple = TRUE, Min = 0, Max = 10000, Step = 1))),
+                          shiny::fluidRow(shiny::column(12L, align = 'center', DataMuse:::NumericInput(InputID='AutoLagRollMode_ModePeriods', Label='Window Sizes', Value = AutoLagRollMode_ModePeriods_Selected, Min = 0, Max = 10000, Step = 1))),
                           DataMuse:::BlankRow(12L)
                         )
                       )),
 
                     # Categorical Button
                     DataMuse:::BlankRow(12L),
-                    shiny::fluidRow(
-                      shiny::column(
-                        width = 3L,
-                        align = 'center',
-                        tags$h3(tags$b('~ Build Features')),
-                        shiny::actionButton(
-                          inputId = 'FeatureEngineeringButton_AutoLagRollMode',
-                          label = 'Run',
-                          icon = shiny::icon('chevron-right', lib='font-awesome')))),
-
                     DataMuse:::BlankRow(12L),
                     DataMuse:::BlankRow(12L),
                     DataMuse:::BlankRow(12L),
@@ -4261,7 +4256,7 @@ Calendar_Modal_Fun <- function(id,
               id = 'Calendar_TabPanel',
               selected = 'Calendar Features',
 
-              # Calendar: Create Calendar Variables
+              # Calendar: Create Calendar Variables ----
               shiny::tabPanel(
                 title = "Calendar Features",
                 icon = shiny::icon('code'),
@@ -4275,7 +4270,7 @@ Calendar_Modal_Fun <- function(id,
                       tags$h4(tags$span(tags$b(paste0('Calendar Features'))))
                     ),
                     shiny::column(
-                      width = 9L,
+                      width = 8L,
                       align = "right",
                       shinyWidgets::dropdown(
                         shinydashboard::box(
@@ -4331,6 +4326,17 @@ Calendar_Modal_Fun <- function(id,
                         block = FALSE,
                         no_outline = TRUE
                       )
+                    ),
+
+                    # Agg Data Button
+                    shiny::column(
+                      width = 1L, align = 'right',
+                      style = "padding-top: 4px;padding-right: 50px;",
+                      shiny::actionButton(
+                        inputId = 'FeatureEngineeringButton_CalendarVariables',
+                        label = 'Run',
+                        icon = shiny::icon('chevron-right', lib='font-awesome')
+                      )
                     )
                   ),
 
@@ -4352,16 +4358,6 @@ Calendar_Modal_Fun <- function(id,
 
                   # Blank space
                   DataMuse:::BlankRow(12L),
-                  shiny::fluidRow(
-                    shiny::column(
-                      width = 3L,
-                      align = 'center',
-                      tags$h3(tags$b('~ Build Features')),
-                      shiny::actionButton(
-                        inputId = 'FeatureEngineeringButton_CalendarVariables',
-                        label = 'Run',
-                        icon = shiny::icon('chevron-right', lib='font-awesome')))),
-
                   DataMuse:::BlankRow(12L),
                   DataMuse:::BlankRow(12L),
                   DataMuse:::BlankRow(12L),
@@ -4369,7 +4365,7 @@ Calendar_Modal_Fun <- function(id,
                 )
               ),
 
-              # Holiday: Create Holiday Variables
+              # Holiday: Create Holiday Variables ----
               shiny::tabPanel(
                 title = "Holiday Features",
                 icon = shiny::icon('code'),
@@ -4383,7 +4379,7 @@ Calendar_Modal_Fun <- function(id,
                       tags$h4(tags$span(tags$b(paste0('Holiday Features'))))
                     ),
                     shiny::column(
-                      width = 9L,
+                      width = 8L,
                       align = "right",
                       shinyWidgets::dropdown(
                         shinydashboard::box(
@@ -4434,6 +4430,17 @@ Calendar_Modal_Fun <- function(id,
                         block = FALSE,
                         no_outline = TRUE
                       )
+                    ),
+
+                    # Agg Data Button
+                    shiny::column(
+                      width = 1L, align = 'right',
+                      style = "padding-top: 4px;padding-right: 50px;",
+                      shiny::actionButton(
+                        inputId = 'FeatureEngineeringButton_HolidayVariables',
+                        label = 'Run',
+                        icon = shiny::icon('chevron-right', lib='font-awesome')
+                      )
                     )
                   ),
 
@@ -4462,16 +4469,6 @@ Calendar_Modal_Fun <- function(id,
                   ),
 
                   # Holiday Button
-                  shiny::fluidRow(
-                    shiny::column(
-                      width = 3L,
-                      align = 'center',
-                      tags$h3(tags$b('~ Build Features')),
-                      shiny::actionButton(
-                        inputId = 'FeatureEngineeringButton_HolidayVariables',
-                        label = 'Run',
-                        icon = shiny::icon('chevron-right', lib='font-awesome')))),
-
                   DataMuse:::BlankRow(12L),
                   DataMuse:::BlankRow(12L),
                   DataMuse:::BlankRow(12L),
@@ -4543,7 +4540,7 @@ Categorical_Modal_Fun <- function(id,
               id = 'Categorical_TabPanel',
               selected = 'Categorical Encoding',
 
-              # Categorical
+              # Categorical ----
               shiny::tabPanel(
                 title = "Categorical Encoding",
                 icon = shiny::icon('code'),
@@ -4557,7 +4554,7 @@ Categorical_Modal_Fun <- function(id,
                       tags$h4(tags$span(tags$b(paste0('Categorical Encoding'))))
                     ),
                     shiny::column(
-                      width = 9L,
+                      width = 8L,
                       align = "right",
                       shinyWidgets::dropdown(
                         shinydashboard::box(
@@ -4613,6 +4610,17 @@ Categorical_Modal_Fun <- function(id,
                         block = FALSE,
                         no_outline = TRUE
                       )
+                    ),
+
+                    # Agg Data Button
+                    shiny::column(
+                      width = 1L, align = 'right',
+                      style = "padding-top: 4px;padding-right: 50px;",
+                      shiny::actionButton(
+                        inputId = 'FeatureEngineeringButton_CategoricalEncoding',
+                        label = 'Run',
+                        icon = shiny::icon('chevron-right', lib='font-awesome')
+                      )
                     )
                   ),
 
@@ -4647,24 +4655,13 @@ Categorical_Modal_Fun <- function(id,
 
                   # Blank space
                   DataMuse:::BlankRow(12L),
-                  shiny::fluidRow(
-                    shiny::column(
-                      width = 3L,
-                      align = 'center',
-                      tags$h3(tags$b('~ Build Features')),
-                      shiny::actionButton(
-                        inputId = 'FeatureEngineeringButton_CategoricalEncoding',
-                        label = 'Run',
-                        icon = shiny::icon('chevron-right', lib='font-awesome')))),
-
-                  DataMuse:::BlankRow(12L),
                   DataMuse:::BlankRow(12L),
                   DataMuse:::BlankRow(12L),
                   DataMuse:::BlankRow(12L)
                 )
               ),
 
-              # Partial Dummies
+              # Partial Dummies ----
               shiny::tabPanel(
                 title = "Dummy Variables",
                 icon = shiny::icon('code'),
@@ -4678,7 +4675,7 @@ Categorical_Modal_Fun <- function(id,
                       tags$h4(tags$span(tags$b(paste0('Partial Dummy Variables'))))
                     ),
                     shiny::column(
-                      width = 9L,
+                      width = 8L,
                       align = "right",
                       shinyWidgets::dropdown(
                         shinydashboard::box(
@@ -4722,6 +4719,17 @@ Categorical_Modal_Fun <- function(id,
                         block = FALSE,
                         no_outline = TRUE
                       )
+                    ),
+
+                    # Agg Data Button
+                    shiny::column(
+                      width = 1L, align = 'right',
+                      style = "padding-top: 4px;padding-right: 50px;",
+                      shiny::actionButton(
+                        inputId = 'FeatureEngineeringButton_PartialDummies',
+                        label = 'Run',
+                        icon = shiny::icon('chevron-right', lib='font-awesome')
+                      )
                     )
                   ),
 
@@ -4752,16 +4760,6 @@ Categorical_Modal_Fun <- function(id,
 
                   # Blank space
                   DataMuse:::BlankRow(12L),
-                  shiny::fluidRow(
-                    shiny::column(
-                      width = 3L,
-                      align = 'center',
-                      tags$h3(tags$b('~ Build Features')),
-                      shiny::actionButton(
-                        inputId = 'FeatureEngineeringButton_PartialDummies',
-                        label = 'Run',
-                        icon = shiny::icon('chevron-right', lib='font-awesome')))),
-
                   DataMuse:::BlankRow(12L),
                   DataMuse:::BlankRow(12L),
                   DataMuse:::BlankRow(12L),
@@ -4852,7 +4850,7 @@ Numeric_Modal_Fun <- function(id,
               id = 'Numeric_TabPanel',
               selected = 'Percent Rank',
 
-              # Percent Rank
+              # Percent Rank ----
               shiny::tabPanel(
                 title = "Percent Rank",
                 icon = shiny::icon('code'),
@@ -4866,7 +4864,7 @@ Numeric_Modal_Fun <- function(id,
                       tags$h4(tags$span(tags$b(paste0('Percent Rank'))))
                     ),
                     shiny::column(
-                      width = 9L,
+                      width = 8L,
                       align = "right",
                       shinyWidgets::dropdown(
                         shinydashboard::box(
@@ -4912,6 +4910,17 @@ Numeric_Modal_Fun <- function(id,
                         block = FALSE,
                         no_outline = TRUE
                       )
+                    ),
+
+                    # Agg Data Button
+                    shiny::column(
+                      width = 1L, align = 'right',
+                      style = "padding-top: 4px;padding-right: 50px;",
+                      shiny::actionButton(
+                        inputId = 'FeatureEngineeringButton_PercRank',
+                        label = 'Run',
+                        icon = shiny::icon('chevron-right', lib='font-awesome')
+                      )
                     )
                   ),
 
@@ -4946,16 +4955,6 @@ Numeric_Modal_Fun <- function(id,
 
                   # Blank space
                   DataMuse:::BlankRow(12L),
-                  shiny::fluidRow(
-                    shiny::column(
-                      width = 3L,
-                      align = 'center',
-                      tags$h3(tags$b('~ Build Features')),
-                      shiny::actionButton(
-                        inputId = 'FeatureEngineeringButton_PercRank',
-                        label = 'Run',
-                        icon = shiny::icon('chevron-right', lib='font-awesome')))),
-
                   DataMuse:::BlankRow(12L),
                   DataMuse:::BlankRow(12L),
                   DataMuse:::BlankRow(12L),
@@ -4963,7 +4962,7 @@ Numeric_Modal_Fun <- function(id,
                 )
               ),
 
-              # Standardize
+              # Standardize ----
               shiny::tabPanel(
                 title = "Standardize",
                 icon = shiny::icon('code'),
@@ -4977,7 +4976,7 @@ Numeric_Modal_Fun <- function(id,
                       tags$h4(tags$span(tags$b(paste0('Standardize'))))
                     ),
                     shiny::column(
-                      width = 9L,
+                      width = 8L,
                       align = "right",
                       shinyWidgets::dropdown(
                         shinydashboard::box(
@@ -5023,6 +5022,17 @@ Numeric_Modal_Fun <- function(id,
                         block = FALSE,
                         no_outline = TRUE
                       )
+                    ),
+
+                    # Agg Data Button
+                    shiny::column(
+                      width = 1L, align = 'right',
+                      style = "padding-top: 4px;padding-right: 50px;",
+                      shiny::actionButton(
+                        inputId = 'FeatureEngineeringButton_Standardize',
+                        label = 'Run',
+                        icon = shiny::icon('chevron-right', lib='font-awesome')
+                      )
                     )
                   ),
 
@@ -5060,16 +5070,6 @@ Numeric_Modal_Fun <- function(id,
 
                   # Blank space
                   DataMuse:::BlankRow(12L),
-                  shiny::fluidRow(
-                    shiny::column(
-                      width = 3L,
-                      align = 'center',
-                      tags$h3(tags$b('~ Build Features')),
-                      shiny::actionButton(
-                        inputId = 'FeatureEngineeringButton_Standardize',
-                        label = 'Run',
-                        icon = shiny::icon('chevron-right', lib='font-awesome')))),
-
                   DataMuse:::BlankRow(12L),
                   DataMuse:::BlankRow(12L),
                   DataMuse:::BlankRow(12L),
@@ -5077,7 +5077,7 @@ Numeric_Modal_Fun <- function(id,
                 )
               ),
 
-              # Transformation
+              # Transformation ----
               shiny::tabPanel(
                 title = "Transform Variables",
                 icon = shiny::icon('code'),
@@ -5091,7 +5091,7 @@ Numeric_Modal_Fun <- function(id,
                       tags$h4(tags$span(tags$b(paste0('Transform Variables'))))
                     ),
                     shiny::column(
-                      width = 9L,
+                      width = 8L,
                       align = "right",
                       shinyWidgets::dropdown(
                         shinydashboard::box(
@@ -5145,6 +5145,17 @@ Numeric_Modal_Fun <- function(id,
                         block = FALSE,
                         no_outline = TRUE
                       )
+                    ),
+
+                    # Agg Data Button
+                    shiny::column(
+                      width = 1L, align = 'right',
+                      style = "padding-top: 4px;padding-right: 50px;",
+                      shiny::actionButton(
+                        inputId = 'FeatureEngineeringButton_Transformations',
+                        label = 'Run',
+                        icon = shiny::icon('chevron-right', lib='font-awesome')
+                      )
                     )
                   ),
 
@@ -5166,16 +5177,6 @@ Numeric_Modal_Fun <- function(id,
 
                   # Blank space
                   DataMuse:::BlankRow(12L),
-                  shiny::fluidRow(
-                    shiny::column(
-                      width = 3L,
-                      align = 'center',
-                      tags$h3(tags$b('~ Build Features')),
-                      shiny::actionButton(
-                        inputId = 'FeatureEngineeringButton_Transformations',
-                        label = 'Run',
-                        icon = shiny::icon('chevron-right', lib='font-awesome')))),
-
                   DataMuse:::BlankRow(12L),
                   DataMuse:::BlankRow(12L),
                   DataMuse:::BlankRow(12L),
@@ -5183,7 +5184,7 @@ Numeric_Modal_Fun <- function(id,
                 )
               ), # end Tab Panel Main
 
-              # Interaction
+              # Interaction ----
               shiny::tabPanel(
                 title = "Interaction Variables",
                 icon = shiny::icon('code'),
@@ -5197,7 +5198,7 @@ Numeric_Modal_Fun <- function(id,
                       tags$h4(tags$span(tags$b(paste0('Interaction Variables'))))
                     ),
                     shiny::column(
-                      width = 9L,
+                      width = 8L,
                       align = "right",
                       shinyWidgets::dropdown(
                         shinydashboard::box(
@@ -5242,6 +5243,17 @@ Numeric_Modal_Fun <- function(id,
                         block = FALSE,
                         no_outline = TRUE
                       )
+                    ),
+
+                    # Agg Data Button
+                    shiny::column(
+                      width = 1L, align = 'right',
+                      style = "padding-top: 4px;padding-right: 50px;",
+                      shiny::actionButton(
+                        inputId = 'FeatureEngineeringButton_Interaction',
+                        label = 'Run',
+                        icon = shiny::icon('chevron-right', lib='font-awesome')
+                      )
                     )
                   ),
 
@@ -5275,16 +5287,6 @@ Numeric_Modal_Fun <- function(id,
 
                   # Blank space
                   DataMuse:::BlankRow(12L),
-                  shiny::fluidRow(
-                    shiny::column(
-                      width = 3L,
-                      align = 'center',
-                      tags$h3(tags$b('~ Build Features')),
-                      shiny::actionButton(
-                        inputId = 'FeatureEngineeringButton_Interaction',
-                        label = 'Run',
-                        icon = shiny::icon('chevron-right', lib='font-awesome')))),
-
                   DataMuse:::BlankRow(12L),
                   DataMuse:::BlankRow(12L),
                   DataMuse:::BlankRow(12L),
@@ -5362,7 +5364,7 @@ AnomalyDetection_Modal_Fun <- function(id,
               id = 'AnomalyDetection_TabPanel',
               selected = 'Isolation Forest',
 
-              # Isolation Forest
+              # Isolation Forest ----
               shiny::tabPanel(
                 title = "Isolation Forest",
                 icon = shiny::icon('code'),
@@ -5376,7 +5378,7 @@ AnomalyDetection_Modal_Fun <- function(id,
                       tags$h4(tags$span(tags$b(paste0('Isolation Forest'))))
                     ),
                     shiny::column(
-                      width = 9L,
+                      width = 8L,
                       align = "right",
                       shinyWidgets::dropdown(
                         shinydashboard::box(
@@ -5436,6 +5438,17 @@ AnomalyDetection_Modal_Fun <- function(id,
                         inputId = NULL,
                         block = FALSE,
                         no_outline = TRUE
+                      )
+                    ),
+
+                    # Agg Data Button
+                    shiny::column(
+                      width = 1L, align = 'right',
+                      style = "padding-top: 4px;padding-right: 50px;",
+                      shiny::actionButton(
+                        inputId = 'FeatureEngineeringButton_IsolationForest_H2O',
+                        label = 'Run',
+                        icon = shiny::icon('chevron-right', lib='font-awesome')
                       )
                     )
                   ),
@@ -5501,16 +5514,6 @@ AnomalyDetection_Modal_Fun <- function(id,
 
                   # Blank space
                   DataMuse:::BlankRow(12L),
-                  shiny::fluidRow(
-                    shiny::column(
-                      width = 3L,
-                      align = 'center',
-                      tags$h3(tags$b('~ Build Features')),
-                      shiny::actionButton(
-                        inputId = 'FeatureEngineeringButton_IsolationForest_H2O',
-                        label = 'Run',
-                        icon = shiny::icon('chevron-right', lib='font-awesome')))),
-
                   DataMuse:::BlankRow(12L),
                   DataMuse:::BlankRow(12L),
                   DataMuse:::BlankRow(12L),
@@ -5593,7 +5596,7 @@ DimensionalityReduction_Modal_Fun <- function(id,
               id = 'DimensionalityReduction_TabPanel',
               selected = 'Autoencoder',
 
-              # Dimensionality Reduction
+              # Dimensionality Reduction ----
               shiny::tabPanel(
                 title = "Autoencoder",
                 icon = shiny::icon('code'),
@@ -5607,7 +5610,7 @@ DimensionalityReduction_Modal_Fun <- function(id,
                       tags$h4(tags$span(tags$b(paste0('Autoencoder'))))
                     ),
                     shiny::column(
-                      width = 9L,
+                      width = 8L,
                       align = "right",
                       shinyWidgets::dropdown(
                         shinydashboard::box(
@@ -5662,6 +5665,17 @@ DimensionalityReduction_Modal_Fun <- function(id,
                         inputId = NULL,
                         block = FALSE,
                         no_outline = TRUE
+                      )
+                    ),
+
+                    # Agg Data Button
+                    shiny::column(
+                      width = 1L, align = 'right',
+                      style = "padding-top: 4px;padding-right: 50px;",
+                      shiny::actionButton(
+                        inputId = 'FeatureEngineeringButton_AutoEncoder_H2O',
+                        label = 'Run',
+                        icon = shiny::icon('chevron-right', lib='font-awesome')
                       )
                     )
                   ),
@@ -5732,16 +5746,6 @@ DimensionalityReduction_Modal_Fun <- function(id,
                   ),
 
                   # Blank space
-                  shiny::fluidRow(
-                    shiny::column(
-                      width = 3L,
-                      align = 'center',
-                      tags$h3(tags$b('~ Build Features')),
-                      shiny::actionButton(
-                        inputId = 'FeatureEngineeringButton_AutoEncoder_H2O',
-                        label = 'Run',
-                        icon = shiny::icon('chevron-right', lib='font-awesome')))),
-
                   DataMuse:::BlankRow(12L),
                   DataMuse:::BlankRow(12L),
                   DataMuse:::BlankRow(12L),
@@ -5808,7 +5812,7 @@ Clustering_Modal_Fun <- function(id,
               id = 'Clustering_TabPanel',
               selected = 'Clustering',
 
-              # Clustering
+              # Clustering ----
               shiny::tabPanel(
                 title = "Clustering",
                 icon = shiny::icon('code'),
@@ -5822,7 +5826,7 @@ Clustering_Modal_Fun <- function(id,
                       tags$h4(tags$span(tags$b(paste0('Clustering'))))
                     ),
                     shiny::column(
-                      width = 9L,
+                      width = 8L,
                       align = "right",
                       shinyWidgets::dropdown(
                         shinydashboard::box(
@@ -5869,6 +5873,17 @@ Clustering_Modal_Fun <- function(id,
                         block = FALSE,
                         no_outline = TRUE
                       )
+                    ),
+
+                    # Agg Data Button
+                    shiny::column(
+                      width = 1L, align = 'right',
+                      style = "padding-top: 4px;padding-right: 50px;",
+                      shiny::actionButton(
+                        inputId = 'FeatureEngineeringButton_Kmeans_H2O',
+                        label = 'Run',
+                        icon = shiny::icon('chevron-right', lib='font-awesome')
+                      )
                     )
                   ),
 
@@ -5905,16 +5920,6 @@ Clustering_Modal_Fun <- function(id,
 
                   # Blank space
                   DataMuse:::BlankRow(12L),
-                  shiny::fluidRow(
-                    shiny::column(
-                      width = 3L,
-                      align = 'center',
-                      tags$h3(tags$b('~ Build Features')),
-                      shiny::actionButton(
-                        inputId = 'FeatureEngineeringButton_Kmeans_H2O',
-                        label = 'Run',
-                        icon = shiny::icon('chevron-right', lib='font-awesome')))),
-
                   DataMuse:::BlankRow(12L),
                   DataMuse:::BlankRow(12L),
                   DataMuse:::BlankRow(12L),
@@ -6058,7 +6063,7 @@ NLP_Modal_Fun <- function(id,
                       tags$h4(tags$span(tags$b(paste0('Word2Vec'))))
                     ),
                     shiny::column(
-                      width = 9L,
+                      width = 8L,
                       align = "right",
                       shinyWidgets::dropdown(
                         shinydashboard::box(
@@ -6108,6 +6113,17 @@ NLP_Modal_Fun <- function(id,
                         block = FALSE,
                         no_outline = TRUE
                       )
+                    ),
+
+                    # Agg Data Button
+                    shiny::column(
+                      width = 1L, align = 'right',
+                      style = "padding-top: 4px;padding-right: 50px;",
+                      shiny::actionButton(
+                        inputId = 'FeatureEngineeringButton_Word2Vec_H2O',
+                        label = 'Run',
+                        icon = shiny::icon('chevron-right', lib='font-awesome')
+                      )
                     )
                   ),
 
@@ -6152,16 +6168,6 @@ NLP_Modal_Fun <- function(id,
 
                   # Word2Vec Button
                   DataMuse:::BlankRow(12L),
-                  shiny::fluidRow(
-                    shiny::column(
-                      width = 3L,
-                      align = 'center',
-                      tags$h3(tags$b('~ Build Features')),
-                      shiny::actionButton(
-                        inputId = 'FeatureEngineeringButton_Word2Vec_H2O',
-                        label = 'Run',
-                        icon = shiny::icon('chevron-right', lib='font-awesome')))),
-
                   DataMuse:::BlankRow(12L),
                   DataMuse:::BlankRow(12L),
                   DataMuse:::BlankRow(12L),
@@ -6183,7 +6189,7 @@ NLP_Modal_Fun <- function(id,
                       tags$h4(tags$span(tags$b(paste0('Text Summary'))))
                     ),
                     shiny::column(
-                      width = 9L,
+                      width = 8L,
                       align = "right",
                       shinyWidgets::dropdown(
                         shinydashboard::box(
@@ -6227,6 +6233,17 @@ NLP_Modal_Fun <- function(id,
                         block = FALSE,
                         no_outline = TRUE
                       )
+                    ),
+
+                    # Agg Data Button
+                    shiny::column(
+                      width = 1L, align = 'right',
+                      style = "padding-top: 4px;padding-right: 50px;",
+                      shiny::actionButton(
+                        inputId = 'NLPButton_TextSummary',
+                        label = 'Run',
+                        icon = shiny::icon('chevron-right', lib='font-awesome')
+                      )
                     )
                   ),
 
@@ -6255,16 +6272,6 @@ NLP_Modal_Fun <- function(id,
 
                   # Text Summary Button
                   DataMuse:::BlankRow(12L),
-                  shiny::fluidRow(
-                    shiny::column(
-                      width = 3L,
-                      align = 'center',
-                      tags$h3(tags$b('~ Build Features')),
-                      shiny::actionButton(
-                        inputId = 'NLPButton_TextSummary',
-                        label = 'Run',
-                        icon = shiny::icon('chevron-right', lib='font-awesome')))),
-
                   DataMuse:::BlankRow(12L),
                   DataMuse:::BlankRow(12L),
                   DataMuse:::BlankRow(12L),
@@ -6287,7 +6294,7 @@ NLP_Modal_Fun <- function(id,
                       tags$h4(tags$span(tags$b(paste0('Sentiment'))))
                     ),
                     shiny::column(
-                      width = 9L,
+                      width = 8L,
                       align = "right",
                       shinyWidgets::dropdown(
                         shinydashboard::box(
@@ -6332,6 +6339,17 @@ NLP_Modal_Fun <- function(id,
                         block = FALSE,
                         no_outline = TRUE
                       )
+                    ),
+
+                    # Agg Data Button
+                    shiny::column(
+                      width = 1L, align = 'right',
+                      style = "padding-top: 4px;padding-right: 50px;",
+                      shiny::actionButton(
+                        inputId = 'NLPButton_Sentiment',
+                        label = 'Run',
+                        icon = shiny::icon('chevron-right', lib='font-awesome')
+                      )
                     )
                   ),
 
@@ -6364,16 +6382,6 @@ NLP_Modal_Fun <- function(id,
 
                   # Sentiment Button
                   DataMuse:::BlankRow(12L),
-                  shiny::fluidRow(
-                    shiny::column(
-                      width = 3L,
-                      align = 'center',
-                      tags$h3(tags$b('~ Build Features')),
-                      shiny::actionButton(
-                        inputId = 'NLPButton_Sentiment',
-                        label = 'Run',
-                        icon = shiny::icon('chevron-right', lib='font-awesome')))),
-
                   DataMuse:::BlankRow(12L),
                   DataMuse:::BlankRow(12L),
                   DataMuse:::BlankRow(12L),
@@ -6395,7 +6403,7 @@ NLP_Modal_Fun <- function(id,
                       tags$h4(tags$span(tags$b(paste0('Readability'))))
                     ),
                     shiny::column(
-                      width = 9L,
+                      width = 8L,
                       align = "right",
                       shinyWidgets::dropdown(
                         shinydashboard::box(
@@ -6496,6 +6504,17 @@ NLP_Modal_Fun <- function(id,
                         block = FALSE,
                         no_outline = TRUE
                       )
+                    ),
+
+                    # Agg Data Button
+                    shiny::column(
+                      width = 1L, align = 'right',
+                      style = "padding-top: 4px;padding-right: 50px;",
+                      shiny::actionButton(
+                        inputId = 'NLPButton_Readability',
+                        label = 'Run',
+                        icon = shiny::icon('chevron-right', lib='font-awesome')
+                      )
                     )
                   ),
 
@@ -6533,16 +6552,6 @@ NLP_Modal_Fun <- function(id,
 
                   # Readability Button
                   DataMuse:::BlankRow(12L),
-                  shiny::fluidRow(
-                    shiny::column(
-                      width = 3L,
-                      align = 'center',
-                      tags$h3(tags$b('~ Build Features')),
-                      shiny::actionButton(
-                        inputId = 'NLPButton_Readability',
-                        label = 'Run',
-                        icon = shiny::icon('chevron-right', lib='font-awesome')))),
-
                   DataMuse:::BlankRow(12L),
                   DataMuse:::BlankRow(12L),
                   DataMuse:::BlankRow(12L),
@@ -6564,7 +6573,7 @@ NLP_Modal_Fun <- function(id,
                       tags$h4(tags$span(tags$b(paste0('Lexical Diversity'))))
                     ),
                     shiny::column(
-                      width = 9L,
+                      width = 8L,
                       align = "right",
                       shinyWidgets::dropdown(
                         shinydashboard::box(
@@ -6634,6 +6643,17 @@ NLP_Modal_Fun <- function(id,
                         block = FALSE,
                         no_outline = TRUE
                       )
+                    ),
+
+                    # Agg Data Button
+                    shiny::column(
+                      width = 1L, align = 'right',
+                      style = "padding-top: 4px;padding-right: 50px;",
+                      shiny::actionButton(
+                        inputId = 'NLPButton_LexicalDiversity',
+                        label = 'Run',
+                        icon = shiny::icon('chevron-right', lib='font-awesome')
+                      )
                     )
                   ),
 
@@ -6677,16 +6697,6 @@ NLP_Modal_Fun <- function(id,
 
                   # Readability Button
                   DataMuse:::BlankRow(12L),
-                  shiny::fluidRow(
-                    shiny::column(
-                      width = 3L,
-                      align = 'center',
-                      tags$h3(tags$b('~ Build Features')),
-                      shiny::actionButton(
-                        inputId = 'NLPButton_LexicalDiversity',
-                        label = 'Run',
-                        icon = shiny::icon('chevron-right', lib='font-awesome')))),
-
                   DataMuse:::BlankRow(12L),
                   DataMuse:::BlankRow(12L),
                   DataMuse:::BlankRow(12L),

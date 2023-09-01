@@ -8,7 +8,7 @@ CloudButtonStyle <- "width:100%; color:#FFFFFF; border-color:#FFFFFF; border-sty
 EchartThemes <- c("auritus","azul","bee-inspired","blue","caravan","carp","chalk","cool","dark-bold","dark","eduardo", "essos","forest","fresh-cut","fruit","gray","green","halloween","helianthus","infographic","inspired","jazz","london","macarons","macarons2","mint","purple-passion","red-velvet","red","roma","royal","sakura","shine","tech-blue","vintage","walden","wef","weforum","westeros","wonderland")
 LogoStyle <- "max-width: 98.5%; height: auto; max-height: 143px; padding-left: 0px; padding-right: 0px; border-radius: 30px; padding-bottom: 0px; background-color: #0000; box-shadow: 0px 0px 0px 0px #7bc1ff; padding-top: 5px;"
 LogoBoxStyle <- "padding-left: 15px; padding-right: 16px; border-radius: 30px; margin-right:0px; min-height: 168px;"
-Logo <- "https://github.com/AdrianAntico/prettydoc/blob/main/Images/LogoWhite.png?raw=true"
+Logo <- "LogoWhite.png" # "https://github.com/AdrianAntico/prettydoc/blob/main/Images/LogoWhite.png?raw=true"
 
 # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
 # UI Code                              ----

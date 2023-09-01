@@ -29,9 +29,9 @@ Logo <- function(id = "Logo", Day = FALSE) {
   ns <- shiny::NS(id)
   if(length(Day) == 0L) Day <- FALSE
   if(Day) {
-    Logo <- "www/Logo.PNG"
+    Logo <- "Logo.PNG"
   } else {
-    Logo <- "www/LogoWhite.PNG"
+    Logo <- "LogoWhite.PNG"
   }
 
   if(!Day) {

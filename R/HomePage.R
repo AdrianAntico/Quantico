@@ -1,92 +1,3 @@
-# Images <- Swiper4r::Swiper4rWrapper(
-#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/Histogram.PNG?raw=true", width = "300", height = "300")),
-#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/Density.PNG?raw=true", width = "300", height = "300")),
-#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/BoxPlot.PNG?raw=true", width = "300", height = "300")),
-#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/PiePlot.PNG?raw=true", width = "300", height = "300")),
-#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/AreaPlot.PNG?raw=true", width = "300", height = "300")),
-#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/LinePlot.PNG?raw=true", width = "300", height = "300")),
-#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/RiverPlot.PNG?raw=true", width = "300", height = "300")),
-#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/StepPlot.PNG?raw=true", width = "300", height = "300")),
-#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/BarPlot.PNG?raw=true", width = "300", height = "300")),
-#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/StackedBarPlot.PNG?raw=true", width = "300", height = "300")),
-#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/BarPlot3D.PNG?raw=true", width = "300", height = "300")),
-#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/ScatterPlot.PNG?raw=true", width = "300", height = "300")),
-#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/ScatterPlot3D.PNG?raw=true", width = "300", height = "300")),
-#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/CopulaPlot.PNG?raw=true", width = "300", height = "300")),
-#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/CopulaPlot3D.PNG?raw=true", width = "300", height = "300")),
-#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/Heatmap.PNG?raw=true", width = "300", height = "300")),
-#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/CorrelogramPlot.PNG?raw=true", width = "300", height = "300")),
-#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/zz_ResidualHistogram.PNG?raw=true", width = "300", height = "300")),
-#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/zz_ResidualScatter.PNG?raw=true", width = "300", height = "300")),
-#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/zz_CalibrationLine.PNG?raw=true", width = "300", height = "300")),
-#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/zz_CalibrationBox.PNG?raw=true", width = "300", height = "300")),
-#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/zz_PartialDependenceLine.PNG?raw=true", width = "300", height = "300")),
-#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/zz_PartialDependenceHeatmap.PNG?raw=true", width = "300", height = "300")),
-#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/zz_VariableImportance.PNG?raw=true", width = "300", height = "300")),
-#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/zz_ShapleyImportance.PNG?raw=true", width = "300", height = "300")),
-#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/zz_ROC.PNG?raw=true", width = "300", height = "300")),
-#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/zz_ConfusionMatrix.PNG?raw=true", width = "300", height = "300")),
-#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/zz_Lift.PNG?raw=true", width = "300", height = "300")),
-#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/zz_Gains.PNG?raw=true", width = "300", height = "300")),
-#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/day-light-blue_wef.PNG?raw=true", width = "300", height = "300")),
-#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/light-gray_wef.PNG?raw=true", width = "300", height = "300")),
-#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/medium-gray_wef.PNG?raw=true", width = "300", height = "300")),
-#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/dark-gray_wef.PNG?raw=true", width = "300", height = "300")),
-#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/piano-black_wef.PNG?raw=true", width = "300", height = "300")),
-#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/yellow_bee-inspired.PNG?raw=true", width = "300", height = "300")),
-#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/yellow-green_forest.PNG?raw=true", width = "300", height = "300")),
-#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/green_green.PNG?raw=true", width = "300", height = "300")),
-#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/green-blue_green.PNG?raw=true", width = "300", height = "300")),
-#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/light-blue_walden.PNG?raw=true", width = "300", height = "300")),
-#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/dodger-blue_walden.PNG?raw=true", width = "300", height = "300")),
-#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/blue_walden.PNG?raw=true", width = "300", height = "300")),
-#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/blue-purple_macarons.PNG?raw=true", width = "300", height = "300")),
-#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/purple_walden.PNG?raw=true", width = "300", height = "300")),
-#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/pink_wonderland.PNG?raw=true", width = "300", height = "300")),
-#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/red_red.PNG?raw=true", width = "300", height = "300")),
-#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/auritus.PNG?raw=true", width = "300", height = "300")),
-#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/azul.PNG?raw=true", width = "300", height = "300")),
-#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/bee-inspired.PNG?raw=true", width = "300", height = "300")),
-#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/blue.PNG?raw=true", width = "300", height = "300")),
-#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/caravan.PNG?raw=true", width = "300", height = "300")),
-#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/carp.PNG?raw=true", width = "300", height = "300")),
-#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/chalk.PNG?raw=true", width = "300", height = "300")),
-#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/cool.PNG?raw=true", width = "300", height = "300")),
-#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/dark-bold.PNG?raw=true", width = "300", height = "300")),
-#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/dark.PNG?raw=true", width = "300", height = "300")),
-#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/eduardo.PNG?raw=true", width = "300", height = "300")),
-#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/essos.PNG?raw=true", width = "300", height = "300")),
-#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/forest.PNG?raw=true", width = "300", height = "300")),
-#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/fresh-cut.PNG?raw=true", width = "300", height = "300")),
-#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/fruit.PNG?raw=true", width = "300", height = "300")),
-#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/gray.PNG?raw=true", width = "300", height = "300")),
-#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/green.PNG?raw=true", width = "300", height = "300")),
-#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/halloween.PNG?raw=true", width = "300", height = "300")),
-#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/helianthus.PNG?raw=true", width = "300", height = "300")),
-#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/infographic.PNG?raw=true", width = "300", height = "300")),
-#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/inspired.PNG?raw=true", width = "300", height = "300")),
-#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/jazz.PNG?raw=true", width = "300", height = "300")),
-#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/london.PNG?raw=true", width = "300", height = "300")),
-#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/macarons.PNG?raw=true", width = "300", height = "300")),
-#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/macarons2.PNG?raw=true", width = "300", height = "300")),
-#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/mint.PNG?raw=true", width = "300", height = "300")),
-#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/purple-passion.PNG?raw=true", width = "300", height = "300")),
-#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/red-velvet.PNG?raw=true", width = "300", height = "300")),
-#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/red.PNG?raw=true", width = "300", height = "300")),
-#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/roma.PNG?raw=true", width = "300", height = "300")),
-#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/royal.PNG?raw=true", width = "300", height = "300")),
-#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/sakura.PNG?raw=true", width = "300", height = "300")),
-#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/shine.PNG?raw=true", width = "300", height = "300")),
-#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/tech-blue.PNG?raw=true", width = "300", height = "300")),
-#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/vintage.PNG?raw=true", width = "300", height = "300")),
-#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/walden.PNG?raw=true", width = "300", height = "300")),
-#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/wef.PNG?raw=true", width = "300", height = "300")),
-#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/weforum.PNG?raw=true", width = "300", height = "300")),
-#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/westeros.PNG?raw=true", width = "300", height = "300")),
-#   htmltools::div(htmltools::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/wonderland.PNG?raw=true", width = "300", height = "300"))
-# )
-
-
 #' @title HomePage
 #'
 #' @description Panels
@@ -4504,17 +4415,32 @@ HomePage <- function(id, Page, AppWidth=12L) {
                   shiny::column(
                     w = 4,
                     shiny::h3("App Theme: day-light-blue; Plot Theme: wef"),
-                    shiny::tags$img(src = "https://github.com/AdrianAntico/prettydoc/blob/main/Images/day-light-blue_wef.PNG?raw=true", alt = "DataMuse", `data-view-component` = "true", height="100%", width="100%")
+                    shiny::tags$img(
+                      src = "day-light-blue_wef.PNG",# "https://github.com/AdrianAntico/prettydoc/blob/main/Images/day-light-blue_wef.PNG?raw=true",
+                      alt = "DataMuse",
+                      `data-view-component` = "true",
+                      height="100%",
+                      width="100%")
                   ),
                   shiny::column(
                     w = 4,
                     shiny::h3("App Theme: light-gray; Plot Theme: wef"),
-                    shiny::tags$img(src = "https://github.com/AdrianAntico/prettydoc/blob/main/Images/light-gray_wef.PNG?raw=true", alt = "DataMuse", `data-view-component` = "true", height="100%", width="100%")
+                    shiny::tags$img(
+                      src = "light-gray_wef.PNG",# "https://github.com/AdrianAntico/prettydoc/blob/main/Images/light-gray_wef.PNG?raw=true",
+                      alt = "DataMuse",
+                      `data-view-component` = "true",
+                      height="100%",
+                      width="100%")
                   ),
                   shiny::column(
                     w = 4,
                     shiny::h3("App Theme: medium-gray; Plot Theme: wef"),
-                    shiny::tags$img(src = "https://github.com/AdrianAntico/prettydoc/blob/main/Images/medium-gray_wef.PNG?raw=true", alt = "DataMuse", `data-view-component` = "true", height="100%", width="100%")
+                    shiny::tags$img(
+                      src = "medium-gray_wef.PNG", # "https://github.com/AdrianAntico/prettydoc/blob/main/Images/medium-gray_wef.PNG?raw=true",
+                      alt = "DataMuse",
+                      `data-view-component` = "true",
+                      height="100%",
+                      width="100%")
                   )
                 ),
                 DataMuse::BlankRow(12),
@@ -4523,17 +4449,32 @@ HomePage <- function(id, Page, AppWidth=12L) {
                   shiny::column(
                     w = 4,
                     shiny::h3("App Theme: dark-gray; Plot Theme: wef"),
-                    shiny::tags$img(src = "https://github.com/AdrianAntico/prettydoc/blob/main/Images/dark-gray_wef.PNG?raw=true", alt = "DataMuse", `data-view-component` = "true", height="100%", width="100%")
+                    shiny::tags$img(
+                      src = "dark-gray_wef.PNG", # "https://github.com/AdrianAntico/prettydoc/blob/main/Images/dark-gray_wef.PNG?raw=true",
+                      alt = "DataMuse",
+                      `data-view-component` = "true",
+                      height="100%",
+                      width="100%")
                   ),
                   shiny::column(
                     w = 4,
                     shiny::h3("App Theme: piano-black; Plot Theme: wef"),
-                    shiny::tags$img(src = "https://github.com/AdrianAntico/prettydoc/blob/main/Images/piano-black_wef.PNG?raw=true", alt = "DataMuse", `data-view-component` = "true", height="100%", width="100%")
+                    shiny::tags$img(
+                      src = "piano-black_wef.PNG", # "https://github.com/AdrianAntico/prettydoc/blob/main/Images/piano-black_wef.PNG?raw=true",
+                      alt = "DataMuse",
+                      `data-view-component` = "true",
+                      height="100%",
+                      width="100%")
                   ),
                   shiny::column(
                     w = 4,
                     shiny::h3("App Theme: yellow; Plot Theme: bee-inspired"),
-                    shiny::tags$img(src = "https://github.com/AdrianAntico/prettydoc/blob/main/Images/yellow_bee-inspired.PNG?raw=true", alt = "DataMuse", `data-view-component` = "true", height="100%", width="100%")
+                    shiny::tags$img(
+                      src = "yellow_bee-inspired.PNG", # "https://github.com/AdrianAntico/prettydoc/blob/main/Images/yellow_bee-inspired.PNG?raw=true",
+                      alt = "DataMuse",
+                      `data-view-component` = "true",
+                      height="100%",
+                      width="100%")
                   )
                 ),
                 DataMuse::BlankRow(12),
@@ -4542,17 +4483,32 @@ HomePage <- function(id, Page, AppWidth=12L) {
                   shiny::column(
                     w = 4,
                     shiny::h3("App Theme: yellow-green; Plot Theme: forest"),
-                    shiny::tags$img(src = "https://github.com/AdrianAntico/prettydoc/blob/main/Images/yellow-green_forest.PNG?raw=true", alt = "DataMuse", `data-view-component` = "true", height="100%", width="100%")
+                    shiny::tags$img(
+                      src = "yellow-green_forest.PNG", # "https://github.com/AdrianAntico/prettydoc/blob/main/Images/yellow-green_forest.PNG?raw=true",
+                      alt = "DataMuse",
+                      `data-view-component` = "true",
+                      height="100%",
+                      width="100%")
                   ),
                   shiny::column(
                     w = 4,
                     shiny::h3("App Theme: green; Plot Theme: green"),
-                    shiny::tags$img(src = "https://github.com/AdrianAntico/prettydoc/blob/main/Images/green_green.PNG?raw=true", alt = "DataMuse", `data-view-component` = "true", height="100%", width="100%")
+                    shiny::tags$img(
+                      src = "green_green.PNG", # "https://github.com/AdrianAntico/prettydoc/blob/main/Images/green_green.PNG?raw=true",
+                      alt = "DataMuse",
+                      `data-view-component` = "true",
+                      height="100%",
+                      width="100%")
                   ),
                   shiny::column(
                     w = 4,
                     shiny::h3("App Theme: green-blue; Plot Theme: green"),
-                    shiny::tags$img(src = "https://github.com/AdrianAntico/prettydoc/blob/main/Images/green-blue_green.PNG?raw=true", alt = "DataMuse", `data-view-component` = "true", height="100%", width="100%")
+                    shiny::tags$img(
+                      src = "green-blue_green.PNG", # "https://github.com/AdrianAntico/prettydoc/blob/main/Images/green-blue_green.PNG?raw=true",
+                      alt = "DataMuse",
+                      `data-view-component` = "true",
+                      height="100%",
+                      width="100%")
                   )
                 ),
                 DataMuse::BlankRow(12),
@@ -4561,17 +4517,32 @@ HomePage <- function(id, Page, AppWidth=12L) {
                   shiny::column(
                     w = 4,
                     shiny::h3("App Theme: light-blue; Plot Theme: walden"),
-                    shiny::tags$img(src = "https://github.com/AdrianAntico/prettydoc/blob/main/Images/light-blue_walden.PNG?raw=true", alt = "DataMuse", `data-view-component` = "true", height="100%", width="100%")
+                    shiny::tags$img(
+                      src = "light-blue_walden.PNG", # "https://github.com/AdrianAntico/prettydoc/blob/main/Images/light-blue_walden.PNG?raw=true",
+                      alt = "DataMuse",
+                      `data-view-component` = "true",
+                      height="100%",
+                      width="100%")
                   ),
                   shiny::column(
                     w = 4,
                     shiny::h3("App Theme: dodger-blue; Plot Theme: walden"),
-                    shiny::tags$img(src = "https://github.com/AdrianAntico/prettydoc/blob/main/Images/dodger-blue_walden.PNG?raw=true", alt = "DataMuse", `data-view-component` = "true", height="100%", width="100%")
+                    shiny::tags$img(
+                      src = "dodger-blue_walden.PNG", # "https://github.com/AdrianAntico/prettydoc/blob/main/Images/dodger-blue_walden.PNG?raw=true",
+                      alt = "DataMuse",
+                      `data-view-component` = "true",
+                      height="100%",
+                      width="100%")
                   ),
                   shiny::column(
                     w = 4,
                     shiny::h3("App Theme: blue; Plot Theme: walden"),
-                    shiny::tags$img(src = "https://github.com/AdrianAntico/prettydoc/blob/main/Images/blue_walden.PNG?raw=true", alt = "DataMuse", `data-view-component` = "true", height="100%", width="100%")
+                    shiny::tags$img(
+                      src = "blue_walden.PNG", # "https://github.com/AdrianAntico/prettydoc/blob/main/Images/blue_walden.PNG?raw=true",
+                      alt = "DataMuse",
+                      `data-view-component` = "true",
+                      height="100%",
+                      width="100%")
                   )
                 ),
                 DataMuse::BlankRow(12),
@@ -4580,17 +4551,32 @@ HomePage <- function(id, Page, AppWidth=12L) {
                   shiny::column(
                     w = 4,
                     shiny::h3("App Theme: blue-purple; Plot Theme: macarons"),
-                    shiny::tags$img(src = "https://github.com/AdrianAntico/prettydoc/blob/main/Images/blue-purple_macarons.PNG?raw=true", alt = "DataMuse", `data-view-component` = "true", height="100%", width="100%")
+                    shiny::tags$img(
+                      src = "blue-purple_macarons.PNG", # "https://github.com/AdrianAntico/prettydoc/blob/main/Images/blue-purple_macarons.PNG?raw=true",
+                      alt = "DataMuse",
+                      `data-view-component` = "true",
+                      height="100%",
+                      width="100%")
                   ),
                   shiny::column(
                     w = 4,
                     shiny::h3("App Theme: purple; Plot Theme: walden"),
-                    shiny::tags$img(src = "https://github.com/AdrianAntico/prettydoc/blob/main/Images/purple_walden.PNG?raw=true", alt = "DataMuse", `data-view-component` = "true", height="100%", width="100%")
+                    shiny::tags$img(
+                      src = "purple_walden.PNG", # "https://github.com/AdrianAntico/prettydoc/blob/main/Images/purple_walden.PNG?raw=true",
+                      alt = "DataMuse",
+                      `data-view-component` = "true",
+                      height="100%",
+                      width="100%")
                   ),
                   shiny::column(
                     w = 4,
                     shiny::h3("App Theme: pink; Plot Theme: wonderland"),
-                    shiny::tags$img(src = "https://github.com/AdrianAntico/prettydoc/blob/main/Images/pink_wonderland.PNG?raw=true", alt = "DataMuse", `data-view-component` = "true", height="100%", width="100%")
+                    shiny::tags$img(
+                      src = "pink_wonderland.PNG", # "https://github.com/AdrianAntico/prettydoc/blob/main/Images/pink_wonderland.PNG?raw=true",
+                      alt = "DataMuse",
+                      `data-view-component` = "true",
+                      height="100%",
+                      width="100%")
                   )
                 ),
                 DataMuse::BlankRow(12),
@@ -4599,7 +4585,12 @@ HomePage <- function(id, Page, AppWidth=12L) {
                   shiny::column(
                     w = 4,
                     shiny::h3("App Theme: red; Plot Theme: red"),
-                    shiny::tags$img(src = "https://github.com/AdrianAntico/prettydoc/blob/main/Images/red_red.PNG?raw=true", alt = "DataMuse", `data-view-component` = "true", height="100%", width="100%")
+                    shiny::tags$img(
+                      src = "red_red.PNG", # "https://github.com/AdrianAntico/prettydoc/blob/main/Images/red_red.PNG?raw=true",
+                      alt = "DataMuse",
+                      `data-view-component` = "true",
+                      height="100%",
+                      width="100%")
                   )
                 )
               ),
@@ -4626,17 +4617,32 @@ HomePage <- function(id, Page, AppWidth=12L) {
                   shiny::column(
                     w = 4,
                     shiny::h3("Plot Theme: auritus"),
-                    shiny::tags$img(src = "https://github.com/AdrianAntico/prettydoc/blob/main/Images/auritus.PNG?raw=true", alt = "DataMuse", `data-view-component` = "true", height="100%", width="100%")
+                    shiny::tags$img(
+                      src = "auritus.PNG", # "https://github.com/AdrianAntico/prettydoc/blob/main/Images/auritus.PNG?raw=true",
+                      alt = "DataMuse",
+                      `data-view-component` = "true",
+                      height="100%",
+                      width="100%")
                   ),
                   shiny::column(
                     w = 4,
                     shiny::h3("Plot Theme: azul"),
-                    shiny::tags$img(src = "https://github.com/AdrianAntico/prettydoc/blob/main/Images/azul.PNG?raw=true", alt = "DataMuse", `data-view-component` = "true", height="100%", width="100%")
+                    shiny::tags$img(
+                      src = "azul.PNG", # "https://github.com/AdrianAntico/prettydoc/blob/main/Images/azul.PNG?raw=true",
+                      alt = "DataMuse",
+                      `data-view-component` = "true",
+                      height="100%",
+                      width="100%")
                   ),
                   shiny::column(
                     w = 4,
                     shiny::h3("Plot Theme: bee-inspired"),
-                    shiny::tags$img(src = "https://github.com/AdrianAntico/prettydoc/blob/main/Images/bee-inspired.PNG?raw=true", alt = "DataMuse", `data-view-component` = "true", height="100%", width="100%")
+                    shiny::tags$img(
+                      src = "bee-inspired.PNG", # "https://github.com/AdrianAntico/prettydoc/blob/main/Images/bee-inspired.PNG?raw=true",
+                      alt = "DataMuse",
+                      `data-view-component` = "true",
+                      height="100%",
+                      width="100%")
                   )
                 ),
                 DataMuse::BlankRow(12),
@@ -4645,17 +4651,32 @@ HomePage <- function(id, Page, AppWidth=12L) {
                   shiny::column(
                     w = 4,
                     shiny::h3("Plot Theme: blue"),
-                    shiny::tags$img(src = "https://github.com/AdrianAntico/prettydoc/blob/main/Images/blue.PNG?raw=true", alt = "DataMuse", `data-view-component` = "true", height="100%", width="100%")
+                    shiny::tags$img(
+                      src = "blue.PNG", # "https://github.com/AdrianAntico/prettydoc/blob/main/Images/blue.PNG?raw=true",
+                      alt = "DataMuse",
+                      `data-view-component` = "true",
+                      height="100%",
+                      width="100%")
                   ),
                   shiny::column(
                     w = 4,
                     shiny::h3("Plot Theme: caravan"),
-                    shiny::tags$img(src = "https://github.com/AdrianAntico/prettydoc/blob/main/Images/caravan.PNG?raw=true", alt = "DataMuse", `data-view-component` = "true", height="100%", width="100%")
+                    shiny::tags$img(
+                      src = "caravan.PNG", # "https://github.com/AdrianAntico/prettydoc/blob/main/Images/caravan.PNG?raw=true",
+                      alt = "DataMuse",
+                      `data-view-component` = "true",
+                      height="100%",
+                      width="100%")
                   ),
                   shiny::column(
                     w = 4,
                     shiny::h3("Plot Theme: carp"),
-                    shiny::tags$img(src = "https://github.com/AdrianAntico/prettydoc/blob/main/Images/carp.PNG?raw=true", alt = "DataMuse", `data-view-component` = "true", height="100%", width="100%")
+                    shiny::tags$img(
+                      src = "carp.PNG", # "https://github.com/AdrianAntico/prettydoc/blob/main/Images/carp.PNG?raw=true",
+                      alt = "DataMuse",
+                      `data-view-component` = "true",
+                      height="100%",
+                      width="100%")
                   )
                 ),
                 DataMuse::BlankRow(12),
@@ -4664,17 +4685,32 @@ HomePage <- function(id, Page, AppWidth=12L) {
                   shiny::column(
                     w = 4,
                     shiny::h3("Plot Theme: chalk"),
-                    shiny::tags$img(src = "https://github.com/AdrianAntico/prettydoc/blob/main/Images/chalk.PNG?raw=true", alt = "DataMuse", `data-view-component` = "true", height="100%", width="100%")
+                    shiny::tags$img(
+                      src = "chalk.PNG", # "https://github.com/AdrianAntico/prettydoc/blob/main/Images/chalk.PNG?raw=true",
+                      alt = "DataMuse",
+                      `data-view-component` = "true",
+                      height="100%",
+                      width="100%")
                   ),
                   shiny::column(
                     w = 4,
                     shiny::h3("Plot Theme: cool"),
-                    shiny::tags$img(src = "https://github.com/AdrianAntico/prettydoc/blob/main/Images/cool.PNG?raw=true", alt = "DataMuse", `data-view-component` = "true", height="100%", width="100%")
+                    shiny::tags$img(
+                      src = "cool.PNG", # "https://github.com/AdrianAntico/prettydoc/blob/main/Images/cool.PNG?raw=true",
+                      alt = "DataMuse",
+                      `data-view-component` = "true",
+                      height="100%",
+                      width="100%")
                   ),
                   shiny::column(
                     w = 4,
                     shiny::h3("Plot Theme: dark-bold"),
-                    shiny::tags$img(src = "https://github.com/AdrianAntico/prettydoc/blob/main/Images/dark-bold.PNG?raw=true", alt = "DataMuse", `data-view-component` = "true", height="100%", width="100%")
+                    shiny::tags$img(
+                      src = "dark-bold.PNG", # "https://github.com/AdrianAntico/prettydoc/blob/main/Images/dark-bold.PNG?raw=true",
+                      alt = "DataMuse",
+                      `data-view-component` = "true",
+                      height="100%",
+                      width="100%")
                   )
                 ),
                 DataMuse::BlankRow(12),
@@ -4683,17 +4719,32 @@ HomePage <- function(id, Page, AppWidth=12L) {
                   shiny::column(
                     w = 4,
                     shiny::h3("Plot Theme: dark"),
-                    shiny::tags$img(src = "https://github.com/AdrianAntico/prettydoc/blob/main/Images/dark.PNG?raw=true", alt = "DataMuse", `data-view-component` = "true", height="100%", width="100%")
+                    shiny::tags$img(
+                      src = "dark.PNG", # "https://github.com/AdrianAntico/prettydoc/blob/main/Images/dark.PNG?raw=true",
+                      alt = "DataMuse",
+                      `data-view-component` = "true",
+                      height="100%",
+                      width="100%")
                   ),
                   shiny::column(
                     w = 4,
                     shiny::h3("Plot Theme: eduardo"),
-                    shiny::tags$img(src = "https://github.com/AdrianAntico/prettydoc/blob/main/Images/eduardo.PNG?raw=true", alt = "DataMuse", `data-view-component` = "true", height="100%", width="100%")
+                    shiny::tags$img(
+                      src = "eduardo.PNG", # "https://github.com/AdrianAntico/prettydoc/blob/main/Images/eduardo.PNG?raw=true",
+                      alt = "DataMuse",
+                      `data-view-component` = "true",
+                      height="100%",
+                      width="100%")
                   ),
                   shiny::column(
                     w = 4,
                     shiny::h3("Plot Theme: essos"),
-                    shiny::tags$img(src = "https://github.com/AdrianAntico/prettydoc/blob/main/Images/essos.PNG?raw=true", alt = "DataMuse", `data-view-component` = "true", height="100%", width="100%")
+                    shiny::tags$img(
+                      src = "essos.PNG", # "https://github.com/AdrianAntico/prettydoc/blob/main/Images/essos.PNG?raw=true",
+                      alt = "DataMuse",
+                      `data-view-component` = "true",
+                      height="100%",
+                      width="100%")
                   )
                 ),
                 DataMuse::BlankRow(12),
@@ -4702,17 +4753,32 @@ HomePage <- function(id, Page, AppWidth=12L) {
                   shiny::column(
                     w = 4,
                     shiny::h3("Plot Theme: forest"),
-                    shiny::tags$img(src = "https://github.com/AdrianAntico/prettydoc/blob/main/Images/forest.PNG?raw=true", alt = "DataMuse", `data-view-component` = "true", height="100%", width="100%")
+                    shiny::tags$img(
+                      src = "forest.PNG", # "https://github.com/AdrianAntico/prettydoc/blob/main/Images/forest.PNG?raw=true",
+                      alt = "DataMuse",
+                      `data-view-component` = "true",
+                      height="100%",
+                      width="100%")
                   ),
                   shiny::column(
                     w = 4,
                     shiny::h3("Plot Theme: fresh-cut"),
-                    shiny::tags$img(src = "https://github.com/AdrianAntico/prettydoc/blob/main/Images/fresh-cut.PNG?raw=true", alt = "DataMuse", `data-view-component` = "true", height="100%", width="100%")
+                    shiny::tags$img(
+                      src = "fresh-cut.PNG", # "https://github.com/AdrianAntico/prettydoc/blob/main/Images/fresh-cut.PNG?raw=true",
+                      alt = "DataMuse",
+                      `data-view-component` = "true",
+                      height="100%",
+                      width="100%")
                   ),
                   shiny::column(
                     w = 4,
                     shiny::h3("Plot Theme: fruit"),
-                    shiny::tags$img(src = "https://github.com/AdrianAntico/prettydoc/blob/main/Images/fruit.PNG?raw=true", alt = "DataMuse", `data-view-component` = "true", height="100%", width="100%")
+                    shiny::tags$img(
+                      src = "fruit.PNG", # "https://github.com/AdrianAntico/prettydoc/blob/main/Images/fruit.PNG?raw=true",
+                      alt = "DataMuse",
+                      `data-view-component` = "true",
+                      height="100%",
+                      width="100%")
                   )
                 ),
                 DataMuse::BlankRow(12),
@@ -4721,17 +4787,32 @@ HomePage <- function(id, Page, AppWidth=12L) {
                   shiny::column(
                     w = 4,
                     shiny::h3("Plot Theme: gray"),
-                    shiny::tags$img(src = "https://github.com/AdrianAntico/prettydoc/blob/main/Images/gray.PNG?raw=true", alt = "DataMuse", `data-view-component` = "true", height="100%", width="100%")
+                    shiny::tags$img(
+                      src = "gray.PNG", # "https://github.com/AdrianAntico/prettydoc/blob/main/Images/gray.PNG?raw=true",
+                      alt = "DataMuse",
+                      `data-view-component` = "true",
+                      height="100%",
+                      width="100%")
                   ),
                   shiny::column(
                     w = 4,
                     shiny::h3("Plot Theme: green"),
-                    shiny::tags$img(src = "https://github.com/AdrianAntico/prettydoc/blob/main/Images/green.PNG?raw=true", alt = "DataMuse", `data-view-component` = "true", height="100%", width="100%")
+                    shiny::tags$img(
+                      src = "green.PNG", # "https://github.com/AdrianAntico/prettydoc/blob/main/Images/green.PNG?raw=true",
+                      alt = "DataMuse",
+                      `data-view-component` = "true",
+                      height="100%",
+                      width="100%")
                   ),
                   shiny::column(
                     w = 4,
                     shiny::h3("Plot Theme: halloween"),
-                    shiny::tags$img(src = "https://github.com/AdrianAntico/prettydoc/blob/main/Images/halloween.PNG?raw=true", alt = "DataMuse", `data-view-component` = "true", height="100%", width="100%")
+                    shiny::tags$img(
+                      src = "halloween.PNG", # "https://github.com/AdrianAntico/prettydoc/blob/main/Images/halloween.PNG?raw=true",
+                      alt = "DataMuse",
+                      `data-view-component` = "true",
+                      height="100%",
+                      width="100%")
                   )
                 ),
                 DataMuse::BlankRow(12),
@@ -4740,17 +4821,32 @@ HomePage <- function(id, Page, AppWidth=12L) {
                   shiny::column(
                     w = 4,
                     shiny::h3("Plot Theme: helianthus"),
-                    shiny::tags$img(src = "https://github.com/AdrianAntico/prettydoc/blob/main/Images/helianthus.PNG?raw=true", alt = "DataMuse", `data-view-component` = "true", height="100%", width="100%")
+                    shiny::tags$img(
+                      src = "helianthus.PNG", # "https://github.com/AdrianAntico/prettydoc/blob/main/Images/helianthus.PNG?raw=true",
+                      alt = "DataMuse",
+                      `data-view-component` = "true",
+                      height="100%",
+                      width="100%")
                   ),
                   shiny::column(
                     w = 4,
                     shiny::h3("Plot Theme: infographic"),
-                    shiny::tags$img(src = "https://github.com/AdrianAntico/prettydoc/blob/main/Images/infographic.PNG?raw=true", alt = "DataMuse", `data-view-component` = "true", height="100%", width="100%")
+                    shiny::tags$img(
+                      src = "infographic.PNG", # "https://github.com/AdrianAntico/prettydoc/blob/main/Images/infographic.PNG?raw=true",
+                      alt = "DataMuse",
+                      `data-view-component` = "true",
+                      height="100%",
+                      width="100%")
                   ),
                   shiny::column(
                     w = 4,
                     shiny::h3("Plot Theme: inspired"),
-                    shiny::tags$img(src = "https://github.com/AdrianAntico/prettydoc/blob/main/Images/inspired.PNG?raw=true", alt = "DataMuse", `data-view-component` = "true", height="100%", width="100%")
+                    shiny::tags$img(
+                      src = "inspired.PNG", # https://github.com/AdrianAntico/prettydoc/blob/main/Images/inspired.PNG?raw=true",
+                      alt = "DataMuse",
+                      `data-view-component` = "true",
+                      height="100%",
+                      width="100%")
                   )
                 ),
                 DataMuse::BlankRow(12),
@@ -4759,17 +4855,32 @@ HomePage <- function(id, Page, AppWidth=12L) {
                   shiny::column(
                     w = 4,
                     shiny::h3("Plot Theme: jazz"),
-                    shiny::tags$img(src = "https://github.com/AdrianAntico/prettydoc/blob/main/Images/jazz.PNG?raw=true", alt = "DataMuse", `data-view-component` = "true", height="100%", width="100%")
+                    shiny::tags$img(
+                      src = "jazz.PNG", # "https://github.com/AdrianAntico/prettydoc/blob/main/Images/jazz.PNG?raw=true",
+                      alt = "DataMuse",
+                      `data-view-component` = "true",
+                      height="100%",
+                      width="100%")
                   ),
                   shiny::column(
                     w = 4,
                     shiny::h3("Plot Theme: london"),
-                    shiny::tags$img(src = "https://github.com/AdrianAntico/prettydoc/blob/main/Images/london.PNG?raw=true", alt = "DataMuse", `data-view-component` = "true", height="100%", width="100%")
+                    shiny::tags$img(
+                      src = "london.PNG", # "https://github.com/AdrianAntico/prettydoc/blob/main/Images/london.PNG?raw=true",
+                      alt = "DataMuse",
+                      `data-view-component` = "true",
+                      height="100%",
+                      width="100%")
                   ),
                   shiny::column(
                     w = 4,
                     shiny::h3("Plot Theme: macarons"),
-                    shiny::tags$img(src = "https://github.com/AdrianAntico/prettydoc/blob/main/Images/macarons.PNG?raw=true", alt = "DataMuse", `data-view-component` = "true", height="100%", width="100%")
+                    shiny::tags$img(
+                      src = "macarons.PNG", # "https://github.com/AdrianAntico/prettydoc/blob/main/Images/macarons.PNG?raw=true",
+                      alt = "DataMuse",
+                      `data-view-component` = "true",
+                      height="100%",
+                      width="100%")
                   )
                 ),
                 DataMuse::BlankRow(12),
@@ -4778,17 +4889,32 @@ HomePage <- function(id, Page, AppWidth=12L) {
                   shiny::column(
                     w = 4,
                     shiny::h3("Plot Theme: macarons2"),
-                    shiny::tags$img(src = "https://github.com/AdrianAntico/prettydoc/blob/main/Images/macarons2.PNG?raw=true", alt = "DataMuse", `data-view-component` = "true", height="100%", width="100%")
+                    shiny::tags$img(
+                      src = "macarons2.PNG", # "https://github.com/AdrianAntico/prettydoc/blob/main/Images/macarons2.PNG?raw=true",
+                      alt = "DataMuse",
+                      `data-view-component` = "true",
+                      height="100%",
+                      width="100%")
                   ),
                   shiny::column(
                     w = 4,
                     shiny::h3("Plot Theme: mint"),
-                    shiny::tags$img(src = "https://github.com/AdrianAntico/prettydoc/blob/main/Images/mint.PNG?raw=true", alt = "DataMuse", `data-view-component` = "true", height="100%", width="100%")
+                    shiny::tags$img(
+                      src = "mint.PNG", # "https://github.com/AdrianAntico/prettydoc/blob/main/Images/mint.PNG?raw=true",
+                      alt = "DataMuse",
+                      `data-view-component` = "true",
+                      height="100%",
+                      width="100%")
                   ),
                   shiny::column(
                     w = 4,
                     shiny::h3("Plot Theme: purple-passion"),
-                    shiny::tags$img(src = "https://github.com/AdrianAntico/prettydoc/blob/main/Images/purple-passion.PNG?raw=true", alt = "DataMuse", `data-view-component` = "true", height="100%", width="100%")
+                    shiny::tags$img(
+                      src = "purple-passion.PNG", # "https://github.com/AdrianAntico/prettydoc/blob/main/Images/purple-passion.PNG?raw=true",
+                      alt = "DataMuse",
+                      `data-view-component` = "true",
+                      height="100%",
+                      width="100%")
                   )
                 ),
                 DataMuse::BlankRow(12),
@@ -4797,17 +4923,32 @@ HomePage <- function(id, Page, AppWidth=12L) {
                   shiny::column(
                     w = 4,
                     shiny::h3("Plot Theme: red-velvet"),
-                    shiny::tags$img(src = "https://github.com/AdrianAntico/prettydoc/blob/main/Images/red-velvet.PNG?raw=true", alt = "DataMuse", `data-view-component` = "true", height="100%", width="100%")
+                    shiny::tags$img(
+                      src = "red-velvet.PNG", # "https://github.com/AdrianAntico/prettydoc/blob/main/Images/red-velvet.PNG?raw=true",
+                      alt = "DataMuse",
+                      `data-view-component` = "true",
+                      height="100%",
+                      width="100%")
                   ),
                   shiny::column(
                     w = 4,
                     shiny::h3("Plot Theme: red"),
-                    shiny::tags$img(src = "https://github.com/AdrianAntico/prettydoc/blob/main/Images/red.PNG?raw=true", alt = "DataMuse", `data-view-component` = "true", height="100%", width="100%")
+                    shiny::tags$img(
+                      src = "red.PNG", # "https://github.com/AdrianAntico/prettydoc/blob/main/Images/red.PNG?raw=true",
+                      alt = "DataMuse",
+                      `data-view-component` = "true",
+                      height="100%",
+                      width="100%")
                   ),
                   shiny::column(
                     w = 4,
                     shiny::h3("Plot Theme: roma"),
-                    shiny::tags$img(src = "https://github.com/AdrianAntico/prettydoc/blob/main/Images/roma.PNG?raw=true", alt = "DataMuse", `data-view-component` = "true", height="100%", width="100%")
+                    shiny::tags$img(
+                      src = "roma.PNG", # "https://github.com/AdrianAntico/prettydoc/blob/main/Images/roma.PNG?raw=true",
+                      alt = "DataMuse",
+                      `data-view-component` = "true",
+                      height="100%",
+                      width="100%")
                   )
                 ),
                 DataMuse::BlankRow(12),
@@ -4816,17 +4957,32 @@ HomePage <- function(id, Page, AppWidth=12L) {
                   shiny::column(
                     w = 4,
                     shiny::h3("Plot Theme: royal"),
-                    shiny::tags$img(src = "https://github.com/AdrianAntico/prettydoc/blob/main/Images/royal.PNG?raw=true", alt = "DataMuse", `data-view-component` = "true", height="100%", width="100%")
+                    shiny::tags$img(
+                      src = "royal.PNG", # "https://github.com/AdrianAntico/prettydoc/blob/main/Images/royal.PNG?raw=true",
+                      alt = "DataMuse",
+                      `data-view-component` = "true",
+                      height="100%",
+                      width="100%")
                   ),
                   shiny::column(
                     w = 4,
                     shiny::h3("Plot Theme: sakura"),
-                    shiny::tags$img(src = "https://github.com/AdrianAntico/prettydoc/blob/main/Images/sakura.PNG?raw=true", alt = "DataMuse", `data-view-component` = "true", height="100%", width="100%")
+                    shiny::tags$img(
+                      src = "sakura.PNG", # "https://github.com/AdrianAntico/prettydoc/blob/main/Images/sakura.PNG?raw=true",
+                      alt = "DataMuse",
+                      `data-view-component` = "true",
+                      height="100%",
+                      width="100%")
                   ),
                   shiny::column(
                     w = 4,
                     shiny::h3("Plot Theme: shine"),
-                    shiny::tags$img(src = "https://github.com/AdrianAntico/prettydoc/blob/main/Images/shine.PNG?raw=true", alt = "DataMuse", `data-view-component` = "true", height="100%", width="100%")
+                    shiny::tags$img(
+                      src = "shine.PNG", # "https://github.com/AdrianAntico/prettydoc/blob/main/Images/shine.PNG?raw=true",
+                      alt = "DataMuse",
+                      `data-view-component` = "true",
+                      height="100%",
+                      width="100%")
                   )
                 ),
                 DataMuse::BlankRow(12),
@@ -4835,17 +4991,32 @@ HomePage <- function(id, Page, AppWidth=12L) {
                   shiny::column(
                     w = 4,
                     shiny::h3("Plot Theme: tech-blue"),
-                    shiny::tags$img(src = "https://github.com/AdrianAntico/prettydoc/blob/main/Images/tech-blue.PNG?raw=true", alt = "DataMuse", `data-view-component` = "true", height="100%", width="100%")
+                    shiny::tags$img(
+                      src = "tech-blue.PNG", # "https://github.com/AdrianAntico/prettydoc/blob/main/Images/tech-blue.PNG?raw=true",
+                      alt = "DataMuse",
+                      `data-view-component` = "true",
+                      height="100%",
+                      width="100%")
                   ),
                   shiny::column(
                     w = 4,
                     shiny::h3("Plot Theme: vintage"),
-                    shiny::tags$img(src = "https://github.com/AdrianAntico/prettydoc/blob/main/Images/vintage.PNG?raw=true", alt = "DataMuse", `data-view-component` = "true", height="100%", width="100%")
+                    shiny::tags$img(
+                      src = "vintage.PNG", # "https://github.com/AdrianAntico/prettydoc/blob/main/Images/vintage.PNG?raw=true",
+                      alt = "DataMuse",
+                      `data-view-component` = "true",
+                      height="100%",
+                      width="100%")
                   ),
                   shiny::column(
                     w = 4,
                     shiny::h3("Plot Theme: walden"),
-                    shiny::tags$img(src = "https://github.com/AdrianAntico/prettydoc/blob/main/Images/walden.PNG?raw=true", alt = "DataMuse", `data-view-component` = "true", height="100%", width="100%")
+                    shiny::tags$img(
+                      src = "walden.PNG", # "https://github.com/AdrianAntico/prettydoc/blob/main/Images/walden.PNG?raw=true",
+                      alt = "DataMuse",
+                      `data-view-component` = "true",
+                      height="100%",
+                      width="100%")
                   )
                 ),
                 DataMuse::BlankRow(12),
@@ -4854,17 +5025,32 @@ HomePage <- function(id, Page, AppWidth=12L) {
                   shiny::column(
                     w = 4,
                     shiny::h3("Plot Theme: wef"),
-                    shiny::tags$img(src = "https://github.com/AdrianAntico/prettydoc/blob/main/Images/wef.PNG?raw=true", alt = "DataMuse", `data-view-component` = "true", height="100%", width="100%")
+                    shiny::tags$img(
+                      src = "wef.PNG", # "https://github.com/AdrianAntico/prettydoc/blob/main/Images/wef.PNG?raw=true",
+                      alt = "DataMuse",
+                      `data-view-component` = "true",
+                      height="100%",
+                      width="100%")
                   ),
                   shiny::column(
                     w = 4,
                     shiny::h3("Plot Theme: weforum"),
-                    shiny::tags$img(src = "https://github.com/AdrianAntico/prettydoc/blob/main/Images/weforum.PNG?raw=true", alt = "DataMuse", `data-view-component` = "true", height="100%", width="100%")
+                    shiny::tags$img(
+                      src = "weforum.PNG", # "https://github.com/AdrianAntico/prettydoc/blob/main/Images/weforum.PNG?raw=true",
+                      alt = "DataMuse",
+                      `data-view-component` = "true",
+                      height="100%",
+                      width="100%")
                   ),
                   shiny::column(
                     w = 4,
                     shiny::h3("Plot Theme: westeros"),
-                    shiny::tags$img(src = "https://github.com/AdrianAntico/prettydoc/blob/main/Images/westeros.PNG?raw=true", alt = "DataMuse", `data-view-component` = "true", height="100%", width="100%")
+                    shiny::tags$img(
+                      src = "westeros.PNG", # "https://github.com/AdrianAntico/prettydoc/blob/main/Images/westeros.PNG?raw=true",
+                      alt = "DataMuse",
+                      `data-view-component` = "true",
+                      height="100%",
+                      width="100%")
                   )
                 ),
                 DataMuse::BlankRow(12),
@@ -4873,7 +5059,12 @@ HomePage <- function(id, Page, AppWidth=12L) {
                   shiny::column(
                     w = 4,
                     shiny::h3("Plot Theme: wonderland"),
-                    shiny::tags$img(src = "https://github.com/AdrianAntico/prettydoc/blob/main/Images/wonderland.PNG?raw=true", alt = "DataMuse", `data-view-component` = "true", height="100%", width="100%")
+                    shiny::tags$img(
+                      src = "wonderland.PNG", # "https://github.com/AdrianAntico/prettydoc/blob/main/Images/wonderland.PNG?raw=true",
+                      alt = "DataMuse",
+                      `data-view-component` = "true",
+                      height="100%",
+                      width="100%")
                   )
                 )
               ),

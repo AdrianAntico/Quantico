@@ -2,7 +2,7 @@
 % Please edit documentation in R/SimpleApps.R
 \name{Muse}
 \alias{Muse}
-\title{rapp}
+\title{Muse}
 \usage{
 Muse(
   UserName_Password_DT = NULL,

@@ -1,4 +1,4 @@
-#' @title rapp
+#' @title Muse
 #'
 #' @description Shiny web app with capabilities in data managment, data wrangling, feature engineering, machine learning, statistical modeling, forecasting, visualization, and code print outs in multiple languages.
 #'

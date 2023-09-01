@@ -599,7 +599,12 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 ),
 
                 DataMuse::BlankRow(12),
-                shiny::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/Histogram.PNG?raw=true", alt = "DataMuse", `data-view-component` = "true", height="100%", width="100%"),
+                shiny::tags$img(
+                  src = "Histogram.PNG", # "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/Histogram.PNG?raw=true",
+                  alt = "DataMuse",
+                  `data-view-component` = "true",
+                  height="100%",
+                  width="100%"),
                 DataMuse::BlankRow(12),
                 DataMuse::BlankRow(12),
 
@@ -636,7 +641,12 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 ),
 
                 DataMuse::BlankRow(12),
-                shiny::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/Density.PNG?raw=true", alt = "DataMuse", `data-view-component` = "true", height="100%", width="100%"),
+                shiny::tags$img(
+                  src = "Density.PNG", # "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/Density.PNG?raw=true",
+                  alt = "DataMuse",
+                  `data-view-component` = "true",
+                  height="100%",
+                  width="100%"),
                 DataMuse::BlankRow(12),
                 DataMuse::BlankRow(12),
 
@@ -671,7 +681,12 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 ),
 
                 DataMuse::BlankRow(12),
-                shiny::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/BoxPlot.PNG?raw=true", alt = "DataMuse", `data-view-component` = "true", height="100%", width="100%"),
+                shiny::tags$img(
+                  src = "BoxPlot.PNG", # "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/BoxPlot.PNG?raw=true",
+                  alt = "DataMuse",
+                  `data-view-component` = "true",
+                  height="100%",
+                  width="100%"),
                 DataMuse::BlankRow(12),
                 DataMuse::BlankRow(12),
 
@@ -706,7 +721,12 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 ),
 
                 DataMuse::BlankRow(12),
-                shiny::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/PiePlot.PNG?raw=true", alt = "DataMuse", `data-view-component` = "true", height="100%", width="100%"),
+                shiny::tags$img(
+                  src = "PiePlot.PNG", # "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/PiePlot.PNG?raw=true",
+                  alt = "DataMuse",
+                  `data-view-component` = "true",
+                  height="100%",
+                  width="100%"),
                 DataMuse::BlankRow(12),
                 DataMuse::BlankRow(12),
 
@@ -738,7 +758,12 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 ),
 
                 DataMuse::BlankRow(12),
-                shiny::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/AreaPlot.PNG?raw=true", alt = "DataMuse", `data-view-component` = "true", height="100%", width="100%"),
+                shiny::tags$img(
+                  src = "AreaPlot.PNG", # "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/AreaPlot.PNG?raw=true",
+                  alt = "DataMuse",
+                  `data-view-component` = "true",
+                  height="100%",
+                  width="100%"),
                 DataMuse::BlankRow(12),
                 DataMuse::BlankRow(12),
 
@@ -756,35 +781,6 @@ HomePage <- function(id, Page, AppWidth=12L) {
               DataMuse::BlankRow(12),
               DataMuse::BlankRow(12),
 
-              # Candlestick Plots ----
-              # shinydashboard::box(
-              #   title = NULL, solidHeader = TRUE, collapsible = FALSE, status = "danger", width = 12L,
-              #   shiny::fluidRow(
-              #     shiny::column(
-              #       width = 12L,
-              #       shiny::a(name = "candlestickplots"),
-              #       shiny::h3("Candlestick Plots"),
-              #       shiny::p("Candlestick Plot types are used stock data.")
-              #     )
-              #   ),
-              #
-              #   DataMuse::BlankRow(12),
-              #   shiny::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/CandlestickPlot.PNG?raw=true", alt = "DataMuse", `data-view-component` = "true", height="100%", width="100%"),
-              #   DataMuse::BlankRow(12),
-              #   DataMuse::BlankRow(12),
-              #
-              #   DataMuse::BlankRow(12),
-              #   shiny::fluidRow(shiny::column(width = 12L, shiny::h3("Candlestick Plots Usage"))),
-              #   shiny::markdown(
-              #     "
-              #     * Candlestick plots requires a polygon account key and must be passed into the app startup call
-              #     "
-              #   )
-              # ),
-              #
-              # DataMuse::BlankRow(12),
-              # DataMuse::BlankRow(12),
-              # DataMuse::BlankRow(12),
 
               # Line Plots ----
               shinydashboard::box(
@@ -801,7 +797,12 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 ),
 
                 DataMuse::BlankRow(12),
-                shiny::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/LinePlot.PNG?raw=true", alt = "DataMuse", `data-view-component` = "true", height="100%", width="100%"),
+                shiny::tags$img(
+                  src = "LinePlot.PNG", # "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/LinePlot.PNG?raw=true",
+                  alt = "DataMuse",
+                  `data-view-component` = "true",
+                  height="100%",
+                  width="100%"),
                 DataMuse::BlankRow(12),
                 DataMuse::BlankRow(12),
 
@@ -834,7 +835,12 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 ),
 
                 DataMuse::BlankRow(12),
-                shiny::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/RiverPlot.PNG?raw=true", alt = "DataMuse", `data-view-component` = "true", height="100%", width="100%"),
+                shiny::tags$img(
+                  src = "RiverPlot.PNG", # "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/RiverPlot.PNG?raw=true",
+                  alt = "DataMuse",
+                  `data-view-component` = "true",
+                  height="100%",
+                  width="100%"),
                 DataMuse::BlankRow(12),
                 DataMuse::BlankRow(12),
 
@@ -868,7 +874,12 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 ),
 
                 DataMuse::BlankRow(12),
-                shiny::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/StepPlot.PNG?raw=true", alt = "DataMuse", `data-view-component` = "true", height="100%", width="100%"),
+                shiny::tags$img(
+                  src = "StepPlot.PNG", # "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/StepPlot.PNG?raw=true",
+                  alt = "DataMuse",
+                  `data-view-component` = "true",
+                  height="100%",
+                  width="100%"),
                 DataMuse::BlankRow(12),
                 DataMuse::BlankRow(12),
 
@@ -902,7 +913,12 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 ),
 
                 DataMuse::BlankRow(12),
-                shiny::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/BarPlot.PNG?raw=true", alt = "DataMuse", `data-view-component` = "true", height="100%", width="100%"),
+                shiny::tags$img(
+                  src = "BarPlot.PNG", # "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/BarPlot.PNG?raw=true",
+                  alt = "DataMuse",
+                  `data-view-component` = "true",
+                  height="100%",
+                  width="100%"),
                 DataMuse::BlankRow(12),
                 DataMuse::BlankRow(12),
 
@@ -937,7 +953,12 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 ),
 
                 DataMuse::BlankRow(12),
-                shiny::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/StackedBarPlot.PNG?raw=true", alt = "DataMuse", `data-view-component` = "true", height="100%", width="100%"),
+                shiny::tags$img(
+                  src = "StackedBarPlot.PNG", # "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/StackedBarPlot.PNG?raw=true",
+                  alt = "DataMuse",
+                  `data-view-component` = "true",
+                  height="100%",
+                  width="100%"),
                 DataMuse::BlankRow(12),
                 DataMuse::BlankRow(12),
 
@@ -973,7 +994,12 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 ),
 
                 DataMuse::BlankRow(12),
-                shiny::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/BarPlot3D.PNG?raw=true", alt = "DataMuse", `data-view-component` = "true", height="100%", width="100%"),
+                shiny::tags$img(
+                  src = "BarPlot3D.PNG", # "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/BarPlot3D.PNG?raw=true",
+                  alt = "DataMuse",
+                  `data-view-component` = "true",
+                  height="100%",
+                  width="100%"),
                 DataMuse::BlankRow(12),
                 DataMuse::BlankRow(12),
 
@@ -1006,7 +1032,12 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 ),
 
                 DataMuse::BlankRow(12),
-                shiny::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/ScatterPlot.PNG?raw=true", alt = "DataMuse", `data-view-component` = "true", height="100%", width="100%"),
+                shiny::tags$img(
+                  src = "ScatterPlot.PNG", # "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/ScatterPlot.PNG?raw=true",
+                  alt = "DataMuse",
+                  `data-view-component` = "true",
+                  height="100%",
+                  width="100%"),
                 DataMuse::BlankRow(12),
                 DataMuse::BlankRow(12),
 
@@ -1039,7 +1070,12 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 ),
 
                 DataMuse::BlankRow(12),
-                shiny::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/ScatterPlot3D.PNG?raw=true", alt = "DataMuse", `data-view-component` = "true", height="100%", width="100%"),
+                shiny::tags$img(
+                  src = "ScatterPlot3D.PNG", # "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/ScatterPlot3D.PNG?raw=true",
+                  alt = "DataMuse",
+                  `data-view-component` = "true",
+                  height="100%",
+                  width="100%"),
                 DataMuse::BlankRow(12),
                 DataMuse::BlankRow(12),
 
@@ -1077,7 +1113,12 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 ),
 
                 DataMuse::BlankRow(12),
-                shiny::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/CopulaPlot.PNG?raw=true", alt = "DataMuse", `data-view-component` = "true", height="100%", width="100%"),
+                shiny::tags$img(
+                  src = "CopulaPlot.PNG", # "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/CopulaPlot.PNG?raw=true",
+                  alt = "DataMuse",
+                  `data-view-component` = "true",
+                  height="100%",
+                  width="100%"),
                 DataMuse::BlankRow(12),
                 DataMuse::BlankRow(12),
 
@@ -1115,7 +1156,12 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 ),
 
                 DataMuse::BlankRow(12),
-                shiny::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/CopulaPlot3D.PNG?raw=true", alt = "DataMuse", `data-view-component` = "true", height="100%", width="100%"),
+                shiny::tags$img(
+                  src = "CopulaPlot3D.PNG", # "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/CopulaPlot3D.PNG?raw=true",
+                  alt = "DataMuse",
+                  `data-view-component` = "true",
+                  height="100%",
+                  width="100%"),
                 DataMuse::BlankRow(12),
                 DataMuse::BlankRow(12),
 
@@ -1150,7 +1196,12 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 ),
 
                 DataMuse::BlankRow(12),
-                shiny::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/Heatmap.PNG?raw=true", alt = "DataMuse", `data-view-component` = "true", height="100%", width="100%"),
+                shiny::tags$img(
+                  src = "Heatmap.PNG", # "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/Heatmap.PNG?raw=true",
+                  alt = "DataMuse",
+                  `data-view-component` = "true",
+                  height="100%",
+                  width="100%"),
                 DataMuse::BlankRow(12),
                 DataMuse::BlankRow(12),
 
@@ -1184,7 +1235,12 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 ),
 
                 DataMuse::BlankRow(12),
-                shiny::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/CorrelogramPlot.PNG?raw=true", alt = "DataMuse", `data-view-component` = "true", height="100%", width="100%"),
+                shiny::tags$img(
+                  src = "CorrelogramPlot.PNG", # "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/CorrelogramPlot.PNG?raw=true",
+                  alt = "DataMuse",
+                  `data-view-component` = "true",
+                  height="100%",
+                  width="100%"),
                 DataMuse::BlankRow(12),
                 DataMuse::BlankRow(12),
 
@@ -1260,7 +1316,12 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 ),
 
                 DataMuse::BlankRow(12),
-                shiny::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/zz_ResidualHistogram.PNG?raw=true", alt = "DataMuse", `data-view-component` = "true", height="100%", width="100%"),
+                shiny::tags$img(
+                  src = "zz_ResidualHistogram.PNG", # "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/zz_ResidualHistogram.PNG?raw=true",
+                  alt = "DataMuse",
+                  `data-view-component` = "true",
+                  height="100%",
+                  width="100%"),
                 DataMuse::BlankRow(12),
                 DataMuse::BlankRow(12),
 
@@ -1293,7 +1354,12 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 ),
 
                 DataMuse::BlankRow(12),
-                shiny::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/zz_ResidualScatter.PNG?raw=true", alt = "DataMuse", `data-view-component` = "true", height="100%", width="100%"),
+                shiny::tags$img(
+                  src = "zz_ResidualScatter.PNG", # "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/zz_ResidualScatter.PNG?raw=true",
+                  alt = "DataMuse",
+                  `data-view-component` = "true",
+                  height="100%",
+                  width="100%"),
                 DataMuse::BlankRow(12),
                 DataMuse::BlankRow(12),
 
@@ -1327,7 +1393,12 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 ),
 
                 DataMuse::BlankRow(12),
-                shiny::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/zz_CalibrationLine.PNG?raw=true", alt = "DataMuse", `data-view-component` = "true", height="100%", width="100%"),
+                shiny::tags$img(
+                  src = "zz_CalibrationLine.PNG", # "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/zz_CalibrationLine.PNG?raw=true",
+                  alt = "DataMuse",
+                  `data-view-component` = "true",
+                  height="100%",
+                  width="100%"),
                 DataMuse::BlankRow(12),
                 DataMuse::BlankRow(12),
 
@@ -1361,7 +1432,12 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 ),
 
                 DataMuse::BlankRow(12),
-                shiny::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/zz_CalibrationBox.PNG?raw=true", alt = "DataMuse", `data-view-component` = "true", height="100%", width="100%"),
+                shiny::tags$img(
+                  src = "zz_CalibrationBox.PNG", # "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/zz_CalibrationBox.PNG?raw=true",
+                  alt = "DataMuse",
+                  `data-view-component` = "true",
+                  height="100%",
+                  width="100%"),
                 DataMuse::BlankRow(12),
                 DataMuse::BlankRow(12),
 
@@ -1395,7 +1471,12 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 ),
 
                 DataMuse::BlankRow(12),
-                shiny::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/zz_PartialDependenceLine.PNG?raw=true", alt = "DataMuse", `data-view-component` = "true", height="100%", width="100%"),
+                shiny::tags$img(
+                  src = "zz_PartialDependenceLine.PNG", # "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/zz_PartialDependenceLine.PNG?raw=true",
+                  alt = "DataMuse",
+                  `data-view-component` = "true",
+                  height="100%",
+                  width="100%"),
                 DataMuse::BlankRow(12),
                 DataMuse::BlankRow(12),
 
@@ -1430,7 +1511,12 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 ),
 
                 DataMuse::BlankRow(12),
-                shiny::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/zz_PartialDependenceHeatmap.PNG?raw=true", alt = "DataMuse", `data-view-component` = "true", height="100%", width="100%"),
+                shiny::tags$img(
+                  src = "zz_PartialDependenceHeatmap.PNG", # "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/zz_PartialDependenceHeatmap.PNG?raw=true",
+                  alt = "DataMuse",
+                  `data-view-component` = "true",
+                  height="100%",
+                  width="100%"),
                 DataMuse::BlankRow(12),
                 DataMuse::BlankRow(12),
 
@@ -1463,7 +1549,12 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 ),
 
                 DataMuse::BlankRow(12),
-                shiny::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/zz_VariableImportance.PNG?raw=true", alt = "DataMuse", `data-view-component` = "true", height="100%", width="100%"),
+                shiny::tags$img(
+                  src = "zz_VariableImportance.PNG", # "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/zz_VariableImportance.PNG?raw=true",
+                  alt = "DataMuse",
+                  `data-view-component` = "true",
+                  height="100%",
+                  width="100%"),
                 DataMuse::BlankRow(12),
                 DataMuse::BlankRow(12),
 
@@ -1499,7 +1590,12 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 ),
 
                 DataMuse::BlankRow(12),
-                shiny::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/zz_ShapleyImportance.PNG?raw=true", alt = "DataMuse", `data-view-component` = "true", height="100%", width="100%"),
+                shiny::tags$img(
+                  src = "zz_ShapleyImportance.PNG", # "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/zz_ShapleyImportance.PNG?raw=true",
+                  alt = "DataMuse",
+                  `data-view-component` = "true",
+                  height="100%",
+                  width="100%"),
                 DataMuse::BlankRow(12),
                 DataMuse::BlankRow(12),
 
@@ -1547,7 +1643,12 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 ),
 
                 DataMuse::BlankRow(12),
-                shiny::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/zz_ROC.PNG?raw=true", alt = "DataMuse", `data-view-component` = "true", height="100%", width="100%"),
+                shiny::tags$img(
+                  src = "zz_ROC.PNG", # "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/zz_ROC.PNG?raw=true",
+                  alt = "DataMuse",
+                  `data-view-component` = "true",
+                  height="100%",
+                  width="100%"),
                 DataMuse::BlankRow(12),
                 DataMuse::BlankRow(12),
 
@@ -1579,7 +1680,12 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 ),
 
                 DataMuse::BlankRow(12),
-                shiny::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/zz_ConfusionMatrix.PNG?raw=true", alt = "DataMuse", `data-view-component` = "true", height="100%", width="100%"),
+                shiny::tags$img(
+                  src = "zz_ConfusionMatrix.PNG", # "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/zz_ConfusionMatrix.PNG?raw=true",
+                  alt = "DataMuse",
+                  `data-view-component` = "true",
+                  height="100%",
+                  width="100%"),
                 DataMuse::BlankRow(12),
                 DataMuse::BlankRow(12),
 
@@ -1613,7 +1719,12 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 ),
 
                 DataMuse::BlankRow(12),
-                shiny::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/zz_Lift.PNG?raw=true", alt = "DataMuse", `data-view-component` = "true", height="100%", width="100%"),
+                shiny::tags$img(
+                  src = "zz_Lift.PNG", # "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/zz_Lift.PNG?raw=true",
+                  alt = "DataMuse",
+                  `data-view-component` = "true",
+                  height="100%",
+                  width="100%"),
                 DataMuse::BlankRow(12),
                 DataMuse::BlankRow(12),
 
@@ -1647,7 +1758,12 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 ),
 
                 DataMuse::BlankRow(12),
-                shiny::tags$img(src = "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/zz_Gains.PNG?raw=true", alt = "DataMuse", `data-view-component` = "true", height="100%", width="100%"),
+                shiny::tags$img(
+                  src = "zz_Gains.PNG", # "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/zz_Gains.PNG?raw=true",
+                  alt = "DataMuse",
+                  `data-view-component` = "true",
+                  height="100%",
+                  width="100%"),
                 DataMuse::BlankRow(12),
                 DataMuse::BlankRow(12),
 

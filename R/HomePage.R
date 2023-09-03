@@ -80,6 +80,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                     shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#densityplots", "Density Plots")),
                     shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#boxplots", "Box Plots")),
                     shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#pieplots", "Pie Plots")),
+                    shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#probabilityplots", "Probability Plots")),
                     shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#donutplots", "Donut Plots")),
                     shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#rosetypeplots", "Rosetype Plots")),
                     shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#wordcloudplots", "Word Cloud Plots")),
@@ -92,6 +93,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                     shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#barplots", "Bar Plots")),
                     shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#stackedbarplots", "Stacked Bar Plots")),
                     shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#3dbarplots", "3D Bar Plots")),
+                    shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#radarplots", "Radar Plots")),
                     shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#scatterplots", "Scatter Plots")),
                     shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#3dscatterplots", "3D Scatter Plots")),
                     shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#copulaplots", "Copula Plots")),
@@ -818,6 +820,42 @@ HomePage <- function(id, Page, AppWidth=12L) {
               DataMuse::BlankRow(12),
               DataMuse::BlankRow(12),
 
+              # Probability ----
+              shinydashboard::box(
+                title = NULL, solidHeader = TRUE, collapsible = FALSE, status = "danger", width = 12L,
+                shiny::fluidRow(
+                  shiny::column(
+                    width = 12L,
+                    shiny::a(name = "probabilityplots"),
+                    shiny::h3("Probability Plots"),
+                    shiny::p("Probability plots are visualizations that can help you determine if your data is normally distributed.
+                             You can test out different transformations to see which one gets you closer to normality.")
+                  )
+                ),
+
+                DataMuse::BlankRow(12),
+                shiny::tags$img(
+                  src = "ProbabilityPlot.PNG", # "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/Density.PNG?raw=true",
+                  alt = "DataMuse",
+                  `data-view-component` = "true",
+                  height="100%",
+                  width="100%"),
+                DataMuse::BlankRow(12),
+                DataMuse::BlankRow(12),
+
+                DataMuse::BlankRow(12),
+                shiny::fluidRow(shiny::column(width = 12L, shiny::h3("Probability Plots Usage"))),
+                shiny::markdown(
+                  "
+                * Probability plots only require a numeric Y-Variable to be defined
+                "
+                )
+              ),
+
+              DataMuse::BlankRow(12),
+              DataMuse::BlankRow(12),
+              DataMuse::BlankRow(12),
+
               # Word Cloud Plots ----
               shinydashboard::box(
                 title = NULL, solidHeader = TRUE, collapsible = FALSE, status = "danger", width = 12L,
@@ -1158,6 +1196,42 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 * Stacked Bar plots require a numeric Y-Variable an X-Variable of categorical or date type
                 * The X-Variable should be less granular than the Group Variable. Another way of saying that, the Group Variable should be nested within the X-Variable.
                 * If the groupings look off for some reason, try switching the X-Variable and the Group Variable for each other
+                "
+                )
+              ),
+
+              DataMuse::BlankRow(12),
+              DataMuse::BlankRow(12),
+              DataMuse::BlankRow(12),
+
+              # Bar Plots ----
+              shinydashboard::box(
+                title = NULL, solidHeader = TRUE, collapsible = FALSE, status = "danger", width = 12L,
+                shiny::fluidRow(
+                  shiny::column(
+                    width = 12L,
+                    shiny::a(name = "radarplots"),
+                    shiny::h3("Radar Plots"),
+                    shiny::p("Radar Plot types are used when you are looking to understand
+                           aggregated data. The visual representation is circular with a line connected end points.")
+                  )
+                ),
+
+                DataMuse::BlankRow(12),
+                shiny::tags$img(
+                  src = "RadarPlot.PNG", # "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/BarPlot.PNG?raw=true",
+                  alt = "DataMuse",
+                  `data-view-component` = "true",
+                  height="100%",
+                  width="100%"),
+                DataMuse::BlankRow(12),
+                DataMuse::BlankRow(12),
+
+                DataMuse::BlankRow(12),
+                shiny::fluidRow(shiny::column(width = 12L, shiny::h3("Radar Plots Usage"))),
+                shiny::markdown(
+                  "
+                * Radar plots require a numeric Y-Variable and a Group Variable
                 "
                 )
               ),

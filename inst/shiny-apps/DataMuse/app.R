@@ -711,9 +711,9 @@ server <- function(input, output, session) {
 
   # List of Plot Types to choose
   AvailablePlots <- c(
-    'HistogramPlot','BoxPlot','PiePlot','DonutPlot',"RosetypePlot",'WordCloud',
+    'HistogramPlot','BoxPlot','PiePlot','DonutPlot',"RosetypePlot",'WordCloud','ProbabilityPlot',
     'BarPlot','StackedBarPlot','LinePlot','ScatterPlot','Autocorrelation','PartialAutocorr',
-    'AreaPlot','StepPlot','RiverPlot','BarPlot3D',
+    'AreaPlot','StepPlot','RiverPlot','BarPlot3D','RadarPlot',
     'CopulaPlot','CorrelogramPlot','HeatMapPlot','ScatterPlot3D','CopulaPlot3D','DensityPlot',
     'PartialDependenceLine','PartialDependenceBox','PartialDependenceHeatMap',
     'CalibrationLine','CalibrationBox','ShapleyImportance',
@@ -4838,14 +4838,18 @@ server <- function(input, output, session) {
           DataMuse:::Plots.Distribution.Y.NoFacet.Modal(id = paste0('DistributionNoFacetY',PlotNums,PlotType), PlotNumber = PlotNums)
         } else if(PlotType %in% c("BoxPlot","ViolinPlot","PolarPlot")) {
           DataMuse:::Plots.Distribution.XY.NoFacet.Modal(id = paste0('DistributionNoFacetXY',PlotNums,PlotType), PlotNumber = PlotNums)
-        } else if(PlotType %in% "WordCloud") {
+        } else if(PlotType %in% c("WordCloud")) {
           DataMuse:::Plots.WordCloud.Modal(id = paste0('WordCloudModal',PlotNums,PlotType), PlotNumber = PlotNums)
+        } else if(PlotType %in% c("ProbabilityPlot")) {
+          DataMuse:::Plots.ProbabilityPlot.Modal(id = paste0('ProbabilityPlotModal',PlotNums,PlotType), PlotNumber = PlotNums)
         } else if(PlotType %in% c("Autocorrelation","PartialAutocorr")) {
           DataMuse:::Plots.ACF.Modal(id = paste0('AutoCorr',PlotNums,PlotType), PlotNumber = PlotNums)
         } else if(PlotType %in% c("StackedBarPlot","RiverPlot","ConfusionMatrix")) {
           DataMuse:::Plots.AggRel.NoFacet.Modal(id = paste0('AggRelNF',PlotNums,PlotType), PlotNumber = PlotNums)
         } else if(PlotType %in% c("BarPlot","AreaPlot","StepPlot","LinePlot","ScatterPlot","CopulaPlot")) {
           DataMuse:::Plots.AggRel.Modal(id = paste0('AggRel',PlotNums,PlotType), PlotNumber = PlotNums)
+        } else if(PlotType %in% c("RadarPlot")) {
+          DataMuse:::Plots.Radar.Modal(id = paste0('RadarPlot',PlotNums,PlotType), PlotNumber = PlotNums)
         } else if(PlotType %in% c("PartialDependenceLine")) {
           DataMuse:::Plots.3D.Modal(id = paste0('ThreeD',PlotNums,PlotType), PlotNumber = PlotNums)
         } else if(PlotType %in% c("ScatterPlot3D","CopulaPlot3D")) {

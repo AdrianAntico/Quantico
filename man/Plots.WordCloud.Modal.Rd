@@ -36,7 +36,9 @@ Other Plotting Modals:
 \code{\link{Plots.Eval.XY.Modal}()},
 \code{\link{Plots.Eval.XYZ.NoGroup.Modal}()},
 \code{\link{Plots.Eval.ZY.Modal}()},
-\code{\link{Plots.Eval.ZY.NoFacet.Modal}()}
+\code{\link{Plots.Eval.ZY.NoFacet.Modal}()},
+\code{\link{Plots.ProbabilityPlot.Modal}()},
+\code{\link{Plots.Radar.Modal}()}
 }
 \author{
 Adrian Antico

@@ -2,7 +2,7 @@
 % Please edit documentation in R/ShinyUI.R
 \name{Plots.CorrMatrix.Modal}
 \alias{Plots.CorrMatrix.Modal}
-\title{Plots.Distribution.Modal}
+\title{Plots.CorrMatrix.Modal}
 \usage{
 Plots.CorrMatrix.Modal(id, PlotNumber, AppWidth = 12L)
 }
@@ -36,6 +36,8 @@ Other Plotting Modals:
 \code{\link{Plots.Eval.XYZ.NoGroup.Modal}()},
 \code{\link{Plots.Eval.ZY.Modal}()},
 \code{\link{Plots.Eval.ZY.NoFacet.Modal}()},
+\code{\link{Plots.ProbabilityPlot.Modal}()},
+\code{\link{Plots.Radar.Modal}()},
 \code{\link{Plots.WordCloud.Modal}()}
 }
 \author{

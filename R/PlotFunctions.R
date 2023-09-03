@@ -68,14 +68,6 @@ Shiny.Plot.Build <- function(input,
       # Basis
       PlotType <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0('PlotID_', PlotNumberss)]]}, error = function(x) NULL), Type='character', Default = PlotMap[PlotNumber == eval(PlotNumberss)][["PlotType"]], Debug = TRUE)
 
-      # Stock info
-      # if(PlotType == "Candlestick") {
-      #   Symbols <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0('Symbols', PlotNumberss)]]}, error=function(x) NULL), Type='character', Default = DefaultArgs(default = NULL, x = Args[[paste0(PlotType, PlotNumberss)]][[paste0('Symbols', PlotNumberss)]]))
-      #   StockMetric <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0('StockMetric', PlotNumberss)]]}, error=function(x) NULL), Type='character', Default = DefaultArgs(default = NULL, x = Args[[paste0(PlotType, PlotNumberss)]][[paste0('StockMetric', PlotNumberss)]]))
-      #   StockTimeAgg <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0('StockTimeAgg', PlotNumberss)]]}, error=function(x) NULL), Type='character', Default = DefaultArgs(default = 'days', x = Args[[paste0(PlotType, PlotNumberss)]][[paste0('StockTimeAgg', PlotNumberss)]]))
-      #   StockDateRange <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0('StockDateRange', PlotNumberss)]]}, error=function(x) NULL), Type='date', Default = DefaultArgs(default = c(as.character(Sys.Date()-365), as.character(Sys.Date())), x = Args[[paste0(PlotType, PlotNumberss)]][[paste0('StockDateRange', PlotNumberss)]]))
-      # }
-
       if(PlotType %in% c("Autocorrelation","PartialAutocorr")) {
         DateVariable <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0('PlottingDateVar', PlotNumberss)]]}, error = function(x) NULL), Type='character', Default = PlotMap[PlotNumber == eval(PlotNumberss)][["PlotType"]], Debug = TRUE)
         MaxLagsVariable <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0('PlottingMaxLags', PlotNumberss)]]}, error = function(x) NULL), Type='character', Default = PlotMap[PlotNumber == eval(PlotNumberss)][["PlotType"]], Debug = TRUE)
@@ -840,12 +832,12 @@ Shiny.Plot.Build <- function(input,
         if(Build) {
 
           # Build
-          if(PlotType %chin% c('HistogramPlot','BarPlot',   'LinePlot',      'HeatMapPlot',
-                               'BoxPlot',      'CopulaPlot','ScatterPlot3D', 'CopulaPlot3D',
-                               'DensityPlot',  'AreaPlot',  'StepPlot',      'RiverPlot','',
-                               'ViolinPlot',   'BarPlot3D', 'StackedBarPlot','CorrelogramPlot',
-                               'PiePlot',      'BarPlotD',  'CopulaPlotD',   'ScatterPlot',
-                               'ScatterPlotD', 'DonutPlot', 'RosetypePlot',  'PolarPlot')) {
+          if(PlotType %chin% c('HistogramPlot',  'BarPlot',   'LinePlot',      'HeatMapPlot',
+                               'BoxPlot',        'CopulaPlot','ScatterPlot3D', 'CopulaPlot3D',
+                               'DensityPlot',    'AreaPlot',  'StepPlot',      'RiverPlot','',
+                               'ViolinPlot',     'BarPlot3D', 'StackedBarPlot','CorrelogramPlot',
+                               'PiePlot',        'BarPlotD',  'CopulaPlotD',   'ScatterPlot',
+                               'ScatterPlotD',   'DonutPlot', 'RosetypePlot',  'PolarPlot')) {
 
             # Plot.StandardPlots()
             incre <- incre + 1L # starts at zero and initialized just above main for loop
@@ -956,6 +948,88 @@ Shiny.Plot.Build <- function(input,
               "AutoPlots::Plot.WordCloud(", "\n  ",
               "dt = data1,\n  ",
               "YVar = ", DataMuse:::ExpandText(YVar), ",\n  ",
+              "Title = ", DataMuse:::CEP(Title), ",\n  ",
+              "TextColor = ", DataMuse:::CEP(ColorFont), "\n  ",
+              "EchartsTheme = ", DataMuse:::CEP(EchartsTheme), ")\n"))}, error = function(x) NULL)
+
+          } else if(PlotType == "ProbabilityPlot") {
+
+            incre <- incre + 1L
+            PlotList[[paste0('Plot', PlotNumberss)]] <- AutoPlots::Plot.ProbabilityPlot(
+              dt = data1,
+              YVar = YVar,
+              YVarTrans = YVarTrans,
+              Height = PlotHeight[incre],
+              Width = PlotWidth[incre],
+              Title = "Normal Probability Plot",
+              EchartsTheme = EchartsTheme,
+              TextColor = ColorFont,
+              Debug = Debug)
+
+            CodeList <- tryCatch({DataMuse:::Shiny.CodePrint.Collect(CodeList, paste0(
+              "\n\n",
+              "# Build Plot\n",
+              "AutoPlots::Plot.ProbabilityPlot(", "\n  ",
+              "dt = data1,\n  ",
+              "YVar = ", DataMuse:::ExpandText(YVar), ",\n  ",
+              "Title = ", DataMuse:::CEP(Title), ",\n  ",
+              "TextColor = ", DataMuse:::CEP(ColorFont), "\n  ",
+              "EchartsTheme = ", DataMuse:::CEP(EchartsTheme), ")\n"))}, error = function(x) NULL)
+
+          } else if(PlotType == "WordCloud") {
+
+            incre <- incre + 1L
+            PlotList[[paste0('Plot', PlotNumberss)]] <- AutoPlots::Plot.WordCloud(
+              dt = data1,
+              YVar = YVar,
+              Height = PlotHeight[incre],
+              Width = PlotWidth[incre],
+              Title = "Word Cloud",
+              EchartsTheme = EchartsTheme,
+              TextColor = ColorFont,
+              Debug = Debug)
+
+            CodeList <- tryCatch({DataMuse:::Shiny.CodePrint.Collect(CodeList, paste0(
+              "\n\n",
+              "# Build Plot\n",
+              "AutoPlots::Plot.WordCloud(", "\n  ",
+              "dt = data1,\n  ",
+              "YVar = ", DataMuse:::ExpandText(YVar), ",\n  ",
+              "Title = ", DataMuse:::CEP(Title), ",\n  ",
+              "TextColor = ", DataMuse:::CEP(ColorFont), "\n  ",
+              "EchartsTheme = ", DataMuse:::CEP(EchartsTheme), ")\n"))}, error = function(x) NULL)
+
+          } else if(PlotType == "RadarPlot") {
+
+            for(adsfasdfafdsasdfasdfasdf in 1:10) {
+              print(PreAgg)
+            }
+
+            incre <- incre + 1L
+            PlotList[[paste0('Plot', PlotNumberss)]] <- AutoPlots::Plot.Radar(
+              dt = data1,
+              PreAgg = PreAgg,
+              AggMethod = AggMethod,
+              YVar = YVar,
+              YVarTrans = YVarTrans,
+              GroupVar = GroupVars,
+              Height = PlotHeight[incre],
+              Width = PlotWidth[incre],
+              Title = "Radar Plot",
+              EchartsTheme = EchartsTheme,
+              TextColor = ColorFont,
+              Debug = Debug)
+
+            CodeList <- tryCatch({DataMuse:::Shiny.CodePrint.Collect(CodeList, paste0(
+              "\n\n",
+              "# Build Plot\n",
+              "AutoPlots::Plot.Radar(", "\n  ",
+              "dt = data1,\n  ",
+              "PreAgg = ", DataMuse:::CEPP(PreAgg), ",\n  ",
+              "AggMethod = ", DataMuse:::CEP(AggMethod), ",\n  ",
+              "YVar = ", DataMuse:::ExpandText(YVar), ",\n  ",
+              "YVarTrans = ", DataMuse:::CEP(YVarTrans), ",\n  ",
+              "GroupVar = ", DataMuse:::ExpandText(GroupVars), ",\n  ",
               "Title = ", DataMuse:::CEP(Title), ",\n  ",
               "TextColor = ", DataMuse:::CEP(ColorFont), "\n  ",
               "EchartsTheme = ", DataMuse:::CEP(EchartsTheme), ")\n"))}, error = function(x) NULL)

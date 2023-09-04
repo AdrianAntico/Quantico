@@ -4,7 +4,7 @@
 \alias{Shapiro.Test}
 \title{Shapiro.Test}
 \usage{
-Shapiro.Test(Vals, SampleSize = 5000, Samples = 30)
+Shapiro.Test(Vals, SampleSize = NULL, Samples = 1)
 }
 \arguments{
 \item{Vals}{a vector of values to test}
@@ -25,7 +25,9 @@ output <- Shapiro.Test(Vals = runif(1000), SampleSize = 100, Samples = 500)
 \seealso{
 Other Inference: 
 \code{\link{Agostino.Test}()},
+\code{\link{All.Normality.Tests}()},
 \code{\link{Anderson.Darling.Test}()},
+\code{\link{Cramer.Von.Mises.Test}()},
 \code{\link{Jarque.Bera.Test}()},
 \code{\link{Kolmogorov.Smirnov.Test}()}
 }

@@ -4,7 +4,7 @@
 \alias{Jarque.Bera.Test}
 \title{Jarque.Bera.Test}
 \usage{
-Jarque.Bera.Test(Vals, SampleSize = 5000, Samples = 30)
+Jarque.Bera.Test(Vals, SampleSize = NULL, Samples = 1)
 }
 \arguments{
 \item{Vals}{a vector of values to test}
@@ -25,7 +25,9 @@ output <- Jarque.Bera.Test(Vals = runif(100000), SampleSize = 1000, Samples = 50
 \seealso{
 Other Inference: 
 \code{\link{Agostino.Test}()},
+\code{\link{All.Normality.Tests}()},
 \code{\link{Anderson.Darling.Test}()},
+\code{\link{Cramer.Von.Mises.Test}()},
 \code{\link{Kolmogorov.Smirnov.Test}()},
 \code{\link{Shapiro.Test}()}
 }

@@ -4,7 +4,7 @@
 \alias{Kolmogorov.Smirnov.Test}
 \title{Kolmogorov.Smirnov.Test}
 \usage{
-Kolmogorov.Smirnov.Test(Vals, SampleSize = 500, Samples = 30)
+Kolmogorov.Smirnov.Test(Vals, SampleSize = NULL, Samples = 1)
 }
 \arguments{
 \item{Vals}{a vector of values to test}
@@ -25,7 +25,9 @@ output <- Kolmogorov.Smirnov.Test(runif(10000))
 \seealso{
 Other Inference: 
 \code{\link{Agostino.Test}()},
+\code{\link{All.Normality.Tests}()},
 \code{\link{Anderson.Darling.Test}()},
+\code{\link{Cramer.Von.Mises.Test}()},
 \code{\link{Jarque.Bera.Test}()},
 \code{\link{Shapiro.Test}()}
 }

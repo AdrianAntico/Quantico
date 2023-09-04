@@ -4,7 +4,7 @@
 \alias{Agostino.Test}
 \title{Agostino.Test}
 \usage{
-Agostino.Test(Vals, SampleSize = 5000, Samples = 30)
+Agostino.Test(Vals, SampleSize = NULL, Samples = 1)
 }
 \arguments{
 \item{Vals}{a vector of values to test}
@@ -24,7 +24,9 @@ output <- Agostino.Test(Vals = runif(100000), SampleSize = 1000, Samples = 500)
 }
 \seealso{
 Other Inference: 
+\code{\link{All.Normality.Tests}()},
 \code{\link{Anderson.Darling.Test}()},
+\code{\link{Cramer.Von.Mises.Test}()},
 \code{\link{Jarque.Bera.Test}()},
 \code{\link{Kolmogorov.Smirnov.Test}()},
 \code{\link{Shapiro.Test}()}

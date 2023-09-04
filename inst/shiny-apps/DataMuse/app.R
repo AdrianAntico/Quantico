@@ -498,9 +498,10 @@ ui <- shinydashboard::dashboardPage(
                       DataMuse::BlankRow(12L),
                       shiny::fluidRow(
                         width=12L,
+                        style = "padding-left: 10px; padding-right: 15px;",
                         shinydashboard::box(
                           title = NULL, solidHeader = TRUE, collapsible = FALSE, status = 'danger', width = 12L,
-                          style = "min-height: 1245px;",
+                          style = "min-height: 1290px;",
                           shiny::column(
                             12L, align = 'center',
                             shinyAce::aceEditor(

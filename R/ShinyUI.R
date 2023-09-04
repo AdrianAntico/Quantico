@@ -18067,7 +18067,7 @@ DataPanels <- function(id, Page, AppWidth=12L, DL = NULL) {
     DataMuse::BlankRow(12L),
     shinydashboard::box(
       title = NULL, solidHeader = TRUE, collapsible = FALSE, status = 'danger', width = 12L, class = "OutputPaneBox",
-      style = "padding-top: 10px; min-height: 1535px; max-height: 1535px; overflow-x: clip; overflow-y:auto; margin-top: 1px; padding-left: 12px; background-color: #0000; border: 0px #0000 solid; box-shadow: 0px 0px 0px 0px #0000;",
+      style = "padding-top: 10px; min-height: 1540px; max-height: 1540px; overflow-x: clip; overflow-y:auto; margin-top: 1px; padding-left: 12px; background-color: #0000; border: 0px #0000 solid; box-shadow: 0px 0px 0px 0px #0000;",
 
       # Data Panel of Options
       shiny::fluidRow(
@@ -18229,7 +18229,7 @@ MLPanels <- function(id, Page, AppWidth=12L, MOL = NULL) {
     DataMuse::BlankRow(12L),
     shinydashboard::box(
       title = NULL, solidHeader = TRUE, collapsible = FALSE, status = 'danger', width = 12L, class = "OutputPaneBox",
-      style = "padding-top: 10px; min-height: 1535px; max-height: 1535px; overflow-x: clip; overflow-y:auto; margin-top: 1px; padding-left: 12px; background-color: #0000; border: 0px #0000 solid; box-shadow: 0px 0px 0px 0px #0000;",
+      style = "padding-top: 10px; min-height: 1540px; max-height: 1540px; overflow-x: clip; overflow-y:auto; margin-top: 1px; padding-left: 12px; background-color: #0000; border: 0px #0000 solid; box-shadow: 0px 0px 0px 0px #0000;",
 
       # ML Panel of Options
       shiny::fluidRow(
@@ -18402,7 +18402,7 @@ EDAPanels <- function(id, Page, AppWidth=12L, DL = NULL) {
     DataMuse::BlankRow(12L),
     shinydashboard::box(
       title = NULL, solidHeader = TRUE, collapsible = FALSE, status = 'danger', width = 12L, class = "OutputPaneBox",
-      style = "padding-top: 10px; min-height: 1535px; max-height: 1535px; overflow-x: clip; overflow-y:auto; margin-top: 1px; padding-left: 12px; background-color: #0000; border: 0px #0000 solid; box-shadow: 0px 0px 0px 0px #0000;",
+      style = "padding-top: 10px; min-height: 1540px; max-height: 1540px; overflow-x: clip; overflow-y:auto; margin-top: 1px; padding-left: 12px; background-color: #0000; border: 0px #0000 solid; box-shadow: 0px 0px 0px 0px #0000;",
 
       # Data Panel of Options
       shiny::fluidRow(

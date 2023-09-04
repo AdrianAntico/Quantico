@@ -29,6 +29,7 @@ Other Inference:
 \code{\link{Anderson.Darling.Test}()},
 \code{\link{Cramer.Von.Mises.Test}()},
 \code{\link{Jarque.Bera.Test}()},
+\code{\link{Pearsons.Correlation.Test}()},
 \code{\link{Shapiro.Test}()}
 }
 \concept{Inference}

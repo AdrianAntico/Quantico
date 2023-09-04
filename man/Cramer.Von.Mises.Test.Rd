@@ -30,6 +30,7 @@ Other Inference:
 \code{\link{Anderson.Darling.Test}()},
 \code{\link{Jarque.Bera.Test}()},
 \code{\link{Kolmogorov.Smirnov.Test}()},
+\code{\link{Pearsons.Correlation.Test}()},
 \code{\link{Shapiro.Test}()}
 }
 \concept{Inference}

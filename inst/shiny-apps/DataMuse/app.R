@@ -467,14 +467,6 @@ ui <- shinydashboard::dashboardPage(
                         shinydashboard::box(
                           title = NULL, solidHeader = TRUE, collapsible = FALSE, status = 'danger', width = 12L,
                           style = "padding-top: 5px",
-
-                          # shiny::column(
-                          #   width = 3L, align = 'center',
-                          #   shiny::tags$h4(shiny::tags$b('Select Language')),
-                          #   DataMuse:::SelectizeInput(
-                          #     InputID = 'LanguageType', Label = NULL,
-                          #     Choices = c('R','Python','Julia'), SelectedDefault = 'R', Multiple = FALSE)
-                          # ),
                           shiny::column(
                             width = 3L, align = 'center',
                             shiny::tags$h4(shiny::tags$b('Select Theme')),
@@ -514,26 +506,69 @@ ui <- shinydashboard::dashboardPage(
                               minLines = 33,
                               fontSize = 16,
                               autoComplete = "live"))
-                          # shiny::column(
-                          #   6L, align = "center",
-                          #   shiny::fluidRow(
-                          #     shiny::column(
-                          #       6L, align = "center",
-                          #       echarts4r::echarts4rOutput("CodePlot1")),
-                          #     shiny::column(
-                          #       6L, align = "center",
-                          #       echarts4r::echarts4rOutput("CodePlot2"))),
-                          #   shiny::fluidRow(
-                          #     shiny::column(
-                          #       6L, align = "center",
-                          #       echarts4r::echarts4rOutput("CodePlot3")),
-                          #     shiny::column(
-                          #       6L, align = "center",
-                          #       echarts4r::echarts4rOutput("CodePlot4"))))
                         )
                       )
                     )
-                  )
+                  ),
+
+
+                  # ----
+
+                  # ----
+
+                  # @@@@@@@@@@@@@@@@@@@@ ----
+                  # Analysis             ----
+                  # @@@@@@@@@@@@@@@@@@@@ ----
+                  # shiny::tabPanel(
+                  #   id = "Hypothesis_Testing",
+                  #   title = 'Inference',
+                  #   icon = shiny::icon('code'),
+                  #   DataMuse:::BlankRow(12L),
+                  #   shinydashboard::box(
+                  #     title = NULL, solidHeader = TRUE, collapsible = FALSE, status = 'danger', width = 12L, class = "OutputPaneBox",
+                  #     style = "padding-top: 10px; min-height: 1540px; max-height: 1540px; overflow-x: clip; overflow-y:auto; margin-top: 1px; padding-left: 12px; background-color: #0000; border: 0px #0000 solid; box-shadow: 0px 0px 0px 0px #0000;",
+                  #     shiny::fluidRow(
+                  #       style = "padding-left: 8px;padding-right: 15px;padding-top: 8px;",
+                  #
+                  #       shiny::tabsetPanel(
+                  #         id = "htestss",
+                  #         selected = "Normality",
+                  #         type = "tabs",
+                  #
+                  #         shiny::tabPanel(
+                  #           title = "Normality",
+                  #
+                  #           shinydashboard::box(
+                  #             title = NULL, solidHeader = TRUE, collapsible = FALSE, status = 'danger', width = 12L,
+                  #             style = "padding-top: 5px",
+                  #
+                  #             shiny::tabPanel(
+                  #               title = "Correlation",
+                  #
+                  #             ),
+                  #
+                  #             shiny::tabPanel(
+                  #               title = "Parametric",
+                  #
+                  #             ),
+                  #
+                  #             shiny::tabPanel(
+                  #               title = "Nonparametric",
+                  #
+                  #             ),
+                  #
+                  #             shiny::tabPanel(
+                  #               title = "Stationarity",
+                  #
+                  #             )
+                  #           )
+                  #         )
+                  #       )
+                  #     )
+                  #   )
+                  # )
+
+
                 ),
 
                 # ----

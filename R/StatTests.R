@@ -484,22 +484,22 @@ All.Normality.Tests <- function(dt = NULL,
 
     # Run tests
     x1 <- Anderson.Darling.Test(Vals, SampleSize = SampleSize.ADT, Samples = Samples.ADT)
-    gg <- gg[Variable == eval(val) & Test == "Anderson.Darling.Test", P_Value := x1$P_Value]
+    gg <- gg[Variable == eval(val) & Test == "Anderson.Darling.Test", P_Value := mean(x1$P_Value, na.rm = TRUE)]
 
     x1 <- Cramer.Von.Mises.Test(Vals, SampleSize = SampleSize.CVMT, Samples = Samples.CVMT)
-    gg <- gg[Variable == eval(val) & Test == "Cramer.Von.Mises.Test", P_Value := x1$P_Value]
+    gg <- gg[Variable == eval(val) & Test == "Cramer.Von.Mises.Test", P_Value := mean(x1$P_Value, na.rm = TRUE)]
 
     x1 <- Kolmogorov.Smirnov.Test(Vals, SampleSize = SampleSize.KST, Samples = Samples.KST)
-    gg <- gg[Variable == eval(val) & Test == "Kolmogorov.Smirnov.Test", P_Value := x1$P_Value_2s]
+    gg <- gg[Variable == eval(val) & Test == "Kolmogorov.Smirnov.Test", P_Value := mean(x1$P_Value_2s, na.rm = TRUE)]
 
     x1 <- Shapiro.Test(Vals, SampleSize = SampleSize.ST, Samples = Samples.ST)
-    gg <- gg[Variable == eval(val) & Test == "Shapiro.Test", P_Value := x1$P_Value]
+    gg <- gg[Variable == eval(val) & Test == "Shapiro.Test", P_Value := mean(x1$P_Value, na.rm = TRUE)]
 
     x1 <- Jarque.Bera.Test(Vals, SampleSize = SampleSize.JBT, Samples = Samples.JBT)
-    gg <- gg[Variable == eval(val) & Test == "Jarque.Bera.Test", P_Value := x1$P_Value]
+    gg <- gg[Variable == eval(val) & Test == "Jarque.Bera.Test", P_Value := mean(x1$P_Value, na.rm = TRUE)]
 
     x1 <- Agostino.Test(Vals, SampleSize = SampleSize.AT, Samples = Samples.AT)
-    gg <- gg[Variable == eval(val) & Test == "Agostino.Test", P_Value := x1$P_Value_2s]
+    gg <- gg[Variable == eval(val) & Test == "Agostino.Test", P_Value := mean(x1$P_Value_2s, na.rm = TRUE)]
 
     # Radar plot of P_Values
     OutputList[[paste0("Radar_", val)]] <- AutoPlots::Plot.Radar(
@@ -567,3 +567,32 @@ All.Normality.Tests <- function(dt = NULL,
 
 # ----
 
+# @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
+# Correlation Tests                                                          ----
+# @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
+
+#' @title Pearsons.Correlation.Test
+#'
+#' @param Vals Numeric vector of values to test. Must have positive standard deviation and must be of length greater than or equal to 8
+#' @param SampleSize sub sampling of data
+#' @param Samples number of iterations to run
+#'
+#' @family Inference
+#'
+#' @references https://en.m.wikipedia.org/wiki/Anderson%E2%80%93Darling_test, https://real-statistics.com/non-parametric-tests/goodness-of-fit-tests/anderson-darling-test/
+#'
+#' @examples
+#' \dontrun{
+#' x <- qnorm(p = runif(100000))
+#' y <- qnorm(p = runif(100000))
+#' Pearsons.Correlation.Test(x, y, SampleSize = 2500, Samples = 30)
+#' }
+#'
+#' @export
+Pearsons.Correlation.Test <- function(x, y, SampleSize, Samples) {
+
+}
+
+# ----
+
+# ----

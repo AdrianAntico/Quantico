@@ -35,6 +35,7 @@ Other Inference:
 \code{\link{Cramer.Von.Mises.Test}()},
 \code{\link{Jarque.Bera.Test}()},
 \code{\link{Kolmogorov.Smirnov.Test}()},
+\code{\link{Pearsons.Correlation.Test}()},
 \code{\link{Shapiro.Test}()}
 }
 \concept{Inference}

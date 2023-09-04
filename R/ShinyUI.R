@@ -17858,11 +17858,10 @@ PlotDropDownContents <- function(id,
 
   PlotList <- list()
   PlotList[["Distribution"]] <- c("", 'HistogramPlot','DensityPlot','BoxPlot','WordCloud','ProbabilityPlot')
-  PlotList[["Composition"]] <- c('PiePlot','DonutPlot','RosetypePlot')
+  PlotList[["Aggregate"]] <- c('BarPlot','StackedBarPlot','BarPlot3D','HeatMapPlot','RadarPlot','PiePlot','DonutPlot','RosetypePlot')
   PlotList[["Time Series"]] <- c('LinePlot','AreaPlot','StepPlot','RiverPlot','Autocorrelation','PartialAutocorr')
-  PlotList[["Aggregate"]] <- c('BarPlot','StackedBarPlot','BarPlot3D','HeatMapPlot','RadarPlot')
   PlotList[["Relationship"]] <- c('CorrelogramPlot','ScatterPlot','ScatterPlot3D','CopulaPlot','CopulaPlot3D')
-  PlotList[["ML Evaluation"]] <- c(
+  PlotList[["Model Evaluation"]] <- c(
     'Residuals','ResidScatter',
     'PartialDependenceLine','PartialDependenceHeatMap',
     'CalibrationLine','CalibrationBox',

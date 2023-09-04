@@ -44,24 +44,20 @@ ui <- shinydashboard::dashboardPage(
         width = 2L,
         shiny::fluidRow(
           shiny::column(
-            width = 12L,
-            style = "padding-left: 5px; padding-right: 5px;",
+            width = 12L, align = "center",
+            style = "padding-left: 15px; padding-right: 16px;",
             DataMuse::BlankRow(12L),
-            # shiny::uiOutput("LogoID")
-            shiny::column(
-              12L, align = "center", style="padding-left: 15px;",
-              shinydashboard::box(
-                title = NULL, solidHeader = TRUE, collapsible = FALSE, status = 'danger', width = 12L,
-                style=LogoBoxStyle,
-                shiny::fluidRow(
-                  shiny::tags$img(
-                    src = Logo,
-                    style = LogoStyle,
-                    alt = "DataMuse",
-                    `data-view-component` = "true")
-                ) # fluid row
-              ) # jqui resizable
-            ) # column
+            shinydashboard::box(
+              title = NULL, solidHeader = TRUE, collapsible = FALSE, status = 'danger', width = 12L,
+              style=LogoBoxStyle,
+              shiny::fluidRow(
+                shiny::tags$img(
+                  src = Logo,
+                  style = LogoStyle,
+                  alt = "DataMuse",
+                  `data-view-component` = "true")
+              ) # fluid row
+            ) # jqui resizable
           )
         ),
         DataMuse::BlankRow(12L),

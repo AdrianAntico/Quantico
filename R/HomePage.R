@@ -5672,7 +5672,7 @@ CodePrintPage <- function(id, AppWidth=12L) {
       shiny::fluidRow(
         style = "padding-left: 8px;padding-right: 15px;padding-top: 8px;",
         shinydashboard::box(
-          title = NULL, solidHeader = TRUE, collapsible = FALSE, status = 'danger', width = 12L,
+          title = NULL, solidHeader = TRUE, collapsible = FALSE, status = 'warning', width = 12L,
           style = "padding-top: 5px",
           shiny::column(
             width = 3L, align = 'center',
@@ -5739,7 +5739,7 @@ SideBarUI <- function(id, AppWidth=12L) {
     title = NULL, solidHeader = TRUE, collapsible = FALSE, status = 'danger', width = 12L,
     style = "background-color: #0000; min-height: 1458px; max-height: 1458px",
     shiny::fluidRow(
-      style = "padding-left: 15px; padding-right: 20px; background-color: #0000; min-height: 867px; max-height: 867px; overflow-y: auto; overflow-x: clip;",
+      style = "padding-left: 15px; padding-right: 20px; background-color: #0000; min-height: 1167px; max-height: 1167px; overflow-y: auto; overflow-x: clip;",
 
       DataMuse:::BlankRow(12L),
       shiny::tags$details(

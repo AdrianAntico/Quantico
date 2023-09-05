@@ -17923,7 +17923,7 @@ PlotPanels <- function(id, Page, NumPlotsAvailable, AppWidth=12L, DragulaChoices
       shiny::fluidRow(
         style = "padding-left: 8px;padding-right: 15px;padding-top: 8px;",
         shinydashboard::box(
-          title = NULL, solidHeader = TRUE, collapsible = FALSE, status = 'danger', width = 12L, style = "padding-top: 5px",
+          title = NULL, solidHeader = TRUE, collapsible = FALSE, status = 'warning', width = 12L, style = "padding-top: 5px",
 
           shiny::fluidRow(
             width=12L,
@@ -18073,7 +18073,7 @@ DataPanels <- function(id, Page, AppWidth=12L, DL = NULL) {
       shiny::fluidRow(
         style = "padding-left: 8px;padding-right: 15px;padding-top: 8px;",
         shinydashboard::box(
-          title = NULL, solidHeader = TRUE, collapsible = FALSE, status = 'danger', width = 12L, style = "padding-top: 26px",
+          title = NULL, solidHeader = TRUE, collapsible = FALSE, status = 'warning', width = 12L, style = "padding-top: 26px",
           shiny::column(
             width = 5L, align = 'center',
             shiny::wellPanel(
@@ -18235,7 +18235,7 @@ MLPanels <- function(id, Page, AppWidth=12L, MOL = NULL) {
       shiny::fluidRow(
         style = "padding-left: 8px;padding-right: 15px;padding-top: 8px;",
         shinydashboard::box(
-          title = NULL, solidHeader = TRUE, collapsible = FALSE, status = 'danger', width = 12L, style = "padding-top: 26px",
+          title = NULL, solidHeader = TRUE, collapsible = FALSE, status = 'warning', width = 12L, style = "padding-top: 26px",
           shiny::column(
             width = 3L, align = 'center',
             shiny::wellPanel(
@@ -18408,7 +18408,7 @@ EDAPanels <- function(id, Page, AppWidth=12L, DL = NULL) {
       shiny::fluidRow(
         style = "padding-left: 8px;padding-right: 15px;padding-top: 8px;",
         shinydashboard::box(
-          title = NULL, solidHeader = TRUE, collapsible = FALSE, status = 'danger', width = 12L, style = "padding-top: 26px",
+          title = NULL, solidHeader = TRUE, collapsible = FALSE, status = 'warning', width = 12L, style = "padding-top: 26px",
           shiny::column(
             width = 3L, align = 'center',
             shiny::wellPanel(

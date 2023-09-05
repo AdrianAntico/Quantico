@@ -3,6 +3,9 @@
 /* Get a fancy font from Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Yusei+Magic&display=swap');
 
+
+/* Top Box inside Plot Selection Dropdowns */
+
 .box.box-solid.box-warning {
   border: 0px solid #000;
   background-color: #00000000;
@@ -492,14 +495,6 @@ body, h1, h2, h3, h4, h5, h6 {
   background-color: #00e7ff;
   color: #000000d4;
   font-size: 1.0625em;
-}
-
-/* Top Box inside Plot Selection Dropdowns */
-.box.box-solid.box-warning {
-  /*background-image: linear-gradient(to top, #2000ff2e, #0800ff29);*/
-  border: 3px solid #fff0;
-  border-radius: 30px;
-  box-shadow: 0px 2px 6px 0px #de96ff;
 }
 
 /* PlotDropDown Bottom Box */

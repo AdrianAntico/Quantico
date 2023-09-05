@@ -28,6 +28,9 @@
 
 .box.box-solid.box-warning {
   border: 0px solid #fff;
+  background-color: #00000000;
+  border-radius: 30px;
+  box-shadow: box-shadow: 0px 3px 6px 0px #000000;
 }
 
 .irs--shiny {
@@ -703,9 +706,7 @@ body {
 }
 
 .box.box-solid.box-warning>.box-header {
-	color: #4a44fc;
-	background: #4a44fc;
-	background-color: #4a44fc
+	background-color: #00000000;
 }
 
 .box.box-solid.box-warning>.box-header a,

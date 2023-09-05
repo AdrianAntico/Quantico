@@ -1,3 +1,8 @@
+ButtonStyle <- "color:#FFFFFF; border-color:#FFFFFF; border-style:solid; border-width:0.1px; border-radius:30px; font-size:14px;"
+PostGREButtonStyle <- "width:100%; color:#FFFFFF; border-color:#FFFFFF; border-style:solid; border-width:0px; font-size:14px; background-color: #6c6c6c;"
+CloudButtonStyle <- "width:100%; color:#FFFFFF; border-color:#FFFFFF; border-style:solid; border-width:0px; font-size:14px; background-color: #6c6c6c;"
+EchartThemes <- c("auritus","azul","bee-inspired","blue","caravan","carp","chalk","cool","dark-bold","dark","eduardo", "essos","forest","fresh-cut","fruit","gray","green","halloween","helianthus","infographic","inspired","jazz","london","macarons","macarons2","mint","purple-passion","red-velvet","red","roma","royal","sakura","shine","tech-blue","vintage","walden","wef","weforum","westeros","wonderland")
+
 #' @title HomePage
 #'
 #' @description Panels
@@ -5497,4 +5502,551 @@ HomePage <- function(id, Page, AppWidth=12L) {
       )
     )
   ) # closes box
+}
+
+#' @title InferencePage
+#'
+#' @description Panels
+#'
+#' @author Adrian Antico
+#' @family Plotting
+#'
+#' @param id = 'PlotPanels'
+#' @param AppWidth = 12L
+#' @param Page numeric
+#' @param NumPlotsAvailable numeric
+#' @param DragulaChoices character
+#'
+#' @export
+InferencePage <- function(id, AppWidth=12L) {
+  ns <- shiny::NS(id)
+  shiny::tabPanel(
+    id = "Hypothesis_Testing",
+    title = 'Inference',
+    icon = shiny::icon('microscope'),
+    DataMuse:::BlankRow(12L),
+    shinydashboard::box(
+      title = NULL, solidHeader = TRUE, collapsible = FALSE, status = 'danger', width = 12L, class = "OutputPaneBox",
+      style = "padding-top: 10px; min-height: 1540px; max-height: 1540px; overflow-x: clip; overflow-y:auto; margin-top: 1px; padding-left: 12px; background-color: #0000; border: 0px #0000 solid; box-shadow: 0px 0px 0px 0px #0000;",
+      shiny::fluidRow(
+        style = "padding-left: 8px;padding-right: 15px;padding-top: 8px;",
+
+        shiny::tabsetPanel(
+          id = "htestss",
+          selected = "Normality",
+          type = "tabs",
+
+          shiny::tabPanel(
+            title = "Normality",
+            DataMuse:::BlankRow(12L),
+
+            shinydashboard::box(
+              title = NULL, solidHeader = TRUE, collapsible = FALSE, status = 'warning', width = 12L,
+              style = "padding-top: 5px; min-height: 1416px; max-height: 1416px;",
+              shiny::fluidRow(
+                shiny::column(
+                  width = 4L, align = "center",
+                  DataMuse::PickerInput(InputID = "Normality_Data", Label = "Data")
+                ),
+                shiny::column(
+                  width = 4L, align = "center",
+                  DataMuse::PickerInput(InputID = "Normality_YVars", Label = "Variables")
+                )
+              )
+            )
+          ),
+
+          shiny::tabPanel(
+            title = "Correlation",
+            DataMuse:::BlankRow(12L),
+
+            shinydashboard::box(
+              title = NULL, solidHeader = TRUE, collapsible = FALSE, status = 'warning', width = 12L,
+              style = "padding-top: 5px; min-height: 1416px; max-height: 1416px;",
+
+              shiny::fluidRow(
+                shiny::column(
+                  width = 4L, align = "center",
+                  DataMuse::PickerInput(InputID = "Correlation_Data", Label = "Data")
+                ),
+                shiny::column(
+                  width = 4L, align = "center",
+                  DataMuse::PickerInput(InputID = "Correlation_YVars", Label = "Variables")
+                )
+              )
+            )
+          ),
+
+          shiny::tabPanel(
+            title = "Parametric",
+            DataMuse:::BlankRow(12L),
+
+            shinydashboard::box(
+              title = NULL, solidHeader = TRUE, collapsible = FALSE, status = 'warning', width = 12L,
+              style = "padding-top: 5px; min-height: 1416px; max-height: 1416px;",
+
+              shiny::fluidRow(
+                shiny::column(
+                  width = 4L, align = "center",
+                  DataMuse::PickerInput(InputID = "Parametric_Data", Label = "Data")
+                ),
+                shiny::column(
+                  width = 4L, align = "center",
+                  DataMuse::PickerInput(InputID = "Parametric_YVars", Label = "Variables")
+                )
+              )
+            )
+          ),
+
+          shiny::tabPanel(
+            title = "Nonparametric",
+            DataMuse:::BlankRow(12L),
+
+            shinydashboard::box(
+              title = NULL, solidHeader = TRUE, collapsible = FALSE, status = 'warning', width = 12L,
+              style = "padding-top: 5px; min-height: 1416px; max-height: 1416px;",
+
+              shiny::fluidRow(
+                shiny::column(
+                  width = 4L, align = "center",
+                  DataMuse::PickerInput(InputID = "Nonparametric_Data", Label = "Data")
+                ),
+                shiny::column(
+                  width = 4L, align = "center",
+                  DataMuse::PickerInput(InputID = "Nonparametric_YVars", Label = "Variables")
+                )
+              )
+            )
+          ),
+
+          shiny::tabPanel(
+            title = "Stationarity",
+            DataMuse:::BlankRow(12L),
+
+            shinydashboard::box(
+              title = NULL, solidHeader = TRUE, collapsible = FALSE, status = 'warning', width = 12L,
+              style = "padding-top: 5px; min-height: 1416px; max-height: 1416px;",
+
+              shiny::fluidRow(
+                shiny::column(
+                  width = 4L, align = "center",
+                  DataMuse::PickerInput(InputID = "Stationarity_Data", Label = "Data")
+                ),
+                shiny::column(
+                  width = 4L, align = "center",
+                  DataMuse::PickerInput(InputID = "Stationarity_YVars", Label = "Variables")
+                )
+              )
+            )
+          ) # end box
+        ) # end tabsetPanel
+      ) # end fluidRow
+    ) # end box
+  ) # end tabPanel
+}
+
+#' @title CodePrintPage
+#'
+#' @description Panels
+#'
+#' @author Adrian Antico
+#' @family Plotting
+#'
+#' @param id = 'PlotPanels'
+#' @param AppWidth = 12L
+#' @param Page numeric
+#' @param NumPlotsAvailable numeric
+#' @param DragulaChoices character
+#'
+#' @export
+CodePrintPage <- function(id, AppWidth=12L) {
+  ns <- shiny::NS(id)
+  shiny::tabPanel(
+    id = "Code_Print",
+    title = 'Code Print',
+    icon = shiny::icon('code'),
+    DataMuse:::BlankRow(12L),
+    shinydashboard::box(
+      title = NULL, solidHeader = TRUE, collapsible = FALSE, status = 'danger', width = 12L, class = "OutputPaneBox",
+      style = "padding-top: 10px; min-height: 1540px; max-height: 1540px; overflow-x: clip; overflow-y:auto; margin-top: 1px; padding-left: 12px; background-color: #0000; border: 0px #0000 solid; box-shadow: 0px 0px 0px 0px #0000;",
+      shiny::fluidRow(
+        style = "padding-left: 8px;padding-right: 15px;padding-top: 8px;",
+        shinydashboard::box(
+          title = NULL, solidHeader = TRUE, collapsible = FALSE, status = 'danger', width = 12L,
+          style = "padding-top: 5px",
+          shiny::column(
+            width = 3L, align = 'center',
+            shiny::tags$h4(shiny::tags$b('Select Theme')),
+            selectInput(
+              "editor_theme2",label = NULL,
+              choices = shinyAce::getAceThemes(),
+              selected = "vibrant_ink")
+          ),
+          shiny::column(
+            width = 3L, align = 'center',
+            shiny::tags$h4(shiny::tags$b('Font Size')),
+            shiny::numericInput(inputId = "CodePrintFontSize", label = NULL, value = 16, min = 4, max = 44, step = 1)
+          ),
+          shiny::column(width = 5L),
+          shiny::column(
+            width = 1L, align = 'center', style = "padding-top: 40px",
+            shiny::actionButton('PrintCodeButton', label = "Run", icon = shiny::icon("share-from-square"), style = ButtonStyle)
+          )
+        )
+      ),
+      DataMuse::BlankRow(12L),
+      shiny::fluidRow(
+        width=12L,
+        style = "padding-left: 10px; padding-right: 15px;",
+        shinydashboard::box(
+          title = NULL, solidHeader = TRUE, collapsible = FALSE, status = 'danger', width = 12L,
+          style = "min-height: 1290px;",
+          shiny::column(
+            12L, align = 'center',
+            shinyAce::aceEditor(
+              "PrintCode",
+              mode = "r",
+              wordWrap = TRUE,
+              theme = "vibrant_ink",
+              height = "1210px",
+              tabSize = 2,
+              minLines = 33,
+              fontSize = 16,
+              autoComplete = "live"))
+        )
+      )
+    )
+  )
+}
+
+#' @title SideBarUI
+#'
+#' @description Panels
+#'
+#' @author Adrian Antico
+#' @family Plotting
+#'
+#' @param id = 'PlotPanels'
+#' @param AppWidth = 12L
+#' @param Page numeric
+#' @param NumPlotsAvailable numeric
+#' @param DragulaChoices character
+#'
+#' @export
+SideBarUI <- function(id, AppWidth=12L) {
+  ns <- shiny::NS(id)
+  shinydashboard::box(
+    title = NULL, solidHeader = TRUE, collapsible = FALSE, status = 'danger', width = 12L,
+    style = "background-color: #0000; min-height: 1458px; max-height: 1458px",
+    shiny::fluidRow(
+      style = "padding-left: 15px; padding-right: 20px; background-color: #0000; min-height: 867px; max-height: 867px; overflow-y: auto; overflow-x: clip;",
+
+      DataMuse:::BlankRow(12L),
+      shiny::tags$details(
+        shiny::tags$summary(shiny::tags$span(shiny::tags$b('Load & Save'))),
+        DataMuse::BlankLine(12L),
+        shiny::fluidRow(DataMuse::DM_Local(id = 'DM_Local', Align = "left", DropDownRight = FALSE)),
+        shiny::fluidRow(DataMuse::DM_Session(id = 'DM_Session', Align = "left", DropDownRight = FALSE)),
+        shiny::fluidRow(DataMuse::DM_PostGRE(id = 'DM_PostGRE', Align = "left", DropDownRight = FALSE)),
+        shiny::fluidRow(DataMuse::DM_AzureBlob(id = 'DM_AzureBlob', Align = "left", DropDownRight = FALSE))
+      ),
+
+      DataMuse:::BlankRow(12L),
+      shiny::tags$details(
+        DataMuse::BlankLine(12L),
+        shiny::tags$summary(shiny::tags$span(shiny::tags$b('Data Wrangling'))),
+        shiny::fluidRow(DataMuse:::DW_ShrinkData(id = 'DW_ShrinkData', Align = "left", DropDownRight = FALSE)),
+        shiny::fluidRow(DataMuse:::DW_GrowData(id = 'DW_GrowData', Align = "left", DropDownRight = FALSE)),
+        shiny::fluidRow(DataMuse:::DW_DataSets(id = 'DW_DataSets', Align = "left", DropDownRight=TRUE, Animate=TRUE, Status='custom', H3Color = '#FFFFFF')),
+        shiny::fluidRow(DataMuse:::DW_Pivot(id = 'DW_Pivot', Align = "left", DropDownRight = TRUE)),
+        shiny::fluidRow(DataMuse:::DW_Columns( id = 'DW_Columns', Align = "left", DropDownRight = TRUE)),
+        shiny::fluidRow(DataMuse:::DW_Misc(id = 'DW_Misc', Align = "left", DropDownRight = TRUE))
+      ),
+
+      DataMuse:::BlankRow(12L),
+      shiny::tags$details(
+        DataMuse::BlankLine(12L),
+        shiny::tags$summary(shiny::tags$span(shiny::tags$b('Feature Engineering'))),
+        shiny::fluidRow(DataMuse:::FE_NumericVariables(id = 'NumericVariables', Align='left', DropDownRight=TRUE, Animate=TRUE, Status='custom', H3Color = '#FFFFFF')),
+        shiny::fluidRow(DataMuse:::FE_CategoricalVariables(id = 'CategoricalVariables', Align='left', DropDownRight=FALSE, Animate=TRUE, Status='custom', H3Color = '#FFFFFF')),
+        shiny::fluidRow(DataMuse:::FE_DateVariables(id = 'CalendarVariables', Align='left')),
+        shiny::fluidRow(DataMuse:::FE_Windowing(id = 'FE_Windowing', Align = 'left')),
+        shiny::fluidRow(DataMuse:::FE_NLP(id = 'NLPFE', Align='left', DropDownRight=TRUE,  Animate=TRUE, Status='custom', H3Color = '#FFFFFF')),
+        shiny::fluidRow(DataMuse:::FE_AnomalyDetection(id = 'AnomDetectionID', Align='left', DropDownRight=TRUE,  Animate=TRUE, Status='custom', H3Color = '#FFFFFF')),
+        shiny::fluidRow(DataMuse:::FE_DimensionalityReduction(id = 'DimReductionID', Align='left', DropDownRight=TRUE,  Animate=TRUE, Status='custom', H3Color = '#FFFFFF')),
+        shiny::fluidRow(DataMuse:::FE_Clustering(id = 'ClusteringID', Align='left', DropDownRight=TRUE,  Animate=TRUE, Status='custom', H3Color = '#FFFFFF'))
+      ),
+
+      DataMuse:::BlankRow(12L),
+      shiny::tags$details(
+        DataMuse::BlankLine(12L),
+        shiny::tags$summary(shiny::tags$span(shiny::tags$b('Machine Learning'))),
+        shiny::fluidRow(DataMuse:::ML_CatBoost(id = 'CatBoostML', Align = 'left')),
+        shiny::fluidRow(DataMuse:::ML_XGBoost(id = 'XGBoostML' , Align = 'left')),
+        shiny::fluidRow(DataMuse:::ML_LightGBM(id = 'LightGBMML', Align = 'left')),
+        shiny::fluidRow(DataMuse:::ML_H2O_DRF(id = 'H2O_DRFML',  Align = 'left')),
+        shiny::fluidRow(DataMuse:::ML_H2O_GBM(id = 'H2O_GBMML',  Align = 'left')),
+        shiny::fluidRow(DataMuse:::ML_H2O_GLM(id = 'H2O_GLMML', Align = 'left')),
+        shiny::fluidRow(DataMuse:::ML_H2O_HGLM(id = 'H2O_HGLMML', Align = 'left')),
+        shiny::fluidRow(DataMuse:::ML_CausalMediation(id = 'ML_CausalMediationML', Align = 'left'))
+      ),
+
+      DataMuse:::BlankRow(12L),
+      shiny::tags$details(
+        DataMuse::BlankLine(12L),
+        shiny::tags$summary(shiny::tags$span(shiny::tags$b("ML Scoring"))),
+        shiny::fluidRow(DataMuse:::ML_Scoring(id = 'ML_Scoring_link', Align = "left"))
+      ),
+
+      DataMuse:::BlankRow(12L),
+      shiny::tags$details(
+        shiny::tags$summary(shiny::tags$span(shiny::tags$b('Forecasting'))),
+        DataMuse::BlankLine(12L),
+        shiny::tags$details(
+          DataMuse::BlankLine(12L),
+          shiny::tags$summary(shiny::tags$span(shiny::tags$b('Single Series'))),
+          shiny::fluidRow(DataMuse:::FC_TBATS(id = 'FC_TBATS_', Align = 'left')),
+          shiny::fluidRow(DataMuse:::FC_SARIMA(id = 'FC_SARIMA_', Align = 'left')),
+          shiny::fluidRow(DataMuse:::FC_ETS(id = 'FC_ETS_', Align = 'left')),
+          shiny::fluidRow(DataMuse:::FC_Arfima(id = 'FC_Arfima_', Align = 'left')),
+          shiny::fluidRow(DataMuse:::FC_NNet(id = 'FC_NNet_', Align = 'left')),
+          DataMuse::BlankRow(12L)
+        ),
+        shiny::tags$details(
+          DataMuse::BlankLine(12L),
+          shiny::tags$summary(shiny::tags$span(shiny::tags$b('Panel Series'))),
+          shiny::fluidRow(DataMuse:::FC_CatBoostCARMA(id = 'CatBoostCARMA', Align = 'left')),
+          shiny::fluidRow(DataMuse:::FC_XGBoostCARMA(id = 'XGBoostCARMA', Align = 'left')),
+          shiny::fluidRow(DataMuse:::FC_LightGBMCARMA(id = 'LightGBMCARMA', Align = 'left')),
+          DataMuse::BlankRow(12L)
+        )
+        #,
+        # shiny::tags$details(
+        #   DataMuse::BlankLine(12L),
+        #   shiny::tags$summary(shiny::tags$span(shiny::tags$b('Intermittent Demand'))),
+        #   shiny::fluidRow(DataMuse:::FC_CatBoostCARMAID(id = 'CatBoostCARMAID', Align = 'left')),
+        #   shiny::fluidRow(DataMuse:::FC_XGBoostCARMAID(id = 'XGBoostCARMAID', Align = 'left')),
+        #   shiny::fluidRow(DataMuse:::FC_LightGBMCARMAID(id = 'LightGBMCARMAID', Align = 'left')),
+        #   DataMuse::BlankRow(12L)
+        # ),
+        # shiny::tags$details(
+        #   DataMuse::BlankLine(12L),
+        #   shiny::tags$summary(shiny::tags$span(shiny::tags$b('Funnel / Cohort'))),
+        #   shiny::fluidRow(DataMuse:::FC_CatBoostCARMAFUN(id = 'CatBoostCARMAFUN', Align = 'left')),
+        #   shiny::fluidRow(DataMuse:::FC_XGBoostCARMAFUN(id = 'XGBoostCARMAFUN', Align = 'left')),
+        #   shiny::fluidRow(DataMuse:::FC_LightGBMCARMAFUN(id = 'LightGBMCARMAFUN', Align = 'left')),
+        #   DataMuse::BlankRow(12L)
+        # )
+      ),
+
+      DataMuse:::BlankRow(12L),
+      shiny::tags$details(
+        shiny::tags$summary(shiny::tags$span(shiny::tags$b('Output Panels'))),
+        DataMuse::BlankLine(12L),
+        shiny::fluidRow(
+          shiny::column(6L, align = 'center', shiny::actionButton(inputId = "NewDataTab", label = "Data Tab", icon = shiny::icon(name = "plus"), style = PostGREButtonStyle)),
+          shiny::column(6L, align = 'center', shiny::actionButton(inputId = "RemoveDataTab", label = "Data Tab", icon = shiny::icon(name = "minus"), style = CloudButtonStyle))),
+        DataMuse::BlankRow(12L),
+        shiny::fluidRow(
+          shiny::column(6L, align = 'center', shiny::actionButton(inputId = "NewPlotTab", label = "Plot Tab", icon = shiny::icon(name = "plus"), style = PostGREButtonStyle)),
+          shiny::column(6L, align = 'center', shiny::actionButton(inputId = "RemovePlotTab", label = "Plot Tab", icon = shiny::icon(name = "minus"), style = CloudButtonStyle))),
+        DataMuse::BlankRow(12L),
+        shiny::fluidRow(
+          shiny::column(6L, align = 'center', shiny::actionButton(inputId = "NewEDATab", label = "EDA Tab", icon = shiny::icon(name = "plus"), style = PostGREButtonStyle)),
+          shiny::column(6L, align = 'center', shiny::actionButton(inputId = "RemoveEDATab", label = "EDA Tab", icon = shiny::icon(name = "minus"), style = CloudButtonStyle))),
+        DataMuse::BlankRow(12L),
+        shiny::fluidRow(
+          shiny::column(6L, align = 'center', shiny::actionButton(inputId = "NewMLTab", label = "ML Tab", icon = shiny::icon(name = "plus"), style = PostGREButtonStyle)),
+          shiny::column(6L, align = 'center', shiny::actionButton(inputId = "RemoveMLTab", label = "ML Tab", icon = shiny::icon(name = "minus"), style = CloudButtonStyle))),
+        DataMuse::BlankRow(12L)
+      ),
+
+      DataMuse::BlankRow(12L),
+      shiny::tags$details(
+        shiny::tags$summary(shiny::tags$span(shiny::tags$b('Settings'))),
+        DataMuse::BlankLine(12L),
+        shiny::tags$details(
+          shiny::tags$summary(shiny::tags$span(shiny::tags$b('Plots & Tables'))),
+          DataMuse::BlankRow(12L),
+          shiny::fluidRow(
+            shiny::column(
+              12L,
+              DataMuse::SelectizeInput(InputID = "EchartsTheme", Label = "Plots Theme", Choices = EchartThemes, SelectedDefault = "wef", Multiple = FALSE))),
+          DataMuse::BlankRow(12L),
+          shiny::fluidRow(
+            shiny::column(
+              12L,
+              DataMuse::SelectizeInput(InputID = "EchartsTimeLine", Label = "Plots Timeline", Choices = c(TRUE,FALSE), SelectedDefault = FALSE, Multiple = FALSE))),
+          DataMuse::BlankRow(12L),
+          shiny::fluidRow(
+            style = "padding-left: 15px;",
+            shiny::tags$span(shiny::tags$b('Table & Plots Font Color')),
+            shiny::column(
+              12L, align = 'left', style = "padding-left: 0px; padding-right: 0px;",
+              shiny.fluent::ColorPicker.shinyInput("ColorFont", value = "#dcdce3"),
+              DataMuse:::BlankRow(12)
+            )
+          )
+        ),
+
+        shiny::tags$details(
+          shiny::tags$summary(shiny::tags$span(shiny::tags$b('App Theme'))),
+          DataMuse::BlankRow(12L),
+          shiny::fluidRow(
+            shiny::column(
+              12L, align = 'left',
+              shiny::tags$h5(shiny::tags$b('App Background')),
+              DataMuse::SelectizeInput(
+                InputID = 'BackgroundImageSelect', Label = NULL,
+                Multiple = TRUE, MaxVars = 1L, SelectedDefault = 'PalmTreesLake',
+                CloseAfterSelect = FALSE,
+                Choices = unique(c('None',sort(c('River','FoggyMountains','CatMoon','PalmTreesLake','MountainLake','FoggyTrees','GreenWoods','Liminal-Train','Dock-Mountains-Sunset','SailBoat','Europe','Vacation','BeachCave','Vespa','PerformanceReview','Lightning','Country','Getaway','Outrun','Havana')))))
+            )
+          ),
+          shiny::fluidRow(
+            shiny::column(
+              12L, align = 'left',
+              shiny::tags$h5(shiny::tags$b('App Theme')),
+              DataMuse::SelectizeInput(
+                InputID = 'CssSelect', Label = NULL, Choices = c('day-light-blue','light-gray','medium-gray','dark-gray','piano-black','yellow','yellow-green','green','green-blue','light-blue','dodger-blue','blue','blue-purple','purple','pink','red'),
+                Multiple = TRUE, MaxVars = 1L, SelectedDefault = 'medium-gray', CloseAfterSelect = FALSE)
+            )
+          )
+          # ,
+          # shiny::fluidRow(
+          #   shiny::column(
+          #     12L, align = 'left',
+          #     shiny::tags$h5(shiny::tags$b('Blank Plot')),
+          #     DataMuse::SelectizeInput(
+          #       InputID = 'BlankPlotBackground', Label = NULL, Choices = c("Poincare","Divergence","Space", "Tenet"),
+          #       Multiple = TRUE, MaxVars = 1L, SelectedDefault = 'Poincare', CloseAfterSelect = FALSE)
+          #   )
+          # )
+        )#,
+
+        # shiny::tags$details(
+        #   shiny::tags$summary(shiny::tags$span(shiny::tags$b('R Packages'))),
+        #   shiny::fluidRow(
+        #     shiny::column(
+        #       12L,
+        #       DataMuse::BlankLine(12L),
+        #       shiny::fluidRow(
+        #         class = "PackageLinks",
+        #         style="padding-left: 20px; min-height: 35px",
+        #         shiny::tagList(
+        #           shiny::fluidRow(
+        #             shiny::column(
+        #               12L,
+        #               shiny::tags$h3("DataMuse"))),
+        #           shiny::HTML("<a class='github-button' href='https://github.com/AdrianAntico/DataMuse' data-color-scheme='no-preference: dark; light: light; dark: dark;' data-icon='octicon-star' data-size='large' aria-label='Star AdrianAntico/DataMuse on GitHub'>Star</a>"),
+        #           shiny::HTML("<a class='github-button' href='https://github.com/AdrianAntico/DataMuse/issues' data-color-scheme='no-preference: dark; light: light; dark: dark;' data-icon='octicon-issue-opened' data-size='large' aria-label='Issue AdrianAntico/DataMuse on GitHub'>Issue</a>")
+        #         )),
+        #       DataMuse:::BlankRow(12L),
+        #       shiny::fluidRow(
+        #         class = "PackageLinks",
+        #         style="padding-left: 20px; min-height: 35px",
+        #         shiny::tagList(
+        #           shiny::fluidRow(
+        #             shiny::column(
+        #               12L,
+        #               shiny::tags$h3("Rodeo"))),
+        #           shiny::HTML("<a class='github-button' href='https://github.com/AdrianAntico/DataMuse' data-color-scheme='no-preference: dark; light: light; dark: dark;' data-icon='octicon-star' data-size='large' aria-label='Star AdrianAntico/Rodeo on GitHub'>Star</a>"),
+        #           shiny::HTML("<a class='github-button' href='https://github.com/AdrianAntico/Rodeo/issues' data-color-scheme='no-preference: dark; light: light; dark: dark;' data-icon='octicon-issue-opened' data-size='large' aria-label='Issue AdrianAntico/Rodeo on GitHub'>Issue</a>")
+        #         )
+        #       ),
+        #       DataMuse:::BlankRow(12L),
+        #       shiny::fluidRow(
+        #         class = "PackageLinks",
+        #         style="padding-left: 20px; min-height: 35px",
+        #         shiny::tagList(
+        #           shiny::fluidRow(
+        #             shiny::column(
+        #               12L,
+        #               shiny::tags$h3("AutoPlots"))),
+        #           shiny::HTML("<a class='github-button' href='https://github.com/AdrianAntico/AutoPlots' data-color-scheme='no-preference: dark; light: light; dark: dark;' data-icon='octicon-star' data-size='large' aria-label='Star AdrianAntico/AutoPlots on GitHub'>Star</a>"),
+        #           shiny::HTML("<a class='github-button' href='https://github.com/AdrianAntico/AutoPlots/issues' data-color-scheme='no-preference: dark; light: light; dark: dark;' data-icon='octicon-issue-opened' data-size='large' aria-label='Issue AdrianAntico/AutoPlots on GitHub'>Issue</a>")
+        #         )
+        #       ),
+        #       DataMuse:::BlankRow(12L),
+        #       shiny::fluidRow(
+        #         class = "PackageLinks",
+        #         style="padding-left: 20px; min-height: 35px",
+        #         shiny::tagList(
+        #           shiny::fluidRow(
+        #             shiny::column(
+        #               12L,
+        #               shiny::tags$h3("AutoQuant"))),
+        #           shiny::HTML("<a class='github-button' href='https://github.com/AdrianAntico/AutoQuant' data-color-scheme='no-preference: dark; light: light; dark: dark;' data-icon='octicon-star' data-size='large' aria-label='Star AdrianAntico/AutoQuant on GitHub'>Star</a>"),
+        #           shiny::HTML("<a class='github-button' href='https://github.com/AdrianAntico/AutoQuant/issues' data-color-scheme='no-preference: dark; light: light; dark: dark;' data-icon='octicon-issue-opened' data-size='large' aria-label='Issue AdrianAntico/AutoQuant on GitHub'>Issue</a>")
+        #         )
+        #       ),
+        #       # DataMuse:::BlankRow(12L),
+        #       # shiny::fluidRow(
+        #       #   class = "PackageLinks",
+        #       #   style="padding-left: 20px; min-height: 35px",
+        #       #   shiny::tagList(
+        #       #     shiny::fluidRow(
+        #       #       shiny::column(
+        #       #         12L,
+        #       #         shiny::tags$h3("AutoForecast"))),
+        #       #     shiny::HTML("<a class='github-button' href='https://github.com/AdrianAntico/AutoForecasting' data-color-scheme='no-preference: dark; light: light; dark: dark;' data-icon='octicon-star' data-size='large' aria-label='Star AdrianAntico/AutoForecasting on GitHub'>Star</a>"),
+        #       #     shiny::HTML("<a class='github-button' href='https://github.com/AdrianAntico/AutoForecasting/issues' data-color-scheme='no-preference: dark; light: light; dark: dark;' data-icon='octicon-issue-opened' data-size='large' aria-label='Issue AdrianAntico/AutoForecasting on GitHub'>Issue</a>")
+        #       #   )
+        #       # ),
+        #       DataMuse:::BlankRow(12L),
+        #       shiny::fluidRow(
+        #         class = "PackageLinks",
+        #         style="padding-left: 20px; min-height: 35px",
+        #         shiny::tagList(
+        #           shiny::fluidRow(
+        #             shiny::column(
+        #               12L,
+        #               shiny::tags$h3("AutoNLP"))),
+        #           shiny::HTML("<a class='github-button' href='https://github.com/AdrianAntico/AutoNLP' data-color-scheme='no-preference: dark; light: light; dark: dark;' data-icon='octicon-star' data-size='large' aria-label='Star AdrianAntico/AutoNLP on GitHub'>Star</a>"),
+        #           shiny::HTML("<a class='github-button' href='https://github.com/AdrianAntico/AutoNLP/issues' data-color-scheme='no-preference: dark; light: light; dark: dark;' data-icon='octicon-issue-opened' data-size='large' aria-label='Issue AdrianAntico/AutoNLP on GitHub'>Issue</a>")
+        #         )
+        #       ) # end fluid row
+        #     ) # end column
+        #   ) # end fluid row
+        # ) # R Packages Details
+      ) # Settings Details
+    ),
+    DataMuse:::BlankRow(12L),
+    shiny::fluidRow(
+      style = "background-color: #0000; min-height: 300px; max-height: 300px;",
+      shiny::column(
+        12L,
+        shiny::fluidRow(
+          shiny::column(
+            12L,
+            shiny::tagList(
+              tags$h1("Contact"),
+              shiny::a(
+                # [![Github](https://img.shields.io/badge/-Github-000?style=flat&logo=Github&logoColor=white)](https://github.com/AdrianAntico)
+                shiny::markdown("
+                            [![Linkedin](https://img.shields.io/badge/-LinkedIn-blue?style=flat&logo=Linkedin&logoColor=white)](https://www.linkedin.com/company/datamuseai/)
+                            "),
+                href = "")))),
+        shiny::fluidRow(
+          shiny::column(
+            12L,
+            shiny::fluidRow(
+              shiny::column(
+                12L,
+                shiny::h5("Copyright © 2023 DataMuse.ai, Inc. - All Rights Reserved."))))),
+        DataMuse:::BlankRow(12L)
+        # shiny::fluidRow(
+        #   shiny::column(
+        #     12L,
+        #     shiny::HTML(
+        #       "
+        #     <a class='github-button' href='https://github.com/sponsors/AdrianAntico' data-color-scheme='no-preference: dark; light: light; dark: dark;' data-icon='octicon-heart' data-size='large' aria-label='Sponsor @AdrianAntico on GitHub'>Sponsor</a>
+        #     "
+        #     ),
+        #     shiny::HTML("<a class='github-button' href='https://github.com/AdrianAntico/DataMuse' data-color-scheme='no-preference: dark; light: light; dark: dark;' data-icon='octicon-star' data-size='large' aria-label='Star AdrianAntico/DataMuse on GitHub'>Star</a>")
+        #   )
+        # )
+      ) # column
+    ) # fluid row
+  ) # box
 }

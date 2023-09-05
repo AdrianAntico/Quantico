@@ -3,6 +3,13 @@
 /* Get a fancy font from Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Yusei+Magic&display=swap');
 
+.box.box-solid.box-warning {
+  border: 0px solid #000;
+  background-color: #00000000;
+  border-radius: 30px;
+  box-shadow: 0px 2px 6px 0px #bb00fe;
+}
+
 .btn-default.active, .btn-default:active, .open > .dropdown-toggle.btn-default {
   color: #f3f3f3;
   background-color: #2765fe;
@@ -695,9 +702,7 @@ body {
 }
 
 .box.box-solid.box-warning>.box-header {
-	color: #4a44fc;
-	background: #4a44fc;
-	background-color: #4a44fc
+	background-color: #00000000;
 }
 
 .box.box-solid.box-warning>.box-header a,

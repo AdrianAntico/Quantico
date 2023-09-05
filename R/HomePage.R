@@ -5490,10 +5490,10 @@ HomePage <- function(id, Page, AppWidth=12L) {
         style="padding-left: 15px",
         id = "PlotAddButtonsUILocation",
         DataMuse::BlankRow(12),
-        DataMuse::BlankRow(12),
-        shiny::fluidRow(
-          shiny::h3("Enjoy the view", style = "padding-left: 45px")
-        )
+        DataMuse::BlankRow(12)#,
+        #shiny::fluidRow(
+        #  shiny::h3("Enjoy the view", style = "padding-left: 45px")
+        #)
       )
     )
   ) # closes box

@@ -74,7 +74,7 @@ ui <- shinydashboard::dashboardPage(
             # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
             shinydashboard::box(
               title = NULL, solidHeader = TRUE, collapsible = FALSE, status = 'danger', width = 12L,
-              style = "background-color: #0000; min-height: 1460px; max-height: 1460px",
+              style = "background-color: #0000; min-height: 1458px; max-height: 1458px",
               shiny::fluidRow(
                 style = "padding-left: 15px; padding-right: 20px; background-color: #0000; min-height: 867px; max-height: 867px; overflow-y: auto; overflow-x: clip;",
 
@@ -519,57 +519,108 @@ ui <- shinydashboard::dashboardPage(
                   # @@@@@@@@@@@@@@@@@@@@ ----
                   # Analysis             ----
                   # @@@@@@@@@@@@@@@@@@@@ ----
-                  # shiny::tabPanel(
-                  #   id = "Hypothesis_Testing",
-                  #   title = 'Inference',
-                  #   icon = shiny::icon('code'),
-                  #   DataMuse:::BlankRow(12L),
-                  #   shinydashboard::box(
-                  #     title = NULL, solidHeader = TRUE, collapsible = FALSE, status = 'danger', width = 12L, class = "OutputPaneBox",
-                  #     style = "padding-top: 10px; min-height: 1540px; max-height: 1540px; overflow-x: clip; overflow-y:auto; margin-top: 1px; padding-left: 12px; background-color: #0000; border: 0px #0000 solid; box-shadow: 0px 0px 0px 0px #0000;",
-                  #     shiny::fluidRow(
-                  #       style = "padding-left: 8px;padding-right: 15px;padding-top: 8px;",
-                  #
-                  #       shiny::tabsetPanel(
-                  #         id = "htestss",
-                  #         selected = "Normality",
-                  #         type = "tabs",
-                  #
-                  #         shiny::tabPanel(
-                  #           title = "Normality",
-                  #
-                  #           shinydashboard::box(
-                  #             title = NULL, solidHeader = TRUE, collapsible = FALSE, status = 'danger', width = 12L,
-                  #             style = "padding-top: 5px",
-                  #
-                  #             shiny::tabPanel(
-                  #               title = "Correlation",
-                  #
-                  #             ),
-                  #
-                  #             shiny::tabPanel(
-                  #               title = "Parametric",
-                  #
-                  #             ),
-                  #
-                  #             shiny::tabPanel(
-                  #               title = "Nonparametric",
-                  #
-                  #             ),
-                  #
-                  #             shiny::tabPanel(
-                  #               title = "Stationarity",
-                  #
-                  #             )
-                  #           )
-                  #         )
-                  #       )
-                  #     )
-                  #   )
-                  # )
+                  shiny::tabPanel(
+                    id = "Hypothesis_Testing",
+                    title = 'Inference',
+                    icon = shiny::icon('microscope'),
+                    DataMuse:::BlankRow(12L),
+                    shinydashboard::box(
+                      title = NULL, solidHeader = TRUE, collapsible = FALSE, status = 'danger', width = 12L, class = "OutputPaneBox",
+                      style = "padding-top: 10px; min-height: 1540px; max-height: 1540px; overflow-x: clip; overflow-y:auto; margin-top: 1px; padding-left: 12px; background-color: #0000; border: 0px #0000 solid; box-shadow: 0px 0px 0px 0px #0000;",
+                      shiny::fluidRow(
+                        style = "padding-left: 8px;padding-right: 15px;padding-top: 8px;",
 
+                        shinydashboard::box(
+                          title = NULL, solidHeader = TRUE, collapsible = FALSE, status = 'danger', width = 12L,
+                          style = "padding-top: 5px",
 
-                ),
+                          shiny::tabsetPanel(
+                            id = "htestss",
+                            selected = "Normality",
+                            type = "tabs",
+
+                            shiny::tabPanel(
+                              title = "Normality",
+                              DataMuse:::BlankRow(12L),
+                              shiny::fluidRow(
+                                shiny::column(
+                                  width = 4L, align = "center",
+                                  DataMuse::PickerInput(InputID = "Normality_Data", Label = "Data")
+                                ),
+                                shiny::column(
+                                  width = 4L, align = "center",
+                                  DataMuse::PickerInput(InputID = "Normality_YVars", Label = "Variables")
+                                )
+                              )
+                            ),
+
+                            shiny::tabPanel(
+                              title = "Correlation",
+                              DataMuse:::BlankRow(12L),
+                              shiny::fluidRow(
+                                shiny::column(
+                                  width = 4L, align = "center",
+                                  DataMuse::PickerInput(InputID = "Correlation_Data", Label = "Data")
+                                ),
+                                shiny::column(
+                                  width = 4L, align = "center",
+                                  DataMuse::PickerInput(InputID = "Correlation_YVars", Label = "Variables")
+                                )
+                              )
+                            ),
+
+                            shiny::tabPanel(
+                              title = "Parametric",
+                              DataMuse:::BlankRow(12L),
+                              shiny::fluidRow(
+                                shiny::column(
+                                  width = 4L, align = "center",
+                                  DataMuse::PickerInput(InputID = "Parametric_Data", Label = "Data")
+                                ),
+                                shiny::column(
+                                  width = 4L, align = "center",
+                                  DataMuse::PickerInput(InputID = "Parametric_YVars", Label = "Variables")
+                                )
+                              )
+                            ),
+
+                            shiny::tabPanel(
+                              title = "Nonparametric",
+                              DataMuse:::BlankRow(12L),
+                              shiny::fluidRow(
+                                shiny::column(
+                                  width = 4L, align = "center",
+                                  DataMuse::PickerInput(InputID = "Nonparametric_Data", Label = "Data")
+                                ),
+                                shiny::column(
+                                  width = 4L, align = "center",
+                                  DataMuse::PickerInput(InputID = "Nonparametric_YVars", Label = "Variables")
+                                )
+                              )
+                            ),
+
+                            shiny::tabPanel(
+                              title = "Stationarity",
+                              DataMuse:::BlankRow(12L),
+                              shiny::fluidRow(
+                                shiny::column(
+                                  width = 4L, align = "center",
+                                  DataMuse::PickerInput(InputID = "Stationarity_Data", Label = "Data")
+                                ),
+                                shiny::column(
+                                  width = 4L, align = "center",
+                                  DataMuse::PickerInput(InputID = "Stationarity_YVars", Label = "Variables")
+                                )
+                              )
+                            )
+
+                          ) # end box
+                        ) # end tabsetPanel
+                      ) # end fluidRow
+                    ) # end box
+                  ) # end tabPanel
+
+                ), # end sortableTabsetPanel
 
                 # ----
 

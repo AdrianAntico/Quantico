@@ -576,6 +576,8 @@ All.Normality.Tests <- function(dt = NULL,
 #' @param Vals Numeric vector of values to test. Must have positive standard deviation and must be of length greater than or equal to 8
 #' @param SampleSize sub sampling of data
 #' @param Samples number of iterations to run
+#' @param Method "pearson", "kendall", "spearman", "biserial", "polychoric", "tetrachoric", "biweight", "distance", "blomqvist", "hoeffding", "gamma", "gaussian", "shepherd"
+#' @param P_Adjust Frequentist corrections, which include: default "holm", "hochberg", "hommel", "bonferroni", "BH", "BY", "fdr", "somers" or "none"
 #'
 #' @family Inference
 #'
@@ -589,7 +591,51 @@ All.Normality.Tests <- function(dt = NULL,
 #' }
 #'
 #' @export
-Pearsons.Correlation.Test <- function(x, y, SampleSize, Samples) {
+Correlation.Test <- function(dt = NULL,
+                             x1 = NULL,
+                             x2 = NULL,
+                             SampleSize = NULL,
+                             Samples = NULL,
+                             Method = NULL,
+                             P_Adjust = "holm",
+                             Bayesian = FALSE) {
+
+  # Pearsons correlation
+  correlation::correlation(
+    data = dt,
+    method = "pearson",
+    p_adjust = "holm",
+    ci = 0.95,
+    bayesian = FALSE,
+    bayesian_prior = "medium",
+    bayesian_ci_method = "hdi",
+    bayesian_test = c("pd", "rope", "bf"),
+    redundant = FALSE,
+    include_factors = FALSE,
+    partial = FALSE,
+    partial_bayesian = FALSE,
+    multilevel = FALSE,
+    ranktransform = FALSE,
+    winsorize = FALSE,
+    verbose = TRUE,
+    standardize_names = getOption("easystats.standardize_names", FALSE),
+  )
+
+  # Spearman’s rank correlation
+  # Kendall’s rank correlation
+  # Biweight midcorrelation
+  # Distance correlation
+  # Percentage bend correlation
+  # Shepherd’s Pi correlation
+  # Blomqvist’s coefficient
+  # Hoeffding’s D
+  # Gamma correlation
+  # Gaussian rank correlation
+  # Point-Biserial and biserial correlation
+  # Winsorized correlation
+  # Polychoric correlation
+  # Tetrachoric correlation
+  # Multilevel correlation
 
 }
 

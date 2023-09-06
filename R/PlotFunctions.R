@@ -937,7 +937,7 @@ Shiny.Plot.Build <- function(input,
               YVar = YVar,
               Height = PlotHeight[incre],
               Width = PlotWidth[incre],
-              Title = "Word Cloud",
+              Title = Title,
               EchartsTheme = EchartsTheme,
               TextColor = ColorFont,
               Debug = Debug)
@@ -961,7 +961,7 @@ Shiny.Plot.Build <- function(input,
               YVarTrans = YVarTrans,
               Height = PlotHeight[incre],
               Width = PlotWidth[incre],
-              Title = "Normal Probability Plot",
+              Title = Title,
               EchartsTheme = EchartsTheme,
               TextColor = ColorFont,
               Debug = Debug)
@@ -976,15 +976,17 @@ Shiny.Plot.Build <- function(input,
               "TextColor = ", DataMuse:::CEP(ColorFont), "\n  ",
               "EchartsTheme = ", DataMuse:::CEP(EchartsTheme), ")\n"))}, error = function(x) NULL)
 
-          } else if(PlotType == "WordCloud") {
+          } else if(PlotType == "ParallelPlot") {
 
             incre <- incre + 1L
-            PlotList[[paste0('Plot', PlotNumberss)]] <- AutoPlots::Plot.WordCloud(
+
+            PlotList[[paste0('Plot', PlotNumberss)]] <- AutoPlots::Plot.Parallel(
               dt = data1,
-              YVar = YVar,
+              SampleSize = SampleSize,
+              CorrVars = YVar,
               Height = PlotHeight[incre],
               Width = PlotWidth[incre],
-              Title = "Word Cloud",
+              Title = Title,
               EchartsTheme = EchartsTheme,
               TextColor = ColorFont,
               Debug = Debug)
@@ -992,20 +994,18 @@ Shiny.Plot.Build <- function(input,
             CodeList <- tryCatch({DataMuse:::Shiny.CodePrint.Collect(CodeList, paste0(
               "\n\n",
               "# Build Plot\n",
-              "AutoPlots::Plot.WordCloud(", "\n  ",
+              "AutoPlots::Plot.Parallel(", "\n  ",
               "dt = data1,\n  ",
-              "YVar = ", DataMuse:::ExpandText(YVar), ",\n  ",
+              "SampleSize = ", DataMuse:::CEPP(SampleSize), ",\n  ",
+              "CorrVars = ", DataMuse:::ExpandText(YVar), ",\n  ",
               "Title = ", DataMuse:::CEP(Title), ",\n  ",
               "TextColor = ", DataMuse:::CEP(ColorFont), "\n  ",
               "EchartsTheme = ", DataMuse:::CEP(EchartsTheme), ")\n"))}, error = function(x) NULL)
 
           } else if(PlotType == "RadarPlot") {
 
-            for(adsfasdfafdsasdfasdfasdf in 1:10) {
-              print(PreAgg)
-            }
-
             incre <- incre + 1L
+
             PlotList[[paste0('Plot', PlotNumberss)]] <- AutoPlots::Plot.Radar(
               dt = data1,
               PreAgg = PreAgg,
@@ -1015,7 +1015,7 @@ Shiny.Plot.Build <- function(input,
               GroupVar = GroupVars,
               Height = PlotHeight[incre],
               Width = PlotWidth[incre],
-              Title = "Radar Plot",
+              Title = Title,
               EchartsTheme = EchartsTheme,
               TextColor = ColorFont,
               Debug = Debug)
@@ -1063,7 +1063,7 @@ Shiny.Plot.Build <- function(input,
               AggMethod = "sum",
               Height = PlotHeight[incre],
               Width = PlotWidth[incre],
-              Title = "Autocorrelation Plot",
+              Title = Title,
               EchartsTheme = EchartsTheme,
               TextColor = ColorFont,
               Debug = Debug)
@@ -1112,7 +1112,7 @@ Shiny.Plot.Build <- function(input,
                 AggMethod = "sum",
                 Height = PlotHeight[incre],
                 Width = PlotWidth[incre],
-                Title = "Partial Autocorrelation Plot",
+                Title = Title,
                 EchartsTheme = EchartsTheme,
                 TextColor = ColorFont,
                 Debug = Debug)

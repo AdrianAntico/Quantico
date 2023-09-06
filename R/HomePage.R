@@ -104,6 +104,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                     shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#copulaplots", "Copula Plots")),
                     shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#3dcopulaplots", "3D Copula Plots")),
                     shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#heatmapplots", "Heatmap Plots")),
+                    shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#parallelplots", "Parallel Plots")),
                     shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#correlogramplots", "Correlogram Plots"))),
 
                   DataMuse::BlankRow(12L),
@@ -1486,6 +1487,39 @@ HomePage <- function(id, Page, AppWidth=12L) {
               DataMuse::BlankRow(12),
               DataMuse::BlankRow(12),
               DataMuse::BlankRow(12),
+
+              # Parallel Plots ----
+              shinydashboard::box(
+                title = NULL, solidHeader = TRUE, collapsible = FALSE, status = "danger", width = 12L,
+                shiny::fluidRow(
+                  shiny::column(
+                    width = 12L,
+                    shiny::a(name = "parallelplots"),
+                    shiny::h3("Parallel Plots"),
+                    shiny::p("Parallel Plot types are used when you are looking to understand
+                           the relationships between many variables.")
+                  )
+                ),
+
+                DataMuse::BlankRow(12),
+                shiny::tags$img(
+                  src = "ParallelPlot.PNG", # "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/CorrelogramPlot.PNG?raw=true",
+                  alt = "DataMuse",
+                  `data-view-component` = "true",
+                  height="100%",
+                  width="100%"),
+                DataMuse::BlankRow(12),
+                DataMuse::BlankRow(12),
+
+                DataMuse::BlankRow(12),
+                shiny::fluidRow(shiny::column(width = 12L, shiny::h3("Parallel Plots Usage"))),
+                shiny::markdown(
+                  "
+                * Parallel plots require AT LEAST one Y-Variable. Categorical variables are allowed.
+                * Group Variables are not optional
+                "
+                )
+              ),
 
               # Correlogram Plots ----
               shinydashboard::box(

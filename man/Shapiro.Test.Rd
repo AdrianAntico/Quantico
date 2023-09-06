@@ -27,9 +27,9 @@ Other Inference:
 \code{\link{Agostino.Test}()},
 \code{\link{All.Normality.Tests}()},
 \code{\link{Anderson.Darling.Test}()},
+\code{\link{Correlation.Test}()},
 \code{\link{Cramer.Von.Mises.Test}()},
 \code{\link{Jarque.Bera.Test}()},
-\code{\link{Kolmogorov.Smirnov.Test}()},
-\code{\link{Pearsons.Correlation.Test}()}
+\code{\link{Kolmogorov.Smirnov.Test}()}
 }
 \concept{Inference}

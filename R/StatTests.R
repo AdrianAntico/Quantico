@@ -1,4 +1,435 @@
 # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
+# Automated Functions                                                        ----
+# @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
+
+#' @title All.Normality.Tests
+#'
+#' @family Inference
+#'
+#' @export
+Normality.Analysis <- function(dt = NULL,
+                               YVars = NULL,
+                               EchartsTheme = "macarons",
+                               TextColor = "black",
+                               PlotHeight = "600px",
+                               PlotWidth = "300px",
+                               SampleSize.ADT = NULL,
+                               Samples.ADT = 1,
+                               SampleSize.CVMT = NULL,
+                               Samples.CVMT = 1,
+                               SampleSize.KST = NULL,
+                               Samples.KST = 1,
+                               SampleSize.ST = NULL,
+                               Samples.ST = 1,
+                               SampleSize.JBT = NULL,
+                               Samples.JBT = 1,
+                               SampleSize.AT = NULL,
+                               Samples.AT = 1) {
+
+  # library(DataMuse)
+  # dt <- data.table::fread(file.choose())
+  # YVars <- c("Daily Liters", "Daily Margin", "Daily Revenue", "Daily Units")
+  # SampleSize.ADT = NULL
+  # Samples.ADT = 1
+  # SampleSize.CVMT = NULL
+  # Samples.CVMT = 1
+  # SampleSize.KST = NULL
+  # Samples.KST = 1
+  # SampleSize.ST = NULL
+  # Samples.ST = 1
+  # SampleSize.JBT = NULL
+  # Samples.JBT = 1
+  # SampleSize.AT = NULL
+  # Samples.AT = 1
+  # EchartsTheme = "macarons"
+  # TextColor = "black"
+  # PlotHeight = "300px"
+  # PlotWidth = "600px"
+
+  # KS Test throws warnings for duplicate values
+  options(warn = -1)
+
+  # Convert to data.table
+  if(!data.table::is.data.table(dt)) tryCatch({data.table::setDT(dt)}, error = function(x) {
+    dt <- data.table::as.data.table(dt)
+  })
+
+  # YVars to Test
+  YVars2Test <- c()
+  for(i in YVars) {
+    if(class(dt[[i]])[1L] %in% c("numeric","integer")) {
+      YVars2Test <- c(YVars2Test, i)
+    }
+  }
+
+  # Results table
+  gg <- data.table::CJ(
+    Variable = YVars2Test,
+    Test = c("Anderson.Darling.Test",
+             "Cramer.Von.Mises.Test",
+             "Kolmogorov.Smirnov.Test",
+             "Shapiro.Test",
+             "Jarque.Bera.Test",
+             "Agostino.Test"),
+    P_Value = c(-1.0)
+  )
+
+  # Loop through testing and results gathering
+  OutputList <- list()
+  for(val in YVars2Test) {# val = "Daily Margin"
+
+    # Create Vals for tests
+    Vals <- dt[[val]] # unique(dt[[val]])
+
+    # Run tests
+    x1 <- Anderson.Darling.Test(Vals, SampleSize = SampleSize.ADT, Samples = Samples.ADT)
+    gg <- gg[Variable == eval(val) & Test == "Anderson.Darling.Test", P_Value := mean(x1$P_Value, na.rm = TRUE)]
+
+    x1 <- Cramer.Von.Mises.Test(Vals, SampleSize = SampleSize.CVMT, Samples = Samples.CVMT)
+    gg <- gg[Variable == eval(val) & Test == "Cramer.Von.Mises.Test", P_Value := mean(x1$P_Value, na.rm = TRUE)]
+
+    x1 <- Kolmogorov.Smirnov.Test(Vals, SampleSize = SampleSize.KST, Samples = Samples.KST)
+    gg <- gg[Variable == eval(val) & Test == "Kolmogorov.Smirnov.Test", P_Value := mean(x1$P_Value_2s, na.rm = TRUE)]
+
+    x1 <- Shapiro.Test(Vals, SampleSize = SampleSize.ST, Samples = Samples.ST)
+    gg <- gg[Variable == eval(val) & Test == "Shapiro.Test", P_Value := mean(x1$P_Value, na.rm = TRUE)]
+
+    x1 <- Jarque.Bera.Test(Vals, SampleSize = SampleSize.JBT, Samples = Samples.JBT)
+    gg <- gg[Variable == eval(val) & Test == "Jarque.Bera.Test", P_Value := mean(x1$P_Value, na.rm = TRUE)]
+
+    x1 <- Agostino.Test(Vals, SampleSize = SampleSize.AT, Samples = Samples.AT)
+    gg <- gg[Variable == eval(val) & Test == "Agostino.Test", P_Value := mean(x1$P_Value_2s, na.rm = TRUE)]
+
+    # Radar plot of P_Values
+    OutputList[[paste0("Radar_", val)]] <- AutoPlots::Plot.Radar(
+      dt = gg[Variable == eval(val)],
+      PreAgg = TRUE,
+      YVar = c("P_Value"),
+      GroupVar = "Test",
+      EchartsTheme = EchartsTheme,
+      TextColor = TextColor,
+      Height = PlotHeight,
+      Width = PlotWidth)
+
+    # Normal Probability Plot of Vals
+    OutputList[[paste0("Probability_", val)]] <- AutoPlots::Plot.ProbabilityPlot(
+      dt = dt,
+      SampleSize = 2500,
+      YVar = val,
+      EchartsTheme = EchartsTheme,
+      TextColor = TextColor,
+      Height = PlotHeight,
+      Width = PlotWidth)
+  }
+
+  # FontColor <- list()
+  # FontColor$flv = "black"
+  OutputList[["Metrics"]] <- reactable::reactable(
+    data = gg,
+    compact = TRUE,
+    defaultPageSize = 6,
+    wrap = TRUE,
+    filterable = TRUE,
+    fullWidth = TRUE,
+    highlight = TRUE,
+    pagination = TRUE,
+    resizable = TRUE,
+    searchable = TRUE,
+    selection = "multiple",
+    showPagination = TRUE,
+    showSortable = TRUE,
+    showSortIcon = TRUE,
+    sortable = TRUE,
+    striped = TRUE,
+    theme = reactable::reactableTheme(
+      color = TextColor,
+      backgroundColor = "#4f4f4f26",
+      borderColor = "#dfe2e5",
+      stripedColor = "#4f4f4f8f",
+      highlightColor = "#8989898f",
+      cellPadding = "8px 12px",
+      style = list(
+        fontFamily = "-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif"
+      ),
+      searchInputStyle = list(width = "100%")
+    )
+  )
+
+  # Reorder elements and return
+  v <- names(OutputList)
+  v <- v[c(length(v), 1:(length(v)-1))]
+  OutputList <- OutputList[v]
+  return(OutputList)
+}
+
+#' @title Correlation.Test
+#'
+#' @family Inference
+#'
+#' @param dt Numeric vector of values to test. Must have positive standard deviation and must be of length greater than or equal to 8
+#' @param CorrVars character
+#' @param SampleSize sub sampling of data
+#' @param EchartsTheme = "macarons"
+#' @param TextColor = "black"
+#' @param PlotHeight = "600px"
+#' @param PlotWidth = "300px"
+#' @param P_Adjust Frequentist corrections, which include: default "holm", "hochberg", "hommel", "bonferroni", "BH", "BY", "fdr", "somers" or "none"
+#' @param Bayesian logical
+#' @param Bayesian_Prior Choose from default "medium", "medium.narrow", "medium", "wide", and "ultrawide"
+#' @param MultiLevel logical. TRUE using random effects, FALSE uses fixed effects
+#' @param Include_Factors logical
+#' @param Partial logical
+#' @param Partial_Bayesian logical
+#'
+#' @export
+Correlation.Test <- function(dt = NULL,
+                             CorrVars = NULL,
+                             DateVar = NULL,
+                             SampleSize = 10000,
+                             EchartsTheme = "macarons",
+                             TextColor = "black",
+                             PlotHeight = "600px",
+                             PlotWidth = "300px",
+                             P_Adjust = "holm",
+                             Bayesian = FALSE,
+                             Bayesian_Prior = "medium",
+                             MultiLevel = FALSE,
+                             Include_Factors = FALSE,
+                             Partial = FALSE,
+                             Partial_Bayesian = FALSE) {
+
+  # dt = data.table::fread(file.choose())
+  # CorrVars = c("Category","Beverage Flavor","Daily Liters","Daily Margin","Daily Revenue","Daily Units","ClassTarget")
+  # DateVar <- "Date"
+  # SampleSize = 10000
+  # Samples = 1
+  # Method = NULL
+  # P_Adjust = "holm"
+  # Bayesian = FALSE
+  # Bayesian_Prior = "medium"
+  # MultiLevel = FALSE
+  # Include_Factors = TRUE
+  # Partial = FALSE
+  # Partial_Bayesian = FALSE
+  # EchartsTheme = "macarons"
+  # TextColor = "black"
+  # PlotHeight = "600px"
+  # PlotWidth = "300px"
+
+  dt1 <- dt[order(runif(.N))][seq_len(SampleSize)][, .SD, .SDcols = c(CorrVars, DateVar)]
+
+  # Names modification: because of the parse() I can't have spaces in the colnames
+  old <- c()
+  new <- c()
+  for(i in seq_along(CorrVars)) {# i = 3
+    if(grepl(pattern = " ", x = CorrVars[i])) {
+      old <- c(old, CorrVars[i])
+      new <- c(new, gsub(pattern = " ", replacement = ".", x = CorrVars[i]))
+      CorrVars[i] <- gsub(pattern = " ", replacement = ".", x = CorrVars[i])
+    }
+  }
+  if(length(new) > 0L) {
+    data.table::setnames(dt1, old = old, new = new)
+  }
+
+  # Correlation Metrics
+  Output <- list()
+  corrMetrics <- tryCatch({data.table::as.data.table(
+    correlation::correlation(
+      data = dt1,
+      method = "pearson",
+      p_adjust = P_Adjust,
+      ci = 0.95,
+      bayesian = Bayesian,
+      bayesian_prior = Bayesian_Prior,
+      include_factors = Include_Factors,
+      partial = Partial,
+      partial_bayesian = Partial_Bayesian,
+      bayesian_ci_method = "hdi",
+      bayesian_test = c("pd", "rope", "bf"),
+      multilevel = MultiLevel,
+      redundant = TRUE,
+      ranktransform = FALSE,
+      winsorize = FALSE,
+      verbose = TRUE,
+      standardize_names = getOption("easystats.standardize_names", FALSE)
+    )
+  )}, error = function(x) NULL)
+
+  # Reactable Table
+  if(length(corrMetrics) > 0L) {
+    Output[["CorrelationMetrics"]] <- reactable::reactable(
+      data = corrMetrics,
+      compact = TRUE,
+      defaultPageSize = 20,
+      wrap = TRUE,
+      filterable = TRUE,
+      fullWidth = TRUE,
+      highlight = TRUE,
+      pagination = TRUE,
+      resizable = TRUE,
+      searchable = TRUE,
+      selection = "multiple",
+      showPagination = TRUE,
+      showSortable = TRUE,
+      showSortIcon = TRUE,
+      sortable = TRUE,
+      striped = TRUE,
+      theme = reactable::reactableTheme(
+        color = TextColor,
+        backgroundColor = "#4f4f4f26",
+        borderColor = "#dfe2e5",
+        stripedColor = "#4f4f4f8f",
+        highlightColor = "#8989898f",
+        cellPadding = "8px 12px",
+        style = list(
+          fontFamily = "-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif"
+        ),
+        searchInputStyle = list(width = "100%")
+      )
+    )
+  }
+
+  # Numeric only CorrVars
+  CorrVars2 <- c()
+  for(xxx in CorrVars) {# xxx = "Daily.Units"
+    if(class(dt1[[xxx]])[1L] %in% c("numeric","integer")) {
+      CorrVars2 <- c(CorrVars2, xxx)
+    }
+  }
+
+  # Correlation Matrix
+  if(length(CorrVars2) > 1L) {
+    Output[["CorrelogramPlot"]] <- tryCatch({AutoPlots::Plot.CorrMatrix(
+      dt = dt1,
+      CorrVars = CorrVars2,
+      CorrVarTrans = "Identity",
+      FacetRows = 1,
+      FacetCols = 1,
+      FacetLevels = NULL,
+      Method = "spearman",
+      PreAgg = FALSE,
+      MaxNAPercent = 0.05,
+      Height = NULL,
+      Width = NULL,
+      Title = "Correlation Matrix",
+      ShowLabels = FALSE,
+      Title.YAxis = NULL,
+      Title.XAxis = NULL,
+      EchartsTheme = "macarons",
+      X_Scroll = TRUE,
+      Y_Scroll = TRUE,
+      TextColor = "white",
+      title.fontSize = 22,
+      title.fontWeight = "bold",
+      title.textShadowColor = "#63aeff",
+      title.textShadowBlur = 3,
+      title.textShadowOffsetY = 1,
+      title.textShadowOffsetX = -1,
+      yaxis.fontSize = 14,
+      xaxis.fontSize = 14,
+      Debug = FALSE
+    )}, error = function(x) NULL)
+  }
+
+  # Parallel Plots
+  if(length(CorrVars) > 1L) {
+    Output[["ParallelPlot"]] <- tryCatch({AutoPlots::Plot.Parallel(
+      dt = dt1,
+      SampleSize = 5000L,
+      CorrVars = CorrVars,
+      FacetRows = 1,
+      FacetCols = 1,
+      FacetLevels = NULL,
+      PreAgg = FALSE,
+      Height = NULL,
+      Width = NULL,
+      Title = "Correlation Matrix",
+      ShowLabels = FALSE,
+      Title.YAxis = NULL,
+      Title.XAxis = NULL,
+      EchartsTheme = "macarons",
+      X_Scroll = TRUE,
+      Y_Scroll = TRUE,
+      TextColor = "white",
+      title.fontSize = 22,
+      title.fontWeight = "bold",
+      title.textShadowColor = "#63aeff",
+      title.textShadowBlur = 3,
+      title.textShadowOffsetY = 1,
+      title.textShadowOffsetX = -1,
+      yaxis.fontSize = 14,
+      xaxis.fontSize = 14,
+      Debug = FALSE
+    )}, error = function(x) NULL)
+  }
+
+  # Trend Correlation
+  if(length(DateVar) > 0L && length(CorrVars2) > 1L) {
+
+    # Standardize variables so they scale together
+    dt2 <- Rodeo::Standardize(
+      data = dt1,
+      ColNames = CorrVars2,
+      GroupVars = NULL,
+      Center = TRUE,
+      Scale = TRUE,
+      ScoreTable = FALSE)
+
+    # Line Plot
+    Output[["LinePlot"]] <- tryCatch({AutoPlots::Plot.Line(
+      dt = dt2,
+      AggMethod = "mean",
+      PreAgg = FALSE,
+      XVar = "Date",
+      YVar = paste0(CorrVars2, "_Standardize"),
+      DualYVar = NULL,
+      GroupVar = NULL,
+      YVarTrans = "Identity",
+      DualYVarTrans = "Identity",
+      XVarTrans = "Identity",
+      FacetRows = 1,
+      FacetCols = 1,
+      FacetLevels = NULL,
+      Height = NULL,
+      Width = NULL,
+      Title = "Line Plot",
+      ShowLabels = FALSE,
+      Title.YAxis = NULL,
+      Title.XAxis = NULL,
+      EchartsTheme = EchartsTheme,
+      X_Scroll = FALSE,
+      Y_Scroll = FALSE,
+      TimeLine = TRUE,
+      Area = FALSE,
+      Alpha = 0.5,
+      Smooth = TRUE,
+      ShowSymbol = FALSE,
+      TextColor = TextColor,
+      title.fontSize = 22,
+      title.fontWeight = "bold",
+      title.textShadowColor = "#63aeff",
+      title.textShadowBlur = 3,
+      title.textShadowOffsetY = 1,
+      title.textShadowOffsetX = -1,
+      xaxis.fontSize = 14,
+      yaxis.fontSize = 14,
+      xaxis.rotate = 0,
+      yaxis.rotate = 0,
+      ContainLabel = TRUE,
+      DarkMode = FALSE,
+      Debug = FALSE)}, error = function(x) NULL)
+  }
+
+  # Return
+  return(Output)
+}
+
+# ----
+
+# ----
+
+# @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
 # Normality Tests                                                            ----
 # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
 
@@ -403,241 +834,13 @@ Agostino.Test <- function(Vals, SampleSize = NULL, Samples = 1) {
   return(gg)
 }
 
-#' @title All.Normality.Tests
-#'
-#' @family Inference
-#'
-#' @export
-All.Normality.Tests <- function(dt = NULL,
-                                YVars = NULL,
-                                EchartsTheme = "macarons",
-                                TextColor = "black",
-                                PlotHeight = "600px",
-                                PlotWidth = "300px",
-                                SampleSize.ADT = NULL,
-                                Samples.ADT = 1,
-                                SampleSize.CVMT = NULL,
-                                Samples.CVMT = 1,
-                                SampleSize.KST = NULL,
-                                Samples.KST = 1,
-                                SampleSize.ST = NULL,
-                                Samples.ST = 1,
-                                SampleSize.JBT = NULL,
-                                Samples.JBT = 1,
-                                SampleSize.AT = NULL,
-                                Samples.AT = 1) {
-
-  # library(DataMuse)
-  # dt <- data.table::fread(file.choose())
-  # YVars <- c("Daily Liters", "Daily Margin", "Daily Revenue", "Daily Units")
-  # SampleSize.ADT = NULL
-  # Samples.ADT = 1
-  # SampleSize.CVMT = NULL
-  # Samples.CVMT = 1
-  # SampleSize.KST = NULL
-  # Samples.KST = 1
-  # SampleSize.ST = NULL
-  # Samples.ST = 1
-  # SampleSize.JBT = NULL
-  # Samples.JBT = 1
-  # SampleSize.AT = NULL
-  # Samples.AT = 1
-  # EchartsTheme = "macarons"
-  # TextColor = "black"
-  # PlotHeight = "300px"
-  # PlotWidth = "600px"
-
-  # KS Test throws warnings for duplicate values
-  options(warn = -1)
-
-  # Convert to data.table
-  if(!data.table::is.data.table(dt)) tryCatch({data.table::setDT(dt)}, error = function(x) {
-    dt <- data.table::as.data.table(dt)
-  })
-
-  # YVars to Test
-  YVars2Test <- c()
-  for(i in YVars) {
-    if(class(dt[[i]])[1L] %in% c("numeric","integer")) {
-      YVars2Test <- c(YVars2Test, i)
-    }
-  }
-
-  # Results table
-  gg <- data.table::CJ(
-    Variable = YVars2Test,
-    Test = c("Anderson.Darling.Test",
-             "Cramer.Von.Mises.Test",
-             "Kolmogorov.Smirnov.Test",
-             "Shapiro.Test",
-             "Jarque.Bera.Test",
-             "Agostino.Test"),
-    P_Value = c(-1.0)
-  )
-
-  # Loop through testing and results gathering
-  OutputList <- list()
-  for(val in YVars2Test) {# val = "Daily Margin"
-
-    # Create Vals for tests
-    Vals <- dt[[val]] # unique(dt[[val]])
-
-    # Run tests
-    x1 <- Anderson.Darling.Test(Vals, SampleSize = SampleSize.ADT, Samples = Samples.ADT)
-    gg <- gg[Variable == eval(val) & Test == "Anderson.Darling.Test", P_Value := mean(x1$P_Value, na.rm = TRUE)]
-
-    x1 <- Cramer.Von.Mises.Test(Vals, SampleSize = SampleSize.CVMT, Samples = Samples.CVMT)
-    gg <- gg[Variable == eval(val) & Test == "Cramer.Von.Mises.Test", P_Value := mean(x1$P_Value, na.rm = TRUE)]
-
-    x1 <- Kolmogorov.Smirnov.Test(Vals, SampleSize = SampleSize.KST, Samples = Samples.KST)
-    gg <- gg[Variable == eval(val) & Test == "Kolmogorov.Smirnov.Test", P_Value := mean(x1$P_Value_2s, na.rm = TRUE)]
-
-    x1 <- Shapiro.Test(Vals, SampleSize = SampleSize.ST, Samples = Samples.ST)
-    gg <- gg[Variable == eval(val) & Test == "Shapiro.Test", P_Value := mean(x1$P_Value, na.rm = TRUE)]
-
-    x1 <- Jarque.Bera.Test(Vals, SampleSize = SampleSize.JBT, Samples = Samples.JBT)
-    gg <- gg[Variable == eval(val) & Test == "Jarque.Bera.Test", P_Value := mean(x1$P_Value, na.rm = TRUE)]
-
-    x1 <- Agostino.Test(Vals, SampleSize = SampleSize.AT, Samples = Samples.AT)
-    gg <- gg[Variable == eval(val) & Test == "Agostino.Test", P_Value := mean(x1$P_Value_2s, na.rm = TRUE)]
-
-    # Radar plot of P_Values
-    OutputList[[paste0("Radar_", val)]] <- AutoPlots::Plot.Radar(
-      dt = gg[Variable == eval(val)],
-      PreAgg = TRUE,
-      YVar = c("P_Value"),
-      GroupVar = "Test",
-      EchartsTheme = EchartsTheme,
-      TextColor = TextColor,
-      Height = PlotHeight,
-      Width = PlotWidth)
-
-    # Normal Probability Plot of Vals
-    OutputList[[paste0("Probability_", val)]] <- AutoPlots::Plot.ProbabilityPlot(
-      dt = dt,
-      SampleSize = 2500,
-      YVar = val,
-      EchartsTheme = EchartsTheme,
-      TextColor = TextColor,
-      Height = PlotHeight,
-      Width = PlotWidth)
-  }
-
-  # FontColor <- list()
-  # FontColor$flv = "black"
-  OutputList[["Metrics"]] <- reactable::reactable(
-    data = gg,
-    compact = TRUE,
-    defaultPageSize = 6,
-    wrap = TRUE,
-    filterable = TRUE,
-    fullWidth = TRUE,
-    highlight = TRUE,
-    pagination = TRUE,
-    resizable = TRUE,
-    searchable = TRUE,
-    selection = "multiple",
-    showPagination = TRUE,
-    showSortable = TRUE,
-    showSortIcon = TRUE,
-    sortable = TRUE,
-    striped = TRUE,
-    theme = reactable::reactableTheme(
-      color = TextColor,
-      backgroundColor = "#4f4f4f26",
-      borderColor = "#dfe2e5",
-      stripedColor = "#4f4f4f8f",
-      highlightColor = "#8989898f",
-      cellPadding = "8px 12px",
-      style = list(
-        fontFamily = "-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif"
-      ),
-      searchInputStyle = list(width = "100%")
-    )
-  )
-
-  # Reorder elements and return
-  v <- names(OutputList)
-  v <- v[c(length(v), 1:(length(v)-1))]
-  OutputList <- OutputList[v]
-  return(OutputList)
-}
-
 # ----
 
 # ----
 
 # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
-# Correlation Tests                                                          ----
+# Stationarity Tests                                                         ----
 # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
-
-#' @title Pearsons.Correlation.Test
-#'
-#' @param Vals Numeric vector of values to test. Must have positive standard deviation and must be of length greater than or equal to 8
-#' @param SampleSize sub sampling of data
-#' @param Samples number of iterations to run
-#' @param Method "pearson", "kendall", "spearman", "biserial", "polychoric", "tetrachoric", "biweight", "distance", "blomqvist", "hoeffding", "gamma", "gaussian", "shepherd"
-#' @param P_Adjust Frequentist corrections, which include: default "holm", "hochberg", "hommel", "bonferroni", "BH", "BY", "fdr", "somers" or "none"
-#'
-#' @family Inference
-#'
-#' @references https://en.m.wikipedia.org/wiki/Anderson%E2%80%93Darling_test, https://real-statistics.com/non-parametric-tests/goodness-of-fit-tests/anderson-darling-test/
-#'
-#' @examples
-#' \dontrun{
-#' x <- qnorm(p = runif(100000))
-#' y <- qnorm(p = runif(100000))
-#' Pearsons.Correlation.Test(x, y, SampleSize = 2500, Samples = 30)
-#' }
-#'
-#' @export
-Correlation.Test <- function(dt = NULL,
-                             x1 = NULL,
-                             x2 = NULL,
-                             SampleSize = NULL,
-                             Samples = NULL,
-                             Method = NULL,
-                             P_Adjust = "holm",
-                             Bayesian = FALSE) {
-
-  # Pearsons correlation
-  correlation::correlation(
-    data = dt,
-    method = "pearson",
-    p_adjust = "holm",
-    ci = 0.95,
-    bayesian = FALSE,
-    bayesian_prior = "medium",
-    bayesian_ci_method = "hdi",
-    bayesian_test = c("pd", "rope", "bf"),
-    redundant = FALSE,
-    include_factors = FALSE,
-    partial = FALSE,
-    partial_bayesian = FALSE,
-    multilevel = FALSE,
-    ranktransform = FALSE,
-    winsorize = FALSE,
-    verbose = TRUE,
-    standardize_names = getOption("easystats.standardize_names", FALSE),
-  )
-
-  # Spearman’s rank correlation
-  # Kendall’s rank correlation
-  # Biweight midcorrelation
-  # Distance correlation
-  # Percentage bend correlation
-  # Shepherd’s Pi correlation
-  # Blomqvist’s coefficient
-  # Hoeffding’s D
-  # Gamma correlation
-  # Gaussian rank correlation
-  # Point-Biserial and biserial correlation
-  # Winsorized correlation
-  # Polychoric correlation
-  # Tetrachoric correlation
-  # Multilevel correlation
-
-}
 
 # ----
 

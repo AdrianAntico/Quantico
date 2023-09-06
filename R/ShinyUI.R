@@ -14027,12 +14027,6 @@ Plots.CorrMatrix.Modal <- function(id, PlotNumber, AppWidth=12L) {
               id = paste0('Plot_TabPanel_', PlotNumber),
               selected = 'Data Selection',
 
-              # Data Selection
-              # Axis Variables
-              # Grouping Variables
-              # Filtering Variables
-              # Formatting
-
               # Input Variables
               shiny::tabPanel(
                 title = "Data Selection",
@@ -14090,6 +14084,149 @@ Plots.CorrMatrix.Modal <- function(id, PlotNumber, AppWidth=12L) {
                         shiny::column(width = 6L, align = 'center', DataMuse:::SelectizeInput(InputID = paste0('PlotDateAgg', PlotNumber), Label = 'Date Aggregration Level', Choices = c("as-is","second","minute","hour","day","week","month","quarter","year"), SelectedDefault = "as-is", Multiple = TRUE, MaxVars = 1, CloseAfterSelect = TRUE))
                       ))
                   ))),
+
+              # Filter Variables
+              shiny::tabPanel(
+                title = "Filter Variables",
+                icon = shiny::icon('code'),
+                DataMuse:::BlankRow(12L),
+                shiny::fluidRow(
+                  shiny::column(
+                    12L, align = "center",
+                    shinydashboard::box(
+                      title = NULL, solidHeader = TRUE, collapsible = FALSE, status = 'danger', width = AppWidth,
+                      DataMuse:::BlankRow(12L),
+                      DataMuse:::BlankRow(12L),
+                      DataMuse:::DataFilters(id = paste0('DataFiltersContents', PlotNumber), PlotNumber = PlotNumber)))
+                )),
+
+              # Title, Axes Titles, ShowLabels
+              shiny::tabPanel(
+                title = "Formatting",
+                icon = shiny::icon('code'),
+                DataMuse:::BlankRow(12L),
+                shiny::fluidRow(
+                  shiny::column(
+                    6L, align = "center",
+                    shinydashboard::box(
+                      title = NULL, solidHeader = TRUE, collapsible = FALSE, status = 'danger', width = AppWidth,
+                      DataMuse:::BlankRow(12L),
+                      DataMuse:::BlankRow(12L),
+                      shiny::fluidRow(
+                        shiny::column(
+                          width = 6L, align = 'center',
+                          DataMuse:::TextInput(InputID = paste0('Title', PlotNumber), Label='Rename Title', Value = NULL)),
+                        shiny::column(
+                          width = 6L, align = 'center',
+                          DataMuse:::SelectizeInput(InputID = paste0('ShowLabels', PlotNumber), Label='Show Labels', Choices = c(TRUE,FALSE), Multiple=TRUE, MaxVars = 1, SelectedDefault = FALSE, CloseAfterSelect = TRUE))),
+                      DataMuse:::BlankRow(AppWidth),
+                      shiny::fluidRow(
+                        shiny::column(
+                          width = 6L, align = 'center',
+                          DataMuse:::TextInput(InputID = paste0("YAxisTitle", PlotNumber), Label = "Rename Y-Axis Title", Value = NULL))),
+                      DataMuse:::BlankRow(AppWidth),
+                      shiny::fluidRow(
+                        shiny::column(
+                          width = 6L, align = 'center',
+                          DataMuse:::TextInput(InputID = paste0("XAxisTitle", PlotNumber), Label = "Rename X-Axis Title", Value = NULL))),
+                      DataMuse:::BlankRow(AppWidth)
+                    )
+                  )
+                )
+              ))),
+          footer = shiny::tagList(
+            shiny::modalButton(label = "Cancel"),
+            shiny::actionButton(paste0("BoxPlotOK", PlotNumber), "OK", width = '50px'))
+        )
+      )
+    })
+}
+
+#' @title Plots.ParallelPlot.Modal
+#'
+#' @description Distribution modals. Histogram, Density, River, and Pie Charts, where only Y and GroupVars are needed
+#'
+#' @author Adrian Antico
+#' @family Plotting Modals
+#'
+#' @param id = 'PlotVariablesModals'
+#' @param PlotNumber 1
+#' @param AppWidth = 12L
+#'
+#' @export
+Plots.ParallelPlot.Modal <- function(id, PlotNumber, AppWidth=12L) {
+  shiny::moduleServer(
+    id = id,
+    module = function(input, output, session) {
+      ns <- session$ns
+      shiny::showModal(
+        shiny::modalDialog(
+          title = 'Plot Inputs',
+          size = "l",
+          easyClose = FALSE,
+          fade = TRUE,
+          shiny::tagList(
+
+            # Tabs
+            shiny::tabsetPanel(
+              id = paste0('Plot_TabPanel_', PlotNumber),
+              selected = 'Data Selection',
+
+              # Input Variables
+              shiny::tabPanel(
+                title = "Data Selection",
+                icon = shiny::icon('code'),
+                DataMuse:::BlankRow(12L),
+                shiny::fluidRow(
+                  shiny::column(
+                    12L, align = "center",
+                    shinydashboard::box(
+                      title = NULL, solidHeader = TRUE, collapsible = FALSE, status = 'danger', width = AppWidth,
+                      DataMuse:::BlankRow(12L),
+                      DataMuse:::BlankRow(12L),
+                      shiny::fluidRow(
+                        shiny::column(
+                          12L,
+                          shiny::fluidRow(
+                            shiny::column(
+                              4L, align = 'center',
+                              DataMuse:::SelectizeInput(InputID = paste0('Plot', PlotNumber, '_SelectData'), Label='Choose data set', Choices = NULL, Multiple = TRUE, MaxVars = 100)
+                            )
+                          ),
+                          DataMuse:::BlankRow(12L),
+                          shiny::fluidRow(
+                            shiny::column(
+                              4L, align = 'center',
+                              DataMuse:::SliderInput(InputID = paste0('SampleSize', PlotNumber), Label='Display Records (Post-Agg)', Step = 1000, Value = 5000, Min = 0, Max = 30000))
+                          )
+                        )
+                      )
+                    )
+                  )
+                )
+              ),
+
+              # Axis Variables
+              shiny::tabPanel(
+                title = "Axis Variables",
+                icon = shiny::icon('code'),
+                DataMuse:::BlankRow(12L),
+                shiny::fluidRow(
+                  shiny::column(
+                    12L, align = "center",
+                    shinydashboard::box(
+                      title = NULL, solidHeader = TRUE, collapsible = FALSE, status = 'danger', width = AppWidth,
+                      DataMuse:::BlankRow(12L),
+                      DataMuse:::BlankRow(12L),
+
+                      shiny::tags$h3(shiny::tags$b("*Max 5 Y-Variables will be used")),
+                      shiny::fluidRow(
+                        shiny::column(width = 6L, align = 'center', DataMuse:::PickerInput(InputID = paste0('YVar', PlotNumber), Label = 'Y-Variable', Choices = NULL, Multiple = TRUE))
+                      )
+                    )
+                  )
+                )
+              ),
 
               # Filter Variables
               shiny::tabPanel(
@@ -17860,7 +17997,7 @@ PlotDropDownContents <- function(id,
   PlotList[["Distribution"]] <- c("", 'HistogramPlot','DensityPlot','BoxPlot','WordCloud','ProbabilityPlot')
   PlotList[["Aggregate"]] <- c('BarPlot','StackedBarPlot','BarPlot3D','HeatMapPlot','RadarPlot','PiePlot','DonutPlot','RosetypePlot')
   PlotList[["Time Series"]] <- c('LinePlot','AreaPlot','StepPlot','RiverPlot','Autocorrelation','PartialAutocorr')
-  PlotList[["Relationship"]] <- c('CorrelogramPlot','ScatterPlot','ScatterPlot3D','CopulaPlot','CopulaPlot3D')
+  PlotList[["Relationship"]] <- c('CorrelogramPlot','ParallelPlot','ScatterPlot','ScatterPlot3D','CopulaPlot','CopulaPlot3D')
   PlotList[["Model Evaluation"]] <- c(
     'Residuals','ResidScatter',
     'PartialDependenceLine','PartialDependenceHeatMap',

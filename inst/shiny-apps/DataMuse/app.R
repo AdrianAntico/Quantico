@@ -310,7 +310,7 @@ server <- function(input, output, session) {
   AvailablePlots <- c(
     'HistogramPlot','BoxPlot','PiePlot','DonutPlot',"RosetypePlot",'WordCloud','ProbabilityPlot',
     'BarPlot','StackedBarPlot','LinePlot','ScatterPlot','Autocorrelation','PartialAutocorr',
-    'AreaPlot','StepPlot','RiverPlot','BarPlot3D','RadarPlot',
+    'AreaPlot','StepPlot','RiverPlot','BarPlot3D','RadarPlot','ParallelPlot',
     'CopulaPlot','CorrelogramPlot','HeatMapPlot','ScatterPlot3D','CopulaPlot3D','DensityPlot',
     'PartialDependenceLine','PartialDependenceBox','PartialDependenceHeatMap',
     'CalibrationLine','CalibrationBox','ShapleyImportance',
@@ -4425,6 +4425,8 @@ server <- function(input, output, session) {
         # Kick off modal
         if(PlotType %in% "CorrelogramPlot") {
           DataMuse:::Plots.CorrMatrix.Modal(id = paste0('Correlogram',PlotNums,PlotType), PlotNumber = PlotNums)
+        } else if(PlotType %in% "ParallelPlot") {
+          DataMuse:::Plots.ParallelPlot.Modal(id = paste0('ParallelPlot',PlotNums,PlotType), PlotNumber = PlotNums)
         } else if(PlotType %in% c("BarPlot3D","HeatMapPlot")) {
           DataMuse:::Plots.3D.NoGroup.Modal(id = paste0('ThreeDNG',PlotNums,PlotType), PlotNumber = PlotNums)
         } else if(PlotType %in% c("PartialDependenceHeatMap")) {

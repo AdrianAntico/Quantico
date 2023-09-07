@@ -154,7 +154,7 @@
 .btn-default:active,
 .btn-default.hover {
 	background-color: #20ff00;
-  color: black;
+  color: #ffffff;
   box-shadow: 2px 2px 1px 0px #e0ff00;
 }
 

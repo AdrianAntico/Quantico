@@ -53,10 +53,10 @@ HomePage <- function(id, Page, AppWidth=12L) {
           # Side Bar                             ----
           # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
           shiny::column(
-            2L, style = "padding-right: 5px;",
+            2L, style = "padding-right: 5px; padding-top: 5px",
             shinydashboard::box(
               title = NULL, solidHeader = TRUE, collapsible = FALSE, status = 'warning', width = 12L,
-              style = "background-color: #0000; min-height: 1440px; max-height: 1440px; overflow-x: clip; overflow-y:auto;",
+              style = "background-color: #0000; min-height: 1435px; max-height: 1435px; overflow-x: clip; overflow-y:auto;",
               shiny::fluidRow(
                 style = "padding-left: 15px; padding-right: 20px; background-color: #0000; overflow-y: auto; overflow-x: clip;",
                 DataMuse:::BlankRow(12L),
@@ -382,10 +382,10 @@ HomePage <- function(id, Page, AppWidth=12L) {
           # Content Portion of Docs                         ----
           ################################################# ----
           shiny::column(
-            10L, style = "padding-right: 47px;",
+            10L, style = "padding-right: 47px; padding-top: 5px;",
             shinydashboard::box(
               title = NULL, solidHeader = TRUE, collapsible = FALSE, status = 'warning', width = 12L,
-              style = "background-color: #0000; min-height: 1440px; max-height: 1440px; overflow-x: clip; overflow-y:auto;",
+              style = "background-color: #0000; min-height: 1435px; max-height: 1435px; overflow-x: clip; overflow-y:auto;",
 
               # ----
 
@@ -446,8 +446,6 @@ HomePage <- function(id, Page, AppWidth=12L) {
                       * 'Sqrt': square root
                       * 'Asin': inverse sine
                       * 'Logit'
-                      * 'PercRank': Percentile Rank of a value
-                      * 'Standardize'
                       * 'BoxCox'
                       * 'YeoJohnson'
                       "),

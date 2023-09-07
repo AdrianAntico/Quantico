@@ -55,7 +55,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
           shiny::column(
             2L, style = "padding-right: 5px;",
             shinydashboard::box(
-              title = NULL, solidHeader = TRUE, collapsible = FALSE, status = 'info', width = 12L,
+              title = NULL, solidHeader = TRUE, collapsible = FALSE, status = 'warning', width = 12L,
               style = "background-color: #0000; min-height: 1440px; max-height: 1440px; overflow-x: clip; overflow-y:auto;",
               shiny::fluidRow(
                 style = "padding-left: 15px; padding-right: 20px; background-color: #0000; overflow-y: auto; overflow-x: clip;",
@@ -384,7 +384,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
           shiny::column(
             10L, style = "padding-right: 47px;",
             shinydashboard::box(
-              title = NULL, solidHeader = TRUE, collapsible = FALSE, status = 'info', width = 12L,
+              title = NULL, solidHeader = TRUE, collapsible = FALSE, status = 'warning', width = 12L,
               style = "background-color: #0000; min-height: 1440px; max-height: 1440px; overflow-x: clip; overflow-y:auto;",
 
               # ----

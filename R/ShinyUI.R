@@ -18382,7 +18382,7 @@ MLPanels <- function(id, Page, AppWidth=12L, MOL = NULL) {
                 DataMuse::PickerInput(InputID = paste0('MLReportsModelSelection',Page), Label = 'Model Selection', Choices = tryCatch({names(MOL)[which(substr(x = names(MOL), start = 1, stop = 3) %in% c("ML_"))]}, error = function(x) NULL), Multiple = FALSE, MaxVars = 1L)
               ),
               shiny::fluidRow(
-                style = "padding-top: 5px; padding-bottom: 50px;",
+                style = "padding-top: 5px; padding-bottom: 30px;",
                 DataMuse::PickerInput(InputID = paste0('MLOutputSelection',Page), Label = 'Evaluation Objects',
                                       Choices = c("Model Comparison Metrics", "Evaluation Plots", "Partial Dependence Plots"),
                                       SelectedDefault = c("Model Comparison Metrics", "Evaluation Plots", "Partial Dependence Plots"),
@@ -18461,7 +18461,7 @@ MLPanels <- function(id, Page, AppWidth=12L, MOL = NULL) {
             width = 3L,
             align = 'left',
             shiny::wellPanel(
-              style = "min-height: 278px; padding-top: 0px;",
+              style = "min-height: 262px; padding-top: 0px;",
               shiny::fluidRow(
                 style = "padding-top: 32px; padding-bottom: 40px;",
                 shiny::column(12L, align = "center", style = "padding-left: 30px;", DataMuse::NumericInput(InputID = paste0("SampleSize", Page), Label = 'Sample Size', Value = 100000, Min = 1, Max = 10000000, Step = 10000)),
@@ -18476,7 +18476,7 @@ MLPanels <- function(id, Page, AppWidth=12L, MOL = NULL) {
             width = 3L,
             align = 'left',
             shiny::wellPanel(
-              style = "min-height: 278px; padding-top: 0px;",
+              style = "min-height: 262px; padding-top: 0px;",
               shiny::fluidRow(
                 style = "padding-top: 32px; padding-bottom: 12px;",
                 shiny::column(12L, align = "center", style = "padding-left: 30px;", DataMuse::PickerInput(InputID = paste0("TrainDataInclude", Page), Label = 'Include Train Data?', Choices = c(TRUE,FALSE), SelectedDefault = FALSE, Multiple = FALSE)),
@@ -18492,7 +18492,7 @@ MLPanels <- function(id, Page, AppWidth=12L, MOL = NULL) {
             width = 2L,
             align = 'left',
             shiny::wellPanel(
-              style = "min-height: 278px; padding-top: 0px;",
+              style = "min-height: 262px; padding-top: 0px;",
               shiny::fluidRow(
                 style = "padding-top: 25px; padding-bottom: 15px;",
                 shiny::column(12L, align = 'center', shiny::sliderInput(inputId = paste0("PlotWidtha",Page), label = 'Plot Width', value = 1450, min = 100, max = 2800))

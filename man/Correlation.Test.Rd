@@ -7,8 +7,12 @@
 Correlation.Test(
   dt = NULL,
   CorrVars = NULL,
+  DateVar = NULL,
   SampleSize = 10000,
-  Method = NULL,
+  EchartsTheme = "macarons",
+  TextColor = "black",
+  PlotHeight = "600px",
+  PlotWidth = "300px",
   P_Adjust = "holm",
   Bayesian = FALSE,
   Bayesian_Prior = "medium",
@@ -25,7 +29,13 @@ Correlation.Test(
 
 \item{SampleSize}{sub sampling of data}
 
-\item{Method}{"pearson", "kendall", "spearman", "biserial", "polychoric", "tetrachoric", "biweight", "distance", "blomqvist", "hoeffding", "gamma", "gaussian", "shepherd"}
+\item{EchartsTheme}{= "macarons"}
+
+\item{TextColor}{= "black"}
+
+\item{PlotHeight}{= "600px"}
+
+\item{PlotWidth}{= "300px"}
 
 \item{P_Adjust}{Frequentist corrections, which include: default "holm", "hochberg", "hommel", "bonferroni", "BH", "BY", "fdr", "somers" or "none"}
 
@@ -47,11 +57,11 @@ Correlation.Test
 \seealso{
 Other Inference: 
 \code{\link{Agostino.Test}()},
-\code{\link{All.Normality.Tests}()},
 \code{\link{Anderson.Darling.Test}()},
 \code{\link{Cramer.Von.Mises.Test}()},
 \code{\link{Jarque.Bera.Test}()},
 \code{\link{Kolmogorov.Smirnov.Test}()},
+\code{\link{Normality.Analysis}()},
 \code{\link{Shapiro.Test}()}
 }
 \concept{Inference}

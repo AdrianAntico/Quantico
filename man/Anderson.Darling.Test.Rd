@@ -29,11 +29,11 @@ https://en.m.wikipedia.org/wiki/Anderson%E2%80%93Darling_test, https://real-stat
 \seealso{
 Other Inference: 
 \code{\link{Agostino.Test}()},
-\code{\link{All.Normality.Tests}()},
 \code{\link{Correlation.Test}()},
 \code{\link{Cramer.Von.Mises.Test}()},
 \code{\link{Jarque.Bera.Test}()},
 \code{\link{Kolmogorov.Smirnov.Test}()},
+\code{\link{Normality.Analysis}()},
 \code{\link{Shapiro.Test}()}
 }
 \concept{Inference}

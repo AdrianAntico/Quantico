@@ -25,11 +25,11 @@ output <- Jarque.Bera.Test(Vals = runif(100000), SampleSize = 1000, Samples = 50
 \seealso{
 Other Inference: 
 \code{\link{Agostino.Test}()},
-\code{\link{All.Normality.Tests}()},
 \code{\link{Anderson.Darling.Test}()},
 \code{\link{Correlation.Test}()},
 \code{\link{Cramer.Von.Mises.Test}()},
 \code{\link{Kolmogorov.Smirnov.Test}()},
+\code{\link{Normality.Analysis}()},
 \code{\link{Shapiro.Test}()}
 }
 \concept{Inference}

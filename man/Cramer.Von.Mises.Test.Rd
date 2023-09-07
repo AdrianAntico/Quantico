@@ -26,11 +26,11 @@ Cramer.Von.Mises.Test(Vals)
 \seealso{
 Other Inference: 
 \code{\link{Agostino.Test}()},
-\code{\link{All.Normality.Tests}()},
 \code{\link{Anderson.Darling.Test}()},
 \code{\link{Correlation.Test}()},
 \code{\link{Jarque.Bera.Test}()},
 \code{\link{Kolmogorov.Smirnov.Test}()},
+\code{\link{Normality.Analysis}()},
 \code{\link{Shapiro.Test}()}
 }
 \concept{Inference}

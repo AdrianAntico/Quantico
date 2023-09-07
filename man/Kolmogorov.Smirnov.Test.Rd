@@ -25,11 +25,11 @@ output <- Kolmogorov.Smirnov.Test(runif(10000))
 \seealso{
 Other Inference: 
 \code{\link{Agostino.Test}()},
-\code{\link{All.Normality.Tests}()},
 \code{\link{Anderson.Darling.Test}()},
 \code{\link{Correlation.Test}()},
 \code{\link{Cramer.Von.Mises.Test}()},
 \code{\link{Jarque.Bera.Test}()},
+\code{\link{Normality.Analysis}()},
 \code{\link{Shapiro.Test}()}
 }
 \concept{Inference}

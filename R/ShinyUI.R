@@ -18555,7 +18555,7 @@ EDAPanels <- function(id, Page, AppWidth=12L, DL = NULL) {
                 DataMuse::PickerInput(InputID = paste0('EDAData',Page), Label = 'Data Selection', Choices = tryCatch(names(DL), error = function(x) NULL), Multiple = TRUE, MaxVars = 1L)
               ),
               shiny::fluidRow(
-                style = "padding-top: 5px; padding-bottom: 50px;",
+                style = "padding-top: 5px; padding-bottom: 30px;",
                 DataMuse::PickerInput(InputID = paste0('EDAUnivariateVars',Page), Label = 'Univariate Vars', Choices = NULL, Multiple = TRUE, MaxVars = 100L)
               )
             )
@@ -18632,7 +18632,7 @@ EDAPanels <- function(id, Page, AppWidth=12L, DL = NULL) {
             width = 3L,
             align = 'left',
             shiny::wellPanel(
-              style = "min-height: 278px; padding-top: 0px;",
+              style = "min-height: 262px; padding-top: 0px;",
               shiny::fluidRow(
                 style = "padding-top: 32px; padding-bottom: 40px;",
                 shiny::column(12L, align = "center", style = "padding-left: 30px;", DataMuse::PickerInput(InputID = paste0("EDACorrVars", Page), Label = 'Corr Vars', Choices = NULL, Multiple = TRUE, MaxVars = 100L))
@@ -18647,7 +18647,7 @@ EDAPanels <- function(id, Page, AppWidth=12L, DL = NULL) {
             width = 3L,
             align = 'left',
             shiny::wellPanel(
-              style = "min-height: 278px; padding-top: 0px;",
+              style = "min-height: 262px; padding-top: 0px;",
               shiny::fluidRow(
                 style = "padding-top: 32px; padding-bottom: 35px;",
                 shiny::column(12L, align = "center", style = "padding-left: 30px;", DataMuse::PickerInput(InputID = paste0("EDADateVar", Page), Label = 'Trend Date Var', Choices = NULL, SelectedDefault = NULL, Multiple = TRUE, MaxVars = 1L)),
@@ -18662,7 +18662,7 @@ EDAPanels <- function(id, Page, AppWidth=12L, DL = NULL) {
             width = 2L,
             align = 'left',
             shiny::wellPanel(
-              style = "min-height: 278px; padding-top: 0px;",
+              style = "min-height: 262px; padding-top: 0px;",
               shiny::fluidRow(
                 style = "padding-top: 25px; padding-bottom: 15px;",
                 shiny::column(12L, align = 'center', shiny::sliderInput(inputId = paste0("PlotWidtheda",Page), label = 'Plot Width', value = 1450, min = 100, max = 2800))

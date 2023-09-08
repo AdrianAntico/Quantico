@@ -18782,6 +18782,171 @@ MLPanels <- function(id, Page, AppWidth=12L, MOL = NULL) {
   )
 }
 
+#' @title InferencePanels
+#'
+#' @description Panels
+#'
+#' @author Adrian Antico
+#' @family Output Panels
+#'
+#' @param id = 'InferencePanels'
+#' @param AppWidth = 12L
+#' @param Page numeric
+#' @param DL numeric
+#'
+#' @export
+InferencePanels <- function(id, Page, AppWidth=12L, IOL = NULL) {
+  ns <- shiny::NS(id)
+  shiny::tabPanel(
+    title = paste0('Inference ',Page),
+    icon = shiny::icon('wand-magic-sparkles'),
+
+    DataMuse::BlankRow(12L),
+    shinydashboard::box(
+      title = NULL, solidHeader = TRUE, collapsible = FALSE, status = 'danger', width = 12L, class = "OutputPaneBox",
+      style = "padding-top: 10px; min-height: 1540px; max-height: 1540px; overflow-x: clip; overflow-y:auto; margin-top: 1px; padding-left: 12px; background-color: #0000; border: 0px #0000 solid; box-shadow: 0px 0px 0px 0px #0000;",
+
+      # ML Panel of Options
+      shiny::fluidRow(
+        style = "padding-left: 8px;padding-right: 15px;padding-top: 8px;",
+        shinydashboard::box(
+          title = NULL, solidHeader = TRUE, collapsible = FALSE, status = 'warning', width = 12L, style = "padding-top: 26px",
+          shiny::column(
+            width = 3L, align = 'center',
+            shiny::wellPanel(
+              style = "min-height: 240px; padding-top: 0px;",
+              shiny::fluidRow(
+                style = "padding-top: 75px; padding-bottom: 33px;",
+                DataMuse::PickerInput(InputID = paste0('InferenceReportsModelSelection',Page), Label = 'Testing Output', Choices = tryCatch({names(IOL)[which(substr(x = names(IOL), start = 1, stop = 3) %in% c("ML_"))]}, error = function(x) NULL), Multiple = FALSE, MaxVars = 1L)
+              )
+            )
+          ),
+
+          shiny::column(
+            width = 1L, align = 'center',
+            style = "padding-top: 15px; padding-left: 0px; padding-right: 0px; background-color: #0000;",
+            shiny::fluidRow(
+              shiny::actionButton(
+                inputId = paste0('InferenceOutputExecute',Page),
+                label = "Run", icon = shiny::icon("chevron-right")),
+            ),
+            shiny::fluidRow(
+              style = "padding-top: 30px;",
+              shiny::actionButton(
+                inputId = paste0('InferenceMarkdownExecute',Page),
+                label = "Save", icon = shiny::icon("chevron-right")),
+            ),
+            shiny::tags$style(
+              paste0(
+                "
+                  #", paste0('InferenceOutputExecute',Page), " {
+                  padding-left: 0px;
+                  padding-right: 0px;
+                  background-color: #858a9c6e;
+                  margin-top: 29px;
+                  height: 50px;
+                  width: 95px;
+                  border-radius: 25px;
+                  font-size: x-large;
+                  }
+
+                  #", paste0('InferenceOutputExecute',Page), ":hover {
+                  padding-left: 0px;
+                  padding-right: 0px;
+                  background-color: #858a9c6e;
+                  margin-top: 29px;
+                  height: 50px;
+                  width: 95px;
+                  box-shadow: 0px 0px 20px #858a9c6e;
+                  border-radius: 25px;
+                  font-size: x-large;
+                  }
+                  #", paste0('InferenceMarkdownExecute',Page), " {
+                  padding-left: 0px;
+                  padding-right: 0px;
+                  background-color: #858a9c6e;
+                  margin-top: 29px;
+                  height: 50px;
+                  width: 95px;
+                  border-radius: 25px;
+                  font-size: x-large;
+                  }
+
+                  #", paste0('InferenceMarkdownExecute',Page), ":hover {
+                  padding-left: 0px;
+                  padding-right: 0px;
+                  background-color: #858a9c6e;
+                  margin-top: 29px;
+                  height: 50px;
+                  width: 95px;
+                  box-shadow: 0px 0px 20px #858a9c6e;
+                  border-radius: 25px;
+                  font-size: x-large;
+                  }
+                  "
+              )
+            )
+          ),
+
+          shiny::column(
+            width = 2L,
+            align = 'left',
+            shiny::wellPanel(
+              style = "min-height: 240px; padding-top: 0px;",
+              shiny::fluidRow(
+                style = "padding-top: 63px; padding-bottom: 68px;",
+                shiny::column(12L, align = "left", style = "padding-left: 30px;", shinyWidgets::materialSwitch(inputId = paste0("WrapTexta", Page), label = 'Wrap', status = "danger", right = FALSE, value = FALSE), shiny::tags$style("padding-left: 40px;"))
+              ),
+              shiny::fluidRow(
+                shiny::column(12L, align = "left", style = "padding-left: 30px;", shinyWidgets::materialSwitch(inputId = paste0("Shufflea", Page), label = 'Shuffle', status = "danger", right = FALSE, value = FALSE), shiny::tags$style("padding-left: 40px;"))
+              )
+            )
+          ),
+          shiny::column(
+            width = 3L,
+            align = 'left',
+            shiny::wellPanel(
+              style = "min-height: 240px; padding-top: 0px;",
+              shiny::fluidRow(
+                style = "padding-top: 30px; padding-bottom: 30px;",
+                shiny::column(12L, align = 'center', shiny::numericInput(inputId = paste0("MinRowsa", Page), label = 'Records per Page', value = 10, min = 10, max = 1000, step = 10))
+              ),
+              shiny::fluidRow(
+                shiny::column(12L, align = 'center', shiny::numericInput(inputId = paste0("Number_of_Recordsa", Page), label = 'Total Rows', value = 10000, min = 1000, max = 100000, 1000))
+              )
+            )
+          ),
+
+          shiny::column(
+            width = 3L,
+            align = 'left',
+            shiny::wellPanel(
+              style = "min-height: 240px; padding-top: 0px;",
+              shiny::fluidRow(
+                style = "padding-top: 15px; padding-bottom: 15px;",
+                shiny::column(12L, align = 'center', shiny::sliderInput(inputId = paste0("PlotWidthinf",Page), label = 'Plot Width', value = 1450, min = 100, max = 2800))
+              ),
+              shiny::fluidRow(
+                shiny::column(12L, align = "center", shiny::sliderInput(inputId = paste0("PlotHeightinf",Page), label = 'Plot Height', value = 950, min = 100, max = 2800))
+              )
+            )
+          )
+        )
+      ),
+
+      # Output
+      DataMuse::BlankRow(12L),
+      shiny::fluidRow(
+        style = "padding-left: 9px; padding-right: 14px;",
+        shiny::column(
+          12L, align = 'center', id = "MLOutput1",
+          shiny::uiOutput(paste0("InferenceOutput", Page))
+        )
+      )
+    )
+  )
+}
+
 #' @title EDAPanels
 #'
 #' @description Panels

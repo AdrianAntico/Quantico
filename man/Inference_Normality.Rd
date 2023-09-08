@@ -5,7 +5,7 @@
 \title{Inference_Normality}
 \usage{
 Inference_Normality(
-  id = "Inference_Normality",
+  id = "Inference_Normality_link",
   Style = "gradient",
   Color = "royal",
   Align = "center",

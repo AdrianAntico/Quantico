@@ -21,6 +21,7 @@ Panels
 \seealso{
 Other Output Panels: 
 \code{\link{EDAPanels}()},
+\code{\link{InferencePanels}()},
 \code{\link{PlotDropDownContents}()},
 \code{\link{PlotPanels}()}
 }

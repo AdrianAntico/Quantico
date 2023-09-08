@@ -23,7 +23,6 @@ Panels
 \seealso{
 Other Plotting: 
 \code{\link{CodePrintPage}()},
-\code{\link{InferencePage}()},
 \code{\link{SideBarUI}()}
 }
 \author{

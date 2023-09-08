@@ -23,8 +23,7 @@ Panels
 \seealso{
 Other Plotting: 
 \code{\link{CodePrintPage}()},
-\code{\link{HomePage}()},
-\code{\link{InferencePage}()}
+\code{\link{HomePage}()}
 }
 \author{
 Adrian Antico

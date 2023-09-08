@@ -118,16 +118,7 @@ ui <- shinydashboard::dashboardPage(
                   # @@@@@@@@@@@@@@@@@@@@ ----
                   # Code Print           ----
                   # @@@@@@@@@@@@@@@@@@@@ ----
-                  DataMuse::CodePrintPage(id = "CodePrintPageID", AppWidth = 12L),
-
-                  # ----
-
-                  # ----
-
-                  # @@@@@@@@@@@@@@@@@@@@ ----
-                  # Inference            ----
-                  # @@@@@@@@@@@@@@@@@@@@ ----
-                  DataMuse::InferencePage(id = "InferencePage", AppWidth=12L)
+                  DataMuse::CodePrintPage(id = "CodePrintPageID", AppWidth = 12L)
 
                 ), # end sortableTabsetPanel
 
@@ -632,6 +623,36 @@ server <- function(input, output, session) {
     if(grepl(pattern = "EDA", input$tabss)) {
       NumEDATabsCurrent <- NumEDATabsCurrent - 1L
       NumEDATabsCurrent <<- NumEDATabsCurrent
+      shiny::removeTab("tabss", target = input$tabss)
+    }
+  }, ignoreInit = TRUE)
+
+  # Add Inference Tab
+  NumInferenceTabsCurrent <- 0L
+  shiny::observeEvent(input$NewInferenceTab, {
+    NumInferenceTabsCurrent <- NumInferenceTabsCurrent + 1L
+    NumInferenceTabsCurrent <<- NumInferenceTabsCurrent
+    if(NumInferenceTabsCurrent <= NumTabs) {
+      shiny::appendTab(
+        inputId = "tabss",
+        tab = DataMuse:::InferencePanels(
+          id = paste0("InferencePanels", NumInferenceTabsCurrent),
+          NumInferenceTabsCurrent,
+          AppWidth=12L,
+          IOL = tryCatch({InferenceOutputList}, error = function(x) NULL)),
+        select = TRUE)
+    } else {
+      NumInferenceTabsCurrent <- NumInferenceTabsCurrent - 1L
+      NumInferenceTabsCurrent <<- NumInferenceTabsCurrent
+      shinyWidgets::sendSweetAlert(session, title = NULL, text = paste0("This session is restricted to ", NumTabs, " Inference Ouput Panels"), type = NULL, btn_labels = "warning", btn_colors = NULL, htInference = FALSE, closeOnClickOutside = TRUE, showCloseButton = TRUE, width = "40%")
+    }
+  }, ignoreInit = TRUE)
+
+  # Remove Inference Tab
+  shiny::observeEvent(input$RemoveInferenceTab, {
+    if(grepl(pattern = "Inference", input$tabss)) {
+      NumInferenceTabsCurrent <- NumInferenceTabsCurrent - 1L
+      NumInferenceTabsCurrent <<- NumInferenceTabsCurrent
       shiny::removeTab("tabss", target = input$tabss)
     }
   }, ignoreInit = TRUE)
@@ -8865,40 +8886,19 @@ server <- function(input, output, session) {
     if(!exists('MachineLearningCode')) MachineLearningCode <- list()
     if(!exists('ForecastingCode')) ForecastingCode <- list()
     if(!exists('PlotterCode')) PlotterCode <- list()
-    #cat("This will run on session stop 2\n")
     MasterSet <- tryCatch({DataMuse:::Shiny.CodePrint.OrganizeCode(DM = DataMgtCode, DW = DataWranglingCode, FE = FeatureEngineeringCode, ML = MachineLearningCode, FC = ForecastingCode, PL = PlotterCode)}, error = function(x) NULL)
-    #cat("This will run on session stop 3\n")
-    print(length(MasterSet))
-    print(length(MasterSet$Code))
-    print(MasterSet)
-    print(class(MasterSet))
-
-    if(is.data.table(MasterSet)) data.table::fwrite(MasterSet, file = file.path("C:/Users/Bizon/Documents/GitHub", paste0("Guest", "_", format(Sys.time(), "%Y%m%d_%H%M%S_"), ".csv")))
-    cat("This will run on session stop 4\n")
-    # if(exists("ArgsList")) rm(ArgsList)
-    # if(exists("DataMgtCode")) rm(DataMgtCode)
-    # if(exists("DataWranglingCode")) rm(DataWranglingCode)
-    # if(exists("DragulaChoicesList")) rm(DragulaChoicesList)
-    # if(exists("DragulaSelectedList")) rm(DragulaSelectedList)
-    # if(exists("FeatureEngineeringCode")) rm(FeatureEngineeringCode)
-    # if(exists("ForecastingCode")) rm(ForecastingCode)
-    # if(exists("MachineLearningCode")) rm(MachineLearningCode)
-    # if(exists("plot_output_list")) rm(plot_output_list)
-    # if(exists("PlotMap")) rm(PlotMap)
-    # if(exists("PlotPanelInputsList")) rm(PlotPanelInputsList)
-    # if(exists("PlotterCode")) rm(PlotterCode)
-    # if(exists("selList")) rm(selList)
-    # if(exists("StockSymbolsData")) rm(StockSymbolsData)
-    # if(exists("ChoiceUpdate")) rm(ChoiceUpdate)
-    # if(exists("ChoiceUpdate_old")) rm(ChoiceUpdate_old)
-    # if(exists("PlotInitializeCheck")) rm(PlotInitializeCheck)
-    # if(exists("sel")) rm(sel)
-    # if(exists("TickerSymbols")) rm(TickerSymbols)
-
+    if(Debug) {
+      print(length(MasterSet))
+      print(length(MasterSet$Code))
+      print(MasterSet)
+      print(class(MasterSet))
+    }
+    # if(is.data.table(MasterSet)) data.table::fwrite(MasterSet, file = file.path("C:/Users/Bizon/Documents/GitHub", paste0("Guest", "_", format(Sys.time(), "%Y%m%d_%H%M%S_"), ".csv")))
   })
 
   # For App Initialization, to get those tabs up and available
   shinyjs::click(id = 'NewEDATab')
+  shinyjs::click(id = 'NewInferenceTab')
   shinyjs::click(id = 'NewMLTab')
   shinyjs::click(id = 'NewDataTab')
   shinyjs::click(id = 'NewPlotTab')

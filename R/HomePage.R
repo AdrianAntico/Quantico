@@ -5536,147 +5536,6 @@ HomePage <- function(id, Page, AppWidth=12L) {
   ) # closes box
 }
 
-#' @title InferencePage
-#'
-#' @description Panels
-#'
-#' @author Adrian Antico
-#' @family Plotting
-#'
-#' @param id = 'PlotPanels'
-#' @param AppWidth = 12L
-#' @param Page numeric
-#' @param NumPlotsAvailable numeric
-#' @param DragulaChoices character
-#'
-#' @export
-InferencePage <- function(id, AppWidth=12L) {
-  ns <- shiny::NS(id)
-  shiny::tabPanel(
-    id = "Hypothesis_Testing",
-    title = 'Inference',
-    icon = shiny::icon('microscope'),
-    DataMuse:::BlankRow(12L),
-    shinydashboard::box(
-      title = NULL, solidHeader = TRUE, collapsible = FALSE, status = 'danger', width = 12L, class = "OutputPaneBox",
-      style = "padding-top: 10px; min-height: 1540px; max-height: 1540px; overflow-x: clip; overflow-y:auto; margin-top: 1px; padding-left: 12px; background-color: #0000; border: 0px #0000 solid; box-shadow: 0px 0px 0px 0px #0000;",
-      shiny::fluidRow(
-        style = "padding-left: 8px;padding-right: 15px;padding-top: 8px;",
-
-        shiny::tabsetPanel(
-          id = "htestss",
-          selected = "Normality",
-          type = "tabs",
-
-          shiny::tabPanel(
-            title = "Normality",
-            DataMuse:::BlankRow(12L),
-
-            shinydashboard::box(
-              title = NULL, solidHeader = TRUE, collapsible = FALSE, status = 'warning', width = 12L,
-              style = "padding-top: 5px; min-height: 1416px; max-height: 1416px;",
-              shiny::fluidRow(
-                shiny::column(
-                  width = 4L, align = "center",
-                  DataMuse::PickerInput(InputID = "Normality_Data", Label = "Data")
-                ),
-                shiny::column(
-                  width = 4L, align = "center",
-                  DataMuse::PickerInput(InputID = "Normality_YVars", Label = "Variables")
-                )
-              )
-            )
-          ),
-
-          shiny::tabPanel(
-            title = "Correlation",
-            DataMuse:::BlankRow(12L),
-
-            shinydashboard::box(
-              title = NULL, solidHeader = TRUE, collapsible = FALSE, status = 'warning', width = 12L,
-              style = "padding-top: 5px; min-height: 1416px; max-height: 1416px;",
-
-              shiny::fluidRow(
-                shiny::column(
-                  width = 4L, align = "center",
-                  DataMuse::PickerInput(InputID = "Correlation_Data", Label = "Data")
-                ),
-                shiny::column(
-                  width = 4L, align = "center",
-                  DataMuse::PickerInput(InputID = "Correlation_YVars", Label = "Variables")
-                )
-              )
-            )
-          ),
-
-          shiny::tabPanel(
-            title = "Parametric",
-            DataMuse:::BlankRow(12L),
-
-            shinydashboard::box(
-              title = NULL, solidHeader = TRUE, collapsible = FALSE, status = 'warning', width = 12L,
-              style = "padding-top: 5px; min-height: 1416px; max-height: 1416px;",
-
-              shiny::fluidRow(
-                shiny::column(
-                  width = 4L, align = "center",
-                  DataMuse::PickerInput(InputID = "Parametric_Data", Label = "Data")
-                ),
-                shiny::column(
-                  width = 4L, align = "center",
-                  DataMuse::PickerInput(InputID = "Parametric_YVars", Label = "Variables")
-                )
-              )
-            )
-          ),
-
-          shiny::tabPanel(
-            title = "Nonparametric",
-            DataMuse:::BlankRow(12L),
-
-            shinydashboard::box(
-              title = NULL, solidHeader = TRUE, collapsible = FALSE, status = 'warning', width = 12L,
-              style = "padding-top: 5px; min-height: 1416px; max-height: 1416px;",
-
-              shiny::fluidRow(
-                shiny::column(
-                  width = 4L, align = "center",
-                  DataMuse::PickerInput(InputID = "Nonparametric_Data", Label = "Data")
-                ),
-                shiny::column(
-                  width = 4L, align = "center",
-                  DataMuse::PickerInput(InputID = "Nonparametric_YVars", Label = "Variables")
-                )
-              )
-            )
-          ),
-
-          shiny::tabPanel(
-            title = "Stationarity",
-            DataMuse:::BlankRow(12L),
-
-            shinydashboard::box(
-              title = NULL, solidHeader = TRUE, collapsible = FALSE, status = 'warning', width = 12L,
-              style = "padding-top: 5px; min-height: 1416px; max-height: 1416px;",
-
-              shiny::fluidRow(
-                shiny::column(
-                  width = 4L, align = "center",
-                  DataMuse::PickerInput(InputID = "Stationarity_Data", Label = "Data")
-                ),
-                shiny::column(
-                  width = 4L, align = "center",
-                  DataMuse::PickerInput(InputID = "Stationarity_YVars", Label = "Variables")
-                )
-              )
-            )
-          ) # end box
-        ) # end tabsetPanel
-      ) # end fluidRow
-    ) # end box
-  ) # end tabPanel
-}
-
 #' @title CodePrintPage
 #'
 #' @description Panels
@@ -5893,6 +5752,11 @@ SideBarUI <- function(id, AppWidth=12L) {
         shiny::fluidRow(
           shiny::column(6L, align = 'center', shiny::actionButton(inputId = "NewEDATab", label = "EDA Tab", icon = shiny::icon(name = "plus"), style = PostGREButtonStyle)),
           shiny::column(6L, align = 'center', shiny::actionButton(inputId = "RemoveEDATab", label = "EDA Tab", icon = shiny::icon(name = "minus"), style = CloudButtonStyle))),
+        DataMuse::BlankRow(12L),
+        DataMuse::BlankRow(12L),
+        shiny::fluidRow(
+          shiny::column(6L, align = 'center', shiny::actionButton(inputId = "NewInferenceTab", label = "EDA Tab", icon = shiny::icon(name = "plus"), style = PostGREButtonStyle)),
+          shiny::column(6L, align = 'center', shiny::actionButton(inputId = "RemoveInferenceTab", label = "EDA Tab", icon = shiny::icon(name = "minus"), style = CloudButtonStyle))),
         DataMuse::BlankRow(12L),
         shiny::fluidRow(
           shiny::column(6L, align = 'center', shiny::actionButton(inputId = "NewMLTab", label = "ML Tab", icon = shiny::icon(name = "plus"), style = PostGREButtonStyle)),

@@ -1,10 +1,5 @@
 options(scipen = 999);options(shiny.maxRequestSize = 250000*1024^2);options(warn = -1)
 library(AutoQuant);library(Rodeo);library(data.table);library(shiny);library(magrittr);library(shinydashboard)
-ButtonStyle <- "color:#FFFFFF; border-color:#FFFFFF; border-style:solid; border-width:0.1px; border-radius:30px; font-size:14px;"
-SessionButtonStyle <- "width:100%; color:#FFFFFF; border-color:#FFFFFF; border-style:solid; border-width:0px; border-radius:3%; font-size:14px; background-color: #6c6c6c;"
-LocalButtonStyle <- "width:100%; color:#FFFFFF; border-color:#FFFFFF; border-style:solid; border-width:0px; border-radius:3%; font-size:14px; background-color: #6c6c6c;"
-PostGREButtonStyle <- "width:100%; color:#FFFFFF; border-color:#FFFFFF; border-style:solid; border-width:0px; font-size:14px; background-color: #6c6c6c;"
-CloudButtonStyle <- "width:100%; color:#FFFFFF; border-color:#FFFFFF; border-style:solid; border-width:0px; font-size:14px; background-color: #6c6c6c;"
 EchartThemes <- c("auritus","azul","bee-inspired","blue","caravan","carp","chalk","cool","dark-bold","dark","eduardo", "essos","forest","fresh-cut","fruit","gray","green","halloween","helianthus","infographic","inspired","jazz","london","macarons","macarons2","mint","purple-passion","red-velvet","red","roma","royal","sakura","shine","tech-blue","vintage","walden","wef","weforum","westeros","wonderland")
 LogoStyle <- "max-width: 98.5%; height: auto; max-height: 143px; padding-left: 0px; padding-right: 0px; border-radius: 30px; padding-bottom: 0px; background-color: #0000; box-shadow: 0px 0px 0px 0px #7bc1ff; padding-top: 5px;"
 LogoBoxStyle <- "padding-left: 15px; padding-right: 16px; border-radius: 30px; margin-right:0px; min-height: 168px;"
@@ -2571,6 +2566,52 @@ server <- function(input, output, session) {
       ScoreML_ReturnShapVals_Selected = if(length(input$ScoreML_ReturnShapVals) > 0L) input$ScoreML_Data else FALSE)
   })
   shiny::observeEvent(input$ScoreML_OK, {shiny::removeModal()})
+
+  #                                      ----
+
+  #                                      ----
+
+  # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
+  # :: Inputs ::  Inference              ----
+  # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
+
+  # Normality Testing
+  shiny::observeEvent(input$Inference_Normality, {
+    DataMuse:::Normality_Modal_Fun(
+      id = "Inference_NormalityID",
+      AppWidth=12L,
+
+      # Reactives
+      Normality_YVars_Selected = if(length(input$Normality_YVars_Selected) > 0L) input$Normality_YVars_Selected else NULL,
+
+      # Statics
+      Normality_SelectData_Choices = tryCatch({names(DataList)}, error = function(x) NULL),
+
+      # Updaters
+      Normality_SelectData_Selected = if(length(input$Normality_SelectData_Selected) > 0L) input$Normality_SelectData_Selected else NULL,
+      SampleSize.ADT_Selected = if(length(input$SampleSize.ADT_Selected) > 0L) input$SampleSize.ADT_Selected else NULL,
+      Samples.ADT_Selected = if(length(input$Samples.ADT_Selected) > 0L) input$Samples.ADT_Selected else NULL,
+      SampleSize.CVMT_Selected = if(length(input$SampleSize.CVMT_Selected) > 0L) input$SampleSize.CVMT_Selected else NULL,
+      Samples.CVMT_Selected = if(length(input$Samples.CVMT_Selected) > 0L) input$Samples.CVMT_Selected else NULL,
+      SampleSize.KST_Selected = if(length(input$SampleSize.KST_Selected) > 0L) input$SampleSize.KST_Selected else NULL,
+      Samples.KST_Selected = if(length(input$Samples.KST_Selected) > 0L) input$Samples.KST_Selected else NULL,
+      SampleSize.ST_Selected = if(length(input$SampleSize.ST_Selected) > 0L) input$SampleSize.ST_Selected else NULL,
+      Samples.ST_Selected = if(length(input$Samples.ST_Selected) > 0L) input$Samples.ST_Selected else NULL,
+      SampleSize.JBT_Selected = if(length(input$SampleSize.JBT_Selected) > 0L) input$SampleSize.JBT_Selected else NULL,
+      Samples.JBT_Selected = if(length(input$Samples.JBT_Selected) > 0L) input$Samples.JBT_Selected else NULL,
+      SampleSize.AT_Selected = if(length(input$SampleSize.AT_Selected) > 0L) input$SampleSize.AT_Selected else NULL,
+      Samples.AT_Selected = if(length(input$Samples.AT_Selected) > 0L) input$Samples.AT_Selected else NULL)
+
+    # Reactives
+    Normality_dataReactive <- shiny::reactive({tryCatch({DataList[[shiny::req(input$ScoreML_Data)]][['data']]}, error = function(x) NULL)})
+    shiny::observeEvent(shiny::req(Normality_dataReactive()), {
+      ChoiceList <- list()
+      ColTypes <- unique(DataMuse:::ColTypes(Normality_dataReactive()))
+      for(i in seq_along(ColTypes)) ChoiceList[[ColTypes[i]]] <- DataMuse:::ColNameFilter(Normality_dataReactive(), Types = ColTypes[i])
+      DataMuse:::PickerInput(session = session, Update = TRUE, input=input, InputID='Normality_YVars', Label='Variables', Choices = ChoiceList, SelectedDefault = if(length(input$Normality_YVars) > 0L) input$Normality_YVars else NULL, Multiple = TRUE, MaxVars = 100L)
+    })
+  })
+  shiny::observeEvent(input$Normality_OK, {shiny::removeModal()})
 
   #                                      ----
 

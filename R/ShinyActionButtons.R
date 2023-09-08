@@ -1872,3 +1872,41 @@ BuildModelsButton <- function(id = 'MLBuildButton',
       shiny::actionButton(paste0('BuildModels_', Algo), label = NULL, icon = shiny::icon("share-from-square"), style = ButtonStyle)
   ))
 }
+
+
+#' @title Inference_Normality
+#'
+#' @description Time Series Fill Missing Dates
+#'
+#' @author Adrian Antico
+#' @family Inference
+#'
+#' @param id = 'Inference_Normality'
+#' @param Style = 'gradient',
+#' @param Color = 'royal',
+#' @param Align = 'center'
+#' @param DropDownRight = FALSE
+#' @param Animate = TRUE
+#' @param Status = 'custom'
+#' @param H3Color = 'white'
+#'
+#' @export
+Inference_Normality <- function(id='Inference_Normality_link',
+                                Style = 'gradient',
+                                Color = 'royal',
+                                Align='center',
+                                DropDownRight=FALSE,
+                                Animate=TRUE,
+                                Status='custom',
+                                H3Color = 'white') {
+
+  #Height <- '43px'
+  ns <- shiny::NS(id)
+  shiny::tagList(
+    shiny::column(
+      width = 12L,
+      align=Align,
+      #tags$h4(tags$b('Pivot')),
+      shiny::actionLink("Inference_Normality", label = "Normality", icon = shiny::icon("right-from-bracket"))#, style = ButtonStyle)
+    ))
+}

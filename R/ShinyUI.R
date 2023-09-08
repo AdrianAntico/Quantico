@@ -10520,6 +10520,270 @@ MLScoring_Modal_Fun <- function(id = 'ScoreMLID',
 # ----
 
 # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
+# ::  Inference  ::                                                                                              ----
+# @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
+
+#' @title Normality_Modal_Fun
+#'
+#' @description Inference operations
+#'
+#' @author Adrian Antico
+#' @family Inference
+#'
+#' @param id = 'Normality_Modal_Fun'
+#' @param AppWidth = 12L
+#'
+#' @export
+Normality_Modal_Fun <- function(id,
+                                AppWidth=12L,
+
+                                # Reactives
+                                Normality_YVars_Selected = NULL,
+
+                                # Statics
+                                Normality_SelectData_Choices = NULL,
+
+                                # Updaters
+                                Normality_SelectData_Selected = NULL,
+                                SampleSize.ADT_Selected = NULL,
+                                Samples.ADT_Selected = NULL,
+                                SampleSize.CVMT_Selected = NULL,
+                                Samples.CVMT_Selected = NULL,
+                                SampleSize.KST_Selected = NULL,
+                                Samples.KST_Selected = NULL,
+                                SampleSize.ST_Selected = NULL,
+                                Samples.ST_Selected = NULL,
+                                SampleSize.JBT_Selected = NULL,
+                                Samples.JBT_Selected = NULL,
+                                SampleSize.AT_Selected = NULL,
+                                Samples.AT_Selected = NULL) {
+
+  shiny::moduleServer(
+    id = id,
+    module = function(input, output, session) {
+      ns <- session$ns
+      shiny::showModal(
+        shiny::modalDialog(
+          title = 'Normality Testing',
+          size = "l",
+          easyClose = FALSE,
+          fade = TRUE,
+          shiny::tagList(
+
+            DataMuse:::BlankRow(12L),
+
+            # Tabs
+            shiny::tabsetPanel(
+              id = 'DataSet_TabPanel',
+              selected = 'Normality Tests',
+
+              # Normality Tests ----
+              shiny::tabPanel(
+                title = "Normality Tests",
+                icon = shiny::icon('code'),
+                DataMuse:::BlankRow(12L),
+                shiny::fluidRow(
+                  style = ModelHelpFormat,
+                  DataMuse:::BlankRow(12L),
+                  shiny::fluidRow(
+                    shiny::column(
+                      width = 3L,
+                      tags$h4(tags$span(tags$b(paste0('Normality Tests'))))
+                    ),
+                    shiny::column(
+                      width = 8L,
+                      align = "right",
+                      shinyWidgets::dropdown(
+                        shinydashboard::box(
+                          title = NULL, solidHeader = TRUE, collapsible = FALSE, status = "info", width = 12L,
+                          shiny::fluidRow(
+                            shiny::column(
+                              width = 12L,
+                              align = "left",
+                              shiny::a(name = "partitiondata"),
+                              shiny::h1(tags$b("Normality Tests")),
+                              shiny::p("The Normality Tests operation runs through six different normality tests
+                                        and compiles the metrics and generates a few plots to help visualize the
+                                        results.")
+                            )
+                          ),
+
+                          DataMuse::BlankRow(12),
+                          shiny::fluidRow(shiny::column(width = 12L, align = "left", shiny::h3("Normality Tests Usage"))),
+                          shiny::fluidRow(shiny::column(width = 12L, align = "left", shiny::markdown(
+                            "
+                              Normality Tests operation runs through six different normality tests. If Samples_ are greater than one then the metrics reported are the average of the metrics generated.
+                              * Choose data set: This is the dataset you want to utilize for the operation
+                              * YVars: select the variables you want tested
+                              * SampleSize.ADT Sample size for the Anderson Darling Test
+                              * Samples.ADT Bootstrap samples for the Anderson Darling Test
+                              * SampleSize.CVMT Sample size for the Cramer Von Mises Test
+                              * Samples.CVMT Bootstrap samples for the Cramer Von Mises Test
+                              * SampleSize.KST Sample size for the Kolmogorov Smirnov Test
+                              * Samples.KST Bootstrap samples for the Kolmogorov Smirnov Test
+                              * SampleSize.ST Sample size for the Shapiro Test
+                              * Samples.ST Bootstrap samples for the Shapiro Test
+                              * SampleSize.JBT Sample size for the Jarque Bera Test
+                              * Samples.JBT Bootstrap samples for the Jarque Bera Test
+                              * SampleSize.AT Sample size for the Agostino Test
+                              * Samples.AT Bootstrap samples for the Agostino Test
+                              "
+                          )))
+                        ),
+                        size = "lg",
+                        icon = shiny::icon("question"),
+                        label = NULL,
+                        tooltip = FALSE,
+                        right = TRUE,
+                        up = FALSE,
+                        width = NULL,
+                        animate = shinyWidgets::animateOptions(
+                          enter = "zoomIn",
+                          exit = "fadeOutRightBig"
+                        ),
+                        inputId = NULL,
+                        block = FALSE,
+                        no_outline = TRUE
+                      )
+                    ),
+
+                    # Normality Tests Button
+                    shiny::column(
+                      width = 1L, align = 'right',
+                      style = "padding-top: 4px;padding-right: 50px;",
+                      shiny::actionButton(
+                        inputId = 'FeatureEngineeringButton_AutoDataPartition',
+                        label = 'Run',
+                        icon = shiny::icon('chevron-right', lib='font-awesome')
+                      )
+                    )
+                  ),
+
+                  DataMuse:::BlankRow(12L),
+                  shiny::fluidRow(
+                    shinydashboard::box(
+                      title = NULL, solidHeader = TRUE, collapsible = FALSE, status = "danger", width = 12L,
+                      DataMuse::BlankRow(12L),
+                      shiny::fluidRow(
+                        shiny::column(
+                          6L, align = "center",
+                          DataMuse:::SelectizeInput(InputID='Normality_SelectData', Label='Choose data set', Choices = Normality_SelectData_Choices, SelectedDefault = Normality_SelectData_Selected, Multiple = TRUE, MaxVars = 1)),
+                        shiny::column(
+                          6L, align = "center",
+                          DataMuse:::PickerInput(InputID='Normality_YVars', Label='Variables', Choices = NULL, SelectedDefault = Normality_YVars_Selected, Multiple = TRUE, MaxVars = 100L)
+                        )
+                      )
+                    )
+                  ),
+
+                  DataMuse::BlankRow(12L),
+                  shiny::fluidRow(
+                    shiny::column(
+                      6L, align = "center",
+                      shinydashboard::box(
+                        title = NULL, solidHeader = TRUE, collapsible = FALSE, status = "danger", width = 12L,
+                        DataMuse::BlankRow(12L),
+                        shiny::fluidRow(
+                          shiny::column(
+                            6L,
+                            DataMuse:::NumericInput(InputID='SampleSize.ADT', Label='ADT Sample Size', Value = SampleSize.ADT_Selected, Min = 8, Max = 1000000, Step = 100)
+                          ),
+                          shiny::column(
+                            6L,
+                            DataMuse:::NumericInput(InputID='Samples.ADT', Label='ADT Iterations', Value = Samples.ADT_Selected, Min = 1, Max = 1000, Step = 1)
+                          )
+                        ),
+                        DataMuse::BlankRow(12L),
+                        shiny::fluidRow(
+                          shiny::column(
+                            6L,
+                            DataMuse:::NumericInput(InputID='SampleSize.CVMT', Label='CVMT Sample Size',  Value = SampleSize.CVMT_Selected, Min = 8, Max = 1000000, Step = 100)
+                          ),
+                          shiny::column(
+                            6L,
+                            DataMuse:::NumericInput(InputID='Samples.CVMT', Label='CVMT Iterations',  Value = Samples.CVMT_Selected, Min = 1, Max = 1000, Step = 1)
+                          )
+                        ),
+                        DataMuse::BlankRow(12L),
+                        shiny::fluidRow(
+                          shiny::column(
+                            6L,
+                            DataMuse:::NumericInput(InputID='SampleSize.KST', Label='KST Sample Size', Value = SampleSize.KST_Selected, Min = 8, Max = 1000000, Step = 100)
+                          ),
+                          shiny::column(
+                            6L,
+                            DataMuse:::NumericInput(InputID='Samples.KST', Label='KST Iterations', Value = Samples.KST_Selected, Min = 1, Max = 1000, Step = 1)
+                          )
+                        ),
+                        DataMuse::BlankRow(12L)
+                      )
+                    ),
+
+                    shiny::column(
+                      6L, align = "center",
+                      shinydashboard::box(
+                        title = NULL, solidHeader = TRUE, collapsible = FALSE, status = "danger", width = 12L,
+                        DataMuse::BlankRow(12L),
+                        shiny::fluidRow(
+                          shiny::column(
+                            6L,
+                            DataMuse:::NumericInput(InputID='SampleSize.ST', Label='ST Sample Size', Value = SampleSize.ST_Selected, Min = 8, Max = 1000000, Step = 100)
+                          ),
+                          shiny::column(
+                            6L,
+                            DataMuse:::NumericInput(InputID='Samples.ST', Label='ST Iterations', Value = Samples.ST_Selected, Min = 1, Max = 1000, Step = 1)
+                          )
+                        ),
+                        DataMuse::BlankRow(12L),
+                        shiny::fluidRow(
+                          shiny::column(
+                            6L,
+                            DataMuse:::NumericInput(InputID='SampleSize.JBT', Label='JBT Sample Size',  Value = SampleSize.JBT_Selected, Min = 8, Max = 1000000, Step = 100)
+                          ),
+                          shiny::column(
+                            6L,
+                            DataMuse:::NumericInput(InputID='Samples.JBT', Label='JBT Iterations',  Value = Samples.JBT_Selected, Min = 1, Max = 1000, Step = 1)
+                          )
+                        ),
+                        DataMuse::BlankRow(12L),
+                        shiny::fluidRow(
+                          shiny::column(
+                            6L,
+                            DataMuse:::NumericInput(InputID='SampleSize.AT', Label='AT Sample Size', Value = SampleSize.AT_Selected, Min = 8, Max = 1000000, Step = 100)
+                          ),
+                          shiny::column(
+                            6L,
+                            DataMuse:::NumericInput(InputID='Samples.AT', Label='AT Iterations', Value = Samples.AT_Selected, Min = 1, Max = 1000, Step = 1)
+                          )
+                        ),
+                        DataMuse::BlankRow(12L)
+                      )
+                    )
+                  ),
+
+                  # Blank space
+                  DataMuse:::BlankRow(12L),
+                  DataMuse:::BlankRow(12L),
+                  DataMuse:::BlankRow(12L),
+                  DataMuse:::BlankRow(12L),
+                  DataMuse:::BlankRow(12L)
+                )
+              )
+            ) # end Tab Panel Main
+          ), # end TagList
+
+          footer = shiny::tagList(
+            shiny::modalButton(label = "Cancel"),
+            shiny::actionButton("Normality_OK", "OK", width = '50px'))))
+
+    })
+}
+
+# ----
+
+# ----
+
+# @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
 # ::  Forecasting  ::                                                                                            ----
 # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
 

@@ -5812,6 +5812,13 @@ SideBarUI <- function(id, AppWidth=12L) {
       DataMuse:::BlankRow(12L),
       shiny::tags$details(
         DataMuse::BlankLine(12L),
+        shiny::tags$summary(shiny::tags$span(shiny::tags$b("Inference"))),
+        shiny::fluidRow(DataMuse:::Inference_Normality(id = 'Inference_Normality_link', Align = "left"))
+      ),
+
+      DataMuse:::BlankRow(12L),
+      shiny::tags$details(
+        DataMuse::BlankLine(12L),
         shiny::tags$summary(shiny::tags$span(shiny::tags$b('Machine Learning'))),
         shiny::fluidRow(DataMuse:::ML_CatBoost(id = 'CatBoostML', Align = 'left')),
         shiny::fluidRow(DataMuse:::ML_XGBoost(id = 'XGBoostML' , Align = 'left')),

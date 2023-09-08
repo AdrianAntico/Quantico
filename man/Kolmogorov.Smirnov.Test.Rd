@@ -28,8 +28,10 @@ Other Inference:
 \code{\link{Anderson.Darling.Test}()},
 \code{\link{Correlation.Test}()},
 \code{\link{Cramer.Von.Mises.Test}()},
+\code{\link{Inference_Normality}()},
 \code{\link{Jarque.Bera.Test}()},
 \code{\link{Normality.Analysis}()},
+\code{\link{Normality_Modal_Fun}()},
 \code{\link{Shapiro.Test}()}
 }
 \concept{Inference}

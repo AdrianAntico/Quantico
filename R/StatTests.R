@@ -168,6 +168,7 @@ Normality.Analysis <- function(dt = NULL,
 #'
 #' @param dt Numeric vector of values to test. Must have positive standard deviation and must be of length greater than or equal to 8
 #' @param CorrVars character
+#' @param DateVar character
 #' @param SampleSize sub sampling of data
 #' @param EchartsTheme = "macarons"
 #' @param TextColor = "black"

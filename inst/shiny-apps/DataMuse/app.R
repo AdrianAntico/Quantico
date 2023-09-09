@@ -5249,7 +5249,7 @@ server <- function(input, output, session) {
 
       Normality_SelectData <- DataList[[temp]][['data']]
       Normality_YVars <- DataMuse::ReturnParam(xx = tryCatch({input$Normality_YVars}, error = function(x) NULL), Type = "character", Default = NULL)
-      Normality_InferenceID <- DataMuse::ReturnParam(xx = tryCatch({input$Normality_InferenceID}, error = function(x) NULL), Type = "character", Default = NULL)
+      Normality_InferenceID <- DataMuse::ReturnParam(xx = tryCatch({input$Normality_InferenceID}, error = function(x) NULL), Type = "character", Default = "INF001")
       SampleSize.ADT <- DataMuse::ReturnParam(xx = tryCatch({input$SampleSize.ADT}, error = function(x) NULL), Type = "character", Default = 1000000)
       Samples.ADT <- DataMuse::ReturnParam(xx = tryCatch({input$Samples.ADT}, error = function(x) NULL), Type = "character", Default = 1)
       SampleSize.CVMT <- DataMuse::ReturnParam(xx = tryCatch({input$SampleSize.CVMT}, error = function(x) NULL), Type = "character", Default = 1000000)
@@ -5264,6 +5264,7 @@ server <- function(input, output, session) {
       Samples.AT <- DataMuse::ReturnParam(xx = tryCatch({input$Samples.AT}, error = function(x) NULL), Type = "character", Default = 1)
 
       # Run function
+      if(Debug) print("inference 0")
       if(!exists("InferenceOutputList")) InferenceOutputList <- list()
       InferenceOutputList[[Normality_InferenceID]] <- DataMuse::Normality.Analysis(
         dt = Normality_SelectData,
@@ -5285,15 +5286,17 @@ server <- function(input, output, session) {
         SampleSize.AT = SampleSize.AT,
         Samples.AT = Samples.AT)
 
-      MachineLearningCode <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+      if(Debug) print("inference 1")
+
+      MachineLearningCode <- tryCatch({DataMuse:::Shiny.CodePrint.Collect(y = MachineLearningCode, x = paste0(
         "\n",
         "# Normality Testing\n",
         "Normality_SelectData <- DataList[[", DataMuse:::CEP(temp), "]][['data']]\n",
         "Output <- DataMuse::Normality.Analysis(, \n  ",
         "dt = Normality_SelectData, \n  ",
-        "YVars = ", DataMuse:::CEP(Normality_YVars), ",\n  ",
+        "YVars = ", DataMuse:::ExpandText(Normality_YVars), ",\n  ",
         "EchartsTheme = ", DataMuse:::CEP(EchartsTheme), ",\n  ",
-        "TextColor = ", DataMuse:::CEP(black), ",\n  ",
+        "TextColor = ", DataMuse:::CEP(FontColorData$flv), ",\n  ",
         "PlotHeight = ", DataMuse:::CEP(PlotHeightINF), ",\n  ",
         "PlotWidth = ", DataMuse:::CEP(PlotWidthINF), ",\n  ",
         "SampleSize.ADT = ", DataMuse:::CEPP(SampleSize.ADT), ",\n  ",
@@ -5307,10 +5310,14 @@ server <- function(input, output, session) {
         "SampleSize.JBT = ", DataMuse:::CEPP(SampleSize.JBT), ",\n  ",
         "Samples.JBT = ", DataMuse:::CEPP(Samples.JBT), ",\n  ",
         "SampleSize.AT = ", DataMuse:::CEPP(SampleSize.AT), ",\n  ",
-        "Samples.AT = Samples.AT)\n"))
+        "Samples.AT = Samples.AT)\n"))}, error = function(x) MachineLearningCode)
 
+      # Update Available Outputs for Inference Tab
+      if(Debug) print("inference 2")
+      for(i in seq_len(NumTabs)) DataMuse::PickerInput(session = session, input = input, Update = TRUE, InputID = paste0('InferenceReportsModelSelection',i), Label = 'Testing Output', Choices = tryCatch({names(InferenceOutputList)}, error = function(x) NULL), Multiple = FALSE, MaxVars = 1L)
       InferenceOutputList <<- InferenceOutputList
       MachineLearningCode <<- MachineLearningCode
+      shinyWidgets::sendSweetAlert(session, title = NULL, text = "", type = NULL, btn_labels = "Success", btn_colors = NULL, html = FALSE, closeOnClickOutside = TRUE, showCloseButton = TRUE, width = "40%")
 
     } else {
       shinyWidgets::sendSweetAlert(session, title = NULL, text = "Data not available", type = NULL, btn_labels = "Error", btn_colors = NULL, html = FALSE, closeOnClickOutside = TRUE, showCloseButton = TRUE, width = "40%")
@@ -8530,7 +8537,6 @@ server <- function(input, output, session) {
 
     # Code Collection
     if(!exists('MachineLearningCode')) MachineLearningCode <- list()
-    if(!exists("InferenceReportOutputList")) InferenceReportOutputList <- list()
 
     # tabss refers to the entire tabsetPanel that houses the plotting, tables, and ml output panes
     # pane names are as such:
@@ -8541,35 +8547,34 @@ server <- function(input, output, session) {
     if(length(DataList) > 0L) {
       shiny::withProgress(message = 'Inference Reporting Has Begun..', value = 0, {
 
-        # Inputs
-        FontColorData <- DataMuse:::rgba2hex(DataMuse:::ReturnParam(xx = input[["ColorFont"]], Type = "character", Default = "#e2e2e2"))
-
         if(Debug) {
           print("Inference Panel Report 2")
         }
 
-        if(Debug) print("Inference Panel Report 3")
-
         # Collect output
-        if(length(Output) > 0L) {
-          InferenceReportOutputList[[Page]] <- Output[["OutputList"]]; InferenceReportOutputList <<- InferenceReportOutputList
-          DataList <- Output[["DataList"]]; DataList <<- DataList
-          MachineLearningCode <- Output[["CodeList"]]; MachineLearningCode <<- MachineLearningCode
-
+        if(length(InferenceOutputList) > 0L) {
+          InfName <- DataMuse::ReturnParam(xx = tryCatch({input[[paste0("InferenceReportsModelSelection", Page)]]}, error = function(x) NULL), Type = "character", Default = NULL)
+          FontColorData <- DataMuse:::rgba2hex(DataMuse:::ReturnParam(xx = input[["ColorFont"]], Type = "character", Default = "#e2e2e2"))
           if(Debug) {
             print("Inference Panel Report 4")
-            print(names(InferenceReportOutputList[[Page]]))
           }
 
+          print(InfName)
+          print(names(InferenceOutputList))
+          print(names(InferenceOutputList[[InfName]]))
+          if(!exists("InfOutput")) InfOutput <- list()
+          InfOutput[[Page]] <- InferenceOutputList[[InfName]]
+          InfOutput <<- InfOutput
+
           # Render Function
-          if(length(InferenceReportOutputList[[Page]]) > 0L) {
+          if(length(InfOutput) > 0L) {
             DataMuse:::Shiny.Display(
               input, output, session,
-              InferenceReportOutputList[[Page]], Debug,
+              InfOutput[[Page]], Debug,
               OutputId = paste0("InferenceOutput",Page),
               Cols = 1,
               FontColor = FontColorData$flv,
-              PM = names(InferenceReportOutputList[[Page]]))
+              PM = names(InferenceOutputList[[InfName]]))
           }
 
           if(Debug) print("Inference Panel Report 5")

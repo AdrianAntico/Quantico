@@ -78,6 +78,8 @@ Normality.Analysis <- function(dt = NULL,
   OutputList <- list()
   for(val in YVars2Test) {# val = "Daily Margin"
 
+    print(val)
+
     # Create Vals for tests
     Vals <- dt[[val]] # unique(dt[[val]])
 
@@ -101,6 +103,7 @@ Normality.Analysis <- function(dt = NULL,
     gg <- gg[Variable == eval(val) & Test == "Agostino.Test", P_Value := mean(x1$P_Value_2s, na.rm = TRUE)]
 
     # Radar plot of P_Values
+    print(paste0("Radar Plot", " ", val))
     OutputList[[paste0("Radar_", val)]] <- AutoPlots::Plot.Radar(
       dt = gg[Variable == eval(val)],
       PreAgg = TRUE,
@@ -112,6 +115,7 @@ Normality.Analysis <- function(dt = NULL,
       Width = PlotWidth)
 
     # Normal Probability Plot of Vals
+    print(paste0("Probability Plot", " ", val))
     OutputList[[paste0("Probability_", val)]] <- AutoPlots::Plot.ProbabilityPlot(
       dt = dt,
       SampleSize = 2500,
@@ -124,6 +128,7 @@ Normality.Analysis <- function(dt = NULL,
 
   # FontColor <- list()
   # FontColor$flv = "black"
+  print("Reactable Metrics")
   OutputList[["Metrics"]] <- reactable::reactable(
     data = gg,
     compact = TRUE,
@@ -156,9 +161,11 @@ Normality.Analysis <- function(dt = NULL,
   )
 
   # Reorder elements and return
+  print("Return 1")
   v <- names(OutputList)
   v <- v[c(length(v), 1:(length(v)-1))]
   OutputList <- OutputList[v]
+  print("Return 2")
   return(OutputList)
 }
 

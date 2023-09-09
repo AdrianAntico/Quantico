@@ -5753,10 +5753,9 @@ SideBarUI <- function(id, AppWidth=12L) {
           shiny::column(6L, align = 'center', shiny::actionButton(inputId = "NewEDATab", label = "EDA Tab", icon = shiny::icon(name = "plus"), style = PostGREButtonStyle)),
           shiny::column(6L, align = 'center', shiny::actionButton(inputId = "RemoveEDATab", label = "EDA Tab", icon = shiny::icon(name = "minus"), style = CloudButtonStyle))),
         DataMuse::BlankRow(12L),
-        DataMuse::BlankRow(12L),
         shiny::fluidRow(
-          shiny::column(6L, align = 'center', shiny::actionButton(inputId = "NewInferenceTab", label = "EDA Tab", icon = shiny::icon(name = "plus"), style = PostGREButtonStyle)),
-          shiny::column(6L, align = 'center', shiny::actionButton(inputId = "RemoveInferenceTab", label = "EDA Tab", icon = shiny::icon(name = "minus"), style = CloudButtonStyle))),
+          shiny::column(6L, align = 'center', shiny::actionButton(inputId = "NewInferenceTab", label = "Inference Tab", icon = shiny::icon(name = "plus"), style = PostGREButtonStyle)),
+          shiny::column(6L, align = 'center', shiny::actionButton(inputId = "RemoveInferenceTab", label = "Inference Tab", icon = shiny::icon(name = "minus"), style = CloudButtonStyle))),
         DataMuse::BlankRow(12L),
         shiny::fluidRow(
           shiny::column(6L, align = 'center', shiny::actionButton(inputId = "NewMLTab", label = "ML Tab", icon = shiny::icon(name = "plus"), style = PostGREButtonStyle)),

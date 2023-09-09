@@ -10684,26 +10684,6 @@ Normality_Modal_Fun <- function(id,
                   DataMuse::BlankRow(12L),
                   shiny::fluidRow(
                     shiny::column(
-                      12L,
-                      shiny::p(
-                        "ADT = Anderson Darling Test; CVMT = Cramer Von Mises Test; KST = Kolmogorov Smirnov Test"
-                      )
-                    )
-                  ),
-
-                  DataMuse::BlankRow(12L),
-                  shiny::fluidRow(
-                    shiny::column(
-                      12L,
-                      shiny::p(
-                        "ST = Shapiro Test; SBT = Jarque Bera Test; AT = Agostino Test"
-                      )
-                    )
-                  ),
-
-                  DataMuse::BlankRow(12L),
-                  shiny::fluidRow(
-                    shiny::column(
                       6L, align = "center",
                       shinydashboard::box(
                         title = NULL, solidHeader = TRUE, collapsible = FALSE, status = "danger", width = 12L,
@@ -18842,7 +18822,7 @@ InferencePanels <- function(id, Page, AppWidth=12L, IOL = NULL) {
               style = "min-height: 240px; padding-top: 0px;",
               shiny::fluidRow(
                 style = "padding-top: 75px; padding-bottom: 33px;",
-                DataMuse::PickerInput(InputID = paste0('InferenceReportsModelSelection',Page), Label = 'Testing Output', Choices = tryCatch({names(IOL)[which(substr(x = names(IOL), start = 1, stop = 3) %in% c("ML_"))]}, error = function(x) NULL), Multiple = FALSE, MaxVars = 1L)
+                DataMuse::PickerInput(InputID = paste0('InferenceReportsModelSelection',Page), Label = 'Testing Output', Choices = tryCatch({names(IOL)}, error = function(x) NULL), Multiple = FALSE, MaxVars = 1L)
               )
             )
           ),

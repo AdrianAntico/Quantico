@@ -10,6 +10,7 @@ Normality_Modal_Fun(
   Normality_YVars_Selected = NULL,
   Normality_SelectData_Choices = NULL,
   Normality_SelectData_Selected = NULL,
+  Normality_InferenceID_Selected = NULL,
   SampleSize.ADT_Selected = NULL,
   Samples.ADT_Selected = NULL,
   SampleSize.CVMT_Selected = NULL,

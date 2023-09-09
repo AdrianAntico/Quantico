@@ -10545,6 +10545,7 @@ Normality_Modal_Fun <- function(id,
 
                                 # Updaters
                                 Normality_SelectData_Selected = NULL,
+                                Normality_InferenceID_Selected = NULL,
                                 SampleSize.ADT_Selected = NULL,
                                 Samples.ADT_Selected = NULL,
                                 SampleSize.CVMT_Selected = NULL,
@@ -10652,7 +10653,7 @@ Normality_Modal_Fun <- function(id,
                       width = 1L, align = 'right',
                       style = "padding-top: 4px;padding-right: 50px;",
                       shiny::actionButton(
-                        inputId = 'FeatureEngineeringButton_AutoDataPartition',
+                        inputId = 'Inference_Normality_Execute',
                         label = 'Run',
                         icon = shiny::icon('chevron-right', lib='font-awesome')
                       )
@@ -10666,12 +10667,36 @@ Normality_Modal_Fun <- function(id,
                       DataMuse::BlankRow(12L),
                       shiny::fluidRow(
                         shiny::column(
-                          6L, align = "center",
+                          4L, align = "center",
                           DataMuse:::SelectizeInput(InputID='Normality_SelectData', Label='Choose data set', Choices = Normality_SelectData_Choices, SelectedDefault = Normality_SelectData_Selected, Multiple = TRUE, MaxVars = 1)),
                         shiny::column(
-                          6L, align = "center",
+                          4L, align = "center",
                           DataMuse:::PickerInput(InputID='Normality_YVars', Label='Variables', Choices = NULL, SelectedDefault = Normality_YVars_Selected, Multiple = TRUE, MaxVars = 100L)
+                        ),
+                        shiny::column(
+                          4L, align = "center",
+                          DataMuse:::TextInput(InputID='Normality_InferenceID', Label='Inference ID', Value = Normality_InferenceID_Selected, Placeholder = "INF001")
                         )
+                      )
+                    )
+                  ),
+
+                  DataMuse::BlankRow(12L),
+                  shiny::fluidRow(
+                    shiny::column(
+                      12L,
+                      shiny::p(
+                        "ADT = Anderson Darling Test; CVMT = Cramer Von Mises Test; KST = Kolmogorov Smirnov Test"
+                      )
+                    )
+                  ),
+
+                  DataMuse::BlankRow(12L),
+                  shiny::fluidRow(
+                    shiny::column(
+                      12L,
+                      shiny::p(
+                        "ST = Shapiro Test; SBT = Jarque Bera Test; AT = Agostino Test"
                       )
                     )
                   ),
@@ -10727,7 +10752,7 @@ Normality_Modal_Fun <- function(id,
                         shiny::fluidRow(
                           shiny::column(
                             6L,
-                            DataMuse:::NumericInput(InputID='SampleSize.ST', Label='ST Sample Size', Value = SampleSize.ST_Selected, Min = 8, Max = 1000000, Step = 100)
+                            DataMuse:::NumericInput(InputID='SampleSize.ST', Label='ST Sample Size', Value = SampleSize.ST_Selected, Min = 8, Max = 5000, Step = 100)
                           ),
                           shiny::column(
                             6L,
@@ -10749,7 +10774,7 @@ Normality_Modal_Fun <- function(id,
                         shiny::fluidRow(
                           shiny::column(
                             6L,
-                            DataMuse:::NumericInput(InputID='SampleSize.AT', Label='AT Sample Size', Value = SampleSize.AT_Selected, Min = 8, Max = 1000000, Step = 100)
+                            DataMuse:::NumericInput(InputID='SampleSize.AT', Label='AT Sample Size', Value = SampleSize.AT_Selected, Min = 8, Max = 46340, Step = 100)
                           ),
                           shiny::column(
                             6L,

@@ -409,6 +409,16 @@ server <- function(input, output, session) {
     paste0("input$TablesMarkdownExecute", seq_len(NumTabs), collapse = ",\n  "),
     ")"
   ))
+  InferenceOutputExpression <- parse(text = paste0(
+    "list(\n  ",
+    paste0("input$InferenceOutputExecute", seq_len(NumTabs), collapse = ",\n  "),
+    ")"
+  ))
+  InferenceReportOutputExpression <- parse(text = paste0(
+    "list(\n  ",
+    paste0("input$InferenceMarkdownExecute", seq_len(NumTabs), collapse = ",\n  "),
+    ")"
+  ))
 
   # Dragula Name Mapping
   # PlotMap <- list()
@@ -2603,28 +2613,29 @@ server <- function(input, output, session) {
       AppWidth=12L,
 
       # Reactives
-      Normality_YVars_Selected = if(length(input$Normality_YVars_Selected) > 0L) input$Normality_YVars_Selected else NULL,
+      Normality_YVars_Selected = if(length(input$Normality_YVars) > 0L) input$Normality_YVars else NULL,
 
       # Statics
       Normality_SelectData_Choices = tryCatch({names(DataList)}, error = function(x) NULL),
 
       # Updaters
-      Normality_SelectData_Selected = if(length(input$Normality_SelectData_Selected) > 0L) input$Normality_SelectData_Selected else NULL,
-      SampleSize.ADT_Selected = if(length(input$SampleSize.ADT_Selected) > 0L) input$SampleSize.ADT_Selected else NULL,
-      Samples.ADT_Selected = if(length(input$Samples.ADT_Selected) > 0L) input$Samples.ADT_Selected else NULL,
-      SampleSize.CVMT_Selected = if(length(input$SampleSize.CVMT_Selected) > 0L) input$SampleSize.CVMT_Selected else NULL,
-      Samples.CVMT_Selected = if(length(input$Samples.CVMT_Selected) > 0L) input$Samples.CVMT_Selected else NULL,
-      SampleSize.KST_Selected = if(length(input$SampleSize.KST_Selected) > 0L) input$SampleSize.KST_Selected else NULL,
-      Samples.KST_Selected = if(length(input$Samples.KST_Selected) > 0L) input$Samples.KST_Selected else NULL,
-      SampleSize.ST_Selected = if(length(input$SampleSize.ST_Selected) > 0L) input$SampleSize.ST_Selected else NULL,
-      Samples.ST_Selected = if(length(input$Samples.ST_Selected) > 0L) input$Samples.ST_Selected else NULL,
-      SampleSize.JBT_Selected = if(length(input$SampleSize.JBT_Selected) > 0L) input$SampleSize.JBT_Selected else NULL,
-      Samples.JBT_Selected = if(length(input$Samples.JBT_Selected) > 0L) input$Samples.JBT_Selected else NULL,
-      SampleSize.AT_Selected = if(length(input$SampleSize.AT_Selected) > 0L) input$SampleSize.AT_Selected else NULL,
-      Samples.AT_Selected = if(length(input$Samples.AT_Selected) > 0L) input$Samples.AT_Selected else NULL)
+      Normality_SelectData_Selected = if(length(input$Normality_SelectData) > 0L) input$Normality_SelectData else NULL,
+      Normality_InferenceID_Selected = if(length(input$Normality_InferenceID) > 0L) input$Normality_InferenceID else NULL,
+      SampleSize.ADT_Selected = if(length(input$SampleSize.ADT) > 0L) input$SampleSize.ADT else NULL,
+      Samples.ADT_Selected = if(length(input$Samples.ADT) > 0L) input$Samples.ADT else NULL,
+      SampleSize.CVMT_Selected = if(length(input$SampleSize.CVMT) > 0L) input$SampleSize.CVMT else NULL,
+      Samples.CVMT_Selected = if(length(input$Samples.CVMT) > 0L) input$Samples.CVMT else NULL,
+      SampleSize.KST_Selected = if(length(input$SampleSize.KST) > 0L) input$SampleSize.KST else NULL,
+      Samples.KST_Selected = if(length(input$Samples.KST) > 0L) input$Samples.KST else NULL,
+      SampleSize.ST_Selected = if(length(input$SampleSize.ST) > 0L) input$SampleSize.ST else NULL,
+      Samples.ST_Selected = if(length(input$Samples.ST) > 0L) input$Samples.ST else NULL,
+      SampleSize.JBT_Selected = if(length(input$SampleSize.JBT) > 0L) input$SampleSize.JBT else NULL,
+      Samples.JBT_Selected = if(length(input$Samples.JBT) > 0L) input$Samples.JBT else NULL,
+      SampleSize.AT_Selected = if(length(input$SampleSize.AT) > 0L) input$SampleSize.AT else NULL,
+      Samples.AT_Selected = if(length(input$Samples.AT) > 0L) input$Samples.AT else NULL)
 
     # Reactives
-    Normality_dataReactive <- shiny::reactive({tryCatch({DataList[[shiny::req(input$ScoreML_Data)]][['data']]}, error = function(x) NULL)})
+    Normality_dataReactive <- shiny::reactive({tryCatch({DataList[[shiny::req(input$Normality_SelectData)]][['data']]}, error = function(x) NULL)})
     shiny::observeEvent(shiny::req(Normality_dataReactive()), {
       ChoiceList <- list()
       ColTypes <- unique(DataMuse:::ColTypes(Normality_dataReactive()))
@@ -5211,6 +5222,106 @@ server <- function(input, output, session) {
     } else {
       shinyWidgets::sendSweetAlert(session, title = NULL, text = NULL, type = NULL, btn_labels = "NULL Result", btn_colors = NULL, html = FALSE, closeOnClickOutside = TRUE, showCloseButton = TRUE, width = "40%")
     }
+  }, ignoreInit = TRUE)
+
+  #                                      ----
+
+  #                                      ----
+
+  # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
+  # :: Obs Event :: Inference            ----
+  # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
+
+  # Normality Execution
+  shiny::observeEvent(input$Inference_Normality_Execute, {
+
+    # Args
+    temp <- DataMuse::ReturnParam(xx = tryCatch({input$Normality_SelectData}, error = function(x) NULL), Type = "character", Default = NULL)
+    if(length(temp) > 0L) {
+
+      EchartsTheme <- DataMuse:::ReturnParam(xx = input[["EchartsTheme"]], Type = "character", Default = "dark")
+      FontColorData <- DataMuse:::rgba2hex(DataMuse:::ReturnParam(xx = input[["ColorFont"]], Type = "character", Default = "#e2e2e2"))
+
+      PlotWidthINF <- DataMuse:::ReturnParam(xx = input[["PlotWidthinf"]], Type = "numeric", Default = 1450)
+      PlotWidthINF <- paste0(PlotWidthINF, "px")
+      PlotHeightINF <- DataMuse:::ReturnParam(xx = input[["PlotHeightinf"]], Type = "numeric", Default = 860)
+      PlotHeightINF <- paste0(PlotHeightINF, "px")
+
+      Normality_SelectData <- DataList[[temp]][['data']]
+      Normality_YVars <- DataMuse::ReturnParam(xx = tryCatch({input$Normality_YVars}, error = function(x) NULL), Type = "character", Default = NULL)
+      Normality_InferenceID <- DataMuse::ReturnParam(xx = tryCatch({input$Normality_InferenceID}, error = function(x) NULL), Type = "character", Default = NULL)
+      SampleSize.ADT <- DataMuse::ReturnParam(xx = tryCatch({input$SampleSize.ADT}, error = function(x) NULL), Type = "character", Default = 1000000)
+      Samples.ADT <- DataMuse::ReturnParam(xx = tryCatch({input$Samples.ADT}, error = function(x) NULL), Type = "character", Default = 1)
+      SampleSize.CVMT <- DataMuse::ReturnParam(xx = tryCatch({input$SampleSize.CVMT}, error = function(x) NULL), Type = "character", Default = 1000000)
+      Samples.CVMT <- DataMuse::ReturnParam(xx = tryCatch({input$Samples.CVMT}, error = function(x) NULL), Type = "character", Default = 1)
+      SampleSize.KST <- DataMuse::ReturnParam(xx = tryCatch({input$SampleSize.KST}, error = function(x) NULL), Type = "character", Default = 1000000)
+      Samples.KST <- DataMuse::ReturnParam(xx = tryCatch({input$Samples.KST}, error = function(x) NULL), Type = "character", Default = 1)
+      SampleSize.ST <- DataMuse::ReturnParam(xx = tryCatch({input$SampleSize.ST}, error = function(x) NULL), Type = "character", Default = 5000)
+      Samples.ST <- DataMuse::ReturnParam(xx = tryCatch({input$Samples.ST}, error = function(x) NULL), Type = "character", Default = 1)
+      SampleSize.JBT <- DataMuse::ReturnParam(xx = tryCatch({input$SampleSize.JBT}, error = function(x) NULL), Type = "character", Default = 1000000)
+      Samples.JBT <- DataMuse::ReturnParam(xx = tryCatch({input$Samples.JBT}, error = function(x) NULL), Type = "character", Default = 1)
+      SampleSize.AT <- DataMuse::ReturnParam(xx = tryCatch({input$SampleSize.AT}, error = function(x) NULL), Type = "character", Default = 46340)
+      Samples.AT <- DataMuse::ReturnParam(xx = tryCatch({input$Samples.AT}, error = function(x) NULL), Type = "character", Default = 1)
+
+      # Run function
+      if(!exists("InferenceOutputList")) InferenceOutputList <- list()
+      InferenceOutputList[[Normality_InferenceID]] <- DataMuse::Normality.Analysis(
+        dt = Normality_SelectData,
+        YVars = Normality_YVars,
+        EchartsTheme = EchartsTheme,
+        TextColor = FontColorData$flv,
+        PlotHeight = PlotHeightINF,
+        PlotWidth = PlotWidthINF,
+        SampleSize.ADT = SampleSize.ADT,
+        Samples.ADT = Samples.ADT,
+        SampleSize.CVMT = SampleSize.CVMT,
+        Samples.CVMT = Samples.CVMT,
+        SampleSize.KST = SampleSize.KST,
+        Samples.KST = Samples.KST,
+        SampleSize.ST = SampleSize.ST,
+        Samples.ST = Samples.ST,
+        SampleSize.JBT = SampleSize.JBT,
+        Samples.JBT = Samples.JBT,
+        SampleSize.AT = SampleSize.AT,
+        Samples.AT = Samples.AT)
+
+      MachineLearningCode <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+        "\n",
+        "# Normality Testing\n",
+        "Normality_SelectData <- DataList[[", DataMuse:::CEP(temp), "]][['data']]\n",
+        "Output <- DataMuse::Normality.Analysis(, \n  ",
+        "dt = Normality_SelectData, \n  ",
+        "YVars = ", DataMuse:::CEP(Normality_YVars), ",\n  ",
+        "EchartsTheme = ", DataMuse:::CEP(EchartsTheme), ",\n  ",
+        "TextColor = ", DataMuse:::CEP(black), ",\n  ",
+        "PlotHeight = ", DataMuse:::CEP(PlotHeightINF), ",\n  ",
+        "PlotWidth = ", DataMuse:::CEP(PlotWidthINF), ",\n  ",
+        "SampleSize.ADT = ", DataMuse:::CEPP(SampleSize.ADT), ",\n  ",
+        "Samples.ADT = ", DataMuse:::CEPP(Samples.ADT), ",\n  ",
+        "SampleSize.CVMT = ", DataMuse:::CEPP(SampleSize.CVMT), ",\n  ",
+        "Samples.CVMT = ", DataMuse:::CEPP(Samples.CVMT), ",\n  ",
+        "SampleSize.KST = ", DataMuse:::CEPP(SampleSize.KST), ",\n  ",
+        "Samples.KST = ", DataMuse:::CEPP(Samples.KST), ",\n  ",
+        "SampleSize.ST = ", DataMuse:::CEPP(SampleSize.ST), ",\n  ",
+        "Samples.ST = ", DataMuse:::CEPP(Samples.ST), ",\n  ",
+        "SampleSize.JBT = ", DataMuse:::CEPP(SampleSize.JBT), ",\n  ",
+        "Samples.JBT = ", DataMuse:::CEPP(Samples.JBT), ",\n  ",
+        "SampleSize.AT = ", DataMuse:::CEPP(SampleSize.AT), ",\n  ",
+        "Samples.AT = Samples.AT)\n"))
+
+      InferenceOutputList <<- InferenceOutputList
+      MachineLearningCode <<- MachineLearningCode
+
+    } else {
+      shinyWidgets::sendSweetAlert(session, title = NULL, text = "Data not available", type = NULL, btn_labels = "Error", btn_colors = NULL, html = FALSE, closeOnClickOutside = TRUE, showCloseButton = TRUE, width = "40%")
+    }
+
+  }, ignoreInit = TRUE)
+
+
+  # Correlation Execution
+  shiny::observeEvent(input$Inference_Correlation_Execute, {
+    print("hi")
   }, ignoreInit = TRUE)
 
   #                                      ----
@@ -8401,6 +8512,69 @@ server <- function(input, output, session) {
           "OutputPath = ", DataMuse:::CEP(WorkingDirectory), ")\n"))
 
         if(Debug) print("ML Markdown 2")
+      })
+    }
+
+  }, ignoreInit = TRUE)
+
+  #                                      ----
+
+  #                                      ----
+
+  # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
+  # :: Obs Event :: Inf Tabs Output      ----
+  # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
+  shiny::observeEvent({eval(InferenceOutputExpression)}, {
+
+    if(Debug) print("Inference Panel Report 1")
+
+    # Code Collection
+    if(!exists('MachineLearningCode')) MachineLearningCode <- list()
+    if(!exists("InferenceReportOutputList")) InferenceReportOutputList <- list()
+
+    # tabss refers to the entire tabsetPanel that houses the plotting, tables, and ml output panes
+    # pane names are as such:
+    #   Plots 1, Plots 2, ...
+    #   Tables 1, Tables 2, ...
+    #   ML 1, ML 2, ...
+    Page <- tryCatch({as.integer(gsub("[^\\d]+", "", input$tabss, perl=TRUE))}, error = function(x) 0L)
+    if(length(DataList) > 0L) {
+      shiny::withProgress(message = 'Inference Reporting Has Begun..', value = 0, {
+
+        # Inputs
+        FontColorData <- DataMuse:::rgba2hex(DataMuse:::ReturnParam(xx = input[["ColorFont"]], Type = "character", Default = "#e2e2e2"))
+
+        if(Debug) {
+          print("Inference Panel Report 2")
+        }
+
+        if(Debug) print("Inference Panel Report 3")
+
+        # Collect output
+        if(length(Output) > 0L) {
+          InferenceReportOutputList[[Page]] <- Output[["OutputList"]]; InferenceReportOutputList <<- InferenceReportOutputList
+          DataList <- Output[["DataList"]]; DataList <<- DataList
+          MachineLearningCode <- Output[["CodeList"]]; MachineLearningCode <<- MachineLearningCode
+
+          if(Debug) {
+            print("Inference Panel Report 4")
+            print(names(InferenceReportOutputList[[Page]]))
+          }
+
+          # Render Function
+          if(length(InferenceReportOutputList[[Page]]) > 0L) {
+            DataMuse:::Shiny.Display(
+              input, output, session,
+              InferenceReportOutputList[[Page]], Debug,
+              OutputId = paste0("InferenceOutput",Page),
+              Cols = 1,
+              FontColor = FontColorData$flv,
+              PM = names(InferenceReportOutputList[[Page]]))
+          }
+
+          if(Debug) print("Inference Panel Report 5")
+
+        }
       })
     }
 

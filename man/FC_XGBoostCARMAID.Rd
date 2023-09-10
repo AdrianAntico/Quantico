@@ -33,7 +33,7 @@ FC_XGBoostCARMAID(
 \item{H3Color}{= 'white'}
 }
 \description{
-XGBoost FC button
+FC_XGBoostCARMAID
 }
 \seealso{
 Other Modeling: 

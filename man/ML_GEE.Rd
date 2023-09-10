@@ -33,7 +33,7 @@ ML_GEE(
 \item{H3Color}{= 'white'}
 }
 \description{
-GEE
+ML_GEE
 }
 \seealso{
 Other Modeling: 

@@ -33,7 +33,7 @@ FC_XGBoostCARMA(
 \item{H3Color}{= 'white'}
 }
 \description{
-XGBoost FC button
+FC_XGBoostCARMA
 }
 \seealso{
 Other Modeling: 

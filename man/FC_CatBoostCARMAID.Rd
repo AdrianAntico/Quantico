@@ -33,7 +33,7 @@ FC_CatBoostCARMAID(
 \item{H3Color}{= 'white'}
 }
 \description{
-Button
+FC_CatBoostCARMAID
 }
 \seealso{
 Other Modeling: 

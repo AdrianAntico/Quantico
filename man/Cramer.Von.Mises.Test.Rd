@@ -27,7 +27,9 @@ Cramer.Von.Mises.Test(Vals)
 Other Inference: 
 \code{\link{Agostino.Test}()},
 \code{\link{Anderson.Darling.Test}()},
-\code{\link{Correlation.Test}()},
+\code{\link{Correlation.Analysis}()},
+\code{\link{Correlation_Modal_Fun}()},
+\code{\link{Inference_Correlation}()},
 \code{\link{Inference_Normality}()},
 \code{\link{Jarque.Bera.Test}()},
 \code{\link{Kolmogorov.Smirnov.Test}()},

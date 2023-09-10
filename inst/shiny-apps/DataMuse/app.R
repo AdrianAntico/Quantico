@@ -2620,7 +2620,7 @@ server <- function(input, output, session) {
 
       # Updaters
       Normality_SelectData_Selected = if(length(input$Normality_SelectData) > 0L) input$Normality_SelectData else NULL,
-      Normality_InferenceID_Selected = if(length(input$Normality_InferenceID) > 0L) input$Normality_InferenceID else NULL,
+      Normality_InferenceID_Selected = if(length(input$Normality_InferenceID) > 0L) input$Normality_InferenceID else "INF_Normality",
       SampleSize.ADT_Selected = if(length(input$SampleSize.ADT) > 0L) input$SampleSize.ADT else NULL,
       Samples.ADT_Selected = if(length(input$Samples.ADT) > 0L) input$Samples.ADT else NULL,
       SampleSize.CVMT_Selected = if(length(input$SampleSize.CVMT) > 0L) input$SampleSize.CVMT else NULL,
@@ -2644,6 +2644,51 @@ server <- function(input, output, session) {
     })
   })
   shiny::observeEvent(input$Normality_OK, {shiny::removeModal()})
+
+  # Correlation Testing
+  shiny::observeEvent(input$Inference_Correlation, {
+    DataMuse:::Correlation_Modal_Fun(
+      id = "Inference_CorrelationID",
+      AppWidth=12L,
+
+      # Reactives
+      Correlation_CorrVars_Selected = if(length(input$Correlation_CorrVars) > 0L) input$Correlation_CorrVars else NULL,
+      Correlation_DateVar_Selected = if(length(input$Correlation_DateVar) > 0L) input$Correlation_DateVar else NULL,
+
+      # Statics
+      Correlation_SelectData_Choices = tryCatch({names(DataList)}, error = function(x) NULL),
+      Correlation_P_Adjust_Choices = c("holm","hochberg","hommel","bonferroni","BH","BY","fdr","somers","none"),
+      Correlation_Bayesian_Choices = c(TRUE,FALSE),
+      Correlation_Bayesian_Prior_Choices = c("medium", "medium.narrow","medium","wide","ultrawide"),
+      Correlation_MultiLevel_Choices = c(TRUE,FALSE),
+      Correlation_Include_Factors_Choices = c(TRUE,FALSE),
+      Correlation_Partial_Choices = c(TRUE,FALSE),
+      Correlation_Partial_Bayesian_Choices = c(TRUE,FALSE),
+
+      # Updaters
+      Correlation_SelectData_Selected = if(length(input$Correlation_SelectData) > 0L) input$Correlation_SelectData else NULL,
+      Correlation_InferenceID_Selected = if(length(input$Correlation_InferenceID) > 0L) input$Correlation_InferenceID else "INF_Correlation",
+      Correlation_SampleSize_Selected = if(length(input$Correlation_SampleSize) > 0L) input$Correlation_SampleSize else 10000,
+      Correlation_P_Adjust_Selected = if(length(input$Correlation_P_Adjust) > 0L) input$Correlation_P_Adjust else "holm",
+      Correlation_Bayesian_Selected = if(length(input$Correlation_Bayesian) > 0L) input$Correlation_Bayesian else FALSE,
+      Correlation_Bayesian_Prior_Selected = if(length(input$Correlation_Bayesian_Prior) > 0L) input$Correlation_Bayesian_Prior else NULL,
+      Correlation_MultiLevel_Selected = if(length(input$Correlation_MultiLevel) > 0L) input$Correlation_MultiLevel else FALSE,
+      Correlation_Include_Factors_Selected = if(length(input$Correlation_Include_Factors) > 0L) input$Correlation_Include_Factors else FALSE,
+      Correlation_Partial_Selected = if(length(input$Correlation_Partial) > 0L) input$Correlation_Partial else FALSE,
+      Correlation_Partial_Bayesian_Selected = if(length(input$Correlation_Partial_Bayesian) > 0L) input$Correlation_Partial_Bayesian else FALSE)
+
+    # Reactives
+    Correlation_dataReactive <- shiny::reactive({tryCatch({DataList[[shiny::req(input$Correlation_SelectData)]][['data']]}, error = function(x) NULL)})
+    shiny::observeEvent(shiny::req(Correlation_dataReactive()), {
+      ChoiceList <- list()
+      ColTypes <- unique(DataMuse:::ColTypes(Correlation_dataReactive()))
+      for(i in seq_along(ColTypes)) ChoiceList[[ColTypes[i]]] <- DataMuse:::ColNameFilter(Correlation_dataReactive(), Types = ColTypes[i])
+      DataMuse:::PickerInput(session = session, Update = TRUE, input=input, InputID='Correlation_CorrVars', Label='Variables', Choices = ChoiceList, SelectedDefault = if(length(input$Correlation_CorrVars) > 0L) input$Correlation_CorrVars else NULL, Multiple = TRUE, MaxVars = 100L)
+      DataMuse:::PickerInput(session = session, Update = TRUE, input=input, InputID='Correlation_DateVar', Label='Date Variable', Choices = ChoiceList, SelectedDefault = if(length(input$Correlation_DateVar) > 0L) input$Correlation_DateVar else NULL, Multiple = TRUE, MaxVars = 100L)
+    })
+  })
+  shiny::observeEvent(input$Correlation_OK, {shiny::removeModal()})
+
 
   #                                      ----
 
@@ -5242,9 +5287,9 @@ server <- function(input, output, session) {
       EchartsTheme <- DataMuse:::ReturnParam(xx = input[["EchartsTheme"]], Type = "character", Default = "dark")
       FontColorData <- DataMuse:::rgba2hex(DataMuse:::ReturnParam(xx = input[["ColorFont"]], Type = "character", Default = "#e2e2e2"))
 
-      PlotWidthINF <- DataMuse:::ReturnParam(xx = input[["PlotWidthinf"]], Type = "numeric", Default = 1450)
+      PlotWidthINF <- DataMuse:::ReturnParam(xx = input[["PlotWidth1"]], Type = "numeric", Default = 1450)
       PlotWidthINF <- paste0(PlotWidthINF, "px")
-      PlotHeightINF <- DataMuse:::ReturnParam(xx = input[["PlotHeightinf"]], Type = "numeric", Default = 860)
+      PlotHeightINF <- DataMuse:::ReturnParam(xx = input[["PlotHeight1"]], Type = "numeric", Default = 860)
       PlotHeightINF <- paste0(PlotHeightINF, "px")
 
       Normality_SelectData <- DataList[[temp]][['data']]
@@ -5325,10 +5370,89 @@ server <- function(input, output, session) {
 
   }, ignoreInit = TRUE)
 
-
   # Correlation Execution
   shiny::observeEvent(input$Inference_Correlation_Execute, {
-    print("hi")
+
+    # Args
+    temp <- DataMuse::ReturnParam(xx = tryCatch({input$Correlation_SelectData}, error = function(x) NULL), Type = "character", Default = NULL)
+    if(length(temp) > 0L) {
+
+      Correlation_EchartsTheme <- DataMuse:::ReturnParam(xx = input[["EchartsTheme"]], Type = "character", Default = "dark")
+      Correlation_FontColorData <- DataMuse:::rgba2hex(DataMuse:::ReturnParam(xx = input[["ColorFont"]], Type = "character", Default = "#e2e2e2"))
+
+      Correlation_PlotWidthINF <- DataMuse:::ReturnParam(xx = input[["PlotWidthinf"]], Type = "numeric", Default = 1450)
+      Correlation_PlotWidthINF <- paste0(Correlation_PlotWidthINF, "px")
+      Correlation_PlotHeightINF <- DataMuse:::ReturnParam(xx = input[["PlotHeightinf"]], Type = "numeric", Default = 860)
+      Correlation_PlotHeightINF <- paste0(Correlation_PlotHeightINF, "px")
+
+      Correlation_SelectData <- DataList[[temp]][['data']]
+      Correlation_CorrVars <- DataMuse::ReturnParam(xx = tryCatch({input$Correlation_CorrVars}, error = function(x) NULL), Type = "character", Default = NULL)
+      Correlation_InferenceID <- DataMuse::ReturnParam(xx = tryCatch({input$Correlation_InferenceID}, error = function(x) NULL), Type = "character", Default = "INF002")
+      Correlation_DateVar <- DataMuse::ReturnParam(xx = tryCatch({input$Correlation_DateVar}, error = function(x) NULL), Type = "character", Default = NULL)
+      Correlation_SampleSize <- DataMuse::ReturnParam(xx = tryCatch({input$Correlation_SampleSize}, error = function(x) NULL), Type = "character", Default = 10000)
+      Correlation_EchartsTheme <- DataMuse::ReturnParam(xx = tryCatch({input$EchartsTheme}, error = function(x) NULL), Type = "character", Default = "macarons")
+      Correlation_PlotHeight <- DataMuse::ReturnParam(xx = tryCatch({input$PlotHeight1}, error = function(x) NULL), Type = "character", Default = "1450px")
+      Correlation_PlotWidth <- DataMuse::ReturnParam(xx = tryCatch({input$PlotWidth1}, error = function(x) NULL), Type = "character", Default = "850px")
+      Correlation_P_Adjust <- DataMuse::ReturnParam(xx = tryCatch({input$Correlation_P_Adjust}, error = function(x) NULL), Type = "character", Default = NULL)
+      Correlation_Bayesian <- DataMuse::ReturnParam(xx = tryCatch({input$Correlation_Bayesian}, error = function(x) NULL), Type = "logical", Default = FALSE)
+      Correlation_Bayesian_Prior <- DataMuse::ReturnParam(xx = tryCatch({input$Correlation_Bayesian_Prior}, error = function(x) NULL), Type = "character", Default = NULL)
+      Correlation_MultiLevel <- DataMuse::ReturnParam(xx = tryCatch({input$Correlation_MultiLevel}, error = function(x) NULL), Type = "logical", Default = FALSE)
+      Correlation_Include_Factors <- DataMuse::ReturnParam(xx = tryCatch({input$Correlation_Include_Factors}, error = function(x) NULL), Type = "logical", Default = FALSE)
+      Correlation_Partial <- DataMuse::ReturnParam(xx = tryCatch({input$Correlation_Partial}, error = function(x) NULL), Type = "logical", Default = FALSE)
+      Correlation_Partial_Bayesian <- DataMuse::ReturnParam(xx = tryCatch({input$Correlation_Partial_Bayesian}, error = function(x) NULL), Type = "logical", Default = FALSE)
+
+      # Run function
+      if(Debug) print("inference 0")
+      if(!exists("InferenceOutputList")) InferenceOutputList <- list()
+      InferenceOutputList[[Correlation_InferenceID]] <- DataMuse::Correlation.Analysis(
+        dt = Correlation_SelectData,
+        CorrVars = Correlation_CorrVars,
+        DateVar = Correlation_DateVar,
+        EchartsTheme = Correlation_EchartsTheme,
+        TextColor = Correlation_FontColorData$flv,
+        PlotHeight = Correlation_PlotHeightINF,
+        PlotWidth = Correlation_PlotWidthINF,
+        P_Adjust = Correlation_P_Adjust,
+        Bayesian = Correlation_Bayesian,
+        Bayesian_Prior = Correlation_Bayesian_Prior,
+        MultiLevel = Correlation_MultiLevel,
+        Include_Factors = Correlation_Include_Factors,
+        Partial = Correlation_Partial,
+        Partial_Bayesian = Correlation_Partial_Bayesian)
+
+      if(Debug) print("inference 1")
+
+      MachineLearningCode <- tryCatch({DataMuse:::Shiny.CodePrint.Collect(y = MachineLearningCode, x = paste0(
+        "\n",
+        "# Normality Testing\n",
+        "Normality_SelectData <- DataList[[", DataMuse:::CEP(temp), "]][['data']]\n",
+        "Output <- DataMuse::Correlation.Analysis(, \n  ",
+        "dt = Normality_SelectData, \n  ",
+        "CorrVars = ", DataMuse:::ExpandText(Correlation_CorrVars), ",\n  ",
+        "DateVar = ", DataMuse:::ExpandText(Correlation_DateVar), ",\n  ",
+        "EchartsTheme = ", DataMuse:::CEP(Correlation_EchartsTheme), ",\n  ",
+        "TextColor = ", DataMuse:::CEP(Correlation_FontColorData$flv), ",\n  ",
+        "PlotHeight = ", DataMuse:::CEP(Correlation_PlotHeightINF), ",\n  ",
+        "PlotWidth = ", DataMuse:::CEP(Correlation_PlotWidthINF), ",\n  ",
+        "P_Adjust = ", DataMuse:::CEP(Correlation_P_Adjust), ",\n  ",
+        "Bayesian = ", DataMuse:::CEP(Correlation_Bayesian), ",\n  ",
+        "Bayesian_Prior = ", DataMuse:::CEP(Correlation_Bayesian_Prior), ",\n  ",
+        "MultiLevel = ", DataMuse:::CEP(Correlation_MultiLevel), ",\n  ",
+        "Include_Factors = ", DataMuse:::CEP(Correlation_Include_Factors), ",\n  ",
+        "Partial = ", DataMuse:::CEP(Correlation_Partial), ",\n  ",
+        "Partial_Bayesian = ", DataMuse:::CEP(Correlation_Partial_Bayesian), ")\n"))}, error = function(x) MachineLearningCode)
+
+      # Update Available Outputs for Inference Tab
+      if(Debug) print("inference 2")
+      for(i in seq_len(NumTabs)) DataMuse::PickerInput(session = session, input = input, Update = TRUE, InputID = paste0('InferenceReportsModelSelection',i), Label = 'Testing Output', Choices = tryCatch({names(InferenceOutputList)}, error = function(x) NULL), Multiple = FALSE, MaxVars = 1L)
+      InferenceOutputList <<- InferenceOutputList
+      MachineLearningCode <<- MachineLearningCode
+      shinyWidgets::sendSweetAlert(session, title = NULL, text = "", type = NULL, btn_labels = "Success", btn_colors = NULL, html = FALSE, closeOnClickOutside = TRUE, showCloseButton = TRUE, width = "40%")
+
+    } else {
+      shinyWidgets::sendSweetAlert(session, title = NULL, text = "Data not available", type = NULL, btn_labels = "Error", btn_colors = NULL, html = FALSE, closeOnClickOutside = TRUE, showCloseButton = TRUE, width = "40%")
+    }
+
   }, ignoreInit = TRUE)
 
   #                                      ----

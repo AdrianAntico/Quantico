@@ -55,7 +55,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
           shiny::column(
             2L, style = "padding-right: 5px; padding-top: 5px",
             shinydashboard::box(
-              title = NULL, solidHeader = TRUE, collapsible = FALSE, status = 'warning', width = 12L,
+              title = NULL, solidHeader = TRUE, collapsible = FALSE, status = 'danger', width = 12L,
               style = "background-color: #0000; min-height: 1435px; max-height: 1435px; overflow-x: clip; overflow-y:auto;",
               shiny::fluidRow(
                 style = "padding-left: 15px; padding-right: 20px; background-color: #0000; overflow-y: auto; overflow-x: clip;",
@@ -384,7 +384,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
           shiny::column(
             10L, style = "padding-right: 47px; padding-top: 5px;",
             shinydashboard::box(
-              title = NULL, solidHeader = TRUE, collapsible = FALSE, status = 'warning', width = 12L,
+              title = NULL, solidHeader = TRUE, collapsible = FALSE, status = 'danger', width = 12L,
               style = "background-color: #0000; min-height: 1435px; max-height: 1435px; overflow-x: clip; overflow-y:auto;",
 
               # ----
@@ -3009,7 +3009,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 shiny::fluidRow(
                   shiny::column(
                     width = 12L,
-                    shiny::a(name = "dimensionalityreduction"),
+                    shiny::a(name = "h2oautoencoder"),
                     shiny::h1(tags$b("Dimensionality Reduction")),
                     shiny::p("The Dimensionality Reduction algorithm is provided by H2O. It
                            utilizes their feed forward neural network multilayer perceptron model.
@@ -3074,7 +3074,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 shiny::fluidRow(
                   shiny::column(
                     width = 12L,
-                    shiny::a(name = "clustering"),
+                    shiny::a(name = "h2oclustering"),
                     shiny::h1(tags$b("Clustering")),
                     shiny::p("The k-means algorithm is provided by H2O...")
                   )
@@ -5672,7 +5672,8 @@ SideBarUI <- function(id, AppWidth=12L) {
       shiny::tags$details(
         DataMuse::BlankLine(12L),
         shiny::tags$summary(shiny::tags$span(shiny::tags$b("Inference"))),
-        shiny::fluidRow(DataMuse:::Inference_Normality(id = 'Inference_Normality_link', Align = "left"))
+        shiny::fluidRow(DataMuse:::Inference_Normality(id = 'Inference_Normality_link', Align = "left")),
+        shiny::fluidRow(DataMuse:::Inference_Correlation(id = 'Inference_Correlation_link', Align = "left"))
       ),
 
       DataMuse:::BlankRow(12L),

@@ -33,7 +33,7 @@ FC_LightGBMCARMA(
 \item{H3Color}{= 'white'}
 }
 \description{
-LightGBM FC button
+FC_LightGBMCARMA
 }
 \seealso{
 Other Modeling: 

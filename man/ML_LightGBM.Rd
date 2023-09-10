@@ -33,7 +33,7 @@ ML_LightGBM(
 \item{H3Color}{= 'white'}
 }
 \description{
-LightGBM args
+ML_LightGBM
 }
 \seealso{
 Other Modeling: 

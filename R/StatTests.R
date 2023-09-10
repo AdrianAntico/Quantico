@@ -11,8 +11,8 @@ Normality.Analysis <- function(dt = NULL,
                                YVars = NULL,
                                EchartsTheme = "macarons",
                                TextColor = "black",
-                               PlotHeight = "600px",
-                               PlotWidth = "300px",
+                               PlotHeight = "300px",
+                               PlotWidth = "600px",
                                SampleSize.ADT = NULL,
                                Samples.ADT = 1,
                                SampleSize.CVMT = NULL,
@@ -169,7 +169,7 @@ Normality.Analysis <- function(dt = NULL,
   return(OutputList)
 }
 
-#' @title Correlation.Test
+#' @title Correlation.Analysis
 #'
 #' @family Inference
 #'
@@ -177,10 +177,10 @@ Normality.Analysis <- function(dt = NULL,
 #' @param CorrVars character
 #' @param DateVar character
 #' @param SampleSize sub sampling of data
-#' @param EchartsTheme = "macarons"
-#' @param TextColor = "black"
-#' @param PlotHeight = "600px"
-#' @param PlotWidth = "300px"
+#' @param EchartsTheme "macarons"
+#' @param TextColor "black"
+#' @param PlotHeight "300px"
+#' @param PlotWidth "600px"
 #' @param P_Adjust Frequentist corrections, which include: default "holm", "hochberg", "hommel", "bonferroni", "BH", "BY", "fdr", "somers" or "none"
 #' @param Bayesian logical
 #' @param Bayesian_Prior Choose from default "medium", "medium.narrow", "medium", "wide", and "ultrawide"
@@ -190,21 +190,23 @@ Normality.Analysis <- function(dt = NULL,
 #' @param Partial_Bayesian logical
 #'
 #' @export
-Correlation.Test <- function(dt = NULL,
-                             CorrVars = NULL,
-                             DateVar = NULL,
-                             SampleSize = 10000,
-                             EchartsTheme = "macarons",
-                             TextColor = "black",
-                             PlotHeight = "600px",
-                             PlotWidth = "300px",
-                             P_Adjust = "holm",
-                             Bayesian = FALSE,
-                             Bayesian_Prior = "medium",
-                             MultiLevel = FALSE,
-                             Include_Factors = FALSE,
-                             Partial = FALSE,
-                             Partial_Bayesian = FALSE) {
+Correlation.Analysis <- function(dt = NULL,
+                                 CorrVars = NULL,
+                                 DateVar = NULL,
+                                 SampleSize = 10000,
+                                 EchartsTheme = "macarons",
+                                 TextColor = "black",
+                                 PlotHeight = "600px",
+                                 PlotWidth = "300px",
+                                 P_Adjust = "holm",
+                                 Bayesian = FALSE,
+                                 Bayesian_Prior = "medium",
+                                 MultiLevel = FALSE,
+                                 Include_Factors = FALSE,
+                                 Partial = FALSE,
+                                 Partial_Bayesian = FALSE) {
+
+  options(warn = -1)
 
   # dt = data.table::fread(file.choose())
   # CorrVars = c("Category","Beverage Flavor","Daily Liters","Daily Margin","Daily Revenue","Daily Units","ClassTarget")
@@ -221,10 +223,14 @@ Correlation.Test <- function(dt = NULL,
   # Partial_Bayesian = FALSE
   # EchartsTheme = "macarons"
   # TextColor = "black"
-  # PlotHeight = "600px"
-  # PlotWidth = "300px"
+  # PlotHeight = "300px"
+  # PlotWidth = "600px"
 
-  dt1 <- dt[order(runif(.N))][seq_len(SampleSize)][, .SD, .SDcols = c(CorrVars, DateVar)]
+  if(dt[,.N] > SampleSize) {
+    dt1 <- dt[order(runif(.N))][seq_len(SampleSize)][, .SD, .SDcols = c(CorrVars, DateVar)]
+  } else {
+    dt1 <- data.table::copy(dt)
+  }
 
   # Names modification: because of the parse() I can't have spaces in the colnames
   old <- c()
@@ -242,9 +248,10 @@ Correlation.Test <- function(dt = NULL,
 
   # Correlation Metrics
   Output <- list()
+  dt2 <- dt1[, .SD, .SDcols = c(CorrVars)]
   corrMetrics <- tryCatch({data.table::as.data.table(
     correlation::correlation(
-      data = dt1,
+      data = dt2,
       method = "pearson",
       p_adjust = P_Adjust,
       ci = 0.95,
@@ -263,6 +270,29 @@ Correlation.Test <- function(dt = NULL,
       standardize_names = getOption("easystats.standardize_names", FALSE)
     )
   )}, error = function(x) NULL)
+
+  if(!Bayesian) {
+    if(length(corrMetrics) > 0L) {
+      data.table::setnames(
+        corrMetrics,
+        old = c("Parameter1","Parameter2","r","CI","CI_low","CI_high","t","df_error","p","Method","n_Obs"),
+        new = c("Variable1","Variable2","Correl","CI","CI Low","CI High","T-Stat", "df_error","P_Value","Method","N"),
+        skip_absent = TRUE)
+      for(var in c("Correl","CI Low", "CI High", "T-Stat", "P_Value")) {
+        data.table::set(corrMetrics, j = var, value = round(corrMetrics[[var]], digits = 4))
+      }
+    }
+  } else {
+    corrMetrics[, BF := NULL]
+    data.table::setnames(
+      corrMetrics,
+      old = c("Parameter1","Parameter2","rho","CI","CI_low","CI_high","ROPE_Percentage","Prior_Distribution","Prior_Location","Prior_Scale","Method","n_Obs"),
+      new = c("Variable1","Variable2","Correl","CI","CI Low","CI High","ROPE Value","Prior","Prior Location","Prior Scale","Method","N"),
+      skip_absent = TRUE)
+    for(var in c("Correl","CI Low","CI High","pd","ROPE Value")) {
+      data.table::set(corrMetrics, j = var, value = round(corrMetrics[[var]], digits = 4))
+    }
+  }
 
   # Reactable Table
   if(length(corrMetrics) > 0L) {
@@ -318,15 +348,15 @@ Correlation.Test <- function(dt = NULL,
       Method = "spearman",
       PreAgg = FALSE,
       MaxNAPercent = 0.05,
-      Height = NULL,
-      Width = NULL,
+      Height = PlotHeight,
+      Width = PlotWidth,
       Title = "Correlation Matrix",
       ShowLabels = FALSE,
       Title.YAxis = NULL,
       Title.XAxis = NULL,
-      EchartsTheme = "macarons",
-      X_Scroll = TRUE,
-      Y_Scroll = TRUE,
+      EchartsTheme = EchartsTheme,
+      X_Scroll = FALSE,
+      Y_Scroll = FALSE,
       TextColor = "white",
       title.fontSize = 22,
       title.fontWeight = "bold",
@@ -350,15 +380,15 @@ Correlation.Test <- function(dt = NULL,
       FacetCols = 1,
       FacetLevels = NULL,
       PreAgg = FALSE,
-      Height = NULL,
-      Width = NULL,
-      Title = "Correlation Matrix",
+      Height = PlotHeight,
+      Width = PlotWidth,
+      Title = "Parallel Plot",
       ShowLabels = FALSE,
       Title.YAxis = NULL,
       Title.XAxis = NULL,
-      EchartsTheme = "macarons",
-      X_Scroll = TRUE,
-      Y_Scroll = TRUE,
+      EchartsTheme = EchartsTheme,
+      X_Scroll = FALSE,
+      Y_Scroll = FALSE,
       TextColor = "white",
       title.fontSize = 22,
       title.fontWeight = "bold",
@@ -387,9 +417,9 @@ Correlation.Test <- function(dt = NULL,
     # Line Plot
     Output[["LinePlot"]] <- tryCatch({AutoPlots::Plot.Line(
       dt = dt2,
-      AggMethod = "mean",
+      AggMethod = "sum",
       PreAgg = FALSE,
-      XVar = "Date",
+      XVar = DateVar,
       YVar = paste0(CorrVars2, "_Standardize"),
       DualYVar = NULL,
       GroupVar = NULL,
@@ -399,16 +429,16 @@ Correlation.Test <- function(dt = NULL,
       FacetRows = 1,
       FacetCols = 1,
       FacetLevels = NULL,
-      Height = NULL,
-      Width = NULL,
-      Title = "Line Plot",
+      Height = PlotHeight,
+      Width = PlotWidth,
+      Title = "Correlation Trend",
       ShowLabels = FALSE,
       Title.YAxis = NULL,
-      Title.XAxis = NULL,
+      Title.XAxis = DateVar,
       EchartsTheme = EchartsTheme,
-      X_Scroll = FALSE,
-      Y_Scroll = FALSE,
-      TimeLine = TRUE,
+      X_Scroll = TRUE,
+      Y_Scroll = TRUE,
+      TimeLine = FALSE,
       Area = FALSE,
       Alpha = 0.5,
       Smooth = TRUE,

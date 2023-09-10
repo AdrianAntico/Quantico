@@ -33,7 +33,7 @@ ML_MixedEffects(
 \item{H3Color}{= 'white'}
 }
 \description{
-Mixed Effects methods
+ML_MixedEffects
 }
 \seealso{
 Other Modeling: 

@@ -10601,7 +10601,6 @@ Normality_Modal_Fun <- function(id,
                             shiny::column(
                               width = 12L,
                               align = "left",
-                              shiny::a(name = "partitiondata"),
                               shiny::h1(tags$b("Normality Tests")),
                               shiny::p("The Normality Tests operation runs through six different normality tests
                                         and compiles the metrics and generates a few plots to help visualize the
@@ -10675,7 +10674,7 @@ Normality_Modal_Fun <- function(id,
                         ),
                         shiny::column(
                           4L, align = "center",
-                          DataMuse:::TextInput(InputID='Normality_InferenceID', Label='Inference ID', Value = Normality_InferenceID_Selected, Placeholder = "INF001")
+                          DataMuse:::TextInput(InputID='Normality_InferenceID', Label='Inference ID', Value = Normality_InferenceID_Selected, Placeholder = "INF_Normality")
                         )
                       )
                     )
@@ -10780,6 +10779,225 @@ Normality_Modal_Fun <- function(id,
           footer = shiny::tagList(
             shiny::modalButton(label = "Cancel"),
             shiny::actionButton("Normality_OK", "OK", width = '50px'))))
+
+    })
+}
+
+#' @title Correlation_Modal_Fun
+#'
+#' @description Inference operations
+#'
+#' @author Adrian Antico
+#' @family Inference
+#'
+#' @param id = 'Correlation_Modal_Fun'
+#' @param AppWidth = 12L
+#'
+#' @export
+Correlation_Modal_Fun <- function(id = "Inference_CorrelationID",
+                                  AppWidth=12L,
+
+                                  # Reactives
+                                  Correlation_CorrVars_Selected = NULL,
+                                  Correlation_DateVar_Selected = NULL,
+
+                                  # Statics
+                                  Correlation_SelectData_Choices = NULL,
+                                  Correlation_P_Adjust_Choices = NULL,
+                                  Correlation_Bayesian_Choices = NULL,
+                                  Correlation_Bayesian_Prior_Choices = NULL,
+                                  Correlation_MultiLevel_Choices = NULL,
+                                  Correlation_Include_Factors_Choices = NULL,
+                                  Correlation_Partial_Choices = NULL,
+                                  Correlation_Partial_Bayesian_Choices = NULL,
+
+                                  # Updaters
+                                  Correlation_SelectData_Selected = NULL,
+                                  Correlation_InferenceID_Selected = NULL,
+                                  Correlation_SampleSize_Selected = NULL,
+                                  Correlation_P_Adjust_Selected = NULL,
+                                  Correlation_Bayesian_Selected = NULL,
+                                  Correlation_Bayesian_Prior_Selected = NULL,
+                                  Correlation_MultiLevel_Selected = NULL,
+                                  Correlation_Include_Factors_Selected = NULL,
+                                  Correlation_Partial_Selected = NULL,
+                                  Correlation_Partial_Bayesian_Selected = NULL) {
+
+  shiny::moduleServer(
+    id = id,
+    module = function(input, output, session) {
+      ns <- session$ns
+      shiny::showModal(
+        shiny::modalDialog(
+          title = 'Correlation Testing',
+          size = "l",
+          easyClose = FALSE,
+          fade = TRUE,
+          shiny::tagList(
+
+            DataMuse:::BlankRow(12L),
+
+            # Tabs
+            shiny::tabsetPanel(
+              id = 'DataSet_TabPanel',
+              selected = 'Correlation Tests',
+
+              # Correlation Tests ----
+              shiny::tabPanel(
+                title = "Correlation Tests",
+                icon = shiny::icon('code'),
+                DataMuse:::BlankRow(12L),
+                shiny::fluidRow(
+                  style = ModelHelpFormat,
+                  DataMuse:::BlankRow(12L),
+                  shiny::fluidRow(
+                    shiny::column(
+                      width = 3L,
+                      tags$h4(tags$span(tags$b(paste0('Correlation Tests'))))
+                    ),
+                    shiny::column(
+                      width = 8L,
+                      align = "right",
+                      shinyWidgets::dropdown(
+                        shinydashboard::box(
+                          title = NULL, solidHeader = TRUE, collapsible = FALSE, status = "info", width = 12L,
+                          shiny::fluidRow(
+                            shiny::column(
+                              width = 12L,
+                              align = "left",
+                              shiny::h1(tags$b("Correlation Tests")),
+                              shiny::p("Correlation Tests operation generates correlations, confidence intervals, statistics for evaluation, and plots for inspection.")
+                            )
+                          ),
+
+                          DataMuse::BlankRow(12),
+                          shiny::fluidRow(shiny::column(width = 12L, align = "left", shiny::h3("Correlation Tests Usage"))),
+                          shiny::fluidRow(shiny::column(width = 12L, align = "left", shiny::markdown(
+                            "
+                              Correlation Tests operation generates correlations, confidence intervals, statistics for evaluation, and plots for inspection.
+                              * Choose data set: This is the dataset you want to utilize for the operation
+                              * CorrVars: select the variables you want tested
+                              "
+                          )))
+                        ),
+                        size = "lg",
+                        icon = shiny::icon("question"),
+                        label = NULL,
+                        tooltip = FALSE,
+                        right = TRUE,
+                        up = FALSE,
+                        width = NULL,
+                        animate = shinyWidgets::animateOptions(
+                          enter = "zoomIn",
+                          exit = "fadeOutRightBig"
+                        ),
+                        inputId = NULL,
+                        block = FALSE,
+                        no_outline = TRUE
+                      )
+                    ),
+
+                    # Correlation Tests Button
+                    shiny::column(
+                      width = 1L, align = 'right',
+                      style = "padding-top: 4px;padding-right: 50px;",
+                      shiny::actionButton(
+                        inputId = 'Inference_Correlation_Execute',
+                        label = 'Run',
+                        icon = shiny::icon('chevron-right', lib='font-awesome')
+                      )
+                    )
+                  ),
+
+                  DataMuse:::BlankRow(12L),
+                  shiny::fluidRow(
+                    shinydashboard::box(
+                      title = NULL, solidHeader = TRUE, collapsible = FALSE, status = "danger", width = 12L,
+                      DataMuse::BlankRow(12L),
+                      shiny::fluidRow(
+                        shiny::column(
+                          3L, align = "center",
+                          DataMuse:::SelectizeInput(InputID='Correlation_SelectData', Label='Choose data set', Choices = Correlation_SelectData_Choices, SelectedDefault = Correlation_SelectData_Selected, Multiple = TRUE, MaxVars = 1)
+                        ),
+                        shiny::column(
+                          3L, align = "center",
+                          DataMuse:::PickerInput(InputID='Correlation_CorrVars', Label='Variables', Choices = NULL, SelectedDefault = Correlation_CorrVars_Selected, Multiple = TRUE, MaxVars = 100L)
+                        ),
+                        shiny::column(
+                          3L, align = "center",
+                          DataMuse:::PickerInput(InputID='Correlation_DateVar', Label='Date Variable', Choices = NULL, SelectedDefault = Correlation_DateVar_Selected, Multiple = TRUE, MaxVars = 100L)
+                        ),
+                        shiny::column(
+                          3L, align = "center",
+                          DataMuse:::TextInput(InputID='Correlation_InferenceID', Label='Inference ID', Value = Correlation_InferenceID_Selected, Placeholder = "INF_Correlation")
+                        )
+                      )
+                    )
+                  ),
+
+                  DataMuse::BlankRow(12L),
+                  shiny::fluidRow(
+                    shiny::column(
+                      12L, align = "center",
+                      shinydashboard::box(
+                        title = NULL, solidHeader = TRUE, collapsible = FALSE, status = "danger", width = 12L,
+                        DataMuse::BlankRow(12L),
+                        shiny::fluidRow(
+                          shiny::column(
+                            3L,
+                            DataMuse:::NumericInput(InputID='Correlation_SampleSize', Label='Sample Size', Value = Correlation_SampleSize_Selected, Min = 30, Max = 1000000, Step = 100)
+                          ),
+                          shiny::column(
+                            3L,
+                            DataMuse:::SelectizeInput(InputID='Correlation_P_Adjust', Label='P-Value Adj', Choices = Correlation_P_Adjust_Choices, SelectedDefault = Correlation_P_Adjust_Selected, Multiple = FALSE)
+                          ),
+                          shiny::column(
+                            3L,
+                            DataMuse:::SelectizeInput(InputID='Correlation_Bayesian', Label='Bayesian', Choices = Correlation_Bayesian_Choices, SelectedDefault = Correlation_Bayesian_Selected, Multiple = FALSE)
+                          ),
+                          shiny::column(
+                            3L,
+                            DataMuse:::SelectizeInput(InputID='Correlation_Bayesian_Prior', Label='Bayesian Prior', Choices = Correlation_Bayesian_Prior_Choices, SelectedDefault = Correlation_Bayesian_Prior_Selected, Multiple = FALSE)
+                          )
+                        ),
+                        DataMuse::BlankRow(12L),
+                        shiny::fluidRow(
+                          shiny::column(
+                            3L,
+                            DataMuse:::SelectizeInput(InputID='Correlation_MultiLevel', Label='Multilevel', Choices = Correlation_MultiLevel_Choices, SelectedDefault = Correlation_MultiLevel_Selected, Multiple = FALSE)
+                          ),
+                          shiny::column(
+                            3L,
+                            DataMuse:::SelectizeInput(InputID='Correlation_Include_Factors', Label='Include Factors',  Choices = Correlation_Include_Factors_Choices, SelectedDefault = Correlation_Include_Factors_Selected, Multiple = FALSE)
+                          ),
+                          shiny::column(
+                            3L,
+                            DataMuse:::SelectizeInput(InputID='Correlation_Partial', Label='Partial Corr',  Choices = Correlation_Partial_Choices, SelectedDefault = Correlation_Partial_Selected, Multiple = FALSE)
+                          ),
+                          shiny::column(
+                            3L,
+                            DataMuse:::SelectizeInput(InputID='Correlation_Partial_Bayesian', Label='Partial Bayes',  Choices = Correlation_Partial_Bayesian_Choices, SelectedDefault = Correlation_Partial_Bayesian_Selected, Multiple = FALSE)
+                          ),
+                        ),
+                        DataMuse::BlankRow(12L)
+                      )
+                    )
+                  ),
+
+                  # Blank space
+                  DataMuse:::BlankRow(12L),
+                  DataMuse:::BlankRow(12L),
+                  DataMuse:::BlankRow(12L),
+                  DataMuse:::BlankRow(12L),
+                  DataMuse:::BlankRow(12L)
+                )
+              )
+            ) # end Tab Panel Main
+          ), # end TagList
+
+          footer = shiny::tagList(
+            shiny::modalButton(label = "Cancel"),
+            shiny::actionButton("Correlation_OK", "OK", width = '50px'))))
 
     })
 }
@@ -18868,7 +19086,7 @@ InferencePanels <- function(id, Page, AppWidth=12L, IOL = NULL) {
                   }"
               )
             )
-          ),
+          )
 
 
           # #", paste0('InferenceMarkdownExecute',Page), " {
@@ -18895,49 +19113,49 @@ InferencePanels <- function(id, Page, AppWidth=12L, IOL = NULL) {
           # }
 
 
-          shiny::column(
-            width = 2L,
-            align = 'left',
-            shiny::wellPanel(
-              style = "min-height: 240px; padding-top: 0px;",
-              shiny::fluidRow(
-                style = "padding-top: 63px; padding-bottom: 68px;",
-                shiny::column(12L, align = "left", style = "padding-left: 30px;", shinyWidgets::materialSwitch(inputId = paste0("WrapTexta", Page), label = 'Wrap', status = "danger", right = FALSE, value = FALSE), shiny::tags$style("padding-left: 40px;"))
-              ),
-              shiny::fluidRow(
-                shiny::column(12L, align = "left", style = "padding-left: 30px;", shinyWidgets::materialSwitch(inputId = paste0("Shufflea", Page), label = 'Shuffle', status = "danger", right = FALSE, value = FALSE), shiny::tags$style("padding-left: 40px;"))
-              )
-            )
-          ),
-          shiny::column(
-            width = 3L,
-            align = 'left',
-            shiny::wellPanel(
-              style = "min-height: 240px; padding-top: 0px;",
-              shiny::fluidRow(
-                style = "padding-top: 30px; padding-bottom: 30px;",
-                shiny::column(12L, align = 'center', shiny::numericInput(inputId = paste0("MinRowsa", Page), label = 'Records per Page', value = 10, min = 10, max = 1000, step = 10))
-              ),
-              shiny::fluidRow(
-                shiny::column(12L, align = 'center', shiny::numericInput(inputId = paste0("Number_of_Recordsa", Page), label = 'Total Rows', value = 10000, min = 1000, max = 100000, 1000))
-              )
-            )
-          ),
-
-          shiny::column(
-            width = 3L,
-            align = 'left',
-            shiny::wellPanel(
-              style = "min-height: 240px; padding-top: 0px;",
-              shiny::fluidRow(
-                style = "padding-top: 15px; padding-bottom: 15px;",
-                shiny::column(12L, align = 'center', shiny::sliderInput(inputId = paste0("PlotWidthinf",Page), label = 'Plot Width', value = 1450, min = 100, max = 2800))
-              ),
-              shiny::fluidRow(
-                shiny::column(12L, align = "center", shiny::sliderInput(inputId = paste0("PlotHeightinf",Page), label = 'Plot Height', value = 950, min = 100, max = 2800))
-              )
-            )
-          )
+          # shiny::column(
+          #   width = 2L,
+          #   align = 'left',
+          #   shiny::wellPanel(
+          #     style = "min-height: 240px; padding-top: 0px;",
+          #     shiny::fluidRow(
+          #       style = "padding-top: 63px; padding-bottom: 68px;",
+          #       shiny::column(12L, align = "left", style = "padding-left: 30px;", shinyWidgets::materialSwitch(inputId = paste0("WrapTexta", Page), label = 'Wrap', status = "danger", right = FALSE, value = FALSE), shiny::tags$style("padding-left: 40px;"))
+          #     ),
+          #     shiny::fluidRow(
+          #       shiny::column(12L, align = "left", style = "padding-left: 30px;", shinyWidgets::materialSwitch(inputId = paste0("Shufflea", Page), label = 'Shuffle', status = "danger", right = FALSE, value = FALSE), shiny::tags$style("padding-left: 40px;"))
+          #     )
+          #   )
+          # ),
+          # shiny::column(
+          #   width = 3L,
+          #   align = 'left',
+          #   shiny::wellPanel(
+          #     style = "min-height: 240px; padding-top: 0px;",
+          #     shiny::fluidRow(
+          #       style = "padding-top: 30px; padding-bottom: 30px;",
+          #       shiny::column(12L, align = 'center', shiny::numericInput(inputId = paste0("MinRowsa", Page), label = 'Records per Page', value = 10, min = 10, max = 1000, step = 10))
+          #     ),
+          #     shiny::fluidRow(
+          #       shiny::column(12L, align = 'center', shiny::numericInput(inputId = paste0("Number_of_Recordsa", Page), label = 'Total Rows', value = 10000, min = 1000, max = 100000, 1000))
+          #     )
+          #   )
+          # ),
+          #
+          # shiny::column(
+          #   width = 3L,
+          #   align = 'left',
+          #   shiny::wellPanel(
+          #     style = "min-height: 240px; padding-top: 0px;",
+          #     shiny::fluidRow(
+          #       style = "padding-top: 15px; padding-bottom: 15px;",
+          #       shiny::column(12L, align = 'center', shiny::sliderInput(inputId = paste0("PlotWidthinf",Page), label = 'Plot Width', value = 1450, min = 100, max = 2800))
+          #     ),
+          #     shiny::fluidRow(
+          #       shiny::column(12L, align = "center", shiny::sliderInput(inputId = paste0("PlotHeightinf",Page), label = 'Plot Height', value = 950, min = 100, max = 2800))
+          #     )
+          #   )
+          # )
         )
       ),
 

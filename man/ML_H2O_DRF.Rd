@@ -33,7 +33,7 @@ ML_H2O_DRF(
 \item{H3Color}{= 'white'}
 }
 \description{
-H2O_DRF args
+ML_H2O_DRF
 }
 \seealso{
 Other Modeling: 

@@ -33,7 +33,7 @@ ML_CatBoost(
 \item{H3Color}{= 'white'}
 }
 \description{
-Catboost args
+ML_CatBoost
 }
 \seealso{
 Other Modeling: 

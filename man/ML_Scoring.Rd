@@ -33,7 +33,7 @@ ML_Scoring(
 \item{H3Color}{= 'white'}
 }
 \description{
-Catboost args
+ML_Scoring
 }
 \seealso{
 Other Modeling: 

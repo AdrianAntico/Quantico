@@ -33,7 +33,7 @@ ML_H2O_GBM(
 \item{H3Color}{= 'white'}
 }
 \description{
-H2O_GBM args
+ML_H2O_GBM
 }
 \seealso{
 Other Modeling: 

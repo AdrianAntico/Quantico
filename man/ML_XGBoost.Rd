@@ -33,7 +33,7 @@ ML_XGBoost(
 \item{H3Color}{= 'white'}
 }
 \description{
-XGBoost args
+ML_XGBoost
 }
 \seealso{
 Other Modeling: 

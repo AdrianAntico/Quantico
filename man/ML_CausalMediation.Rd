@@ -33,7 +33,7 @@ ML_CausalMediation(
 \item{H3Color}{= 'white'}
 }
 \description{
-CatBoost FC button
+ML_CausalMediation
 }
 \seealso{
 Other Modeling: 

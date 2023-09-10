@@ -29,8 +29,10 @@ https://en.m.wikipedia.org/wiki/Anderson%E2%80%93Darling_test, https://real-stat
 \seealso{
 Other Inference: 
 \code{\link{Agostino.Test}()},
-\code{\link{Correlation.Test}()},
+\code{\link{Correlation.Analysis}()},
+\code{\link{Correlation_Modal_Fun}()},
 \code{\link{Cramer.Von.Mises.Test}()},
+\code{\link{Inference_Correlation}()},
 \code{\link{Inference_Normality}()},
 \code{\link{Jarque.Bera.Test}()},
 \code{\link{Kolmogorov.Smirnov.Test}()},

@@ -951,8 +951,6 @@ ML_LightGBMReport <- function(id='ML_LightGBMReport',
 
 #' @title ML_Scoring
 #'
-#' @description Catboost args
-#'
 #' @author Adrian Antico
 #' @family Modeling
 #'
@@ -986,8 +984,6 @@ ML_Scoring <- function(id='ML_Scoring_link',
 
 
 #' @title ML_CatBoost
-#'
-#' @description Catboost args
 #'
 #' @author Adrian Antico
 #' @family Modeling
@@ -1024,8 +1020,6 @@ ML_CatBoost <- function(id='CatBoostML',
 
 #' @title ML_XGBoost
 #'
-#' @description XGBoost args
-#'
 #' @author Adrian Antico
 #' @family Modeling
 #'
@@ -1059,8 +1053,6 @@ ML_XGBoost <- function(id='XGBoostML',
 }
 
 #' @title ML_LightGBM
-#'
-#' @description LightGBM args
 #'
 #' @author Adrian Antico
 #' @family Modeling
@@ -1096,8 +1088,6 @@ ML_LightGBM <- function(id='LightGBMML',
 
 #' @title ML_H2O_DRF
 #'
-#' @description H2O_DRF args
-#'
 #' @author Adrian Antico
 #' @family Modeling
 #'
@@ -1131,8 +1121,6 @@ ML_H2O_DRF <- function(id='H2O_DRFML',
 }
 
 #' @title ML_H2O_GBM
-#'
-#' @description H2O_GBM args
 #'
 #' @author Adrian Antico
 #' @family Modeling
@@ -1168,8 +1156,6 @@ ML_H2O_GBM <- function(id='H2O_GBMML',
 
 #' @title ML_H2O_GLM
 #'
-#' @description H2O_GLM args
-#'
 #' @author Adrian Antico
 #' @family Modeling
 #'
@@ -1203,8 +1189,6 @@ ML_H2O_GLM <- function(id='H2O_GLMML',
 }
 
 #' @title ML_H2O_HGLM
-#'
-#' @description H2O_GLM args
 #'
 #' @author Adrian Antico
 #' @family Modeling
@@ -1240,8 +1224,6 @@ ML_H2O_HGLM <- function(id='H2O_HGLMML',
 
 #' @title ML_MixedEffects
 #'
-#' @description Mixed Effects methods
-#'
 #' @author Adrian Antico
 #' @family Modeling
 #'
@@ -1275,8 +1257,6 @@ ML_MixedEffects <- function(id='ML_MixedEffects',
 }
 
 #' @title ML_GEE
-#'
-#' @description GEE
 #'
 #' @author Adrian Antico
 #' @family Modeling
@@ -1312,8 +1292,6 @@ ML_GEE <- function(id='ML_GEE',
 
 #' @title ML_CausalMediation
 #'
-#' @description CatBoost FC button
-#'
 #' @author Adrian Antico
 #' @family Modeling
 #'
@@ -1348,8 +1326,6 @@ ML_CausalMediation <- function(id='ML_CausalMediationML',
 
 #' @title FC_SARIMA
 #'
-#' @description FC_SARIMA
-#'
 #' @author Adrian Antico
 #' @family Modeling
 #'
@@ -1382,8 +1358,6 @@ FC_SARIMA <- function(id='FC_SARIMA',
 }
 
 #' @title FC_NNet
-#'
-#' @description FC_NNet
 #'
 #' @author Adrian Antico
 #' @family Modeling
@@ -1418,8 +1392,6 @@ FC_NNet <- function(id='FC_NNet',
 
 #' @title FC_TBATS
 #'
-#' @description FC_TBATS
-#'
 #' @author Adrian Antico
 #' @family Modeling
 #'
@@ -1452,8 +1424,6 @@ FC_TBATS <- function(id='FC_TBATS',
 }
 
 #' @title FC_ETS
-#'
-#' @description FC_ETS
 #'
 #' @author Adrian Antico
 #' @family Modeling
@@ -1488,8 +1458,6 @@ FC_ETS <- function(id='FC_ETS',
 
 #' @title FC_Arfima
 #'
-#' @description FC_Arfima
-#'
 #' @author Adrian Antico
 #' @family Modeling
 #'
@@ -1522,8 +1490,6 @@ FC_Arfima <- function(id='FC_Arfima',
 }
 
 #' @title FC_CatBoostCARMA
-#'
-#' @description CausalMediation args
 #'
 #' @author Adrian Antico
 #' @family Modeling
@@ -1559,8 +1525,6 @@ FC_CatBoostCARMA <- function(id='FC_CatBoostCARMA',
 
 #' @title FC_XGBoostCARMA
 #'
-#' @description XGBoost FC button
-#'
 #' @author Adrian Antico
 #' @family Modeling
 #'
@@ -1594,8 +1558,6 @@ FC_XGBoostCARMA <- function(id='FC_XGBoostCARMA',
 }
 
 #' @title FC_LightGBMCARMA
-#'
-#' @description LightGBM FC button
 #'
 #' @author Adrian Antico
 #' @family Modeling
@@ -1631,8 +1593,6 @@ FC_LightGBMCARMA <- function(id='FC_LightGBMCARMA',
 
 #' @title FC_CatBoostCARMAID
 #'
-#' @description Button
-#'
 #' @author Adrian Antico
 #' @family Modeling
 #'
@@ -1666,8 +1626,6 @@ FC_CatBoostCARMAID <- function(id='FC_CatBoostCARMAID',
 }
 
 #' @title FC_XGBoostCARMAID
-#'
-#' @description XGBoost FC button
 #'
 #' @author Adrian Antico
 #' @family Modeling
@@ -1703,8 +1661,6 @@ FC_XGBoostCARMAID <- function(id='FC_XGBoostCARMAID',
 
 #' @title FC_LightGBMCARMAID
 #'
-#' @description LightGBM FC button
-#'
 #' @author Adrian Antico
 #' @family Modeling
 #'
@@ -1738,8 +1694,6 @@ FC_LightGBMCARMAID <- function(id='FC_LightGBMCARMAID',
 }
 
 #' @title FC_CatBoostCARMAFUN
-#'
-#' @description Button
 #'
 #' @author Adrian Antico
 #' @family Modeling
@@ -1775,8 +1729,6 @@ FC_CatBoostCARMAFUN <- function(id='FC_CatBoostCARMAFUN',
 
 #' @title FC_XGBoostCARMAFUN
 #'
-#' @description XGBoost FC button
-#'
 #' @author Adrian Antico
 #' @family Modeling
 #'
@@ -1810,8 +1762,6 @@ FC_XGBoostCARMAFUN <- function(id='FC_XGBoostCARMAFUN',
 }
 
 #' @title FC_LightGBMCARMAID
-#'
-#' @description LightGBM FC button
 #'
 #' @author Adrian Antico
 #' @family Modeling
@@ -1847,8 +1797,6 @@ FC_LightGBMCARMAFUN <- function(id='FC_LightGBMCARMAFUN',
 
 #' @title BuildModelsButton
 #'
-#' @description BuildModelsButton is a button for kicking off ML
-#'
 #' @author Adrian Antico
 #' @family Modeling
 #'
@@ -1875,8 +1823,6 @@ BuildModelsButton <- function(id = 'MLBuildButton',
 
 
 #' @title Inference_Normality
-#'
-#' @description Time Series Fill Missing Dates
 #'
 #' @author Adrian Antico
 #' @family Inference
@@ -1908,5 +1854,40 @@ Inference_Normality <- function(id='Inference_Normality_link',
       align=Align,
       #tags$h4(tags$b('Pivot')),
       shiny::actionLink("Inference_Normality", label = "Normality", icon = shiny::icon("right-from-bracket"))#, style = ButtonStyle)
+    ))
+}
+
+#' @title Inference_Correlation
+#'
+#' @author Adrian Antico
+#' @family Inference
+#'
+#' @param id = 'Inference_Correlation'
+#' @param Style = 'gradient',
+#' @param Color = 'royal',
+#' @param Align = 'center'
+#' @param DropDownRight = FALSE
+#' @param Animate = TRUE
+#' @param Status = 'custom'
+#' @param H3Color = 'white'
+#'
+#' @export
+Inference_Correlation <- function(id='Inference_Correlation_link',
+                                  Style = 'gradient',
+                                  Color = 'royal',
+                                  Align='center',
+                                  DropDownRight=FALSE,
+                                  Animate=TRUE,
+                                  Status='custom',
+                                  H3Color = 'white') {
+
+  #Height <- '43px'
+  ns <- shiny::NS(id)
+  shiny::tagList(
+    shiny::column(
+      width = 12L,
+      align=Align,
+      #tags$h4(tags$b('Pivot')),
+      shiny::actionLink("Inference_Correlation", label = "Correlation", icon = shiny::icon("right-from-bracket"))#, style = ButtonStyle)
     ))
 }

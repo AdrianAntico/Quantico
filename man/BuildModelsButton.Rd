@@ -21,7 +21,7 @@ BuildModelsButton(
 \item{Color}{= 'royal'}
 }
 \description{
-BuildModelsButton is a button for kicking off ML
+BuildModelsButton
 }
 \seealso{
 Other Modeling: 

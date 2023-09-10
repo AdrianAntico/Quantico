@@ -33,7 +33,7 @@ FC_CatBoostCARMAFUN(
 \item{H3Color}{= 'white'}
 }
 \description{
-Button
+FC_CatBoostCARMAFUN
 }
 \seealso{
 Other Modeling: 

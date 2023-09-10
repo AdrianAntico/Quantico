@@ -191,7 +191,11 @@ ColNameFilter <- function(data, Types = 'all') {
 
 #' @noRd
 NumericColNames <- function(data) {
-  x <- as.list(names(data)[which(sapply(data, is.numeric))])
+  x <- list()
+  for(z in names(data)) {
+    xx <- class(data[[z]])[1L]
+    if(xx %in% "numeric") x[[length(x) + 1]] <- z
+  }
   if(!identical(x, character(0))) return(x) else return(NULL)
 }
 

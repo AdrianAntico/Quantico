@@ -33,7 +33,7 @@ FC_LightGBMCARMAFUN(
 \item{H3Color}{= 'white'}
 }
 \description{
-LightGBM FC button
+FC_LightGBMCARMAID
 }
 \seealso{
 Other Modeling: 

@@ -33,7 +33,7 @@ FC_CatBoostCARMA(
 \item{H3Color}{= 'white'}
 }
 \description{
-CausalMediation args
+FC_CatBoostCARMA
 }
 \seealso{
 Other Modeling: 

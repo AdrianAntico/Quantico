@@ -1596,9 +1596,6 @@ HomePage <- function(id, Page, AppWidth=12L) {
               ),
 
               DataMuse::BlankRow(12),
-              shiny::fluidRow(shiny::column(width = 12L, shiny::h3("Model Evaluation Plots Usage"))),
-
-              DataMuse::BlankRow(12),
               DataMuse::BlankRow(12),
               DataMuse::BlankRow(12),
 

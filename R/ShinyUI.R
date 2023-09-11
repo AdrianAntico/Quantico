@@ -19035,12 +19035,12 @@ InferencePanels <- function(id, Page, AppWidth=12L, IOL = NULL) {
         shinydashboard::box(
           title = NULL, solidHeader = TRUE, collapsible = FALSE, status = 'warning', width = 12L, style = "padding-top: 26px",
           shiny::column(
-            width = 3L, align = 'center',
+            width = 5L, align = 'center',
             shiny::wellPanel(
               style = "min-height: 240px; padding-top: 0px;",
               shiny::fluidRow(
                 style = "padding-top: 78px; padding-bottom: 33px;",
-                DataMuse::PickerInput(InputID = paste0('InferenceReportsModelSelection',Page), Label = 'Testing Output', Choices = tryCatch({names(IOL)}, error = function(x) NULL), Multiple = FALSE, MaxVars = 1L)
+                DataMuse::PickerInput(InputID = paste0('InferenceReportsModelSelection',Page), Label = 'Inference Output', Choices = tryCatch({names(IOL)}, error = function(x) NULL), Multiple = FALSE, MaxVars = 1L)
               )
             )
           ),
@@ -19086,7 +19086,7 @@ InferencePanels <- function(id, Page, AppWidth=12L, IOL = NULL) {
                   }"
               )
             )
-          )
+          ),
 
 
           # #", paste0('InferenceMarkdownExecute',Page), " {
@@ -19113,49 +19113,50 @@ InferencePanels <- function(id, Page, AppWidth=12L, IOL = NULL) {
           # }
 
 
-          # shiny::column(
-          #   width = 2L,
-          #   align = 'left',
-          #   shiny::wellPanel(
-          #     style = "min-height: 240px; padding-top: 0px;",
-          #     shiny::fluidRow(
-          #       style = "padding-top: 63px; padding-bottom: 68px;",
-          #       shiny::column(12L, align = "left", style = "padding-left: 30px;", shinyWidgets::materialSwitch(inputId = paste0("WrapTexta", Page), label = 'Wrap', status = "danger", right = FALSE, value = FALSE), shiny::tags$style("padding-left: 40px;"))
-          #     ),
-          #     shiny::fluidRow(
-          #       shiny::column(12L, align = "left", style = "padding-left: 30px;", shinyWidgets::materialSwitch(inputId = paste0("Shufflea", Page), label = 'Shuffle', status = "danger", right = FALSE, value = FALSE), shiny::tags$style("padding-left: 40px;"))
-          #     )
-          #   )
-          # ),
-          # shiny::column(
-          #   width = 3L,
-          #   align = 'left',
-          #   shiny::wellPanel(
-          #     style = "min-height: 240px; padding-top: 0px;",
-          #     shiny::fluidRow(
-          #       style = "padding-top: 30px; padding-bottom: 30px;",
-          #       shiny::column(12L, align = 'center', shiny::numericInput(inputId = paste0("MinRowsa", Page), label = 'Records per Page', value = 10, min = 10, max = 1000, step = 10))
-          #     ),
-          #     shiny::fluidRow(
-          #       shiny::column(12L, align = 'center', shiny::numericInput(inputId = paste0("Number_of_Recordsa", Page), label = 'Total Rows', value = 10000, min = 1000, max = 100000, 1000))
-          #     )
-          #   )
-          # ),
-          #
-          # shiny::column(
-          #   width = 3L,
-          #   align = 'left',
-          #   shiny::wellPanel(
-          #     style = "min-height: 240px; padding-top: 0px;",
-          #     shiny::fluidRow(
-          #       style = "padding-top: 15px; padding-bottom: 15px;",
-          #       shiny::column(12L, align = 'center', shiny::sliderInput(inputId = paste0("PlotWidthinf",Page), label = 'Plot Width', value = 1450, min = 100, max = 2800))
-          #     ),
-          #     shiny::fluidRow(
-          #       shiny::column(12L, align = "center", shiny::sliderInput(inputId = paste0("PlotHeightinf",Page), label = 'Plot Height', value = 950, min = 100, max = 2800))
-          #     )
-          #   )
-          # )
+          shiny::column(
+            width = 2L,
+            align = 'left',
+            shiny::wellPanel(
+              style = "min-height: 240px; padding-top: 0px;",
+              shiny::fluidRow(
+                style = "padding-top: 63px;",
+                shiny::column(12L, align = "left", style = "padding-left: 30px;", shinyWidgets::materialSwitch(inputId = paste0("Striped", Page), label = 'Striped', status = "danger", right = FALSE, value = TRUE), shiny::tags$style("padding-left: 40px;"))
+              ),
+              shiny::fluidRow(
+                style = "padding-top: 40px; padding-bottom: 20px;",
+                shiny::column(12L, align = 'center', shiny::numericInput(inputId = paste0("MinRowsa", Page), label = 'Records per Page', value = 10, min = 10, max = 1000, step = 10))
+              )
+            )
+          ),
+          shiny::column(
+            width = 2L,
+            align = 'left',
+            shiny::wellPanel(
+              style = "min-height: 240px; padding-top: 0px;",
+              shiny::fluidRow(
+                style = "padding-top: 63px; padding-bottom: 68px",
+                shiny::column(12L, align = "left", style = "padding-left: 30px;", shinyWidgets::materialSwitch(inputId = paste0("Compact", Page), label = 'Compact', status = "danger", right = FALSE, value = TRUE), shiny::tags$style("padding-left: 40px;"))
+              ),
+              shiny::fluidRow(
+                shiny::column(12L, align = "left", style = "padding-left: 30px;", shinyWidgets::materialSwitch(inputId = paste0("Filterable", Page), label = 'Filterable', status = "danger", right = FALSE, value = TRUE), shiny::tags$style("padding-left: 40px;"))
+              )
+            )
+          ),
+
+          shiny::column(
+            width = 2L,
+            align = 'left',
+            shiny::wellPanel(
+              style = "min-height: 240px; padding-top: 0px;",
+              shiny::fluidRow(
+                style = "padding-top: 15px; padding-bottom: 15px;",
+                shiny::column(12L, align = 'center', shiny::sliderInput(inputId = paste0("PlotWidthinf",Page), label = 'Plot Width', value = 1450, min = 100, max = 2800))
+              ),
+              shiny::fluidRow(
+                shiny::column(12L, align = "center", shiny::sliderInput(inputId = paste0("PlotHeightinf",Page), label = 'Plot Height', value = 950, min = 100, max = 2800))
+              )
+            )
+          )
         )
       ),
 

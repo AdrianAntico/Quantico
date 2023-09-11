@@ -8679,19 +8679,49 @@ server <- function(input, output, session) {
         if(length(InferenceOutputList) > 0L) {
           InfName <- DataMuse::ReturnParam(xx = tryCatch({input[[paste0("InferenceReportsModelSelection", Page)]]}, error = function(x) NULL), Type = "character", Default = NULL)
           FontColorData <- DataMuse:::rgba2hex(DataMuse:::ReturnParam(xx = input[["ColorFont"]], Type = "character", Default = "#e2e2e2"))
-          if(Debug) {
-            print("Inference Panel Report 4")
+          if(Debug) print("Inference Panel Report 4")
+
+          # Update Plot Dims and Table Info
+          EchartsTheme <- DataMuse:::ReturnParam(xx = input[["EchartsTheme"]], Type = "character", Default = "dark")
+          PlotWidthinf <- DataMuse::ReturnParam(xx = tryCatch({input[[paste0("PlotWidthinf", Page)]]}, error = function(x) NULL), Type = "numeric", Default = 1450)
+          PlotHeightinf <- DataMuse::ReturnParam(xx = tryCatch({input[[paste0("PlotHeightinf", Page)]]}, error = function(x) NULL), Type = "numeric", Default = 850)
+          PlotWidthinf <- paste0(PlotWidthinf, "px")
+          PlotHeightinf <- paste0(PlotHeightinf, "px")
+
+          if(Debug) print("Inference Panel Report 5")
+
+          MinRowsa <- DataMuse::ReturnParam(xx = tryCatch({input[[paste0("MinRowsa", Page)]]}, error = function(x) NULL), Type = "numeric", Default = 20)
+          Compact <- DataMuse::ReturnParam(xx = tryCatch({input[[paste0("Compact", Page)]]}, error = function(x) NULL), Type = "logical", Default = TRUE)
+          Filterable <- DataMuse::ReturnParam(xx = tryCatch({input[[paste0("Filterable", Page)]]}, error = function(x) NULL), Type = "logical", Default = TRUE)
+          Striped <- DataMuse::ReturnParam(xx = tryCatch({input[[paste0("Striped", Page)]]}, error = function(x) NULL), Type = "logical", Default = TRUE)
+
+          if(Debug) print("Inference Panel Report 6")
+
+          ioln <- names(InferenceOutputList[[InfName]])
+          if(Debug) print(ioln)
+          for(iolnn in ioln) {
+            if(Debug) print("Inference Panel Report 7")
+            if(class(InferenceOutputList[[InfName]][[iolnn]])[1L] == "echarts4r") {
+              InferenceOutputList[[InfName]][[iolnn]]$width <- PlotWidthinf
+              InferenceOutputList[[InfName]][[iolnn]]$height <- PlotHeightinf
+              InferenceOutputList[[InfName]][[iolnn]]$x$theme <- EchartsTheme
+            } else if(class(InferenceOutputList[[InfName]][[iolnn]])[1L] == "reactable") {
+              InferenceOutputList[[InfName]][[iolnn]]$x$tag$attribs$defaultPageSize <- MinRowsa
+              InferenceOutputList[[InfName]][[iolnn]]$x$tag$attribs$striped <- Striped
+              InferenceOutputList[[InfName]][[iolnn]]$x$tag$attribs$filterable <- Filterable
+              InferenceOutputList[[InfName]][[iolnn]]$x$tag$attribs$compact <- Compact
+            }
           }
 
-          print(InfName)
-          print(names(InferenceOutputList))
-          print(names(InferenceOutputList[[InfName]]))
+          if(Debug) print("Inference Panel Report 8")
           if(!exists("InfOutput")) InfOutput <- list()
           InfOutput[[Page]] <- InferenceOutputList[[InfName]]
           InfOutput <<- InfOutput
 
           # Render Function
+          if(Debug) print("Inference Panel Report 9")
           if(length(InfOutput) > 0L) {
+            if(Debug) print("Inference Panel Report 10")
             DataMuse:::Shiny.Display(
               input, output, session,
               InfOutput[[Page]], Debug,

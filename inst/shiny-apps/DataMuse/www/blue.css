@@ -199,7 +199,7 @@
 
 /* Scrollbars */
 .ace_scrollbar .ace_scrollbar-v {
-  scrollbar-color: #000271 #0000;
+  scrollbar-color: #25277c #0000;
 }
 .ace_scrollbar .ace_scrollbar-v::-webkit-scrollbar {
   width: 16px;
@@ -211,13 +211,13 @@
 
 .ace_scrollbar .ace_scrollbar-v::-webkit-scrollbar-thumb {
   border-radius: 100px;
-  background: #000271;
+  background: #25277c;
   border: 6px solid rgba(0, 0, 0, 0.2);
 }
 
 /* Scrollbars */
 .box-body {
-  scrollbar-color: #000271 #0000;
+  scrollbar-color: #25277c #0000;
 }
 .box-body::-webkit-scrollbar {
   width: 16px;
@@ -228,13 +228,13 @@
 }
 .box-body::-webkit-scrollbar-thumb {
   border-radius: 100px;
-  background: #000271;
+  background: #25277c;
   border: 6px solid rgba(0, 0, 0, 0.2);
 }
 
 /* Scrollbars */
 .box-body .OutputPaneBox {
-  scrollbar-color: #000271 #0000;
+  scrollbar-color: #25277c #0000;
 }
 .box-body .OutputPaneBox::-webkit-scrollbar {
   width: 16px;
@@ -245,12 +245,12 @@
 }
 .box-body .OutputPaneBox::-webkit-scrollbar-thumb {
   border-radius: 100px;
-  background: #000271;
+  background: #25277c;
   border: 6px solid rgba(0, 0, 0, 0.2);
 }
 
 .row {
-  scrollbar-color: #000271 #0000;
+  scrollbar-color: #25277c #0000;
 }
 .row::-webkit-scrollbar {
   width: 16px;
@@ -261,7 +261,7 @@
 }
 .row::-webkit-scrollbar-thumb {
   border-radius: 100px;
-  background: #000271;
+  background: #25277c;
   border: 6px solid rgba(0, 0, 0, 0.2);
 }
 

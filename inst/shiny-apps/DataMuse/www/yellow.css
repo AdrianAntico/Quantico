@@ -221,6 +221,38 @@
   border: 6px solid rgba(0, 0, 0, 0.2);
 }
 
+.inner {
+  scrollbar-color: #888600 #0000;
+}
+.inner::-webkit-scrollbar {
+  width: 16px;
+}
+.inner::-webkit-scrollbar-track {
+  background-color: #0000;
+  border-radius: 100px;
+}
+.inner::-webkit-scrollbar-thumb {
+  border-radius: 100px;
+  background: #888600;
+  border: 6px solid rgba(0, 0, 0, 0.2);
+}
+
+.selectize-dropdown-content {
+  scrollbar-color: #888600 #0000;
+}
+.selectize-dropdown-content::-webkit-scrollbar {
+  width: 16px;
+}
+.selectize-dropdown-content::-webkit-scrollbar-track {
+  background-color: #0000;
+  border-radius: 100px;
+}
+.selectize-dropdown-content::-webkit-scrollbar-thumb {
+  border-radius: 100px;
+  background: #888600;
+  border: 6px solid rgba(0, 0, 0, 0.2);
+}
+
 /* Scrollbars */
 .box-body {
   scrollbar-color: #888600 #0000;
@@ -4095,7 +4127,7 @@ tbody.collapse.in {
 	font-size: 14px;
 	text-align: left;
 	list-style: none;
-	background-color: #ffffeb;
+	background-color: #faffc4;
 	color: black;
 	background-clip: padding-box;
 	border: 1px solid #ccc;

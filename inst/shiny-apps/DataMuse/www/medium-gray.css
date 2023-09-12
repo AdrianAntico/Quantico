@@ -3,6 +3,12 @@
 /* Get a fancy font from Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Yusei+Magic&display=swap');
 
+body{
+    width:100%;
+    overflow-x:hidden;
+    overflow-y:hidden;
+}
+
 .reactable .html-widget .html-widget-output .shiny-report-size .html-fill-item-overflow-hidden .html-fill-item .shiny-bound-output {
   color: #000;
 }
@@ -1094,7 +1100,6 @@ hr {
   border: 1px solid #05021d;
   border-radius: 4px;
 }
-
 
 pre {
 	overflow: auto;

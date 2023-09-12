@@ -3,6 +3,12 @@
 /* Get a fancy font from Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Yusei+Magic&display=swap');
 
+body{
+    width:100%;
+    overflow-x:hidden;
+    overflow-y:hidden;
+}
+
 .box.box-solid.box-warning {
   border: 0px solid #000;
   background-color: #00000000;
@@ -48,7 +54,7 @@
 
 .btn-default.active, .btn-default:active, .open > .dropdown-toggle.btn-default {
   color: #fff;
-	background-color: #3161d7;
+	background-color: #a2a9c5;
 	border-color: #000
 }
 
@@ -62,7 +68,7 @@
 .open>.btn-default.dropdown-toggle:focus,
 .open>.btn-default.dropdown-toggle.focus {
 	color: #fff;
-  background-color: #3161d7;
+  background-color: #a2a9c5;
   border-color: #00000000;
 }
 
@@ -74,7 +80,7 @@
 .btn.active.focus {
 	color: #f3f3f3;
   text-decoration: none;
-  background-color: #3161d7;
+  background-color: #a2a9c5;
   box-shadow: 2px 2px 1px 0px #fff;
   outline: 0px auto -webkit-focus-ring-color!important;
 }
@@ -94,7 +100,7 @@
 .btn.active {
 	color: #f3f3f3;
   text-decoration: none;
-  background-color: #3161d7;
+  background-color: #a2a9c5;
   box-shadow: 2px 2px 1px 0px #fff;
 }
 
@@ -13359,7 +13365,7 @@ fieldset[disabled] .btn-yahoo.focus {
 .alert-error,
 .label-danger,
 .modal-danger .modal-body {
-	background-color: #3161d7 !important
+	background-color: #a2a9c5 !important
 }
 
 .bg-yellow,

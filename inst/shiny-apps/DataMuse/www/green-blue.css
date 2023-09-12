@@ -3,6 +3,12 @@
 /* Get a fancy font from Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Yusei+Magic&display=swap');
 
+body{
+    width:100%;
+    overflow-x:hidden;
+    overflow-y:hidden;
+}
+
 :focus:not(:focus-visible) {
   outline: none
 }
@@ -23,7 +29,7 @@
   border: 0px solid #000;
   background-color: #00000000;
   border-radius: 30px;
-  box-shadow: 0px 2px 6px 0px #00ff87;
+  box-shadow: 0px 2px 6px 0px #42ffb8;
 }
 
 .irs--shiny {
@@ -58,7 +64,7 @@
 	color: #f3f3f3;
   text-decoration: none;
   background-color: #41bd83;
-  box-shadow: 3px 3px 1px 0px #00ff87;
+  box-shadow: 3px 3px 1px 0px #42ffb8;
   outline: 0px auto -webkit-focus-ring-color!important;
 }
 
@@ -69,7 +75,7 @@
 	color: #f3f3f3;
   text-decoration: none;
   background-color: #858a9c6e;
-  box-shadow: 3px 3px 1px 0px #00ff87;
+  box-shadow: 3px 3px 1px 0px #42ffb8;
   border-radius: 30px;
 }
 
@@ -78,7 +84,7 @@
 	color: #f3f3f3;
   text-decoration: none;
   background-color: #41bd83;
-  box-shadow: 3px 3px 1px 0px #00ff87;
+  box-shadow: 3px 3px 1px 0px #42ffb8;
 }
 
 .btn-default:focus,
@@ -95,7 +101,7 @@
 .btn:active {
 	-webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
 	-moz-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-	box-shadow: 3px 3px 1px 0px #00ff87;
+	box-shadow: 3px 3px 1px 0px #42ffb8;
 }
 
 .btn:focus {
@@ -543,7 +549,7 @@ body, h1, h2, h3, h4, h5, h6 {
 .box {
 	position: relative;
 	border-radius: 3px;
-	background-color: #00ff871f;
+	background-color: #42ffb81f;
 	border-top: 3px solid #d2d6de;
 	margin-bottom: 3px;
 	width: 100%;
@@ -556,7 +562,7 @@ body, h1, h2, h3, h4, h5, h6 {
   border: 1px solid #5b5b5b9e;
   min-height: 35px;
   border-radius: 30px;
-  box-shadow: 0px 2px 6px 0px #00ff87;
+  box-shadow: 0px 2px 6px 0px #42ffb8;
 }
 
 /* Box Text Color */
@@ -9613,7 +9619,7 @@ a:focus {
 .box.box-solid.box-info {
 	border: 1px solid #5b5b5b9e;
 	border-radius: 30px;
-	box-shadow: 0px 2px 6px 0px #00ff87;
+	box-shadow: 0px 2px 6px 0px #42ffb8;
 	background-color: #0a4227;
 }
 
@@ -9671,7 +9677,7 @@ a:focus {
 .box.box-solid {
 	border-top: 0;
 	border-radius: 70px;
-	box-shadow: 0px 2px 6px 0px #00ff87;
+	box-shadow: 0px 2px 6px 0px #42ffb8;
 }
 
 .box.box-solid>.box-header .btn.btn-default {
@@ -13358,7 +13364,7 @@ fieldset[disabled] .btn-yahoo.focus {
 .alert-error,
 .label-danger,
 .modal-danger .modal-body {
-	background-color: #00ff87 !important
+	background-color: #42ffb8 !important
 }
 
 .bg-yellow,

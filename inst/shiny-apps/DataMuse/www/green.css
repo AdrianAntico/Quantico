@@ -3,6 +3,12 @@
 /* Get a fancy font from Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Yusei+Magic&display=swap');
 
+body{
+    width:100%;
+    overflow-x:hidden;
+    overflow-y:hidden;
+}
+
 .box.box-solid.box-warning {
   border: 0px solid #000;
   background-color: #00000000;

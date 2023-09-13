@@ -1280,7 +1280,7 @@ th {
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 	padding: 0px;
-	color: #d3d3d3;
+	color: #b3d3ff;
 }
 
 html {
@@ -8903,7 +8903,7 @@ a:focus {
 }
 
 .dropdown-menu>li>a:hover {
-	background-color: #e1e3e9;
+	background-color: #5ebbff;
 	color: #333
 }
 

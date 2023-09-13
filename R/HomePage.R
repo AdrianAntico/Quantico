@@ -5670,7 +5670,9 @@ SideBarUI <- function(id, AppWidth=12L) {
         DataMuse::BlankLine(12L),
         shiny::tags$summary(shiny::tags$span(shiny::tags$b("Inference"))),
         shiny::fluidRow(DataMuse:::Inference_Normality(id = 'Inference_Normality_link', Align = "left")),
-        shiny::fluidRow(DataMuse:::Inference_Correlation(id = 'Inference_Correlation_link', Align = "left"))
+        shiny::fluidRow(DataMuse:::Inference_Correlation(id = 'Inference_Correlation_link', Align = "left")),
+        shiny::fluidRow(DataMuse:::ML_H2O_HGLM(id = 'H2O_HGLMML', Align = 'left')),
+        shiny::fluidRow(DataMuse:::ML_CausalMediation(id = 'ML_CausalMediationML', Align = 'left'))
       ),
 
       DataMuse:::BlankRow(12L),
@@ -5682,9 +5684,7 @@ SideBarUI <- function(id, AppWidth=12L) {
         shiny::fluidRow(DataMuse:::ML_LightGBM(id = 'LightGBMML', Align = 'left')),
         shiny::fluidRow(DataMuse:::ML_H2O_DRF(id = 'H2O_DRFML',  Align = 'left')),
         shiny::fluidRow(DataMuse:::ML_H2O_GBM(id = 'H2O_GBMML',  Align = 'left')),
-        shiny::fluidRow(DataMuse:::ML_H2O_GLM(id = 'H2O_GLMML', Align = 'left')),
-        shiny::fluidRow(DataMuse:::ML_H2O_HGLM(id = 'H2O_HGLMML', Align = 'left')),
-        shiny::fluidRow(DataMuse:::ML_CausalMediation(id = 'ML_CausalMediationML', Align = 'left'))
+        shiny::fluidRow(DataMuse:::ML_H2O_GLM(id = 'H2O_GLMML', Align = 'left'))
       ),
 
       DataMuse:::BlankRow(12L),
@@ -5740,24 +5740,24 @@ SideBarUI <- function(id, AppWidth=12L) {
         shiny::tags$summary(shiny::tags$span(shiny::tags$b('Output Panels'))),
         DataMuse::BlankLine(12L),
         shiny::fluidRow(
-          shiny::column(6L, align = 'center', shiny::actionButton(inputId = "NewDataTab", label = "Data Tab", icon = shiny::icon(name = "plus"), style = PostGREButtonStyle)),
-          shiny::column(6L, align = 'center', shiny::actionButton(inputId = "RemoveDataTab", label = "Data Tab", icon = shiny::icon(name = "minus"), style = CloudButtonStyle))),
+          shiny::column(6L, align = 'center', shiny::actionButton(inputId = "NewDataTab", label = "Data", icon = shiny::icon(name = "plus"), style = PostGREButtonStyle)),
+          shiny::column(6L, align = 'center', shiny::actionButton(inputId = "RemoveDataTab", label = "Data", icon = shiny::icon(name = "minus"), style = CloudButtonStyle))),
         DataMuse::BlankRow(12L),
         shiny::fluidRow(
-          shiny::column(6L, align = 'center', shiny::actionButton(inputId = "NewPlotTab", label = "Plot Tab", icon = shiny::icon(name = "plus"), style = PostGREButtonStyle)),
-          shiny::column(6L, align = 'center', shiny::actionButton(inputId = "RemovePlotTab", label = "Plot Tab", icon = shiny::icon(name = "minus"), style = CloudButtonStyle))),
+          shiny::column(6L, align = 'center', shiny::actionButton(inputId = "NewPlotTab", label = "Plot", icon = shiny::icon(name = "plus"), style = PostGREButtonStyle)),
+          shiny::column(6L, align = 'center', shiny::actionButton(inputId = "RemovePlotTab", label = "Plot", icon = shiny::icon(name = "minus"), style = CloudButtonStyle))),
         DataMuse::BlankRow(12L),
         shiny::fluidRow(
-          shiny::column(6L, align = 'center', shiny::actionButton(inputId = "NewEDATab", label = "EDA Tab", icon = shiny::icon(name = "plus"), style = PostGREButtonStyle)),
-          shiny::column(6L, align = 'center', shiny::actionButton(inputId = "RemoveEDATab", label = "EDA Tab", icon = shiny::icon(name = "minus"), style = CloudButtonStyle))),
+          shiny::column(6L, align = 'center', shiny::actionButton(inputId = "NewEDATab", label = "EDA", icon = shiny::icon(name = "plus"), style = PostGREButtonStyle)),
+          shiny::column(6L, align = 'center', shiny::actionButton(inputId = "RemoveEDATab", label = "EDA", icon = shiny::icon(name = "minus"), style = CloudButtonStyle))),
         DataMuse::BlankRow(12L),
         shiny::fluidRow(
-          shiny::column(6L, align = 'center', shiny::actionButton(inputId = "NewInferenceTab", label = "Inference Tab", icon = shiny::icon(name = "plus"), style = PostGREButtonStyle)),
-          shiny::column(6L, align = 'center', shiny::actionButton(inputId = "RemoveInferenceTab", label = "Inference Tab", icon = shiny::icon(name = "minus"), style = CloudButtonStyle))),
+          shiny::column(6L, align = 'center', shiny::actionButton(inputId = "NewInferenceTab", label = "Inference", icon = shiny::icon(name = "plus"), style = PostGREButtonStyle)),
+          shiny::column(6L, align = 'center', shiny::actionButton(inputId = "RemoveInferenceTab", label = "Inference", icon = shiny::icon(name = "minus"), style = CloudButtonStyle))),
         DataMuse::BlankRow(12L),
         shiny::fluidRow(
-          shiny::column(6L, align = 'center', shiny::actionButton(inputId = "NewMLTab", label = "ML Tab", icon = shiny::icon(name = "plus"), style = PostGREButtonStyle)),
-          shiny::column(6L, align = 'center', shiny::actionButton(inputId = "RemoveMLTab", label = "ML Tab", icon = shiny::icon(name = "minus"), style = CloudButtonStyle))),
+          shiny::column(6L, align = 'center', shiny::actionButton(inputId = "NewMLTab", label = "ML", icon = shiny::icon(name = "plus"), style = PostGREButtonStyle)),
+          shiny::column(6L, align = 'center', shiny::actionButton(inputId = "RemoveMLTab", label = "ML", icon = shiny::icon(name = "minus"), style = CloudButtonStyle))),
         DataMuse::BlankRow(12L)
       ),
 

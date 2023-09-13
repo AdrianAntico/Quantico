@@ -7145,7 +7145,7 @@ server <- function(input, output, session) {
       # EDA Panel Inupts
       if(!exists("EDATabList")) {EDATabList <- list();EDATabList <<- EDATabList}
       EDATabList[["NumEDATabsCurrent"]] <- NumEDATabsCurrent
-      for(i in seq_len(NumMLTabsCurrent)) {
+      for(i in seq_len(NumEDATabsCurrent)) {
         EDATabList[[paste0("EDAData",i)]] <- input[[paste0("EDAData",i)]]
         EDATabList[[paste0("EDAUnivariateVars",i)]] <- input[[paste0("EDAUnivariateVars",i)]]
         EDATabList[[paste0("EDACorrVars",i)]] <- input[[paste0("EDACorrVars",i)]]
@@ -7155,6 +7155,20 @@ server <- function(input, output, session) {
         EDATabList[[paste0("PlotWidtheda",i)]] <- input[[paste0("PlotWidtheda",i)]]
         EDATabList[[paste0("PlotHeighteda",i)]] <- input[[paste0("PlotHeighteda",i)]]
         EDATabList <<- EDATabList
+      }
+
+      # Inference Panel Inupts
+      if(!exists("InferenceTabList")) {InferenceTabList <- list();InferenceTabList <<- InferenceTabList}
+      InferenceTabList[["NumInferenceTabsCurrent"]] <- NumInferenceTabsCurrent
+      for(i in seq_len(NumInferenceTabsCurrent)) {
+        InferenceTabList[[paste0("InferenceReportsModelSelection",i)]] <- input[[paste0("InferenceReportsModelSelection",i)]]
+        InferenceTabList[[paste0("Striped",i)]] <- input[[paste0("Striped",i)]]
+        InferenceTabList[[paste0("MinRowsa",i)]] <- input[[paste0("MinRowsa",i)]]
+        InferenceTabList[[paste0("Compact",i)]] <- input[[paste0("Compact",i)]]
+        InferenceTabList[[paste0("Filterable",i)]] <- input[[paste0("Filterable",i)]]
+        InferenceTabList[[paste0("PlotWidthinf",i)]] <- input[[paste0("PlotWidthinf",i)]]
+        InferenceTabList[[paste0("PlotHeightinf",i)]] <- input[[paste0("PlotHeightinf",i)]]
+        InferenceTabList <<- InferenceTabList
       }
 
       LoadedSessionNumPlots <- NumPlotsAvailable
@@ -7172,6 +7186,7 @@ server <- function(input, output, session) {
         'TableTabList', # Table Tabs
         'MLTabList', # ML Tabs
         'EDATabList', # EDA Tabs
+        'InferenceOutputList', # Inference Tabs
         'NumPlotTabsCurrentList', # PLOTTING
         'LoadedSessionNumPlots', # PLOTTING
         'FinanceDataList', # PLOTTING
@@ -7276,6 +7291,7 @@ server <- function(input, output, session) {
             'TableTabList', # Table Tabs
             'MLTabList', # ML Tabs
             'EDATabList', # EDA Tabs
+            'InferenceOutputList', # Inference Tabs
             'NumPlotTabsCurrentList', # PLOTTING
             'LoadedSessionNumPlots', # PLOTTING
             'FinanceDataList', # PLOTTING
@@ -7434,6 +7450,17 @@ server <- function(input, output, session) {
             }
             shiny::updateSliderInput(session = session, inputId = paste0("PlotWidtheda",i), label = 'Plot Width', value = EDATabList[[paste0("PlotWidtheda",i)]], min = 100, max = 2800)
             shiny::updateSliderInput(session = session, inputId = paste0("PlotHeighteda",i), label = 'Plot Height', value = EDATabList[[paste0("PlotHeighteda",i)]], min = 100, max = 2800)
+          }
+
+          # Inference Tabs Update
+          for(i in seq_len(NumInferenceTabsCurrent)) {
+            DataMuse::PickerInput(session = session, input = input, Update = TRUE, InputID = paste0('InferenceReportsModelSelection',Page), Label = 'Inference Output', Choices = tryCatch({names(InferenceOutputList)}, error = function(x) NULL), SelectedDefault = InferenceTabList[[paste0("InferenceReportsModelSelection",i)]], Multiple = FALSE, MaxVars = 1L)
+            shinyWidgets::updateMaterialSwitch(inputId = paste0("Striped", Page), value = InferenceTabList[[paste0("Striped",i)]])
+            shiny::updateNumericInput(session = session, inputId = paste0("MinRowsa", Page), label = 'Records per Page', value = InferenceTabList[[paste0("MinRowsa",i)]], min = 10, max = 1000, step = 10)
+            shinyWidgets::updateMaterialSwitch(session = session, inputId = paste0("Compact", Page), value = InferenceTabList[[paste0("Compact",i)]])
+            shinyWidgets::updateMaterialSwitch(session = session, inputId = paste0("Filterable", Page), value = InferenceTabList[[paste0("Filterable",i)]])
+            shiny::updateSliderInput(session = session, inputId = paste0("PlotWidthinf",i), label = 'Plot Width', value = EDATabList[[paste0("PlotWidtheda",i)]], min = 100, max = 2800)
+            shiny::updateSliderInput(session = session, inputId = paste0("PlotHeightinf",i), label = 'Plot Height', value = EDATabList[[paste0("PlotHeighteda",i)]], min = 100, max = 2800)
           }
 
           loadPlotPanelInputList <- PlotPanelInputsList

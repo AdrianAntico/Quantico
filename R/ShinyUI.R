@@ -11147,7 +11147,7 @@ OneSampleTTest_Modal_Fun <- function(id,
                   DataMuse::BlankRow(12L),
                   shiny::fluidRow(
                     shiny::column(
-                      6L, align = "center",
+                      12L, align = "center",
                       shinydashboard::box(
                         title = NULL, solidHeader = TRUE, collapsible = FALSE, status = "danger", width = 12L,
                         DataMuse::BlankRow(12L),
@@ -11217,8 +11217,8 @@ TwoSampleTTest_Modal_Fun <- function(id,
                                      AppWidth=12L,
 
                                      # Reactives
-                                     TwoSampleTTest_YVars_Selected = NULL,
-                                     TowSampleTTestVariable2_Selected = NULL,
+                                     TwoSampleTTest_Variable1_Selected = NULL,
+                                     TwoSampleTTest_Variable2_Selected = NULL,
 
                                      # Statics
                                      TwoSampleTTest_SelectData_Choices = NULL,
@@ -11359,7 +11359,7 @@ TwoSampleTTest_Modal_Fun <- function(id,
                   DataMuse::BlankRow(12L),
                   shiny::fluidRow(
                     shiny::column(
-                      6L, align = "center",
+                      12L, align = "center",
                       shinydashboard::box(
                         title = NULL, solidHeader = TRUE, collapsible = FALSE, status = "danger", width = 12L,
                         DataMuse::BlankRow(12L),
@@ -11446,7 +11446,6 @@ FTest_Modal_Fun <- function(id,
                             # Statics
                             FTest_SelectData_Choices = NULL,
                             FTest_Alternative_Choices = NULL,
-                            FTest_RatioVariances_Choices = NULL,
 
                             # Updaters
                             FTest_SelectData_Selected = NULL,
@@ -11577,7 +11576,7 @@ FTest_Modal_Fun <- function(id,
                   DataMuse::BlankRow(12L),
                   shiny::fluidRow(
                     shiny::column(
-                      6L, align = "center",
+                      12L, align = "center",
                       shinydashboard::box(
                         title = NULL, solidHeader = TRUE, collapsible = FALSE, status = "danger", width = 12L,
                         DataMuse::BlankRow(12L),
@@ -11668,7 +11667,7 @@ ChiSquareTest_Modal_Fun <- function(id,
       ns <- session$ns
       shiny::showModal(
         shiny::modalDialog(
-          title = 'F-Test',
+          title = 'ChiSq-Test',
           size = "l",
           easyClose = FALSE,
           fade = TRUE,
@@ -11681,7 +11680,7 @@ ChiSquareTest_Modal_Fun <- function(id,
               id = 'ChiSquareTest_TabPanel',
               selected = 'Chi-Squared Test',
 
-              # F-Test ----
+              # ChiSq-Test ----
               shiny::tabPanel(
                 title = "Chi-Squared Test",
                 icon = shiny::icon('code'),
@@ -11781,7 +11780,7 @@ ChiSquareTest_Modal_Fun <- function(id,
                   DataMuse::BlankRow(12L),
                   shiny::fluidRow(
                     shiny::column(
-                      6L, align = "center",
+                      12L, align = "center",
                       shinydashboard::box(
                         title = NULL, solidHeader = TRUE, collapsible = FALSE, status = "danger", width = 12L,
                         DataMuse::BlankRow(12L),

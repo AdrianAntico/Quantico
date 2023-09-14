@@ -8,8 +8,6 @@ F.Test(
   dt = NULL,
   Variable1 = NULL,
   Variable2 = NULL,
-  Paired = FALSE,
-  EqualVariance = FALSE,
   ConfidenceLevel = 0.95,
   RatioVariances = 0,
   Alternative = "two.sided",
@@ -23,10 +21,6 @@ F.Test(
 }
 \arguments{
 \item{dt}{data.table}
-
-\item{Paired}{logical}
-
-\item{EqualVariance}{logical}
 
 \item{ConfidenceLevel}{numeric}
 
@@ -69,17 +63,25 @@ Other Inference:
 \code{\link{Agostino.Test}()},
 \code{\link{Anderson.Darling.Test}()},
 \code{\link{ChiSq.Test}()},
+\code{\link{ChiSquareTest_Modal_Fun}()},
 \code{\link{Correlation.Analysis}()},
 \code{\link{Correlation_Modal_Fun}()},
 \code{\link{Cramer.Von.Mises.Test}()},
+\code{\link{FTest_Modal_Fun}()},
+\code{\link{Inference_1STTest}()},
+\code{\link{Inference_2STTest}()},
+\code{\link{Inference_ChiSq}()},
 \code{\link{Inference_Correlation}()},
+\code{\link{Inference_FTest}()},
 \code{\link{Inference_Normality}()},
 \code{\link{Jarque.Bera.Test}()},
 \code{\link{Kolmogorov.Smirnov.Test}()},
 \code{\link{Normality.Analysis}()},
 \code{\link{Normality_Modal_Fun}()},
 \code{\link{One.Sample.TTest}()},
+\code{\link{OneSampleTTest_Modal_Fun}()},
 \code{\link{Shapiro.Test}()},
-\code{\link{Two.Sample.TTest}()}
+\code{\link{Two.Sample.TTest}()},
+\code{\link{TwoSampleTTest_Modal_Fun}()}
 }
 \concept{Inference}

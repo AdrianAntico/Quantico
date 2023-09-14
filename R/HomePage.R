@@ -5671,6 +5671,10 @@ SideBarUI <- function(id, AppWidth=12L) {
         shiny::tags$summary(shiny::tags$span(shiny::tags$b("Inference"))),
         shiny::fluidRow(DataMuse:::Inference_Normality(id = 'Inference_Normality_link', Align = "left")),
         shiny::fluidRow(DataMuse:::Inference_Correlation(id = 'Inference_Correlation_link', Align = "left")),
+        shiny::fluidRow(DataMuse:::Inference_1STTest(id = 'Inference_1STTest_link', Align = "left")),
+        shiny::fluidRow(DataMuse:::Inference_2STTest(id = 'Inference_2STTest_link', Align = "left")),
+        shiny::fluidRow(DataMuse:::Inference_FTest(id = 'Inference_FTest_link', Align = "left")),
+        shiny::fluidRow(DataMuse:::Inference_ChiSq(id = 'Inference_ChiSq_link', Align = "left")),
         shiny::fluidRow(DataMuse:::ML_H2O_HGLM(id = 'H2O_HGLMML', Align = 'left')),
         shiny::fluidRow(DataMuse:::ML_CausalMediation(id = 'ML_CausalMediationML', Align = 'left'))
       ),
@@ -5716,23 +5720,6 @@ SideBarUI <- function(id, AppWidth=12L) {
           shiny::fluidRow(DataMuse:::FC_LightGBMCARMA(id = 'LightGBMCARMA', Align = 'left')),
           DataMuse::BlankRow(12L)
         )
-        #,
-        # shiny::tags$details(
-        #   DataMuse::BlankLine(12L),
-        #   shiny::tags$summary(shiny::tags$span(shiny::tags$b('Intermittent Demand'))),
-        #   shiny::fluidRow(DataMuse:::FC_CatBoostCARMAID(id = 'CatBoostCARMAID', Align = 'left')),
-        #   shiny::fluidRow(DataMuse:::FC_XGBoostCARMAID(id = 'XGBoostCARMAID', Align = 'left')),
-        #   shiny::fluidRow(DataMuse:::FC_LightGBMCARMAID(id = 'LightGBMCARMAID', Align = 'left')),
-        #   DataMuse::BlankRow(12L)
-        # ),
-        # shiny::tags$details(
-        #   DataMuse::BlankLine(12L),
-        #   shiny::tags$summary(shiny::tags$span(shiny::tags$b('Funnel / Cohort'))),
-        #   shiny::fluidRow(DataMuse:::FC_CatBoostCARMAFUN(id = 'CatBoostCARMAFUN', Align = 'left')),
-        #   shiny::fluidRow(DataMuse:::FC_XGBoostCARMAFUN(id = 'XGBoostCARMAFUN', Align = 'left')),
-        #   shiny::fluidRow(DataMuse:::FC_LightGBMCARMAFUN(id = 'LightGBMCARMAFUN', Align = 'left')),
-        #   DataMuse::BlankRow(12L)
-        # )
       ),
 
       DataMuse:::BlankRow(12L),

@@ -2691,24 +2691,140 @@ server <- function(input, output, session) {
 
   # One Sample TTest
   shiny::observeEvent(input$Inference_1STTest, {
-    1
+    DataMuse::OneSampleTTest_Modal_Fun(
+      id = "OneSampleTTest_Modal_FunID",
+      AppWidth=12L,
+
+      # Reactives
+      OneSampleTTest_Variable_Selected = if(length(input$OneSampleTTest_Variable) > 0L) input$OneSampleTTest_Variable else NULL,
+
+      # Statics
+      OneSampleTTest_SelectData_Choices = tryCatch({names(DataList)}, error = function(x) NULL),
+      OneSampleTTest_Alternative_Choices = c("two.sided","less","greater"),
+
+      # Updaters
+      OneSampleTTest_SelectData_Selected = if(length(input$OneSampleTTest_SelectData) > 0L) input$OneSampleTTest_SelectData else NULL,
+      OneSampleTTest_InferenceID_Selected = if(length(input$OneSampleTTest_InferenceID) > 0L) input$OneSampleTTest_InferenceID else "INF_OneSampleTTest",
+      OneSampleTTest_NullValue_Selected = if(length(input$OneSampleTTest_NullValue) > 0L) input$OneSampleTTest_NullValue else 0,
+      OneSampleTTest_Alternative_Selected = if(length(input$OneSampleTTest_Alternative) > 0L) input$OneSampleTTest_Alternative else "two.sided",
+      OneSampleTTest_ConfidenceLevel_Selected = if(length(input$OneSampleTTest_ConfidenceLevel) > 0L) input$OneSampleTTest_ConfidenceLevel else 0.95,
+      OneSampleTTest_Samples_Selected = if(length(input$OneSampleTTest_Samples) > 0L) input$OneSampleTTest_Samples else 1,
+      OneSampleTTest_SampleSize_Selected = if(length(input$OneSampleTTest_SampleSize) > 0L) input$OneSampleTTest_SampleSize else 100000)
+
+    # Reactives
+    OneSampleTTest_dataReactive <- shiny::reactive({tryCatch({DataList[[shiny::req(input$OneSampleTTest_SelectData)]][['data']]}, error = function(x) NULL)})
+    shiny::observeEvent(shiny::req(OneSampleTTest_dataReactive()), {
+      ChoiceList <- list()
+      ColTypes <- unique(DataMuse:::ColTypes(OneSampleTTest_dataReactive()))
+      for(i in seq_along(ColTypes)) ChoiceList[[ColTypes[i]]] <- DataMuse:::ColNameFilter(OneSampleTTest_dataReactive(), Types = ColTypes[i])
+      DataMuse:::PickerInput(session = session, Update = TRUE, input=input, InputID='OneSampleTTest_Variable', Label='Variable', Choices = ChoiceList, SelectedDefault = if(length(input$OneSampleTTest_Variable) > 0L) input$OneSampleTTest_Variable else NULL, Multiple = TRUE, MaxVars = 1L)
+    })
   })
 
   # Two Sample TTest
   shiny::observeEvent(input$Inference_2STTest, {
-    1
+    DataMuse::TwoSampleTTest_Modal_Fun(
+      id = "TwoSampleTTest_ModalID",
+      AppWidth=12L,
+
+      # Reactives
+      TwoSampleTTest_Variable1_Selected = NULL,
+      TwoSampleTTest_Variable2_Selected = NULL,
+
+      # Statics
+      TwoSampleTTest_SelectData_Choices = tryCatch({names(DataList)}, error = function(x) NULL),
+      TwoSampleTTest_Alternative_Choices = c("two.sided","less","greater"),
+      TwoSampleTTest_Paired_Choices = c(TRUE, FALSE),
+      TwoSampleTTest_EqualVariance_Choices = c(TRUE, FALSE),
+
+      # Updaters
+      TwoSampleTTest_SelectData_Selected = if(length(input$TwoSampleTTest_SelectData) > 0L) input$TwoSampleTTest_SelectData else NULL,
+      TwoSampleTTest_InferenceID_Selected = if(length(input$TwoSampleTTest_InferenceID) > 0L) input$TwoSampleTTest_InferenceID else "INF_TwoSampleTTest",
+      TwoSampleTTest_Paired_Selected = if(length(input$TwoSampleTTest_Paired) > 0L) input$TwoSampleTTest_Paired else FALSE,
+      TwoSampleTTest_EqualVariance_Selected = if(length(input$TwoSampleTTest_EqualVariance) > 0L) input$TwoSampleTTest_EqualVariance else FALSE,
+      TwoSampleTTest_NullValue_Selected = if(length(input$TwoSampleTTest_NullValue) > 0L) input$TwoSampleTTest_NullValue else 0,
+      TwoSampleTTest_Alternative_Selected = if(length(input$TwoSampleTTest_Alternative) > 0L) input$TwoSampleTTest_Alternative else "two.sided",
+      TwoSampleTTest_ConfidenceLevel_Selected = if(length(input$TwoSampleTTest_ConfidenceLevel) > 0L) input$TwoSampleTTest_ConfidenceLevel else 0.95,
+      TwoSampleTTest_Samples_Selected = if(length(input$TwoSampleTTest_Samples) > 0L) input$TwoSampleTTest_Samples else 1,
+      TwoSampleTTest_SampleSize_Selected = if(length(input$TwoSampleTTest_SampleSize) > 0L) input$TwoSampleTTest_SampleSize else 100000)
+
+    # Reactives
+    TwoSampleTTest_dataReactive <- shiny::reactive({tryCatch({DataList[[shiny::req(input$TwoSampleTTest_SelectData)]][['data']]}, error = function(x) NULL)})
+    shiny::observeEvent(shiny::req(TwoSampleTTest_dataReactive()), {
+      ChoiceList <- list()
+      ColTypes <- unique(DataMuse:::ColTypes(TwoSampleTTest_dataReactive()))
+      for(i in seq_along(ColTypes)) ChoiceList[[ColTypes[i]]] <- DataMuse:::ColNameFilter(TwoSampleTTest_dataReactive(), Types = ColTypes[i])
+      DataMuse:::PickerInput(session = session, Update = TRUE, input=input, InputID='TwoSampleTTest_Variable1', Label='Variable1', Choices = ChoiceList, SelectedDefault = if(length(input$TwoSampleTTest_Variable1) > 0L) input$TwoSampleTTest_Variable1 else NULL, Multiple = TRUE, MaxVars = 1L)
+      DataMuse:::PickerInput(session = session, Update = TRUE, input=input, InputID='TwoSampleTTest_Variable2', Label='Variable2', Choices = ChoiceList, SelectedDefault = if(length(input$TwoSampleTTest_Variable2) > 0L) input$TwoSampleTTest_Variable2 else NULL, Multiple = TRUE, MaxVars = 1L)
+    })
   })
 
   # F-Test
   shiny::observeEvent(input$Inference_FTest, {
-    1
+    DataMuse::FTest_Modal_Fun(
+      id = "FTest_ModalID",
+      AppWidth=12L,
+
+      # Reactives
+      FTest_Variable1_Selected = if(length(input$FTest_Variable1) > 0) input$FTest_Variable1 else NULL,
+      FTest_Variable2_Selected = if(length(input$FTest_Variable2) > 0) input$FTest_Variable2 else NULL,
+
+      # Statics
+      FTest_SelectData_Choices = tryCatch({names(DataList)}, error = function(x) NULL),
+      FTest_Alternative_Choices = c("two.sided","less","greater"),
+
+      # Updaters
+      FTest_SelectData_Selected = if(length(input$FTest_SelectData) > 0L) input$FTest_SelectData else NULL,
+      FTest_InferenceID_Selected = if(length(input$FTest_InferenceID) > 0L) input$FTest_InferenceID else "INF_FTest",
+      FTest_RatioVariances_Selected = if(length(input$FTest_RatioVariances) > 0L) input$FTest_RatioVariances else 1,
+      FTest_Alternative_Selected = if(length(input$FTest_Alternative) > 0L) input$FTest_Alternative else "two.sided",
+      FTest_ConfidenceLevel_Selected = if(length(input$FTest_ConfidenceLevel) > 0L) input$FTest_ConfidenceLevel else 0.95,
+      FTest_Samples_Selected = if(length(input$FTest_Samples) > 0L) input$FTest_Samples else 1,
+      FTest_SampleSize_Selected = if(length(input$FTest_SampleSize) > 0L) input$FTest_SampleSize else 100000)
+
+    # Reactives
+    FTest_dataReactive <- shiny::reactive({tryCatch({DataList[[shiny::req(input$FTest_SelectData)]][['data']]}, error = function(x) NULL)})
+    shiny::observeEvent(shiny::req(FTest_dataReactive()), {
+      ChoiceList <- list()
+      ColTypes <- unique(DataMuse:::ColTypes(FTest_dataReactive()))
+      for(i in seq_along(ColTypes)) ChoiceList[[ColTypes[i]]] <- DataMuse:::ColNameFilter(FTest_dataReactive(), Types = ColTypes[i])
+      DataMuse:::PickerInput(session = session, Update = TRUE, input=input, InputID='FTest_Variable1', Label='Variable1', Choices = ChoiceList, SelectedDefault = if(length(input$FTest_Variable1) > 0L) input$FTest_Variable1 else NULL, Multiple = TRUE, MaxVars = 1L)
+      DataMuse:::PickerInput(session = session, Update = TRUE, input=input, InputID='FTest_Variable2', Label='Variable2', Choices = ChoiceList, SelectedDefault = if(length(input$FTest_Variable2) > 0L) input$FTest_Variable2 else NULL, Multiple = TRUE, MaxVars = 1L)
+    })
   })
 
   # Chi-Square Test
   shiny::observeEvent(input$Inference_ChiSq, {
-    1
-  })
+    DataMuse::ChiSquareTest_Modal_Fun(
+      id = "ChiSquareModalID",
+      AppWidth=12L,
 
+      # Reactives
+      ChiSquareTest_Variable1_Selected = if(length(input$ChiSquareTest_Variable1) > 0L) input$ChiSquareTest_Variable1 else NULL,
+      ChiSquareTest_Variable2_Selected = if(length(input$ChiSquareTest_Variable2) > 0L) input$ChiSquareTest_Variable2 else NULL,
+
+      # Statics
+      ChiSquareTest_SelectData_Choices = tryCatch({names(DataList)}, error = function(x) NULL),
+      ChiSquareTest_Alternative_Choices = c("two.sided","less","greater"),
+
+      # Updaters
+      ChiSquareTest_SelectData_Selected = if(length(input$ChiSquareTest_SelectData) > 0L) input$ChiSquareTest_SelectData else NULL,
+      ChiSquareTest_InferenceID_Selected = if(length(input$ChiSquareTest_InferenceID) > 0L) input$ChiSquareTest_InferenceID else "INF_ChiSquareTest",
+      ChiSquareTest_Alternative_Selected = if(length(input$ChiSquareTest_Alternative) > 0L) input$ChiSquareTest_Alternative else "two.sided",
+      ChiSquareTest_ConfidenceLevel_Selected = if(length(input$ChiSquareTest_ConfidenceLevel) > 0L) input$ChiSquareTest_ConfidenceLevel else 0.95,
+      ChiSquareTest_Samples_Selected = if(length(input$ChiSquareTest_Samples) > 0L) input$ChiSquareTest_Samples else 1,
+      ChiSquareTest_SampleSize_Selected = if(length(input$ChiSquareTest_SampleSize) > 0L) input$ChiSquareTest_SampleSize else 100000)
+
+    # Reactives
+    ChiSquareTest_dataReactive <- shiny::reactive({tryCatch({DataList[[shiny::req(input$ChiSquareTest_SelectData)]][['data']]}, error = function(x) NULL)})
+    shiny::observeEvent(shiny::req(ChiSquareTest_dataReactive()), {
+      ChoiceList <- list()
+      ColTypes <- unique(DataMuse:::ColTypes(ChiSquareTest_dataReactive()))
+      for(i in seq_along(ColTypes)) ChoiceList[[ColTypes[i]]] <- DataMuse:::ColNameFilter(ChiSquareTest_dataReactive(), Types = ColTypes[i])
+      DataMuse:::PickerInput(session = session, Update = TRUE, input=input, InputID='ChiSquareTest_Variable1', Label='Variable1', Choices = ChoiceList, SelectedDefault = if(length(input$ChiSquareTest_Variable1) > 0L) input$ChiSquareTest_Variable1 else NULL, Multiple = TRUE, MaxVars = 1L)
+      DataMuse:::PickerInput(session = session, Update = TRUE, input=input, InputID='ChiSquareTest_Variable2', Label='Variable2', Choices = ChoiceList, SelectedDefault = if(length(input$ChiSquareTest_Variable2) > 0L) input$ChiSquareTest_Variable2 else NULL, Multiple = TRUE, MaxVars = 1L)
+    })
+  })
 
   #                                      ----
 

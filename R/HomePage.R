@@ -621,7 +621,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 shiny::fluidRow(shiny::column(width = 12L, shiny::h3("Histogram Plots Usage"))),
                 shiny::markdown(
                   "
-                * Histogram plots only require a numeric Y-Variable to be defined
+                * Histogram plots only require a numeric Y-Variable to be defined, but you can supply more than one. When you do, separate plots will be created to display each YVar
                 * Group Variables are optional but I would recommend Faceting in you choose to supply one
                 * If all the data rest close to the 0-value of the X-Variable, a variable transformation
                   can come in handy to normalize the data. I tend to use LogPlus1 in those situations
@@ -664,7 +664,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 shiny::fluidRow(shiny::column(width = 12L, shiny::h3("Density Plots Usage"))),
                 shiny::markdown(
                   "
-                * Density plots only require a numeric Y-Variable to be defined
+                * Density plots only require a numeric Y-Variable to be defined, but you can supply more than one. When you do, separate plots will be created to display each YVar
                 * Group Variables are optional but I would recommend Faceting in you choose to supply one
                 * If all the data rest close to the 0-value of the X-Variable, a variable transformation
                   can come in handy to normalize the data. I tend to use LogPlus1 in those situations
@@ -704,7 +704,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 shiny::fluidRow(shiny::column(width = 12L, shiny::h3("Box Plots Usage"))),
                 shiny::markdown(
                   "
-                * Box plots only require a numeric Y-Variable but also accepts and a categorical X-Variable
+                * Box plots only require a numeric Y-Variable but also accepts and a categorical X-Variable. You can supply more than one YVar but your XVar should remain empty in these cases (it will be ignored otherwise).
                 * Group Variables are not optional with these as the X-Variable takes care of this task
                 * If all the data rest close to the 0-value of the Y-Variable, a variable transformation
                   can come in handy to normalize the data. I tend to use LogPlus1 in those situations

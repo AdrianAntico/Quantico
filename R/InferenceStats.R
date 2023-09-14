@@ -1,173 +1,6 @@
 # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
-# Automated Functions                                                        ----
+# Correlation Tests                                                          ----
 # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
-
-#' @title All.Normality.Tests
-#'
-#' @family Inference
-#'
-#' @export
-Normality.Analysis <- function(dt = NULL,
-                               YVars = NULL,
-                               EchartsTheme = "macarons",
-                               TextColor = "black",
-                               PlotHeight = "300px",
-                               PlotWidth = "600px",
-                               SampleSize.ADT = NULL,
-                               Samples.ADT = 1,
-                               SampleSize.CVMT = NULL,
-                               Samples.CVMT = 1,
-                               SampleSize.KST = NULL,
-                               Samples.KST = 1,
-                               SampleSize.ST = NULL,
-                               Samples.ST = 1,
-                               SampleSize.JBT = NULL,
-                               Samples.JBT = 1,
-                               SampleSize.AT = NULL,
-                               Samples.AT = 1) {
-
-  # library(DataMuse)
-  # dt <- data.table::fread(file.choose())
-  # YVars <- c("Daily Liters", "Daily Margin", "Daily Revenue", "Daily Units")
-  # SampleSize.ADT = NULL
-  # Samples.ADT = 1
-  # SampleSize.CVMT = NULL
-  # Samples.CVMT = 1
-  # SampleSize.KST = NULL
-  # Samples.KST = 1
-  # SampleSize.ST = NULL
-  # Samples.ST = 1
-  # SampleSize.JBT = NULL
-  # Samples.JBT = 1
-  # SampleSize.AT = NULL
-  # Samples.AT = 1
-  # EchartsTheme = "macarons"
-  # TextColor = "black"
-  # PlotHeight = "300px"
-  # PlotWidth = "600px"
-
-  # KS Test throws warnings for duplicate values
-  options(warn = -1)
-
-  # Convert to data.table
-  if(!data.table::is.data.table(dt)) tryCatch({data.table::setDT(dt)}, error = function(x) {
-    dt <- data.table::as.data.table(dt)
-  })
-
-  # YVars to Test
-  YVars2Test <- c()
-  for(i in YVars) {
-    if(class(dt[[i]])[1L] %in% c("numeric","integer")) {
-      YVars2Test <- c(YVars2Test, i)
-    }
-  }
-
-  # Results table
-  gg <- data.table::CJ(
-    Variable = YVars2Test,
-    Test = c("Anderson.Darling.Test",
-             "Cramer.Von.Mises.Test",
-             "Kolmogorov.Smirnov.Test",
-             "Shapiro.Test",
-             "Jarque.Bera.Test",
-             "Agostino.Test"),
-    P_Value = c(-1.0)
-  )
-
-  # Loop through testing and results gathering
-  OutputList <- list()
-  for(val in YVars2Test) {# val = "Daily Margin"
-
-    print(val)
-
-    # Create Vals for tests
-    Vals <- dt[[val]] # unique(dt[[val]])
-
-    # Run tests
-    x1 <- Anderson.Darling.Test(Vals, SampleSize = SampleSize.ADT, Samples = Samples.ADT)
-    gg <- gg[Variable == eval(val) & Test == "Anderson.Darling.Test", P_Value := mean(x1$P_Value, na.rm = TRUE)]
-
-    x1 <- Cramer.Von.Mises.Test(Vals, SampleSize = SampleSize.CVMT, Samples = Samples.CVMT)
-    gg <- gg[Variable == eval(val) & Test == "Cramer.Von.Mises.Test", P_Value := mean(x1$P_Value, na.rm = TRUE)]
-
-    x1 <- Kolmogorov.Smirnov.Test(Vals, SampleSize = SampleSize.KST, Samples = Samples.KST)
-    gg <- gg[Variable == eval(val) & Test == "Kolmogorov.Smirnov.Test", P_Value := mean(x1$P_Value_2s, na.rm = TRUE)]
-
-    x1 <- Shapiro.Test(Vals, SampleSize = SampleSize.ST, Samples = Samples.ST)
-    gg <- gg[Variable == eval(val) & Test == "Shapiro.Test", P_Value := mean(x1$P_Value, na.rm = TRUE)]
-
-    x1 <- Jarque.Bera.Test(Vals, SampleSize = SampleSize.JBT, Samples = Samples.JBT)
-    gg <- gg[Variable == eval(val) & Test == "Jarque.Bera.Test", P_Value := mean(x1$P_Value, na.rm = TRUE)]
-
-    x1 <- Agostino.Test(Vals, SampleSize = SampleSize.AT, Samples = Samples.AT)
-    gg <- gg[Variable == eval(val) & Test == "Agostino.Test", P_Value := mean(x1$P_Value_2s, na.rm = TRUE)]
-
-    # Radar plot of P_Values
-    print(paste0("Radar Plot", " ", val))
-    OutputList[[paste0("Radar_", val)]] <- AutoPlots::Plot.Radar(
-      dt = gg[Variable == eval(val)],
-      PreAgg = TRUE,
-      YVar = c("P_Value"),
-      GroupVar = "Test",
-      EchartsTheme = EchartsTheme,
-      TextColor = TextColor,
-      Height = PlotHeight,
-      Width = PlotWidth)
-
-    # Normal Probability Plot of Vals
-    print(paste0("Probability Plot", " ", val))
-    OutputList[[paste0("Probability_", val)]] <- AutoPlots::Plot.ProbabilityPlot(
-      dt = dt,
-      SampleSize = 2500,
-      YVar = val,
-      EchartsTheme = EchartsTheme,
-      TextColor = TextColor,
-      Height = PlotHeight,
-      Width = PlotWidth)
-  }
-
-  # FontColor <- list()
-  # FontColor$flv = "black"
-  print("Reactable Metrics")
-  OutputList[["Metrics"]] <- reactable::reactable(
-    data = gg,
-    compact = TRUE,
-    defaultPageSize = 6,
-    wrap = TRUE,
-    filterable = TRUE,
-    fullWidth = TRUE,
-    highlight = TRUE,
-    pagination = TRUE,
-    resizable = TRUE,
-    searchable = TRUE,
-    selection = "multiple",
-    showPagination = TRUE,
-    showSortable = TRUE,
-    showSortIcon = TRUE,
-    sortable = TRUE,
-    striped = TRUE,
-    theme = reactable::reactableTheme(
-      color = TextColor,
-      backgroundColor = "#4f4f4f26",
-      borderColor = "#dfe2e5",
-      stripedColor = "#4f4f4f8f",
-      highlightColor = "#8989898f",
-      cellPadding = "8px 12px",
-      style = list(
-        fontFamily = "-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif"
-      ),
-      searchInputStyle = list(width = "100%")
-    )
-  )
-
-  # Reorder elements and return
-  print("Return 1")
-  v <- names(OutputList)
-  v <- v[c(length(v), 1:(length(v)-1))]
-  OutputList <- OutputList[v]
-  print("Return 2")
-  return(OutputList)
-}
 
 #' @title Correlation.Analysis
 #'
@@ -470,6 +303,173 @@ Correlation.Analysis <- function(dt = NULL,
 # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
 # Normality Tests                                                            ----
 # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
+
+#' @title All.Normality.Tests
+#'
+#' @family Inference
+#'
+#' @export
+Normality.Analysis <- function(dt = NULL,
+                               YVars = NULL,
+                               EchartsTheme = "macarons",
+                               TextColor = "black",
+                               PlotHeight = "300px",
+                               PlotWidth = "600px",
+                               SampleSize.ADT = NULL,
+                               Samples.ADT = 1,
+                               SampleSize.CVMT = NULL,
+                               Samples.CVMT = 1,
+                               SampleSize.KST = NULL,
+                               Samples.KST = 1,
+                               SampleSize.ST = NULL,
+                               Samples.ST = 1,
+                               SampleSize.JBT = NULL,
+                               Samples.JBT = 1,
+                               SampleSize.AT = NULL,
+                               Samples.AT = 1) {
+
+  # library(DataMuse)
+  # dt <- data.table::fread(file.choose())
+  # YVars <- c("Daily Liters", "Daily Margin", "Daily Revenue", "Daily Units")
+  # SampleSize.ADT = NULL
+  # Samples.ADT = 1
+  # SampleSize.CVMT = NULL
+  # Samples.CVMT = 1
+  # SampleSize.KST = NULL
+  # Samples.KST = 1
+  # SampleSize.ST = NULL
+  # Samples.ST = 1
+  # SampleSize.JBT = NULL
+  # Samples.JBT = 1
+  # SampleSize.AT = NULL
+  # Samples.AT = 1
+  # EchartsTheme = "macarons"
+  # TextColor = "black"
+  # PlotHeight = "300px"
+  # PlotWidth = "600px"
+
+  # KS Test throws warnings for duplicate values
+  options(warn = -1)
+
+  # Convert to data.table
+  if(!data.table::is.data.table(dt)) tryCatch({data.table::setDT(dt)}, error = function(x) {
+    dt <- data.table::as.data.table(dt)
+  })
+
+  # YVars to Test
+  YVars2Test <- c()
+  for(i in YVars) {
+    if(class(dt[[i]])[1L] %in% c("numeric","integer")) {
+      YVars2Test <- c(YVars2Test, i)
+    }
+  }
+
+  # Results table
+  gg <- data.table::CJ(
+    Variable = YVars2Test,
+    Test = c("Anderson.Darling.Test",
+             "Cramer.Von.Mises.Test",
+             "Kolmogorov.Smirnov.Test",
+             "Shapiro.Test",
+             "Jarque.Bera.Test",
+             "Agostino.Test"),
+    P_Value = c(-1.0)
+  )
+
+  # Loop through testing and results gathering
+  OutputList <- list()
+  for(val in YVars2Test) {# val = "Daily Margin"
+
+    print(val)
+
+    # Create Vals for tests
+    Vals <- dt[[val]] # unique(dt[[val]])
+
+    # Run tests
+    x1 <- Anderson.Darling.Test(Vals, SampleSize = SampleSize.ADT, Samples = Samples.ADT)
+    gg <- gg[Variable == eval(val) & Test == "Anderson.Darling.Test", P_Value := mean(x1$P_Value, na.rm = TRUE)]
+
+    x1 <- Cramer.Von.Mises.Test(Vals, SampleSize = SampleSize.CVMT, Samples = Samples.CVMT)
+    gg <- gg[Variable == eval(val) & Test == "Cramer.Von.Mises.Test", P_Value := mean(x1$P_Value, na.rm = TRUE)]
+
+    x1 <- Kolmogorov.Smirnov.Test(Vals, SampleSize = SampleSize.KST, Samples = Samples.KST)
+    gg <- gg[Variable == eval(val) & Test == "Kolmogorov.Smirnov.Test", P_Value := mean(x1$P_Value_2s, na.rm = TRUE)]
+
+    x1 <- Shapiro.Test(Vals, SampleSize = SampleSize.ST, Samples = Samples.ST)
+    gg <- gg[Variable == eval(val) & Test == "Shapiro.Test", P_Value := mean(x1$P_Value, na.rm = TRUE)]
+
+    x1 <- Jarque.Bera.Test(Vals, SampleSize = SampleSize.JBT, Samples = Samples.JBT)
+    gg <- gg[Variable == eval(val) & Test == "Jarque.Bera.Test", P_Value := mean(x1$P_Value, na.rm = TRUE)]
+
+    x1 <- Agostino.Test(Vals, SampleSize = SampleSize.AT, Samples = Samples.AT)
+    gg <- gg[Variable == eval(val) & Test == "Agostino.Test", P_Value := mean(x1$P_Value_2s, na.rm = TRUE)]
+
+    # Radar plot of P_Values
+    print(paste0("Radar Plot", " ", val))
+    OutputList[[paste0("Radar_", val)]] <- AutoPlots::Plot.Radar(
+      dt = gg[Variable == eval(val)],
+      PreAgg = TRUE,
+      YVar = c("P_Value"),
+      GroupVar = "Test",
+      EchartsTheme = EchartsTheme,
+      TextColor = TextColor,
+      Height = PlotHeight,
+      Width = PlotWidth)
+
+    # Normal Probability Plot of Vals
+    print(paste0("Probability Plot", " ", val))
+    OutputList[[paste0("Probability_", val)]] <- AutoPlots::Plot.ProbabilityPlot(
+      dt = dt,
+      SampleSize = 2500,
+      YVar = val,
+      EchartsTheme = EchartsTheme,
+      TextColor = TextColor,
+      Height = PlotHeight,
+      Width = PlotWidth)
+  }
+
+  # FontColor <- list()
+  # FontColor$flv = "black"
+  print("Reactable Metrics")
+  OutputList[["Metrics"]] <- reactable::reactable(
+    data = gg,
+    compact = TRUE,
+    defaultPageSize = 6,
+    wrap = TRUE,
+    filterable = TRUE,
+    fullWidth = TRUE,
+    highlight = TRUE,
+    pagination = TRUE,
+    resizable = TRUE,
+    searchable = TRUE,
+    selection = "multiple",
+    showPagination = TRUE,
+    showSortable = TRUE,
+    showSortIcon = TRUE,
+    sortable = TRUE,
+    striped = TRUE,
+    theme = reactable::reactableTheme(
+      color = TextColor,
+      backgroundColor = "#4f4f4f26",
+      borderColor = "#dfe2e5",
+      stripedColor = "#4f4f4f8f",
+      highlightColor = "#8989898f",
+      cellPadding = "8px 12px",
+      style = list(
+        fontFamily = "-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif"
+      ),
+      searchInputStyle = list(width = "100%")
+    )
+  )
+
+  # Reorder elements and return
+  print("Return 1")
+  v <- names(OutputList)
+  v <- v[c(length(v), 1:(length(v)-1))]
+  OutputList <- OutputList[v]
+  print("Return 2")
+  return(OutputList)
+}
 
 #' @title Anderson.Darling.Test
 #'
@@ -1397,8 +1397,44 @@ Two.Sample.TTest <- function(dt = NULL,
     )
   )
 
+  # Box Plot: Comparison
+  OutputList[["p0"]] <- AutoPlots::Plot.Box(
+    dt = dt,
+    SampleSize = 30000L,
+    YVar = c(Variable1, Variable2),
+    XVar = NULL,
+    GroupVar = NULL,
+    YVarTrans = "Identity",
+    XVarTrans = "Identity",
+    FacetRows = 1,
+    FacetCols = 1,
+    FacetLevels = NULL,
+    Height = PlotHeight,
+    Width = PlotWidth,
+    Title = "Box Plot",
+    ShowLabels = FALSE,
+    Title.YAxis = NULL,
+    Title.XAxis = NULL,
+    EchartsTheme = EchartsTheme,
+    TimeLine = FALSE,
+    X_Scroll = TRUE,
+    Y_Scroll = TRUE,
+    TextColor = TextColor,
+    title.fontSize = 22,
+    title.fontWeight = "bold",
+    title.textShadowColor = "#63aeff",
+    title.textShadowBlur = 3,
+    title.textShadowOffsetY = 1,
+    title.textShadowOffsetX = -1,
+    xaxis.fontSize = 14,
+    yaxis.fontSize = 14,
+    xaxis.rotate = 0,
+    yaxis.rotate = 0,
+    ContainLabel = TRUE,
+    Debug = FALSE)
+
   # Density Plot: Estimate
-  OutputList[["p0"]] <- AutoPlots::Plot.Density(
+  OutputList[["p1"]] <- AutoPlots::Plot.Density(
     dt = dt,
     SampleSize = 100000L,
     YVar = Variable1,
@@ -1434,7 +1470,7 @@ Two.Sample.TTest <- function(dt = NULL,
     Debug = FALSE)
 
   # Density Plot: Estimate
-  OutputList[["p1"]] <- AutoPlots::Plot.ProbabilityPlot(
+  OutputList[["p2"]] <- AutoPlots::Plot.ProbabilityPlot(
     dt = dt,
     SampleSize = 5000L,
     YVar = Variable1,
@@ -1458,7 +1494,7 @@ Two.Sample.TTest <- function(dt = NULL,
     Debug = FALSE)
 
   # Density Plot: Estimate
-  OutputList[["p2"]] <- AutoPlots::Plot.Density(
+  OutputList[["p3"]] <- AutoPlots::Plot.Density(
     dt = dt,
     SampleSize = 100000L,
     YVar = Variable2,
@@ -1494,7 +1530,7 @@ Two.Sample.TTest <- function(dt = NULL,
     Debug = FALSE)
 
   # Density Plot: Estimate
-  OutputList[["p3"]] <- AutoPlots::Plot.ProbabilityPlot(
+  OutputList[["p4"]] <- AutoPlots::Plot.ProbabilityPlot(
     dt = dt,
     SampleSize = 5000L,
     YVar = Variable2,
@@ -1523,7 +1559,7 @@ Two.Sample.TTest <- function(dt = NULL,
     ostt_dt_temp <- data.table::melt.data.table(data = ostt_dt, id.vars = "Method", measure.vars = c("Estimate_X", "Estimate_Y"), variable.name = "Estimate", value.name = "Estimate_Value")
 
     # Density Plot: Estimate
-    OutputList[["p4"]] <- AutoPlots::Plot.Density(
+    OutputList[["p5"]] <- AutoPlots::Plot.Density(
       dt = ostt_dt_temp,
       SampleSize = 100000L,
       YVar = "Estimate_Value",
@@ -1559,7 +1595,7 @@ Two.Sample.TTest <- function(dt = NULL,
       Debug = FALSE)
 
     # Density Plot: P_Value
-    OutputList[["p5"]] <- AutoPlots::Plot.Density(
+    OutputList[["p6"]] <- AutoPlots::Plot.Density(
       dt = ostt_dt,
       SampleSize = 100000L,
       YVar = "P_Value",
@@ -1604,8 +1640,6 @@ Two.Sample.TTest <- function(dt = NULL,
 #' @param dt data.table
 #' @param Variables1 Numeric vector of values to test. Must have positive standard deviation and must be of length greater than or equal to 8
 #' @param Variables2 Numeric vector of values to test. Must have positive standard deviation and must be of length greater than or equal to 8
-#' @param Paired logical
-#' @param EqualVariance logical
 #' @param RatioVariances H0 value
 #' @param Alternative "two.sided", "less", or "greater"
 #' @param ConfidenceLevel numeric
@@ -1636,8 +1670,6 @@ Two.Sample.TTest <- function(dt = NULL,
 F.Test <- function(dt = NULL,
                    Variable1 = NULL,
                    Variable2 = NULL,
-                   Paired = FALSE,
-                   EqualVariance = FALSE,
                    ConfidenceLevel = 0.95,
                    RatioVariances = 0,
                    Alternative = "two.sided",
@@ -1700,9 +1732,7 @@ F.Test <- function(dt = NULL,
       x = samp1,
       y = samp2,
       alternative = Alternative,
-      paired = Paired,
-      mu = RatioVariances,
-      var.equal = EqualVariance,
+      ratio = RatioVariances,
       conf.level = ConfidenceLevel)
 
     data.table::set(ostt_dt, i = i, j = "Statistic", value = output$statistic) # t = -1.0842
@@ -1793,8 +1823,45 @@ F.Test <- function(dt = NULL,
     )
   )
 
+  # Box Plot: Comparison
+  OutputList[["p0"]] <- AutoPlots::Plot.Box(
+    dt = dt,
+    SampleSize = 30000L,
+    YVar = c(Variable1, Variable2),
+    XVar = NULL,
+    GroupVar = NULL,
+    YVarTrans = "Identity",
+    XVarTrans = "Identity",
+    FacetRows = 1,
+    FacetCols = 1,
+    FacetLevels = NULL,
+    Height = PlotHeight,
+    Width = PlotWidth,
+    Title = "Box Plot",
+    ShowLabels = FALSE,
+    Title.YAxis = NULL,
+    Title.XAxis = NULL,
+    EchartsTheme = EchartsTheme,
+    TimeLine = FALSE,
+    X_Scroll = TRUE,
+    Y_Scroll = TRUE,
+    TextColor = TextColor,
+    title.fontSize = 22,
+    title.fontWeight = "bold",
+    title.textShadowColor = "#63aeff",
+    title.textShadowBlur = 3,
+    title.textShadowOffsetY = 1,
+    title.textShadowOffsetX = -1,
+    xaxis.fontSize = 14,
+    yaxis.fontSize = 14,
+    xaxis.rotate = 0,
+    yaxis.rotate = 0,
+    ContainLabel = TRUE,
+    Debug = FALSE)
+
+
   # Density Plot: Estimate
-  OutputList[["p0"]] <- AutoPlots::Plot.Density(
+  OutputList[["p1"]] <- AutoPlots::Plot.Density(
     dt = dt,
     SampleSize = 100000L,
     YVar = Variable1,
@@ -1830,7 +1897,7 @@ F.Test <- function(dt = NULL,
     Debug = FALSE)
 
   # Density Plot: Estimate
-  OutputList[["p1"]] <- AutoPlots::Plot.ProbabilityPlot(
+  OutputList[["p2"]] <- AutoPlots::Plot.ProbabilityPlot(
     dt = dt,
     SampleSize = 5000L,
     YVar = Variable1,
@@ -1854,7 +1921,7 @@ F.Test <- function(dt = NULL,
     Debug = FALSE)
 
   # Density Plot: Estimate
-  OutputList[["p2"]] <- AutoPlots::Plot.Density(
+  OutputList[["p3"]] <- AutoPlots::Plot.Density(
     dt = dt,
     SampleSize = 100000L,
     YVar = Variable2,
@@ -1890,7 +1957,7 @@ F.Test <- function(dt = NULL,
     Debug = FALSE)
 
   # Density Plot: Estimate
-  OutputList[["p3"]] <- AutoPlots::Plot.ProbabilityPlot(
+  OutputList[["p4"]] <- AutoPlots::Plot.ProbabilityPlot(
     dt = dt,
     SampleSize = 5000L,
     YVar = Variable2,
@@ -1917,7 +1984,7 @@ F.Test <- function(dt = NULL,
   if(Samples > 1L) {
 
     # Density Plot: Estimate
-    OutputList[["p4"]] <- AutoPlots::Plot.Density(
+    OutputList[["p5"]] <- AutoPlots::Plot.Density(
       dt = ostt_dt,
       SampleSize = 100000L,
       YVar = "Estimate",
@@ -1953,7 +2020,7 @@ F.Test <- function(dt = NULL,
       Debug = FALSE)
 
     # Density Plot: P_Value
-    OutputList[["p5"]] <- AutoPlots::Plot.Density(
+    OutputList[["p6"]] <- AutoPlots::Plot.Density(
       dt = ostt_dt,
       SampleSize = 100000L,
       YVar = "P_Value",

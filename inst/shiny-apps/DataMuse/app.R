@@ -2689,6 +2689,26 @@ server <- function(input, output, session) {
   })
   shiny::observeEvent(input$Correlation_OK, {shiny::removeModal()})
 
+  # One Sample TTest
+  shiny::observeEvent(input$Inference_1STTest, {
+    1
+  })
+
+  # Two Sample TTest
+  shiny::observeEvent(input$Inference_2STTest, {
+    1
+  })
+
+  # F-Test
+  shiny::observeEvent(input$Inference_FTest, {
+    1
+  })
+
+  # Chi-Square Test
+  shiny::observeEvent(input$Inference_ChiSq, {
+    1
+  })
+
 
   #                                      ----
 

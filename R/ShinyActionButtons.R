@@ -1891,3 +1891,135 @@ Inference_Correlation <- function(id='Inference_Correlation_link',
       shiny::actionLink("Inference_Correlation", label = "Correlation", icon = shiny::icon("right-from-bracket"))#, style = ButtonStyle)
     ))
 }
+
+#' @title Inference_1STTest
+#'
+#' @author Adrian Antico
+#' @family Inference
+#'
+#' @param id = 'Inference_1STTest'
+#' @param Style = 'gradient',
+#' @param Color = 'royal',
+#' @param Align = 'center'
+#' @param DropDownRight = FALSE
+#' @param Animate = TRUE
+#' @param Status = 'custom'
+#' @param H3Color = 'white'
+#'
+#' @export
+Inference_1STTest <- function(id='Inference_1STTest_link',
+                              Style = 'gradient',
+                              Color = 'royal',
+                              Align='center',
+                              DropDownRight=FALSE,
+                              Animate=TRUE,
+                              Status='custom',
+                              H3Color = 'white') {
+
+  ns <- shiny::NS(id)
+  shiny::tagList(
+    shiny::column(
+      width = 12L,
+      align=Align,
+      shiny::actionLink("Inference_1STTest", label = "1-Sample T-Test", icon = shiny::icon("right-from-bracket"))#, style = ButtonStyle)
+    ))
+}
+
+#' @title Inference_2STTest
+#'
+#' @author Adrian Antico
+#' @family Inference
+#'
+#' @param id = 'Inference_2STTest'
+#' @param Style = 'gradient',
+#' @param Color = 'royal',
+#' @param Align = 'center'
+#' @param DropDownRight = FALSE
+#' @param Animate = TRUE
+#' @param Status = 'custom'
+#' @param H3Color = 'white'
+#'
+#' @export
+Inference_2STTest <- function(id='Inference_2STTest_link',
+                              Style = 'gradient',
+                              Color = 'royal',
+                              Align='center',
+                              DropDownRight=FALSE,
+                              Animate=TRUE,
+                              Status='custom',
+                              H3Color = 'white') {
+
+  ns <- shiny::NS(id)
+  shiny::tagList(
+    shiny::column(
+      width = 12L,
+      align=Align,
+      shiny::actionLink("Inference_2STTest", label = "2-Sample T-Test", icon = shiny::icon("right-from-bracket"))#, style = ButtonStyle)
+    ))
+}
+
+#' @title Inference_FTest
+#'
+#' @author Adrian Antico
+#' @family Inference
+#'
+#' @param id = 'Inference_FTest'
+#' @param Style = 'gradient',
+#' @param Color = 'royal',
+#' @param Align = 'center'
+#' @param DropDownRight = FALSE
+#' @param Animate = TRUE
+#' @param Status = 'custom'
+#' @param H3Color = 'white'
+#'
+#' @export
+Inference_FTest <- function(id='Inference_FTest_link',
+                            Style = 'gradient',
+                            Color = 'royal',
+                            Align='center',
+                            DropDownRight=FALSE,
+                            Animate=TRUE,
+                            Status='custom',
+                            H3Color = 'white') {
+
+  ns <- shiny::NS(id)
+  shiny::tagList(
+    shiny::column(
+      width = 12L,
+      align=Align,
+      shiny::actionLink("Inference_FTest", label = "F-Test", icon = shiny::icon("right-from-bracket"))#, style = ButtonStyle)
+    ))
+}
+
+#' @title Inference_ChiSq
+#'
+#' @author Adrian Antico
+#' @family Inference
+#'
+#' @param id = 'Inference_ChiSq'
+#' @param Style = 'gradient',
+#' @param Color = 'royal',
+#' @param Align = 'center'
+#' @param DropDownRight = FALSE
+#' @param Animate = TRUE
+#' @param Status = 'custom'
+#' @param H3Color = 'white'
+#'
+#' @export
+Inference_ChiSq <- function(id='Inference_ChiSq_link',
+                                  Style = 'gradient',
+                                  Color = 'royal',
+                                  Align='center',
+                                  DropDownRight=FALSE,
+                                  Animate=TRUE,
+                                  Status='custom',
+                                  H3Color = 'white') {
+
+  ns <- shiny::NS(id)
+  shiny::tagList(
+    shiny::column(
+      width = 12L,
+      align=Align,
+      shiny::actionLink("Inference_ChiSq", label = "Chi-Square", icon = shiny::icon("right-from-bracket"))
+    ))
+}

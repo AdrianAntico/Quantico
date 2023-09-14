@@ -10575,7 +10575,7 @@ Normality_Modal_Fun <- function(id,
 
             # Tabs
             shiny::tabsetPanel(
-              id = 'DataSet_TabPanel',
+              id = 'Normality_TabPanel',
               selected = 'Normality Tests',
 
               # Normality Tests ----
@@ -10839,7 +10839,7 @@ Correlation_Modal_Fun <- function(id = "Inference_CorrelationID",
 
             # Tabs
             shiny::tabsetPanel(
-              id = 'DataSet_TabPanel',
+              id = 'Correlation_TabPanel',
               selected = 'Correlation Tests',
 
               # Correlation Tests ----
@@ -10998,6 +10998,833 @@ Correlation_Modal_Fun <- function(id = "Inference_CorrelationID",
           footer = shiny::tagList(
             shiny::modalButton(label = "Cancel"),
             shiny::actionButton("Correlation_OK", "OK", width = '50px'))))
+
+    })
+}
+
+#' @title OneSampleTTest_Modal_Fun
+#'
+#' @description Inference operations
+#'
+#' @author Adrian Antico
+#' @family Inference
+#'
+#' @param id = 'OneSampleTTest_Modal_Fun'
+#' @param AppWidth = 12L
+#'
+#' @export
+OneSampleTTest_Modal_Fun <- function(id,
+                                     AppWidth=12L,
+
+                                     # Reactives
+                                     OneSampleTTest_Variable_Selected = NULL,
+
+                                     # Statics
+                                     OneSampleTTest_SelectData_Choices = NULL,
+                                     OneSampleTTest_Alternative_Choices = NULL,
+
+                                     # Updaters
+                                     OneSampleTTest_SelectData_Selected = NULL,
+                                     OneSampleTTest_InferenceID_Selected = NULL,
+                                     OneSampleTTest_NullValue_Selected = NULL,
+                                     OneSampleTTest_Alternative_Selected = NULL,
+                                     OneSampleTTest_ConfidenceLevel_Selected = NULL,
+                                     OneSampleTTest_Samples_Selected = NULL,
+                                     OneSampleTTest_SampleSize_Selected = NULL) {
+
+  shiny::moduleServer(
+    id = id,
+    module = function(input, output, session) {
+      ns <- session$ns
+      shiny::showModal(
+        shiny::modalDialog(
+          title = 'One Sample T-Test',
+          size = "l",
+          easyClose = FALSE,
+          fade = TRUE,
+          shiny::tagList(
+
+            DataMuse:::BlankRow(12L),
+
+            # Tabs
+            shiny::tabsetPanel(
+              id = 'OneSampleTTest_TabPanel',
+              selected = 'One Sample T-Test',
+
+              # One Sample T-Test ----
+              shiny::tabPanel(
+                title = "One Sample T-Test",
+                icon = shiny::icon('code'),
+                DataMuse:::BlankRow(12L),
+                shiny::fluidRow(
+                  style = ModelHelpFormat,
+                  DataMuse:::BlankRow(12L),
+                  shiny::fluidRow(
+                    shiny::column(
+                      width = 3L,
+                      tags$h4(tags$span(tags$b(paste0('One Sample T-Test'))))
+                    ),
+                    shiny::column(
+                      width = 8L,
+                      align = "right",
+                      shinyWidgets::dropdown(
+                        shinydashboard::box(
+                          title = NULL, solidHeader = TRUE, collapsible = FALSE, status = "info", width = 12L,
+                          shiny::fluidRow(
+                            shiny::column(
+                              width = 12L,
+                              align = "left",
+                              shiny::h1(tags$b("One Sample T-Test")),
+                              shiny::p("The One Sample T-Test operation runs a one sample t-test per specifications provided by the user.")
+                            )
+                          ),
+
+                          DataMuse::BlankRow(12),
+                          shiny::fluidRow(shiny::column(width = 12L, align = "left", shiny::h3("One Sample T-Test Usage"))),
+                          shiny::fluidRow(shiny::column(width = 12L, align = "left", shiny::markdown(
+                            "
+                              One Sample T-Test operation runs a one sample t-test per specifications provided by the user.
+                              * Choose data set: This is the dataset you want to utilize for the operation
+                              * Variable: Select the variable to test
+                              * NullValue: assumed difference from population mean
+                              * Alternative: choose from 'two.sided',
+                              * ConfidenceLevel: value to set for test
+                              * SampleSize: Number of records to utilize from the dataset
+                              * Samples: Boostrap iteration count
+                              "
+                          )))
+                        ),
+                        size = "lg",
+                        icon = shiny::icon("question"),
+                        label = NULL,
+                        tooltip = FALSE,
+                        right = TRUE,
+                        up = FALSE,
+                        width = NULL,
+                        animate = shinyWidgets::animateOptions(
+                          enter = "zoomIn",
+                          exit = "fadeOutRightBig"
+                        ),
+                        inputId = NULL,
+                        block = FALSE,
+                        no_outline = TRUE
+                      )
+                    ),
+
+                    # 1STTest Button
+                    shiny::column(
+                      width = 1L, align = 'right',
+                      style = "padding-top: 4px;padding-right: 50px;",
+                      shiny::actionButton(
+                        inputId = 'Inference_1STTest_Execute',
+                        label = 'Run',
+                        icon = shiny::icon('chevron-right', lib='font-awesome')
+                      )
+                    )
+                  ),
+
+                  DataMuse:::BlankRow(12L),
+                  shiny::fluidRow(
+                    shinydashboard::box(
+                      title = NULL, solidHeader = TRUE, collapsible = FALSE, status = "danger", width = 12L,
+                      DataMuse::BlankRow(12L),
+                      shiny::fluidRow(
+                        shiny::column(
+                          4L, align = "center",
+                          DataMuse:::SelectizeInput(InputID='OneSampleTTest_SelectData', Label='Choose data set', Choices = OneSampleTTest_SelectData_Choices, SelectedDefault = OneSampleTTest_SelectData_Selected, Multiple = TRUE, MaxVars = 1)),
+                        shiny::column(
+                          4L, align = "center",
+                          DataMuse:::PickerInput(InputID='OneSampleTTest_Variable', Label='Variable', Choices = NULL, SelectedDefault = OneSampleTTest_Variable_Selected, Multiple = TRUE, MaxVars = 1L)
+                        ),
+                        shiny::column(
+                          4L, align = "center",
+                          DataMuse:::TextInput(InputID='OneSampleTTest_InferenceID', Label='Inference ID', Value = OneSampleTTest_InferenceID_Selected, Placeholder = "INF_OneSampleTTest")
+                        )
+                      )
+                    )
+                  ),
+
+                  DataMuse::BlankRow(12L),
+                  shiny::fluidRow(
+                    shiny::column(
+                      6L, align = "center",
+                      shinydashboard::box(
+                        title = NULL, solidHeader = TRUE, collapsible = FALSE, status = "danger", width = 12L,
+                        DataMuse::BlankRow(12L),
+                        shiny::fluidRow(
+                          shiny::column(
+                            6L,
+                            DataMuse:::NumericInput(InputID='OneSampleTTest_Samples', Label='Iterations', Value = OneSampleTTest_Samples_Selected, Min = 1, Max = 1000, Step = 1)
+                          ),
+                          shiny::column(
+                            6L,
+                            DataMuse:::NumericInput(InputID='OneSampleTTest_SampleSize', Label='Sample Size', Value = OneSampleTTest_Samples_Selected, Min = 8, Max = 1000000, Step = 100)
+                          )
+                        ),
+                        DataMuse::BlankRow(12L),
+                        shiny::fluidRow(
+                          shiny::column(
+                            6L,
+                            DataMuse:::NumericInput(InputID='OneSampleTTest_NullValue', Label='Null Hypothesis Value',  Value = OneSampleTTest_NullValue_Selected, Step = 0.001)
+                          ),
+                          shiny::column(
+                            6L,
+                            DataMuse:::SelectizeInput(InputID='OneSampleTTest_Alternative', Label='Alternative', Choices = OneSampleTTest_Alternative_Choices, SelectedDefault = OneSampleTTest_Alternative_Selected, Multiple = FALSE)
+                          )
+                        ),
+                        DataMuse::BlankRow(12L),
+                        shiny::fluidRow(
+                          shiny::column(
+                            6L,
+                            DataMuse:::NumericInput(InputID='OneSampleTTest_ConfidenceLevel', Label='Confidence Level', Value = OneSampleTTest_ConfidenceLevel_Selected, Min = 0.80, Max = 0.9999, Step = 0.001)
+                          )
+                        ),
+                        DataMuse::BlankRow(12L)
+                      )
+                    )
+                  ),
+
+                  # Blank space
+                  DataMuse:::BlankRow(12L),
+                  DataMuse:::BlankRow(12L),
+                  DataMuse:::BlankRow(12L),
+                  DataMuse:::BlankRow(12L),
+                  DataMuse:::BlankRow(12L)
+                )
+              )
+            ) # end Tab Panel Main
+          ), # end TagList
+
+          footer = shiny::tagList(
+            shiny::modalButton(label = "Cancel"),
+            shiny::actionButton("OneSampleTTest_OK", "OK", width = '50px'))))
+
+    })
+}
+
+#' @title TwoSampleTTest_Modal_Fun
+#'
+#' @description Inference operations
+#'
+#' @author Adrian Antico
+#' @family Inference
+#'
+#' @param id = 'TwoSampleTTest_Modal_Fun'
+#' @param AppWidth = 12L
+#'
+#' @export
+TwoSampleTTest_Modal_Fun <- function(id,
+                                     AppWidth=12L,
+
+                                     # Reactives
+                                     TwoSampleTTest_YVars_Selected = NULL,
+                                     TowSampleTTestVariable2_Selected = NULL,
+
+                                     # Statics
+                                     TwoSampleTTest_SelectData_Choices = NULL,
+                                     TwoSampleTTest_Alternative_Choices = NULL,
+                                     TwoSampleTTest_Paired_Choices = NULL,
+                                     TwoSampleTTest_EqualVariance_Choices = NULL,
+
+                                     # Updaters
+                                     TwoSampleTTest_SelectData_Selected = NULL,
+                                     TwoSampleTTest_InferenceID_Selected = NULL,
+                                     TwoSampleTTest_Paired_Selected = NULL,
+                                     TwoSampleTTest_EqualVariance_Selected = NULL,
+                                     TwoSampleTTest_NullValue_Selected = NULL,
+                                     TwoSampleTTest_Alternative_Selected = NULL,
+                                     TwoSampleTTest_ConfidenceLevel_Selected = NULL,
+                                     TwoSampleTTest_Samples_Selected = NULL,
+                                     TwoSampleTTest_SampleSize_Selected = NULL) {
+
+  shiny::moduleServer(
+    id = id,
+    module = function(input, output, session) {
+      ns <- session$ns
+      shiny::showModal(
+        shiny::modalDialog(
+          title = 'Two Sample T-Test',
+          size = "l",
+          easyClose = FALSE,
+          fade = TRUE,
+          shiny::tagList(
+
+            DataMuse:::BlankRow(12L),
+
+            # Tabs
+            shiny::tabsetPanel(
+              id = 'TwoSampleTTest_TabPanel',
+              selected = 'Two Sample T-Test',
+
+              # Two Sample T-Test ----
+              shiny::tabPanel(
+                title = "Two Sample T-Test",
+                icon = shiny::icon('code'),
+                DataMuse:::BlankRow(12L),
+                shiny::fluidRow(
+                  style = ModelHelpFormat,
+                  DataMuse:::BlankRow(12L),
+                  shiny::fluidRow(
+                    shiny::column(
+                      width = 3L,
+                      tags$h4(tags$span(tags$b(paste0('Two Sample T-Test'))))
+                    ),
+                    shiny::column(
+                      width = 8L,
+                      align = "right",
+                      shinyWidgets::dropdown(
+                        shinydashboard::box(
+                          title = NULL, solidHeader = TRUE, collapsible = FALSE, status = "info", width = 12L,
+                          shiny::fluidRow(
+                            shiny::column(
+                              width = 12L,
+                              align = "left",
+                              shiny::h1(tags$b("Two Sample T-Test")),
+                              shiny::p("The Two Sample T-Test operation runs a two sample t-test per specifications provided by the user.")
+                            )
+                          ),
+
+                          DataMuse::BlankRow(12),
+                          shiny::fluidRow(shiny::column(width = 12L, align = "left", shiny::h3("Two Sample T-Test Usage"))),
+                          shiny::fluidRow(shiny::column(width = 12L, align = "left", shiny::markdown(
+                            "
+                              Two Sample T-Test operation runs a two sample t-test per specifications provided by the user.
+                              * Choose data set: This is the dataset you want to utilize for the operation
+                              * Variable1: Select the variable to test
+                              * Variable2: Select the variable to test
+                              * Paired: set to TRUE for paired t-test
+                              * EqualVariance: set to TRUE for an assumed equal variance
+                              * NullValue: assumed difference from population mean
+                              * Alternative: choose from 'two.sided',
+                              * ConfidenceLevel: value to set for test
+                              * SampleSize: Number of records to utilize from the dataset
+                              * Samples: Boostrap iteration count
+                              "
+                          )))
+                        ),
+                        size = "lg",
+                        icon = shiny::icon("question"),
+                        label = NULL,
+                        tooltip = FALSE,
+                        right = TRUE,
+                        up = FALSE,
+                        width = NULL,
+                        animate = shinyWidgets::animateOptions(
+                          enter = "zoomIn",
+                          exit = "fadeOutRightBig"
+                        ),
+                        inputId = NULL,
+                        block = FALSE,
+                        no_outline = TRUE
+                      )
+                    ),
+
+                    # 2STTest Button
+                    shiny::column(
+                      width = 1L, align = 'right',
+                      style = "padding-top: 4px;padding-right: 50px;",
+                      shiny::actionButton(
+                        inputId = 'Inference_2STTest_Execute',
+                        label = 'Run',
+                        icon = shiny::icon('chevron-right', lib='font-awesome')
+                      )
+                    )
+                  ),
+
+                  DataMuse:::BlankRow(12L),
+                  shiny::fluidRow(
+                    shinydashboard::box(
+                      title = NULL, solidHeader = TRUE, collapsible = FALSE, status = "danger", width = 12L,
+                      DataMuse::BlankRow(12L),
+                      shiny::fluidRow(
+                        shiny::column(
+                          3L, align = "center",
+                          DataMuse:::SelectizeInput(InputID='TwoSampleTTest_SelectData', Label='Choose data set', Choices = TwoSampleTTest_SelectData_Choices, SelectedDefault = TwoSampleTTest_SelectData_Selected, Multiple = TRUE, MaxVars = 1)),
+                        shiny::column(
+                          3L, align = "center",
+                          DataMuse:::PickerInput(InputID='TwoSampleTTest_Variable1', Label='Variable 1', Choices = NULL, SelectedDefault = TwoSampleTTest_Variable1_Selected, Multiple = TRUE, MaxVars = 1L)
+                        ),
+                        shiny::column(
+                          3L, align = "center",
+                          DataMuse:::PickerInput(InputID='TwoSampleTTest_Variable2', Label='Variable 2', Choices = NULL, SelectedDefault = TwoSampleTTest_Variable2_Selected, Multiple = TRUE, MaxVars = 1L)
+                        ),
+                        shiny::column(
+                          3L, align = "center",
+                          DataMuse:::TextInput(InputID='TwoSampleTTest_InferenceID', Label='Inference ID', Value = TwoSampleTTest_InferenceID_Selected, Placeholder = "INF_TwoSampleTTest")
+                        )
+                      )
+                    )
+                  ),
+
+                  DataMuse::BlankRow(12L),
+                  shiny::fluidRow(
+                    shiny::column(
+                      6L, align = "center",
+                      shinydashboard::box(
+                        title = NULL, solidHeader = TRUE, collapsible = FALSE, status = "danger", width = 12L,
+                        DataMuse::BlankRow(12L),
+                        shiny::fluidRow(
+                          shiny::column(
+                            6L,
+                            DataMuse:::NumericInput(InputID='TwoSampleTTest_Samples', Label='Iterations', Value = TwoSampleTTest_Samples_Selected, Min = 1, Max = 1000, Step = 1)
+                          ),
+                          shiny::column(
+                            6L,
+                            DataMuse:::NumericInput(InputID='TwoSampleTTest_SampleSize', Label='Sample Size', Value = TwoSampleTTest_Samples_Selected, Min = 8, Max = 1000000, Step = 100)
+                          )
+                        ),
+                        DataMuse::BlankRow(12L),
+                        shiny::fluidRow(
+                          shiny::column(
+                            6L,
+                            DataMuse:::NumericInput(InputID='TwoSampleTTest_NullValue', Label='Null Hypothesis Value',  Value = TwoSampleTTest_NullValue_Selected, Step = 0.001)
+                          ),
+                          shiny::column(
+                            6L,
+                            DataMuse:::SelectizeInput(InputID='TwoSampleTTest_Alternative', Label='Alternative', Choices = TwoSampleTTest_Alternative_Choices, SelectedDefault = TwoSampleTTest_Alternative_Selected, Multiple = FALSE)
+                          )
+                        ),
+                        DataMuse::BlankRow(12L),
+                        shiny::fluidRow(
+                          shiny::column(
+                            6L,
+                            DataMuse:::NumericInput(InputID='TwoSampleTTest_ConfidenceLevel', Label='Confidence Level', Value = TwoSampleTTest_ConfidenceLevel_Selected, Min = 0.80, Max = 0.9999, Step = 0.001)
+                          ),
+                          shiny::column(
+                            6L,
+                            DataMuse:::SelectizeInput(InputID='TwoSampleTTest_Paired', Label='Paired T-Test', Choices = TwoSampleTTest_Paired_Choices, SelectedDefault = TwoSampleTTest_Paired_Selected, Multiple = FALSE)
+                          )
+                        ),
+                        DataMuse::BlankRow(12L),
+                        shiny::fluidRow(
+                          shiny::column(
+                            6L,
+                            DataMuse:::SelectizeInput(InputID='TwoSampleTTest_EqualVariance', Label='Equal Variance', Choices = TwoSampleTTest_EqualVariance_Choices, SelectedDefault = TwoSampleTTest_EqualVariance_Selected, Multiple = FALSE)
+                          )
+                        ),
+                        DataMuse::BlankRow(12L)
+                      )
+                    )
+                  ),
+
+                  # Blank space
+                  DataMuse:::BlankRow(12L),
+                  DataMuse:::BlankRow(12L),
+                  DataMuse:::BlankRow(12L),
+                  DataMuse:::BlankRow(12L),
+                  DataMuse:::BlankRow(12L)
+                )
+              )
+            ) # end Tab Panel Main
+          ), # end TagList
+
+          footer = shiny::tagList(
+            shiny::modalButton(label = "Cancel"),
+            shiny::actionButton("TwoSampleTTest_OK", "OK", width = '50px'))))
+
+    })
+}
+
+#' @title FTest_Modal_Fun
+#'
+#' @description Inference operations
+#'
+#' @author Adrian Antico
+#' @family Inference
+#'
+#' @param id = 'FTest_Modal_Fun'
+#' @param AppWidth = 12L
+#'
+#' @export
+FTest_Modal_Fun <- function(id,
+                            AppWidth=12L,
+
+                            # Reactives
+                            FTest_Variable1_Selected = NULL,
+                            FTest_Variable2_Selected = NULL,
+
+                            # Statics
+                            FTest_SelectData_Choices = NULL,
+                            FTest_Alternative_Choices = NULL,
+                            FTest_RatioVariances_Choices = NULL,
+
+                            # Updaters
+                            FTest_SelectData_Selected = NULL,
+                            FTest_InferenceID_Selected = NULL,
+                            FTest_RatioVariances_Selected = NULL,
+                            FTest_Alternative_Selected = NULL,
+                            FTest_ConfidenceLevel_Selected = NULL,
+                            FTest_Samples_Selected = NULL,
+                            FTest_SampleSize_Selected = NULL) {
+
+  shiny::moduleServer(
+    id = id,
+    module = function(input, output, session) {
+      ns <- session$ns
+      shiny::showModal(
+        shiny::modalDialog(
+          title = 'F-Test',
+          size = "l",
+          easyClose = FALSE,
+          fade = TRUE,
+          shiny::tagList(
+
+            DataMuse:::BlankRow(12L),
+
+            # Tabs
+            shiny::tabsetPanel(
+              id = 'FTest_TabPanel',
+              selected = 'F-Test',
+
+              # F-Test ----
+              shiny::tabPanel(
+                title = "F-Test",
+                icon = shiny::icon('code'),
+                DataMuse:::BlankRow(12L),
+                shiny::fluidRow(
+                  style = ModelHelpFormat,
+                  DataMuse:::BlankRow(12L),
+                  shiny::fluidRow(
+                    shiny::column(
+                      width = 3L,
+                      tags$h4(tags$span(tags$b(paste0('F-Test'))))
+                    ),
+                    shiny::column(
+                      width = 8L,
+                      align = "right",
+                      shinyWidgets::dropdown(
+                        shinydashboard::box(
+                          title = NULL, solidHeader = TRUE, collapsible = FALSE, status = "info", width = 12L,
+                          shiny::fluidRow(
+                            shiny::column(
+                              width = 12L,
+                              align = "left",
+                              shiny::h1(tags$b("F-Test")),
+                              shiny::p("The F-Test operation runs an F-test per specifications provided by the user.")
+                            )
+                          ),
+
+                          DataMuse::BlankRow(12),
+                          shiny::fluidRow(shiny::column(width = 12L, align = "left", shiny::h3("F-Test Usage"))),
+                          shiny::fluidRow(shiny::column(width = 12L, align = "left", shiny::markdown(
+                            "
+                              F-Test operation runs an F-test per specifications provided by the user.
+                              * Choose data set: This is the dataset you want to utilize for the operation
+                              * Variable1: Select the variable to test
+                              * Variable2: Select the variable to test
+                              * RatioVariances: H0 value for the ratio of variances
+                              * Alternative: choose from 'two.sided',
+                              * ConfidenceLevel: value to set for test
+                              * SampleSize: Number of records to utilize from the dataset
+                              * Samples: Boostrap iteration count
+                              "
+                          )))
+                        ),
+                        size = "lg",
+                        icon = shiny::icon("question"),
+                        label = NULL,
+                        tooltip = FALSE,
+                        right = TRUE,
+                        up = FALSE,
+                        width = NULL,
+                        animate = shinyWidgets::animateOptions(
+                          enter = "zoomIn",
+                          exit = "fadeOutRightBig"
+                        ),
+                        inputId = NULL,
+                        block = FALSE,
+                        no_outline = TRUE
+                      )
+                    ),
+
+                    # FTest Button
+                    shiny::column(
+                      width = 1L, align = 'right',
+                      style = "padding-top: 4px;padding-right: 50px;",
+                      shiny::actionButton(
+                        inputId = 'Inference_FTest_Execute',
+                        label = 'Run',
+                        icon = shiny::icon('chevron-right', lib='font-awesome')
+                      )
+                    )
+                  ),
+
+                  DataMuse:::BlankRow(12L),
+                  shiny::fluidRow(
+                    shinydashboard::box(
+                      title = NULL, solidHeader = TRUE, collapsible = FALSE, status = "danger", width = 12L,
+                      DataMuse::BlankRow(12L),
+                      shiny::fluidRow(
+                        shiny::column(
+                          3L, align = "center",
+                          DataMuse:::SelectizeInput(InputID='FTest_SelectData', Label='Choose data set', Choices = FTest_SelectData_Choices, SelectedDefault = FTest_SelectData_Selected, Multiple = TRUE, MaxVars = 1)),
+                        shiny::column(
+                          3L, align = "center",
+                          DataMuse:::PickerInput(InputID='FTest_Variable1', Label='Variable 1', Choices = NULL, SelectedDefault = FTest_Variable1_Selected, Multiple = TRUE, MaxVars = 1L)
+                        ),
+                        shiny::column(
+                          3L, align = "center",
+                          DataMuse:::PickerInput(InputID='FTest_Variable2', Label='Variable 2', Choices = NULL, SelectedDefault = FTest_Variable2_Selected, Multiple = TRUE, MaxVars = 1L)
+                        ),
+                        shiny::column(
+                          3L, align = "center",
+                          DataMuse:::TextInput(InputID='FTest_InferenceID', Label='Inference ID', Value = FTest_InferenceID_Selected, Placeholder = "INF_FTest")
+                        )
+                      )
+                    )
+                  ),
+
+                  DataMuse::BlankRow(12L),
+                  shiny::fluidRow(
+                    shiny::column(
+                      6L, align = "center",
+                      shinydashboard::box(
+                        title = NULL, solidHeader = TRUE, collapsible = FALSE, status = "danger", width = 12L,
+                        DataMuse::BlankRow(12L),
+                        shiny::fluidRow(
+                          shiny::column(
+                            6L,
+                            DataMuse:::NumericInput(InputID='FTest_Samples', Label='Iterations', Value = FTest_Samples_Selected, Min = 1, Max = 1000, Step = 1)
+                          ),
+                          shiny::column(
+                            6L,
+                            DataMuse:::NumericInput(InputID='FTest_SampleSize', Label='Sample Size', Value = FTest_Samples_Selected, Min = 8, Max = 1000000, Step = 100)
+                          )
+                        ),
+                        DataMuse::BlankRow(12L),
+                        shiny::fluidRow(
+                          shiny::column(
+                            6L,
+                            DataMuse:::NumericInput(InputID='FTest_RatioVariances', Label='H0 Ratio of Variances',  Value = FTest_RatioVariances_Selected, Step = 0.001)
+                          ),
+                          shiny::column(
+                            6L,
+                            DataMuse:::SelectizeInput(InputID='FTest_Alternative', Label='Alternative', Choices = FTest_Alternative_Choices, SelectedDefault = FTest_Alternative_Selected, Multiple = FALSE)
+                          )
+                        ),
+                        DataMuse::BlankRow(12L),
+                        shiny::fluidRow(
+                          shiny::column(
+                            6L,
+                            DataMuse:::NumericInput(InputID='FTest_ConfidenceLevel', Label='Confidence Level', Value = FTest_ConfidenceLevel_Selected, Min = 0.80, Max = 0.9999, Step = 0.001)
+                          )
+                        ),
+                        DataMuse::BlankRow(12L)
+                      )
+                    )
+                  ),
+
+                  # Blank space
+                  DataMuse:::BlankRow(12L),
+                  DataMuse:::BlankRow(12L),
+                  DataMuse:::BlankRow(12L),
+                  DataMuse:::BlankRow(12L),
+                  DataMuse:::BlankRow(12L)
+                )
+              )
+            ) # end Tab Panel Main
+          ), # end TagList
+
+          footer = shiny::tagList(
+            shiny::modalButton(label = "Cancel"),
+            shiny::actionButton("FTest_OK", "OK", width = '50px'))))
+
+    })
+}
+
+#' @title ChiSquareTest_Modal_Fun
+#'
+#' @description Inference operations
+#'
+#' @author Adrian Antico
+#' @family Inference
+#'
+#' @param id = 'ChiSquareTest_Modal_Fun'
+#' @param AppWidth = 12L
+#'
+#' @export
+ChiSquareTest_Modal_Fun <- function(id,
+                            AppWidth=12L,
+
+                            # Reactives
+                            ChiSquareTest_Variable1_Selected = NULL,
+                            ChiSquareTest_Variable2_Selected = NULL,
+
+                            # Statics
+                            ChiSquareTest_SelectData_Choices = NULL,
+                            ChiSquareTest_Alternative_Choices = NULL,
+
+                            # Updaters
+                            ChiSquareTest_SelectData_Selected = NULL,
+                            ChiSquareTest_InferenceID_Selected = NULL,
+                            ChiSquareTest_Alternative_Selected = NULL,
+                            ChiSquareTest_ConfidenceLevel_Selected = NULL,
+                            ChiSquareTest_Samples_Selected = NULL,
+                            ChiSquareTest_SampleSize_Selected = NULL) {
+
+  shiny::moduleServer(
+    id = id,
+    module = function(input, output, session) {
+      ns <- session$ns
+      shiny::showModal(
+        shiny::modalDialog(
+          title = 'F-Test',
+          size = "l",
+          easyClose = FALSE,
+          fade = TRUE,
+          shiny::tagList(
+
+            DataMuse:::BlankRow(12L),
+
+            # Tabs
+            shiny::tabsetPanel(
+              id = 'ChiSquareTest_TabPanel',
+              selected = 'Chi-Squared Test',
+
+              # F-Test ----
+              shiny::tabPanel(
+                title = "Chi-Squared Test",
+                icon = shiny::icon('code'),
+                DataMuse:::BlankRow(12L),
+                shiny::fluidRow(
+                  style = ModelHelpFormat,
+                  DataMuse:::BlankRow(12L),
+                  shiny::fluidRow(
+                    shiny::column(
+                      width = 3L,
+                      tags$h4(tags$span(tags$b(paste0('Chi-Squared Test'))))
+                    ),
+                    shiny::column(
+                      width = 8L,
+                      align = "right",
+                      shinyWidgets::dropdown(
+                        shinydashboard::box(
+                          title = NULL, solidHeader = TRUE, collapsible = FALSE, status = "info", width = 12L,
+                          shiny::fluidRow(
+                            shiny::column(
+                              width = 12L,
+                              align = "left",
+                              shiny::h1(tags$b("Chi-Squared Test")),
+                              shiny::p("The Chi-Squared Test operation runs an F-test per specifications provided by the user.")
+                            )
+                          ),
+
+                          DataMuse::BlankRow(12),
+                          shiny::fluidRow(shiny::column(width = 12L, align = "left", shiny::h3("Chi-Squared Test Usage"))),
+                          shiny::fluidRow(shiny::column(width = 12L, align = "left", shiny::markdown(
+                            "
+                              Chi-Squared Test operation runs an chi-squared test per specifications provided by the user.
+                              * Choose data set: This is the dataset you want to utilize for the operation
+                              * Variable1: Select the variable to test
+                              * Variable2: Select the variable to test
+                              * Alternative: choose from 'two.sided',
+                              * ConfidenceLevel: value to set for test
+                              * SampleSize: Number of records to utilize from the dataset
+                              * Samples: Boostrap iteration count
+                              "
+                          )))
+                        ),
+                        size = "lg",
+                        icon = shiny::icon("question"),
+                        label = NULL,
+                        tooltip = FALSE,
+                        right = TRUE,
+                        up = FALSE,
+                        width = NULL,
+                        animate = shinyWidgets::animateOptions(
+                          enter = "zoomIn",
+                          exit = "fadeOutRightBig"
+                        ),
+                        inputId = NULL,
+                        block = FALSE,
+                        no_outline = TRUE
+                      )
+                    ),
+
+                    # ChiSquaredTest Button
+                    shiny::column(
+                      width = 1L, align = 'right',
+                      style = "padding-top: 4px;padding-right: 50px;",
+                      shiny::actionButton(
+                        inputId = 'Inference_ChiSquaredTest_Execute',
+                        label = 'Run',
+                        icon = shiny::icon('chevron-right', lib='font-awesome')
+                      )
+                    )
+                  ),
+
+                  DataMuse:::BlankRow(12L),
+                  shiny::fluidRow(
+                    shinydashboard::box(
+                      title = NULL, solidHeader = TRUE, collapsible = FALSE, status = "danger", width = 12L,
+                      DataMuse::BlankRow(12L),
+                      shiny::fluidRow(
+                        shiny::column(
+                          3L, align = "center",
+                          DataMuse:::SelectizeInput(InputID='ChiSquareTest_SelectData', Label='Choose data set', Choices = ChiSquareTest_SelectData_Choices, SelectedDefault = ChiSquareTest_SelectData_Selected, Multiple = TRUE, MaxVars = 1)),
+                        shiny::column(
+                          3L, align = "center",
+                          DataMuse:::PickerInput(InputID='ChiSquareTest_Variable1', Label='Variable 1', Choices = NULL, SelectedDefault = ChiSquareTest_Variable1_Selected, Multiple = TRUE, MaxVars = 1L)
+                        ),
+                        shiny::column(
+                          3L, align = "center",
+                          DataMuse:::PickerInput(InputID='ChiSquareTest_Variable2', Label='Variable 2', Choices = NULL, SelectedDefault = ChiSquareTest_Variable2_Selected, Multiple = TRUE, MaxVars = 1L)
+                        ),
+                        shiny::column(
+                          3L, align = "center",
+                          DataMuse:::TextInput(InputID='ChiSquareTest_InferenceID', Label='Inference ID', Value = ChiSquareTest_InferenceID_Selected, Placeholder = "INF_ChiSquareTest")
+                        )
+                      )
+                    )
+                  ),
+
+                  DataMuse::BlankRow(12L),
+                  shiny::fluidRow(
+                    shiny::column(
+                      6L, align = "center",
+                      shinydashboard::box(
+                        title = NULL, solidHeader = TRUE, collapsible = FALSE, status = "danger", width = 12L,
+                        DataMuse::BlankRow(12L),
+                        shiny::fluidRow(
+                          shiny::column(
+                            6L,
+                            DataMuse:::NumericInput(InputID='ChiSquareTest_Samples', Label='Iterations', Value = ChiSquareTest_Samples_Selected, Min = 1, Max = 1000, Step = 1)
+                          ),
+                          shiny::column(
+                            6L,
+                            DataMuse:::NumericInput(InputID='ChiSquareTest_SampleSize', Label='Sample Size', Value = ChiSquareTest_Samples_Selected, Min = 8, Max = 1000000, Step = 100)
+                          )
+                        ),
+                        DataMuse::BlankRow(12L),
+                        shiny::fluidRow(
+                          shiny::column(
+                            6L,
+                            DataMuse:::NumericInput(InputID='ChiSquareTest_ConfidenceLevel', Label='Confidence Level', Value = ChiSquareTest_ConfidenceLevel_Selected, Min = 0.80, Max = 0.9999, Step = 0.001)
+                          ),
+                          shiny::column(
+                            6L,
+                            DataMuse:::SelectizeInput(InputID='ChiSquareTest_Alternative', Label='Alternative', Choices = ChiSquareTest_Alternative_Choices, SelectedDefault = ChiSquareTest_Alternative_Selected, Multiple = FALSE)
+                          )
+                        ),
+                        DataMuse::BlankRow(12L)
+                      )
+                    )
+                  ),
+
+                  # Blank space
+                  DataMuse:::BlankRow(12L),
+                  DataMuse:::BlankRow(12L),
+                  DataMuse:::BlankRow(12L),
+                  DataMuse:::BlankRow(12L),
+                  DataMuse:::BlankRow(12L)
+                )
+              )
+            ) # end Tab Panel Main
+          ), # end TagList
+
+          footer = shiny::tagList(
+            shiny::modalButton(label = "Cancel"),
+            shiny::actionButton("ChiSquareTest_OK", "OK", width = '50px'))))
 
     })
 }

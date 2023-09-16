@@ -6,7 +6,7 @@
 \usage{
 One.Sample.TTest(
   dt = NULL,
-  YVar = NULL,
+  Variable = NULL,
   NullValue = 0,
   Alternative = "two.sided",
   ConfidenceLevel = 0.95,
@@ -21,7 +21,7 @@ One.Sample.TTest(
 \arguments{
 \item{dt}{data.table}
 
-\item{YVar}{Variable to be tested}
+\item{Variable}{Variable to be tested}
 
 \item{NullValue}{H0 value}
 
@@ -39,8 +39,8 @@ One.Sample.TTest
 \examples{
 \dontrun{
 dt = data.table::data.table(qnorm(p = runif(100000)))
-YVar = "Daily Margin"
-data.table::setnames(dt, "V1", YVar)
+Variable = "Daily Margin"
+data.table::setnames(dt, "V1", Variable)
 NullValue = 0
 Alternative = "two.sided"
 ConfidenceLevel = 0.95

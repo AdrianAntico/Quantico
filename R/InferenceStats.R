@@ -883,7 +883,7 @@ Agostino.Test <- function(Vals, SampleSize = NULL, Samples = 1) {
 #' @title One.Sample.TTest
 #'
 #' @param dt data.table
-#' @param YVar Variable to be tested
+#' @param Variable Variable to be tested
 #' @param NullValue H0 value
 #' @param Alternative "two.sided", "less", or "greater"
 #' @param ConfidenceLevel numeric
@@ -895,8 +895,8 @@ Agostino.Test <- function(Vals, SampleSize = NULL, Samples = 1) {
 #' @examples
 #' \dontrun{
 #' dt = data.table::data.table(qnorm(p = runif(100000)))
-#' YVar = "Daily Margin"
-#' data.table::setnames(dt, "V1", YVar)
+#' Variable = "Daily Margin"
+#' data.table::setnames(dt, "V1", Variable)
 #' NullValue = 0
 #' Alternative = "two.sided"
 #' ConfidenceLevel = 0.95
@@ -910,7 +910,7 @@ Agostino.Test <- function(Vals, SampleSize = NULL, Samples = 1) {
 #'
 #' @export
 One.Sample.TTest <- function(dt = NULL,
-                             YVar = NULL,
+                             Variable = NULL,
                              NullValue = 0,
                              Alternative = "two.sided",
                              ConfidenceLevel = 0.95,
@@ -925,11 +925,11 @@ One.Sample.TTest <- function(dt = NULL,
 
   # Sample Size
   if(length(SampleSize) == 0L) {
-    SampleSize <- length(dt[,get(YVar)])
+    SampleSize <- length(dt[,get(Variable)])
     Samples <- 1
   } else {
-    SampleSize <- min(SampleSize, length(dt[,get(YVar)]))
-    if(SampleSize == length(dt[,get(YVar)])) Samples <- 1
+    SampleSize <- min(SampleSize, length(dt[,get(Variable)]))
+    if(SampleSize == length(dt[,get(Variable)])) Samples <- 1
   }
 
   # Collection Table
@@ -949,7 +949,7 @@ One.Sample.TTest <- function(dt = NULL,
   )
 
   # Ensure no missing values
-  Vals <- dt[[YVar]]
+  Vals <- dt[[Variable]]
   Vals <- sort(x = Vals[complete.cases(Vals)], decreasing = FALSE)
   n <- length(Vals)
   if(n < 8) return(NULL)
@@ -971,62 +971,72 @@ One.Sample.TTest <- function(dt = NULL,
       var.equal = FALSE,
       conf.level = ConfidenceLevel)
 
-    data.table::set(ostt_dt, i = i, j = "Statistic", value = output$statistic) # t = -1.0842
-    data.table::set(ostt_dt, i = i, j = "Parameter", value = output$parameter) # df = 9999
-    data.table::set(ostt_dt, i = i, j = "P_Value", value = output$p.value) # 0.2783
-    data.table::set(ostt_dt, i = i, j = "LowerConfInt", value = output$conf.int[1L]) # -0096 0.0028
-    data.table::set(ostt_dt, i = i, j = "UpperConfInt", value = output$conf.int[2L]) # -0096 0.0028
-    data.table::set(ostt_dt, i = i, j = "Estimate", value = output$estimate) # mean of x = -0.00342
+    data.table::set(ostt_dt, i = i, j = "Statistic", value = round(output$statistic, 4)) # t = -1.0842
+    data.table::set(ostt_dt, i = i, j = "Parameter", value = round(output$parameter, 4)) # df = 9999
+    data.table::set(ostt_dt, i = i, j = "P_Value", value = round(output$p.value, 4)) # 0.2783
+    data.table::set(ostt_dt, i = i, j = "LowerConfInt", value = round(output$conf.int[1L], 4)) # -0096 0.0028
+    data.table::set(ostt_dt, i = i, j = "UpperConfInt", value = round(output$conf.int[2L], 4)) # -0096 0.0028
+    data.table::set(ostt_dt, i = i, j = "Estimate", value = round(output$estimate, 4)) # mean of x = -0.00342
     data.table::set(ostt_dt, i = i, j = "NullValue", value = output$null.value) # mean = 0
-    data.table::set(ostt_dt, i = i, j = "StdErr", value = output$stderr) # 0.00315
+    data.table::set(ostt_dt, i = i, j = "StdErr", value = round(output$stderr, 4)) # 0.00315
     data.table::set(ostt_dt, i = i, j = "Alternative", value = output$alternative) # "two.sided"
     data.table::set(ostt_dt, i = i, j = "Method", value = output$method) # "One Sample t-test"
 
   }
 
-  MetricsAgg <- ostt_dt[
-    , lapply(.SD, mean, na.rm = TRUE),
-    .SDcols = c("Statistic",
-                "Parameter",
-                "P_Value",
-                "LowerConfInt",
-                "UpperConfInt",
-                "Estimate",
-                "NullValue",
-                "StdErr"),
-    by = c("Alternative",
-           "Method")]
+  if(Samples > 1L) {
+    MetricsAgg <- ostt_dt[
+      , lapply(.SD, mean, na.rm = TRUE),
+      .SDcols = c("Statistic",
+                  "Parameter",
+                  "P_Value",
+                  "LowerConfInt",
+                  "UpperConfInt",
+                  "Estimate",
+                  "NullValue",
+                  "StdErr"),
+      by = c("Alternative",
+             "Method")]
 
-  OutputList[["MetricsAgg"]] <- reactable::reactable(
-    data = MetricsAgg,
-    compact = TRUE,
-    defaultPageSize = 10,
-    wrap = TRUE,
-    filterable = TRUE,
-    fullWidth = TRUE,
-    highlight = TRUE,
-    pagination = TRUE,
-    resizable = TRUE,
-    searchable = TRUE,
-    selection = "multiple",
-    showPagination = TRUE,
-    showSortable = TRUE,
-    showSortIcon = TRUE,
-    sortable = TRUE,
-    striped = TRUE,
-    theme = reactable::reactableTheme(
-      color = TextColor,
-      backgroundColor = "#4f4f4f26",
-      borderColor = "#dfe2e5",
-      stripedColor = "#4f4f4f8f",
-      highlightColor = "#8989898f",
-      cellPadding = "8px 12px",
-      style = list(
-        fontFamily = "-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif"
-      ),
-      searchInputStyle = list(width = "100%")
+    data.table::set(MetricsAgg, j = "Statistic", value = round(output$Statistic, 4))
+    data.table::set(MetricsAgg, j = "Parameter", value = round(output$Parameter, 4))
+    data.table::set(MetricsAgg, j = "P_Value", value = round(output$P_Value, 4))
+    data.table::set(MetricsAgg, j = "LowerConfInt", value = round(output$LowerConfInt, 4))
+    data.table::set(MetricsAgg, j = "UpperConfInt", value = round(output$UpperConfInt, 4))
+    data.table::set(MetricsAgg, j = "Estimate", value = round(output$Estimate, 4))
+    data.table::set(MetricsAgg, j = "StdErr", value = round(output$StdErr, 4))
+
+    OutputList[["MetricsAgg"]] <- reactable::reactable(
+      data = MetricsAgg,
+      compact = TRUE,
+      defaultPageSize = 10,
+      wrap = TRUE,
+      filterable = TRUE,
+      fullWidth = TRUE,
+      highlight = TRUE,
+      pagination = TRUE,
+      resizable = TRUE,
+      searchable = FALSE,
+      selection = "multiple",
+      showPagination = TRUE,
+      showSortable = TRUE,
+      showSortIcon = TRUE,
+      sortable = TRUE,
+      striped = TRUE,
+      theme = reactable::reactableTheme(
+        color = TextColor,
+        backgroundColor = "#4f4f4f26",
+        borderColor = "#dfe2e5",
+        stripedColor = "#4f4f4f8f",
+        highlightColor = "#8989898f",
+        cellPadding = "8px 12px",
+        style = list(
+          fontFamily = "-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif"
+        ),
+        searchInputStyle = list(width = "100%")
+      )
     )
-  )
+  }
 
   OutputList[["Metrics"]] <- reactable::reactable(
     data = ostt_dt,
@@ -1038,7 +1048,7 @@ One.Sample.TTest <- function(dt = NULL,
     highlight = TRUE,
     pagination = TRUE,
     resizable = TRUE,
-    searchable = TRUE,
+    searchable = FALSE,
     selection = "multiple",
     showPagination = TRUE,
     showSortable = TRUE,
@@ -1063,7 +1073,7 @@ One.Sample.TTest <- function(dt = NULL,
   OutputList[["p0"]] <- AutoPlots::Plot.Density(
     dt = dt,
     SampleSize = 100000L,
-    YVar = YVar,
+    YVar = Variable,
     XVar = NULL,
     GroupVar = NULL,
     YVarTrans = "Identity",
@@ -1073,10 +1083,10 @@ One.Sample.TTest <- function(dt = NULL,
     FacetLevels = NULL,
     Height = PlotHeight,
     Width = PlotWidth,
-    Title = paste0("Density Plot: ", YVar),
+    Title = paste0("Density Plot: ", Variable),
     ShowLabels = FALSE,
     Title.YAxis = NULL,
-    Title.XAxis = YVar,
+    Title.XAxis = Variable,
     EchartsTheme = EchartsTheme,
     TimeLine = FALSE,
     X_Scroll = TRUE,
@@ -1099,11 +1109,11 @@ One.Sample.TTest <- function(dt = NULL,
   OutputList[["p1"]] <- AutoPlots::Plot.ProbabilityPlot(
     dt = dt,
     SampleSize = 5000L,
-    YVar = YVar,
+    YVar = Variable,
     YVarTrans = "Identity",
     Height = PlotHeight,
     Width = PlotWidth,
-    Title = paste0("Probability Plot: ", YVar),
+    Title = paste0("Probability Plot: ", Variable),
     ShowLabels = FALSE,
     EchartsTheme = EchartsTheme,
     Y_Scroll = TRUE,
@@ -1307,64 +1317,75 @@ Two.Sample.TTest <- function(dt = NULL,
       var.equal = EqualVariance,
       conf.level = ConfidenceLevel)
 
-    data.table::set(ostt_dt, i = i, j = "Statistic", value = output$statistic) # t = -1.0842
-    data.table::set(ostt_dt, i = i, j = "Parameter", value = output$parameter) # df = 9999
-    data.table::set(ostt_dt, i = i, j = "P_Value", value = output$p.value) # 0.2783
-    data.table::set(ostt_dt, i = i, j = "LowerConfInt", value = output$conf.int[1L]) # -0096 0.0028
-    data.table::set(ostt_dt, i = i, j = "UpperConfInt", value = output$conf.int[2L]) # -0096 0.0028
-    data.table::set(ostt_dt, i = i, j = "Estimate_X", value = output$estimate[1L]) # mean of x = -0.00342
-    data.table::set(ostt_dt, i = i, j = "Estimate_Y", value = output$estimate[2L]) # mean of y = -0.00342
+    data.table::set(ostt_dt, i = i, j = "Statistic", value = round(output$statistic, 4)) # t = -1.0842
+    data.table::set(ostt_dt, i = i, j = "Parameter", value = round(output$parameter, 4)) # df = 9999
+    data.table::set(ostt_dt, i = i, j = "P_Value", value = round(output$p.value, 4)) # 0.2783
+    data.table::set(ostt_dt, i = i, j = "LowerConfInt", value = round(output$conf.int[1L], 4)) # -0096 0.0028
+    data.table::set(ostt_dt, i = i, j = "UpperConfInt", value = round(output$conf.int[2L], 4)) # -0096 0.0028
+    data.table::set(ostt_dt, i = i, j = "Estimate_X", value = round(output$estimate[1L], 4)) # mean of x = -0.00342
+    data.table::set(ostt_dt, i = i, j = "Estimate_Y", value = round(output$estimate[2L], 4)) # mean of y = -0.00342
     data.table::set(ostt_dt, i = i, j = "MeanDifference", value = output$null.value) # mean difference = 0
-    data.table::set(ostt_dt, i = i, j = "StdErr", value = output$stderr) # 0.00315
+    data.table::set(ostt_dt, i = i, j = "StdErr", value = round(output$stderr, 4)) # 0.00315
     data.table::set(ostt_dt, i = i, j = "Alternative", value = output$alternative) # "two.sided"
     data.table::set(ostt_dt, i = i, j = "Method", value = output$method) # "Welch Two Sample t-test"
 
   }
 
-  MetricsAgg <- ostt_dt[
-    , lapply(.SD, mean, na.rm = TRUE),
-    .SDcols = c("Statistic",
-                "Parameter",
-                "P_Value",
-                "LowerConfInt",
-                "UpperConfInt",
-                "Estimate_X",
-                "Estimate_Y",
-                "MeanDifference",
-                "StdErr"),
-    by = c("Alternative",
-           "Method")]
+  if(Samples > 1L) {
+    MetricsAgg <- ostt_dt[
+      , lapply(.SD, mean, na.rm = TRUE),
+      .SDcols = c("Statistic",
+                  "Parameter",
+                  "P_Value",
+                  "LowerConfInt",
+                  "UpperConfInt",
+                  "Estimate_X",
+                  "Estimate_Y",
+                  "MeanDifference",
+                  "StdErr"),
+      by = c("Alternative",
+             "Method")]
 
-  OutputList[["MetricsAgg"]] <- reactable::reactable(
-    data = MetricsAgg,
-    compact = TRUE,
-    defaultPageSize = 10,
-    wrap = TRUE,
-    filterable = TRUE,
-    fullWidth = TRUE,
-    highlight = TRUE,
-    pagination = TRUE,
-    resizable = TRUE,
-    searchable = TRUE,
-    selection = "multiple",
-    showPagination = TRUE,
-    showSortable = TRUE,
-    showSortIcon = TRUE,
-    sortable = TRUE,
-    striped = TRUE,
-    theme = reactable::reactableTheme(
-      color = TextColor,
-      backgroundColor = "#4f4f4f26",
-      borderColor = "#dfe2e5",
-      stripedColor = "#4f4f4f8f",
-      highlightColor = "#8989898f",
-      cellPadding = "8px 12px",
-      style = list(
-        fontFamily = "-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif"
-      ),
-      searchInputStyle = list(width = "100%")
+    data.table::set(MetricsAgg, j = "Statistic", value = round(output$Statistic, 4))
+    data.table::set(MetricsAgg, j = "Parameter", value = round(output$Parameter, 4))
+    data.table::set(MetricsAgg, j = "P_Value", value = round(output$P_Value, 4))
+    data.table::set(MetricsAgg, j = "LowerConfInt", value = round(output$LowerConfInt, 4))
+    data.table::set(MetricsAgg, j = "UpperConfInt", value = round(output$UpperConfInt, 4))
+    data.table::set(MetricsAgg, j = "Estimate_X", value = round(output$Estimate_X, 4))
+    data.table::set(MetricsAgg, j = "Estimate_Y", value = round(output$Estimate_Y, 4))
+    data.table::set(MetricsAgg, j = "StdErr", value = round(output$StdErr, 4))
+
+    OutputList[["MetricsAgg"]] <- reactable::reactable(
+      data = MetricsAgg,
+      compact = TRUE,
+      defaultPageSize = 10,
+      wrap = TRUE,
+      filterable = TRUE,
+      fullWidth = TRUE,
+      highlight = TRUE,
+      pagination = TRUE,
+      resizable = TRUE,
+      searchable = TRUE,
+      selection = "multiple",
+      showPagination = TRUE,
+      showSortable = TRUE,
+      showSortIcon = TRUE,
+      sortable = TRUE,
+      striped = TRUE,
+      theme = reactable::reactableTheme(
+        color = TextColor,
+        backgroundColor = "#4f4f4f26",
+        borderColor = "#dfe2e5",
+        stripedColor = "#4f4f4f8f",
+        highlightColor = "#8989898f",
+        cellPadding = "8px 12px",
+        style = list(
+          fontFamily = "-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif"
+        ),
+        searchInputStyle = list(width = "100%")
+      )
     )
-  )
+  }
 
   OutputList[["Metrics"]] <- reactable::reactable(
     data = ostt_dt,
@@ -1671,7 +1692,7 @@ F.Test <- function(dt = NULL,
                    Variable1 = NULL,
                    Variable2 = NULL,
                    ConfidenceLevel = 0.95,
-                   RatioVariances = 0,
+                   RatioVariances = 1,
                    Alternative = "two.sided",
                    SampleSize = NULL,
                    Samples = 1,
@@ -1735,62 +1756,71 @@ F.Test <- function(dt = NULL,
       ratio = RatioVariances,
       conf.level = ConfidenceLevel)
 
-    data.table::set(ostt_dt, i = i, j = "Statistic", value = output$statistic) # t = -1.0842
+    data.table::set(ostt_dt, i = i, j = "Statistic", value = round(output$statistic, 4)) # t = -1.0842
     data.table::set(ostt_dt, i = i, j = "Num df", value = output$parameter[1L]) # df = 9999
     data.table::set(ostt_dt, i = i, j = "Denom df", value = output$parameter[2L]) # df = 9999
-    data.table::set(ostt_dt, i = i, j = "P_Value", value = output$p.value) # 0.2783
-    data.table::set(ostt_dt, i = i, j = "LowerConfInt", value = output$conf.int[1L]) # -0096 0.0028
-    data.table::set(ostt_dt, i = i, j = "UpperConfInt", value = output$conf.int[2L]) # -0096 0.0028
-    data.table::set(ostt_dt, i = i, j = "Estimate", value = output$estimate[1L]) # mean of x = -0.00342
-    data.table::set(ostt_dt, i = i, j = "Ratio of Variances", value = output$null.value) # mean difference = 0
+    data.table::set(ostt_dt, i = i, j = "P_Value", value = round(output$p.value, 4)) # 0.2783
+    data.table::set(ostt_dt, i = i, j = "LowerConfInt", value = round(output$conf.int[1L], 4)) # -0096 0.0028
+    data.table::set(ostt_dt, i = i, j = "UpperConfInt", value = round(output$conf.int[2L], 4)) # -0096 0.0028
+    data.table::set(ostt_dt, i = i, j = "Estimate", value = round(output$estimate[1L], 4)) # mean of x = -0.00342
+    data.table::set(ostt_dt, i = i, j = "Ratio of Variances", value = round(output$null.value, 4)) # mean difference = 0
     data.table::set(ostt_dt, i = i, j = "Alternative", value = output$alternative) # "two.sided"
     data.table::set(ostt_dt, i = i, j = "Method", value = output$method) # "Welch Two Sample t-test"
 
   }
 
-  MetricsAgg <- ostt_dt[
-    , lapply(.SD, mean, na.rm = TRUE),
-    .SDcols = c("Statistic",
-                "Num df",
-                "Denom df",
-                "P_Value",
-                "LowerConfInt",
-                "UpperConfInt",
-                "Estimate",
-                "Ratio of Variances"),
-    by = c("Alternative",
-           "Method")]
+  if(Samples > 1L) {
+    MetricsAgg <- ostt_dt[
+      , lapply(.SD, mean, na.rm = TRUE),
+      .SDcols = c("Statistic",
+                  "Num df",
+                  "Denom df",
+                  "P_Value",
+                  "LowerConfInt",
+                  "UpperConfInt",
+                  "Estimate",
+                  "Ratio of Variances"),
+      by = c("Alternative",
+             "Method")]
 
-  OutputList[["MetricsAgg"]] <- reactable::reactable(
-    data = MetricsAgg,
-    compact = TRUE,
-    defaultPageSize = 10,
-    wrap = TRUE,
-    filterable = TRUE,
-    fullWidth = TRUE,
-    highlight = TRUE,
-    pagination = TRUE,
-    resizable = TRUE,
-    searchable = TRUE,
-    selection = "multiple",
-    showPagination = TRUE,
-    showSortable = TRUE,
-    showSortIcon = TRUE,
-    sortable = TRUE,
-    striped = TRUE,
-    theme = reactable::reactableTheme(
-      color = TextColor,
-      backgroundColor = "#4f4f4f26",
-      borderColor = "#dfe2e5",
-      stripedColor = "#4f4f4f8f",
-      highlightColor = "#8989898f",
-      cellPadding = "8px 12px",
-      style = list(
-        fontFamily = "-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif"
-      ),
-      searchInputStyle = list(width = "100%")
+    data.table::set(MetricsAgg, j = "Statistic", value = round(output$Statistic, 4))
+    data.table::set(MetricsAgg, j = "P_Value", value = round(output$P_Value, 4))
+    data.table::set(MetricsAgg, j = "LowerConfInt", value = round(output$LowerConfInt, 4))
+    data.table::set(MetricsAgg, j = "UpperConfInt", value = round(output$UpperConfInt, 4))
+    data.table::set(MetricsAgg, j = "Estimate", value = round(output$Estimate, 4))
+    data.table::set(MetricsAgg, j = "Ratio of Variances", value = round(output[["Ratio of Variances"]], 4))
+
+    OutputList[["MetricsAgg"]] <- reactable::reactable(
+      data = MetricsAgg,
+      compact = TRUE,
+      defaultPageSize = 10,
+      wrap = TRUE,
+      filterable = TRUE,
+      fullWidth = TRUE,
+      highlight = TRUE,
+      pagination = TRUE,
+      resizable = TRUE,
+      searchable = TRUE,
+      selection = "multiple",
+      showPagination = TRUE,
+      showSortable = TRUE,
+      showSortIcon = TRUE,
+      sortable = TRUE,
+      striped = TRUE,
+      theme = reactable::reactableTheme(
+        color = TextColor,
+        backgroundColor = "#4f4f4f26",
+        borderColor = "#dfe2e5",
+        stripedColor = "#4f4f4f8f",
+        highlightColor = "#8989898f",
+        cellPadding = "8px 12px",
+        style = list(
+          fontFamily = "-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif"
+        ),
+        searchInputStyle = list(width = "100%")
+      )
     )
-  )
+  }
 
   OutputList[["Metrics"]] <- reactable::reactable(
     data = ostt_dt,
@@ -2142,49 +2172,54 @@ ChiSq.Test <- function(dt = NULL,
     # x$expected # skip
     # x$residuals # melt and use heatmap
 
-    data.table::set(ostt_dt, i = i, j = "Statistic", value = x$statistic) # t = -1.0842
+    data.table::set(ostt_dt, i = i, j = "Statistic", value = round(x$statistic, 4)) # t = -1.0842
     data.table::set(ostt_dt, i = i, j = "Parameter", value = x$parameter) # df = 9999
-    data.table::set(ostt_dt, i = i, j = "P_Value", value = x$p.value) # 0.2783
+    data.table::set(ostt_dt, i = i, j = "P_Value", value = round(x$p.value, 4)) # 0.2783
     data.table::set(ostt_dt, i = i, j = "Method", value = x$method) # "Welch Two Sample t-test"
   }
 
-  MetricsAgg <- ostt_dt[
-    , lapply(.SD, mean, na.rm = TRUE),
-    .SDcols = c("Statistic",
-                "Parameter",
-                "P_Value"),
-    by = c("Method")]
+  if(Samples > 1L) {
+    MetricsAgg <- ostt_dt[
+      , lapply(.SD, mean, na.rm = TRUE),
+      .SDcols = c("Statistic",
+                  "Parameter",
+                  "P_Value"),
+      by = c("Method")]
 
-  OutputList[["MetricsAgg"]] <- reactable::reactable(
-    data = MetricsAgg,
-    compact = TRUE,
-    defaultPageSize = 10,
-    wrap = TRUE,
-    filterable = TRUE,
-    fullWidth = TRUE,
-    highlight = TRUE,
-    pagination = TRUE,
-    resizable = TRUE,
-    searchable = TRUE,
-    selection = "multiple",
-    showPagination = TRUE,
-    showSortable = TRUE,
-    showSortIcon = TRUE,
-    sortable = TRUE,
-    striped = TRUE,
-    theme = reactable::reactableTheme(
-      color = TextColor,
-      backgroundColor = "#4f4f4f26",
-      borderColor = "#dfe2e5",
-      stripedColor = "#4f4f4f8f",
-      highlightColor = "#8989898f",
-      cellPadding = "8px 12px",
-      style = list(
-        fontFamily = "-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif"
-      ),
-      searchInputStyle = list(width = "100%")
+    data.table::set(MetricsAgg, j = "Statistic", value = round(output$Statistic, 4))
+    data.table::set(MetricsAgg, j = "P_Value", value = round(output$P_Value, 4))
+
+    OutputList[["MetricsAgg"]] <- reactable::reactable(
+      data = MetricsAgg,
+      compact = TRUE,
+      defaultPageSize = 10,
+      wrap = TRUE,
+      filterable = TRUE,
+      fullWidth = TRUE,
+      highlight = TRUE,
+      pagination = TRUE,
+      resizable = TRUE,
+      searchable = TRUE,
+      selection = "multiple",
+      showPagination = TRUE,
+      showSortable = TRUE,
+      showSortIcon = TRUE,
+      sortable = TRUE,
+      striped = TRUE,
+      theme = reactable::reactableTheme(
+        color = TextColor,
+        backgroundColor = "#4f4f4f26",
+        borderColor = "#dfe2e5",
+        stripedColor = "#4f4f4f8f",
+        highlightColor = "#8989898f",
+        cellPadding = "8px 12px",
+        style = list(
+          fontFamily = "-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif"
+        ),
+        searchInputStyle = list(width = "100%")
+      )
     )
-  )
+  }
 
   OutputList[["Metrics"]] <- reactable::reactable(
     data = ostt_dt,

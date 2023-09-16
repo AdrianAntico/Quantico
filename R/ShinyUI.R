@@ -11158,7 +11158,7 @@ OneSampleTTest_Modal_Fun <- function(id,
                           ),
                           shiny::column(
                             6L,
-                            DataMuse:::NumericInput(InputID='OneSampleTTest_SampleSize', Label='Sample Size', Value = OneSampleTTest_Samples_Selected, Min = 8, Max = 1000000, Step = 100)
+                            DataMuse:::NumericInput(InputID='OneSampleTTest_SampleSize', Label='Sample Size', Value = OneSampleTTest_SampleSize_Selected, Min = 8, Max = 1000000, Step = 1)
                           )
                         ),
                         DataMuse::BlankRow(12L),
@@ -11370,7 +11370,7 @@ TwoSampleTTest_Modal_Fun <- function(id,
                           ),
                           shiny::column(
                             6L,
-                            DataMuse:::NumericInput(InputID='TwoSampleTTest_SampleSize', Label='Sample Size', Value = TwoSampleTTest_Samples_Selected, Min = 8, Max = 1000000, Step = 100)
+                            DataMuse:::NumericInput(InputID='TwoSampleTTest_SampleSize', Label='Sample Size', Value = TwoSampleTTest_SampleSize_Selected, Min = 8, Max = 1000000, Step = 1)
                           )
                         ),
                         DataMuse::BlankRow(12L),
@@ -11587,7 +11587,7 @@ FTest_Modal_Fun <- function(id,
                           ),
                           shiny::column(
                             6L,
-                            DataMuse:::NumericInput(InputID='FTest_SampleSize', Label='Sample Size', Value = FTest_Samples_Selected, Min = 8, Max = 1000000, Step = 100)
+                            DataMuse:::NumericInput(InputID='FTest_SampleSize', Label='Sample Size', Value = FTest_SampleSize_Selected, Min = 8, Max = 1000000, Step = 1)
                           )
                         ),
                         DataMuse::BlankRow(12L),

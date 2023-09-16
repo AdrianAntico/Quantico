@@ -2720,6 +2720,7 @@ server <- function(input, output, session) {
       DataMuse:::PickerInput(session = session, Update = TRUE, input=input, InputID='OneSampleTTest_Variable', Label='Variable', Choices = ChoiceList, SelectedDefault = if(length(input$OneSampleTTest_Variable) > 0L) input$OneSampleTTest_Variable else NULL, Multiple = TRUE, MaxVars = 1L)
     })
   })
+  shiny::observeEvent(input$OneSampleTTest_OK, {shiny::removeModal()})
 
   # Two Sample TTest
   shiny::observeEvent(input$Inference_2STTest, {
@@ -2758,6 +2759,7 @@ server <- function(input, output, session) {
       DataMuse:::PickerInput(session = session, Update = TRUE, input=input, InputID='TwoSampleTTest_Variable2', Label='Variable2', Choices = ChoiceList, SelectedDefault = if(length(input$TwoSampleTTest_Variable2) > 0L) input$TwoSampleTTest_Variable2 else NULL, Multiple = TRUE, MaxVars = 1L)
     })
   })
+  shiny::observeEvent(input$TwoSampleTTest_OK, {shiny::removeModal()})
 
   # F-Test
   shiny::observeEvent(input$Inference_FTest, {
@@ -2792,6 +2794,7 @@ server <- function(input, output, session) {
       DataMuse:::PickerInput(session = session, Update = TRUE, input=input, InputID='FTest_Variable2', Label='Variable2', Choices = ChoiceList, SelectedDefault = if(length(input$FTest_Variable2) > 0L) input$FTest_Variable2 else NULL, Multiple = TRUE, MaxVars = 1L)
     })
   })
+  shiny::observeEvent(input$FTest_OK, {shiny::removeModal()})
 
   # Chi-Square Test
   shiny::observeEvent(input$Inference_ChiSq, {
@@ -2825,6 +2828,7 @@ server <- function(input, output, session) {
       DataMuse:::PickerInput(session = session, Update = TRUE, input=input, InputID='ChiSquareTest_Variable2', Label='Variable2', Choices = ChoiceList, SelectedDefault = if(length(input$ChiSquareTest_Variable2) > 0L) input$ChiSquareTest_Variable2 else NULL, Multiple = TRUE, MaxVars = 1L)
     })
   })
+  shiny::observeEvent(input$ChiSquareTest_OK, {shiny::removeModal()})
 
   #                                      ----
 
@@ -5430,7 +5434,7 @@ server <- function(input, output, session) {
 
       Normality_SelectData <- DataList[[temp]][['data']]
       Normality_YVars <- DataMuse::ReturnParam(xx = tryCatch({input$Normality_YVars}, error = function(x) NULL), Type = "character", Default = NULL)
-      Normality_InferenceID <- DataMuse::ReturnParam(xx = tryCatch({input$Normality_InferenceID}, error = function(x) NULL), Type = "character", Default = "INF001")
+      Normality_InferenceID <- DataMuse::ReturnParam(xx = tryCatch({input$Normality_InferenceID}, error = function(x) NULL), Type = "character", Default = "INF_Normality1")
       SampleSize.ADT <- DataMuse::ReturnParam(xx = tryCatch({input$SampleSize.ADT}, error = function(x) NULL), Type = "character", Default = 1000000)
       Samples.ADT <- DataMuse::ReturnParam(xx = tryCatch({input$Samples.ADT}, error = function(x) NULL), Type = "character", Default = 1)
       SampleSize.CVMT <- DataMuse::ReturnParam(xx = tryCatch({input$SampleSize.CVMT}, error = function(x) NULL), Type = "character", Default = 1000000)
@@ -5523,12 +5527,10 @@ server <- function(input, output, session) {
 
       Correlation_SelectData <- DataList[[temp]][['data']]
       Correlation_CorrVars <- DataMuse::ReturnParam(xx = tryCatch({input$Correlation_CorrVars}, error = function(x) NULL), Type = "character", Default = NULL)
-      Correlation_InferenceID <- DataMuse::ReturnParam(xx = tryCatch({input$Correlation_InferenceID}, error = function(x) NULL), Type = "character", Default = "INF002")
+      Correlation_InferenceID <- DataMuse::ReturnParam(xx = tryCatch({input$Correlation_InferenceID}, error = function(x) NULL), Type = "character", Default = "INF_Corr1")
       Correlation_DateVar <- DataMuse::ReturnParam(xx = tryCatch({input$Correlation_DateVar}, error = function(x) NULL), Type = "character", Default = NULL)
-      Correlation_SampleSize <- DataMuse::ReturnParam(xx = tryCatch({input$Correlation_SampleSize}, error = function(x) NULL), Type = "character", Default = 10000)
+      Correlation_SampleSize <- DataMuse::ReturnParam(xx = tryCatch({input$Correlation_SampleSize}, error = function(x) NULL), Type = "numeric", Default = 10000)
       Correlation_EchartsTheme <- DataMuse::ReturnParam(xx = tryCatch({input$EchartsTheme}, error = function(x) NULL), Type = "character", Default = "macarons")
-      Correlation_PlotHeight <- DataMuse::ReturnParam(xx = tryCatch({input$PlotHeight1}, error = function(x) NULL), Type = "character", Default = "1450px")
-      Correlation_PlotWidth <- DataMuse::ReturnParam(xx = tryCatch({input$PlotWidth1}, error = function(x) NULL), Type = "character", Default = "850px")
       Correlation_P_Adjust <- DataMuse::ReturnParam(xx = tryCatch({input$Correlation_P_Adjust}, error = function(x) NULL), Type = "character", Default = NULL)
       Correlation_Bayesian <- DataMuse::ReturnParam(xx = tryCatch({input$Correlation_Bayesian}, error = function(x) NULL), Type = "logical", Default = FALSE)
       Correlation_Bayesian_Prior <- DataMuse::ReturnParam(xx = tryCatch({input$Correlation_Bayesian_Prior}, error = function(x) NULL), Type = "character", Default = NULL)
@@ -5577,6 +5579,238 @@ server <- function(input, output, session) {
         "Include_Factors = ", DataMuse:::CEP(Correlation_Include_Factors), ",\n  ",
         "Partial = ", DataMuse:::CEP(Correlation_Partial), ",\n  ",
         "Partial_Bayesian = ", DataMuse:::CEP(Correlation_Partial_Bayesian), ")\n"))}, error = function(x) MachineLearningCode)
+
+      # Update Available Outputs for Inference Tab
+      if(Debug) print("inference 2")
+      for(i in seq_len(NumTabs)) DataMuse::PickerInput(session = session, input = input, Update = TRUE, InputID = paste0('InferenceReportsModelSelection',i), Label = 'Testing Output', Choices = tryCatch({names(InferenceOutputList)}, error = function(x) NULL), Multiple = FALSE, MaxVars = 1L)
+      InferenceOutputList <<- InferenceOutputList
+      MachineLearningCode <<- MachineLearningCode
+      shinyWidgets::sendSweetAlert(session, title = NULL, text = "", type = NULL, btn_labels = "Success", btn_colors = NULL, html = FALSE, closeOnClickOutside = TRUE, showCloseButton = TRUE, width = "40%")
+
+    } else {
+      shinyWidgets::sendSweetAlert(session, title = NULL, text = "Data not available", type = NULL, btn_labels = "Error", btn_colors = NULL, html = FALSE, closeOnClickOutside = TRUE, showCloseButton = TRUE, width = "40%")
+    }
+
+  }, ignoreInit = TRUE)
+
+  # One Sample TTest Execution
+  shiny::observeEvent(input$Inference_1STTest_Execute, {
+
+    # Args
+    temp <- DataMuse::ReturnParam(xx = tryCatch({input$OneSampleTTest_SelectData}, error = function(x) NULL), Type = "character", Default = NULL)
+    if(length(temp) > 0L) {
+
+      OneSampleTTest_EchartsTheme <- DataMuse::ReturnParam(xx = tryCatch({input$EchartsTheme}, error = function(x) NULL), Type = "character", Default = "macarons")
+      OneSampleTTest_FontColorData <- DataMuse:::rgba2hex(DataMuse:::ReturnParam(xx = input[["ColorFont"]], Type = "character", Default = "#e2e2e2"))
+      OneSampleTTest_PlotWidthINF <- DataMuse:::ReturnParam(xx = input[["PlotWidthinf"]], Type = "numeric", Default = 1450)
+      OneSampleTTest_PlotWidthINF <- paste0(OneSampleTTest_PlotWidthINF, "px")
+      OneSampleTTest_PlotHeightINF <- DataMuse:::ReturnParam(xx = input[["PlotHeightinf"]], Type = "numeric", Default = 860)
+      OneSampleTTest_PlotHeightINF <- paste0(OneSampleTTest_PlotHeightINF, "px")
+
+      OneSampleTTest_SelectData <- DataList[[temp]][['data']]
+      OneSampleTTest_Variable <- DataMuse::ReturnParam(xx = tryCatch({input$OneSampleTTest_Variable}, error = function(x) NULL), Type = "character", Default = NULL)
+      OneSampleTTest_InferenceID <- DataMuse::ReturnParam(xx = tryCatch({input$OneSampleTTest_InferenceID}, error = function(x) NULL), Type = "character", Default = "INF_1STTest1")
+
+      OneSampleTTest_SampleSize <- DataMuse::ReturnParam(xx = tryCatch({input$OneSampleTTest_SampleSize}, error = function(x) NULL), Type = "numeric", Default = 100000)
+      OneSampleTTest_Samples <- DataMuse::ReturnParam(xx = tryCatch({input$OneSampleTTest_Samples}, error = function(x) NULL), Type = "numeric", Default = 1)
+      OneSampleTTest_NullValue <- DataMuse::ReturnParam(xx = tryCatch({input$OneSampleTTest_NullValue}, error = function(x) NULL), Type = "numeric", Default = 0)
+      OneSampleTTest_Alternative <- DataMuse::ReturnParam(xx = tryCatch({input$OneSampleTTest_Alternative}, error = function(x) NULL), Type = "character", Default = 1)
+      OneSampleTTest_ConfidenceLevel <- DataMuse::ReturnParam(xx = tryCatch({input$OneSampleTTest_ConfidenceLevel}, error = function(x) NULL), Type = "numeric", Default = 0.95)
+
+
+      # Run function
+      if(Debug) print("inference 0")
+      if(!exists("InferenceOutputList")) InferenceOutputList <- list()
+      InferenceOutputList[[OneSampleTTest_InferenceID]] <- DataMuse::One.Sample.TTest(
+        dt = OneSampleTTest_SelectData,
+        Variable = OneSampleTTest_Variable,
+        NullValue = OneSampleTTest_NullValue,
+        Alternative = OneSampleTTest_Alternative,
+        ConfidenceLevel = OneSampleTTest_ConfidenceLevel,
+        SampleSize = OneSampleTTest_SampleSize,
+        Samples = OneSampleTTest_Samples,
+        EchartsTheme = OneSampleTTest_EchartsTheme,
+        TextColor = OneSampleTTest_FontColorData$flv,
+        PlotHeight = OneSampleTTest_PlotHeightINF,
+        PlotWidth = OneSampleTTest_PlotWidthINF)
+
+      if(Debug) print("inference 1")
+
+      MachineLearningCode <- tryCatch({DataMuse:::Shiny.CodePrint.Collect(y = MachineLearningCode, x = paste0(
+        "\n",
+        "# Normality Testing\n",
+        "OneSampleTTest_SelectData <- DataList[[", DataMuse:::CEP(temp), "]][['data']]\n",
+        "Output <- DataMuse::One.Sample.TTest(, \n  ",
+        "dt = OneSampleTTest_SelectData, \n  ",
+        "Variable = ", DataMuse:::ExpandText(OneSampleTTest_Variable), ",\n  ",
+        "EchartsTheme = ", DataMuse:::CEP(OneSampleTTest_EchartsTheme), ",\n  ",
+        "TextColor = ", DataMuse:::CEP(OneSampleTTest_FontColorData$flv), ",\n  ",
+        "PlotHeight = ", DataMuse:::CEP(OneSampleTTest_PlotHeightINF), ",\n  ",
+        "PlotWidth = ", DataMuse:::CEP(OneSampleTTest_PlotWidthINF), ",\n  ",
+        "NullValue = ", DataMuse:::CEPP(OneSampleTTest_NullValue), ",\n  ",
+        "Alternative = ", DataMuse:::CEP(OneSampleTTest_Alternative), ",\n  ",
+        "ConfidenceLevel = ", DataMuse:::CEPP(OneSampleTTest_ConfidenceLevel), ",\n  ",
+        "SampleSize = ", DataMuse:::CEP(OneSampleTTest_SampleSize), ",\n  ",
+        "Samples = ", DataMuse:::CEP(OneSampleTTest_Samples), ")\n"))}, error = function(x) MachineLearningCode)
+
+      # Update Available Outputs for Inference Tab
+      if(Debug) print("inference 2")
+      for(i in seq_len(NumTabs)) DataMuse::PickerInput(session = session, input = input, Update = TRUE, InputID = paste0('InferenceReportsModelSelection',i), Label = 'Testing Output', Choices = tryCatch({names(InferenceOutputList)}, error = function(x) NULL), Multiple = FALSE, MaxVars = 1L)
+      InferenceOutputList <<- InferenceOutputList
+      MachineLearningCode <<- MachineLearningCode
+      shinyWidgets::sendSweetAlert(session, title = NULL, text = "", type = NULL, btn_labels = "Success", btn_colors = NULL, html = FALSE, closeOnClickOutside = TRUE, showCloseButton = TRUE, width = "40%")
+
+    } else {
+      shinyWidgets::sendSweetAlert(session, title = NULL, text = "Data not available", type = NULL, btn_labels = "Error", btn_colors = NULL, html = FALSE, closeOnClickOutside = TRUE, showCloseButton = TRUE, width = "40%")
+    }
+
+  }, ignoreInit = TRUE)
+
+  # Two Sample TTest Execution
+  shiny::observeEvent(input$Inference_2STTest_Execute, {
+
+    # Args
+    temp <- DataMuse::ReturnParam(xx = tryCatch({input$TwoSampleTTest_SelectData}, error = function(x) NULL), Type = "character", Default = NULL)
+    if(length(temp) > 0L) {
+
+      TwoSampleTTest_EchartsTheme <- DataMuse::ReturnParam(xx = tryCatch({input$EchartsTheme}, error = function(x) NULL), Type = "character", Default = "macarons")
+      TwoSampleTTest_FontColorData <- DataMuse:::rgba2hex(DataMuse:::ReturnParam(xx = input[["ColorFont"]], Type = "character", Default = "#e2e2e2"))
+      TwoSampleTTest_PlotWidthINF <- DataMuse:::ReturnParam(xx = input[["PlotWidthinf"]], Type = "numeric", Default = 1450)
+      TwoSampleTTest_PlotWidthINF <- paste0(TwoSampleTTest_PlotWidthINF, "px")
+      TwoSampleTTest_PlotHeightINF <- DataMuse:::ReturnParam(xx = input[["PlotHeightinf"]], Type = "numeric", Default = 860)
+      TwoSampleTTest_PlotHeightINF <- paste0(TwoSampleTTest_PlotHeightINF, "px")
+
+      TwoSampleTTest_SelectData <- DataList[[temp]][['data']]
+      TwoSampleTTest_Variable1 <- DataMuse::ReturnParam(xx = tryCatch({input$TwoSampleTTest_Variable1}, error = function(x) NULL), Type = "character", Default = NULL)
+      TwoSampleTTest_Variable2 <- DataMuse::ReturnParam(xx = tryCatch({input$TwoSampleTTest_Variable2}, error = function(x) NULL), Type = "character", Default = NULL)
+      TwoSampleTTest_InferenceID <- DataMuse::ReturnParam(xx = tryCatch({input$TwoSampleTTest_InferenceID}, error = function(x) NULL), Type = "character", Default = "INF_1STTest1")
+
+      TwoSampleTTest_SampleSize <- DataMuse::ReturnParam(xx = tryCatch({input$TwoSampleTTest_SampleSize}, error = function(x) NULL), Type = "numeric", Default = 100000)
+      TwoSampleTTest_Samples <- DataMuse::ReturnParam(xx = tryCatch({input$TwoSampleTTest_Samples}, error = function(x) NULL), Type = "numeric", Default = 1)
+      TwoSampleTTest_NullValue <- DataMuse::ReturnParam(xx = tryCatch({input$TwoSampleTTest_NullValue}, error = function(x) NULL), Type = "numeric", Default = 0)
+      TwoSampleTTest_Paired <- DataMuse::ReturnParam(xx = tryCatch({input$TwoSampleTTest_Paired}, error = function(x) NULL), Type = "logical", Default = FALSE)
+      TwoSampleTTest_EqualVariance <- DataMuse::ReturnParam(xx = tryCatch({input$TwoSampleTTest_EqualVariance}, error = function(x) NULL), Type = "logical", Default = FALSE)
+      TwoSampleTTest_Alternative <- DataMuse::ReturnParam(xx = tryCatch({input$TwoSampleTTest_Alternative}, error = function(x) NULL), Type = "character", Default = 1)
+      TwoSampleTTest_ConfidenceLevel <- DataMuse::ReturnParam(xx = tryCatch({input$TwoSampleTTest_ConfidenceLevel}, error = function(x) NULL), Type = "numeric", Default = 0.95)
+
+
+      # Run function
+      if(Debug) print("inference 0")
+      if(!exists("InferenceOutputList")) InferenceOutputList <- list()
+      InferenceOutputList[[TwoSampleTTest_InferenceID]] <- DataMuse::Two.Sample.TTest(
+        dt = TwoSampleTTest_SelectData,
+        Variable1 = TwoSampleTTest_Variable1,
+        Variable2 = TwoSampleTTest_Variable2,
+        MeanDifference = TwoSampleTTest_NullValue,
+        Paired = TwoSampleTTest_Paired,
+        EqualVariance = TwoSampleTTest_EqualVariance,
+        Alternative = TwoSampleTTest_Alternative,
+        ConfidenceLevel = TwoSampleTTest_ConfidenceLevel,
+        SampleSize = TwoSampleTTest_SampleSize,
+        Samples = TwoSampleTTest_Samples,
+        EchartsTheme = TwoSampleTTest_EchartsTheme,
+        TextColor = TwoSampleTTest_FontColorData$flv,
+        PlotHeight = TwoSampleTTest_PlotHeightINF,
+        PlotWidth = TwoSampleTTest_PlotWidthINF)
+
+      if(Debug) print("inference 1")
+
+      MachineLearningCode <- tryCatch({DataMuse:::Shiny.CodePrint.Collect(y = MachineLearningCode, x = paste0(
+        "\n",
+        "# Normality Testing\n",
+        "TwoSampleTTest_SelectData <- DataList[[", DataMuse:::CEP(temp), "]][['data']]\n",
+        "Output <- DataMuse::Two.Sample.TTest(, \n  ",
+        "dt = TwoSampleTTest_SelectData, \n  ",
+        "Variable1 = ", DataMuse:::ExpandText(TwoSampleTTest_Variable1), ",\n  ",
+        "Variable2 = ", DataMuse:::ExpandText(TwoSampleTTest_Variable2), ",\n  ",
+        "EchartsTheme = ", DataMuse:::CEP(TwoSampleTTest_EchartsTheme), ",\n  ",
+        "TextColor = ", DataMuse:::CEP(TwoSampleTTest_FontColorData$flv), ",\n  ",
+        "PlotHeight = ", DataMuse:::CEP(TwoSampleTTest_PlotHeightINF), ",\n  ",
+        "PlotWidth = ", DataMuse:::CEP(TwoSampleTTest_PlotWidthINF), ",\n  ",
+        "MeanDifference = ", DataMuse:::CEPP(TwoSampleTTest_NullValue), ",\n  ",
+        "EqualVariance = ", DataMuse:::CEPP(TwoSampleTTest_EqualVariance), ",\n  ",
+        "Paired = ", DataMuse:::CEPP(TwoSampleTTest_Paired), ",\n  ",
+        "Alternative = ", DataMuse:::CEP(TwoSampleTTest_Alternative), ",\n  ",
+        "ConfidenceLevel = ", DataMuse:::CEPP(TwoSampleTTest_ConfidenceLevel), ",\n  ",
+        "SampleSize = ", DataMuse:::CEP(TwoSampleTTest_SampleSize), ",\n  ",
+        "Samples = ", DataMuse:::CEP(TwoSampleTTest_Samples), ")\n"))}, error = function(x) MachineLearningCode)
+
+      # Update Available Outputs for Inference Tab
+      if(Debug) print("inference 2")
+      for(i in seq_len(NumTabs)) DataMuse::PickerInput(session = session, input = input, Update = TRUE, InputID = paste0('InferenceReportsModelSelection',i), Label = 'Testing Output', Choices = tryCatch({names(InferenceOutputList)}, error = function(x) NULL), Multiple = FALSE, MaxVars = 1L)
+      InferenceOutputList <<- InferenceOutputList
+      MachineLearningCode <<- MachineLearningCode
+      shinyWidgets::sendSweetAlert(session, title = NULL, text = "", type = NULL, btn_labels = "Success", btn_colors = NULL, html = FALSE, closeOnClickOutside = TRUE, showCloseButton = TRUE, width = "40%")
+
+    } else {
+      shinyWidgets::sendSweetAlert(session, title = NULL, text = "Data not available", type = NULL, btn_labels = "Error", btn_colors = NULL, html = FALSE, closeOnClickOutside = TRUE, showCloseButton = TRUE, width = "40%")
+    }
+
+  }, ignoreInit = TRUE)
+
+  # FTest Execution
+  shiny::observeEvent(input$Inference_FTest_Execute, {
+
+    # Args
+    temp <- DataMuse::ReturnParam(xx = tryCatch({input$FTest_SelectData}, error = function(x) NULL), Type = "character", Default = NULL)
+    if(length(temp) > 0L) {
+
+      FTest_EchartsTheme <- DataMuse::ReturnParam(xx = tryCatch({input$EchartsTheme}, error = function(x) NULL), Type = "character", Default = "macarons")
+      FTest_FontColorData <- DataMuse:::rgba2hex(DataMuse:::ReturnParam(xx = input[["ColorFont"]], Type = "character", Default = "#e2e2e2"))
+      FTest_PlotWidthINF <- DataMuse:::ReturnParam(xx = input[["PlotWidthinf"]], Type = "numeric", Default = 1450)
+      FTest_PlotWidthINF <- paste0(FTest_PlotWidthINF, "px")
+      FTest_PlotHeightINF <- DataMuse:::ReturnParam(xx = input[["PlotHeightinf"]], Type = "numeric", Default = 860)
+      FTest_PlotHeightINF <- paste0(FTest_PlotHeightINF, "px")
+
+      FTest_SelectData <- DataList[[temp]][['data']]
+      FTest_Variable1 <- DataMuse::ReturnParam(xx = tryCatch({input$FTest_Variable1}, error = function(x) NULL), Type = "character", Default = NULL)
+      FTest_Variable2 <- DataMuse::ReturnParam(xx = tryCatch({input$FTest_Variable2}, error = function(x) NULL), Type = "character", Default = NULL)
+      FTest_InferenceID <- DataMuse::ReturnParam(xx = tryCatch({input$FTest_InferenceID}, error = function(x) NULL), Type = "character", Default = "INF_1STTest1")
+
+      FTest_SampleSize <- DataMuse::ReturnParam(xx = tryCatch({input$FTest_SampleSize}, error = function(x) NULL), Type = "numeric", Default = 100000)
+      FTest_Samples <- DataMuse::ReturnParam(xx = tryCatch({input$FTest_Samples}, error = function(x) NULL), Type = "numeric", Default = 1)
+      FTest_NullValue <- DataMuse::ReturnParam(xx = tryCatch({input$FTest_NullValue}, error = function(x) NULL), Type = "numeric", Default = 0)
+      FTest_RatioVariances <- DataMuse::ReturnParam(xx = tryCatch({input$FTest_RatioVariances}, error = function(x) NULL), Type = "numeric", Default = 1)
+      FTest_Alternative <- DataMuse::ReturnParam(xx = tryCatch({input$FTest_Alternative}, error = function(x) NULL), Type = "character", Default = 1)
+      FTest_ConfidenceLevel <- DataMuse::ReturnParam(xx = tryCatch({input$FTest_ConfidenceLevel}, error = function(x) NULL), Type = "numeric", Default = 0.95)
+
+
+      # Run function
+      if(Debug) print("inference 0")
+      if(!exists("InferenceOutputList")) InferenceOutputList <- list()
+      InferenceOutputList[[FTest_InferenceID]] <- DataMuse::F.Test(
+        dt = FTest_SelectData,
+        Variable1 = FTest_Variable1,
+        Variable2 = FTest_Variable2,
+        RatioVariances = FTest_RatioVariances,
+        Alternative = FTest_Alternative,
+        ConfidenceLevel = FTest_ConfidenceLevel,
+        SampleSize = FTest_SampleSize,
+        Samples = FTest_Samples,
+        EchartsTheme = FTest_EchartsTheme,
+        TextColor = FTest_FontColorData$flv,
+        PlotHeight = FTest_PlotHeightINF,
+        PlotWidth = FTest_PlotWidthINF)
+
+      if(Debug) print("inference 1")
+
+      MachineLearningCode <- tryCatch({DataMuse:::Shiny.CodePrint.Collect(y = MachineLearningCode, x = paste0(
+        "\n",
+        "# Normality Testing\n",
+        "FTest_SelectData <- DataList[[", DataMuse:::CEP(temp), "]][['data']]\n",
+        "Output <- DataMuse::F.Test(, \n  ",
+        "dt = FTest_SelectData, \n  ",
+        "Variable1 = ", DataMuse:::ExpandText(FTest_Variable1), ",\n  ",
+        "Variable2 = ", DataMuse:::ExpandText(FTest_Variable2), ",\n  ",
+        "EchartsTheme = ", DataMuse:::CEP(FTest_EchartsTheme), ",\n  ",
+        "TextColor = ", DataMuse:::CEP(FTest_FontColorData$flv), ",\n  ",
+        "PlotHeight = ", DataMuse:::CEP(FTest_PlotHeightINF), ",\n  ",
+        "PlotWidth = ", DataMuse:::CEP(FTest_PlotWidthINF), ",\n  ",
+        "RatioVariances = ", DataMuse:::CEPP(FTest_RatioVariances), ",\n  ",
+        "Alternative = ", DataMuse:::CEP(FTest_Alternative), ",\n  ",
+        "ConfidenceLevel = ", DataMuse:::CEPP(FTest_ConfidenceLevel), ",\n  ",
+        "SampleSize = ", DataMuse:::CEP(FTest_SampleSize), ",\n  ",
+        "Samples = ", DataMuse:::CEP(FTest_Samples), ")\n"))}, error = function(x) MachineLearningCode)
 
       # Update Available Outputs for Inference Tab
       if(Debug) print("inference 2")

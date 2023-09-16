@@ -9,7 +9,7 @@ F.Test(
   Variable1 = NULL,
   Variable2 = NULL,
   ConfidenceLevel = 0.95,
-  RatioVariances = 0,
+  RatioVariances = 1,
   Alternative = "two.sided",
   SampleSize = NULL,
   Samples = 1,

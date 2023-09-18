@@ -9980,34 +9980,34 @@ H2O_HGLM_Modal_Fun <- function(id,
                     DataMuse:::BlankRow(12L),
                     DataMuse:::BlankRow(12L)))),
 
-              # Grid Tuning Parameters ----
-              shiny::tabPanel(
-                title = "Grid Tune",
-                icon = shiny::icon('code'),
-                DataMuse:::BlankRow(12L),
-                shiny::fluidRow(
-                  shinydashboard::box(
-                    title = NULL, solidHeader = TRUE, collapsible = FALSE, status = NULL, width = 12L,
-                    DataMuse:::BlankRow(12L),
-
-                    shiny::fluidRow(
-                      shiny::column(
-                        6L,
-                        align = 'center',
-                        shinydashboard::box(
-                          title = NULL, solidHeader = TRUE, collapsible = FALSE, status = NULL, width = 12L,
-                          DataMuse:::BlankRow(12L),
-                          shiny::fluidRow(shiny::column(12L, align = 'center', DataMuse:::SelectizeInput(InputID='H2O_HGLM_GridTune', Label='Grid Tune', Choices = H2O_HGLM_GridTune_Choices, SelectedDefault = H2O_HGLM_GridTune_Selected, Multiple = TRUE, MaxVars = 1))),
-                          DataMuse:::BlankRow(12L),
-                          shiny::fluidRow(shiny::column(12L, align = 'center', DataMuse:::NumericInput(InputID='H2O_HGLM_MaxModelsInGrid', Label='Max Models', Value = H2O_HGLM_MaxModelsInGrid_Selected, Min = 2, Max = 1000, Step = 1))),
-                          DataMuse:::BlankRow(12L)
-                        ))
-                    ),
-
-                    DataMuse:::BlankRow(12L),
-                    DataMuse:::BlankRow(12L),
-                    DataMuse:::BlankRow(12L),
-                    DataMuse:::BlankRow(12L)))),
+              # # Grid Tuning Parameters ----
+              # shiny::tabPanel(
+              #   title = "Grid Tune",
+              #   icon = shiny::icon('code'),
+              #   DataMuse:::BlankRow(12L),
+              #   shiny::fluidRow(
+              #     shinydashboard::box(
+              #       title = NULL, solidHeader = TRUE, collapsible = FALSE, status = NULL, width = 12L,
+              #       DataMuse:::BlankRow(12L),
+              #
+              #       shiny::fluidRow(
+              #         shiny::column(
+              #           6L,
+              #           align = 'center',
+              #           shinydashboard::box(
+              #             title = NULL, solidHeader = TRUE, collapsible = FALSE, status = NULL, width = 12L,
+              #             DataMuse:::BlankRow(12L),
+              #             shiny::fluidRow(shiny::column(12L, align = 'center', DataMuse:::SelectizeInput(InputID='H2O_HGLM_GridTune', Label='Grid Tune', Choices = H2O_HGLM_GridTune_Choices, SelectedDefault = H2O_HGLM_GridTune_Selected, Multiple = TRUE, MaxVars = 1))),
+              #             DataMuse:::BlankRow(12L),
+              #             shiny::fluidRow(shiny::column(12L, align = 'center', DataMuse:::NumericInput(InputID='H2O_HGLM_MaxModelsInGrid', Label='Max Models', Value = H2O_HGLM_MaxModelsInGrid_Selected, Min = 2, Max = 1000, Step = 1))),
+              #             DataMuse:::BlankRow(12L)
+              #           ))
+              #       ),
+              #
+              #       DataMuse:::BlankRow(12L),
+              #       DataMuse:::BlankRow(12L),
+              #       DataMuse:::BlankRow(12L),
+              #       DataMuse:::BlankRow(12L)))),
 
               # Eval Parameters ----
               shiny::tabPanel(
@@ -11791,7 +11791,7 @@ ChiSquareTest_Modal_Fun <- function(id,
                           ),
                           shiny::column(
                             6L,
-                            DataMuse:::NumericInput(InputID='ChiSquareTest_SampleSize', Label='Sample Size', Value = ChiSquareTest_Samples_Selected, Min = 8, Max = 1000000, Step = 100)
+                            DataMuse:::NumericInput(InputID='ChiSquareTest_SampleSize', Label='Sample Size', Value = ChiSquareTest_SampleSize_Selected, Min = 8, Max = 1000000, Step = 100)
                           )
                         ),
                         DataMuse::BlankRow(12L),

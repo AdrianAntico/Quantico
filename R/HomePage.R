@@ -5627,13 +5627,13 @@ SideBarUI <- function(id, AppWidth=12L) {
       DataMuse:::BlankRow(12L),
       shiny::tags$details(
         DataMuse::BlankLine(12L),
-        shiny::tags$summary(shiny::tags$span(shiny::tags$b("Inference"))),
-        shiny::fluidRow(DataMuse:::Inference_Normality(id = 'Inference_Normality_link', Align = "left")),
-        shiny::fluidRow(DataMuse:::Inference_Correlation(id = 'Inference_Correlation_link', Align = "left")),
-        shiny::fluidRow(DataMuse:::Inference_1STTest(id = 'Inference_1STTest_link', Align = "left")),
-        shiny::fluidRow(DataMuse:::Inference_2STTest(id = 'Inference_2STTest_link', Align = "left")),
-        shiny::fluidRow(DataMuse:::Inference_FTest(id = 'Inference_FTest_link', Align = "left")),
-        shiny::fluidRow(DataMuse:::Inference_ChiSq(id = 'Inference_ChiSq_link', Align = "left")),
+        shiny::tags$summary(shiny::tags$span(shiny::tags$b('Machine Learning'))),
+        shiny::fluidRow(DataMuse:::ML_CatBoost(id = 'CatBoostML', Align = 'left')),
+        shiny::fluidRow(DataMuse:::ML_XGBoost(id = 'XGBoostML' , Align = 'left')),
+        shiny::fluidRow(DataMuse:::ML_LightGBM(id = 'LightGBMML', Align = 'left')),
+        shiny::fluidRow(DataMuse:::ML_H2O_DRF(id = 'H2O_DRFML',  Align = 'left')),
+        shiny::fluidRow(DataMuse:::ML_H2O_GBM(id = 'H2O_GBMML',  Align = 'left')),
+        shiny::fluidRow(DataMuse:::ML_H2O_GLM(id = 'H2O_GLMML', Align = 'left')),
         shiny::fluidRow(DataMuse:::ML_H2O_HGLM(id = 'H2O_HGLMML', Align = 'left')),
         shiny::fluidRow(DataMuse:::ML_CausalMediation(id = 'ML_CausalMediationML', Align = 'left'))
       ),
@@ -5641,20 +5641,20 @@ SideBarUI <- function(id, AppWidth=12L) {
       DataMuse:::BlankRow(12L),
       shiny::tags$details(
         DataMuse::BlankLine(12L),
-        shiny::tags$summary(shiny::tags$span(shiny::tags$b('Machine Learning'))),
-        shiny::fluidRow(DataMuse:::ML_CatBoost(id = 'CatBoostML', Align = 'left')),
-        shiny::fluidRow(DataMuse:::ML_XGBoost(id = 'XGBoostML' , Align = 'left')),
-        shiny::fluidRow(DataMuse:::ML_LightGBM(id = 'LightGBMML', Align = 'left')),
-        shiny::fluidRow(DataMuse:::ML_H2O_DRF(id = 'H2O_DRFML',  Align = 'left')),
-        shiny::fluidRow(DataMuse:::ML_H2O_GBM(id = 'H2O_GBMML',  Align = 'left')),
-        shiny::fluidRow(DataMuse:::ML_H2O_GLM(id = 'H2O_GLMML', Align = 'left'))
+        shiny::tags$summary(shiny::tags$span(shiny::tags$b("ML Scoring"))),
+        shiny::fluidRow(DataMuse:::ML_Scoring(id = 'ML_Scoring_link', Align = "left"))
       ),
 
       DataMuse:::BlankRow(12L),
       shiny::tags$details(
         DataMuse::BlankLine(12L),
-        shiny::tags$summary(shiny::tags$span(shiny::tags$b("ML Scoring"))),
-        shiny::fluidRow(DataMuse:::ML_Scoring(id = 'ML_Scoring_link', Align = "left"))
+        shiny::tags$summary(shiny::tags$span(shiny::tags$b("Inference"))),
+        shiny::fluidRow(DataMuse:::Inference_Normality(id = 'Inference_Normality_link', Align = "left")),
+        shiny::fluidRow(DataMuse:::Inference_Correlation(id = 'Inference_Correlation_link', Align = "left")),
+        shiny::fluidRow(DataMuse:::Inference_1STTest(id = 'Inference_1STTest_link', Align = "left")),
+        shiny::fluidRow(DataMuse:::Inference_2STTest(id = 'Inference_2STTest_link', Align = "left")),
+        shiny::fluidRow(DataMuse:::Inference_FTest(id = 'Inference_FTest_link', Align = "left")),
+        shiny::fluidRow(DataMuse:::Inference_ChiSq(id = 'Inference_ChiSq_link', Align = "left"))
       ),
 
       DataMuse:::BlankRow(12L),

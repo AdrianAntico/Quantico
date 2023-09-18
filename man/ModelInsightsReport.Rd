@@ -7,7 +7,7 @@
 ModelInsightsReport(
   TrainDataInclude = FALSE,
   FeatureColumnNames = NULL,
-  SampleSize = 1e+05,
+  SampleSize = 100000,
   ModelObject = NULL,
   ModelID = "ModelTest",
   SourcePath = NULL,

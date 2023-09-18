@@ -5,8 +5,8 @@
 \title{DM.BenchmarkData}
 \usage{
 DM.BenchmarkData(
-  N = 1e+07,
-  Levels = 1e+06,
+  N = 10000000,
+  Levels = 1000000,
   NAs = -1L,
   Sort = TRUE,
   Push2PostGRE = FALSE,

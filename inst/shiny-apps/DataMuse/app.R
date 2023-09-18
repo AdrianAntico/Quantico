@@ -5769,7 +5769,6 @@ server <- function(input, output, session) {
 
       FTest_SampleSize <- DataMuse::ReturnParam(xx = tryCatch({input$FTest_SampleSize}, error = function(x) NULL), Type = "numeric", Default = 100000)
       FTest_Samples <- DataMuse::ReturnParam(xx = tryCatch({input$FTest_Samples}, error = function(x) NULL), Type = "numeric", Default = 1)
-      FTest_NullValue <- DataMuse::ReturnParam(xx = tryCatch({input$FTest_NullValue}, error = function(x) NULL), Type = "numeric", Default = 0)
       FTest_RatioVariances <- DataMuse::ReturnParam(xx = tryCatch({input$FTest_RatioVariances}, error = function(x) NULL), Type = "numeric", Default = 1)
       FTest_Alternative <- DataMuse::ReturnParam(xx = tryCatch({input$FTest_Alternative}, error = function(x) NULL), Type = "character", Default = 1)
       FTest_ConfidenceLevel <- DataMuse::ReturnParam(xx = tryCatch({input$FTest_ConfidenceLevel}, error = function(x) NULL), Type = "numeric", Default = 0.95)
@@ -5811,6 +5810,80 @@ server <- function(input, output, session) {
         "ConfidenceLevel = ", DataMuse:::CEPP(FTest_ConfidenceLevel), ",\n  ",
         "SampleSize = ", DataMuse:::CEP(FTest_SampleSize), ",\n  ",
         "Samples = ", DataMuse:::CEP(FTest_Samples), ")\n"))}, error = function(x) MachineLearningCode)
+
+      # Update Available Outputs for Inference Tab
+      if(Debug) print("inference 2")
+      for(i in seq_len(NumTabs)) DataMuse::PickerInput(session = session, input = input, Update = TRUE, InputID = paste0('InferenceReportsModelSelection',i), Label = 'Testing Output', Choices = tryCatch({names(InferenceOutputList)}, error = function(x) NULL), Multiple = FALSE, MaxVars = 1L)
+      InferenceOutputList <<- InferenceOutputList
+      MachineLearningCode <<- MachineLearningCode
+      shinyWidgets::sendSweetAlert(session, title = NULL, text = "", type = NULL, btn_labels = "Success", btn_colors = NULL, html = FALSE, closeOnClickOutside = TRUE, showCloseButton = TRUE, width = "40%")
+
+    } else {
+      shinyWidgets::sendSweetAlert(session, title = NULL, text = "Data not available", type = NULL, btn_labels = "Error", btn_colors = NULL, html = FALSE, closeOnClickOutside = TRUE, showCloseButton = TRUE, width = "40%")
+    }
+
+  }, ignoreInit = TRUE)
+
+  # ChiSquareTest Execution
+  shiny::observeEvent(input$Inference_ChiSquaredTest_Execute, {
+
+    # Args
+    temp <- DataMuse::ReturnParam(xx = tryCatch({input$ChiSquareTest_SelectData}, error = function(x) NULL), Type = "character", Default = NULL)
+    if(length(temp) > 0L) {
+
+      ChiSquareTest_EchartsTheme <- DataMuse::ReturnParam(xx = tryCatch({input$EchartsTheme}, error = function(x) NULL), Type = "character", Default = "macarons")
+      ChiSquareTest_FontColorData <- DataMuse:::rgba2hex(DataMuse:::ReturnParam(xx = input[["ColorFont"]], Type = "character", Default = "#e2e2e2"))
+      ChiSquareTest_PlotWidthINF <- DataMuse:::ReturnParam(xx = input[["PlotWidthinf"]], Type = "numeric", Default = 1450)
+      ChiSquareTest_PlotWidthINF <- paste0(ChiSquareTest_PlotWidthINF, "px")
+      ChiSquareTest_PlotHeightINF <- DataMuse:::ReturnParam(xx = input[["PlotHeightinf"]], Type = "numeric", Default = 860)
+      ChiSquareTest_PlotHeightINF <- paste0(ChiSquareTest_PlotHeightINF, "px")
+
+      ChiSquareTest_SelectData <- DataList[[temp]][['data']]
+      ChiSquareTest_Variable1 <- DataMuse::ReturnParam(xx = tryCatch({input$ChiSquareTest_Variable1}, error = function(x) NULL), Type = "character", Default = NULL)
+      ChiSquareTest_Variable2 <- DataMuse::ReturnParam(xx = tryCatch({input$ChiSquareTest_Variable2}, error = function(x) NULL), Type = "character", Default = NULL)
+      ChiSquareTest_InferenceID <- DataMuse::ReturnParam(xx = tryCatch({input$ChiSquareTest_InferenceID}, error = function(x) NULL), Type = "character", Default = "INF_1STTest1")
+
+      ChiSquareTest_SampleSize <- DataMuse::ReturnParam(xx = tryCatch({input$ChiSquareTest_SampleSize}, error = function(x) NULL), Type = "numeric", Default = 100000)
+      ChiSquareTest_Samples <- DataMuse::ReturnParam(xx = tryCatch({input$ChiSquareTest_Samples}, error = function(x) NULL), Type = "numeric", Default = 1)
+      ChiSquareTest_Alternative <- DataMuse::ReturnParam(xx = tryCatch({input$ChiSquareTest_Alternative}, error = function(x) NULL), Type = "character", Default = 1)
+      ChiSquareTest_ConfidenceLevel <- DataMuse::ReturnParam(xx = tryCatch({input$ChiSquareTest_ConfidenceLevel}, error = function(x) NULL), Type = "numeric", Default = 0.95)
+
+
+      # Run function
+      if(Debug) print("inference 0")
+      if(!exists("InferenceOutputList")) InferenceOutputList <- list()
+      print(ChiSquareTest_InferenceID)
+      InferenceOutputList[[ChiSquareTest_InferenceID]] <- DataMuse::ChiSq.Test(
+        dt = ChiSquareTest_SelectData,
+        Variable1 = ChiSquareTest_Variable1,
+        Variable2 = ChiSquareTest_Variable2,
+        Alternative = ChiSquareTest_Alternative,
+        ConfidenceLevel = ChiSquareTest_ConfidenceLevel,
+        SampleSize = ChiSquareTest_SampleSize,
+        Samples = ChiSquareTest_Samples,
+        EchartsTheme = ChiSquareTest_EchartsTheme,
+        TextColor = ChiSquareTest_FontColorData$flv,
+        PlotHeight = ChiSquareTest_PlotHeightINF,
+        PlotWidth = ChiSquareTest_PlotWidthINF)
+
+      if(Debug) print("inference 1")
+
+      MachineLearningCode <- tryCatch({DataMuse:::Shiny.CodePrint.Collect(y = MachineLearningCode, x = paste0(
+        "\n",
+        "# Normality Testing\n",
+        "ChiSquareTest_SelectData <- DataList[[", DataMuse:::CEP(temp), "]][['data']]\n",
+        "Output <- DataMuse::ChiSq.Test(, \n  ",
+        "dt = ChiSquareTest_SelectData, \n  ",
+        "Variable1 = ", DataMuse:::ExpandText(ChiSquareTest_Variable1), ",\n  ",
+        "Variable2 = ", DataMuse:::ExpandText(ChiSquareTest_Variable2), ",\n  ",
+        "EchartsTheme = ", DataMuse:::CEP(ChiSquareTest_EchartsTheme), ",\n  ",
+        "TextColor = ", DataMuse:::CEP(ChiSquareTest_FontColorData$flv), ",\n  ",
+        "PlotHeight = ", DataMuse:::CEP(ChiSquareTest_PlotHeightINF), ",\n  ",
+        "PlotWidth = ", DataMuse:::CEP(ChiSquareTest_PlotWidthINF), ",\n  ",
+        "Alternative = ", DataMuse:::CEP(ChiSquareTest_Alternative), ",\n  ",
+        "ConfidenceLevel = ", DataMuse:::CEPP(ChiSquareTest_ConfidenceLevel), ",\n  ",
+        "SampleSize = ", DataMuse:::CEP(ChiSquareTest_SampleSize), ",\n  ",
+        "Samples = ", DataMuse:::CEP(ChiSquareTest_Samples), ")\n"))}, error = function(x) MachineLearningCode)
 
       # Update Available Outputs for Inference Tab
       if(Debug) print("inference 2")

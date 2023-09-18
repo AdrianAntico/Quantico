@@ -129,7 +129,7 @@ Correlation.Analysis <- function(dt = NULL,
 
   # Reactable Table
   if(length(corrMetrics) > 0L) {
-    Output[["CorrelationMetrics"]] <- reactable::reactable(
+    Output[["Correlation Metrics"]] <- reactable::reactable(
       data = corrMetrics,
       compact = TRUE,
       defaultPageSize = 20,
@@ -171,7 +171,7 @@ Correlation.Analysis <- function(dt = NULL,
 
   # Correlation Matrix
   if(length(CorrVars2) > 1L) {
-    Output[["CorrelogramPlot"]] <- tryCatch({AutoPlots::Plot.CorrMatrix(
+    Output[["Correlogram Plot"]] <- tryCatch({AutoPlots::Plot.CorrMatrix(
       dt = dt1,
       CorrVars = CorrVars2,
       CorrVarTrans = "Identity",
@@ -205,7 +205,7 @@ Correlation.Analysis <- function(dt = NULL,
 
   # Parallel Plots
   if(length(CorrVars) > 1L) {
-    Output[["ParallelPlot"]] <- tryCatch({AutoPlots::Plot.Parallel(
+    Output[["Parallel Plot"]] <- tryCatch({AutoPlots::Plot.Parallel(
       dt = dt1,
       SampleSize = 5000L,
       CorrVars = CorrVars,
@@ -248,7 +248,7 @@ Correlation.Analysis <- function(dt = NULL,
       ScoreTable = FALSE)
 
     # Line Plot
-    Output[["LinePlot"]] <- tryCatch({AutoPlots::Plot.Line(
+    Output[["Correlation Trend"]] <- tryCatch({AutoPlots::Plot.Line(
       dt = dt2,
       AggMethod = "sum",
       PreAgg = FALSE,
@@ -380,8 +380,6 @@ Normality.Analysis <- function(dt = NULL,
   OutputList <- list()
   for(val in YVars2Test) {# val = "Daily Margin"
 
-    print(val)
-
     # Create Vals for tests
     Vals <- dt[[val]] # unique(dt[[val]])
 
@@ -405,7 +403,6 @@ Normality.Analysis <- function(dt = NULL,
     gg <- gg[Variable == eval(val) & Test == "Agostino.Test", P_Value := mean(x1$P_Value_2s, na.rm = TRUE)]
 
     # Radar plot of P_Values
-    print(paste0("Radar Plot", " ", val))
     OutputList[[paste0("Radar_", val)]] <- AutoPlots::Plot.Radar(
       dt = gg[Variable == eval(val)],
       PreAgg = TRUE,
@@ -417,7 +414,6 @@ Normality.Analysis <- function(dt = NULL,
       Width = PlotWidth)
 
     # Normal Probability Plot of Vals
-    print(paste0("Probability Plot", " ", val))
     OutputList[[paste0("Probability_", val)]] <- AutoPlots::Plot.ProbabilityPlot(
       dt = dt,
       SampleSize = 2500,
@@ -430,7 +426,6 @@ Normality.Analysis <- function(dt = NULL,
 
   # FontColor <- list()
   # FontColor$flv = "black"
-  print("Reactable Metrics")
   OutputList[["Metrics"]] <- reactable::reactable(
     data = gg,
     compact = TRUE,
@@ -463,11 +458,9 @@ Normality.Analysis <- function(dt = NULL,
   )
 
   # Reorder elements and return
-  print("Return 1")
   v <- names(OutputList)
   v <- v[c(length(v), 1:(length(v)-1))]
   OutputList <- OutputList[v]
-  print("Return 2")
   return(OutputList)
 }
 
@@ -1006,7 +999,7 @@ One.Sample.TTest <- function(dt = NULL,
     data.table::set(MetricsAgg, j = "Estimate", value = round(output$Estimate, 4))
     data.table::set(MetricsAgg, j = "StdErr", value = round(output$StdErr, 4))
 
-    OutputList[["MetricsAgg"]] <- reactable::reactable(
+    OutputList[["Boostrap Aggregate Metrics"]] <- reactable::reactable(
       data = MetricsAgg,
       compact = TRUE,
       defaultPageSize = 10,
@@ -1070,7 +1063,7 @@ One.Sample.TTest <- function(dt = NULL,
   )
 
   # Density Plot: Values
-  OutputList[["p0"]] <- AutoPlots::Plot.Density(
+  OutputList[[paste0("Density Plot: ", Variable)]] <- AutoPlots::Plot.Density(
     dt = dt,
     SampleSize = 100000L,
     YVar = Variable,
@@ -1106,7 +1099,7 @@ One.Sample.TTest <- function(dt = NULL,
     Debug = FALSE)
 
   # Probability Plot: Estimate
-  OutputList[["p1"]] <- AutoPlots::Plot.ProbabilityPlot(
+  OutputList[[paste0("Probability Plot: ", Variable)]] <- AutoPlots::Plot.ProbabilityPlot(
     dt = dt,
     SampleSize = 5000L,
     YVar = Variable,
@@ -1133,7 +1126,7 @@ One.Sample.TTest <- function(dt = NULL,
   if(Samples > 1L) {
 
     # Density Plot: Estimate
-    OutputList[["p2"]] <- AutoPlots::Plot.Density(
+    OutputList[["Boostrap Density Plot: Estimates"]] <- AutoPlots::Plot.Density(
       dt = ostt_dt,
       SampleSize = 100000L,
       YVar = "Estimate",
@@ -1169,7 +1162,7 @@ One.Sample.TTest <- function(dt = NULL,
       Debug = FALSE)
 
     # Density Plot: P_Value
-    OutputList[["p3"]] <- AutoPlots::Plot.Density(
+    OutputList[["Bootstrap Density Plot: P-Values"]] <- AutoPlots::Plot.Density(
       dt = ostt_dt,
       SampleSize = 100000L,
       YVar = "P_Value",
@@ -1355,7 +1348,7 @@ Two.Sample.TTest <- function(dt = NULL,
     data.table::set(MetricsAgg, j = "Estimate_Y", value = round(output$Estimate_Y, 4))
     data.table::set(MetricsAgg, j = "StdErr", value = round(output$StdErr, 4))
 
-    OutputList[["MetricsAgg"]] <- reactable::reactable(
+    OutputList[["Bootstrap Aggregate Metrics"]] <- reactable::reactable(
       data = MetricsAgg,
       compact = TRUE,
       defaultPageSize = 10,
@@ -1419,7 +1412,7 @@ Two.Sample.TTest <- function(dt = NULL,
   )
 
   # Box Plot: Comparison
-  OutputList[["p0"]] <- AutoPlots::Plot.Box(
+  OutputList[["Box Plot: Comparison"]] <- AutoPlots::Plot.Box(
     dt = dt,
     SampleSize = 30000L,
     YVar = c(Variable1, Variable2),
@@ -1455,7 +1448,7 @@ Two.Sample.TTest <- function(dt = NULL,
     Debug = FALSE)
 
   # Density Plot: Estimate
-  OutputList[["p1"]] <- AutoPlots::Plot.Density(
+  OutputList[[paste0("Density Plot: ", Variable1)]] <- AutoPlots::Plot.Density(
     dt = dt,
     SampleSize = 100000L,
     YVar = Variable1,
@@ -1491,7 +1484,7 @@ Two.Sample.TTest <- function(dt = NULL,
     Debug = FALSE)
 
   # Density Plot: Estimate
-  OutputList[["p2"]] <- AutoPlots::Plot.ProbabilityPlot(
+  OutputList[[paste0("Probability Plot: ", Variable1)]] <- AutoPlots::Plot.ProbabilityPlot(
     dt = dt,
     SampleSize = 5000L,
     YVar = Variable1,
@@ -1515,7 +1508,7 @@ Two.Sample.TTest <- function(dt = NULL,
     Debug = FALSE)
 
   # Density Plot: Estimate
-  OutputList[["p3"]] <- AutoPlots::Plot.Density(
+  OutputList[[paste0("Density Plot: ", Variable2)]] <- AutoPlots::Plot.Density(
     dt = dt,
     SampleSize = 100000L,
     YVar = Variable2,
@@ -1551,7 +1544,7 @@ Two.Sample.TTest <- function(dt = NULL,
     Debug = FALSE)
 
   # Density Plot: Estimate
-  OutputList[["p4"]] <- AutoPlots::Plot.ProbabilityPlot(
+  OutputList[[paste0("Probability Plot: ", Variable2)]] <- AutoPlots::Plot.ProbabilityPlot(
     dt = dt,
     SampleSize = 5000L,
     YVar = Variable2,
@@ -1580,7 +1573,7 @@ Two.Sample.TTest <- function(dt = NULL,
     ostt_dt_temp <- data.table::melt.data.table(data = ostt_dt, id.vars = "Method", measure.vars = c("Estimate_X", "Estimate_Y"), variable.name = "Estimate", value.name = "Estimate_Value")
 
     # Density Plot: Estimate
-    OutputList[["p5"]] <- AutoPlots::Plot.Density(
+    OutputList[["Bootstrap Density Plot: Estimates"]] <- AutoPlots::Plot.Density(
       dt = ostt_dt_temp,
       SampleSize = 100000L,
       YVar = "Estimate_Value",
@@ -1616,7 +1609,7 @@ Two.Sample.TTest <- function(dt = NULL,
       Debug = FALSE)
 
     # Density Plot: P_Value
-    OutputList[["p6"]] <- AutoPlots::Plot.Density(
+    OutputList[["Bootstrap Density Plot: P-Values"]] <- AutoPlots::Plot.Density(
       dt = ostt_dt,
       SampleSize = 100000L,
       YVar = "P_Value",
@@ -1790,7 +1783,7 @@ F.Test <- function(dt = NULL,
     data.table::set(MetricsAgg, j = "Estimate", value = round(output$Estimate, 4))
     data.table::set(MetricsAgg, j = "Ratio of Variances", value = round(output[["Ratio of Variances"]], 4))
 
-    OutputList[["MetricsAgg"]] <- reactable::reactable(
+    OutputList[["Boostrap Aggregate Metrics"]] <- reactable::reactable(
       data = MetricsAgg,
       compact = TRUE,
       defaultPageSize = 10,
@@ -1854,7 +1847,7 @@ F.Test <- function(dt = NULL,
   )
 
   # Box Plot: Comparison
-  OutputList[["p0"]] <- AutoPlots::Plot.Box(
+  OutputList[["Box Plot: Comparison"]] <- AutoPlots::Plot.Box(
     dt = dt,
     SampleSize = 30000L,
     YVar = c(Variable1, Variable2),
@@ -1890,8 +1883,8 @@ F.Test <- function(dt = NULL,
     Debug = FALSE)
 
 
-  # Density Plot: Estimate
-  OutputList[["p1"]] <- AutoPlots::Plot.Density(
+  # Density Plot:
+  OutputList[[paste0("Density Plot: ", Variable1)]] <- AutoPlots::Plot.Density(
     dt = dt,
     SampleSize = 100000L,
     YVar = Variable1,
@@ -1926,8 +1919,8 @@ F.Test <- function(dt = NULL,
     ContainLabel = TRUE,
     Debug = FALSE)
 
-  # Density Plot: Estimate
-  OutputList[["p2"]] <- AutoPlots::Plot.ProbabilityPlot(
+  # Probability Plot: Estimate
+  OutputList[[paste0("Probability Plot: ", Variable1)]] <- AutoPlots::Plot.ProbabilityPlot(
     dt = dt,
     SampleSize = 5000L,
     YVar = Variable1,
@@ -1951,7 +1944,7 @@ F.Test <- function(dt = NULL,
     Debug = FALSE)
 
   # Density Plot: Estimate
-  OutputList[["p3"]] <- AutoPlots::Plot.Density(
+  OutputList[[paste0("Density Plot: ", Variable2)]] <- AutoPlots::Plot.Density(
     dt = dt,
     SampleSize = 100000L,
     YVar = Variable2,
@@ -1986,8 +1979,8 @@ F.Test <- function(dt = NULL,
     ContainLabel = TRUE,
     Debug = FALSE)
 
-  # Density Plot: Estimate
-  OutputList[["p4"]] <- AutoPlots::Plot.ProbabilityPlot(
+  # Probability Plot: Estimate
+  OutputList[[paste0("ProbabilityPlot: ", Variable2)]] <- AutoPlots::Plot.ProbabilityPlot(
     dt = dt,
     SampleSize = 5000L,
     YVar = Variable2,
@@ -2014,7 +2007,7 @@ F.Test <- function(dt = NULL,
   if(Samples > 1L) {
 
     # Density Plot: Estimate
-    OutputList[["p5"]] <- AutoPlots::Plot.Density(
+    OutputList[[paste0("Boostrap Density Plot: Estimates")]] <- AutoPlots::Plot.Density(
       dt = ostt_dt,
       SampleSize = 100000L,
       YVar = "Estimate",
@@ -2050,7 +2043,7 @@ F.Test <- function(dt = NULL,
       Debug = FALSE)
 
     # Density Plot: P_Value
-    OutputList[["p6"]] <- AutoPlots::Plot.Density(
+    OutputList[[paste0("Boostrap Density Plot: P-Values")]] <- AutoPlots::Plot.Density(
       dt = ostt_dt,
       SampleSize = 100000L,
       YVar = "P_Value",
@@ -2189,7 +2182,7 @@ ChiSq.Test <- function(dt = NULL,
     data.table::set(MetricsAgg, j = "Statistic", value = round(output$Statistic, 4))
     data.table::set(MetricsAgg, j = "P_Value", value = round(output$P_Value, 4))
 
-    OutputList[["MetricsAgg"]] <- reactable::reactable(
+    OutputList[["Boostrap Aggregate Metrics"]] <- reactable::reactable(
       data = MetricsAgg,
       compact = TRUE,
       defaultPageSize = 10,
@@ -2262,7 +2255,7 @@ ChiSq.Test <- function(dt = NULL,
   res[, Residuals := round(Residuals, 2)]
 
   # Heatmap: Observed
-  OutputList[["p0"]] <- AutoPlots::Plot.HeatMap(
+  OutputList[["Heatmap: Observed"]] <- AutoPlots::Plot.HeatMap(
     dt = obs,
     PreAgg = TRUE,
     YVar = Variable1,
@@ -2297,7 +2290,7 @@ ChiSq.Test <- function(dt = NULL,
     Debug = FALSE)
 
   # Heatmap: Residuals
-  OutputList[["p1"]] <- AutoPlots::Plot.HeatMap(
+  OutputList[["Heatmap: Residuals"]] <- AutoPlots::Plot.HeatMap(
     dt = res,
     PreAgg = TRUE,
     YVar = Variable1,
@@ -2335,7 +2328,7 @@ ChiSq.Test <- function(dt = NULL,
   if(Samples > 1L) {
 
     # Density Plot: P_Value
-    OutputList[["p2"]] <- AutoPlots::Plot.Density(
+    OutputList[["Bootstrap P_Values"]] <- AutoPlots::Plot.Density(
       dt = ostt_dt,
       SampleSize = 100000L,
       YVar = "P_Value",

@@ -20,6 +20,7 @@ Panels
 }
 \seealso{
 Other Output Panels: 
+\code{\link{FCPanels}()},
 \code{\link{InferencePanels}()},
 \code{\link{MLPanels}()},
 \code{\link{PlotDropDownContents}()},

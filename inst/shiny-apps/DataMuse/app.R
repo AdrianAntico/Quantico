@@ -667,6 +667,36 @@ server <- function(input, output, session) {
     }
   }, ignoreInit = TRUE)
 
+  # Add FC Tab
+  NumFCTabsCurrent <- 0L
+  shiny::observeEvent(input$NewFCTab, {
+    NumFCTabsCurrent <- NumFCTabsCurrent + 1L
+    NumFCTabsCurrent <<- NumFCTabsCurrent
+    if(NumFCTabsCurrent <= NumTabs) {
+      shiny::appendTab(
+        inputId = "tabss",
+        tab = DataMuse:::FCPanels(
+          id = paste0("FCPanels", NumFCTabsCurrent),
+          NumFCTabsCurrent,
+          AppWidth=12L,
+          IOL = tryCatch({FCOutputList}, error = function(x) NULL)),
+        select = TRUE)
+    } else {
+      NumFCTabsCurrent <- NumFCTabsCurrent - 1L
+      NumFCTabsCurrent <<- NumFCTabsCurrent
+      shinyWidgets::sendSweetAlert(session, title = NULL, text = paste0("This session is restricted to ", NumTabs, " FC Ouput Panels"), type = NULL, btn_labels = "warning", btn_colors = NULL, htFC = FALSE, closeOnClickOutside = TRUE, showCloseButton = TRUE, width = "40%")
+    }
+  }, ignoreInit = TRUE)
+
+  # Remove FC Tab
+  shiny::observeEvent(input$RemoveFCTab, {
+    if(grepl(pattern = "FC", input$tabss)) {
+      NumFCTabsCurrent <- NumFCTabsCurrent - 1L
+      NumFCTabsCurrent <<- NumFCTabsCurrent
+      shiny::removeTab("tabss", target = input$tabss)
+    }
+  }, ignoreInit = TRUE)
+
   #                                      ----
 
   #               ----
@@ -9703,6 +9733,7 @@ server <- function(input, output, session) {
   shinyjs::click(id = 'NewEDATab')
   shinyjs::click(id = 'NewInferenceTab')
   shinyjs::click(id = 'NewMLTab')
+  shinyjs::click(id = 'NewFCTab')
   shinyjs::click(id = 'NewDataTab')
   shinyjs::click(id = 'NewPlotTab')
 }

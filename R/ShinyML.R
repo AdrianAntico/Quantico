@@ -5966,8 +5966,8 @@ Shiny.FC.Panel.Metrics.Raw <- function(DataList,
   DataList[[x]][['data']][, AccumError := cumsum(AvgError), by = c(ArgsList$GroupVariables)]
   DataList[[x]][['data']][, RMSE := AvgError ^ 2]
   DataList[[x]][['data']][, MAE := abs(AvgError)]
-  DataList[[x]][['data']][, MAPE := MAE / (get(ArgsList$TargetColumnName) + 0.01)]
-  DataList[[x]][['data']][, SMAPE := 2 * MAE / (get(ArgsList$TargetColumnName) + Predictions)]
+  DataList[[x]][['data']][, MAPE := MAE / (get(ArgsList$TargetColumnName) + 0.01) - 1]
+  DataList[[x]][['data']][, SMAPE := 2 * MAE / (abs(get(ArgsList$TargetColumnName)) + abs(Predictions))]
   DataList[[x]][['data']] <- DataList[[x]][['data']][, paste0(Metrics) := lapply(.SD, round, 4L), .SDcols = c(Metrics)]
   DataList[[x]][['data']][, ModelID := eval(ModelID)]
   data.table::setcolorder(x = DataList[[x]][['data']], neworder = c(ncol(DataList[[x]][['data']]), 1L:(ncol(DataList[[x]][['data']])-1L)))
@@ -6020,6 +6020,16 @@ Shiny.FC.Panel.Metrics.Agg <- function(DataList,
   } else {
     aggD <- DataList[[x]][['data']][DataSet == 'Evaluation'][, lapply(.SD, mean, na.rm = TRUE), .SDcols = c(vars), by = c(GroupVariables)]
   }
+
+  # Final Modifications to metrics
+  aggD[, eval(ArgsList[['TargetColumnName']]) := round(get(ArgsList[['TargetColumnName']]), 4)]
+  aggD[, Predictions := round(Predictions, 4)]
+  aggD[, RMSE := round(sqrt(RMSE), 2)]
+  aggD[, MAPE := paste0(round(MAPE, 4)*100, "%")]
+  aggD[, SMAPE := paste0(round(SMAPE, 4)*100, "%")]
+  aggD[, AvgError := round(AvgError, 2)]
+  aggD[, AccumError := round(AccumError, 2)]
+  aggD[, MAE := round(MAE, 2)]
 
   if(DebugFC) print(rep("$$$", 5))
   if(DebugFC) print(aggD)
@@ -6920,7 +6930,6 @@ Shiny.FC.CARMA <- function(input,
       DataList <- Output$DataList; CodeList <- Output$CodeList; rm(Output)
       for(i in seq_len(TabCount)) DataMuse::PickerInput(session, input, Update = TRUE, InputID = paste0("EDAData", i), Label = 'Data Selection', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
       for(i in seq_len(TabCount)) DataMuse::PickerInput(session, input, Update = TRUE, InputID = paste0("DataOutputSelection", i), Label = 'Display Data', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
-      # DataList <<- DataList; CodeList <<- CodeList
     } else {
       if(DebugFC) print('Forecast: NewData is not Defined')
     }
@@ -7046,6 +7055,8 @@ Shiny.FC.CARMA <- function(input,
   # *************************************
   if(RunMode == 'Backtest' && data.table::is.data.table(ValidationData) && length(ArgsList[['Model']]) > 0L) {
 
+    ValidationDataCheck <- TRUE
+
     if(DebugFC) print('Shiny.FC.CARMA 8.a')
 
     # Backtest CatBoost for Forecasting Purposes
@@ -7064,6 +7075,8 @@ Shiny.FC.CARMA <- function(input,
       RunMode = RunMode,
       ModelID = ModelID
     ))
+  } else {
+    ValidationDataCheck <- FALSE
   }
 
   # ----
@@ -7136,6 +7149,88 @@ Shiny.FC.CARMA <- function(input,
     "ArgsList[['TargetTransformation']] <- ", DataMuse:::CEPP(ArgsList[['TargetTransformation']]), "\n",
     "ArgsList[['Methods']] <- ", DataMuse:::CEP(ArgsList[['Methods']]), "\n",
     "ArgsList[['Difference']] <- ", DataMuse:::CEPP(ArgsList[['Difference']]), "\n"))}, error = function(x) CodeList)
+
+  # If no validation data was selected and some sort of backtesting procedure is requested
+  if(ValidationDataCheck && RunMode %in% c('Backtest', 'Feature Engineering Test', 'Backtest Cross Eval')) {
+    if(ArgsList[['TimeUnit']] == "1-Minute") {
+      CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+        "\n",
+        "# FC Create Validation Data\n",
+        "if(!exists('ArgsList') ArgsList <- list()\n",
+        "ValidationData <- data.table::copy(ArgsList[['data']])\n",
+        "ArgsList[['data']] <- ArgsList[['data']][get(ArgsList[['DateColumnName']]) < max(get(ArgsList[['DateColumnName']])) - lubridate::minutes(eval(ArgsList[['FC_Periods']]))]\n"))
+    } else if(ArgsList[['TimeUnit']] == "5-Minutes") {
+      CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+        "\n",
+        "# FC Create Validation Data\n",
+        "if(!exists('ArgsList') ArgsList <- list()\n",
+        "ValidationData <- data.table::copy(ArgsList[['data']])\n",
+        "ArgsList[['data']] <- ArgsList[['data']][get(ArgsList[['DateColumnName']]) < max(get(ArgsList[['DateColumnName']])) - lubridate::minutes(eval(ArgsList[['FC_Periods']]) * 5)]\n"))
+    } else if(ArgsList[['TimeUnit']] == "10-Minutes") {
+      CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+        "\n",
+        "# FC Create Validation Data\n",
+        "if(!exists('ArgsList') ArgsList <- list()\n",
+        "ValidationData <- data.table::copy(ArgsList[['data']])\n",
+        "ArgsList[['data']] <- ArgsList[['data']][get(ArgsList[['DateColumnName']]) < max(get(ArgsList[['DateColumnName']])) - lubridate::minutes(eval(ArgsList[['FC_Periods']]) * 10)]\n"))
+    } else if(ArgsList[['TimeUnit']] == "15-Minutes") {
+      CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+        "\n",
+        "# FC Create Validation Data\n",
+        "if(!exists('ArgsList') ArgsList <- list()\n",
+        "ValidationData <- data.table::copy(ArgsList[['data']])\n",
+        "ArgsList[['data']] <- ArgsList[['data']][get(ArgsList[['DateColumnName']]) < max(get(ArgsList[['DateColumnName']])) - lubridate::minutes(eval(ArgsList[['FC_Periods']]) * 15)]\n"))
+    } else if(ArgsList[['TimeUnit']] == "30-Minutes") {
+      CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+        "\n",
+        "# FC Create Validation Data\n",
+        "if(!exists('ArgsList') ArgsList <- list()\n",
+        "ValidationData <- data.table::copy(ArgsList[['data']])\n",
+        "ArgsList[['data']] <- ArgsList[['data']][get(ArgsList[['DateColumnName']]) < max(get(ArgsList[['DateColumnName']])) - lubridate::minutes(eval(ArgsList[['FC_Periods']]) * 30)]\n"))
+    } else if(ArgsList[['TimeUnit']] == "Hourly") {
+      CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+        "\n",
+        "# FC Create Validation Data\n",
+        "if(!exists('ArgsList') ArgsList <- list()\n",
+        "ValidationData <- data.table::copy(ArgsList[['data']])\n",
+        "ArgsList[['data']] <- ArgsList[['data']][get(ArgsList[['DateColumnName']]) < max(get(ArgsList[['DateColumnName']])) - lubridate::hours(eval(ArgsList[['FC_Periods']]))]\n"))
+    } else if(ArgsList[['TimeUnit']] == "Daily") {
+      CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+        "\n",
+        "# FC Create Validation Data\n",
+        "if(!exists('ArgsList') ArgsList <- list()\n",
+        "ValidationData <- data.table::copy(ArgsList[['data']])\n",
+        "ArgsList[['data']] <- ArgsList[['data']][get(ArgsList[['DateColumnName']]) < max(get(ArgsList[['DateColumnName']])) - lubridate::days(eval(ArgsList[['FC_Periods']]))]\n"))
+    } else if(ArgsList[['TimeUnit']] == "Weekly") {
+      CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+        "\n",
+        "# FC Create Validation Data\n",
+        "if(!exists('ArgsList') ArgsList <- list()\n",
+        "ValidationData <- data.table::copy(ArgsList[['data']])\n",
+        "ArgsList[['data']] <- ArgsList[['data']][get(ArgsList[['DateColumnName']]) < max(get(ArgsList[['DateColumnName']])) - lubridate::weeks(eval(ArgsList[['FC_Periods']]))]\n"))
+    } else if(ArgsList[['TimeUnit']] == "Monthly") {
+      CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+        "\n",
+        "# FC Create Validation Data\n",
+        "if(!exists('ArgsList') ArgsList <- list()\n",
+        "ValidationData <- data.table::copy(ArgsList[['data']])\n",
+        "ArgsList[['data']] <- ArgsList[['data']][get(ArgsList[['DateColumnName']]) < max(get(ArgsList[['DateColumnName']])) %m-% lubridate::months(eval(ArgsList[['FC_Periods']]))]\n"))
+    } else if(ArgsList[['TimeUnit']] == "Quarterly") {
+      CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+        "\n",
+        "# FC Create Validation Data\n",
+        "if(!exists('ArgsList') ArgsList <- list()\n",
+        "ValidationData <- data.table::copy(ArgsList[['data']])\n",
+        "ArgsList[['data']] <- ArgsList[['data']][get(ArgsList[['DateColumnName']]) < max(get(ArgsList[['DateColumnName']])) %m-% lubridate::months(eval(ArgsList[['FC_Periods']]) * 3)]\n"))
+    } else if(ArgsList[['TimeUnit']] == "Yearly") {
+      CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+        "\n",
+        "# FC Create Validation Data\n",
+        "if(!exists('ArgsList') ArgsList <- list()\n",
+        "ValidationData <- data.table::copy(ArgsList[['data']])\n",
+        "ArgsList[['data']] <- ArgsList[['data']][get(ArgsList[['DateColumnName']]) < max(get(ArgsList[['DateColumnName']])) - lubridate::years(eval(ArgsList[['FC_Periods']]))]\n"))
+    }
+  }
 
   # Production Args
   if(DebugFC) print('Shiny.FC.CARMA 14')
@@ -7304,6 +7399,7 @@ Shiny.FC.CARMA <- function(input,
   CodeList <- tryCatch({DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
     "\n",
     "# Ensure date column is correct date type\n",
+    "DebugFC <- FALSE\n",
     "Output <- DataMuse::FC.DateCast(ArgsList, DebugFC, VD = ValidationData)\n",
     "ArgsList <- Output$ArgsList; ValidationData <- Output$VD; rm(Output); gc()\n"))}, error = function(x) CodeList)
 

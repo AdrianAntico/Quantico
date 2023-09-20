@@ -13473,7 +13473,7 @@ CatBoostCARMA_Modal_Fun <- function(id,
                   DataMuse:::SelectizeInput(InputID = "CatBoostCARMA_ArgsList", Label = "Existing Models", Choices = CatBoostCARMA_ArgsList_Choices, SelectedDefault = CatBoostCARMA_ArgsList_Selected, Multiple = TRUE, MaxVars = 100L)))), # box
 
             DataMuse:::BlankRow(12L),
-            shiny::p("Steps 1-6 required"),
+            DataMuse:::BlankRow(12L),
 
             # Tabs
             shiny::tabsetPanel(
@@ -13496,7 +13496,7 @@ CatBoostCARMA_Modal_Fun <- function(id,
                       ),
                       DataMuse:::BlankRow(12L),
                       shiny::fluidRow(
-                        shiny::column(12L, align = 'center', DataMuse:::SelectizeInput(InputID = "CatBoostCARMA_FCPeriods", Label = "Forecast Periods", Choices = CatBoostCARMA_FCPeriods_Choices, SelectedDefault = CatBoostCARMA_FCPeriods_Selected, Multiple = TRUE, MaxVars = 1L))
+                        shiny::column(12L, align = 'center', DataMuse:::NumericInput(InputID = "CatBoostCARMA_FCPeriods", Label = "Forecast Periods", Value = CatBoostCARMA_FCPeriods_Selected, Min = 1L, Max = 100000L, Step = 1L))
                       ),
                       DataMuse:::BlankRow(12L),
                       shiny::fluidRow(
@@ -13611,7 +13611,7 @@ CatBoostCARMA_Modal_Fun <- function(id,
                       title = NULL, solidHeader = TRUE, collapsible = FALSE, status = NULL, width = 12L,
                       DataMuse::BlankRow(12L),
                       shiny::fluidRow(
-                        shiny::column(12L, align = 'center', DataMuse:::SelectizeInput(InputID = "CatBoostCARMA_TimeWeights", Label = "Time weights: Weighting = (time weights) ^ Days Back from Current", Choices = CatBoostCARMA_TimeWeights_Choices, SelectedDefault = CatBoostCARMA_TimeWeights_Selected, Multiple = TRUE, MaxVars = 1L))
+                        shiny::column(12L, align = 'center', DataMuse:::NumericInput(InputID = "CatBoostCARMA_TimeWeights", Label = "Time weights: Weighting = (time weights) ^ Days Back from Current", Value = CatBoostCARMA_TimeWeights_Selected, Min = 0.01, Max = 1, Step = 0.0001))
                       ),
                       DataMuse::BlankRow(12L),
                       shiny::fluidRow(
@@ -13723,19 +13723,19 @@ CatBoostCARMA_Modal_Fun <- function(id,
                       title = NULL, solidHeader = TRUE, collapsible = FALSE, status = NULL, width = 12L,
                       DataMuse:::BlankRow(12L),
                       shiny::fluidRow(
-                        shiny::column(12L, align = 'center', DataMuse:::NumericInput(InputID = "CatBoostCARMA_Lags", Label = "Select Lags", Value = CatBoostCARMA_Lags_Selected, Min = 0, Max = 100000, Step = 1))
+                        shiny::column(12L, align = 'center', DataMuse:::SelectizeInput(InputID = "CatBoostCARMA_Lags", Label = "Select Lags", Choices = CatBoostCARMA_Lags_Choices, SelectedDefault = CatBoostCARMA_Lags_Selected, Multiple = TRUE, MaxVars = 1000L))
                       ),
                       DataMuse:::BlankRow(12L),
                       shiny::fluidRow(
-                        shiny::column(12L, align = 'center', DataMuse:::NumericInput(InputID = "CatBoostCARMA_MovingAverages", Label = "Select Moving Averages", Value = CatBoostCARMA_MovingAverages_Selected, Min = 0, Max = 100000, Step = 1))
+                        shiny::column(12L, align = 'center', DataMuse:::SelectizeInput(InputID = "CatBoostCARMA_MovingAverages", Label = "Select Moving Averages", Choices = CatBoostCARMA_MovingAverages_Choices, SelectedDefault = CatBoostCARMA_MovingAverages_Selected, Multiple = TRUE, MaxVars = 1000L))
                       ),
                       DataMuse:::BlankRow(12L),
                       shiny::fluidRow(
-                        shiny::column(12L, align = 'center', DataMuse:::NumericInput(InputID = "CatBoostCARMA_MovingSD", Label = "Select Standard Deviations", Value = CatBoostCARMA_MovingSD_Selected, Min = 0, Max = 100000, Step = 1))
+                        shiny::column(12L, align = 'center', DataMuse:::SelectizeInput(InputID = "CatBoostCARMA_MovingSD", Label = "Select Standard Deviations", Choices = CatBoostCARMA_MovingSD_Choices, SelectedDefault = CatBoostCARMA_MovingSD_Selected, Multiple = TRUE, MaxVars = 1000L))
                       ),
                       DataMuse:::BlankRow(12L),
                       shiny::fluidRow(
-                        shiny::column(12L, align = 'center', DataMuse:::NumericInput(InputID = "CatBoostCARMA_MovingKurt", Label = "Select Kurtosis", Value = CatBoostCARMA_MovingKurt_Selected, Min = 0, Max = 100000, Step = 1))
+                        shiny::column(12L, align = 'center', DataMuse:::SelectizeInput(InputID = "CatBoostCARMA_MovingKurt", Label = "Select Kurtosis", Choices = CatBoostCARMA_MovingKurt_Choices, SelectedDefault = CatBoostCARMA_MovingKurt_Selected, Multiple = TRUE, MaxVars = 1000L))
                       ),
                       DataMuse:::BlankRow(12L),
                       DataMuse:::BlankRow(12L)
@@ -13747,7 +13747,7 @@ CatBoostCARMA_Modal_Fun <- function(id,
                       title = NULL, solidHeader = TRUE, collapsible = FALSE, status = NULL, width = 12L,
                       DataMuse:::BlankRow(12L),
                       shiny::fluidRow(
-                        shiny::column(12L, align = 'center', DataMuse:::NumericInput(InputID = "CatBoostCARMA_MovingSkew", Label = "Select Skewness", Value = CatBoostCARMA_MovingSkew_Selected, Min = 0, Max = 100000, Step = 1))
+                        shiny::column(12L, align = 'center', DataMuse:::SelectizeInput(InputID = "CatBoostCARMA_MovingSkew", Label = "Select Skewness", Choices = CatBoostCARMA_MovingSkew_Choices, SelectedDefault = CatBoostCARMA_MovingSkew_Selected, Multiple = TRUE, MaxVars = 1000L))
                       ),
                       DataMuse:::BlankRow(12L),
                       shiny::fluidRow(
@@ -13759,7 +13759,7 @@ CatBoostCARMA_Modal_Fun <- function(id,
                       ),
                       DataMuse:::BlankRow(12L),
                       shiny::fluidRow(
-                        shiny::column(12L, align = 'center', DataMuse:::NumericInput(InputID = "CatBoostCARMA_MovingQuantiles", Label = "Select windows", Value = CatBoostCARMA_MovingQuantiles_Selected, Min = 0, Max = 100000, Step = 1))
+                        shiny::column(12L, align = 'center', DataMuse:::SelectizeInput(InputID = "CatBoostCARMA_MovingQuantiles", Label = "Select windows", Choices = CatBoostCARMA_MovingQuantiles_Choices, SelectedDefault = CatBoostCARMA_MovingQuantiles_Selected, Multiple = TRUE, MaxVars = 1000L))
                       ),
                       DataMuse:::BlankRow(12L),
                       DataMuse:::BlankRow(12L)
@@ -14225,7 +14225,7 @@ XGBoostCARMA_Modal_Fun <- function(id,
                   DataMuse:::SelectizeInput(InputID = "XGBoostCARMA_ArgsList", Label = "Existing Models", Choices = XGBoostCARMA_ArgsList_Choices, SelectedDefault = XGBoostCARMA_ArgsList_Selected, Multiple = TRUE, MaxVars = 100L)))), # box
 
             DataMuse:::BlankRow(12L),
-            shiny::p("Steps 1-6 required"),
+            DataMuse:::BlankRow(12L),
 
             # Tabs
             shiny::tabsetPanel(
@@ -14248,7 +14248,7 @@ XGBoostCARMA_Modal_Fun <- function(id,
                       ),
                       DataMuse:::BlankRow(12L),
                       shiny::fluidRow(
-                        shiny::column(12L, align = 'center', DataMuse:::SelectizeInput(InputID = "XGBoostCARMA_FCPeriods", Label = "Forecast Periods", Choices = XGBoostCARMA_FCPeriods_Choices, SelectedDefault = XGBoostCARMA_FCPeriods_Selected, Multiple = TRUE, MaxVars = 1L))
+                        shiny::column(12L, align = 'center', DataMuse:::NumericInput(InputID = "XGBoostCARMA_FCPeriods", Label = "Forecast Periods", Value = XGBoostCARMA_FCPeriods_Selected, Min = 1L, Max = 100000L, Step = 1L))
                       ),
                       DataMuse:::BlankRow(12L),
                       shiny::fluidRow(
@@ -14353,7 +14353,7 @@ XGBoostCARMA_Modal_Fun <- function(id,
                       title = NULL, solidHeader = TRUE, collapsible = FALSE, status = NULL, width = 12L,
                       DataMuse::BlankRow(12L),
                       shiny::fluidRow(
-                        shiny::column(12L, align = 'center', DataMuse:::SelectizeInput(InputID = "XGBoostCARMA_TimeWeights", Label = "Time weights: Weighting = (time weights) ^ Days Back from Current", Choices = XGBoostCARMA_TimeWeights_Choices, SelectedDefault = XGBoostCARMA_TimeWeights_Selected, Multiple = TRUE, MaxVars = 1L))
+                        shiny::column(12L, align = 'center', DataMuse:::NumericInput(InputID = "XGBoostCARMA_TimeWeights", Label = "Time weights: Weighting = (time weights) ^ Days Back from Current", Value = XGBoostCARMA_TimeWeights_Selected, Min = 0.01, Max = 1, Step = 0.0001))
                       ),
                       DataMuse::BlankRow(12L),
                       shiny::fluidRow(
@@ -14465,19 +14465,19 @@ XGBoostCARMA_Modal_Fun <- function(id,
                       title = NULL, solidHeader = TRUE, collapsible = FALSE, status = NULL, width = 12L,
                       DataMuse:::BlankRow(12L),
                       shiny::fluidRow(
-                        shiny::column(12L, align = 'center', DataMuse:::NumericInput(InputID = "XGBoostCARMA_Lags", Label = "Select Lags", Value = XGBoostCARMA_Lags_Selected, Min = 0, Max = 10000, Step = 1))
+                        shiny::column(12L, align = 'center', DataMuse:::SelectizeInput(InputID = "XGBoostCARMA_Lags", Label = "Select Lags", Choices = XGBoostCARMA_Lags_Choices, SelectedDefault = XGBoostCARMA_Lags_Selected, Multiple = TRUE, MaxVars = 1000L))
                       ),
                       DataMuse:::BlankRow(12L),
                       shiny::fluidRow(
-                        shiny::column(12L, align = 'center', DataMuse:::NumericInput(InputID = "XGBoostCARMA_MovingAverages", Label = "Select Moving Averages", Value = XGBoostCARMA_MovingAverages_Selected, Min = 0, Max = 10000, Step = 1))
+                        shiny::column(12L, align = 'center', DataMuse:::SelectizeInput(InputID = "XGBoostCARMA_MovingAverages", Label = "Select Moving Averages", Choices = XGBoostCARMA_MovingAverages_Choices, SelectedDefault = XGBoostCARMA_MovingAverages_Selected, Multiple = TRUE, MaxVars = 1000L))
                       ),
                       DataMuse:::BlankRow(12L),
                       shiny::fluidRow(
-                        shiny::column(12L, align = 'center', DataMuse:::NumericInput(InputID = "XGBoostCARMA_MovingSD", Label = "Select Standard Deviations", Value = XGBoostCARMA_MovingSD_Selected, Min = 0, Max = 10000, Step = 1))
+                        shiny::column(12L, align = 'center', DataMuse:::SelectizeInput(InputID = "XGBoostCARMA_MovingSD", Label = "Select Standard Deviations", Choices = XGBoostCARMA_MovingSD_Choices, SelectedDefault = XGBoostCARMA_MovingSD_Selected, Multiple = TRUE, MaxVars = 1000L))
                       ),
                       DataMuse:::BlankRow(12L),
                       shiny::fluidRow(
-                        shiny::column(12L, align = 'center', DataMuse:::NumericInput(InputID = "XGBoostCARMA_MovingKurt", Label = "Select Kurtosis", Value = XGBoostCARMA_MovingKurt_Selected, Min = 0, Max = 10000, Step = 1))
+                        shiny::column(12L, align = 'center', DataMuse:::SelectizeInput(InputID = "XGBoostCARMA_MovingKurt", Label = "Select Kurtosis", Choices = XGBoostCARMA_MovingKurt_Choices, SelectedDefault = XGBoostCARMA_MovingKurt_Selected, Multiple = TRUE, MaxVars = 1000L))
                       ),
                       DataMuse:::BlankRow(12L),
                       DataMuse:::BlankRow(12L)
@@ -14489,7 +14489,7 @@ XGBoostCARMA_Modal_Fun <- function(id,
                       title = NULL, solidHeader = TRUE, collapsible = FALSE, status = NULL, width = 12L,
                       DataMuse:::BlankRow(12L),
                       shiny::fluidRow(
-                        shiny::column(12L, align = 'center', DataMuse:::NumericInput(InputID = "XGBoostCARMA_MovingSkew", Label = "Select Skewness", Value = XGBoostCARMA_MovingSkew_Selected, Min = 0, Max = 10000, Step = 1))
+                        shiny::column(12L, align = 'center', DataMuse:::SelectizeInput(InputID = "XGBoostCARMA_MovingSkew", Label = "Select Skewness", Choices = XGBoostCARMA_MovingSkew_Choices, SelectedDefault = XGBoostCARMA_MovingSkew_Selected, Multiple = TRUE, MaxVars = 1000L))
                       ),
                       DataMuse:::BlankRow(12L),
                       shiny::fluidRow(
@@ -14501,7 +14501,7 @@ XGBoostCARMA_Modal_Fun <- function(id,
                       ),
                       DataMuse:::BlankRow(12L),
                       shiny::fluidRow(
-                        shiny::column(12L, align = 'center', DataMuse:::NumericInput(InputID = "XGBoostCARMA_MovingQuantiles", Label = "Select windows", Value = XGBoostCARMA_MovingQuantiles_Selected, Min = 0, Max = 10000, Step = 1))
+                        shiny::column(12L, align = 'center', DataMuse:::SelectizeInput(InputID = "XGBoostCARMA_MovingQuantiles", Label = "Select windows", Choices = XGBoostCARMA_MovingQuantiles_Choices, SelectedDefault = XGBoostCARMA_MovingQuantiles_Selected, Multiple = TRUE, MaxVars = 1000L))
                       ),
                       DataMuse:::BlankRow(12L),
                       DataMuse:::BlankRow(12L)
@@ -14896,7 +14896,7 @@ LightGBMCARMA_Modal_Fun <- function(id,
                   DataMuse:::SelectizeInput(InputID = "LightGBMCARMA_ArgsList", Label = "Existing Models", Choices = LightGBMCARMA_ArgsList_Choices, SelectedDefault = LightGBMCARMA_ArgsList_Selected,  Multiple = TRUE, MaxVars = 100L)))), # box
 
             DataMuse:::BlankRow(12L),
-            shiny::p("Steps 1-6 required"),
+            DataMuse:::BlankRow(12L),
 
             # Tabs
             shiny::tabsetPanel(
@@ -14919,7 +14919,7 @@ LightGBMCARMA_Modal_Fun <- function(id,
                       ),
                       DataMuse:::BlankRow(12L),
                       shiny::fluidRow(
-                        shiny::column(12L, align = 'center', DataMuse:::SelectizeInput(InputID = "LightGBMCARMA_FCPeriods", Label = "Forecast Periods", Choices = LightGBMCARMA_FCPeriods_Choices, SelectedDefault = LightGBMCARMA_FCPeriods_Selected, Multiple = TRUE, MaxVars = 1L))
+                        shiny::column(12L, align = 'center', DataMuse:::NumericInput(InputID = "LightGBMCARMA_FCPeriods", Label = "Forecast Periods", Value = LightGBMCARMA_FCPeriods_Selected, Min = 1L, Max = 100000L, Step = 1L))
                       ),
                       DataMuse:::BlankRow(12L),
                       shiny::fluidRow(
@@ -15028,7 +15028,7 @@ LightGBMCARMA_Modal_Fun <- function(id,
                       title = NULL, solidHeader = TRUE, collapsible = FALSE, status = NULL, width = 12L,
                       DataMuse::BlankRow(12L),
                       shiny::fluidRow(
-                        shiny::column(12L, align = 'center', DataMuse:::SelectizeInput(InputID = "LightGBMCARMA_TimeWeights", Label = "Time weights: Weighting = (time weights) ^ Days Back from Current", Choices = LightGBMCARMA_TimeWeights_Choices, SelectedDefault = LightGBMCARMA_TimeWeights_Selected, Multiple = TRUE, MaxVars = 1L))
+                        shiny::column(12L, align = 'center', DataMuse:::NumericInput(InputID = "LightGBMCARMA_TimeWeights", Label = "Time weights: Weighting = (time weights) ^ Days Back from Current", Value = LightGBMCARMA_TimeWeights_Selected, Min = 0.01, Max = 1, Step = 0.0001))
                       ),
                       DataMuse::BlankRow(12L),
                       shiny::fluidRow(
@@ -15140,19 +15140,19 @@ LightGBMCARMA_Modal_Fun <- function(id,
                       title = NULL, solidHeader = TRUE, collapsible = FALSE, status = NULL, width = 12L,
                       DataMuse:::BlankRow(12L),
                       shiny::fluidRow(
-                        shiny::column(12L, align = 'center', DataMuse:::NumericInput(InputID = "LightGBMCARMA_Lags", Label = "Select Lags", Value = LightGBMCARMA_Lags_Selected, Min = 0, Max = 10000, Step = 1))
+                        shiny::column(12L, align = 'center', DataMuse:::SelectizeInput(InputID = "LightGBMCARMA_Lags", Label = "Select Lags", Choices = LightGBMCARMA_Lags_Choices, SelectedDefault = LightGBMCARMA_Lags_Selected, Multiple = TRUE, MaxVars = 1000L))
                       ),
                       DataMuse:::BlankRow(12L),
                       shiny::fluidRow(
-                        shiny::column(12L, align = 'center', DataMuse:::NumericInput(InputID = "LightGBMCARMA_MovingAverages", Label = "Select Moving Averages", Value = LightGBMCARMA_MovingAverages_Selected, Min = 0, Max = 10000, Step = 1))
+                        shiny::column(12L, align = 'center', DataMuse:::SelectizeInput(InputID = "LightGBMCARMA_MovingAverages", Label = "Select Moving Averages", Choices = LightGBMCARMA_MovingAverages_Choices, SelectedDefault = LightGBMCARMA_MovingAverages_Selected, Multiple = TRUE, MaxVars = 1000L))
                       ),
                       DataMuse:::BlankRow(12L),
                       shiny::fluidRow(
-                        shiny::column(12L, align = 'center', DataMuse:::NumericInput(InputID = "LightGBMCARMA_MovingSD", Label = "Select Standard Deviations", Value = LightGBMCARMA_MovingSD_Selected, Min = 0, Max = 10000, Step = 1))
+                        shiny::column(12L, align = 'center', DataMuse:::SelectizeInput(InputID = "LightGBMCARMA_MovingSD", Label = "Select Standard Deviations", Choices = LightGBMCARMA_MovingSD_Choices, SelectedDefault = LightGBMCARMA_MovingSD_Selected, Multiple = TRUE, MaxVars = 1000L))
                       ),
                       DataMuse:::BlankRow(12L),
                       shiny::fluidRow(
-                        shiny::column(12L, align = 'center', DataMuse:::NumericInput(InputID = "LightGBMCARMA_MovingKurt", Label = "Select Kurtosis", Value = LightGBMCARMA_MovingKurt_Selected, Min = 0, Max = 10000, Step = 1))
+                        shiny::column(12L, align = 'center', DataMuse:::SelectizeInput(InputID = "LightGBMCARMA_MovingKurt", Label = "Select Kurtosis", Choices = LightGBMCARMA_MovingKurt_Choices, SelectedDefault = LightGBMCARMA_MovingKurt_Selected, Multiple = TRUE, MaxVars = 1000L))
                       ),
                       DataMuse:::BlankRow(12L),
                       DataMuse:::BlankRow(12L)
@@ -15164,7 +15164,7 @@ LightGBMCARMA_Modal_Fun <- function(id,
                       title = NULL, solidHeader = TRUE, collapsible = FALSE, status = NULL, width = 12L,
                       DataMuse:::BlankRow(12L),
                       shiny::fluidRow(
-                        shiny::column(12L, align = 'center', DataMuse:::NumericInput(InputID = "LightGBMCARMA_MovingSkew", Label = "Select Skewness", Value = LightGBMCARMA_MovingSkew_Selected, Min = 0, Max = 10000, Step = 1))
+                        shiny::column(12L, align = 'center', DataMuse:::SelectizeInput(InputID = "LightGBMCARMA_MovingSkew", Label = "Select Skewness", Choices = LightGBMCARMA_MovingSkew_Choices, SelectedDefault = LightGBMCARMA_MovingSkew_Selected, Multiple = TRUE, MaxVars = 1000L))
                       ),
                       DataMuse:::BlankRow(12L),
                       shiny::fluidRow(
@@ -15176,7 +15176,7 @@ LightGBMCARMA_Modal_Fun <- function(id,
                       ),
                       DataMuse:::BlankRow(12L),
                       shiny::fluidRow(
-                        shiny::column(12L, align = 'center', DataMuse:::NumericInput(InputID = "LightGBMCARMA_MovingQuantiles", Label = "Select windows", Value = LightGBMCARMA_MovingQuantiles_Selected, Min = 0, Max = 10000, Step = 1))
+                        shiny::column(12L, align = 'center', DataMuse:::SelectizeInput(InputID = "LightGBMCARMA_MovingQuantiles", Label = "Select windows", Choices = LightGBMCARMA_MovingQuantiles_Choices, SelectedDefault = LightGBMCARMA_MovingQuantiles_Selected, Multiple = TRUE, MaxVars = 1000L))
                       ),
                       DataMuse:::BlankRow(12L),
                       DataMuse:::BlankRow(12L)
@@ -20163,6 +20163,174 @@ EDAPanels <- function(id, Page, AppWidth=12L, DL = NULL) {
         shiny::column(
           12L, align = 'center', id = "EDAOutput1",
           shiny::uiOutput(paste0("EDAOutput", Page))
+        )
+      )
+    )
+  )
+}
+
+#' @title FCPanels
+#'
+#' @description Panels
+#'
+#' @author Adrian Antico
+#' @family Output Panels
+#'
+#' @param id = 'FCPanels'
+#' @param AppWidth = 12L
+#' @param Page numeric
+#' @param DL numeric
+#'
+#' @export
+FCPanels <- function(id, Page, AppWidth=12L, IOL = NULL) {
+  ns <- shiny::NS(id)
+  shiny::tabPanel(
+    title = paste0('FC ',Page),
+    icon = shiny::icon('wand-magic-sparkles'),
+
+    DataMuse::BlankRow(12L),
+    shinydashboard::box(
+      title = NULL, solidHeader = TRUE, collapsible = FALSE, status = 'danger', width = 12L, class = "OutputPaneBox",
+      style = "padding-top: 10px; min-height: 1540px; max-height: 1540px; overflow-x: clip; overflow-y:auto; margin-top: 1px; padding-left: 12px; background-color: #0000; border: 0px #0000 solid; box-shadow: 0px 0px 0px 0px #0000;",
+
+      # ML Panel of Options
+      shiny::fluidRow(
+        style = "padding-left: 8px;padding-right: 15px;padding-top: 8px;",
+        shinydashboard::box(
+          title = NULL, solidHeader = TRUE, collapsible = FALSE, status = 'warning', width = 12L, style = "padding-top: 26px",
+          shiny::column(
+            width = 5L, align = 'center',
+            shiny::wellPanel(
+              style = "min-height: 240px; padding-top: 0px;",
+              shiny::fluidRow(
+                style = "padding-top: 78px; padding-bottom: 33px;",
+                DataMuse::PickerInput(InputID = paste0('FCReportsModelSelection',Page), Label = 'FC Output', Choices = tryCatch({names(IOL)}, error = function(x) NULL), Multiple = FALSE, MaxVars = 1L)
+              )
+            )
+          ),
+
+          shiny::column(
+            width = 1L, align = 'center',
+            style = "padding-top: 73px; padding-left: 0px; padding-right: 0px; background-color: #0000;",
+            shiny::fluidRow(
+              shiny::actionButton(
+                inputId = paste0('FCOutputExecute',Page),
+                label = "Run", icon = shiny::icon("chevron-right")),
+            ),
+            # shiny::fluidRow(
+            #   style = "padding-top: 30px;",
+            #   shiny::actionButton(
+            #     inputId = paste0('FCMarkdownExecute',Page),
+            #     label = "Save", icon = shiny::icon("chevron-right")),
+            # ),
+            shiny::tags$style(
+              paste0(
+                "
+                  #", paste0('FCOutputExecute',Page), " {
+                  padding-left: 0px;
+                  padding-right: 0px;
+                  background-color: #858a9c6e;
+                  margin-top: 29px;
+                  height: 50px;
+                  width: 95px;
+                  border-radius: 25px;
+                  font-size: x-large;
+                  }
+
+                  #", paste0('FCOutputExecute',Page), ":hover {
+                  padding-left: 0px;
+                  padding-right: 0px;
+                  background-color: #858a9c6e;
+                  margin-top: 29px;
+                  height: 50px;
+                  width: 95px;
+                  box-shadow: 0px 0px 20px #858a9c6e;
+                  border-radius: 25px;
+                  font-size: x-large;
+                  }"
+              )
+            )
+          ),
+
+
+          # #", paste0('FCMarkdownExecute',Page), " {
+          # padding-left: 0px;
+          # padding-right: 0px;
+          # background-color: #858a9c6e;
+          #   margin-top: 29px;
+          # height: 50px;
+          # width: 95px;
+          # border-radius: 25px;
+          # font-size: x-large;
+          # }
+          #
+          # #", paste0('FCMarkdownExecute',Page), ":hover {
+          # padding-left: 0px;
+          # padding-right: 0px;
+          # background-color: #858a9c6e;
+          #   margin-top: 29px;
+          # height: 50px;
+          # width: 95px;
+          # box-shadow: 0px 0px 20px #858a9c6e;
+          # border-radius: 25px;
+          # font-size: x-large;
+          # }
+
+
+          shiny::column(
+            width = 2L,
+            align = 'left',
+            shiny::wellPanel(
+              style = "min-height: 240px; padding-top: 0px;",
+              shiny::fluidRow(
+                style = "padding-top: 63px;",
+                shiny::column(12L, align = "left", style = "padding-left: 30px;", shinyWidgets::materialSwitch(inputId = paste0("Striped", Page), label = 'Striped', status = "danger", right = FALSE, value = TRUE), shiny::tags$style("padding-left: 40px;"))
+              ),
+              shiny::fluidRow(
+                style = "padding-top: 40px; padding-bottom: 20px;",
+                shiny::column(12L, align = 'center', shiny::numericInput(inputId = paste0("MinRowsa", Page), label = 'Records per Page', value = 10, min = 10, max = 1000, step = 10))
+              )
+            )
+          ),
+          shiny::column(
+            width = 2L,
+            align = 'left',
+            shiny::wellPanel(
+              style = "min-height: 240px; padding-top: 0px;",
+              shiny::fluidRow(
+                style = "padding-top: 63px; padding-bottom: 68px",
+                shiny::column(12L, align = "left", style = "padding-left: 30px;", shinyWidgets::materialSwitch(inputId = paste0("Compact", Page), label = 'Compact', status = "danger", right = FALSE, value = TRUE), shiny::tags$style("padding-left: 40px;"))
+              ),
+              shiny::fluidRow(
+                shiny::column(12L, align = "left", style = "padding-left: 30px;", shinyWidgets::materialSwitch(inputId = paste0("Filterable", Page), label = 'Filterable', status = "danger", right = FALSE, value = TRUE), shiny::tags$style("padding-left: 40px;"))
+              )
+            )
+          ),
+
+          shiny::column(
+            width = 2L,
+            align = 'left',
+            shiny::wellPanel(
+              style = "min-height: 240px; padding-top: 0px;",
+              shiny::fluidRow(
+                style = "padding-top: 15px; padding-bottom: 15px;",
+                shiny::column(12L, align = 'center', shiny::sliderInput(inputId = paste0("PlotWidthinf",Page), label = 'Plot Width', value = 1450, min = 100, max = 2800))
+              ),
+              shiny::fluidRow(
+                shiny::column(12L, align = "center", shiny::sliderInput(inputId = paste0("PlotHeightinf",Page), label = 'Plot Height', value = 950, min = 100, max = 2800))
+              )
+            )
+          )
+        )
+      ),
+
+      # Output
+      DataMuse::BlankRow(12L),
+      shiny::fluidRow(
+        style = "padding-left: 9px; padding-right: 14px;",
+        shiny::column(
+          12L, align = 'center', id = "MLOutput1",
+          shiny::uiOutput(paste0("FCOutput", Page))
         )
       )
     )

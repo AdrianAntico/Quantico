@@ -5704,6 +5704,10 @@ SideBarUI <- function(id, AppWidth=12L) {
         shiny::fluidRow(
           shiny::column(6L, align = 'center', shiny::actionButton(inputId = "NewMLTab", label = "ML", icon = shiny::icon(name = "plus"), style = PostGREButtonStyle)),
           shiny::column(6L, align = 'center', shiny::actionButton(inputId = "RemoveMLTab", label = "ML", icon = shiny::icon(name = "minus"), style = CloudButtonStyle))),
+        DataMuse::BlankRow(12L),
+        shiny::fluidRow(
+          shiny::column(6L, align = 'center', shiny::actionButton(inputId = "NewFCTab", label = "FC", icon = shiny::icon(name = "plus"), style = PostGREButtonStyle)),
+          shiny::column(6L, align = 'center', shiny::actionButton(inputId = "RemoveFCTab", label = "FC", icon = shiny::icon(name = "minus"), style = CloudButtonStyle))),
         DataMuse::BlankRow(12L)
       ),
 
@@ -5768,93 +5772,80 @@ SideBarUI <- function(id, AppWidth=12L) {
           #       Multiple = TRUE, MaxVars = 1L, SelectedDefault = 'Poincare', CloseAfterSelect = FALSE)
           #   )
           # )
-        )#,
+        ),
 
-        # shiny::tags$details(
-        #   shiny::tags$summary(shiny::tags$span(shiny::tags$b('R Packages'))),
-        #   shiny::fluidRow(
-        #     shiny::column(
-        #       12L,
-        #       DataMuse::BlankLine(12L),
-        #       shiny::fluidRow(
-        #         class = "PackageLinks",
-        #         style="padding-left: 20px; min-height: 35px",
-        #         shiny::tagList(
-        #           shiny::fluidRow(
-        #             shiny::column(
-        #               12L,
-        #               shiny::tags$h3("DataMuse"))),
-        #           shiny::HTML("<a class='github-button' href='https://github.com/AdrianAntico/DataMuse' data-color-scheme='no-preference: dark; light: light; dark: dark;' data-icon='octicon-star' data-size='large' aria-label='Star AdrianAntico/DataMuse on GitHub'>Star</a>"),
-        #           shiny::HTML("<a class='github-button' href='https://github.com/AdrianAntico/DataMuse/issues' data-color-scheme='no-preference: dark; light: light; dark: dark;' data-icon='octicon-issue-opened' data-size='large' aria-label='Issue AdrianAntico/DataMuse on GitHub'>Issue</a>")
-        #         )),
-        #       DataMuse:::BlankRow(12L),
-        #       shiny::fluidRow(
-        #         class = "PackageLinks",
-        #         style="padding-left: 20px; min-height: 35px",
-        #         shiny::tagList(
-        #           shiny::fluidRow(
-        #             shiny::column(
-        #               12L,
-        #               shiny::tags$h3("Rodeo"))),
-        #           shiny::HTML("<a class='github-button' href='https://github.com/AdrianAntico/DataMuse' data-color-scheme='no-preference: dark; light: light; dark: dark;' data-icon='octicon-star' data-size='large' aria-label='Star AdrianAntico/Rodeo on GitHub'>Star</a>"),
-        #           shiny::HTML("<a class='github-button' href='https://github.com/AdrianAntico/Rodeo/issues' data-color-scheme='no-preference: dark; light: light; dark: dark;' data-icon='octicon-issue-opened' data-size='large' aria-label='Issue AdrianAntico/Rodeo on GitHub'>Issue</a>")
-        #         )
-        #       ),
-        #       DataMuse:::BlankRow(12L),
-        #       shiny::fluidRow(
-        #         class = "PackageLinks",
-        #         style="padding-left: 20px; min-height: 35px",
-        #         shiny::tagList(
-        #           shiny::fluidRow(
-        #             shiny::column(
-        #               12L,
-        #               shiny::tags$h3("AutoPlots"))),
-        #           shiny::HTML("<a class='github-button' href='https://github.com/AdrianAntico/AutoPlots' data-color-scheme='no-preference: dark; light: light; dark: dark;' data-icon='octicon-star' data-size='large' aria-label='Star AdrianAntico/AutoPlots on GitHub'>Star</a>"),
-        #           shiny::HTML("<a class='github-button' href='https://github.com/AdrianAntico/AutoPlots/issues' data-color-scheme='no-preference: dark; light: light; dark: dark;' data-icon='octicon-issue-opened' data-size='large' aria-label='Issue AdrianAntico/AutoPlots on GitHub'>Issue</a>")
-        #         )
-        #       ),
-        #       DataMuse:::BlankRow(12L),
-        #       shiny::fluidRow(
-        #         class = "PackageLinks",
-        #         style="padding-left: 20px; min-height: 35px",
-        #         shiny::tagList(
-        #           shiny::fluidRow(
-        #             shiny::column(
-        #               12L,
-        #               shiny::tags$h3("AutoQuant"))),
-        #           shiny::HTML("<a class='github-button' href='https://github.com/AdrianAntico/AutoQuant' data-color-scheme='no-preference: dark; light: light; dark: dark;' data-icon='octicon-star' data-size='large' aria-label='Star AdrianAntico/AutoQuant on GitHub'>Star</a>"),
-        #           shiny::HTML("<a class='github-button' href='https://github.com/AdrianAntico/AutoQuant/issues' data-color-scheme='no-preference: dark; light: light; dark: dark;' data-icon='octicon-issue-opened' data-size='large' aria-label='Issue AdrianAntico/AutoQuant on GitHub'>Issue</a>")
-        #         )
-        #       ),
-        #       # DataMuse:::BlankRow(12L),
-        #       # shiny::fluidRow(
-        #       #   class = "PackageLinks",
-        #       #   style="padding-left: 20px; min-height: 35px",
-        #       #   shiny::tagList(
-        #       #     shiny::fluidRow(
-        #       #       shiny::column(
-        #       #         12L,
-        #       #         shiny::tags$h3("AutoForecast"))),
-        #       #     shiny::HTML("<a class='github-button' href='https://github.com/AdrianAntico/AutoForecasting' data-color-scheme='no-preference: dark; light: light; dark: dark;' data-icon='octicon-star' data-size='large' aria-label='Star AdrianAntico/AutoForecasting on GitHub'>Star</a>"),
-        #       #     shiny::HTML("<a class='github-button' href='https://github.com/AdrianAntico/AutoForecasting/issues' data-color-scheme='no-preference: dark; light: light; dark: dark;' data-icon='octicon-issue-opened' data-size='large' aria-label='Issue AdrianAntico/AutoForecasting on GitHub'>Issue</a>")
-        #       #   )
-        #       # ),
-        #       DataMuse:::BlankRow(12L),
-        #       shiny::fluidRow(
-        #         class = "PackageLinks",
-        #         style="padding-left: 20px; min-height: 35px",
-        #         shiny::tagList(
-        #           shiny::fluidRow(
-        #             shiny::column(
-        #               12L,
-        #               shiny::tags$h3("AutoNLP"))),
-        #           shiny::HTML("<a class='github-button' href='https://github.com/AdrianAntico/AutoNLP' data-color-scheme='no-preference: dark; light: light; dark: dark;' data-icon='octicon-star' data-size='large' aria-label='Star AdrianAntico/AutoNLP on GitHub'>Star</a>"),
-        #           shiny::HTML("<a class='github-button' href='https://github.com/AdrianAntico/AutoNLP/issues' data-color-scheme='no-preference: dark; light: light; dark: dark;' data-icon='octicon-issue-opened' data-size='large' aria-label='Issue AdrianAntico/AutoNLP on GitHub'>Issue</a>")
-        #         )
-        #       ) # end fluid row
-        #     ) # end column
-        #   ) # end fluid row
-        # ) # R Packages Details
+        shiny::tags$details(
+          shiny::tags$summary(shiny::tags$span(shiny::tags$b('R Packages'))),
+          shiny::fluidRow(
+            shiny::column(
+              12L,
+              DataMuse::BlankLine(12L),
+              shiny::fluidRow(
+                class = "PackageLinks",
+                style="padding-left: 20px; min-height: 35px",
+                shiny::tagList(
+                  shiny::fluidRow(
+                    shiny::column(
+                      12L,
+                      shiny::tags$h3("DataMuse"))),
+                  shiny::HTML("<a class='github-button' href='https://github.com/AdrianAntico/DataMuse' data-color-scheme='no-preference: dark; light: light; dark: dark;' data-icon='octicon-star' data-size='large' aria-label='Star AdrianAntico/DataMuse on GitHub'>Star</a>"),
+                  shiny::HTML("<a class='github-button' href='https://github.com/AdrianAntico/DataMuse/issues' data-color-scheme='no-preference: dark; light: light; dark: dark;' data-icon='octicon-issue-opened' data-size='large' aria-label='Issue AdrianAntico/DataMuse on GitHub'>Issue</a>")
+                )),
+              DataMuse:::BlankRow(12L),
+              shiny::fluidRow(
+                class = "PackageLinks",
+                style="padding-left: 20px; min-height: 35px",
+                shiny::tagList(
+                  shiny::fluidRow(
+                    shiny::column(
+                      12L,
+                      shiny::tags$h3("Rodeo"))),
+                  shiny::HTML("<a class='github-button' href='https://github.com/AdrianAntico/Rodeo' data-color-scheme='no-preference: dark; light: light; dark: dark;' data-icon='octicon-star' data-size='large' aria-label='Star AdrianAntico/Rodeo on GitHub'>Star</a>"),
+                  shiny::HTML("<a class='github-button' href='https://github.com/AdrianAntico/Rodeo/issues' data-color-scheme='no-preference: dark; light: light; dark: dark;' data-icon='octicon-issue-opened' data-size='large' aria-label='Issue AdrianAntico/Rodeo on GitHub'>Issue</a>")
+                )
+              ),
+              DataMuse:::BlankRow(12L),
+              shiny::fluidRow(
+                class = "PackageLinks",
+                style="padding-left: 20px; min-height: 35px",
+                shiny::tagList(
+                  shiny::fluidRow(
+                    shiny::column(
+                      12L,
+                      shiny::tags$h3("AutoPlots"))),
+                  shiny::HTML("<a class='github-button' href='https://github.com/AdrianAntico/AutoPlots' data-color-scheme='no-preference: dark; light: light; dark: dark;' data-icon='octicon-star' data-size='large' aria-label='Star AdrianAntico/AutoPlots on GitHub'>Star</a>"),
+                  shiny::HTML("<a class='github-button' href='https://github.com/AdrianAntico/AutoPlots/issues' data-color-scheme='no-preference: dark; light: light; dark: dark;' data-icon='octicon-issue-opened' data-size='large' aria-label='Issue AdrianAntico/AutoPlots on GitHub'>Issue</a>")
+                )
+              ),
+              DataMuse:::BlankRow(12L),
+              shiny::fluidRow(
+                class = "PackageLinks",
+                style="padding-left: 20px; min-height: 35px",
+                shiny::tagList(
+                  shiny::fluidRow(
+                    shiny::column(
+                      12L,
+                      shiny::tags$h3("AutoQuant"))),
+                  shiny::HTML("<a class='github-button' href='https://github.com/AdrianAntico/AutoQuant' data-color-scheme='no-preference: dark; light: light; dark: dark;' data-icon='octicon-star' data-size='large' aria-label='Star AdrianAntico/AutoQuant on GitHub'>Star</a>"),
+                  shiny::HTML("<a class='github-button' href='https://github.com/AdrianAntico/AutoQuant/issues' data-color-scheme='no-preference: dark; light: light; dark: dark;' data-icon='octicon-issue-opened' data-size='large' aria-label='Issue AdrianAntico/AutoQuant on GitHub'>Issue</a>")
+                )
+              ),
+              DataMuse:::BlankRow(12L),
+              shiny::fluidRow(
+                class = "PackageLinks",
+                style="padding-left: 20px; min-height: 35px",
+                shiny::tagList(
+                  shiny::fluidRow(
+                    shiny::column(
+                      12L,
+                      shiny::tags$h3("AutoNLP"))),
+                  shiny::HTML("<a class='github-button' href='https://github.com/AdrianAntico/AutoNLP' data-color-scheme='no-preference: dark; light: light; dark: dark;' data-icon='octicon-star' data-size='large' aria-label='Star AdrianAntico/AutoNLP on GitHub'>Star</a>"),
+                  shiny::HTML("<a class='github-button' href='https://github.com/AdrianAntico/AutoNLP/issues' data-color-scheme='no-preference: dark; light: light; dark: dark;' data-icon='octicon-issue-opened' data-size='large' aria-label='Issue AdrianAntico/AutoNLP on GitHub'>Issue</a>")
+                )
+              ) # end fluid row
+            ) # end column
+          ) # end fluid row
+        ) # R Packages Details
       ) # Settings Details
     ),
     DataMuse:::BlankRow(12L),
@@ -5868,9 +5859,9 @@ SideBarUI <- function(id, AppWidth=12L) {
             shiny::tagList(
               tags$h1("Contact"),
               shiny::a(
-                # [![Github](https://img.shields.io/badge/-Github-000?style=flat&logo=Github&logoColor=white)](https://github.com/AdrianAntico)
                 shiny::markdown("
-                            [![Linkedin](https://img.shields.io/badge/-LinkedIn-blue?style=flat&logo=Linkedin&logoColor=white)](https://www.linkedin.com/company/datamuseai/)
+                            [![Github](https://img.shields.io/badge/-Github-000?style=flat&logo=Github&logoColor=white)](https://github.com/AdrianAntico)
+                            [![Linkedin](https://img.shields.io/badge/-LinkedIn-blue?style=flat&logo=Linkedin&logoColor=white)](www.linkedin.com/in/adrian-antico)
                             "),
                 href = "")))),
         shiny::fluidRow(
@@ -5879,7 +5870,7 @@ SideBarUI <- function(id, AppWidth=12L) {
             shiny::fluidRow(
               shiny::column(
                 12L,
-                shiny::h5("Copyright © 2023 DataMuse.ai, Inc. - All Rights Reserved."))))),
+                shiny::h5("Copyright © 2023 Adrian Antico - All Rights Reserved."))))),
         DataMuse:::BlankRow(12L)
         # shiny::fluidRow(
         #   shiny::column(

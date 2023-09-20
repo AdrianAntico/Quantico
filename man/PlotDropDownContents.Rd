@@ -35,6 +35,7 @@ Display a plot dropdown button with a formatted input box for YVar, XVar, GroupV
 \seealso{
 Other Output Panels: 
 \code{\link{EDAPanels}()},
+\code{\link{FCPanels}()},
 \code{\link{InferencePanels}()},
 \code{\link{MLPanels}()},
 \code{\link{PlotPanels}()}

@@ -1,12 +1,11 @@
-#' @title Muse
+#' @title runQuantico
 #'
 #' @description Shiny web app with capabilities in data managment, data wrangling, feature engineering, machine learning, statistical modeling, forecasting, visualization, and code print outs in multiple languages.
 #'
 #' @author Adrian Antico
 #' @family GUI
 #'
-#' @param MaxPlots 12L
-#' @param MaxPlotTabs 10L
+#' @param MaxTabs 10L
 #' @param AzureCredsFile Path to your credentials file
 #' @param WorkingDirectory getwd() or your preferred location. Saving local data will output to this directory
 #' @param UserName_Password_DT NULL. In order to enforce authentication, supply a data.table with columns 'UserName' which contains the names of your users and 'Password' which contains the acceptable passwords. E.g. data.table::data.table(UserName = c('Adrian Antico', 'Guest'), Password = c('Password1', 'Password2')). Case sensitivity applies.
@@ -46,37 +45,36 @@
 #' }
 #'
 #' @export
-Muse <- function(UserName_Password_DT = NULL,
+runQuantico <- function(UserName_Password_DT = NULL,
 
-                 # Plotting
-                 MaxPlots = 24L,
-                 MaxPlotTabs = 2L,
+                       # Plotting
+                       MaxTabs = 2L,
 
-                 # Data Management
-                 AzureCredsFile = NULL,
-                 WorkingDirectory = getwd(),
-                 PostGRE_DBNames = NULL,
-                 PostGRE_Host = NULL,
-                 PostGRE_Port = NULL,
-                 PostGRE_User = NULL,
-                 PostGRE_Password = NULL,
+                       # Data Management
+                       AzureCredsFile = NULL,
+                       WorkingDirectory = getwd(),
+                       PostGRE_DBNames = NULL,
+                       PostGRE_Host = NULL,
+                       PostGRE_Port = NULL,
+                       PostGRE_User = NULL,
+                       PostGRE_Password = NULL,
 
-                 # QA
-                 Debug = FALSE,
-                 DebugSessionLoad = FALSE,
-                 DebugAddPlotTab = FALSE,
-                 DebugPlotButtonTextUpdate = FALSE,
-                 DebugAddPlotButton = FALSE,
-                 DebugPlottingOE = FALSE,
-                 DebugFC = FALSE) {
+                       # QA
+                       Debug = FALSE,
+                       DebugSessionLoad = FALSE,
+                       DebugAddPlotTab = FALSE,
+                       DebugPlotButtonTextUpdate = FALSE,
+                       DebugAddPlotButton = FALSE,
+                       DebugPlottingOE = FALSE,
+                       DebugFC = FALSE) {
 
   CacheDir = NULL
   CacheName = 'data.csv'
 
   # Pass args to shiny app
   shiny::shinyOptions(
-    MaxPlots = MaxPlotTabs * 12,
-    MaxPlotTabs = MaxPlotTabs,
+    MaxPlots = MaxTabs * 12,
+    MaxPlotTabs = MaxTabs,
     AzureCredsFile = AzureCredsFile,
     WorkingDirectory = WorkingDirectory,
     PostGRE_DBNames = PostGRE_DBNames,

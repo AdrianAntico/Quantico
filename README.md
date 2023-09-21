@@ -93,7 +93,7 @@ devtools::install_github("AdrianAntico/Quantico", upgrade = FALSE, dependencies 
 
 In your RStudio session, run the Quantico::Muse() function to kick off a Quantico session
 
-Easy start (no PostGRE, no Azure, no Polygon)
+Easy start (no PostGRE, no Azure)
 
 ```r
 # Optionally, you can change up the WorkingDirectory argument for your desired file path location
@@ -114,5 +114,9 @@ Quantico::Muse(
   PostGRE_User = '...',
   PostGRE_Password = '...')
 ```
+
+## Plotting Page
+
+In the plotting panel you simply click on the top buttons (e.g. Plot 1) and select a plot from the dropdown menu. Then you click the button below to fill out the necessary parameters for your plot. Lastly, drop the newly created box in the dragula pane and move it to the bottom row in order for it to display.
 
 <img src="https://github.com/AdrianAntico/Quantico/blob/main/inst/AppMain.PNG" align="center" width="800" />

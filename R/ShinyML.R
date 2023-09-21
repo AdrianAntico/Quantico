@@ -6126,6 +6126,8 @@ Shiny.FC.Panel.Train <- function(ArgsList, CodeList, DataList, ModelID, Algo = '
     ArgsList$ModelID <- ModelID
   }
 
+  ReportOutput <- list()
+
   # Combine TrainData and VD: train and not forecast, so combine and do a regular train / validate / test model build / analysis
   if(DebugFC) print("Shiny.FC.Panel.Train 1")
   if(length(VD) > 0L) {
@@ -6146,6 +6148,9 @@ Shiny.FC.Panel.Train <- function(ArgsList, CodeList, DataList, ModelID, Algo = '
   dtc <- data.table::copy(ArgsList[['data']])
   ArgsList$TrainOnFull <- FALSE
   if(DebugFC) print("Shiny.FC.Panel.Train 3")
+
+  # saveRDS(object = ArgsList, file = "C:/Users/Bizon/Documents/GitHub/CatBoostFC_ArgsList.rds")
+
   if(tolower(Algo) == 'catboost') {
     Output <- do.call(what = AutoQuant::AutoCatBoostCARMA, args = ArgsList)
   } else if(tolower(Algo) == 'xgboost') {
@@ -6176,7 +6181,7 @@ Shiny.FC.Panel.Train <- function(ArgsList, CodeList, DataList, ModelID, Algo = '
     "}\n",
     "}\n"))}, error = function(x) NULL)
 
-  ArgsList[[paste0(ModelID, "_Meta")]] <- Output$ModelInformation
+  ArgsList[[paste0(ModelID, "_Meta")]] <- Output$TestModel
   if(DebugFC) print("Shiny.FC.Panel.Train 7")
 
   # ML Data: just like in the ML function shiny.ML.Trainer()
@@ -6227,7 +6232,8 @@ Shiny.FC.Panel.Train <- function(ArgsList, CodeList, DataList, ModelID, Algo = '
     DataList = DataList,
     CodeList = CodeList,
     ArgsList = ArgsList,
-    ValidationData = VD
+    ValidationData = VD,
+    ReportObjects = Output
   ))
 }
 
@@ -7432,7 +7438,7 @@ Shiny.FC.CARMA <- function(input,
 
       # Train CatBoost for Forecasting Purposes
       Output <- DataMuse::Shiny.FC.Panel.Train(ArgsList, CodeList, DataList, ModelID, VD = ValidationData, DebugFC = DebugFC, Algo = Algo)
-      DataList <- Output$DataList; CodeList <- Output$CodeList; ArgsList <- Output$ArgsList
+      DataList <- Output$DataList; CodeList <- Output$CodeList; ArgsList <- Output$ArgsList; ReportOutput <- Output$ReportObjects
       for(i in seq_len(TabCount)) DataMuse::PickerInput(session, input, Update = TRUE, InputID = paste0("EDAData", i), Label = 'Data Selection', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
       for(i in seq_len(TabCount)) DataMuse::PickerInput(session, input, Update = TRUE, InputID = paste0("DataOutputSelection", i), Label = 'Display Data', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
 
@@ -7443,7 +7449,8 @@ Shiny.FC.CARMA <- function(input,
         CodeList = CodeList,
         ArgsList = ArgsList,
         RunMode = RunMode,
-        ModelID = ModelID
+        ModelID = ModelID,
+        ReportOutput = ReportOutput
       ))
     }
 

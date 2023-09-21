@@ -1079,7 +1079,7 @@ Shiny.Plot.Build <- function(input,
               "MaxLags = ", DataMuse:::CEPP(MaxLagsVariable), ",\n  ",
               "YVarTrans = ", DataMuse:::CEP(YVarTrans), ",\n  ",
               "AggMethod = 'sum',\n  ",
-              "Title = Autocorrelation Plot,\n  ",
+              "Title = 'Autocorrelation Plot',\n  ",
               "TextColor = ", DataMuse:::CEP(ColorFont), "\n  ",
               "EchartsTheme = ", DataMuse:::CEP(EchartsTheme), ")\n"))}, error = function(x) NULL)
 
@@ -1128,7 +1128,7 @@ Shiny.Plot.Build <- function(input,
                 "MaxLags = ", DataMuse:::CEPP(MaxLagsVariable), ",\n  ",
                 "YVarTrans = ", DataMuse:::CEP(YVarTrans), ",\n  ",
                 "AggMethod = 'sum',\n  ",
-                "Title = Autocorrelation Plot,\n  ",
+                "Title = 'Partial Autocorrelation Plot',\n  ",
                 "TextColor = ", DataMuse:::CEP(ColorFont), "\n  ",
                 "EchartsTheme = ", DataMuse:::CEP(EchartsTheme), ")\n"))}, error = function(x) NULL)
 

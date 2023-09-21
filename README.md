@@ -114,3 +114,5 @@ Quantico::Muse(
   PostGRE_User = '...',
   PostGRE_Password = '...')
 ```
+
+<img src="https://github.com/AdrianAntico/Quantico/blob/main/inst/AppMain.PNG" align="center" width="800" />

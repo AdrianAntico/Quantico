@@ -102,11 +102,13 @@ devtools::install_github("AdrianAntico/Quantico", upgrade = FALSE, dependencies 
 
 In your RStudio session, run the Quantico::Muse() function to kick off a Quantico session
 
-Easy start (no PostGRE, no Azure)
+Easy start (no PostGRE, no Azure Blob access)
 
 ```r
 # Optionally, you can change up the WorkingDirectory argument for your desired file path location
-Quantico::runQuantico(MaxTabs = 5L, WorkingDirectory = getwd())
+Quantico::runQuantico(
+  MaxTabs = 2L, 
+  WorkingDirectory = getwd())
 ```
 
 If you have a PostGRE installation you can add in the PostGRE parameters
@@ -114,7 +116,7 @@ If you have a PostGRE installation you can add in the PostGRE parameters
 ```r
 # Optionally, you can change up the WorkingDirectory argument for your desired file path location (don't forget to use these "/" instead of these "\" in your path)
 Quantico::runQuantico(
-  MaxTabs = 5L,
+  MaxTabs = 2L,
   WorkingDirectory = getwd(),
   PostGRE_DBNames = NULL, # list of database names you want connected
   PostGRE_Host = 'localhost',

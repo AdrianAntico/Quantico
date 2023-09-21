@@ -43,11 +43,11 @@ setTimeout(function() {
 ```
 
 ```{r Example, echo = FALSE}
-DataMuse:::DataTable(data)
+Quantico:::DataTable(data)
 ````
 
 # Shiny Usage
-output$Table <- shiny::renderUI({DataMuse:::DataTable(data)})
+output$Table <- shiny::renderUI({Quantico:::DataTable(data)})
 
 }
 

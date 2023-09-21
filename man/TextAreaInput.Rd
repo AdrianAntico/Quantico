@@ -55,7 +55,7 @@ TextAreaInput automatically builds a picker input with tryCatch's and ProjectLis
 \examples{
 \dontrun{
 output$TS_CARMA_HolidayMovingAverages <- renderUI({
-  DataMuse:::SelectizeInput(InputID = "TS_CARMA_HolidayMovingAverages", Update = FALSE, Label = "Select Holiday Count MA's", Choices = as.character(0:50),
+  Quantico:::SelectizeInput(InputID = "TS_CARMA_HolidayMovingAverages", Update = FALSE, Label = "Select Holiday Count MA's", Choices = as.character(0:50),
                            SelectedDefault = as.character(c(1,2)), Size = 10, SelectedText = "count > 1", Multiple = TRUE, ActionBox = TRUE)})
 }
 }

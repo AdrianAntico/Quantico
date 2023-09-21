@@ -11,7 +11,7 @@ Returns a vector of N color hex values with transparency added, where N is the n
 }
 \examples{
 \dontrun{
-DataMuse:::LevelsHex(dt,gv,'Blues')
+Quantico:::LevelsHex(dt,gv,'Blues')
 }
 }
 \keyword{internal}

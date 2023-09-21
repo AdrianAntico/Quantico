@@ -54,7 +54,7 @@ NumericInput automatically builds a numeric input with tryCatch's and ProjectLis
 \examples{
 \dontrun{
 output$TS_CARMA_HolidayMovingAverages <- renderUI({
-  DataMuse:::SliderInput(InputID = "TS_CARMA_HolidayMovingAverages",
+  Quantico:::SliderInput(InputID = "TS_CARMA_HolidayMovingAverages",
                             Label = "Select Holiday Count MA's",
                             Min = 1,
                             Max = 1,

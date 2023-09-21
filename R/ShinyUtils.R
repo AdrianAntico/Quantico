@@ -98,7 +98,7 @@ CEP <- function(x) if(any(missing(x))) 'NULL' else if(!exists('x')) 'NULL' else 
 
 #' # number and logical with FALSE / TRUE default
 #' @noRd
-CEPP <- function(x, Default = NULL, Type = 'character') if(missing(x)) 'NULL' else if(!exists('x')) 'NULL' else if(length(x) == 0) 'NULL' else if(any(is.na(x))) 'NULL' else if(all(x == "")) 'NULL' else if(Type == 'numeric') DataMuse:::NumNull(x) else if(Type == 'character') DataMuse:::CharNull(x)
+CEPP <- function(x, Default = NULL, Type = 'character') if(missing(x)) 'NULL' else if(!exists('x')) 'NULL' else if(length(x) == 0) 'NULL' else if(any(is.na(x))) 'NULL' else if(all(x == "")) 'NULL' else if(Type == 'numeric') Quantico:::NumNull(x) else if(Type == 'character') Quantico:::CharNull(x)
 
 #' @title ExpandText
 #'
@@ -427,11 +427,11 @@ Shiny.CodePrint.OrganizeCode <- function(DM = NULL,
 #' ```
 #'
 #' ```{r Example, echo = FALSE}
-#' DataMuse:::DataTable(data)
+#' Quantico:::DataTable(data)
 #' ````
 #'
 #' # Shiny Usage
-#' output$Table <- shiny::renderUI({DataMuse:::DataTable(data)})
+#' output$Table <- shiny::renderUI({Quantico:::DataTable(data)})
 #'
 #' }
 #'
@@ -459,7 +459,7 @@ DataTable <- function(data, FixedCols = 2) {
   #   "  }",
   #   "}")
 
-  #x <- DataMuse:::NumericColNames(data)
+  #x <- Quantico:::NumericColNames(data)
   #if(identical(x, numeric(0))) x <- NULL
   #numcols <- ncol(data)
   table <- DT::datatable(

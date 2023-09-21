@@ -33,15 +33,15 @@ Shiny.EDA.ReportOutput <- function(input,
   # Comment
   # Args Mgt
   if(Debug) print("Shiny.EDA.ReportOutput 2")
-  data <- DataList[[DataMuse:::ReturnParam(xx = tryCatch({input[[paste0("EDAData", Page)]]}, error = function(x) NULL), Type = "character", Default = NULL)]][['data']]
+  data <- DataList[[Quantico:::ReturnParam(xx = tryCatch({input[[paste0("EDAData", Page)]]}, error = function(x) NULL), Type = "character", Default = NULL)]][['data']]
   if(!data.table::is.data.table(data)) return(NULL)
-  UnivariateVars <- DataMuse:::ReturnParam(xx = tryCatch({input[[paste0("EDAUnivariateVars", Page)]]}, error = function(x) NULL), Type = "character", Default = NULL)
+  UnivariateVars <- Quantico:::ReturnParam(xx = tryCatch({input[[paste0("EDAUnivariateVars", Page)]]}, error = function(x) NULL), Type = "character", Default = NULL)
   if(length(UnivariateVars) > 50L) UnivariateVars <- UnivariateVars[seq_len(50L)]
-  CorrVars <- DataMuse:::ReturnParam(xx = tryCatch({input[[paste0("EDACorrVars", Page)]]}, error = function(x) NULL), Type = "character", Default = NULL)
+  CorrVars <- Quantico:::ReturnParam(xx = tryCatch({input[[paste0("EDACorrVars", Page)]]}, error = function(x) NULL), Type = "character", Default = NULL)
   if(length(CorrVars) > 50L) CorrVars <- CorrVars[seq_len(50L)]
-  TrendVars <- DataMuse:::ReturnParam(xx = tryCatch({input[[paste0("EDATrendVars", Page)]]}, error = function(x) NULL), Type = "character", Default = NULL)
+  TrendVars <- Quantico:::ReturnParam(xx = tryCatch({input[[paste0("EDATrendVars", Page)]]}, error = function(x) NULL), Type = "character", Default = NULL)
   if(length(TrendVars) > 50L) TrendVars <- TrendVars[seq_len(50L)]
-  TrendDateVar <- DataMuse:::ReturnParam(xx = tryCatch({input[[paste0("EDADateVar", Page)]]}, error = function(x) NULL), Type = "character", Default = NULL)
+  TrendDateVar <- Quantico:::ReturnParam(xx = tryCatch({input[[paste0("EDADateVar", Page)]]}, error = function(x) NULL), Type = "character", Default = NULL)
   if(length(TrendDateVar) > 1L) {
     for(zzz in TrendDateVar) {
       if(class(data[[zzz]])[1L] %in% c("Date", "posix", "IDate", "IDateTime")) {
@@ -59,9 +59,9 @@ Shiny.EDA.ReportOutput <- function(input,
       }
     }
   }
-  TrendGroupVar <- DataMuse:::ReturnParam(xx = tryCatch({input[[paste0("EDAGroupVar", Page)]]}, error = function(x) NULL), Type = "character", Default = NULL)
-  PlotHeighteda <- DataMuse:::ReturnParam(xx = tryCatch({input[[paste0("PlotHeighteda", Page)]]}, error = function(x) NULL), Type = "numeric", Default = 950)
-  PlotWidtheda <- DataMuse:::ReturnParam(xx = tryCatch({input[[paste0("PlotWidtheda", Page)]]}, error = function(x) NULL), Type = "numeric", Default = 1450)
+  TrendGroupVar <- Quantico:::ReturnParam(xx = tryCatch({input[[paste0("EDAGroupVar", Page)]]}, error = function(x) NULL), Type = "character", Default = NULL)
+  PlotHeighteda <- Quantico:::ReturnParam(xx = tryCatch({input[[paste0("PlotHeighteda", Page)]]}, error = function(x) NULL), Type = "numeric", Default = 950)
+  PlotWidtheda <- Quantico:::ReturnParam(xx = tryCatch({input[[paste0("PlotWidtheda", Page)]]}, error = function(x) NULL), Type = "numeric", Default = 1450)
   PlotHeighteda <- paste0(PlotHeighteda, "px")
   PlotWidtheda <- paste0(PlotWidtheda, "px")
 

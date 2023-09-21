@@ -37,7 +37,7 @@ PostGRE DM.pgCreateTable get data from a database table
 }
 \examples{
 \dontrun{
-DataMuse::DM.pgCreateTable(
+Quantico::DM.pgCreateTable(
   data,
   DataBase = 'Testing',
   Schema = NULL,

@@ -80,7 +80,7 @@ Shiny web app with capabilities in data managment, data wrangling, feature engin
 # PostGRE_Port           5432
 
 # Run App
-DataMuse::rapp()
+Quantico::rapp()
 
 }
 

@@ -142,11 +142,11 @@ makeExamplePage <- function(name, ui) {
 #' ```
 #'
 #' ```{r Example, echo = FALSE}
-#' DataMuse:::DataTable2(data)
+#' Quantico:::DataTable2(data)
 #' ````
 #'
 #' # Shiny Usage
-#' output$Table <- shiny::renderUI({DataMuse:::DataTable2(data)})
+#' output$Table <- shiny::renderUI({Quantico:::DataTable2(data)})
 #'
 #' }
 #'
@@ -542,7 +542,7 @@ KeyVarsInit <- function(data, VarName = NULL, type = 1) {
   }
 
   # Run VarName through function to NULL it out if any issues
-  VarName <- DataMuse:::CEPP(VarName, Default = NULL)
+  VarName <- Quantico:::CEPP(VarName, Default = NULL)
 
   # Return if VarName is NULL or if some sort of character(0) slipped through the cracks
   if(length(VarName) == 0) {
@@ -807,7 +807,7 @@ IntNull <- function(x, Char = FALSE) {
 #'
 #' @examples
 #' \dontrun{
-#' DataMuse:::BlankRow(12)
+#' Quantico:::BlankRow(12)
 #' }
 #' @return Adds a row to your UI of width W
 #' @export
@@ -826,7 +826,7 @@ BlankRow <- function(W = 12) {
 #'
 #' @examples
 #' \dontrun{
-#' DataMuse:::BlankLine(12)
+#' Quantico:::BlankLine(12)
 #' }
 #' @return Adds a row to your UI of width W
 #' @export
@@ -848,7 +848,7 @@ BlankLine <- function(w) shiny::fluidRow(shiny::column(w, shiny::hr()))
 #'
 #' @examples
 #' \dontrun{
-#' Aggregate <- DataMuse:::ReturnParam(input, VarName = "TS_AggregateFunction", Type = "character", Default = "mean")
+#' Aggregate <- Quantico:::ReturnParam(input, VarName = "TS_AggregateFunction", Type = "character", Default = "mean")
 #' }
 #'
 #' @return Updates ProjectList inside function
@@ -957,7 +957,7 @@ ReturnParam <- function(xx = NULL,
 #'
 #' @examples
 #' \dontrun{
-#'   PlotData <- DataMuse:::PreparePlotData(input, TargetVariable = "TargetVariables", DateVariable = "DateVariables", GroupVariables = GroupVariables, G1Levels = "TS_Group1Levels", G2Levels = "TS_Group2Levels", G3Levels = "TS_Group3Levels")
+#'   PlotData <- Quantico:::PreparePlotData(input, TargetVariable = "TargetVariables", DateVariable = "DateVariables", GroupVariables = GroupVariables, G1Levels = "TS_Group1Levels", G2Levels = "TS_Group2Levels", G3Levels = "TS_Group3Levels")
 #' }
 #' @return PreparePlotData object for server.R to
 #' @keywords internal

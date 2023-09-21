@@ -106,7 +106,7 @@ LoginInputs <- function(id = 'LoginBox',
                         Collapsible = FALSE) {
   ns <- shiny::NS(id)
   shiny::tagList(
-    DataMuse:::BlankRow(12L),
+    Quantico:::BlankRow(12L),
     shinydashboard::box(
       title = BoxTitle,
       solidHeader = SolidHeader,
@@ -140,7 +140,7 @@ LoginButton <- function(id = 'LoginButton',
                         Color = 'royal') {
   ns <- shiny::NS(id)
   shiny::tagList(
-    DataMuse:::BlankRow(12L),
+    Quantico:::BlankRow(12L),
     shiny::fluidRow(
       shiny::column(
         width = 2,

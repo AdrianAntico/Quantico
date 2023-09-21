@@ -328,7 +328,7 @@ Normality.Analysis <- function(dt = NULL,
                                SampleSize.AT = NULL,
                                Samples.AT = 1) {
 
-  # library(DataMuse)
+  # library(Quantico)
   # dt <- data.table::fread(file.choose())
   # YVars <- c("Daily Liters", "Daily Margin", "Daily Revenue", "Daily Units")
   # SampleSize.ADT = NULL

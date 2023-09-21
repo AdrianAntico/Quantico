@@ -46,7 +46,7 @@ Tokenize and Fit with the one function. Convert column of long text within rows 
 }
 \examples{
 \dontrun{
-Tokenize_Object <- DataMuse:::KerasTokenizerFit(
+Tokenize_Object <- Quantico:::KerasTokenizerFit(
   Fit_Text = x_train_text,
   Fit_Object = NULL,
   Tok_num_words = NULL, # comment

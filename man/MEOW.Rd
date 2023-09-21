@@ -76,7 +76,7 @@ TestModel <- AutoQuant::AutoCatBoostRegression(
   L2_Leaf_Reg = 10,
   model_size_reg = 2)
 
-Output <- DataMuse::MEOW(
+Output <- Quantico::MEOW(
   data = TestModel$TrainData,
   TargetType = 'regression',
   TargetVariable = TestModel$ArgsList$TargetColumnName,
@@ -90,7 +90,7 @@ Output <- DataMuse::MEOW(
   PolyN = NULL,
   Debug = FALSE)
 
-Output <- DataMuse::MEOW(
+Output <- Quantico::MEOW(
   data = Output$data,
   TargetType = 'regression',
   TargetVariable = TestModel$ArgsList$TargetColumnName,

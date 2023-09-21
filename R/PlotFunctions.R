@@ -61,46 +61,46 @@ Shiny.Plot.Build <- function(input,
   #  This preserves ordering if user requests a diff order
   PlotList <- list()
   incre <- 0L
-  tempPlotType <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0('PlotID_', PlotNumbers[1L])]]}, error = function(x) NULL), Type='character', Default = PlotMap[PlotNumber == eval(PlotNumbers[1L])][["PlotType"]], Debug = TRUE)
+  tempPlotType <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0('PlotID_', PlotNumbers[1L])]]}, error = function(x) NULL), Type='character', Default = PlotMap[PlotNumber == eval(PlotNumbers[1L])][["PlotType"]], Debug = TRUE)
   if(length(DataList) > 0L) {
     for(PlotNumberss in PlotNumbers) {
 
       # Basis
-      PlotType <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0('PlotID_', PlotNumberss)]]}, error = function(x) NULL), Type='character', Default = PlotMap[PlotNumber == eval(PlotNumberss)][["PlotType"]], Debug = TRUE)
+      PlotType <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0('PlotID_', PlotNumberss)]]}, error = function(x) NULL), Type='character', Default = PlotMap[PlotNumber == eval(PlotNumberss)][["PlotType"]], Debug = TRUE)
 
       if(PlotType %in% c("Autocorrelation","PartialAutocorr")) {
-        DateVariable <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0('PlottingDateVar', PlotNumberss)]]}, error = function(x) NULL), Type='character', Default = PlotMap[PlotNumber == eval(PlotNumberss)][["PlotType"]], Debug = TRUE)
-        MaxLagsVariable <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0('PlottingMaxLags', PlotNumberss)]]}, error = function(x) NULL), Type='character', Default = PlotMap[PlotNumber == eval(PlotNumberss)][["PlotType"]], Debug = TRUE)
-        TimeUnitVariable <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0('PlottingTimeUnit', PlotNumberss)]]}, error = function(x) NULL), Type='character', Default = PlotMap[PlotNumber == eval(PlotNumberss)][["PlotType"]], Debug = TRUE)
+        DateVariable <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0('PlottingDateVar', PlotNumberss)]]}, error = function(x) NULL), Type='character', Default = PlotMap[PlotNumber == eval(PlotNumberss)][["PlotType"]], Debug = TRUE)
+        MaxLagsVariable <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0('PlottingMaxLags', PlotNumberss)]]}, error = function(x) NULL), Type='character', Default = PlotMap[PlotNumber == eval(PlotNumberss)][["PlotType"]], Debug = TRUE)
+        TimeUnitVariable <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0('PlottingTimeUnit', PlotNumberss)]]}, error = function(x) NULL), Type='character', Default = PlotMap[PlotNumber == eval(PlotNumberss)][["PlotType"]], Debug = TRUE)
       }
 
       # Continuation Logic
       if(length(PlotType) > 0L) {
 
         # Plotting variables
-        SampleSize <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0('SampleSize', PlotNumberss)]]}, error=function(x) NULL), Type='numeric', Default = DefaultArgs(default = 30000, x = Args[[paste0(PlotType, PlotNumberss)]][[paste0('SampleSize', PlotNumberss)]]))
+        SampleSize <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0('SampleSize', PlotNumberss)]]}, error=function(x) NULL), Type='numeric', Default = DefaultArgs(default = 30000, x = Args[[paste0(PlotType, PlotNumberss)]][[paste0('SampleSize', PlotNumberss)]]))
         if(length(SampleSize) == 0L) {
           SampleSize <- 15000L
         } else if(SampleSize <= 1L) {
           SampleSize <- 15000L
         }
 
-        AggMethod <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0('AggMethod', PlotNumberss)]]}, error=function(x) NULL), Type='character', Default = DefaultArgs(default = 'mean', x = Args[[paste0(PlotType, PlotNumberss)]][[paste0('AggMethod', PlotNumberss)]]))
-        YVar <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0('YVar', PlotNumberss)]]}, error=function(x) NULL), Type='character', Default = DefaultArgs(default = NULL, x = Args[[paste0(PlotType, PlotNumberss)]][[paste0('YVar', PlotNumberss)]]))
-        DualYVar <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0('DualYVar', PlotNumberss)]]}, error=function(x) NULL), Type='character', Default = DefaultArgs(default = NULL, x = Args[[paste0(PlotType, PlotNumberss)]][[paste0('DualYVar', PlotNumberss)]]))
+        AggMethod <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0('AggMethod', PlotNumberss)]]}, error=function(x) NULL), Type='character', Default = DefaultArgs(default = 'mean', x = Args[[paste0(PlotType, PlotNumberss)]][[paste0('AggMethod', PlotNumberss)]]))
+        YVar <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0('YVar', PlotNumberss)]]}, error=function(x) NULL), Type='character', Default = DefaultArgs(default = NULL, x = Args[[paste0(PlotType, PlotNumberss)]][[paste0('YVar', PlotNumberss)]]))
+        DualYVar <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0('DualYVar', PlotNumberss)]]}, error=function(x) NULL), Type='character', Default = DefaultArgs(default = NULL, x = Args[[paste0(PlotType, PlotNumberss)]][[paste0('DualYVar', PlotNumberss)]]))
         if(!PlotType %in% c("LinePlot", "StepPlot", "AreaPlot")) DualYVar <- NULL
-        XVar <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0('XVar', PlotNumberss)]]}, error=function(x) NULL), Type='character', Default = DefaultArgs(default = NULL, x = Args[[paste0(PlotType, PlotNumberss)]][[paste0('XVar', PlotNumberss)]]))
-        ZVar <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0('ZVar', PlotNumberss)]]}, error=function(x) NULL), Type='character', Default = DefaultArgs(default = NULL, x = Args[[paste0(PlotType, PlotNumberss)]][[paste0('ZVar', PlotNumberss)]]))
+        XVar <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0('XVar', PlotNumberss)]]}, error=function(x) NULL), Type='character', Default = DefaultArgs(default = NULL, x = Args[[paste0(PlotType, PlotNumberss)]][[paste0('XVar', PlotNumberss)]]))
+        ZVar <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0('ZVar', PlotNumberss)]]}, error=function(x) NULL), Type='character', Default = DefaultArgs(default = NULL, x = Args[[paste0(PlotType, PlotNumberss)]][[paste0('ZVar', PlotNumberss)]]))
 
         if(length(YVar) > 0L && any(YVar == "No Data Loaded")) YVar <- NULL
         if(length(DualYVar) > 0L && any(DualYVar == "No Data Loaded")) DualYVar <- NULL
         if(length(XVar) > 0L && any(XVar == "No Data Loaded")) XVar <- NULL
         if(length(ZVar) > 0L && any(ZVar == "No Data Loaded")) ZVar <- NULL
 
-        YVarTrans <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0('YVarTrans', PlotNumberss)]]}, error=function(x) NULL), Type='character', Default = DefaultArgs(default = "Identity", x = Args[[paste0(PlotType, PlotNumberss)]][[paste0('YVarTrans', PlotNumberss)]]))
-        DualYVarTrans <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0('DualYVarTrans', PlotNumberss)]]}, error=function(x) NULL), Type='character', Default = DefaultArgs(default = "Identity", x = Args[[paste0(PlotType, PlotNumberss)]][[paste0('DualYVarTrans', PlotNumberss)]]))
-        XVarTrans <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0('XVarTrans', PlotNumberss)]]}, error=function(x) NULL), Type='character', Default = DefaultArgs(default = "Identity", x = Args[[paste0(PlotType, PlotNumberss)]][[paste0('XVarTrans', PlotNumberss)]]))
-        ZVarTrans <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0('ZVarTrans', PlotNumberss)]]}, error=function(x) NULL), Type='character', Default = DefaultArgs(default = "Identity", x = Args[[paste0(PlotType, PlotNumberss)]][[paste0('ZVarTrans', PlotNumberss)]]))
+        YVarTrans <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0('YVarTrans', PlotNumberss)]]}, error=function(x) NULL), Type='character', Default = DefaultArgs(default = "Identity", x = Args[[paste0(PlotType, PlotNumberss)]][[paste0('YVarTrans', PlotNumberss)]]))
+        DualYVarTrans <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0('DualYVarTrans', PlotNumberss)]]}, error=function(x) NULL), Type='character', Default = DefaultArgs(default = "Identity", x = Args[[paste0(PlotType, PlotNumberss)]][[paste0('DualYVarTrans', PlotNumberss)]]))
+        XVarTrans <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0('XVarTrans', PlotNumberss)]]}, error=function(x) NULL), Type='character', Default = DefaultArgs(default = "Identity", x = Args[[paste0(PlotType, PlotNumberss)]][[paste0('XVarTrans', PlotNumberss)]]))
+        ZVarTrans <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0('ZVarTrans', PlotNumberss)]]}, error=function(x) NULL), Type='character', Default = DefaultArgs(default = "Identity", x = Args[[paste0(PlotType, PlotNumberss)]][[paste0('ZVarTrans', PlotNumberss)]]))
 
         if(PlotType %in% c("ConfusionMatrixHeatmap","ROCPlot","LiftPlot","GainsPlot","Residuals","ResidScatter","CalibrationLine","CalibrationBox")) {
           XVar <- ZVar; ZVar <- NULL
@@ -109,42 +109,42 @@ Shiny.Plot.Build <- function(input,
 
         if(Debug) print(rep("GroupVar", 5))
         if(Debug) print(rep(input[[paste0('GroupVars', PlotNumberss)]], 5))
-        GroupVars <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0('GroupVars', PlotNumberss)]]}, error=function(x) NULL), Type='character', Default = DefaultArgs(default = NULL, x = Args[[paste0(PlotType, PlotNumberss)]][[paste0('GroupVars', PlotNumberss)]]))
+        GroupVars <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0('GroupVars', PlotNumberss)]]}, error=function(x) NULL), Type='character', Default = DefaultArgs(default = NULL, x = Args[[paste0(PlotType, PlotNumberss)]][[paste0('GroupVars', PlotNumberss)]]))
 
         if(Debug) print(rep(GroupVars, 5))
 
-        Levels1 <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0('Levels_',PlotNumberss,'_1')]]}, error=function(x) NULL), Type='character', Default = DefaultArgs(default = NULL, x = Args[[paste0(PlotType, PlotNumberss)]][[paste0('Levels_',PlotNumberss,'_1')]]))
-        Levels2 <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0('Levels_',PlotNumberss,'_2')]]}, error=function(x) NULL), Type='character', Default = DefaultArgs(default = NULL, x = Args[[paste0(PlotType, PlotNumberss)]][[paste0('Levels_',PlotNumberss,'_2')]]))
-        Levels3 <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0('Levels_',PlotNumberss,'_3')]]}, error=function(x) NULL), Type='character', Default = DefaultArgs(default = NULL, x = Args[[paste0(PlotType, PlotNumberss)]][[paste0('Levels_',PlotNumberss,'_3')]]))
+        Levels1 <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0('Levels_',PlotNumberss,'_1')]]}, error=function(x) NULL), Type='character', Default = DefaultArgs(default = NULL, x = Args[[paste0(PlotType, PlotNumberss)]][[paste0('Levels_',PlotNumberss,'_1')]]))
+        Levels2 <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0('Levels_',PlotNumberss,'_2')]]}, error=function(x) NULL), Type='character', Default = DefaultArgs(default = NULL, x = Args[[paste0(PlotType, PlotNumberss)]][[paste0('Levels_',PlotNumberss,'_2')]]))
+        Levels3 <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0('Levels_',PlotNumberss,'_3')]]}, error=function(x) NULL), Type='character', Default = DefaultArgs(default = NULL, x = Args[[paste0(PlotType, PlotNumberss)]][[paste0('Levels_',PlotNumberss,'_3')]]))
 
         if(length(GroupVars) > 0L && any(GroupVars == "No Data Loaded")) GroupVars <- NULL
 
-        FacetRows <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0('FacetRows', PlotNumberss)]]}, error=function(x) NULL), Type='numeric', Default = DefaultArgs(default = 1, x = Args[[paste0(PlotType, PlotNumberss)]][[paste0('FacetRows', PlotNumberss)]]))
+        FacetRows <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0('FacetRows', PlotNumberss)]]}, error=function(x) NULL), Type='numeric', Default = DefaultArgs(default = 1, x = Args[[paste0(PlotType, PlotNumberss)]][[paste0('FacetRows', PlotNumberss)]]))
         if(length(FacetRows) > 0L) FacetRows <- as.numeric(FacetRows)
-        FacetCols <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0('FacetCols', PlotNumberss)]]}, error=function(x) NULL), Type='numeric', Default = DefaultArgs(default = 1, x = Args[[paste0(PlotType, PlotNumberss)]][[paste0('FacetCols', PlotNumberss)]]))
+        FacetCols <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0('FacetCols', PlotNumberss)]]}, error=function(x) NULL), Type='numeric', Default = DefaultArgs(default = 1, x = Args[[paste0(PlotType, PlotNumberss)]][[paste0('FacetCols', PlotNumberss)]]))
         if(length(FacetCols) > 0L) FacetCols <- as.numeric(FacetCols)
 
-        Title <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0('Title',PlotNumberss)]]}, error=function(x) NULL), Type='character', Default = DefaultArgs(default = NULL, x = Args[[paste0(PlotType, PlotNumberss)]][[paste0('Title', PlotNumberss)]]))
-        ShowLabels <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0('ShowLabels',PlotNumberss)]]}, error=function(x) NULL), Type='logical', Default = DefaultArgs(default = FALSE, x = Args[[paste0(PlotType, PlotNumberss)]][[paste0('ShowLabels', PlotNumberss)]]))
-        YAxisTitle <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0('YAxisTitle',PlotNumberss)]]}, error=function(x) NULL), Type='character', Default = DefaultArgs(default = NULL, x = Args[[paste0(PlotType, PlotNumberss)]][[paste0('YAxisTitle', PlotNumberss)]]))
-        XAxisTitle <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0('XAxisTitle',PlotNumberss)]]}, error=function(x) NULL), Type='character', Default = DefaultArgs(default = NULL, x = Args[[paste0(PlotType, PlotNumberss)]][[paste0('XAxisTitle', PlotNumberss)]]))
+        Title <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0('Title',PlotNumberss)]]}, error=function(x) NULL), Type='character', Default = DefaultArgs(default = NULL, x = Args[[paste0(PlotType, PlotNumberss)]][[paste0('Title', PlotNumberss)]]))
+        ShowLabels <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0('ShowLabels',PlotNumberss)]]}, error=function(x) NULL), Type='logical', Default = DefaultArgs(default = FALSE, x = Args[[paste0(PlotType, PlotNumberss)]][[paste0('ShowLabels', PlotNumberss)]]))
+        YAxisTitle <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0('YAxisTitle',PlotNumberss)]]}, error=function(x) NULL), Type='character', Default = DefaultArgs(default = NULL, x = Args[[paste0(PlotType, PlotNumberss)]][[paste0('YAxisTitle', PlotNumberss)]]))
+        XAxisTitle <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0('XAxisTitle',PlotNumberss)]]}, error=function(x) NULL), Type='character', Default = DefaultArgs(default = NULL, x = Args[[paste0(PlotType, PlotNumberss)]][[paste0('XAxisTitle', PlotNumberss)]]))
 
-        FilterVar1 <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0('FilterVariable_',PlotNumberss, '_1')]]}, error=function(x) NULL), Type='character', Default = DefaultArgs(default = NULL, x = Args[[paste0(PlotType, PlotNumberss)]][[paste0('FilterVariable_',PlotNumberss, '_1')]]))
-        FilterVar2 <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0('FilterVariable_',PlotNumberss, '_2')]]}, error=function(x) NULL), Type='character', Default = DefaultArgs(default = NULL, x = Args[[paste0(PlotType, PlotNumberss)]][[paste0('FilterVariable_',PlotNumberss, '_2')]]))
-        FilterVar3 <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0('FilterVariable_',PlotNumberss, '_3')]]}, error=function(x) NULL), Type='character', Default = DefaultArgs(default = NULL, x = Args[[paste0(PlotType, PlotNumberss)]][[paste0('FilterVariable_',PlotNumberss, '_3')]]))
-        FilterVar4 <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0('FilterVariable_',PlotNumberss, '_4')]]}, error=function(x) NULL), Type='character', Default = DefaultArgs(default = NULL, x = Args[[paste0(PlotType, PlotNumberss)]][[paste0('FilterVariable_',PlotNumberss, '_4')]]))
-        FilterLogic1 <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0('FilterLogic_',PlotNumberss, '_1')]]}, error=function(x) NULL), Type='character', Default = DefaultArgs(default = NULL, x = Args[[paste0(PlotType, PlotNumberss)]][[paste0('FilterLogic_',PlotNumberss, '_1')]]))
-        FilterLogic2 <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0('FilterLogic_',PlotNumberss, '_2')]]}, error=function(x) NULL), Type='character', Default = DefaultArgs(default = NULL, x = Args[[paste0(PlotType, PlotNumberss)]][[paste0('FilterLogic_',PlotNumberss, '_2')]]))
-        FilterLogic3 <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0('FilterLogic_',PlotNumberss, '_3')]]}, error=function(x) NULL), Type='character', Default = DefaultArgs(default = NULL, x = Args[[paste0(PlotType, PlotNumberss)]][[paste0('FilterLogic_',PlotNumberss, '_3')]]))
-        FilterLogic4 <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0('FilterLogic_',PlotNumberss, '_4')]]}, error=function(x) NULL), Type='character', Default = DefaultArgs(default = NULL, x = Args[[paste0(PlotType, PlotNumberss)]][[paste0('FilterLogic_',PlotNumberss, '_4')]]))
-        FilterValue_1_1 <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0('FilterValue_',PlotNumberss, '_1_1')]]}, error=function(x) NULL), Type='character', Default = DefaultArgs(default = NULL, x = Args[[paste0(PlotType, PlotNumberss)]][[paste0('FilterValue_',PlotNumberss, '_1_1')]]))
-        FilterValue_1_2 <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0('FilterValue_',PlotNumberss, '_1_2')]]}, error=function(x) NULL), Type='character', Default = DefaultArgs(default = NULL, x = Args[[paste0(PlotType, PlotNumberss)]][[paste0('FilterValue_',PlotNumberss, '_1_2')]]))
-        FilterValue_2_1 <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0('FilterValue_',PlotNumberss, '_2_1')]]}, error=function(x) NULL), Type='character', Default = DefaultArgs(default = NULL, x = Args[[paste0(PlotType, PlotNumberss)]][[paste0('FilterValue_',PlotNumberss, '_2_1')]]))
-        FilterValue_2_2 <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0('FilterValue_',PlotNumberss, '_2_2')]]}, error=function(x) NULL), Type='character', Default = DefaultArgs(default = NULL, x = Args[[paste0(PlotType, PlotNumberss)]][[paste0('FilterValue_',PlotNumberss, '_2_2')]]))
-        FilterValue_3_1 <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0('FilterValue_',PlotNumberss, '_3_1')]]}, error=function(x) NULL), Type='character', Default = DefaultArgs(default = NULL, x = Args[[paste0(PlotType, PlotNumberss)]][[paste0('FilterValue_',PlotNumberss, '_3_1')]]))
-        FilterValue_3_2 <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0('FilterValue_',PlotNumberss, '_3_2')]]}, error=function(x) NULL), Type='character', Default = DefaultArgs(default = NULL, x = Args[[paste0(PlotType, PlotNumberss)]][[paste0('FilterValue_',PlotNumberss, '_3_2')]]))
-        FilterValue_4_1 <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0('FilterValue_',PlotNumberss, '_4_1')]]}, error=function(x) NULL), Type='character', Default = DefaultArgs(default = NULL, x = Args[[paste0(PlotType, PlotNumberss)]][[paste0('FilterValue_',PlotNumberss, '_4_1')]]))
-        FilterValue_4_2 <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0('FilterValue_',PlotNumberss, '_4_2')]]}, error=function(x) NULL), Type='character', Default = DefaultArgs(default = NULL, x = Args[[paste0(PlotType, PlotNumberss)]][[paste0('FilterValue_',PlotNumberss, '_4_2')]]))
+        FilterVar1 <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0('FilterVariable_',PlotNumberss, '_1')]]}, error=function(x) NULL), Type='character', Default = DefaultArgs(default = NULL, x = Args[[paste0(PlotType, PlotNumberss)]][[paste0('FilterVariable_',PlotNumberss, '_1')]]))
+        FilterVar2 <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0('FilterVariable_',PlotNumberss, '_2')]]}, error=function(x) NULL), Type='character', Default = DefaultArgs(default = NULL, x = Args[[paste0(PlotType, PlotNumberss)]][[paste0('FilterVariable_',PlotNumberss, '_2')]]))
+        FilterVar3 <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0('FilterVariable_',PlotNumberss, '_3')]]}, error=function(x) NULL), Type='character', Default = DefaultArgs(default = NULL, x = Args[[paste0(PlotType, PlotNumberss)]][[paste0('FilterVariable_',PlotNumberss, '_3')]]))
+        FilterVar4 <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0('FilterVariable_',PlotNumberss, '_4')]]}, error=function(x) NULL), Type='character', Default = DefaultArgs(default = NULL, x = Args[[paste0(PlotType, PlotNumberss)]][[paste0('FilterVariable_',PlotNumberss, '_4')]]))
+        FilterLogic1 <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0('FilterLogic_',PlotNumberss, '_1')]]}, error=function(x) NULL), Type='character', Default = DefaultArgs(default = NULL, x = Args[[paste0(PlotType, PlotNumberss)]][[paste0('FilterLogic_',PlotNumberss, '_1')]]))
+        FilterLogic2 <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0('FilterLogic_',PlotNumberss, '_2')]]}, error=function(x) NULL), Type='character', Default = DefaultArgs(default = NULL, x = Args[[paste0(PlotType, PlotNumberss)]][[paste0('FilterLogic_',PlotNumberss, '_2')]]))
+        FilterLogic3 <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0('FilterLogic_',PlotNumberss, '_3')]]}, error=function(x) NULL), Type='character', Default = DefaultArgs(default = NULL, x = Args[[paste0(PlotType, PlotNumberss)]][[paste0('FilterLogic_',PlotNumberss, '_3')]]))
+        FilterLogic4 <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0('FilterLogic_',PlotNumberss, '_4')]]}, error=function(x) NULL), Type='character', Default = DefaultArgs(default = NULL, x = Args[[paste0(PlotType, PlotNumberss)]][[paste0('FilterLogic_',PlotNumberss, '_4')]]))
+        FilterValue_1_1 <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0('FilterValue_',PlotNumberss, '_1_1')]]}, error=function(x) NULL), Type='character', Default = DefaultArgs(default = NULL, x = Args[[paste0(PlotType, PlotNumberss)]][[paste0('FilterValue_',PlotNumberss, '_1_1')]]))
+        FilterValue_1_2 <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0('FilterValue_',PlotNumberss, '_1_2')]]}, error=function(x) NULL), Type='character', Default = DefaultArgs(default = NULL, x = Args[[paste0(PlotType, PlotNumberss)]][[paste0('FilterValue_',PlotNumberss, '_1_2')]]))
+        FilterValue_2_1 <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0('FilterValue_',PlotNumberss, '_2_1')]]}, error=function(x) NULL), Type='character', Default = DefaultArgs(default = NULL, x = Args[[paste0(PlotType, PlotNumberss)]][[paste0('FilterValue_',PlotNumberss, '_2_1')]]))
+        FilterValue_2_2 <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0('FilterValue_',PlotNumberss, '_2_2')]]}, error=function(x) NULL), Type='character', Default = DefaultArgs(default = NULL, x = Args[[paste0(PlotType, PlotNumberss)]][[paste0('FilterValue_',PlotNumberss, '_2_2')]]))
+        FilterValue_3_1 <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0('FilterValue_',PlotNumberss, '_3_1')]]}, error=function(x) NULL), Type='character', Default = DefaultArgs(default = NULL, x = Args[[paste0(PlotType, PlotNumberss)]][[paste0('FilterValue_',PlotNumberss, '_3_1')]]))
+        FilterValue_3_2 <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0('FilterValue_',PlotNumberss, '_3_2')]]}, error=function(x) NULL), Type='character', Default = DefaultArgs(default = NULL, x = Args[[paste0(PlotType, PlotNumberss)]][[paste0('FilterValue_',PlotNumberss, '_3_2')]]))
+        FilterValue_4_1 <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0('FilterValue_',PlotNumberss, '_4_1')]]}, error=function(x) NULL), Type='character', Default = DefaultArgs(default = NULL, x = Args[[paste0(PlotType, PlotNumberss)]][[paste0('FilterValue_',PlotNumberss, '_4_1')]]))
+        FilterValue_4_2 <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0('FilterValue_',PlotNumberss, '_4_2')]]}, error=function(x) NULL), Type='character', Default = DefaultArgs(default = NULL, x = Args[[paste0(PlotType, PlotNumberss)]][[paste0('FilterValue_',PlotNumberss, '_4_2')]]))
 
         if(length(FilterValue_1_1) > 0L && any(FilterValue_1_1 == 'No Data Loaded')) FilterValue_1_1 <- NULL
 
@@ -202,8 +202,8 @@ Shiny.Plot.Build <- function(input,
         # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
 
         # Define data
-        dName <- DataMuse::ReturnParam(xx = input[[paste0('Plot', PlotNumberss, '_SelectData')]], Type = "character", Default = DefaultArgs(default = NULL, x = Args[[paste0(PlotType, PlotNumberss)]][[paste0('Plot',PlotNumberss, '_SelectData')]]))
-        Output <- DataMuse:::Shiny.Plot.DM.data1(DataList,PlotNumberss,PlotType,CodeList,Debug,DataName=dName)
+        dName <- Quantico::ReturnParam(xx = input[[paste0('Plot', PlotNumberss, '_SelectData')]], Type = "character", Default = DefaultArgs(default = NULL, x = Args[[paste0(PlotType, PlotNumberss)]][[paste0('Plot',PlotNumberss, '_SelectData')]]))
+        Output <- Quantico:::Shiny.Plot.DM.data1(DataList,PlotNumberss,PlotType,CodeList,Debug,DataName=dName)
         if(length(Output) > 0L) {
           data1 <- Output$data1; CodeList <- Output$CodeList
           CodeList <<- CodeList
@@ -215,7 +215,7 @@ Shiny.Plot.Build <- function(input,
           }
 
           # Check that user inputs are correct for standard plots
-          Output <- DataMuse:::Shiny.Plot.StandardPlotChecks(d=data1, y=YVar, x=XVar, z=ZVar, Type=PlotType)
+          Output <- Quantico:::Shiny.Plot.StandardPlotChecks(d=data1, y=YVar, x=XVar, z=ZVar, Type=PlotType)
           ValidCheck <- Output$ValidCheck; msg = Output$msg; print(msg)
 
         } else {
@@ -482,74 +482,74 @@ Shiny.Plot.Build <- function(input,
           fv3a <- fv3 && (fv4 || gv1)
 
           # Plotting Code for GroupVar levels, Filter Variables, and Filter Values
-          # CodeList <- DataMuse:::Shiny.CodePrint.Collect(CodeList, paste0(
-          CodeList <- tryCatch({DataMuse:::Shiny.CodePrint.Collect(CodeList, paste0(
+          # CodeList <- Quantico:::Shiny.CodePrint.Collect(CodeList, paste0(
+          CodeList <- tryCatch({Quantico:::Shiny.CodePrint.Collect(CodeList, paste0(
             "\n",
             "# Plotting Variables\n",
-            "GroupVars <- ", DataMuse:::CEP(GroupVars), "\n",
-            "FilterVar1 <- ", DataMuse:::CEP(FilterVar1), "\n",
-            "FilterVar2 <- ", DataMuse:::CEP(FilterVar2), "\n",
-            "FilterVar3 <- ", DataMuse:::CEP(FilterVar3), "\n",
-            "FilterVar4 <- ", DataMuse:::CEP(FilterVar4), "\n",
+            "GroupVars <- ", Quantico:::CEP(GroupVars), "\n",
+            "FilterVar1 <- ", Quantico:::CEP(FilterVar1), "\n",
+            "FilterVar2 <- ", Quantico:::CEP(FilterVar2), "\n",
+            "FilterVar3 <- ", Quantico:::CEP(FilterVar3), "\n",
+            "FilterVar4 <- ", Quantico:::CEP(FilterVar4), "\n",
             "FilterValue_1_1 <- ",
             if(!is.numeric(FilterValue_1_1)) {
-              DataMuse:::CEP(FilterValue_1_1)
+              Quantico:::CEP(FilterValue_1_1)
             } else {
-              DataMuse:::ExpandText(FilterValue_1_1)
+              Quantico:::ExpandText(FilterValue_1_1)
             },
             "\n",
             "FilterValue_1_2 <- ",
             if(!is.numeric(FilterValue_1_2)) {
-              DataMuse:::CEP(FilterValue_1_2)
+              Quantico:::CEP(FilterValue_1_2)
             } else {
-              DataMuse:::ExpandText(FilterValue_1_2)
+              Quantico:::ExpandText(FilterValue_1_2)
             },
             "\n",
             "FilterValue_2_1 <- ",
             if(!is.numeric(FilterValue_2_1)) {
-              DataMuse:::CEP(FilterValue_2_1)
+              Quantico:::CEP(FilterValue_2_1)
             } else {
-              DataMuse:::ExpandText(FilterValue_2_1)
+              Quantico:::ExpandText(FilterValue_2_1)
             },
             "\n",
             "FilterValue_2_2 <- ",
             if(!is.numeric(FilterValue_2_2)) {
-              DataMuse:::CEP(FilterValue_2_2)
+              Quantico:::CEP(FilterValue_2_2)
             } else {
-              DataMuse:::ExpandText(FilterValue_2_2)
+              Quantico:::ExpandText(FilterValue_2_2)
             },
             "\n",
             "FilterValue_3_1 <- ",
             if(!is.numeric(FilterValue_3_1)) {
-              DataMuse:::CEP(FilterValue_3_1)
+              Quantico:::CEP(FilterValue_3_1)
             } else {
-              DataMuse:::ExpandText(FilterValue_3_1)
+              Quantico:::ExpandText(FilterValue_3_1)
             },
             "\n",
             "FilterValue_3_2 <- ",
             if(!is.numeric(FilterValue_3_2)) {
-              DataMuse:::CEP(FilterValue_3_2)
+              Quantico:::CEP(FilterValue_3_2)
             } else {
-              DataMuse:::ExpandText(FilterValue_3_2)
+              Quantico:::ExpandText(FilterValue_3_2)
             },
             "\n",
             "FilterValue_4_1 <- ",
             if(!is.numeric(FilterValue_4_1)) {
-              DataMuse:::CEP(FilterValue_4_1)
+              Quantico:::CEP(FilterValue_4_1)
             } else {
-              DataMuse:::ExpandText(FilterValue_4_1)
+              Quantico:::ExpandText(FilterValue_4_1)
             },
             "\n",
             "FilterValue_4_2 <- ",
             if(!is.numeric(FilterValue_4_2)) {
-              DataMuse:::CEP(FilterValue_4_2)
+              Quantico:::CEP(FilterValue_4_2)
             } else {
-              DataMuse:::ExpandText(FilterValue_4_2)
+              Quantico:::ExpandText(FilterValue_4_2)
             },
             "\n",
-            "Levels1 <- ", DataMuse:::ExpandText(Levels1), "\n",
-            "Levels2 <- ", DataMuse:::ExpandText(Levels2), "\n",
-            "Levels3 <- ", DataMuse:::ExpandText(Levels3), "\n")
+            "Levels1 <- ", Quantico:::ExpandText(Levels1), "\n",
+            "Levels2 <- ", Quantico:::ExpandText(Levels2), "\n",
+            "Levels3 <- ", Quantico:::ExpandText(Levels3), "\n")
           )}, error = function(x) CodeList)
 
           # FV1
@@ -711,39 +711,39 @@ Shiny.Plot.Build <- function(input,
             # c(YVar, ZVar)
             if((length(GroupVars) > 0L || length(XVar) > 0L) && AggCheck) {
               if(AggMethod == "mean") {
-                paste0("lapply(.SD, mean, na.rm = TRUE),\n  .SDcols = ", DataMuse:::ExpandText(SDCOLS),",\n  by = ", DataMuse:::ExpandText(BYCOLS),"\n]")
+                paste0("lapply(.SD, mean, na.rm = TRUE),\n  .SDcols = ", Quantico:::ExpandText(SDCOLS),",\n  by = ", Quantico:::ExpandText(BYCOLS),"\n]")
               } else if(AggMethod %in% c("count","proportion")) {
-                paste0("list(Count = .N),\n  by = ", DataMuse:::ExpandText(BYCOLS), "\n\n]")
+                paste0("list(Count = .N),\n  by = ", Quantico:::ExpandText(BYCOLS), "\n\n]")
               } else if(AggMethod == "sum") {
-                paste0("lapply(.SD, sum, na.rm = TRUE),\n  .SDcols = ", DataMuse:::ExpandText(SDCOLS),",\n  by = ",DataMuse:::ExpandText(BYCOLS),"\n]")
+                paste0("lapply(.SD, sum, na.rm = TRUE),\n  .SDcols = ", Quantico:::ExpandText(SDCOLS),",\n  by = ",Quantico:::ExpandText(BYCOLS),"\n]")
               } else if(AggMethod == "median") {
-                paste0("lapply(.SD, median, na.rm = TRUE),\n  .SDcols = ", DataMuse:::ExpandText(SDCOLS),",\n  by = ",DataMuse:::ExpandText(BYCOLS),"\n]")
+                paste0("lapply(.SD, median, na.rm = TRUE),\n  .SDcols = ", Quantico:::ExpandText(SDCOLS),",\n  by = ",Quantico:::ExpandText(BYCOLS),"\n]")
               } else if(AggMethod == "sd") {
-                paste0("lapply(.SD, sd, na.rm = TRUE),\n  .SDcols = ", DataMuse:::ExpandText(SDCOLS),",\n  by = ",DataMuse:::ExpandText(BYCOLS),"\n]")
+                paste0("lapply(.SD, sd, na.rm = TRUE),\n  .SDcols = ", Quantico:::ExpandText(SDCOLS),",\n  by = ",Quantico:::ExpandText(BYCOLS),"\n]")
               } else if(AggMethod == "skewness") {
-                paste0("lapply(.SD, e1071::skewness, na.rm = TRUE),\n  .SDcols = ", DataMuse:::ExpandText(SDCOLS),",\n  by = ",DataMuse:::ExpandText(BYCOLS),"\n]")
+                paste0("lapply(.SD, e1071::skewness, na.rm = TRUE),\n  .SDcols = ", Quantico:::ExpandText(SDCOLS),",\n  by = ",Quantico:::ExpandText(BYCOLS),"\n]")
               } else if(AggMethod == "kurtosis") {
-                paste0("lapply(.SD, e1071::kurtosis, na.rm = TRUE),\n  .SDcols = ", DataMuse:::ExpandText(SDCOLS),",\n  by = ", DataMuse:::ExpandText(BYCOLS),"\n]")
+                paste0("lapply(.SD, e1071::kurtosis, na.rm = TRUE),\n  .SDcols = ", Quantico:::ExpandText(SDCOLS),",\n  by = ", Quantico:::ExpandText(BYCOLS),"\n]")
               } else if(AggMethod == "CoeffVar") {
-                paste0("lapply(.SD, FUN = function(x) {sd(x, na.rm=TRUE) / mean(x, na.rm = TRUE)}),\n  .SDcols = ",DataMuse:::ExpandText(SDCOLS),",\n  by = ", DataMuse:::ExpandText(BYCOLS),"\n]")
+                paste0("lapply(.SD, FUN = function(x) {sd(x, na.rm=TRUE) / mean(x, na.rm = TRUE)}),\n  .SDcols = ",Quantico:::ExpandText(SDCOLS),",\n  by = ", Quantico:::ExpandText(BYCOLS),"\n]")
               } else if(AggMethod == "sumabs") {
-                paste0("lapply(.SD, FUN = function(x) sum(abs(x), na.rm=TRUE)),\n  .SDcols = ", DataMuse:::ExpandText(SDCOLS),",\n  by = ",DataMuse:::ExpandText(BYCOLS),"\n]")
+                paste0("lapply(.SD, FUN = function(x) sum(abs(x), na.rm=TRUE)),\n  .SDcols = ", Quantico:::ExpandText(SDCOLS),",\n  by = ",Quantico:::ExpandText(BYCOLS),"\n]")
               } else if(AggMethod == "meanabs") {
-                paste0("lapply(.SD, FUN = function(x) mean(abs(x), na.rm=TRUE)),\n  .SDcols = ", DataMuse:::ExpandText(SDCOLS),",\n  by = ",DataMuse:::ExpandText(BYCOLS),"\n]")
+                paste0("lapply(.SD, FUN = function(x) mean(abs(x), na.rm=TRUE)),\n  .SDcols = ", Quantico:::ExpandText(SDCOLS),",\n  by = ",Quantico:::ExpandText(BYCOLS),"\n]")
               } else if(AggMethod == "medianabs") {
-                paste0("lapply(.SD, FUN = function(x) median(abs(x), na.rm=TRUE)),\n  .SDcols = ", DataMuse:::ExpandText(SDCOLS),",\n  by = ",DataMuse:::ExpandText(BYCOLS),"\n]")
+                paste0("lapply(.SD, FUN = function(x) median(abs(x), na.rm=TRUE)),\n  .SDcols = ", Quantico:::ExpandText(SDCOLS),",\n  by = ",Quantico:::ExpandText(BYCOLS),"\n]")
               } else if(AggMethod == "sdabs") {
-                paste0("lapply(.SD, FUN = function(x) sd(abs(x), na.rm=TRUE)),\n  .SDcols = ", DataMuse:::ExpandText(SDCOLS),",\n  by = ",DataMuse:::ExpandText(BYCOLS),"\n]")
+                paste0("lapply(.SD, FUN = function(x) sd(abs(x), na.rm=TRUE)),\n  .SDcols = ", Quantico:::ExpandText(SDCOLS),",\n  by = ",Quantico:::ExpandText(BYCOLS),"\n]")
               } else if(AggMethod == "skewnessabs") {
-                paste0("lapply(.SD, FUN = function(x) e1071::skewness(abs(x), na.rm=TRUE)),\n  .SDcols = ", DataMuse:::ExpandText(SDCOLS),",\n  by = ",DataMuse:::ExpandText(BYCOLS),"\n]")
+                paste0("lapply(.SD, FUN = function(x) e1071::skewness(abs(x), na.rm=TRUE)),\n  .SDcols = ", Quantico:::ExpandText(SDCOLS),",\n  by = ",Quantico:::ExpandText(BYCOLS),"\n]")
               } else if(AggMethod == "kurtosisabs") {
-                paste0("lapply(.SD, FUN = function(x) e1071::kurtosis(abs(x), na.rm=TRUE)),\n  .SDcols = ", DataMuse:::ExpandText(SDCOLS),",\n  by = ",DataMuse:::ExpandText(BYCOLS),"\n]")
+                paste0("lapply(.SD, FUN = function(x) e1071::kurtosis(abs(x), na.rm=TRUE)),\n  .SDcols = ", Quantico:::ExpandText(SDCOLS),",\n  by = ",Quantico:::ExpandText(BYCOLS),"\n]")
               } else if(AggMethod == "CoeffVarabs") {
-                paste0("lapply(.SD, FUN = function(x) {sd(abs(x), na.rm=TRUE) / mean(abs(x), na.rm = TRUE)}),\n  .SDcols = ", DataMuse:::ExpandText(SDCOLS),",\n  by = ",DataMuse:::ExpandText(BYCOLS),"\n]")
+                paste0("lapply(.SD, FUN = function(x) {sd(abs(x), na.rm=TRUE) / mean(abs(x), na.rm = TRUE)}),\n  .SDcols = ", Quantico:::ExpandText(SDCOLS),",\n  by = ",Quantico:::ExpandText(BYCOLS),"\n]")
               }
 
             } else {
-              paste0(".SD, .SDcols = ", DataMuse:::ExpandText(SDCOLS),"\n]")
+              paste0(".SD, .SDcols = ", Quantico:::ExpandText(SDCOLS),"\n]")
             }
           )
 
@@ -793,7 +793,7 @@ Shiny.Plot.Build <- function(input,
           # Code Collect
           if(length(YVar) > 1L || length(YVar) == 0) yclass <- "numeric" else yclass <- class(data1[[YVar]])[1L]
           if(CollectCode) {
-            CodeList <- tryCatch({DataMuse:::Shiny.CodePrint.Collect(CodeList, DataPrepare)}, error = function(x) CodeList)
+            CodeList <- tryCatch({Quantico:::Shiny.CodePrint.Collect(CodeList, DataPrepare)}, error = function(x) CodeList)
           } else {
             CodeList[['Code']] <- CodeList[['Code']][seq_len(length(CodeList[['Code']])-1L)]
             CodeList[['TimeStamp']] <- CodeList[['TimeStamp']][seq_len(length(CodeList[['TimeStamp']])-1L)]
@@ -804,7 +804,7 @@ Shiny.Plot.Build <- function(input,
             data1[, Proportion := Count / sum(Count, na.rm = TRUE)][, Count := NULL]
             YVar <- "Proportion"
             YAxisTitle <- "Proportion"
-            CodeList <- tryCatch({DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+            CodeList <- tryCatch({Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
               "\n\n# Convert Count to a Proportion\n",
               "data1[, Proportion := Count / sum(Count, na.rm = TRUE)][, Count := NULL]\n"
             ))}, error = function(x) CodeList)
@@ -896,36 +896,36 @@ Shiny.Plot.Build <- function(input,
 
             # Code Collection
             if(CollectCode) {
-              CodeList <- tryCatch({DataMuse:::Shiny.CodePrint.Collect(CodeList, paste0(
+              CodeList <- tryCatch({Quantico:::Shiny.CodePrint.Collect(CodeList, paste0(
                 "\n\n",
                 "# Build Plot\n",
                 "AutoPlots::Plot.StandardPlots(", "\n  ",
-                "PlotType = ", DataMuse:::CEP(PlotType), ",\n  ",
+                "PlotType = ", Quantico:::CEP(PlotType), ",\n  ",
                 "dt = data1", ",\n  ",
-                "AggMethod = ", DataMuse:::CEP(AggMethod), ",\n  ",
-                "SampleSize = ", DataMuse:::CEPP(SampleSize), ",\n  ",
-                "PreAgg = ", DataMuse:::CEPP(PreAgg), ",\n  ",
-                "YVar = ", DataMuse:::ExpandText(YVar), ",\n  ",
-                "DualYVar = ", DataMuse:::ExpandText(DualYVar), ",\n  ",
-                "XVar = ", DataMuse:::ExpandText(XVar), ",\n  ",
-                "ZVar = ", DataMuse:::ExpandText(ZVar), ",\n  ",
-                "GroupVar = ", DataMuse:::ExpandText(GroupVars), ",\n  ",
-                "YVarTrans = ", DataMuse:::CEP(YVarTrans), ",\n  ",
-                "DualYVarTrans = ", DataMuse:::CEP(DualYVarTrans), ",\n  ",
-                "XVarTrans = ", DataMuse:::CEP(XVarTrans), ",\n  ",
-                "ZVarTrans = ", DataMuse:::CEP(ZVarTrans), ",\n  ",
-                "FacetRows = ", DataMuse:::CEPP(FacetRows), ",\n  ",
-                "FacetCols = ", DataMuse:::CEPP(FacetCols), ",\n  ",
-                "FacetLevels = ", DataMuse:::ExpandText(Levels1), ",\n  ",
-                "NumberBins = ", DataMuse:::CEP(NumberBins), ",\n  ",
-                "Title = ", DataMuse:::CEP(Title), ",\n  ",
-                "ShowLabels = ", DataMuse:::CEPP(ShowLabels), ",\n  ",
-                "Title.YAxis = ", DataMuse:::CEP(YAxisTitle), ",\n  ",
-                "Title.XAxis = ", DataMuse:::CEP(XAxisTitle), ",\n  ",
-                "EchartsTheme = ", DataMuse:::CEP(EchartsTheme), ",\n  ",
-                "TimeLine = ", DataMuse:::CEPP(Timeline), ",\n  ",
+                "AggMethod = ", Quantico:::CEP(AggMethod), ",\n  ",
+                "SampleSize = ", Quantico:::CEPP(SampleSize), ",\n  ",
+                "PreAgg = ", Quantico:::CEPP(PreAgg), ",\n  ",
+                "YVar = ", Quantico:::ExpandText(YVar), ",\n  ",
+                "DualYVar = ", Quantico:::ExpandText(DualYVar), ",\n  ",
+                "XVar = ", Quantico:::ExpandText(XVar), ",\n  ",
+                "ZVar = ", Quantico:::ExpandText(ZVar), ",\n  ",
+                "GroupVar = ", Quantico:::ExpandText(GroupVars), ",\n  ",
+                "YVarTrans = ", Quantico:::CEP(YVarTrans), ",\n  ",
+                "DualYVarTrans = ", Quantico:::CEP(DualYVarTrans), ",\n  ",
+                "XVarTrans = ", Quantico:::CEP(XVarTrans), ",\n  ",
+                "ZVarTrans = ", Quantico:::CEP(ZVarTrans), ",\n  ",
+                "FacetRows = ", Quantico:::CEPP(FacetRows), ",\n  ",
+                "FacetCols = ", Quantico:::CEPP(FacetCols), ",\n  ",
+                "FacetLevels = ", Quantico:::ExpandText(Levels1), ",\n  ",
+                "NumberBins = ", Quantico:::CEP(NumberBins), ",\n  ",
+                "Title = ", Quantico:::CEP(Title), ",\n  ",
+                "ShowLabels = ", Quantico:::CEPP(ShowLabels), ",\n  ",
+                "Title.YAxis = ", Quantico:::CEP(YAxisTitle), ",\n  ",
+                "Title.XAxis = ", Quantico:::CEP(XAxisTitle), ",\n  ",
+                "EchartsTheme = ", Quantico:::CEP(EchartsTheme), ",\n  ",
+                "TimeLine = ", Quantico:::CEPP(Timeline), ",\n  ",
                 "FontSize = 14,\n  ",
-                "TextColor = ", DataMuse:::CEP(FontColor), ")\n  "))}, error = function(x) CodeList)
+                "TextColor = ", Quantico:::CEP(FontColor), ")\n  "))}, error = function(x) CodeList)
               CodeList <<- CodeList
             }
 
@@ -942,15 +942,15 @@ Shiny.Plot.Build <- function(input,
               TextColor = ColorFont,
               Debug = Debug)
 
-            CodeList <- tryCatch({DataMuse:::Shiny.CodePrint.Collect(CodeList, paste0(
+            CodeList <- tryCatch({Quantico:::Shiny.CodePrint.Collect(CodeList, paste0(
               "\n\n",
               "# Build Plot\n",
               "AutoPlots::Plot.WordCloud(", "\n  ",
               "dt = data1,\n  ",
-              "YVar = ", DataMuse:::ExpandText(YVar), ",\n  ",
-              "Title = ", DataMuse:::CEP(Title), ",\n  ",
-              "TextColor = ", DataMuse:::CEP(ColorFont), "\n  ",
-              "EchartsTheme = ", DataMuse:::CEP(EchartsTheme), ")\n"))}, error = function(x) NULL)
+              "YVar = ", Quantico:::ExpandText(YVar), ",\n  ",
+              "Title = ", Quantico:::CEP(Title), ",\n  ",
+              "TextColor = ", Quantico:::CEP(ColorFont), "\n  ",
+              "EchartsTheme = ", Quantico:::CEP(EchartsTheme), ")\n"))}, error = function(x) NULL)
 
           } else if(PlotType == "ProbabilityPlot") {
 
@@ -966,15 +966,15 @@ Shiny.Plot.Build <- function(input,
               TextColor = ColorFont,
               Debug = Debug)
 
-            CodeList <- tryCatch({DataMuse:::Shiny.CodePrint.Collect(CodeList, paste0(
+            CodeList <- tryCatch({Quantico:::Shiny.CodePrint.Collect(CodeList, paste0(
               "\n\n",
               "# Build Plot\n",
               "AutoPlots::Plot.ProbabilityPlot(", "\n  ",
               "dt = data1,\n  ",
-              "YVar = ", DataMuse:::ExpandText(YVar), ",\n  ",
-              "Title = ", DataMuse:::CEP(Title), ",\n  ",
-              "TextColor = ", DataMuse:::CEP(ColorFont), "\n  ",
-              "EchartsTheme = ", DataMuse:::CEP(EchartsTheme), ")\n"))}, error = function(x) NULL)
+              "YVar = ", Quantico:::ExpandText(YVar), ",\n  ",
+              "Title = ", Quantico:::CEP(Title), ",\n  ",
+              "TextColor = ", Quantico:::CEP(ColorFont), "\n  ",
+              "EchartsTheme = ", Quantico:::CEP(EchartsTheme), ")\n"))}, error = function(x) NULL)
 
           } else if(PlotType == "ParallelPlot") {
 
@@ -991,16 +991,16 @@ Shiny.Plot.Build <- function(input,
               TextColor = ColorFont,
               Debug = Debug)
 
-            CodeList <- tryCatch({DataMuse:::Shiny.CodePrint.Collect(CodeList, paste0(
+            CodeList <- tryCatch({Quantico:::Shiny.CodePrint.Collect(CodeList, paste0(
               "\n\n",
               "# Build Plot\n",
               "AutoPlots::Plot.Parallel(", "\n  ",
               "dt = data1,\n  ",
-              "SampleSize = ", DataMuse:::CEPP(SampleSize), ",\n  ",
-              "CorrVars = ", DataMuse:::ExpandText(YVar), ",\n  ",
-              "Title = ", DataMuse:::CEP(Title), ",\n  ",
-              "TextColor = ", DataMuse:::CEP(ColorFont), "\n  ",
-              "EchartsTheme = ", DataMuse:::CEP(EchartsTheme), ")\n"))}, error = function(x) NULL)
+              "SampleSize = ", Quantico:::CEPP(SampleSize), ",\n  ",
+              "CorrVars = ", Quantico:::ExpandText(YVar), ",\n  ",
+              "Title = ", Quantico:::CEP(Title), ",\n  ",
+              "TextColor = ", Quantico:::CEP(ColorFont), "\n  ",
+              "EchartsTheme = ", Quantico:::CEP(EchartsTheme), ")\n"))}, error = function(x) NULL)
 
           } else if(PlotType == "RadarPlot") {
 
@@ -1020,19 +1020,19 @@ Shiny.Plot.Build <- function(input,
               TextColor = ColorFont,
               Debug = Debug)
 
-            CodeList <- tryCatch({DataMuse:::Shiny.CodePrint.Collect(CodeList, paste0(
+            CodeList <- tryCatch({Quantico:::Shiny.CodePrint.Collect(CodeList, paste0(
               "\n\n",
               "# Build Plot\n",
               "AutoPlots::Plot.Radar(", "\n  ",
               "dt = data1,\n  ",
-              "PreAgg = ", DataMuse:::CEPP(PreAgg), ",\n  ",
-              "AggMethod = ", DataMuse:::CEP(AggMethod), ",\n  ",
-              "YVar = ", DataMuse:::ExpandText(YVar), ",\n  ",
-              "YVarTrans = ", DataMuse:::CEP(YVarTrans), ",\n  ",
-              "GroupVar = ", DataMuse:::ExpandText(GroupVars), ",\n  ",
-              "Title = ", DataMuse:::CEP(Title), ",\n  ",
-              "TextColor = ", DataMuse:::CEP(ColorFont), "\n  ",
-              "EchartsTheme = ", DataMuse:::CEP(EchartsTheme), ")\n"))}, error = function(x) NULL)
+              "PreAgg = ", Quantico:::CEPP(PreAgg), ",\n  ",
+              "AggMethod = ", Quantico:::CEP(AggMethod), ",\n  ",
+              "YVar = ", Quantico:::ExpandText(YVar), ",\n  ",
+              "YVarTrans = ", Quantico:::CEP(YVarTrans), ",\n  ",
+              "GroupVar = ", Quantico:::ExpandText(GroupVars), ",\n  ",
+              "Title = ", Quantico:::CEP(Title), ",\n  ",
+              "TextColor = ", Quantico:::CEP(ColorFont), "\n  ",
+              "EchartsTheme = ", Quantico:::CEP(EchartsTheme), ")\n"))}, error = function(x) NULL)
 
           } else if(PlotType == 'Autocorrelation') {
 
@@ -1068,20 +1068,20 @@ Shiny.Plot.Build <- function(input,
               TextColor = ColorFont,
               Debug = Debug)
 
-            CodeList <- tryCatch({DataMuse:::Shiny.CodePrint.Collect(CodeList, paste0(
+            CodeList <- tryCatch({Quantico:::Shiny.CodePrint.Collect(CodeList, paste0(
               "\n\n",
               "# Build Plot\n",
               "AutoPlots::Plot.ACF(", "\n  ",
               "dt = data1,\n  ",
-              "YVar = ", DataMuse:::ExpandText(YVar), ",\n  ",
-              "DateVar = ", DataMuse:::CEP(DateVariable), ",\n  ",
-              "TimeUnit = ", DataMuse:::CEP(TimeUnitVariable), ",\n  ",
-              "MaxLags = ", DataMuse:::CEPP(MaxLagsVariable), ",\n  ",
-              "YVarTrans = ", DataMuse:::CEP(YVarTrans), ",\n  ",
+              "YVar = ", Quantico:::ExpandText(YVar), ",\n  ",
+              "DateVar = ", Quantico:::CEP(DateVariable), ",\n  ",
+              "TimeUnit = ", Quantico:::CEP(TimeUnitVariable), ",\n  ",
+              "MaxLags = ", Quantico:::CEPP(MaxLagsVariable), ",\n  ",
+              "YVarTrans = ", Quantico:::CEP(YVarTrans), ",\n  ",
               "AggMethod = 'sum',\n  ",
               "Title = 'Autocorrelation Plot',\n  ",
-              "TextColor = ", DataMuse:::CEP(ColorFont), "\n  ",
-              "EchartsTheme = ", DataMuse:::CEP(EchartsTheme), ")\n"))}, error = function(x) NULL)
+              "TextColor = ", Quantico:::CEP(ColorFont), "\n  ",
+              "EchartsTheme = ", Quantico:::CEP(EchartsTheme), ")\n"))}, error = function(x) NULL)
 
           } else if(PlotType == 'PartialAutocorr') {
 
@@ -1117,20 +1117,20 @@ Shiny.Plot.Build <- function(input,
                 TextColor = ColorFont,
                 Debug = Debug)
 
-              CodeList <- tryCatch({DataMuse:::Shiny.CodePrint.Collect(CodeList, paste0(
+              CodeList <- tryCatch({Quantico:::Shiny.CodePrint.Collect(CodeList, paste0(
                 "\n\n",
                 "# Build Plot\n",
                 "AutoPlots::Plot.PACF(", "\n  ",
                 "dt = data1,\n  ",
-                "YVar = ", DataMuse:::ExpandText(YVar), ",\n  ",
-                "DateVar = ", DataMuse:::CEP(DateVariable), ",\n  ",
-                "TimeUnit = ", DataMuse:::CEP(TimeUnitVariable), ",\n  ",
-                "MaxLags = ", DataMuse:::CEPP(MaxLagsVariable), ",\n  ",
-                "YVarTrans = ", DataMuse:::CEP(YVarTrans), ",\n  ",
+                "YVar = ", Quantico:::ExpandText(YVar), ",\n  ",
+                "DateVar = ", Quantico:::CEP(DateVariable), ",\n  ",
+                "TimeUnit = ", Quantico:::CEP(TimeUnitVariable), ",\n  ",
+                "MaxLags = ", Quantico:::CEPP(MaxLagsVariable), ",\n  ",
+                "YVarTrans = ", Quantico:::CEP(YVarTrans), ",\n  ",
                 "AggMethod = 'sum',\n  ",
                 "Title = 'Partial Autocorrelation Plot',\n  ",
-                "TextColor = ", DataMuse:::CEP(ColorFont), "\n  ",
-                "EchartsTheme = ", DataMuse:::CEP(EchartsTheme), ")\n"))}, error = function(x) NULL)
+                "TextColor = ", Quantico:::CEP(ColorFont), "\n  ",
+                "EchartsTheme = ", Quantico:::CEP(EchartsTheme), ")\n"))}, error = function(x) NULL)
 
 
           } else {
@@ -1185,26 +1185,26 @@ Shiny.Plot.Build <- function(input,
 
             # Code Collection
             if(CollectCode) {
-              CodeList <- tryCatch({DataMuse:::Shiny.CodePrint.Collect(CodeList, paste0(
+              CodeList <- tryCatch({Quantico:::Shiny.CodePrint.Collect(CodeList, paste0(
                 "\n\n",
                 "# Build Plot\n",
                 "AutoPlots::Plots.ModelEvaluation(\n  ",
                 "dt = data1,\n  ",
-                "EchartsTheme = ", DataMuse:::CEP(EchartsTheme), ",\n  ",
-                "TimeLine = ", DataMuse:::CEPP(Timeline), ",\n  ",
-                "PlotType = ", DataMuse:::CEP(PlotType), ",\n  ",
-                "SampleSize = ", DataMuse:::CEPP(SampleSize), ",\n  ",
-                "YVar = ", DataMuse:::ExpandText(YVar), ",\n  ",
-                "ZVar = ", DataMuse:::ExpandText(ZVar), ",\n  ",
-                "XVar = ", DataMuse:::ExpandText(XVar), ",\n  ",
-                "GroupVar = ", DataMuse:::ExpandText(GroupVars), ",\n  ",
-                "YVarTrans = ", DataMuse:::CEP(YVarTrans), ",\n  ",
-                "XVarTrans = ", DataMuse:::CEP(XVarTrans), ",\n  ",
-                "ZVarTrans = ", DataMuse:::CEP(ZVarTrans), ",\n  ",
-                "FacetRows = ", DataMuse:::CEPP(FacetRows), ",\n  ",
-                "FacetCols = ", DataMuse:::CEPP(FacetCols), ",\n  ",
-                "NumberBins = ", DataMuse:::CEP(NumberBins), ",\n  ",
-                "TextColor = ", DataMuse:::CEP(FontColor), ")\n"))}, error = function(x) CodeList)
+                "EchartsTheme = ", Quantico:::CEP(EchartsTheme), ",\n  ",
+                "TimeLine = ", Quantico:::CEPP(Timeline), ",\n  ",
+                "PlotType = ", Quantico:::CEP(PlotType), ",\n  ",
+                "SampleSize = ", Quantico:::CEPP(SampleSize), ",\n  ",
+                "YVar = ", Quantico:::ExpandText(YVar), ",\n  ",
+                "ZVar = ", Quantico:::ExpandText(ZVar), ",\n  ",
+                "XVar = ", Quantico:::ExpandText(XVar), ",\n  ",
+                "GroupVar = ", Quantico:::ExpandText(GroupVars), ",\n  ",
+                "YVarTrans = ", Quantico:::CEP(YVarTrans), ",\n  ",
+                "XVarTrans = ", Quantico:::CEP(XVarTrans), ",\n  ",
+                "ZVarTrans = ", Quantico:::CEP(ZVarTrans), ",\n  ",
+                "FacetRows = ", Quantico:::CEPP(FacetRows), ",\n  ",
+                "FacetCols = ", Quantico:::CEPP(FacetCols), ",\n  ",
+                "NumberBins = ", Quantico:::CEP(NumberBins), ",\n  ",
+                "TextColor = ", Quantico:::CEP(FontColor), ")\n"))}, error = function(x) CodeList)
               CodeList <<- CodeList
             }
           }
@@ -1277,7 +1277,7 @@ RenderOutput <- function(...,
   if(NumCols == 1L) {
     r <- htmltools::div(class = "row", style="padding-right: 0px;")
     l <- shiny::tagList(
-      DataMuse:::cust_box(
+      Quantico:::cust_box(
         id = paste0("cust_box", BoxNum),
         title = Title,
         solidHeader = TRUE,
@@ -1302,7 +1302,7 @@ RenderOutput <- function(...,
             style = "padding-bottom: 25px;",
             pl))
       ),
-      DataMuse:::BlankRow(12L)
+      Quantico:::BlankRow(12L)
     )
     r <- htmltools::tagAppendChild(r, shiny::tagList(l))
     return(htmltools::browsable(r))
@@ -1313,8 +1313,8 @@ RenderOutput <- function(...,
       remaining_length <- length(names(pl)[(x+1):length(names(pl))])
       if(NumCols == 5 && remaining_length >= 5) {
         tg <- shiny::tagList(
-          DataMuse:::BlankRow(12L), # child 1
-          DataMuse:::cust_box(      # child 2
+          Quantico:::BlankRow(12L), # child 1
+          Quantico:::cust_box(      # child 2
             id = paste0("cust_box", i),
             title = "Grouped Output",
             solidHeader = TRUE,
@@ -1337,7 +1337,7 @@ RenderOutput <- function(...,
 
       } else if(i == 1L) {
         tg <- shiny::tagList(
-          DataMuse:::cust_box(
+          Quantico:::cust_box(
             id = paste0("cust_box", i),
             title = "Grouped Output",
             solidHeader = TRUE,
@@ -1360,8 +1360,8 @@ RenderOutput <- function(...,
 
       } else {
         tg <- shiny::tagList(
-          DataMuse:::BlankRow(12L), # child 1
-          DataMuse:::cust_box(      # child 2
+          Quantico:::BlankRow(12L), # child 1
+          Quantico:::cust_box(      # child 2
             id = paste0("cust_box", i),
             title = "Grouped Output",
             solidHeader = TRUE,
@@ -1441,7 +1441,7 @@ Shiny.Display <- function(input,
   if(Cols == 1) {
     for(p in seq_along(PlotList)) {# p = 1
       if(Debug) print(p)
-      plist[[p]] <- DataMuse:::RenderOutput(
+      plist[[p]] <- Quantico:::RenderOutput(
         PlotList[[p]],
         NumCols = 1,
         Title = if(length(PM) == 0L) "Grid Output" else PM[p],
@@ -1450,7 +1450,7 @@ Shiny.Display <- function(input,
         Debug = Debug)
     }
   } else {
-    plist <- DataMuse:::RenderOutput(
+    plist <- Quantico:::RenderOutput(
       PlotList,
       NumCols = Cols,
       Title = PM,
@@ -2220,7 +2220,7 @@ BlankEchart <- function(Type = "Poincare", Theme = "macarons") {
       "world dark",
       "world night")
     bg <- sample(x = BackgroundsImages, size = 1, replace = FALSE, prob = rep(1/length(BackgroundsImages), length(BackgroundsImages)))
-    flights <- data.table::fread(file = system.file("shiny-apps","DataMuse","www", "flights.csv", package = "DataMuse"))
+    flights <- data.table::fread(file = system.file("shiny-apps","Quantico","www", "flights.csv", package = "Quantico"))
     flights |>
       echarts4r::e_charts() |>
       echarts4r::e_globe(
@@ -2305,8 +2305,8 @@ PlotSize_ <- function(input, OutputPage, NumCols, PlotOrder) {
   NumPlots <- length(PlotOrder)
   remainder <- NumPlots %% NumCols
   h <- c(); w <- c()
-  height <- DataMuse::ReturnParam(xx = tryCatch({input[[paste0('PlotHeight',OutputPage)]]}, error = function(x) NULL), Type = 'numeric', Default = 860)
-  width <- DataMuse::ReturnParam(xx = tryCatch({input[[paste0('PlotWidth', OutputPage)]]}, error = function(x) NULL), Type = 'numeric', Default = 1450)
+  height <- Quantico::ReturnParam(xx = tryCatch({input[[paste0('PlotHeight',OutputPage)]]}, error = function(x) NULL), Type = 'numeric', Default = 860)
+  width <- Quantico::ReturnParam(xx = tryCatch({input[[paste0('PlotWidth', OutputPage)]]}, error = function(x) NULL), Type = 'numeric', Default = 1450)
 
   # Fill in full rows first --> then fill in remainder in 2nd for-loop
   for(i in seq_len(NumPlots - remainder)) {
@@ -2328,7 +2328,7 @@ PlotSize_ <- function(input, OutputPage, NumCols, PlotOrder) {
   # > Make size adjustments relative to remainder
   #   counts and number of grid columns
   #
-  # Note: DataMuse::RenderOutput() will modify grid column width for the remainder rows
+  # Note: Quantico::RenderOutput() will modify grid column width for the remainder rows
   #       E.g. If you have a 4 column grid and 2 remainder plots then RenderOutput
   #            will create 2 columns with each having width 6L, to fill the entire row.
   #            Therefore, there isn't a need to make size adjustments in light of NumCols;
@@ -2342,7 +2342,7 @@ PlotSize_ <- function(input, OutputPage, NumCols, PlotOrder) {
 
 #' @examples
 #' \dontrun{
-#' DataMuse:::transp_('#fff', alpha = 0.50)
+#' Quantico:::transp_('#fff', alpha = 0.50)
 #' }
 #' @noRd
 transp_ <- function(hex.color.list,alpha) sprintf("%s%02X",hex.color.list, floor(alpha*256))
@@ -2353,13 +2353,13 @@ transp_ <- function(hex.color.list,alpha) sprintf("%s%02X",hex.color.list, floor
 #'
 #' @examples
 #' \dontrun{
-#' DataMuse:::LevelsHex(dt,gv,'Blues')
+#' Quantico:::LevelsHex(dt,gv,'Blues')
 #' }
 #' @keywords internal
 LevelsHex <- function(dt, gv, name = 'Blues') {
   N <- max(8L, length(dt[, unique(get(gv))]))
   g <- RColorBrewer::brewer.pal(name = 'Blues', n = max(3L, N))
-  return(DataMuse:::transp_(hex.color.list = g, alpha = 0.62))
+  return(Quantico:::transp_(hex.color.list = g, alpha = 0.62))
 }
 
 #' @title Shiny.Plot.StandardPlotChecks
@@ -2525,10 +2525,10 @@ Shiny.Plot.StandardPlotChecks <- function(d=NULL,
 Shiny.Plot.DM.data1 <- function(DL,run,PlotType,CodeList,Debug,DataName=NULL) {
   if(length(DataName) > 0L && length(DL) > 0L) {
     data1 <- data.table::copy(DL[[DataName]][['data']])
-    CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+    CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
       "\n",
       "# Plotting: ", PlotType,"\n",
-      "data1 <- DataList[[", DataMuse:::CEP(DataName), "]]\n"))
+      "data1 <- DataList[[", Quantico:::CEP(DataName), "]]\n"))
 
     # Return
     return(list(

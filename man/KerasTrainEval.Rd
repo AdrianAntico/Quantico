@@ -31,7 +31,7 @@ KerasTrainEval(
 )
 }
 \arguments{
-\item{PriorOutput}{Default NULL. E.g. Output from a previous DataMuse::Keras() call. Ignore if using Sequential Mode (API = FALSE)}
+\item{PriorOutput}{Default NULL. E.g. Output from a previous Quantico::Keras() call. Ignore if using Sequential Mode (API = FALSE)}
 
 \item{inputs}{Default NULL. E.g. c(Output$LayerList$text, Output$LayerList$features)}
 
@@ -77,7 +77,7 @@ Train model and generate evaluation metrics
 \examples{
 \dontrun{
 
-Output <- DataMuse:::KerasTrainEval(
+Output <- Quantico:::KerasTrainEval(
   PriorOutput = NULL, # Output
   inputs = NULL, # c(Output$LayerList$text, Output$LayerList$features),
   outputs = NULL, # Output$LayerList$outputtot,

@@ -58,7 +58,7 @@ Columns <- c(
   "CHILLED_Margin_PerDay",
   "CHILLED_Liters_PerDay",
   "CHILLED_Units_PerDay")
-data <- DataMuse::DM.pgQuery(
+data <- Quantico::DM.pgQuery(
   Query = NULL,
   DataBase = "KompsProcessed",
   SELECT = Columns,

@@ -325,49 +325,49 @@ Shiny.ML.H2O.LinkOptions <- function(TT) {
 Shiny.ML.CatBoost_Params <- function(l,input,Debug,TT,CodeList) {
 
   # CatBoost ML Algo Specific
-  l[['task_type']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['CatBoost_task_type']]}, error=function(x) NULL), Type='character', Default='CPU')
-  l[['NumGPUs']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['CatBoost_NumGPUs']]}, error=function(x) NULL), Type='numeric', Default=1)
+  l[['task_type']] <- Quantico:::ReturnParam(xx=tryCatch({input[['CatBoost_task_type']]}, error=function(x) NULL), Type='character', Default='CPU')
+  l[['NumGPUs']] <- Quantico:::ReturnParam(xx=tryCatch({input[['CatBoost_NumGPUs']]}, error=function(x) NULL), Type='numeric', Default=1)
 
   # CatBoost ML Parameters
-  l[['Trees']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['CatBoost_Trees']]}, error=function(x) NULL), Type='numeric', Default=1000)
-  l[['Depth']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['CatBoost_Depth']]}, error=function(x) NULL), Type='numeric', Default=8)
-  l[['LearningRate']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['CatBoost_LearningRate']]}, error=function(x) NULL), Type='numeric', Default=NULL)
-  l[['L2_Leaf_Reg']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['CatBoost_L2_Leaf_Reg']]}, error=function(x) NULL), Type='numeric', Default=NULL)
-  l[['model_size_reg']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['CatBoost_model_size_reg']]}, error=function(x) NULL), Type='numeric', Default=0.50)
-  l[['langevin']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['CatBoost_langevin']]}, error=function(x) NULL), Type='logical', Default=FALSE)
-  l[['diffusion_temperature']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['CatBoost_diffusion_temperature']]}, error=function(x) NULL), Type='numeric', Default=10000)
-  l[['RandomStrength']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['CatBoost_RandomStrength']]}, error=function(x) NULL), Type='numeric', Default=1)
-  l[['BorderCount']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['CatBoost_BorderCount']]}, error=function(x) NULL), Type='numeric', Default=256)
-  l[['RSM']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['CatBoost_RSM']]}, error=function(x) NULL), Type='numeric', Default=1)
-  l[['BootStrapType']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['CatBoost_BootStrapType']]}, error=function(x) NULL), Type='character', Default='Bayesian')
-  l[['GrowPolicy']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['CatBoost_GrowPolicy']]}, error=function(x) NULL), Type='character', Default='SymmetricTree')
-  l[['feature_border_type']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['CatBoost_feature_border_type']]}, error=function(x) NULL), Type='character', Default='GreedyLogSum')
-  l[['subsample']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['CatBoost_subsample']]}, error=function(x) NULL), Type='numeric', Default=1)
-  l[['score_function']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['CatBoost_score_function']]}, error=function(x) NULL), Type='character', Default='Cosine')
-  l[['min_data_in_leaf']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['CatBoost_min_data_in_leaf']]}, error=function(x) NULL), Type='numeric', Default=1)
+  l[['Trees']] <- Quantico:::ReturnParam(xx=tryCatch({input[['CatBoost_Trees']]}, error=function(x) NULL), Type='numeric', Default=1000)
+  l[['Depth']] <- Quantico:::ReturnParam(xx=tryCatch({input[['CatBoost_Depth']]}, error=function(x) NULL), Type='numeric', Default=8)
+  l[['LearningRate']] <- Quantico:::ReturnParam(xx=tryCatch({input[['CatBoost_LearningRate']]}, error=function(x) NULL), Type='numeric', Default=NULL)
+  l[['L2_Leaf_Reg']] <- Quantico:::ReturnParam(xx=tryCatch({input[['CatBoost_L2_Leaf_Reg']]}, error=function(x) NULL), Type='numeric', Default=NULL)
+  l[['model_size_reg']] <- Quantico:::ReturnParam(xx=tryCatch({input[['CatBoost_model_size_reg']]}, error=function(x) NULL), Type='numeric', Default=0.50)
+  l[['langevin']] <- Quantico:::ReturnParam(xx=tryCatch({input[['CatBoost_langevin']]}, error=function(x) NULL), Type='logical', Default=FALSE)
+  l[['diffusion_temperature']] <- Quantico:::ReturnParam(xx=tryCatch({input[['CatBoost_diffusion_temperature']]}, error=function(x) NULL), Type='numeric', Default=10000)
+  l[['RandomStrength']] <- Quantico:::ReturnParam(xx=tryCatch({input[['CatBoost_RandomStrength']]}, error=function(x) NULL), Type='numeric', Default=1)
+  l[['BorderCount']] <- Quantico:::ReturnParam(xx=tryCatch({input[['CatBoost_BorderCount']]}, error=function(x) NULL), Type='numeric', Default=256)
+  l[['RSM']] <- Quantico:::ReturnParam(xx=tryCatch({input[['CatBoost_RSM']]}, error=function(x) NULL), Type='numeric', Default=1)
+  l[['BootStrapType']] <- Quantico:::ReturnParam(xx=tryCatch({input[['CatBoost_BootStrapType']]}, error=function(x) NULL), Type='character', Default='Bayesian')
+  l[['GrowPolicy']] <- Quantico:::ReturnParam(xx=tryCatch({input[['CatBoost_GrowPolicy']]}, error=function(x) NULL), Type='character', Default='SymmetricTree')
+  l[['feature_border_type']] <- Quantico:::ReturnParam(xx=tryCatch({input[['CatBoost_feature_border_type']]}, error=function(x) NULL), Type='character', Default='GreedyLogSum')
+  l[['subsample']] <- Quantico:::ReturnParam(xx=tryCatch({input[['CatBoost_subsample']]}, error=function(x) NULL), Type='numeric', Default=1)
+  l[['score_function']] <- Quantico:::ReturnParam(xx=tryCatch({input[['CatBoost_score_function']]}, error=function(x) NULL), Type='character', Default='Cosine')
+  l[['min_data_in_leaf']] <- Quantico:::ReturnParam(xx=tryCatch({input[['CatBoost_min_data_in_leaf']]}, error=function(x) NULL), Type='numeric', Default=1)
   l[['sampling_unit']] <- 'Object'
 
   # Code Collection
-  CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+  CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
     "\n",
     "# CatBoost ML Parameters\n",
-    "ArgsList[['Trees']] <- ", DataMuse:::CEPP(l[['Trees']]), "\n",
-    "ArgsList[['Depth']] <- ", DataMuse:::CEPP(l[['Depth']]), "\n",
-    "ArgsList[['LearningRate']] <- ", if(length(DataMuse:::CEPP(l[['LearningRate']])) > 0L) DataMuse:::CEPP(l[['LearningRate']]) else "NULL", "\n",
-    "ArgsList[['L2_Leaf_Reg']] <- ", if(length(DataMuse:::CEPP(l[['L2_Leaf_Reg']])) > 0L) DataMuse:::CEPP(l[['L2_Leaf_Reg']]) else "NULL", "\n",
-    "ArgsList[['model_size_reg']] <- ", DataMuse:::CEPP(l[['model_size_reg']]), "\n",
-    "ArgsList[['langevin']] <- ", DataMuse:::CEPP(l[['langevin']]), "\n",
-    "ArgsList[['diffusion_temperature']] <- ", DataMuse:::CEPP(l[['diffusion_temperature']]), "\n",
-    "ArgsList[['RandomStrength']] <- ", DataMuse:::CEPP(l[['RandomStrength']]), "\n",
-    "ArgsList[['BorderCount']] <- ", DataMuse:::CEPP(l[['BorderCount']]), "\n",
-    "ArgsList[['RSM']] <- ", DataMuse:::CEPP(l[['RSM']]), "\n",
-    "ArgsList[['BootStrapType']] <- ", DataMuse:::CEP(l[['BootStrapType']]), "\n",
-    "ArgsList[['GrowPolicy']] <- ", DataMuse:::CEP(l[['GrowPolicy']]), "\n",
-    "ArgsList[['feature_border_type']] <- ", DataMuse:::CEP(l[['feature_border_type']]), "\n",
-    "ArgsList[['subsample']] <- ", DataMuse:::CEPP(l[['subsample']]), "\n",
-    "ArgsList[['score_function']] <- ", DataMuse:::CEP(l[['score_function']]), "\n",
-    "ArgsList[['min_data_in_leaf']] <- ", DataMuse:::CEPP(l[['min_data_in_leaf']]), "\n",
-    "ArgsList[['sampling_unit']] <- ", DataMuse:::CEP(l[['sampling_unit']]), "\n"))
+    "ArgsList[['Trees']] <- ", Quantico:::CEPP(l[['Trees']]), "\n",
+    "ArgsList[['Depth']] <- ", Quantico:::CEPP(l[['Depth']]), "\n",
+    "ArgsList[['LearningRate']] <- ", if(length(Quantico:::CEPP(l[['LearningRate']])) > 0L) Quantico:::CEPP(l[['LearningRate']]) else "NULL", "\n",
+    "ArgsList[['L2_Leaf_Reg']] <- ", if(length(Quantico:::CEPP(l[['L2_Leaf_Reg']])) > 0L) Quantico:::CEPP(l[['L2_Leaf_Reg']]) else "NULL", "\n",
+    "ArgsList[['model_size_reg']] <- ", Quantico:::CEPP(l[['model_size_reg']]), "\n",
+    "ArgsList[['langevin']] <- ", Quantico:::CEPP(l[['langevin']]), "\n",
+    "ArgsList[['diffusion_temperature']] <- ", Quantico:::CEPP(l[['diffusion_temperature']]), "\n",
+    "ArgsList[['RandomStrength']] <- ", Quantico:::CEPP(l[['RandomStrength']]), "\n",
+    "ArgsList[['BorderCount']] <- ", Quantico:::CEPP(l[['BorderCount']]), "\n",
+    "ArgsList[['RSM']] <- ", Quantico:::CEPP(l[['RSM']]), "\n",
+    "ArgsList[['BootStrapType']] <- ", Quantico:::CEP(l[['BootStrapType']]), "\n",
+    "ArgsList[['GrowPolicy']] <- ", Quantico:::CEP(l[['GrowPolicy']]), "\n",
+    "ArgsList[['feature_border_type']] <- ", Quantico:::CEP(l[['feature_border_type']]), "\n",
+    "ArgsList[['subsample']] <- ", Quantico:::CEPP(l[['subsample']]), "\n",
+    "ArgsList[['score_function']] <- ", Quantico:::CEP(l[['score_function']]), "\n",
+    "ArgsList[['min_data_in_leaf']] <- ", Quantico:::CEPP(l[['min_data_in_leaf']]), "\n",
+    "ArgsList[['sampling_unit']] <- ", Quantico:::CEP(l[['sampling_unit']]), "\n"))
 
   print(' ::  BuildModels 7  :: ')
 
@@ -376,63 +376,63 @@ Shiny.ML.CatBoost_Params <- function(l,input,Debug,TT,CodeList) {
     if(Debug) print(' ::  BuildModels 8.1 :: ')
 
     # Store args
-    l[['loss_function']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['CatBoost_LossFunction']]}, error=function(x) NULL), Type='character', Default='RMSE')
+    l[['loss_function']] <- Quantico:::ReturnParam(xx=tryCatch({input[['CatBoost_LossFunction']]}, error=function(x) NULL), Type='character', Default='RMSE')
     l[['loss_function_value']] <- 1.5
-    l[['eval_metric']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['CatBoost_EvalMetric']]}, error=function(x) NULL), Type='character', Default='RMSE')
+    l[['eval_metric']] <- Quantico:::ReturnParam(xx=tryCatch({input[['CatBoost_EvalMetric']]}, error=function(x) NULL), Type='character', Default='RMSE')
     l[['eval_metric_value']] <- 1.5
-    l[['grid_eval_metric']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['CatBoost_grid_eval_metric']]}, error=function(x) NULL), Type='character', Default='mse')
-    l[['MetricPeriods']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['CatBoost_MetricPeriods']]}, error=function(x) NULL), Type='numeric', Default=10)
+    l[['grid_eval_metric']] <- Quantico:::ReturnParam(xx=tryCatch({input[['CatBoost_grid_eval_metric']]}, error=function(x) NULL), Type='character', Default='mse')
+    l[['MetricPeriods']] <- Quantico:::ReturnParam(xx=tryCatch({input[['CatBoost_MetricPeriods']]}, error=function(x) NULL), Type='numeric', Default=10)
 
     # Code Collection
-    CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+    CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
       "\n",
       "# CatBoost Evaluation Parameters\n",
-      "ArgsList[['loss_function']] <- ", DataMuse:::CEP(l[['loss_function']]), "\n",
-      "ArgsList[['loss_function_value']] <- ", DataMuse:::CEPP(l[['loss_function_value']]), "\n",
-      "ArgsList[['eval_metric']] <- ", DataMuse:::CEP(l[['eval_metric']]), "\n",
-      "ArgsList[['eval_metric_value']] <- ", DataMuse:::CEPP(l[['eval_metric_value']]), "\n",
-      "ArgsList[['grid_eval_metric']] <- ", DataMuse:::CEP(l[['grid_eval_metric']]), "\n",
-      "ArgsList[['MetricPeriods']] <- ", DataMuse:::CEPP(l[['MetricPeriods']]), "\n"))
+      "ArgsList[['loss_function']] <- ", Quantico:::CEP(l[['loss_function']]), "\n",
+      "ArgsList[['loss_function_value']] <- ", Quantico:::CEPP(l[['loss_function_value']]), "\n",
+      "ArgsList[['eval_metric']] <- ", Quantico:::CEP(l[['eval_metric']]), "\n",
+      "ArgsList[['eval_metric_value']] <- ", Quantico:::CEPP(l[['eval_metric_value']]), "\n",
+      "ArgsList[['grid_eval_metric']] <- ", Quantico:::CEP(l[['grid_eval_metric']]), "\n",
+      "ArgsList[['MetricPeriods']] <- ", Quantico:::CEPP(l[['MetricPeriods']]), "\n"))
 
   } else if(TT == 'Binary Classification') {
     if(Debug) print(' ::  BuildModels 8.2 :: ')
 
     # Store Args
-    cw0 <- DataMuse:::ReturnParam(xx=tryCatch({input[['CatBoost_ClassWeights0']]}, error=function(x) NULL), Type='numeric', Default=1)
-    cw1 <- DataMuse:::ReturnParam(xx=tryCatch({input[['CatBoost_ClassWeights1']]}, error=function(x) NULL), Type='numeric', Default=1)
-    l[['LossFunction']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['CatBoost_LossFunction']]}, error=function(x) NULL), Type='character', Default='Logloss')
-    l[['EvalMetric']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['CatBoost_EvalMetric']]}, error=function(x) NULL), Type='character', Default='AUC')
-    l[['grid_eval_metric']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['CatBoost_grid_eval_metric']]}, error=function(x) NULL), Type='character', Default='MCC')
+    cw0 <- Quantico:::ReturnParam(xx=tryCatch({input[['CatBoost_ClassWeights0']]}, error=function(x) NULL), Type='numeric', Default=1)
+    cw1 <- Quantico:::ReturnParam(xx=tryCatch({input[['CatBoost_ClassWeights1']]}, error=function(x) NULL), Type='numeric', Default=1)
+    l[['LossFunction']] <- Quantico:::ReturnParam(xx=tryCatch({input[['CatBoost_LossFunction']]}, error=function(x) NULL), Type='character', Default='Logloss')
+    l[['EvalMetric']] <- Quantico:::ReturnParam(xx=tryCatch({input[['CatBoost_EvalMetric']]}, error=function(x) NULL), Type='character', Default='AUC')
+    l[['grid_eval_metric']] <- Quantico:::ReturnParam(xx=tryCatch({input[['CatBoost_grid_eval_metric']]}, error=function(x) NULL), Type='character', Default='MCC')
     l[['ClassWeights']] <- c(cw0, cw1)
-    l[['MetricPeriods']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['CatBoost_MetricPeriods']]}, error=function(x) NULL), Type='numeric', Default=10)
+    l[['MetricPeriods']] <- Quantico:::ReturnParam(xx=tryCatch({input[['CatBoost_MetricPeriods']]}, error=function(x) NULL), Type='numeric', Default=10)
 
     # Code Collection
-    CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+    CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
       "\n",
       "# CatBoost Evaluation Parameters\n",
-      "ArgsList[['LossFunction']] <- ", DataMuse:::CEP(l[['LossFunction']]), "\n",
-      "ArgsList[['EvalMetric']] <- ", DataMuse:::CEP(l[['EvalMetric']]), "\n",
-      "ArgsList[['grid_eval_metric']] <- ", DataMuse:::CEP(l[['grid_eval_metric']]), "\n",
-      "ArgsList[['ClassWeights']] <- ", DataMuse:::ExpandText(l[['ClassWeights']]), "\n",
-      "ArgsList[['MetricPeriods']] <- ", DataMuse:::CEPP(l[['MetricPeriods']]), "\n"))
+      "ArgsList[['LossFunction']] <- ", Quantico:::CEP(l[['LossFunction']]), "\n",
+      "ArgsList[['EvalMetric']] <- ", Quantico:::CEP(l[['EvalMetric']]), "\n",
+      "ArgsList[['grid_eval_metric']] <- ", Quantico:::CEP(l[['grid_eval_metric']]), "\n",
+      "ArgsList[['ClassWeights']] <- ", Quantico:::ExpandText(l[['ClassWeights']]), "\n",
+      "ArgsList[['MetricPeriods']] <- ", Quantico:::CEPP(l[['MetricPeriods']]), "\n"))
 
   } else if(TT == 'MultiClass') {
     if(Debug) print(' ::  BuildModels 8.3 :: ')
 
     # Store Args
-    l[['loss_function']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['CatBoost_LossFunction']]}, error=function(x) NULL), Type='character', Default='MultiClassOneVsAll')
-    l[['eval_metric']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['CatBoost_EvalMetric']]}, error=function(x) NULL), Type='character', Default='MultiClassOneVsAll')
-    l[['grid_eval_metric']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['CatBoost_grid_eval_metric']]}, error=function(x) NULL), Type='character', Default='microauc')
-    l[['MetricPeriods']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['CatBoost_MetricPeriods']]}, error=function(x) NULL), Type='numeric', Default=10)
+    l[['loss_function']] <- Quantico:::ReturnParam(xx=tryCatch({input[['CatBoost_LossFunction']]}, error=function(x) NULL), Type='character', Default='MultiClassOneVsAll')
+    l[['eval_metric']] <- Quantico:::ReturnParam(xx=tryCatch({input[['CatBoost_EvalMetric']]}, error=function(x) NULL), Type='character', Default='MultiClassOneVsAll')
+    l[['grid_eval_metric']] <- Quantico:::ReturnParam(xx=tryCatch({input[['CatBoost_grid_eval_metric']]}, error=function(x) NULL), Type='character', Default='microauc')
+    l[['MetricPeriods']] <- Quantico:::ReturnParam(xx=tryCatch({input[['CatBoost_MetricPeriods']]}, error=function(x) NULL), Type='numeric', Default=10)
 
     # Code Collection
-    CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+    CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
       "\n",
       "# CatBoost Evaluation Parameters\n",
-      "ArgsList[['loss_function']] <- ", DataMuse:::CEP(l[['loss_function']]), "\n",
-      "ArgsList[['eval_metric']] <- ", DataMuse:::CEP(l[['eval_metric']]), "\n",
-      "ArgsList[['grid_eval_metric']] <- ", DataMuse:::CEP(l[['grid_eval_metric']]), "\n",
-      "ArgsList[['MetricPeriods']] <- ", DataMuse:::CEPP(l[['MetricPeriods']]), "\n"))
+      "ArgsList[['loss_function']] <- ", Quantico:::CEP(l[['loss_function']]), "\n",
+      "ArgsList[['eval_metric']] <- ", Quantico:::CEP(l[['eval_metric']]), "\n",
+      "ArgsList[['grid_eval_metric']] <- ", Quantico:::CEP(l[['grid_eval_metric']]), "\n",
+      "ArgsList[['MetricPeriods']] <- ", Quantico:::CEPP(l[['MetricPeriods']]), "\n"))
   }
   return(list(ArgsList = l,CodeList = CodeList))
 }
@@ -454,23 +454,23 @@ Shiny.ML.CatBoost_Params <- function(l,input,Debug,TT,CodeList) {
 Shiny.ML.XGBoost_Params <- function(l,input,Debug,TT,CodeList) {
 
   # XGBoost ML Parameters
-  l[['Trees']]            <- DataMuse:::ReturnParam(xx=tryCatch({input[['XGBoost_Trees']]}, error=function(x) NULL), Type='numeric', Default=1000)
-  l[['max_depth']]        <- DataMuse:::ReturnParam(xx=tryCatch({input[['XGBoost_max_depth']]}, error=function(x) NULL), Type='numeric', Default=8)
-  l[['eta']]              <- DataMuse:::ReturnParam(xx=tryCatch({input[['XGBoost_eta']]}, error=function(x) NULL), Type='numeric', Default=0.1)
-  l[['min_child_weight']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['XGBoost_min_child_weight']]}, error=function(x) NULL), Type='numeric', Default=1)
-  l[['subsample']]        <- DataMuse:::ReturnParam(xx=tryCatch({input[['XGBoost_subsample']]}, error=function(x) NULL), Type='numeric', Default=1)
-  l[['colsample_bytree']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['XGBoost_colsample_bytree']]}, error=function(x) NULL), Type='numeric', Default=1)
+  l[['Trees']]            <- Quantico:::ReturnParam(xx=tryCatch({input[['XGBoost_Trees']]}, error=function(x) NULL), Type='numeric', Default=1000)
+  l[['max_depth']]        <- Quantico:::ReturnParam(xx=tryCatch({input[['XGBoost_max_depth']]}, error=function(x) NULL), Type='numeric', Default=8)
+  l[['eta']]              <- Quantico:::ReturnParam(xx=tryCatch({input[['XGBoost_eta']]}, error=function(x) NULL), Type='numeric', Default=0.1)
+  l[['min_child_weight']] <- Quantico:::ReturnParam(xx=tryCatch({input[['XGBoost_min_child_weight']]}, error=function(x) NULL), Type='numeric', Default=1)
+  l[['subsample']]        <- Quantico:::ReturnParam(xx=tryCatch({input[['XGBoost_subsample']]}, error=function(x) NULL), Type='numeric', Default=1)
+  l[['colsample_bytree']] <- Quantico:::ReturnParam(xx=tryCatch({input[['XGBoost_colsample_bytree']]}, error=function(x) NULL), Type='numeric', Default=1)
 
   # Code Collection
-  CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+  CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
     "\n",
     "# XGBoost ML Parameters\n",
-    "ArgsList[['Trees']] <- ", DataMuse:::CEPP(l[['Trees']]), "\n",
-    "ArgsList[['max_depth']] <- ", DataMuse:::CEPP(l[['max_depth']]), "\n",
-    "ArgsList[['eta']] <- ", DataMuse:::CEPP(l[['eta']]), "\n",
-    "ArgsList[['min_child_weight']] <- ", DataMuse:::CEPP(l[['min_child_weight']]), "\n",
-    "ArgsList[['subsample']] <- ", DataMuse:::CEPP(l[['subsample']]), "\n",
-    "ArgsList[['colsample_bytree']] <- ", DataMuse:::CEPP(l[['colsample_bytree']]), "\n"))
+    "ArgsList[['Trees']] <- ", Quantico:::CEPP(l[['Trees']]), "\n",
+    "ArgsList[['max_depth']] <- ", Quantico:::CEPP(l[['max_depth']]), "\n",
+    "ArgsList[['eta']] <- ", Quantico:::CEPP(l[['eta']]), "\n",
+    "ArgsList[['min_child_weight']] <- ", Quantico:::CEPP(l[['min_child_weight']]), "\n",
+    "ArgsList[['subsample']] <- ", Quantico:::CEPP(l[['subsample']]), "\n",
+    "ArgsList[['colsample_bytree']] <- ", Quantico:::CEPP(l[['colsample_bytree']]), "\n"))
 
   if(Debug) print(' ::  BuildModels 7 :: ')
   if(Debug) print(TT)
@@ -480,51 +480,51 @@ Shiny.ML.XGBoost_Params <- function(l,input,Debug,TT,CodeList) {
     if(Debug) print(' ::  BuildModels 7.1 :: ')
 
     # Store Args
-    l[['LossFunction']]     <- DataMuse:::ReturnParam(xx=tryCatch({input[['XGBoost_LossFunction']]}, error=function(x) NULL), Type='character', Default='reg:squarederror')
-    l[['eval_metric']]      <- DataMuse:::ReturnParam(xx=tryCatch({input[['XGBoost_EvalMetric']]}, error=function(x) NULL), Type='character', Default='rmse')
-    l[['grid_eval_metric']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['XGBoost_grid_eval_metric']]}, error=function(x) NULL), Type='character', Default='r2')
+    l[['LossFunction']]     <- Quantico:::ReturnParam(xx=tryCatch({input[['XGBoost_LossFunction']]}, error=function(x) NULL), Type='character', Default='reg:squarederror')
+    l[['eval_metric']]      <- Quantico:::ReturnParam(xx=tryCatch({input[['XGBoost_EvalMetric']]}, error=function(x) NULL), Type='character', Default='rmse')
+    l[['grid_eval_metric']] <- Quantico:::ReturnParam(xx=tryCatch({input[['XGBoost_grid_eval_metric']]}, error=function(x) NULL), Type='character', Default='r2')
 
     # Code Collection
-    CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+    CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
       "\n",
       "# XGBoost Evaluation Parameters\n",
-      "ArgsList[['LossFunction']] <- ", DataMuse:::CEP(l[['LossFunction']]), "\n",
-      "ArgsList[['eval_metric']] <- ", DataMuse:::CEP(l[['eval_metric']]), "\n",
-      "ArgsList[['grid_eval_metric']] <- ", DataMuse:::CEP(l[['grid_eval_metric']]), "\n"))
+      "ArgsList[['LossFunction']] <- ", Quantico:::CEP(l[['LossFunction']]), "\n",
+      "ArgsList[['eval_metric']] <- ", Quantico:::CEP(l[['eval_metric']]), "\n",
+      "ArgsList[['grid_eval_metric']] <- ", Quantico:::CEP(l[['grid_eval_metric']]), "\n"))
 
   } else if(TT == 'Binary Classification') {
     if(Debug) print(' ::  BuildModels 7.2 :: ')
 
     # Store Args
-    l[['LossFunction']]     <- DataMuse:::ReturnParam(xx=tryCatch({input[['XGBoost_LossFunction']]}, error=function(x) NULL), Type='character', Default='binary:logistic')
-    l[['eval_metric']]      <- DataMuse:::ReturnParam(xx=tryCatch({input[['XGBoost_EvalMetric']]}, error=function(x) NULL), Type='character', Default='auc')
-    l[['grid_eval_metric']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['XGBoost_grid_eval_metric']]}, error=function(x) NULL), Type='character', Default='MCC')
+    l[['LossFunction']]     <- Quantico:::ReturnParam(xx=tryCatch({input[['XGBoost_LossFunction']]}, error=function(x) NULL), Type='character', Default='binary:logistic')
+    l[['eval_metric']]      <- Quantico:::ReturnParam(xx=tryCatch({input[['XGBoost_EvalMetric']]}, error=function(x) NULL), Type='character', Default='auc')
+    l[['grid_eval_metric']] <- Quantico:::ReturnParam(xx=tryCatch({input[['XGBoost_grid_eval_metric']]}, error=function(x) NULL), Type='character', Default='MCC')
 
     # Code Collection
-    CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+    CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
       "\n",
       "# XGBoost Evaluation Parameters\n",
-      "ArgsList[['LossFunction']] <- ", DataMuse:::CEP(l[['LossFunction']]), "\n",
-      "ArgsList[['eval_metric']] <- ", DataMuse:::CEP(l[['eval_metric']]), "\n",
-      "ArgsList[['grid_eval_metric']] <- ", DataMuse:::CEP(l[['grid_eval_metric']]), "\n"))
+      "ArgsList[['LossFunction']] <- ", Quantico:::CEP(l[['LossFunction']]), "\n",
+      "ArgsList[['eval_metric']] <- ", Quantico:::CEP(l[['eval_metric']]), "\n",
+      "ArgsList[['grid_eval_metric']] <- ", Quantico:::CEP(l[['grid_eval_metric']]), "\n"))
 
   } else {
     if(Debug) print(' ::  BuildModels 7.3 :: ')
     if(Debug) print(tryCatch({input[['XGBoost_LossFunction']]}, error=function(x) NULL))
-    if(Debug) print(DataMuse:::ReturnParam(xx=tryCatch({input[['XGBoost_LossFunction']]}, error=function(x) NULL), Type='character', Default='multi:softprob'))
+    if(Debug) print(Quantico:::ReturnParam(xx=tryCatch({input[['XGBoost_LossFunction']]}, error=function(x) NULL), Type='character', Default='multi:softprob'))
 
     # Store Args
-    l[['LossFunction']]     <- DataMuse:::ReturnParam(xx=tryCatch({input[['XGBoost_LossFunction']]}, error=function(x) NULL), Type='character', Default='multi:softprob')
-    l[['eval_metric']]      <- DataMuse:::ReturnParam(xx=tryCatch({input[['XGBoost_EvalMetric']]}, error=function(x) NULL), Type='character', Default='mlogloss')
-    l[['grid_eval_metric']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['XGBoost_grid_eval_metric']]}, error=function(x) NULL), Type='character', Default='microauc')
+    l[['LossFunction']]     <- Quantico:::ReturnParam(xx=tryCatch({input[['XGBoost_LossFunction']]}, error=function(x) NULL), Type='character', Default='multi:softprob')
+    l[['eval_metric']]      <- Quantico:::ReturnParam(xx=tryCatch({input[['XGBoost_EvalMetric']]}, error=function(x) NULL), Type='character', Default='mlogloss')
+    l[['grid_eval_metric']] <- Quantico:::ReturnParam(xx=tryCatch({input[['XGBoost_grid_eval_metric']]}, error=function(x) NULL), Type='character', Default='microauc')
 
     # Code Collection
-    CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+    CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
       "\n",
       "# XGBoost Evaluation Parameters\n",
-      "ArgsList[['LossFunction']] <- ", DataMuse:::CEP(l[['LossFunction']]), "\n",
-      "ArgsList[['eval_metric']] <- ", DataMuse:::CEP(l[['eval_metric']]), "\n",
-      "ArgsList[['grid_eval_metric']] <- ", DataMuse:::CEP(l[['grid_eval_metric']]), "\n"))
+      "ArgsList[['LossFunction']] <- ", Quantico:::CEP(l[['LossFunction']]), "\n",
+      "ArgsList[['eval_metric']] <- ", Quantico:::CEP(l[['eval_metric']]), "\n",
+      "ArgsList[['grid_eval_metric']] <- ", Quantico:::CEP(l[['grid_eval_metric']]), "\n"))
   }
   return(list(ArgsList = l,CodeList = CodeList))
 }
@@ -548,31 +548,31 @@ Shiny.ML.LightGBM_Params <- function(l,input,Debug,TT,CodeList) {
   print(' ::  BuildModels 7  :: ')
 
   # LightGBM ML Parameters
-  l[['Trees']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['LightGBM_Trees']]}, error=function(x) NULL), Type='numeric', Default=1000)
-  l[['max_depth']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['LightGBM_max_depth']]}, error=function(x) NULL), Type='numeric', Default=8)
-  l[['eta']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['LightGBM_eta']]}, error=function(x) NULL), Type='numeric', Default=NULL)
-  l[['min_data_in_leaf']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['LightGBM_min_data_in_leaf']]}, error=function(x) NULL), Type='numeric', Default=1)
-  l[['num_leaves']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['LightGBM_num_leaves']]}, error=function(x) NULL), Type='numeric', Default=31)
-  l[['bagging_fraction']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['LightGBM_bagging_fraction']]}, error=function(x) NULL), Type='numeric', Default=1)
-  l[['feature_fraction']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['LightGBM_feature_fraction']]}, error=function(x) NULL), Type='numeric', Default=1)
-  l[['feature_fraction_bynode']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['LightGBM_feature_fraction_bynode']]}, error=function(x) NULL), Type='numeric', Default=1)
-  l[['lambda_l1']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['LightGBM_lambda_l1']]}, error=function(x) NULL), Type='numeric', Default=1)
-  l[['lambda_l2']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['LightGBM_lambda_l2']]}, error=function(x) NULL), Type='numeric', Default=1)
+  l[['Trees']] <- Quantico:::ReturnParam(xx=tryCatch({input[['LightGBM_Trees']]}, error=function(x) NULL), Type='numeric', Default=1000)
+  l[['max_depth']] <- Quantico:::ReturnParam(xx=tryCatch({input[['LightGBM_max_depth']]}, error=function(x) NULL), Type='numeric', Default=8)
+  l[['eta']] <- Quantico:::ReturnParam(xx=tryCatch({input[['LightGBM_eta']]}, error=function(x) NULL), Type='numeric', Default=NULL)
+  l[['min_data_in_leaf']] <- Quantico:::ReturnParam(xx=tryCatch({input[['LightGBM_min_data_in_leaf']]}, error=function(x) NULL), Type='numeric', Default=1)
+  l[['num_leaves']] <- Quantico:::ReturnParam(xx=tryCatch({input[['LightGBM_num_leaves']]}, error=function(x) NULL), Type='numeric', Default=31)
+  l[['bagging_fraction']] <- Quantico:::ReturnParam(xx=tryCatch({input[['LightGBM_bagging_fraction']]}, error=function(x) NULL), Type='numeric', Default=1)
+  l[['feature_fraction']] <- Quantico:::ReturnParam(xx=tryCatch({input[['LightGBM_feature_fraction']]}, error=function(x) NULL), Type='numeric', Default=1)
+  l[['feature_fraction_bynode']] <- Quantico:::ReturnParam(xx=tryCatch({input[['LightGBM_feature_fraction_bynode']]}, error=function(x) NULL), Type='numeric', Default=1)
+  l[['lambda_l1']] <- Quantico:::ReturnParam(xx=tryCatch({input[['LightGBM_lambda_l1']]}, error=function(x) NULL), Type='numeric', Default=1)
+  l[['lambda_l2']] <- Quantico:::ReturnParam(xx=tryCatch({input[['LightGBM_lambda_l2']]}, error=function(x) NULL), Type='numeric', Default=1)
 
   # Code Collection
-  CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+  CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
     "\n",
     "# LightGBM ML Parameters\n",
-    "ArgsList[['Trees']] <- ", DataMuse:::CEPP(l[['Trees']]), "\n",
-    "ArgsList[['max_depth']] <- ", DataMuse:::CEPP(l[['max_depth']]), "\n",
-    "ArgsList[['eta']] <- ", DataMuse:::CEPP(l[['eta']]), "\n",
-    "ArgsList[['min_data_in_leaf']] <- ", DataMuse:::CEPP(l[['min_data_in_leaf']]), "\n",
-    "ArgsList[['num_leaves']] <- ", DataMuse:::CEPP(l[['num_leaves']]), "\n",
-    "ArgsList[['bagging_fraction']] <- ", DataMuse:::CEPP(l[['bagging_fraction']]), "\n",
-    "ArgsList[['feature_fraction']] <- ", DataMuse:::CEPP(l[['feature_fraction']]), "\n",
-    "ArgsList[['feature_fraction_bynode']] <- ", DataMuse:::CEPP(l[['feature_fraction_bynode']]), "\n",
-    "ArgsList[['lambda_l1']] <- ", DataMuse:::CEPP(l[['lambda_l1']]), "\n",
-    "ArgsList[['lambda_l2']] <- ", DataMuse:::CEPP(l[['lambda_l2']]), "\n"))
+    "ArgsList[['Trees']] <- ", Quantico:::CEPP(l[['Trees']]), "\n",
+    "ArgsList[['max_depth']] <- ", Quantico:::CEPP(l[['max_depth']]), "\n",
+    "ArgsList[['eta']] <- ", Quantico:::CEPP(l[['eta']]), "\n",
+    "ArgsList[['min_data_in_leaf']] <- ", Quantico:::CEPP(l[['min_data_in_leaf']]), "\n",
+    "ArgsList[['num_leaves']] <- ", Quantico:::CEPP(l[['num_leaves']]), "\n",
+    "ArgsList[['bagging_fraction']] <- ", Quantico:::CEPP(l[['bagging_fraction']]), "\n",
+    "ArgsList[['feature_fraction']] <- ", Quantico:::CEPP(l[['feature_fraction']]), "\n",
+    "ArgsList[['feature_fraction_bynode']] <- ", Quantico:::CEPP(l[['feature_fraction_bynode']]), "\n",
+    "ArgsList[['lambda_l1']] <- ", Quantico:::CEPP(l[['lambda_l1']]), "\n",
+    "ArgsList[['lambda_l2']] <- ", Quantico:::CEPP(l[['lambda_l2']]), "\n"))
 
   # LightGBM Eval Parameters
   if(TT == 'Regression') {
@@ -580,48 +580,48 @@ Shiny.ML.LightGBM_Params <- function(l,input,Debug,TT,CodeList) {
 
     # Store Args
     l[['objective']] <- 'regression'
-    l[['metric']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['LightGBM_metric']]}, error=function(x) NULL), Type='character', Default='rmse')
-    l[['grid_eval_metric']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['LightGBM_grid_eval_metric']]}, error=function(x) NULL), Type='character', Default='mse')
+    l[['metric']] <- Quantico:::ReturnParam(xx=tryCatch({input[['LightGBM_metric']]}, error=function(x) NULL), Type='character', Default='rmse')
+    l[['grid_eval_metric']] <- Quantico:::ReturnParam(xx=tryCatch({input[['LightGBM_grid_eval_metric']]}, error=function(x) NULL), Type='character', Default='mse')
 
     # Code Collection
-    CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+    CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
       "\n",
       "# LightGBM Evaluation Parameters\n",
-      "ArgsList[['objective']] <- ", DataMuse:::CEP(l[['objective']]), "\n",
-      "ArgsList[['metric']] <- ", DataMuse:::CEP(l[['metric']]), "\n",
-      "ArgsList[['grid_eval_metric']] <- ", DataMuse:::CEP(l[['grid_eval_metric']]), "\n"))
+      "ArgsList[['objective']] <- ", Quantico:::CEP(l[['objective']]), "\n",
+      "ArgsList[['metric']] <- ", Quantico:::CEP(l[['metric']]), "\n",
+      "ArgsList[['grid_eval_metric']] <- ", Quantico:::CEP(l[['grid_eval_metric']]), "\n"))
 
   } else if(TT == 'Binary Classification') {
     if(Debug) print(' ::  BuildModels 8.2  :: ')
 
     # Store Args
     l[['objective']] <- 'binary'
-    l[['metric']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['LightGBM_metric']]}, error=function(x) NULL), Type='character', Default='binary_logloss')
-    l[['grid_eval_metric']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['LightGBM_grid_eval_metric']]}, error=function(x) NULL), Type='character', Default='MCC')
+    l[['metric']] <- Quantico:::ReturnParam(xx=tryCatch({input[['LightGBM_metric']]}, error=function(x) NULL), Type='character', Default='binary_logloss')
+    l[['grid_eval_metric']] <- Quantico:::ReturnParam(xx=tryCatch({input[['LightGBM_grid_eval_metric']]}, error=function(x) NULL), Type='character', Default='MCC')
 
     # Code Collection
-    CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+    CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
       "\n",
       "# LightGBM Evaluation Parameters\n",
-      "ArgsList[['objective']] <- ", DataMuse:::CEP(l[['objective']]), "\n",
-      "ArgsList[['metric']] <- ", DataMuse:::CEP(l[['metric']]), "\n",
-      "ArgsList[['grid_eval_metric']] <- ", DataMuse:::CEP(l[['grid_eval_metric']]), "\n"))
+      "ArgsList[['objective']] <- ", Quantico:::CEP(l[['objective']]), "\n",
+      "ArgsList[['metric']] <- ", Quantico:::CEP(l[['metric']]), "\n",
+      "ArgsList[['grid_eval_metric']] <- ", Quantico:::CEP(l[['grid_eval_metric']]), "\n"))
 
   } else if(TT == 'MultiClass') {
     if(Debug) print(' ::  BuildModels 8.3  :: ')
 
     # Store Args
     l[['objective']] <- 'multiclass'
-    l[['metric']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['LightGBM_metric']]}, error=function(x) NULL), Type='character', Default='multiclass')
-    l[['grid_eval_metric']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['LightGBM_grid_eval_metric']]}, error=function(x) NULL), Type='character', Default='Accuracy')
+    l[['metric']] <- Quantico:::ReturnParam(xx=tryCatch({input[['LightGBM_metric']]}, error=function(x) NULL), Type='character', Default='multiclass')
+    l[['grid_eval_metric']] <- Quantico:::ReturnParam(xx=tryCatch({input[['LightGBM_grid_eval_metric']]}, error=function(x) NULL), Type='character', Default='Accuracy')
 
     # Code Collection
-    CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+    CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
       "\n",
       "# LightGBM Evaluation Parameters\n",
-      "ArgsList[['objective']] <- ", DataMuse:::CEP(l[['objective']]), "\n",
-      "ArgsList[['metric']] <- ", DataMuse:::CEP(l[['metric']]), "\n",
-      "ArgsList[['grid_eval_metric']] <- ", DataMuse:::CEP(l[['grid_eval_metric']]), "\n"))
+      "ArgsList[['objective']] <- ", Quantico:::CEP(l[['objective']]), "\n",
+      "ArgsList[['metric']] <- ", Quantico:::CEP(l[['metric']]), "\n",
+      "ArgsList[['grid_eval_metric']] <- ", Quantico:::CEP(l[['grid_eval_metric']]), "\n"))
 
   }
   return(list(ArgsList = l,CodeList = CodeList))
@@ -646,70 +646,70 @@ Shiny.ML.H2O_DRF_Params <- function(l,input,Debug,TT,CodeList) {
   print(' ::  BuildModels 7  :: ')
 
   # H2O_DRF ML Parameters
-  l[['Trees']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['H2O_DRF_Trees']]}, error=function(x) NULL), Type='numeric', Default=50)
-  l[['MTries']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['H2O_DRF_MTries']]}, error=function(x) NULL), Type='numeric', Default=-1)
-  l[['MaxDepth']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['H2O_DRF_MaxDepth']]}, error=function(x) NULL), Type='numeric', Default=20)
-  l[['SampleRate']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['H2O_DRF_SampleRate']]}, error=function(x) NULL), Type='numeric', Default=0.615)
-  l[['ColSampleRatePerTree']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['H2O_DRF_ColSampleRatePerTree']]}, error=function(x) NULL), Type='numeric', Default=1)
-  l[['MinRows']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['H2O_DRF_MinRows']]}, error=function(x) NULL), Type='numeric', Default=1)
-  l[['NBinsCats']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['H2O_DRF_NBinsCats']]}, error=function(x) NULL), Type='numeric', Default=1024)
-  l[['NBinsTopLevel']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['H2O_DRF_NBinsTopLevel']]}, error=function(x) NULL), Type='numeric', Default=1024)
-  l[['HistogramType']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['H2O_DRF_HistogramType']]}, error=function(x) NULL), Type='character', Default='AUTO')
-  l[['CategoricalEncoding']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['H2O_DRF_CategoricalEncoding']]}, error=function(x) NULL), Type='character', Default='AUTO')
-  l[['StoppingRounds']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['H2O_DRF_StoppingRounds']]}, error=function(x) NULL), Type='numeric', Default=10)
+  l[['Trees']] <- Quantico:::ReturnParam(xx=tryCatch({input[['H2O_DRF_Trees']]}, error=function(x) NULL), Type='numeric', Default=50)
+  l[['MTries']] <- Quantico:::ReturnParam(xx=tryCatch({input[['H2O_DRF_MTries']]}, error=function(x) NULL), Type='numeric', Default=-1)
+  l[['MaxDepth']] <- Quantico:::ReturnParam(xx=tryCatch({input[['H2O_DRF_MaxDepth']]}, error=function(x) NULL), Type='numeric', Default=20)
+  l[['SampleRate']] <- Quantico:::ReturnParam(xx=tryCatch({input[['H2O_DRF_SampleRate']]}, error=function(x) NULL), Type='numeric', Default=0.615)
+  l[['ColSampleRatePerTree']] <- Quantico:::ReturnParam(xx=tryCatch({input[['H2O_DRF_ColSampleRatePerTree']]}, error=function(x) NULL), Type='numeric', Default=1)
+  l[['MinRows']] <- Quantico:::ReturnParam(xx=tryCatch({input[['H2O_DRF_MinRows']]}, error=function(x) NULL), Type='numeric', Default=1)
+  l[['NBinsCats']] <- Quantico:::ReturnParam(xx=tryCatch({input[['H2O_DRF_NBinsCats']]}, error=function(x) NULL), Type='numeric', Default=1024)
+  l[['NBinsTopLevel']] <- Quantico:::ReturnParam(xx=tryCatch({input[['H2O_DRF_NBinsTopLevel']]}, error=function(x) NULL), Type='numeric', Default=1024)
+  l[['HistogramType']] <- Quantico:::ReturnParam(xx=tryCatch({input[['H2O_DRF_HistogramType']]}, error=function(x) NULL), Type='character', Default='AUTO')
+  l[['CategoricalEncoding']] <- Quantico:::ReturnParam(xx=tryCatch({input[['H2O_DRF_CategoricalEncoding']]}, error=function(x) NULL), Type='character', Default='AUTO')
+  l[['StoppingRounds']] <- Quantico:::ReturnParam(xx=tryCatch({input[['H2O_DRF_StoppingRounds']]}, error=function(x) NULL), Type='numeric', Default=10)
 
   # Code Collection
-  CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+  CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
     "\n",
     "# H2O-DRF ML Parameters\n",
-    "ArgsList[['Trees']] <- ", DataMuse:::CEPP(l[['Trees']]), "\n",
-    "ArgsList[['MaxDepth']] <- ", DataMuse:::CEPP(l[['MaxDepth']]), "\n",
-    "ArgsList[['SampleRate']] <- ", DataMuse:::CEPP(l[['SampleRate']]), "\n",
-    "ArgsList[['MTries']] <- ", DataMuse:::CEPP(l[['MTries']]), "\n",
-    "ArgsList[['ColSampleRatePerTree']] <- ", DataMuse:::CEPP(l[['ColSampleRatePerTree']]), "\n",
-    "ArgsList[['MinRows']] <- ", DataMuse:::CEPP(l[['MinRows']]), "\n",
-    "ArgsList[['NBinsCats']] <- ", DataMuse:::CEPP(l[['NBinsCats']]), "\n",
-    "ArgsList[['NBinsTopLevel']] <- ", DataMuse:::CEPP(l[['NBinsTopLevel']]), "\n",
-    "ArgsList[['HistogramType']] <- ", DataMuse:::CEP(l[['HistogramType']]), "\n",
-    "ArgsList[['CategoricalEncoding']] <- ", DataMuse:::CEP(l[['CategoricalEncoding']]), "\n",
-    "ArgsList[['StoppingRounds']] <- ", DataMuse:::CEPP(l[['StoppingRounds']]), "\n"))
+    "ArgsList[['Trees']] <- ", Quantico:::CEPP(l[['Trees']]), "\n",
+    "ArgsList[['MaxDepth']] <- ", Quantico:::CEPP(l[['MaxDepth']]), "\n",
+    "ArgsList[['SampleRate']] <- ", Quantico:::CEPP(l[['SampleRate']]), "\n",
+    "ArgsList[['MTries']] <- ", Quantico:::CEPP(l[['MTries']]), "\n",
+    "ArgsList[['ColSampleRatePerTree']] <- ", Quantico:::CEPP(l[['ColSampleRatePerTree']]), "\n",
+    "ArgsList[['MinRows']] <- ", Quantico:::CEPP(l[['MinRows']]), "\n",
+    "ArgsList[['NBinsCats']] <- ", Quantico:::CEPP(l[['NBinsCats']]), "\n",
+    "ArgsList[['NBinsTopLevel']] <- ", Quantico:::CEPP(l[['NBinsTopLevel']]), "\n",
+    "ArgsList[['HistogramType']] <- ", Quantico:::CEP(l[['HistogramType']]), "\n",
+    "ArgsList[['CategoricalEncoding']] <- ", Quantico:::CEP(l[['CategoricalEncoding']]), "\n",
+    "ArgsList[['StoppingRounds']] <- ", Quantico:::CEPP(l[['StoppingRounds']]), "\n"))
 
   # H2O_DRF Eval Parameters
   if(TT == 'Regression') {
     if(Debug) print(' ::  BuildModels 8.1  :: ')
 
     # Store Args
-    l[['eval_metric']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['H2O_DRF_eval_metric']]}, error=function(x) NULL), Type='character', Default='rmse')
+    l[['eval_metric']] <- Quantico:::ReturnParam(xx=tryCatch({input[['H2O_DRF_eval_metric']]}, error=function(x) NULL), Type='character', Default='rmse')
 
     # Code Collection
-    CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+    CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
       "\n",
       "# H2O-DRF Evaluation Parameters\n",
-      "ArgsList[['eval_metric']] <- ", DataMuse:::CEP(l[['eval_metric']]), "\n"))
+      "ArgsList[['eval_metric']] <- ", Quantico:::CEP(l[['eval_metric']]), "\n"))
 
   } else if(TT == 'Binary Classification') {
     if(Debug) print(' ::  BuildModels 8.2  :: ')
 
     # Store Args
-    l[['eval_metric']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['H2O_DRF_eval_metric']]}, error=function(x) NULL), Type='character', Default='binary_logloss')
+    l[['eval_metric']] <- Quantico:::ReturnParam(xx=tryCatch({input[['H2O_DRF_eval_metric']]}, error=function(x) NULL), Type='character', Default='binary_logloss')
 
     # Code Collection
-    CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+    CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
       "\n",
       "# H2O-DRF Evaluation Parameters\n",
-      "ArgsList[['eval_metric']] <- ", DataMuse:::CEP(l[['eval_metric']]), "\n"))
+      "ArgsList[['eval_metric']] <- ", Quantico:::CEP(l[['eval_metric']]), "\n"))
 
   } else if(TT == 'MultiClass') {
     if(Debug) print(' ::  BuildModels 8.3  :: ')
 
     # Store Args
-    l[['eval_metric']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['H2O_DRF_eval_metric']]}, error=function(x) NULL), Type='character', Default='multiclass')
+    l[['eval_metric']] <- Quantico:::ReturnParam(xx=tryCatch({input[['H2O_DRF_eval_metric']]}, error=function(x) NULL), Type='character', Default='multiclass')
 
     # Code Collection
-    CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+    CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
       "\n",
       "# H2O-DRF Evaluation Parameters\n",
-      "ArgsList[['eval_metric']] <- ", DataMuse:::CEP(l[['eval_metric']]), "\n"))
+      "ArgsList[['eval_metric']] <- ", Quantico:::CEP(l[['eval_metric']]), "\n"))
 
   }
   return(list(ArgsList = l,CodeList = CodeList))
@@ -734,74 +734,74 @@ Shiny.ML.H2O_GBM_Params <- function(l,input,Debug,TT,CodeList) {
   print(' ::  BuildModels 7  :: ')
 
   # H2O_GBM ML Parameters
-  l[['Trees']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['H2O_GBM_Trees']]}, error=function(x) NULL), Type='numeric', Default=1000)
-  l[['MaxDepth']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['H2O_GBM_MaxDepth']]}, error=function(x) NULL), Type='numeric', Default=6)
-  l[['SampleRate']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['H2O_GBM_SampleRate']]}, error=function(x) NULL), Type='numeric', Default=0.615)
-  l[['ColSampleRatePerTree']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['H2O_GBM_ColSampleRatePerTree']]}, error=function(x) NULL), Type='numeric', Default=1)
-  l[['MinRows']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['H2O_GBM_MinRows']]}, error=function(x) NULL), Type='numeric', Default=1)
-  l[['NBinsCats']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['H2O_GBM_NBinsCats']]}, error=function(x) NULL), Type='numeric', Default=1024)
-  l[['NBinsTopLevel']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['H2O_GBM_NBinsTopLevel']]}, error=function(x) NULL), Type='numeric', Default=1024)
-  l[['HistogramType']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['H2O_GBM_HistogramType']]}, error=function(x) NULL), Type='character', Default='AUTO')
-  l[['CategoricalEncoding']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['H2O_GBM_CategoricalEncoding']]}, error=function(x) NULL), Type='character', Default='AUTO')
-  l[['StoppingRounds']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['H2O_GBM_StoppingRounds']]}, error=function(x) NULL), Type='numeric', Default=10)
-  l[['LearnRate']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['H2O_GBM_LearnRate']]}, error=function(x) NULL), Type='numeric', Default=0.10)
-  l[['LearnRateAnnealing']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['H2O_GBM_MinRows']]}, error=function(x) NULL), Type='numeric', Default=0.999)
-  l[['Distribution']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['H2O_GBM_Distribution']]}, error=function(x) NULL), Type='character', Default='AUTO')
+  l[['Trees']] <- Quantico:::ReturnParam(xx=tryCatch({input[['H2O_GBM_Trees']]}, error=function(x) NULL), Type='numeric', Default=1000)
+  l[['MaxDepth']] <- Quantico:::ReturnParam(xx=tryCatch({input[['H2O_GBM_MaxDepth']]}, error=function(x) NULL), Type='numeric', Default=6)
+  l[['SampleRate']] <- Quantico:::ReturnParam(xx=tryCatch({input[['H2O_GBM_SampleRate']]}, error=function(x) NULL), Type='numeric', Default=0.615)
+  l[['ColSampleRatePerTree']] <- Quantico:::ReturnParam(xx=tryCatch({input[['H2O_GBM_ColSampleRatePerTree']]}, error=function(x) NULL), Type='numeric', Default=1)
+  l[['MinRows']] <- Quantico:::ReturnParam(xx=tryCatch({input[['H2O_GBM_MinRows']]}, error=function(x) NULL), Type='numeric', Default=1)
+  l[['NBinsCats']] <- Quantico:::ReturnParam(xx=tryCatch({input[['H2O_GBM_NBinsCats']]}, error=function(x) NULL), Type='numeric', Default=1024)
+  l[['NBinsTopLevel']] <- Quantico:::ReturnParam(xx=tryCatch({input[['H2O_GBM_NBinsTopLevel']]}, error=function(x) NULL), Type='numeric', Default=1024)
+  l[['HistogramType']] <- Quantico:::ReturnParam(xx=tryCatch({input[['H2O_GBM_HistogramType']]}, error=function(x) NULL), Type='character', Default='AUTO')
+  l[['CategoricalEncoding']] <- Quantico:::ReturnParam(xx=tryCatch({input[['H2O_GBM_CategoricalEncoding']]}, error=function(x) NULL), Type='character', Default='AUTO')
+  l[['StoppingRounds']] <- Quantico:::ReturnParam(xx=tryCatch({input[['H2O_GBM_StoppingRounds']]}, error=function(x) NULL), Type='numeric', Default=10)
+  l[['LearnRate']] <- Quantico:::ReturnParam(xx=tryCatch({input[['H2O_GBM_LearnRate']]}, error=function(x) NULL), Type='numeric', Default=0.10)
+  l[['LearnRateAnnealing']] <- Quantico:::ReturnParam(xx=tryCatch({input[['H2O_GBM_MinRows']]}, error=function(x) NULL), Type='numeric', Default=0.999)
+  l[['Distribution']] <- Quantico:::ReturnParam(xx=tryCatch({input[['H2O_GBM_Distribution']]}, error=function(x) NULL), Type='character', Default='AUTO')
 
   # Code Collection
-  CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+  CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
     "\n",
     "# H2O-GBM ML Parameters\n",
-    "ArgsList[['Trees']] <- ", DataMuse:::CEPP(l[['Trees']]), "\n",
-    "ArgsList[['MaxDepth']] <- ", DataMuse:::CEPP(l[['MaxDepth']]), "\n",
-    "ArgsList[['SampleRate']] <- ", DataMuse:::CEPP(l[['SampleRate']]), "\n",
-    "ArgsList[['ColSampleRatePerTree']] <- ", DataMuse:::CEPP(l[['ColSampleRatePerTree']]), "\n",
-    "ArgsList[['MinRows']] <- ", DataMuse:::CEPP(l[['MinRows']]), "\n",
-    "ArgsList[['NBinsCats']] <- ", DataMuse:::CEPP(l[['NBinsCats']]), "\n",
-    "ArgsList[['NBinsTopLevel']] <- ", DataMuse:::CEPP(l[['NBinsTopLevel']]), "\n",
-    "ArgsList[['HistogramType']] <- ", DataMuse:::CEP(l[['HistogramType']]), "\n",
-    "ArgsList[['CategoricalEncoding']] <- ", DataMuse:::CEP(l[['CategoricalEncoding']]), "\n",
-    "ArgsList[['StoppingRounds']] <- ", DataMuse:::CEPP(l[['StoppingRounds']]), "\n",
-    "ArgsList[['LearnRate']] <- ", DataMuse:::CEPP(l[['LearnRate']]), "\n",
-    "ArgsList[['LearnRateAnnealing']] <- ", DataMuse:::CEPP(l[['LearnRateAnnealing']]), "\n",
-    "ArgsList[['Distribution']] <- ", DataMuse:::CEP(l[['Distribution']]), "\n"))
+    "ArgsList[['Trees']] <- ", Quantico:::CEPP(l[['Trees']]), "\n",
+    "ArgsList[['MaxDepth']] <- ", Quantico:::CEPP(l[['MaxDepth']]), "\n",
+    "ArgsList[['SampleRate']] <- ", Quantico:::CEPP(l[['SampleRate']]), "\n",
+    "ArgsList[['ColSampleRatePerTree']] <- ", Quantico:::CEPP(l[['ColSampleRatePerTree']]), "\n",
+    "ArgsList[['MinRows']] <- ", Quantico:::CEPP(l[['MinRows']]), "\n",
+    "ArgsList[['NBinsCats']] <- ", Quantico:::CEPP(l[['NBinsCats']]), "\n",
+    "ArgsList[['NBinsTopLevel']] <- ", Quantico:::CEPP(l[['NBinsTopLevel']]), "\n",
+    "ArgsList[['HistogramType']] <- ", Quantico:::CEP(l[['HistogramType']]), "\n",
+    "ArgsList[['CategoricalEncoding']] <- ", Quantico:::CEP(l[['CategoricalEncoding']]), "\n",
+    "ArgsList[['StoppingRounds']] <- ", Quantico:::CEPP(l[['StoppingRounds']]), "\n",
+    "ArgsList[['LearnRate']] <- ", Quantico:::CEPP(l[['LearnRate']]), "\n",
+    "ArgsList[['LearnRateAnnealing']] <- ", Quantico:::CEPP(l[['LearnRateAnnealing']]), "\n",
+    "ArgsList[['Distribution']] <- ", Quantico:::CEP(l[['Distribution']]), "\n"))
 
   # H2O_GBM Eval Parameters
   if(TT == 'Regression') {
     if(Debug) print(' ::  BuildModels 8.1  :: ')
 
     # Store Args
-    l[['eval_metric']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['H2O_GBM_eval_metric']]}, error=function(x) NULL), Type='character', Default='rmse')
+    l[['eval_metric']] <- Quantico:::ReturnParam(xx=tryCatch({input[['H2O_GBM_eval_metric']]}, error=function(x) NULL), Type='character', Default='rmse')
 
     # Code Collection
-    CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+    CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
       "\n",
       "# H2O-GBM Evaluation Parameters\n",
-      "ArgsList[['eval_metric']] <- ", DataMuse:::CEP(l[['eval_metric']]), "\n"))
+      "ArgsList[['eval_metric']] <- ", Quantico:::CEP(l[['eval_metric']]), "\n"))
 
   } else if(TT == 'Binary Classification') {
     if(Debug) print(' ::  BuildModels 8.2  :: ')
 
     # Store Args
-    l[['eval_metric']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['H2O_GBM_eval_metric']]}, error=function(x) NULL), Type='character', Default='binary_logloss')
+    l[['eval_metric']] <- Quantico:::ReturnParam(xx=tryCatch({input[['H2O_GBM_eval_metric']]}, error=function(x) NULL), Type='character', Default='binary_logloss')
 
     # Code Collection
-    CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+    CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
       "\n",
       "# H2O-GBM Evaluation Parameters\n",
-      "ArgsList[['eval_metric']] <- ", DataMuse:::CEP(l[['eval_metric']]), "\n"))
+      "ArgsList[['eval_metric']] <- ", Quantico:::CEP(l[['eval_metric']]), "\n"))
 
   } else if(TT == 'MultiClass') {
     if(Debug) print(' ::  BuildModels 8.3  :: ')
 
     # Store Args
-    l[['eval_metric']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['H2O_GBM_eval_metric']]}, error=function(x) NULL), Type='character', Default='multiclass')
+    l[['eval_metric']] <- Quantico:::ReturnParam(xx=tryCatch({input[['H2O_GBM_eval_metric']]}, error=function(x) NULL), Type='character', Default='multiclass')
 
     # Code Collection
-    CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+    CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
       "\n",
       "# H2O-GBM Evaluation Parameters\n",
-      "ArgsList[['eval_metric']] <- ", DataMuse:::CEP(l[['eval_metric']]), "\n"))
+      "ArgsList[['eval_metric']] <- ", Quantico:::CEP(l[['eval_metric']]), "\n"))
 
   }
   return(list(ArgsList = l,CodeList = CodeList))
@@ -826,68 +826,68 @@ Shiny.ML.H2O_GLM_Params <- function(l,input,Debug,TT,CodeList) {
   print(' ::  BuildModels 7  :: ')
 
   # H2O_DRF ML Parameters
-  l[['Distribution']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['H2O_GLM_Distribution']]}, error=function(x) NULL), Type='character', Default='AUTO')
-  l[['Link']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['H2O_GLM_Link']]}, error=function(x) NULL), Type='character', Default='family_default')
-  l[['Solver']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['H2O_GLM_Solver']]}, error=function(x) NULL), Type='character', Default='IRSLM')
-  l[['Alpha']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['H2O_GLM_Alpha']]}, error=function(x) NULL), Type='numeric', Default=0.5)
-  l[['LambdaSearch']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['H2O_GLM_LambdaSearch']]}, error=function(x) NULL), Type='logical', Default=FALSE)
-  if(length(l[['LambdaSearch']]) == 0L) l[['Lambda']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['H2O_GLM_Lambda']]}, error=function(x) NULL), Type='character', Default=0)
-  l[['Standardize']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['H2O_GLM_Standardize']]}, error=function(x) NULL), Type='logical', Default=TRUE)
-  l[['RemoveCollinearColumns']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['H2O_GLM_RemoveCollinearColumns']]}, error=function(x) NULL), Type='logical', Default=TRUE)
-  l[['NonNegativeCoefficients']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['H2O_GLM_NonNegativeCoefficients']]}, error=function(x) NULL), Type='logical', Default=FALSE)
+  l[['Distribution']] <- Quantico:::ReturnParam(xx=tryCatch({input[['H2O_GLM_Distribution']]}, error=function(x) NULL), Type='character', Default='AUTO')
+  l[['Link']] <- Quantico:::ReturnParam(xx=tryCatch({input[['H2O_GLM_Link']]}, error=function(x) NULL), Type='character', Default='family_default')
+  l[['Solver']] <- Quantico:::ReturnParam(xx=tryCatch({input[['H2O_GLM_Solver']]}, error=function(x) NULL), Type='character', Default='IRSLM')
+  l[['Alpha']] <- Quantico:::ReturnParam(xx=tryCatch({input[['H2O_GLM_Alpha']]}, error=function(x) NULL), Type='numeric', Default=0.5)
+  l[['LambdaSearch']] <- Quantico:::ReturnParam(xx=tryCatch({input[['H2O_GLM_LambdaSearch']]}, error=function(x) NULL), Type='logical', Default=FALSE)
+  if(length(l[['LambdaSearch']]) == 0L) l[['Lambda']] <- Quantico:::ReturnParam(xx=tryCatch({input[['H2O_GLM_Lambda']]}, error=function(x) NULL), Type='character', Default=0)
+  l[['Standardize']] <- Quantico:::ReturnParam(xx=tryCatch({input[['H2O_GLM_Standardize']]}, error=function(x) NULL), Type='logical', Default=TRUE)
+  l[['RemoveCollinearColumns']] <- Quantico:::ReturnParam(xx=tryCatch({input[['H2O_GLM_RemoveCollinearColumns']]}, error=function(x) NULL), Type='logical', Default=TRUE)
+  l[['NonNegativeCoefficients']] <- Quantico:::ReturnParam(xx=tryCatch({input[['H2O_GLM_NonNegativeCoefficients']]}, error=function(x) NULL), Type='logical', Default=FALSE)
 
   # Code Collection
-  CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+  CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
     "\n",
     "# H2O-GLM ML Parameters\n",
-    "ArgsList[['Distribution']] <- ", DataMuse:::CEP(l[['Distribution']]), "\n",
-    "ArgsList[['Link']] <- ", DataMuse:::CEP(l[['Link']]), "\n",
-    "ArgsList[['Solver']] <- ", DataMuse:::CEP(l[['Solver']]), "\n",
-    "ArgsList[['Alpha']] <- ", DataMuse:::CEP(l[['Alpha']]), "\n",
-    if(length(l[['LambdaSearch']]) == 0L) "ArgsList[['Lambda']] <- ", DataMuse:::CEPP(l[['Lambda']]), "\n",
-    "ArgsList[['LambdaSearch']] <- ", DataMuse:::CEPP(l[['LambdaSearch']]), "\n",
-    "ArgsList[['Standardize']] <- ", DataMuse:::CEPP(l[['Standardize']]), "\n",
-    "ArgsList[['RemoveCollinearColumns']] <- ", DataMuse:::CEPP(l[['RemoveCollinearColumns']]), "\n",
-    "ArgsList[['NonNegativeCoefficients']] <- ", DataMuse:::CEPP(l[['NonNegativeCoefficients']]), "\n"))
+    "ArgsList[['Distribution']] <- ", Quantico:::CEP(l[['Distribution']]), "\n",
+    "ArgsList[['Link']] <- ", Quantico:::CEP(l[['Link']]), "\n",
+    "ArgsList[['Solver']] <- ", Quantico:::CEP(l[['Solver']]), "\n",
+    "ArgsList[['Alpha']] <- ", Quantico:::CEP(l[['Alpha']]), "\n",
+    if(length(l[['LambdaSearch']]) == 0L) "ArgsList[['Lambda']] <- ", Quantico:::CEPP(l[['Lambda']]), "\n",
+    "ArgsList[['LambdaSearch']] <- ", Quantico:::CEPP(l[['LambdaSearch']]), "\n",
+    "ArgsList[['Standardize']] <- ", Quantico:::CEPP(l[['Standardize']]), "\n",
+    "ArgsList[['RemoveCollinearColumns']] <- ", Quantico:::CEPP(l[['RemoveCollinearColumns']]), "\n",
+    "ArgsList[['NonNegativeCoefficients']] <- ", Quantico:::CEPP(l[['NonNegativeCoefficients']]), "\n"))
 
   # H2O_DRF Eval Parameters
   if(TT == 'Regression') {
     if(Debug) print(' ::  BuildModels 8.1  :: ')
 
     # Store Args
-    l[['TweedieVariancePower']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['H2O_GLM_TweedieVariancePower']]}, error=function(x) NULL), Type='numeric', Default=1.2)
-    l[['eval_metric']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['H2O_GLM_eval_metric']]}, error=function(x) NULL), Type='character', Default='RMSE') # MSE, RMSE, MAE, RMSLE
+    l[['TweedieVariancePower']] <- Quantico:::ReturnParam(xx=tryCatch({input[['H2O_GLM_TweedieVariancePower']]}, error=function(x) NULL), Type='numeric', Default=1.2)
+    l[['eval_metric']] <- Quantico:::ReturnParam(xx=tryCatch({input[['H2O_GLM_eval_metric']]}, error=function(x) NULL), Type='character', Default='RMSE') # MSE, RMSE, MAE, RMSLE
 
     # Code Collection
-    CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+    CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
       "\n",
       "# H2O-GLM Evaluation Parameters\n",
-      "ArgsList[['TweedieVariancePower']] <- ", DataMuse:::CEPP(l[['TweedieVariancePower']]), "\n",
-      "ArgsList[['eval_metric']] <- ", DataMuse:::CEP(l[['eval_metric']]), "\n"))
+      "ArgsList[['TweedieVariancePower']] <- ", Quantico:::CEPP(l[['TweedieVariancePower']]), "\n",
+      "ArgsList[['eval_metric']] <- ", Quantico:::CEP(l[['eval_metric']]), "\n"))
 
   } else if(TT == 'Binary Classification') {
     if(Debug) print(' ::  BuildModels 8.2  :: ')
 
     # Store Args
-    l[['eval_metric']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['H2O_GLM_eval_metric']]}, error=function(x) NULL), Type='character', Default='auc') # 'auc' only
+    l[['eval_metric']] <- Quantico:::ReturnParam(xx=tryCatch({input[['H2O_GLM_eval_metric']]}, error=function(x) NULL), Type='character', Default='auc') # 'auc' only
 
     # Code Collection
-    CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+    CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
       "\n",
       "# H2O-GLM Evaluation Parameters\n",
-      "ArgsList[['eval_metric']] <- ", DataMuse:::CEP(l[['eval_metric']]), "\n"))
+      "ArgsList[['eval_metric']] <- ", Quantico:::CEP(l[['eval_metric']]), "\n"))
 
   } else if(TT == 'MultiClass') {
     if(Debug) print(' ::  BuildModels 8.3  :: ')
 
     # Store Args
-    l[['eval_metric']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['H2O_GLM_eval_metric']]}, error=function(x) NULL), Type='character', Default='logloss') # 'logloss' only
+    l[['eval_metric']] <- Quantico:::ReturnParam(xx=tryCatch({input[['H2O_GLM_eval_metric']]}, error=function(x) NULL), Type='character', Default='logloss') # 'logloss' only
 
     # Code Collection
-    CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+    CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
       "\n",
       "# H2O-GLM Evaluation Parameters\n",
-      "ArgsList[['eval_metric']] <- ", DataMuse:::CEP(l[['eval_metric']]), "\n"))
+      "ArgsList[['eval_metric']] <- ", Quantico:::CEP(l[['eval_metric']]), "\n"))
 
   }
   return(list(ArgsList = l,CodeList = CodeList))
@@ -912,74 +912,74 @@ Shiny.ML.H2O_HGLM_Params <- function(l,input,Debug,TT,CodeList) {
   print(' ::  BuildModels 7  :: ')
 
   # H2O_DRF ML Parameters
-  l[['RandomColNumbers']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['H2O_HGLM_RandomColNumbers']]}, error=function(x) NULL), Type='character', Default=NULL)
-  l[['Distribution']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['H2O_HGLM_Distribution']]}, error=function(x) NULL), Type='character', Default='gaussian')
-  l[['RandomDistribution']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['H2O_HGLM_Distribution']]}, error=function(x) NULL), Type='character', Default='Gaussian')
-  l[['Link']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['H2O_HGLM_Link']]}, error=function(x) NULL), Type='character', Default='identity')
-  l[['RandomLink']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['H2O_HGLM_RandomLink']]}, error=function(x) NULL), Type='character', Default='identity')
-  l[['Solver']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['H2O_HGLM_Solver']]}, error=function(x) NULL), Type='character', Default='AUTO')
-  l[['Alpha']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['H2O_HGLM_Alpha']]}, error=function(x) NULL), Type='numeric', Default=0.5)
-  l[['LambdaSearch']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['H2O_HGLM_LambdaSearch']]}, error=function(x) NULL), Type='logical', Default=FALSE)
-  if(length(l[['LambdaSearch']]) == 0L) l[['Lambda']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['H2O_HGLM_Lambda']]}, error=function(x) NULL), Type='character', Default=0)
-  l[['Standardize']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['H2O_HGLM_Standardize']]}, error=function(x) NULL), Type='logical', Default=TRUE)
-  l[['RemoveCollinearColumns']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['H2O_HGLM_RemoveCollinearColumns']]}, error=function(x) NULL), Type='logical', Default=FALSE)
-  l[['NonNegativeCoefficients']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['H2O_HGLM_NonNegativeCoefficients']]}, error=function(x) NULL), Type='logical', Default=FALSE)
+  l[['RandomColNumbers']] <- Quantico:::ReturnParam(xx=tryCatch({input[['H2O_HGLM_RandomColNumbers']]}, error=function(x) NULL), Type='character', Default=NULL)
+  l[['Distribution']] <- Quantico:::ReturnParam(xx=tryCatch({input[['H2O_HGLM_Distribution']]}, error=function(x) NULL), Type='character', Default='gaussian')
+  l[['RandomDistribution']] <- Quantico:::ReturnParam(xx=tryCatch({input[['H2O_HGLM_Distribution']]}, error=function(x) NULL), Type='character', Default='Gaussian')
+  l[['Link']] <- Quantico:::ReturnParam(xx=tryCatch({input[['H2O_HGLM_Link']]}, error=function(x) NULL), Type='character', Default='identity')
+  l[['RandomLink']] <- Quantico:::ReturnParam(xx=tryCatch({input[['H2O_HGLM_RandomLink']]}, error=function(x) NULL), Type='character', Default='identity')
+  l[['Solver']] <- Quantico:::ReturnParam(xx=tryCatch({input[['H2O_HGLM_Solver']]}, error=function(x) NULL), Type='character', Default='AUTO')
+  l[['Alpha']] <- Quantico:::ReturnParam(xx=tryCatch({input[['H2O_HGLM_Alpha']]}, error=function(x) NULL), Type='numeric', Default=0.5)
+  l[['LambdaSearch']] <- Quantico:::ReturnParam(xx=tryCatch({input[['H2O_HGLM_LambdaSearch']]}, error=function(x) NULL), Type='logical', Default=FALSE)
+  if(length(l[['LambdaSearch']]) == 0L) l[['Lambda']] <- Quantico:::ReturnParam(xx=tryCatch({input[['H2O_HGLM_Lambda']]}, error=function(x) NULL), Type='character', Default=0)
+  l[['Standardize']] <- Quantico:::ReturnParam(xx=tryCatch({input[['H2O_HGLM_Standardize']]}, error=function(x) NULL), Type='logical', Default=TRUE)
+  l[['RemoveCollinearColumns']] <- Quantico:::ReturnParam(xx=tryCatch({input[['H2O_HGLM_RemoveCollinearColumns']]}, error=function(x) NULL), Type='logical', Default=FALSE)
+  l[['NonNegativeCoefficients']] <- Quantico:::ReturnParam(xx=tryCatch({input[['H2O_HGLM_NonNegativeCoefficients']]}, error=function(x) NULL), Type='logical', Default=FALSE)
 
   # Code Collection
-  CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+  CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
     "\n",
     "# H2O-GLM ML Parameters\n",
-    "ArgsList[['RandomColNumbers']] <- ", DataMuse:::ExpandText(l[['RandomColNumbers']]), "\n",
-    "ArgsList[['RandomDistribution']] <- ", DataMuse:::CEP(l[['RandomDistribution']]), "\n",
-    "ArgsList[['Distribution']] <- ", DataMuse:::CEP(l[['Distribution']]), "\n",
-    "ArgsList[['Link']] <- ", DataMuse:::CEP(l[['Link']]), "\n",
-    "ArgsList[['RandomLink']] <- ", DataMuse:::CEP(l[['RandomLink']]), "\n",
-    "ArgsList[['Solver']] <- ", DataMuse:::CEP(l[['Solver']]), "\n",
-    "ArgsList[['Alpha']] <- ", DataMuse:::CEP(l[['Alpha']]), "\n",
-    "ArgsList[['Lambda']] <- ", if(length(l[['LambdaSearch']]) == 0L) DataMuse:::CEPP(l[['Lambda']]) else 'NULL', "\n",
-    "ArgsList[['LambdaSearch']] <- ", DataMuse:::CEPP(l[['LambdaSearch']]), "\n",
-    "ArgsList[['Standardize']] <- ", DataMuse:::CEPP(l[['Standardize']]), "\n",
-    "ArgsList[['RemoveCollinearColumns']] <- ", DataMuse:::CEPP(l[['RemoveCollinearColumns']]), "\n",
-    "ArgsList[['NonNegativeCoefficients']] <- ", DataMuse:::CEPP(l[['NonNegativeCoefficients']]), "\n"))
+    "ArgsList[['RandomColNumbers']] <- ", Quantico:::ExpandText(l[['RandomColNumbers']]), "\n",
+    "ArgsList[['RandomDistribution']] <- ", Quantico:::CEP(l[['RandomDistribution']]), "\n",
+    "ArgsList[['Distribution']] <- ", Quantico:::CEP(l[['Distribution']]), "\n",
+    "ArgsList[['Link']] <- ", Quantico:::CEP(l[['Link']]), "\n",
+    "ArgsList[['RandomLink']] <- ", Quantico:::CEP(l[['RandomLink']]), "\n",
+    "ArgsList[['Solver']] <- ", Quantico:::CEP(l[['Solver']]), "\n",
+    "ArgsList[['Alpha']] <- ", Quantico:::CEP(l[['Alpha']]), "\n",
+    "ArgsList[['Lambda']] <- ", if(length(l[['LambdaSearch']]) == 0L) Quantico:::CEPP(l[['Lambda']]) else 'NULL', "\n",
+    "ArgsList[['LambdaSearch']] <- ", Quantico:::CEPP(l[['LambdaSearch']]), "\n",
+    "ArgsList[['Standardize']] <- ", Quantico:::CEPP(l[['Standardize']]), "\n",
+    "ArgsList[['RemoveCollinearColumns']] <- ", Quantico:::CEPP(l[['RemoveCollinearColumns']]), "\n",
+    "ArgsList[['NonNegativeCoefficients']] <- ", Quantico:::CEPP(l[['NonNegativeCoefficients']]), "\n"))
 
   # H2O_DRF Eval Parameters
   if(TT == 'Regression') {
     if(Debug) print(' ::  BuildModels 8.1  :: ')
 
     # Store Args
-    l[['TweedieVariancePower']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['H2O_HGLM_TweedieVariancePower']]}, error=function(x) NULL), Type='numeric', Default=1.2)
-    l[['eval_metric']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['H2O_HGLM_eval_metric']]}, error=function(x) NULL), Type='character', Default='RMSE') # MSE, RMSE, MAE, RMSLE
+    l[['TweedieVariancePower']] <- Quantico:::ReturnParam(xx=tryCatch({input[['H2O_HGLM_TweedieVariancePower']]}, error=function(x) NULL), Type='numeric', Default=1.2)
+    l[['eval_metric']] <- Quantico:::ReturnParam(xx=tryCatch({input[['H2O_HGLM_eval_metric']]}, error=function(x) NULL), Type='character', Default='RMSE') # MSE, RMSE, MAE, RMSLE
 
     # Code Collection
-    CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+    CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
       "\n",
       "# H2O-GLM Evaluation Parameters\n",
-      "ArgsList[['TweedieVariancePower']] <- ", DataMuse:::CEPP(l[['TweedieVariancePower']]), "\n",
-      "ArgsList[['eval_metric']] <- ", DataMuse:::CEP(l[['eval_metric']]), "\n"))
+      "ArgsList[['TweedieVariancePower']] <- ", Quantico:::CEPP(l[['TweedieVariancePower']]), "\n",
+      "ArgsList[['eval_metric']] <- ", Quantico:::CEP(l[['eval_metric']]), "\n"))
 
   } else if(TT == 'Binary Classification') {
     if(Debug) print(' ::  BuildModels 8.2  :: ')
 
     # Store Args
-    l[['eval_metric']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['H2O_HGLM_eval_metric']]}, error=function(x) NULL), Type='character', Default='auc') # 'auc' only
+    l[['eval_metric']] <- Quantico:::ReturnParam(xx=tryCatch({input[['H2O_HGLM_eval_metric']]}, error=function(x) NULL), Type='character', Default='auc') # 'auc' only
 
     # Code Collection
-    CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+    CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
       "\n",
       "# H2O-GLM Evaluation Parameters\n",
-      "ArgsList[['eval_metric']] <- ", DataMuse:::CEP(l[['eval_metric']]), "\n"))
+      "ArgsList[['eval_metric']] <- ", Quantico:::CEP(l[['eval_metric']]), "\n"))
 
   } else if(TT == 'MultiClass') {
     if(Debug) print(' ::  BuildModels 8.3  :: ')
 
     # Store Args
-    l[['eval_metric']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['H2O_HGLM_eval_metric']]}, error=function(x) NULL), Type='character', Default='logloss') # 'logloss' only
+    l[['eval_metric']] <- Quantico:::ReturnParam(xx=tryCatch({input[['H2O_HGLM_eval_metric']]}, error=function(x) NULL), Type='character', Default='logloss') # 'logloss' only
 
     # Code Collection
-    CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+    CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
       "\n",
       "# H2O-GLM Evaluation Parameters\n",
-      "ArgsList[['eval_metric']] <- ", DataMuse:::CEP(l[['eval_metric']]), "\n"))
+      "ArgsList[['eval_metric']] <- ", Quantico:::CEP(l[['eval_metric']]), "\n"))
 
   }
   return(list(ArgsList = l,CodeList = CodeList))
@@ -1089,16 +1089,16 @@ Shiny.ML.Trainer <- function(input,
                              wd = NULL) {
 
   # Data, Target variable, Features
-  temp_data <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0(Algo, '_data')]]}, error=function(x) NULL), Type='character', Default=NULL)
+  temp_data <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0(Algo, '_data')]]}, error=function(x) NULL), Type='character', Default=NULL)
   if(length(temp_data) != 0) ArgsList[['data']] <- data.table::copy(DataList[[temp_data]][['data']]) else ArgsList[['data']] <- NULL
-  temp_validation <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0(Algo, '_ValidationData')]]}, error=function(x) NULL), Type='character', Default=NULL)
+  temp_validation <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0(Algo, '_ValidationData')]]}, error=function(x) NULL), Type='character', Default=NULL)
   if(length(temp_validation) != 0) ArgsList[['ValidationData']] <- data.table::copy(DataList[[temp_validation]][['data']]) else ArgsList[['ValidationData']] <- NULL
-  temp_test <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0(Algo, '_TestData')]]}, error=function(x) NULL), Type='character', Default=NULL)
+  temp_test <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0(Algo, '_TestData')]]}, error=function(x) NULL), Type='character', Default=NULL)
   if(length(temp_test) != 0) ArgsList[['TestData']] <- data.table::copy(DataList[[temp_test]][['data']]) else ArgsList[['TestData']] <- NULL
 
   if(Debug) print(' ::  BuildModels 3  :: ')
-  ArgsList[['TargetColumnName']] <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0(Algo, '_TargetColumnName')]]}, error=function(x) NULL), Type='character', Default=NULL)
-  ArgsList[['FeatureColNames']] <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0(Algo, '_FeatureColNames')]]}, error=function(x) NULL), Type='character', Default=NULL)
+  ArgsList[['TargetColumnName']] <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0(Algo, '_TargetColumnName')]]}, error=function(x) NULL), Type='character', Default=NULL)
+  ArgsList[['FeatureColNames']] <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0(Algo, '_FeatureColNames')]]}, error=function(x) NULL), Type='character', Default=NULL)
   if(Debug) print("class(ArgsList[['data']])[[1L]] %in% 'data.table' && length(ArgsList[['TargetColumnName']]) != 0L && length(ArgsList[['FeatureColNames']]) != 0L")
 
   # If run < n, combine data so that
@@ -1127,65 +1127,65 @@ Shiny.ML.Trainer <- function(input,
 
   # Code Collection
   if(check && class(ArgsList[['ValidationData']])[[1L]] %in% 'data.table' && class(ArgsList[['TestData']])[[1L]] %in% 'data.table') {
-    CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+    CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
       "\n",
       "# ML Data\n",
       "if(!exists('ArgsList')) ArgsList <- list()\n",
       "ArgsList <- list()\n",
       "ArgsList[['data']] <- data.table::rbindlist(list(\n  ",
-      "data.table::copy(DataList[[", DataMuse:::CEP(temp_data), "]])\n  ",
-      "data.table::copy(DataList[[", DataMuse:::CEP(temp_validation), "]])\n  ",
-      "data.table::copy(DataList[[", DataMuse:::CEP(temp_test), "]])))\n"))
+      "data.table::copy(DataList[[", Quantico:::CEP(temp_data), "]])\n  ",
+      "data.table::copy(DataList[[", Quantico:::CEP(temp_validation), "]])\n  ",
+      "data.table::copy(DataList[[", Quantico:::CEP(temp_test), "]])))\n"))
   } else if(check && class(ArgsList[['ValidationData']])[[1L]] %in% 'data.table' && !class(ArgsList[['TestData']])[[1L]] %in% 'data.table') {
-    CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+    CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
       "\n",
       "# ML Data\n",
       "if(!exists('ArgsList')) ArgsList <- list()\n",
       "ArgsList[['data']] <- data.table::rbindlist(list(\n  ",
-      "data.table::copy(DataList[[", DataMuse:::CEP(temp_data), "]])\n  ",
-      "data.table::copy(DataList[[", DataMuse:::CEP(temp_validation), "]])))\n"))
+      "data.table::copy(DataList[[", Quantico:::CEP(temp_data), "]])\n  ",
+      "data.table::copy(DataList[[", Quantico:::CEP(temp_validation), "]])))\n"))
   } else if(check && !class(ArgsList[['ValidationData']])[[1L]] %in% 'data.table' && class(ArgsList[['TestData']])[[1L]] %in% 'data.table') {
-    CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+    CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
       "\n",
       "# ML Data\n",
       "if(!exists('ArgsList')) ArgsList <- list()\n",
       "ArgsList[['data']] <- data.table::rbindlist(list(\n  ",
-      "data.table::copy(DataList[[", DataMuse:::CEP(temp_data), "]])\n  ",
-      "data.table::copy(DataList[[", DataMuse:::CEP(temp_test), "]])))\n"))
+      "data.table::copy(DataList[[", Quantico:::CEP(temp_data), "]])\n  ",
+      "data.table::copy(DataList[[", Quantico:::CEP(temp_test), "]])))\n"))
   } else if(check && !class(ArgsList[['ValidationData']])[[1L]] %in% 'data.table' && !class(ArgsList[['TestData']])[[1L]] %in% 'data.table') {
-    CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+    CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
       "\n",
       "# ML Data\n",
       "if(!exists('ArgsList')) ArgsList <- list()\n",
-      "ArgsList[['data']] <- data.table::copy(DataList[[", DataMuse:::CEP(temp_data), "]])\n"))
+      "ArgsList[['data']] <- data.table::copy(DataList[[", Quantico:::CEP(temp_data), "]])\n"))
   } else if(!check && class(ArgsList[['ValidationData']])[[1L]] %in% 'data.table' && class(ArgsList[['TestData']])[[1L]] %in% 'data.table') {
-    CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+    CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
       "\n",
       "# ML Data\n",
       "if(!exists('ArgsList')) ArgsList <- list()\n",
-      "ArgsList[['data']] <- data.table::copy(DataList[[", DataMuse:::CEP(temp_data), "]])\n  ",
-      "ArgsList[['ValidationData']] <- data.table::copy(DataList[[", DataMuse:::CEP(temp_validation), "]])\n  ",
-      "ArgsList[['TestData']] <- data.table::copy(DataList[[", DataMuse:::CEP(temp_test), "]])\n"))
+      "ArgsList[['data']] <- data.table::copy(DataList[[", Quantico:::CEP(temp_data), "]])\n  ",
+      "ArgsList[['ValidationData']] <- data.table::copy(DataList[[", Quantico:::CEP(temp_validation), "]])\n  ",
+      "ArgsList[['TestData']] <- data.table::copy(DataList[[", Quantico:::CEP(temp_test), "]])\n"))
   } else if(!check && class(ArgsList[['ValidationData']])[[1L]] %in% 'data.table' && !class(ArgsList[['TestData']])[[1L]] %in% 'data.table') {
-    CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+    CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
       "\n",
       "# ML Data\n",
       "if(!exists('ArgsList')) ArgsList <- list()\n",
-      "ArgsList[['data']] <- data.table::copy(DataList[[", DataMuse:::CEP(temp_data), "]])\n  ",
-      "ArgsList[['ValidationData']] <- data.table::copy(DataList[[", DataMuse:::CEP(temp_validation), "]])\n"))
+      "ArgsList[['data']] <- data.table::copy(DataList[[", Quantico:::CEP(temp_data), "]])\n  ",
+      "ArgsList[['ValidationData']] <- data.table::copy(DataList[[", Quantico:::CEP(temp_validation), "]])\n"))
   } else if(!check && !class(ArgsList[['ValidationData']])[[1L]] %in% 'data.table' && class(ArgsList[['TestData']])[[1L]] %in% 'data.table') {
-    CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+    CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
       "\n",
       "# ML Data\n",
       "if(!exists('ArgsList')) ArgsList <- list()\n",
-      "ArgsList[['data']] <- data.table::copy(DataList[[", DataMuse:::CEP(temp_data), "]])\n  ",
-      "ArgsList[['TestData']] <- data.table::copy(DataList[[", DataMuse:::CEP(temp_test), "]])\n"))
+      "ArgsList[['data']] <- data.table::copy(DataList[[", Quantico:::CEP(temp_data), "]])\n  ",
+      "ArgsList[['TestData']] <- data.table::copy(DataList[[", Quantico:::CEP(temp_test), "]])\n"))
   } else if(!check && !class(ArgsList[['ValidationData']])[[1L]] %in% 'data.table' && !class(ArgsList[['TestData']])[[1L]] %in% 'data.table') {
-    CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+    CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
       "\n",
       "# ML Data\n",
       "if(!exists('ArgsList')) ArgsList <- list()\n",
-      "ArgsList[['data']] <- data.table::copy(DataList[[", DataMuse:::CEP(temp_data), "]])\n"))
+      "ArgsList[['data']] <- data.table::copy(DataList[[", Quantico:::CEP(temp_data), "]])\n"))
   }
 
   # ML Build
@@ -1228,8 +1228,8 @@ Shiny.ML.Trainer <- function(input,
 
     # MetaData Parameters
     ArgsList[['OutputSelection']] <- c('Importances', 'EvalMetrics', 'Score_TrainData')
-    ArgsList[['TrainOnFull']] <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0(Algo, '_TrainOnFull')]]}, error=function(x) NULL), Type='logical', Default=FALSE)
-    ArgsList[['ModelID']] <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0(Algo, '_ModelID')]]}, error=function(x) NULL), Type='character', Default='Model_1')
+    ArgsList[['TrainOnFull']] <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0(Algo, '_TrainOnFull')]]}, error=function(x) NULL), Type='logical', Default=FALSE)
+    ArgsList[['ModelID']] <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0(Algo, '_ModelID')]]}, error=function(x) NULL), Type='character', Default='Model_1')
     ArgsList[['DebugMode']] <- Debug
     ArgsList[['model_path']] <- wd
     ArgsList[['metadata_path']] <- NULL
@@ -1243,35 +1243,35 @@ Shiny.ML.Trainer <- function(input,
     # Data Parameters
 
     # Data
-    ArgsList[['WeightsColumn']] <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0(Algo, '_WeightsColumnName')]]}, error=function(x) NULL), Type='character', Default=NULL)
+    ArgsList[['WeightsColumn']] <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0(Algo, '_WeightsColumnName')]]}, error=function(x) NULL), Type='character', Default=NULL)
     if(TT == 'Regression') {
-      ArgsList[['TransformNumericColumns']] <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0(Algo, '_TransformNumericColumns')]]}, error=function(x) NULL), Type='character', Default=NULL)
-      ArgsList[['Methods']] <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0(Algo, '_Methods')]]}, error=function(x) NULL), Type='character', Default=NULL)
+      ArgsList[['TransformNumericColumns']] <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0(Algo, '_TransformNumericColumns')]]}, error=function(x) NULL), Type='character', Default=NULL)
+      ArgsList[['Methods']] <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0(Algo, '_Methods')]]}, error=function(x) NULL), Type='character', Default=NULL)
     }
 
     if(Debug) print(' ::  BuildModels 5  :: ')
 
     # Grid Tuning Parameters
-    if(!Algo %in% c('H2O_DRF','H2O_GBM','H2O_GLM','H2O_HGLM')) ArgsList[['PassInGrid']] <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0(Algo, '_PassInGrid')]]}, error=function(x) NULL), Type='character', Default=NULL)
-    ArgsList[['GridTune']] <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0(Algo, '_GridTune')]]}, error=function(x) NULL), Type='logical', Default=FALSE)
-    ArgsList[['MaxModelsInGrid']] <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0(Algo, '_MaxModelsInGrid')]]}, error=function(x) NULL), Type='numeric', Default=30)
-    if(!Algo %in% c('H2O_DRF','H2O_GBM','H2O_GLM','H2O_HGLM')) ArgsList[['MaxRunsWithoutNewWinner']] <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0(Algo, '_MaxRunsWithoutNewWinner')]]}, error=function(x) NULL), Type='numeric', Default=15)
-    if(!Algo %in% c('H2O_DRF','H2O_GBM','H2O_GLM','H2O_HGLM')) ArgsList[['MaxRunMinutes']] <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0(Algo, '_MaxRunMinutes')]]}, error=function(x) NULL), Type='numeric', Default=30)
-    if(!Algo %in% c('H2O_DRF','H2O_GBM','H2O_GLM','H2O_HGLM')) ArgsList[['BaselineComparison']] <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0(Algo, '_BaselineComparison')]]}, error=function(x) NULL), Type='character', Default='default')
+    if(!Algo %in% c('H2O_DRF','H2O_GBM','H2O_GLM','H2O_HGLM')) ArgsList[['PassInGrid']] <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0(Algo, '_PassInGrid')]]}, error=function(x) NULL), Type='character', Default=NULL)
+    ArgsList[['GridTune']] <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0(Algo, '_GridTune')]]}, error=function(x) NULL), Type='logical', Default=FALSE)
+    ArgsList[['MaxModelsInGrid']] <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0(Algo, '_MaxModelsInGrid')]]}, error=function(x) NULL), Type='numeric', Default=30)
+    if(!Algo %in% c('H2O_DRF','H2O_GBM','H2O_GLM','H2O_HGLM')) ArgsList[['MaxRunsWithoutNewWinner']] <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0(Algo, '_MaxRunsWithoutNewWinner')]]}, error=function(x) NULL), Type='numeric', Default=15)
+    if(!Algo %in% c('H2O_DRF','H2O_GBM','H2O_GLM','H2O_HGLM')) ArgsList[['MaxRunMinutes']] <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0(Algo, '_MaxRunMinutes')]]}, error=function(x) NULL), Type='numeric', Default=30)
+    if(!Algo %in% c('H2O_DRF','H2O_GBM','H2O_GLM','H2O_HGLM')) ArgsList[['BaselineComparison']] <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0(Algo, '_BaselineComparison')]]}, error=function(x) NULL), Type='character', Default='default')
 
     # Code Collection
-    CodeList <- tryCatch({DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+    CodeList <- tryCatch({Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
       "\n",
       "# ML Set Metadata Parameters\n",
-      "ArgsList[['TargetColumnName']] <- ", DataMuse:::ExpandText(ArgsList[['TargetColumnName']]),"\n",
-      "ArgsList[['FeatureColNames']] <- ", DataMuse:::ExpandText(ArgsList[['FeatureColNames']]),"\n\n",
+      "ArgsList[['TargetColumnName']] <- ", Quantico:::ExpandText(ArgsList[['TargetColumnName']]),"\n",
+      "ArgsList[['FeatureColNames']] <- ", Quantico:::ExpandText(ArgsList[['FeatureColNames']]),"\n\n",
       "# Additional Metadata Parameters\n",
       "ArgsList[['OutputSelection']] <- c('Importances','EvalMetrics','Score_TrainData')\n",
-      "ArgsList[['TrainOnFull']] <- ", DataMuse:::CEPP(ArgsList[['TrainOnFull']]), "\n",
-      "ArgsList[['ModelID']] <- ", DataMuse:::CEP(ArgsList[['ModelID']]), "\n",
-      "ArgsList[['DebugMode']] <- ", DataMuse:::CEPP(Debug), "\n",
-      "ArgsList[['model_path']] <- ", DataMuse:::CEP(NULL), "\n",
-      "ArgsList[['metadata_path']] <- ", DataMuse:::CEP(NULL),"\n",
+      "ArgsList[['TrainOnFull']] <- ", Quantico:::CEPP(ArgsList[['TrainOnFull']]), "\n",
+      "ArgsList[['ModelID']] <- ", Quantico:::CEP(ArgsList[['ModelID']]), "\n",
+      "ArgsList[['DebugMode']] <- ", Quantico:::CEPP(Debug), "\n",
+      "ArgsList[['model_path']] <- ", Quantico:::CEP(NULL), "\n",
+      "ArgsList[['metadata_path']] <- ", Quantico:::CEP(NULL),"\n",
       "ArgsList[['SaveModelObjects']] <- FALSE\n",
       "ArgsList[['ReturnModelObjects']] <- TRUE\n",
       if(Algo %in% c('H2O_DRF','H2O_GBM','H2O_GLM','H2O_HGLM')) "ArgsList[['H2OStartUp']] <- TRUE\n",
@@ -1293,17 +1293,17 @@ Shiny.ML.Trainer <- function(input,
     if(Algo == 'CatBoost') {
 
       ArgsList[['PrimaryDateColumn']] <- NULL # NO LONGER USEFUL
-      ArgsList[['EncodeMethod']] <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0(Algo, '_EncodeMethod')]]}, error=function(x) NULL), Type='character', Default='credibility')
+      ArgsList[['EncodeMethod']] <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0(Algo, '_EncodeMethod')]]}, error=function(x) NULL), Type='character', Default='credibility')
 
-      #if(!Algo %in% c('H2O_DRF','H2O_GBM','H2O_GLM')) ArgsList[['IDcols']] <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0(Algo, '_IDcols')]]}, error=function(x) NULL), Type='character', Default=NULL)
+      #if(!Algo %in% c('H2O_DRF','H2O_GBM','H2O_GLM')) ArgsList[['IDcols']] <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0(Algo, '_IDcols')]]}, error=function(x) NULL), Type='character', Default=NULL)
       gg <- c(ArgsList[['TargetColumnName']], ArgsList[['FeatureColNames']], ArgsList[['PrimaryDateColumn']], ArgsList[['WeightsColumnName']])
-      gg <- DataMuse:::CleanVector(gg)
+      gg <- Quantico:::CleanVector(gg)
       if(length(gg) > 0L) {
         ArgsList[['IDcols']] <- setdiff(names(ArgsList[['data']]), gg)
       }
 
       # CatBoost ML Args
-      Output <- DataMuse:::Shiny.ML.CatBoost_Params(ArgsList,input,Debug,TT,CodeList)
+      Output <- Quantico:::Shiny.ML.CatBoost_Params(ArgsList,input,Debug,TT,CodeList)
       ArgsList <- Output$ArgsList
       CodeList <- Output$CodeList
 
@@ -1318,12 +1318,12 @@ Shiny.ML.Trainer <- function(input,
         }
 
         # Code collect
-        CodeList <- tryCatch({DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+        CodeList <- tryCatch({Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
           "\n",
           "# ML Build Model\n",
-          "ArgsList[['PrimaryDateColumn']] <- ", DataMuse:::CEP(ArgsList[['PrimaryDateColumn']]), "\n",
-          "ArgsList[['EncodeMethod']] <- ", DataMuse:::CEP(ArgsList[['EncodeMethod']]), "\n",
-          "ArgsList[['IDcols']] <- ", tryCatch({DataMuse:::ExpandText(ArgsList[['IDcols']])}, error = function(x) 'NULL'), "\n",
+          "ArgsList[['PrimaryDateColumn']] <- ", Quantico:::CEP(ArgsList[['PrimaryDateColumn']]), "\n",
+          "ArgsList[['EncodeMethod']] <- ", Quantico:::CEP(ArgsList[['EncodeMethod']]), "\n",
+          "ArgsList[['IDcols']] <- ", tryCatch({Quantico:::ExpandText(ArgsList[['IDcols']])}, error = function(x) 'NULL'), "\n",
           "if(length(ArgsList[['TargetColumnName']]) == 1L) {\n  ",
           "ModelOutputList <- do.call(what = AutoQuant::AutoCatBoostRegression, args = ArgsList)\n",
           "} else {\n  ",
@@ -1335,7 +1335,7 @@ Shiny.ML.Trainer <- function(input,
       } else if(TT == 'Binary Classification') {
         if(Debug) print(ArgsList)
         ModelOutputList[[paste0('ML_', ArgsList[['ModelID']])]] <- do.call(AutoQuant::AutoCatBoostClassifier, ArgsList)
-        CodeList <- tryCatch({DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+        CodeList <- tryCatch({Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
           "\n",
           "# ML Build Model\n",
           "ArgsList[['PrimaryDateColumn']] <- ArgsList[['PrimaryDateColumn']]\n",
@@ -1344,7 +1344,7 @@ Shiny.ML.Trainer <- function(input,
 
       } else if(TT == 'MultiClass') {
         ModelOutputList[[paste0('ML_', ArgsList[['ModelID']])]] <- do.call(AutoQuant::AutoCatBoostMultiClass, ArgsList)
-        CodeList <- tryCatch({DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+        CodeList <- tryCatch({Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
           "\n",
           "# ML Build Model\n",
           "ArgsList[['PrimaryDateColumn']] <- ArgsList[['PrimaryDateColumn']]\n",
@@ -1354,7 +1354,7 @@ Shiny.ML.Trainer <- function(input,
 
       # Store in DataList
       KeyName <- paste0(TT, "_", ArgsList[['ModelID']])
-      Output <- DataMuse:::Shiny.ML.ModelDataObjects(ModelOutputList[[paste0('ML_', ArgsList[['ModelID']])]], Debug, TT = 'catboost')
+      Output <- Quantico:::Shiny.ML.ModelDataObjects(ModelOutputList[[paste0('ML_', ArgsList[['ModelID']])]], Debug, TT = 'catboost')
       DataList[[paste0('CatBoost_', ArgsList[['ModelID']], '_ScoringData')]][['data']] <- Output$ScoringDataCombined
       DataList[[paste0('CatBoost_', ArgsList[['ModelID']], '_ScoringData')]][['sample']] <- DataList[[paste0('CatBoost_', ArgsList[['ModelID']], '_ScoringData')]][['data']][1L:min(.N,1000L)]
 
@@ -1379,13 +1379,13 @@ Shiny.ML.Trainer <- function(input,
       if(Debug) print(' ::  BuildModels 6  :: ')
 
       # XGBoost ML Args
-      temp <- DataMuse:::ReturnParam(xx=tryCatch({input[['XGBoost_TreeMethod']]}, error=function(x) NULL), Type='character', Default = 'hist')
+      temp <- Quantico:::ReturnParam(xx=tryCatch({input[['XGBoost_TreeMethod']]}, error=function(x) NULL), Type='character', Default = 'hist')
       if(temp == 'GPU') ArgsList[['TreeMethod']] <- 'gpu_hist' else ArgsList[['TreeMethod']] <- 'hist'
-      ArgsList[['NThreads']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['XGBoost_NThreads']]}, error=function(x) NULL), Type='numeric', Default=-1)
-      ArgsList[['EncodingMethod']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['XGBoost_EncodeMethod']]}, error=function(x) NULL), Type='character', Default='credibility')
+      ArgsList[['NThreads']] <- Quantico:::ReturnParam(xx=tryCatch({input[['XGBoost_NThreads']]}, error=function(x) NULL), Type='numeric', Default=-1)
+      ArgsList[['EncodingMethod']] <- Quantico:::ReturnParam(xx=tryCatch({input[['XGBoost_EncodeMethod']]}, error=function(x) NULL), Type='character', Default='credibility')
       for(asdfasdfasdf in 1:10) print(ArgsList[['EncodingMethod']])
       ArgsList[['Verbose']] <- 0L
-      Output <- DataMuse:::Shiny.ML.XGBoost_Params(ArgsList,input,Debug,TT,CodeList)
+      Output <- Quantico:::Shiny.ML.XGBoost_Params(ArgsList,input,Debug,TT,CodeList)
       for(asdfasdfasdf in 1:10) print(ArgsList[['EncodingMethod']])
       ArgsList <- Output$ArgsList
       CodeList <- Output$CodeList
@@ -1395,13 +1395,13 @@ Shiny.ML.Trainer <- function(input,
       if(TT == 'Regression') {
         # print(' ::  BuildModels 8.1 :: ')
         # print(CodeList)
-        ArgsList[['PrimaryDateColumn']] <- DataMuse:::ReturnParam(xx=input[['XGBoost_PrimaryDateColumn']], Type='character', Default=NULL)
+        ArgsList[['PrimaryDateColumn']] <- Quantico:::ReturnParam(xx=input[['XGBoost_PrimaryDateColumn']], Type='character', Default=NULL)
         ArgsList[['SaveInfoToPDF']] <- FALSE
         ModelOutputList[[paste0('ML_', ArgsList[['ModelID']])]] <- do.call(AutoQuant::AutoXGBoostRegression, ArgsList)
-        CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+        CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
           "\n",
           "# ML Build Model\n",
-          "ArgsList[['PrimaryDateColumn']] <- ", DataMuse:::CEP(ArgsList[['PrimaryDateColumn']]), "\n",
+          "ArgsList[['PrimaryDateColumn']] <- ", Quantico:::CEP(ArgsList[['PrimaryDateColumn']]), "\n",
           "ArgsList[['SaveInfoToPDF']] <- FALSE\n",
           "ModelOutputList <- do.call(AutoQuant::AutoXGBoostRegression, ArgsList)\n"))
 
@@ -1411,7 +1411,7 @@ Shiny.ML.Trainer <- function(input,
         ArgsList[['CostMatrixWeights']] <- c(0,1,1,0)
         ArgsList[['SaveInfoToPDF']] <- FALSE
         ModelOutputList[[paste0('ML_', ArgsList[['ModelID']])]] <- do.call(AutoQuant::AutoXGBoostClassifier, ArgsList)
-        CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+        CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
           "\n",
           "# ML Build Model\n",
           "ArgsList[['SaveInfoToPDF']] <- FALSE\n",
@@ -1421,7 +1421,7 @@ Shiny.ML.Trainer <- function(input,
       } else if(TT == 'MultiClass') {
         if(Debug) print(' ::  BuildModels 8.3 :: ')
         ModelOutputList[[paste0('ML_', ArgsList[['ModelID']])]] <- do.call(AutoQuant::AutoXGBoostMultiClass, ArgsList)
-        CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+        CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
           "\n",
           "# ML Build Model\n",
           "ModelOutputList <- do.call(AutoQuant::AutoXGBoostMultiClass, ArgsList)\n"))
@@ -1429,7 +1429,7 @@ Shiny.ML.Trainer <- function(input,
 
       # Store in DataList
       if(Debug) print(' ::  BuildModels 10 :: ')
-      Output <- DataMuse:::Shiny.ML.ModelDataObjects(ModelOutputList[[paste0('ML_', ArgsList[['ModelID']])]], Debug, TT = 'xgboost')
+      Output <- Quantico:::Shiny.ML.ModelDataObjects(ModelOutputList[[paste0('ML_', ArgsList[['ModelID']])]], Debug, TT = 'xgboost')
 
       if(Debug) print(' ::  BuildModels 10.1 :: ')
       DataList[[paste0('ML_', ArgsList[['ModelID']], '_ScoringData')]][["data"]] <- Output$ScoringDataCombined
@@ -1453,7 +1453,7 @@ Shiny.ML.Trainer <- function(input,
       if(Debug) print(' ::  BuildModels 6  :: ')
 
       # LightGBM ML Args
-      Output <- DataMuse:::Shiny.ML.LightGBM_Params(ArgsList,input,Debug,TT,CodeList)
+      Output <- Quantico:::Shiny.ML.LightGBM_Params(ArgsList,input,Debug,TT,CodeList)
       ArgsList <- Output$ArgsList
       CodeList <- Output$CodeList
 
@@ -1462,7 +1462,7 @@ Shiny.ML.Trainer <- function(input,
       if(TT == 'Regression') {
         if(Debug) print(' ::  BuildModels 8.1 :: ')
         ModelOutputList[[paste0('ML_', ArgsList[['ModelID']])]] <- do.call(AutoQuant::AutoLightGBMRegression, ArgsList)
-        CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+        CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
           "\n",
           "# ML Build Model\n",
           "ModelOutputList <- do.call(AutoQuant::AutoLightGBMRegression, ArgsList)\n"))
@@ -1470,11 +1470,11 @@ Shiny.ML.Trainer <- function(input,
       } else if(TT == 'Binary Classification') {
         if(Debug) print(' ::  BuildModels 8.2 :: ')
         ArgsList[['SaveInfoToPDF']] <- FALSE
-        cw0 <- DataMuse:::ReturnParam(xx=tryCatch({input[['LightGBM_ClassWeights0']]}, error=function(x) NULL), Type='numeric', Default=1)
-        cw1 <- DataMuse:::ReturnParam(xx=tryCatch({input[['LightGBM_ClassWeights1']]}, error=function(x) NULL), Type='numeric', Default=1)
+        cw0 <- Quantico:::ReturnParam(xx=tryCatch({input[['LightGBM_ClassWeights0']]}, error=function(x) NULL), Type='numeric', Default=1)
+        cw1 <- Quantico:::ReturnParam(xx=tryCatch({input[['LightGBM_ClassWeights1']]}, error=function(x) NULL), Type='numeric', Default=1)
         ArgsList[['CostMatrixWeights']] <- c(0,1,1,0)
         ModelOutputList[[paste0('ML_', ArgsList[['ModelID']])]] <- do.call(AutoQuant::AutoLightGBMClassifier, ArgsList)
-        CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+        CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
           "\n",
           "# ML Build Model\n",
           "ArgsList[['SaveInfoToPDF']] <- FALSE\n",
@@ -1484,7 +1484,7 @@ Shiny.ML.Trainer <- function(input,
       } else if(TT == 'MultiClass') {
         if(Debug) print(' ::  BuildModels 8.3 :: ')
         ModelOutputList[[paste0('ML_', ArgsList[['ModelID']])]] <- do.call(AutoQuant::AutoLightGBMMultiClass, ArgsList)
-        CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+        CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
           "\n",
           "# ML Build Model\n",
           "ModelOutputList <- do.call(AutoQuant::AutoLightGBMMultiClass, ArgsList)\n"))
@@ -1492,7 +1492,7 @@ Shiny.ML.Trainer <- function(input,
 
       # Store in DataList
       if(Debug) print(' ::  BuildModels 10 :: ')
-      Output <- DataMuse:::Shiny.ML.ModelDataObjects(ModelOutputList[[paste0('ML_', ArgsList[['ModelID']])]], Debug, TT = 'lightgbm')
+      Output <- Quantico:::Shiny.ML.ModelDataObjects(ModelOutputList[[paste0('ML_', ArgsList[['ModelID']])]], Debug, TT = 'lightgbm')
       DataList[[paste0('LightGBM_', ArgsList[['ModelID']], '_ScoringData')]][['data']] <- Output$ScoringDataCombined
       DataList[[paste0('LightGBM_', ArgsList[['ModelID']], '_ScoringData')]][['sample']] <- DataList[[paste0('LightGBM_', ArgsList[['ModelID']], '_ScoringData')]][['data']][1L:min(.N,1000L)]
 
@@ -1505,12 +1505,12 @@ Shiny.ML.Trainer <- function(input,
 
     if(Algo == 'H2O_DRF') {
 
-      ArgsList[["MaxMem"]] <- paste0(DataMuse:::ReturnParam(xx=tryCatch({input[['H2O_DRF_MaxMem']]}, error=function(x) NULL), Type='numeric', Default=4), "G")
+      ArgsList[["MaxMem"]] <- paste0(Quantico:::ReturnParam(xx=tryCatch({input[['H2O_DRF_MaxMem']]}, error=function(x) NULL), Type='numeric', Default=4), "G")
 
       if(Debug) print(' ::  BuildModels 6  :: ')
 
       # H2O_DRF ML Args
-      Output <- DataMuse:::Shiny.ML.H2O_DRF_Params(ArgsList,input,Debug,TT,CodeList)
+      Output <- Quantico:::Shiny.ML.H2O_DRF_Params(ArgsList,input,Debug,TT,CodeList)
       ArgsList <- Output$ArgsList
       CodeList <- Output$CodeList
       ArgsList[['H2OStartUp']] <- TRUE
@@ -1525,31 +1525,31 @@ Shiny.ML.Trainer <- function(input,
           if(Debug) print('H2O.DRF eval_metric was switched to RMSE')
         }
         ModelOutputList[[ArgsList[['ModelID']]]] <- do.call(AutoQuant::AutoH2oDRFRegression, ArgsList)
-        CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+        CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
           "\n",
           "# ML Build Model\n",
-          "ArgsList[['eval_metric']] <- ", DataMuse:::CEP(ArgsList$eval_metric), "\n",
+          "ArgsList[['eval_metric']] <- ", Quantico:::CEP(ArgsList$eval_metric), "\n",
           "ModelOutputList <- do.call(AutoQuant::AutoH2oDRFRegression, ArgsList)\n"))
 
       } else if(TT == 'Binary Classification') {
         if(Debug) print(' ::  BuildModels 8.2 :: ')
         ArgsList[['SaveInfoToPDF']] <- FALSE
-        cw0 <- DataMuse:::ReturnParam(xx=tryCatch({input[['H2O_DRF_ClassWeights0']]}, error=function(x) NULL), Type='numeric', Default=1)
-        cw1 <- DataMuse:::ReturnParam(xx=tryCatch({input[['H2O_DRF_ClassWeights1']]}, error=function(x) NULL), Type='numeric', Default=1)
+        cw0 <- Quantico:::ReturnParam(xx=tryCatch({input[['H2O_DRF_ClassWeights0']]}, error=function(x) NULL), Type='numeric', Default=1)
+        cw1 <- Quantico:::ReturnParam(xx=tryCatch({input[['H2O_DRF_ClassWeights1']]}, error=function(x) NULL), Type='numeric', Default=1)
         ArgsList[['CostMatrixWeights']] <- c(0,1,1,0)
         if(!ArgsList$eval_metric %in% Shiny.ML.H2O_DRF.EvalMetricOptions(TT = 'Binary Classification')) {
           ArgsList[['eval_metric']] <- 'logloss'
           if(Debug) print('H2O.DRF eval_metric was switched to RMSE')
         }
         ModelOutputList[[ArgsList[['ModelID']]]] <- do.call(AutoQuant::AutoH2oDRFClassifier, ArgsList)
-        CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+        CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
           "\n",
           "# ML Build Model\n",
           "ArgsList[['SaveInfoToPDF']] <- FALSE\n",
-          "cw0 <- ", DataMuse:::CEPP(cw0), "\n",
-          "cw1 <- ", DataMuse:::CEPP(cw1), "\n",
+          "cw0 <- ", Quantico:::CEPP(cw0), "\n",
+          "cw1 <- ", Quantico:::CEPP(cw1), "\n",
           "ArgsList[['CostMatrixWeights']] <- c(0,1,1,0)\n",
-          "ArgsList[['eval_metric']] <- ", DataMuse:::CEP(ArgsList$eval_metric), "\n",
+          "ArgsList[['eval_metric']] <- ", Quantico:::CEP(ArgsList$eval_metric), "\n",
           "ModelOutputList <- do.call(AutoQuant::AutoH2oDRFClassifier, ArgsList)\n"))
 
       } else if(TT == 'MultiClass') {
@@ -1560,10 +1560,10 @@ Shiny.ML.Trainer <- function(input,
           if(Debug) print('H2O.DRF eval_metric was switched to RMSE')
         }
         ModelOutputList[[ArgsList[['ModelID']]]] <- do.call(AutoQuant::AutoH2oDRFMultiClass, ArgsList)
-        CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+        CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
           "\n",
           "# ML Build Model\n",
-          "ArgsList[['eval_metric']] <- ", DataMuse:::CEP(ArgsList$eval_metric), "\n",
+          "ArgsList[['eval_metric']] <- ", Quantico:::CEP(ArgsList$eval_metric), "\n",
           "ModelOutputList <- do.call(AutoQuant::AutoH2oDRFMultiClass, ArgsList)\n"))
       }
 
@@ -1572,7 +1572,7 @@ Shiny.ML.Trainer <- function(input,
 
       # Store in DataList
       if(Debug) print(' ::  BuildModels 10 :: ')
-      Output <- DataMuse:::Shiny.ML.ModelDataObjects(ModelOutputList[[ArgsList[['ModelID']]]], Debug, TT = 'h2o_drf')
+      Output <- Quantico:::Shiny.ML.ModelDataObjects(ModelOutputList[[ArgsList[['ModelID']]]], Debug, TT = 'h2o_drf')
       if(Debug) print(' ::  BuildModels 11 :: ')
       DataList[[paste0('H2O_DRF_', ArgsList[['ModelID']], '_ScoringData')]][['data']] <- Output$ScoringDataCombined
       DataList[[paste0('H2O_DRF_', ArgsList[['ModelID']], '_ScoringData')]][['sample']] <- DataList[[paste0('H2O_DRF_', ArgsList[['ModelID']], '_ScoringData')]][['data']][1L:min(.N, 1000L)]
@@ -1589,10 +1589,10 @@ Shiny.ML.Trainer <- function(input,
     if(Algo == 'H2O_GBM') {
 
       if(Debug) print(' ::  BuildModels 6  :: ')
-      ArgsList[["MaxMem"]] <- paste0(DataMuse:::ReturnParam(xx=tryCatch({input[['H2O_GBM_MaxMem']]}, error=function(x) NULL), Type='numeric', Default=4), "G")
+      ArgsList[["MaxMem"]] <- paste0(Quantico:::ReturnParam(xx=tryCatch({input[['H2O_GBM_MaxMem']]}, error=function(x) NULL), Type='numeric', Default=4), "G")
 
       # H2O_GBM ML Args
-      Output <- DataMuse:::Shiny.ML.H2O_GBM_Params(ArgsList,input,Debug,TT,CodeList)
+      Output <- Quantico:::Shiny.ML.H2O_GBM_Params(ArgsList,input,Debug,TT,CodeList)
       ArgsList <- Output$ArgsList
       CodeList <- Output$CodeList
 
@@ -1611,17 +1611,17 @@ Shiny.ML.Trainer <- function(input,
         # Build
         if(Debug) print(ArgsList)
         ModelOutputList[[ArgsList[['ModelID']]]] <- do.call(AutoQuant::AutoH2oGBMRegression, ArgsList)
-        CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+        CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
           "\n",
           "# ML Build Model\n",
-          "ArgsList[['eval_metric']] <- ", DataMuse:::CEP(ArgsList$eval_metric), "\n",
+          "ArgsList[['eval_metric']] <- ", Quantico:::CEP(ArgsList$eval_metric), "\n",
           "ModelOutputList <- do.call(AutoQuant::AutoH2oGBMRegression, ArgsList)\n"))
 
       } else if(TT == 'Binary Classification') {
         if(Debug) print(' ::  BuildModels 8.2 :: ')
         ArgsList[['SaveInfoToPDF']] <- FALSE
-        cw0 <- DataMuse:::ReturnParam(xx=tryCatch({input[['H2O_GBM_ClassWeights0']]}, error=function(x) NULL), Type='numeric', Default=1)
-        cw1 <- DataMuse:::ReturnParam(xx=tryCatch({input[['H2O_GBM_ClassWeights1']]}, error=function(x) NULL), Type='numeric', Default=1)
+        cw0 <- Quantico:::ReturnParam(xx=tryCatch({input[['H2O_GBM_ClassWeights0']]}, error=function(x) NULL), Type='numeric', Default=1)
+        cw1 <- Quantico:::ReturnParam(xx=tryCatch({input[['H2O_GBM_ClassWeights1']]}, error=function(x) NULL), Type='numeric', Default=1)
         ArgsList[['CostMatrixWeights']] <- c(0,1,1,0)
         if(!ArgsList$eval_metric %in% Shiny.ML.H2O_GBM.EvalMetricOptions(TT = 'Binary Classification')) {
           ArgsList[['eval_metric']] <- 'logloss'
@@ -1630,14 +1630,14 @@ Shiny.ML.Trainer <- function(input,
 
         # Build
         ModelOutputList[[ArgsList[['ModelID']]]] <- do.call(AutoQuant::AutoH2oGBMClassifier, ArgsList)
-        CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+        CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
           "\n",
           "# ML Build Model\n",
           "ArgsList[['SaveInfoToPDF']] <- FALSE\n",
-          "cw0 <- ", DataMuse:::CEP(cw0), "\n",
-          "cw1 <- ", DataMuse:::CEP(cw1), "\n",
+          "cw0 <- ", Quantico:::CEP(cw0), "\n",
+          "cw1 <- ", Quantico:::CEP(cw1), "\n",
           "ArgsList[['CostMatrixWeights']] <- c(0,1,1,0)\n",
-          "ArgsList[['eval_metric']] <- ", DataMuse:::CEP(ArgsList$eval_metric), "\n",
+          "ArgsList[['eval_metric']] <- ", Quantico:::CEP(ArgsList$eval_metric), "\n",
           "ModelOutputList <- do.call(AutoQuant::AutoH2oGBMClassifier, ArgsList)\n"))
 
       } else if(TT == 'MultiClass') {
@@ -1650,10 +1650,10 @@ Shiny.ML.Trainer <- function(input,
 
         # Build
         ModelOutputList[[ArgsList[['ModelID']]]] <- do.call(AutoQuant::AutoH2oGBMMultiClass, ArgsList)
-        CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+        CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
           "\n",
           "# ML Build Model\n",
-          "ArgsList[['eval_metric']] <- ", DataMuse:::CEP(ArgsList$eval_metric), "\n",
+          "ArgsList[['eval_metric']] <- ", Quantico:::CEP(ArgsList$eval_metric), "\n",
           "ModelOutputList <- do.call(AutoQuant::AutoH2oGBMClassifier, ArgsList)\n"))
       }
 
@@ -1662,7 +1662,7 @@ Shiny.ML.Trainer <- function(input,
 
       # Store in DataList
       if(Debug) print(' ::  BuildModels 10 :: ')
-      Output <- DataMuse:::Shiny.ML.ModelDataObjects(ModelOutputList[[ArgsList[['ModelID']]]], Debug, TT = 'h2o_gbm')
+      Output <- Quantico:::Shiny.ML.ModelDataObjects(ModelOutputList[[ArgsList[['ModelID']]]], Debug, TT = 'h2o_gbm')
       if(Debug) print(' ::  BuildModels 11 :: ')
       DataList[[paste0('H2O_GBM_', ArgsList[['ModelID']], '_ScoringData')]][['data']] <- Output$ScoringDataCombined
       DataList[[paste0('H2O_GBM_', ArgsList[['ModelID']], '_ScoringData')]][['sample']] <- DataList[[paste0('H2O_GBM_', ArgsList[['ModelID']], '_ScoringData')]][['data']][1L:min(.N,1000L)]
@@ -1677,12 +1677,12 @@ Shiny.ML.Trainer <- function(input,
 
     if(Algo == 'H2O_GLM') {
 
-      ArgsList[["MaxMem"]] <- paste0(DataMuse:::ReturnParam(xx=tryCatch({input[['H2O_GLM_MaxMem']]}, error=function(x) NULL), Type='numeric', Default=4), "G")
+      ArgsList[["MaxMem"]] <- paste0(Quantico:::ReturnParam(xx=tryCatch({input[['H2O_GLM_MaxMem']]}, error=function(x) NULL), Type='numeric', Default=4), "G")
 
       if(Debug) print(' ::  BuildModels 6  :: ')
 
       # H2O_GLM ML Args
-      Output <- DataMuse:::Shiny.ML.H2O_GLM_Params(ArgsList,input,Debug,TT,CodeList)
+      Output <- Quantico:::Shiny.ML.H2O_GLM_Params(ArgsList,input,Debug,TT,CodeList)
       ArgsList <- Output$ArgsList
       CodeList <- Output$CodeList
 
@@ -1703,30 +1703,30 @@ Shiny.ML.Trainer <- function(input,
         # Build
         if(Debug) print(CodeList)
         ModelOutputList[[ArgsList[['ModelID']]]] <- do.call(AutoQuant::AutoH2oGLMRegression, ArgsList)
-        CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+        CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
           "\n",
           "# ML Build Model\n",
-          "ArgsList[['eval_metric']] <- ", DataMuse:::CEP(ArgsList$eval_metric), "\n",
+          "ArgsList[['eval_metric']] <- ", Quantico:::CEP(ArgsList$eval_metric), "\n",
           "ModelOutputList <- do.call(AutoQuant::AutoH2oGLMRegression, ArgsList)\n"))
 
       } else if(TT == 'Binary Classification') {
         if(Debug) print(' ::  BuildModels 8.2 :: ')
         ArgsList[['SaveInfoToPDF']] <- FALSE
-        cw0 <- DataMuse:::ReturnParam(xx=tryCatch({input[['H2O_GLM_ClassWeights0']]}, error=function(x) NULL), Type='numeric', Default=1)
-        cw1 <- DataMuse:::ReturnParam(xx=tryCatch({input[['H2O_GLM_ClassWeights1']]}, error=function(x) NULL), Type='numeric', Default=1)
+        cw0 <- Quantico:::ReturnParam(xx=tryCatch({input[['H2O_GLM_ClassWeights0']]}, error=function(x) NULL), Type='numeric', Default=1)
+        cw1 <- Quantico:::ReturnParam(xx=tryCatch({input[['H2O_GLM_ClassWeights1']]}, error=function(x) NULL), Type='numeric', Default=1)
         ArgsList[['CostMatrixWeights']] <- c(0,1,1,0)
         ArgsList[['eval_metric']] <- 'auc'
 
         # Build
         ModelOutputList[[ArgsList[['ModelID']]]] <- do.call(AutoQuant::AutoH2oGLMClassifier, ArgsList)
-        CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+        CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
           "\n",
           "# ML Build Model\n",
           "ArgsList[['SaveInfoToPDF']] <- FALSE\n",
-          "cw0 <- ", DataMuse:::CEP(cw0), "\n",
-          "cw1 <- ", DataMuse:::CEP(cw1), "\n",
+          "cw0 <- ", Quantico:::CEP(cw0), "\n",
+          "cw1 <- ", Quantico:::CEP(cw1), "\n",
           "ArgsList[['CostMatrixWeights']] <- c(0,1,1,0)\n",
-          "ArgsList[['eval_metric']] <- ", DataMuse:::CEP(ArgsList$eval_metric), "\n",
+          "ArgsList[['eval_metric']] <- ", Quantico:::CEP(ArgsList$eval_metric), "\n",
           "ModelOutputList <- do.call(AutoQuant::AutoH2oGLMClassifier, ArgsList)\n"))
 
       } else if(TT == 'MultiClass') {
@@ -1741,10 +1741,10 @@ Shiny.ML.Trainer <- function(input,
 
         # Build
         ModelOutputList[[ArgsList[['ModelID']]]] <- do.call(AutoQuant::AutoH2oGLMMultiClass, ArgsList)
-        CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+        CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
           "\n",
           "# ML Build Model\n",
-          "ArgsList[['eval_metric']] <- ", DataMuse:::CEP(ArgsList$eval_metric), "\n",
+          "ArgsList[['eval_metric']] <- ", Quantico:::CEP(ArgsList$eval_metric), "\n",
           "ModelOutputList <- do.call(AutoQuant::AutoH2oGLMClassifier, ArgsList)\n"))
       }
 
@@ -1754,7 +1754,7 @@ Shiny.ML.Trainer <- function(input,
       # Store in DataList
       if(Debug) print(' ::  BuildModels 10 :: ')
 
-      Output <- DataMuse:::Shiny.ML.ModelDataObjects(ModelOutputList[[ArgsList[['ModelID']]]], Debug, TT = 'H2O_GLM')
+      Output <- Quantico:::Shiny.ML.ModelDataObjects(ModelOutputList[[ArgsList[['ModelID']]]], Debug, TT = 'H2O_GLM')
 
       if(Debug) print(' ::  BuildModels 11 :: ')
 
@@ -1776,12 +1776,12 @@ Shiny.ML.Trainer <- function(input,
 
     if(Algo == 'H2O_HGLM') {
 
-      ArgsList[["MaxMem"]] <- paste0(DataMuse:::ReturnParam(xx=tryCatch({input[['H2O_HGLM_MaxMem']]}, error=function(x) NULL), Type='numeric', Default=4), "G")
+      ArgsList[["MaxMem"]] <- paste0(Quantico:::ReturnParam(xx=tryCatch({input[['H2O_HGLM_MaxMem']]}, error=function(x) NULL), Type='numeric', Default=4), "G")
 
       if(Debug) print(' ::  BuildModels 6  :: ')
 
       # H2O_HGLM ML Args
-      Output <- DataMuse:::Shiny.ML.H2O_HGLM_Params(ArgsList,input,Debug,TT,CodeList)
+      Output <- Quantico:::Shiny.ML.H2O_HGLM_Params(ArgsList,input,Debug,TT,CodeList)
       ArgsList <- Output$ArgsList
       CodeList <- Output$CodeList
 
@@ -1804,30 +1804,30 @@ Shiny.ML.Trainer <- function(input,
 
         # Build
         ModelOutputList[[paste0('SM_', ArgsList[['ModelID']])]] <- do.call(AutoQuant::AutoH2oGLMRegression, ArgsList)
-        CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+        CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
           "\n",
           "# ML Build Model\n",
-          "ArgsList[['eval_metric']] <- ", DataMuse:::CEP(ArgsList$eval_metric), "\n",
+          "ArgsList[['eval_metric']] <- ", Quantico:::CEP(ArgsList$eval_metric), "\n",
           "ModelOutputList <- do.call(AutoQuant::AutoH2oGLMRegression, ArgsList)\n"))
 
       } else if(TT == 'Binary Classification') {
         if(Debug) print(' ::  BuildModels 8.2 :: ')
         ArgsList[['SaveInfoToPDF']] <- FALSE
-        cw0 <- DataMuse:::ReturnParam(xx=tryCatch({input[['H2O_HGLM_ClassWeights0']]}, error=function(x) NULL), Type='numeric', Default=1)
-        cw1 <- DataMuse:::ReturnParam(xx=tryCatch({input[['H2O_HGLM_ClassWeights1']]}, error=function(x) NULL), Type='numeric', Default=1)
+        cw0 <- Quantico:::ReturnParam(xx=tryCatch({input[['H2O_HGLM_ClassWeights0']]}, error=function(x) NULL), Type='numeric', Default=1)
+        cw1 <- Quantico:::ReturnParam(xx=tryCatch({input[['H2O_HGLM_ClassWeights1']]}, error=function(x) NULL), Type='numeric', Default=1)
         ArgsList[['CostMatrixWeights']] <- c(0,1,1,0)
         ArgsList[['eval_metric']] <- 'auc'
 
         # Build
         ModelOutputList[[paste0('SM_', ArgsList[['ModelID']])]] <- do.call(AutoQuant::AutoH2oGLMClassifier, ArgsList)
-        CodeList <- tryCatch({DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+        CodeList <- tryCatch({Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
           "\n",
           "# ML Build Model\n",
           "ArgsList[['SaveInfoToPDF']] <- FALSE\n",
-          "cw0 <- ", DataMuse:::CEP(cw0), "\n",
-          "cw1 <- ", DataMuse:::CEP(cw1), "\n",
+          "cw0 <- ", Quantico:::CEP(cw0), "\n",
+          "cw1 <- ", Quantico:::CEP(cw1), "\n",
           "ArgsList[['CostMatrixWeights']] <- c(0,1,1,0)\n",
-          "ArgsList[['eval_metric']] <- ", DataMuse:::CEP(ArgsList$eval_metric), "\n",
+          "ArgsList[['eval_metric']] <- ", Quantico:::CEP(ArgsList$eval_metric), "\n",
           "ModelOutputList <- do.call(AutoQuant::AutoH2oGLMClassifier, ArgsList)\n"))}, error = function(x) CodeList)
 
       } else if(TT == 'MultiClass') {
@@ -1840,17 +1840,17 @@ Shiny.ML.Trainer <- function(input,
 
         # Build
         ModelOutputList[[paste0('SM_', ArgsList[['ModelID']])]] <- do.call(AutoQuant::AutoH2oGLMMultiClass, ArgsList)
-        CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+        CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
           "\n",
           "# ML Build Model\n",
-          "ArgsList[['eval_metric']] <- ", DataMuse:::CEP(ArgsList$eval_metric), "\n",
+          "ArgsList[['eval_metric']] <- ", Quantico:::CEP(ArgsList$eval_metric), "\n",
           "ModelOutputList <- do.call(AutoQuant::AutoH2oGLMClassifier, ArgsList)\n"))
       }
 
       # Store in DataList
       if(Debug) print(' ::  BuildModels 10 :: ')
 
-      Output <- DataMuse:::Shiny.ML.ModelDataObjects(ModelOutputList[[paste0('SM_', ArgsList[['ModelID']])]], Debug, TT = 'h2o_hglm')
+      Output <- Quantico:::Shiny.ML.ModelDataObjects(ModelOutputList[[paste0('SM_', ArgsList[['ModelID']])]], Debug, TT = 'h2o_hglm')
 
       if(Debug) print(' ::  BuildModels 11 :: ')
 
@@ -1886,39 +1886,39 @@ Shiny.ML.Trainer <- function(input,
   }
   if(TT == "Regression") {
     if(Algo %in% c("H2O_DRF","H2O_GBM","H2O_GLM")) {
-      DataList[["ML_RegressionMetrics"]][["data"]] <- DataMuse:::Shiny.ML.Evaluation.Table(ArgsList,ML_ExperimentTable,iter,ModelOutputList[[ArgsList[['ModelID']]]],TT,Algo,Debug)
-      DataList[["ML_RegressionMetrics"]][["sample"]] <- DataMuse:::Shiny.ML.Evaluation.Table(ArgsList,ML_ExperimentTable,iter,ModelOutputList[[ArgsList[['ModelID']]]],TT,Algo,Debug)
+      DataList[["ML_RegressionMetrics"]][["data"]] <- Quantico:::Shiny.ML.Evaluation.Table(ArgsList,ML_ExperimentTable,iter,ModelOutputList[[ArgsList[['ModelID']]]],TT,Algo,Debug)
+      DataList[["ML_RegressionMetrics"]][["sample"]] <- Quantico:::Shiny.ML.Evaluation.Table(ArgsList,ML_ExperimentTable,iter,ModelOutputList[[ArgsList[['ModelID']]]],TT,Algo,Debug)
       ModelOutputList[[ArgsList[['ModelID']]]][["ML_RegressionMetrics"]] <- DataList[["ML_RegressionMetrics"]][["data"]]
     } else {
-      DataList[["ML_RegressionMetrics"]][["data"]] <- DataMuse:::Shiny.ML.Evaluation.Table(ArgsList,ML_ExperimentTable,iter,ModelOutputList[[paste0('ML_', ArgsList[['ModelID']])]],TT,Algo,Debug)
-      DataList[["ML_RegressionMetrics"]][["sample"]] <- DataMuse:::Shiny.ML.Evaluation.Table(ArgsList,ML_ExperimentTable,iter,ModelOutputList[[paste0('ML_', ArgsList[['ModelID']])]],TT,Algo,Debug)
+      DataList[["ML_RegressionMetrics"]][["data"]] <- Quantico:::Shiny.ML.Evaluation.Table(ArgsList,ML_ExperimentTable,iter,ModelOutputList[[paste0('ML_', ArgsList[['ModelID']])]],TT,Algo,Debug)
+      DataList[["ML_RegressionMetrics"]][["sample"]] <- Quantico:::Shiny.ML.Evaluation.Table(ArgsList,ML_ExperimentTable,iter,ModelOutputList[[paste0('ML_', ArgsList[['ModelID']])]],TT,Algo,Debug)
       ModelOutputList[[paste0('ML_', ArgsList[['ModelID']])]][["ML_RegressionMetrics"]] <- DataList[["ML_RegressionMetrics"]][["data"]]
     }
   } else if(TT == "Binary Classification") {
     if(Algo %in% c("H2O_DRF","H2O_GBM","H2O_GLM")) {
-      DataList[["ML_ClassificationMetrics"]][["data"]] <- DataMuse:::Shiny.ML.Evaluation.Table(ArgsList,ML_ExperimentTable,iter,ModelOutputList[[ArgsList[['ModelID']]]],TT,Algo,Debug)
-      DataList[["ML_ClassificationMetrics"]][["sample"]] <- DataMuse:::Shiny.ML.Evaluation.Table(ArgsList,ML_ExperimentTable,iter,ModelOutputList[[ArgsList[['ModelID']]]],TT,Algo,Debug)
+      DataList[["ML_ClassificationMetrics"]][["data"]] <- Quantico:::Shiny.ML.Evaluation.Table(ArgsList,ML_ExperimentTable,iter,ModelOutputList[[ArgsList[['ModelID']]]],TT,Algo,Debug)
+      DataList[["ML_ClassificationMetrics"]][["sample"]] <- Quantico:::Shiny.ML.Evaluation.Table(ArgsList,ML_ExperimentTable,iter,ModelOutputList[[ArgsList[['ModelID']]]],TT,Algo,Debug)
       ModelOutputList[[ArgsList[['ModelID']]]][["ML_ClassificationMetrics"]] <- DataList[["ML_ClassificationMetrics"]][["data"]]
     } else {
-      DataList[["ML_ClassificationMetrics"]][["data"]] <- DataMuse:::Shiny.ML.Evaluation.Table(ArgsList,ML_ExperimentTable,iter,ModelOutputList[[paste0('ML_', ArgsList[['ModelID']])]],TT,Algo,Debug)
-      DataList[["ML_ClassificationMetrics"]][["sample"]] <- DataMuse:::Shiny.ML.Evaluation.Table(ArgsList,ML_ExperimentTable,iter,ModelOutputList[[paste0('ML_', ArgsList[['ModelID']])]],TT,Algo,Debug)
+      DataList[["ML_ClassificationMetrics"]][["data"]] <- Quantico:::Shiny.ML.Evaluation.Table(ArgsList,ML_ExperimentTable,iter,ModelOutputList[[paste0('ML_', ArgsList[['ModelID']])]],TT,Algo,Debug)
+      DataList[["ML_ClassificationMetrics"]][["sample"]] <- Quantico:::Shiny.ML.Evaluation.Table(ArgsList,ML_ExperimentTable,iter,ModelOutputList[[paste0('ML_', ArgsList[['ModelID']])]],TT,Algo,Debug)
       ModelOutputList[[paste0('ML_', ArgsList[['ModelID']])]][["ML_ClassificationMetrics"]] <- DataList[["ML_ClassificationMetrics"]][["data"]]
     }
   } else if(TT == "MultiClass") {
     if(Algo %in% c("H2O_DRF","H2O_GBM","H2O_GLM")) {
-      DataList[["ML_MultiClassMetrics"]][["data"]] <- DataMuse:::Shiny.ML.Evaluation.Table(ArgsList,ML_ExperimentTable,iter,ModelOutputList[[ArgsList[['ModelID']]]],TT,Algo,Debug)
-      DataList[["ML_MultiClassMetrics"]][["sample"]] <- DataMuse:::Shiny.ML.Evaluation.Table(ArgsList,ML_ExperimentTable,iter,ModelOutputList[[ArgsList[['ModelID']]]],TT,Algo,Debug)
+      DataList[["ML_MultiClassMetrics"]][["data"]] <- Quantico:::Shiny.ML.Evaluation.Table(ArgsList,ML_ExperimentTable,iter,ModelOutputList[[ArgsList[['ModelID']]]],TT,Algo,Debug)
+      DataList[["ML_MultiClassMetrics"]][["sample"]] <- Quantico:::Shiny.ML.Evaluation.Table(ArgsList,ML_ExperimentTable,iter,ModelOutputList[[ArgsList[['ModelID']]]],TT,Algo,Debug)
       ModelOutputList[[ArgsList[['ModelID']]]][["ML_MultiClassMetrics"]] <- DataList[["ML_MultiClassMetrics"]][["data"]]
     } else {
-      DataList[["ML_MultiClassMetrics"]][["data"]] <- DataMuse:::Shiny.ML.Evaluation.Table(ArgsList,ML_ExperimentTable,iter,ModelOutputList[[paste0('ML_', ArgsList[['ModelID']])]],TT,Algo,Debug)
-      DataList[["ML_MultiClassMetrics"]][["sample"]] <- DataMuse:::Shiny.ML.Evaluation.Table(ArgsList,ML_ExperimentTable,iter,ModelOutputList[[paste0('ML_', ArgsList[['ModelID']])]],TT,Algo,Debug)
+      DataList[["ML_MultiClassMetrics"]][["data"]] <- Quantico:::Shiny.ML.Evaluation.Table(ArgsList,ML_ExperimentTable,iter,ModelOutputList[[paste0('ML_', ArgsList[['ModelID']])]],TT,Algo,Debug)
+      DataList[["ML_MultiClassMetrics"]][["sample"]] <- Quantico:::Shiny.ML.Evaluation.Table(ArgsList,ML_ExperimentTable,iter,ModelOutputList[[paste0('ML_', ArgsList[['ModelID']])]],TT,Algo,Debug)
       ModelOutputList[[paste0('ML_', ArgsList[['ModelID']])]][["ML_MultiClassMetrics"]] <- DataList[["ML_MultiClassMetrics"]][["data"]]
     }
   }
 
   # Return output
-  for(i in seq_len(TabCount)) DataMuse::PickerInput(session, input, Update = TRUE, InputID = paste0("EDAData", i), Label = 'Data Selection', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
-  for(i in seq_len(TabCount)) DataMuse::PickerInput(session, input, Update = TRUE, InputID = paste0("DataOutputSelection", i), Label = 'Display Data', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
+  for(i in seq_len(TabCount)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0("EDAData", i), Label = 'Data Selection', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
+  for(i in seq_len(TabCount)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0("DataOutputSelection", i), Label = 'Display Data', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
   return(list(
     DataList = DataList,
     ArgsList = ArgsList,
@@ -2110,15 +2110,15 @@ Shiny.ML.ReportOutput <- function(input,
   TargetType <- MOL[[ModelID]][["ArgsList"]][["TargetType"]]
 
   # Group Var
-  GroupVariableInclude <- DataMuse:::ReturnParam(xx = tryCatch({input[[paste0('GroupVariableInclude',Page)]]}, error = function(x) NULL), Type = "character", Default = NULL)
+  GroupVariableInclude <- Quantico:::ReturnParam(xx = tryCatch({input[[paste0('GroupVariableInclude',Page)]]}, error = function(x) NULL), Type = "character", Default = NULL)
   if(Debug) print(GroupVariableInclude)
 
   # NEED
   Algo <- MOL[[ModelID]][["ArgsList"]][["Algo"]]
 
   # Data sets
-  SampleSize <- DataMuse:::ReturnParam(xx = tryCatch({input[[paste0('SampleSize',Page)]]}, error = function(x) NULL), Type = "numeric", Default = NULL)
-  TrainDataInclude <- DataMuse:::ReturnParam(xx = tryCatch({input[[paste0('TrainDataInclude',Page)]]}, error = function(x) NULL), Type = "logical", Default = NULL)
+  SampleSize <- Quantico:::ReturnParam(xx = tryCatch({input[[paste0('SampleSize',Page)]]}, error = function(x) NULL), Type = "numeric", Default = NULL)
+  TrainDataInclude <- Quantico:::ReturnParam(xx = tryCatch({input[[paste0('TrainDataInclude',Page)]]}, error = function(x) NULL), Type = "logical", Default = NULL)
   if(Debug) print("ML Reports 2")
   if(TrainDataInclude) {
     TrainData <- MOL[[ModelID]][["TrainData"]]
@@ -2148,11 +2148,11 @@ Shiny.ML.ReportOutput <- function(input,
   if(Debug) print("ML Reports 3")
 
   # Args
-  MLOutputSelection <- DataMuse:::ReturnParam(xx = tryCatch({input[[paste0('MLOutputSelection',Page)]]}, error = function(x) NULL), Type = "character", Default = NULL)
-  PDPVariables <- DataMuse:::ReturnParam(xx = tryCatch({input[[paste0('PDPVariables',Page)]]}, error = function(x) NULL), Type = "character", Default = NULL)
-  PlotWidtha <- DataMuse:::ReturnParam(xx = tryCatch({input[[paste0('PlotWidtha',Page)]]}, error = function(x) NULL), Type = "numeric", Default = NULL)
+  MLOutputSelection <- Quantico:::ReturnParam(xx = tryCatch({input[[paste0('MLOutputSelection',Page)]]}, error = function(x) NULL), Type = "character", Default = NULL)
+  PDPVariables <- Quantico:::ReturnParam(xx = tryCatch({input[[paste0('PDPVariables',Page)]]}, error = function(x) NULL), Type = "character", Default = NULL)
+  PlotWidtha <- Quantico:::ReturnParam(xx = tryCatch({input[[paste0('PlotWidtha',Page)]]}, error = function(x) NULL), Type = "numeric", Default = NULL)
   PlotWidtha <- paste0(PlotWidtha, "px")
-  PlotHeighta <- DataMuse:::ReturnParam(xx = tryCatch({input[[paste0('PlotHeighta',Page)]]}, error = function(x) NULL), Type = "numeric", Default = NULL)
+  PlotHeighta <- Quantico:::ReturnParam(xx = tryCatch({input[[paste0('PlotHeighta',Page)]]}, error = function(x) NULL), Type = "numeric", Default = NULL)
   PlotHeighta <- paste0(PlotHeighta, "px")
 
   if(Debug) print("ML Reports 4")
@@ -4003,22 +4003,22 @@ Shiny.ML.Scoring <- function(input,
   if(Debug) print("Shiny.ML.Scoring 1")
 
   # Data & Model
-  ModelName <- DataMuse::ReturnParam(xx = tryCatch({input$ScoreML_Model}, error = function(x) NULL), Type = "character", Default = NULL)
+  ModelName <- Quantico::ReturnParam(xx = tryCatch({input$ScoreML_Model}, error = function(x) NULL), Type = "character", Default = NULL)
   if(Debug) {
     print("Shiny.ML.Scoring 1.1")
     print(ModelName)
   }
-  DataName <- DataMuse::ReturnParam(xx = tryCatch({input$ScoreML_Data}, error = function(x) NULL), Type = "character", Default = NULL)
+  DataName <- Quantico::ReturnParam(xx = tryCatch({input$ScoreML_Data}, error = function(x) NULL), Type = "character", Default = NULL)
   if(Debug) {
     print("Shiny.ML.Scoring 1.2")
     print(DataName)
   }
-  ReturnFeats <- DataMuse::ReturnParam(xx = tryCatch({input$ScoreML_ReturnFeatures}, error = function(x) NULL), Type = "logical", Default = FALSE)
+  ReturnFeats <- Quantico::ReturnParam(xx = tryCatch({input$ScoreML_ReturnFeatures}, error = function(x) NULL), Type = "logical", Default = FALSE)
   if(Debug) {
     print("Shiny.ML.Scoring 1.3")
     print(ReturnFeats)
   }
-  ReturnShap <- DataMuse::ReturnParam(xx = tryCatch({input$ScoreML_ReturnShapVals}, error = function(x) NULL), Type = "logical", Default = FALSE)
+  ReturnShap <- Quantico::ReturnParam(xx = tryCatch({input$ScoreML_ReturnShapVals}, error = function(x) NULL), Type = "logical", Default = FALSE)
   if(Debug) {
     print(ReturnShap)
   }
@@ -4081,23 +4081,23 @@ Shiny.ML.Scoring <- function(input,
         Debug = Debug)
 
       # Code Print
-      CodeList <- tryCatch({DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+      CodeList <- tryCatch({Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
         "\n",
         "# CatBoost ML Scoring\n",
-        "DataList[[", DataMuse:::CEP(paste0(ModelName, "_ScoredData")), "]][['data']] <- AutoQuant::AutoCatBoostScoring(\n  ",
-        "MultiClassTargetLevels = ", DataMuse:::ExpandText(MCTargetLevels), ",\n  ",
-        "TargetType = ", DataMuse:::CEP(TT), ",\n  ",
-        "ScoringData = data.table::copy(DataList[[data.table::copy(DataList[[", DataMuse:::CEP(DataName), "]][['data']])), ]])\n  ",
-        "FeatureColumnNames = ", DataMuse:::ExpandText(FeatColNames), ",\n  ",
-        "FactorLevelsList = ModelOutputList[[", DataMuse:::CEP(ModelName), "]]$FactorLevelsList,\n  ",
-        "IDcols = ", DataMuse:::ExpandText(idcols), ",\n  ",
-        "ReturnShapValues = ", DataMuse:::CEPP(ReturnShap), ",\n  ",
-        "ModelObject = ModelOutputList[[", DataMuse:::CEP(ModelName), "]]$Model,\n  ",
-        "ReturnFeatures = ", DataMuse:::CEPP(ReturnFeats), ",\n  ",
-        "TransformNumeric = ", DataMuse:::CEPP(TranNum), ",\n  ",
-        "BackTransNumeric = ", DataMuse:::CEPP(if(TranNum) TRUE else FALSE), ",\n  ",
-        "TargetColumnName = ", DataMuse:::CEP(TarColName), ",\n  ",
-        "TransformationObject = ModelOutputList[[", DataMuse:::CEP(ModelName), "]]$TransformationResults,\n  ",
+        "DataList[[", Quantico:::CEP(paste0(ModelName, "_ScoredData")), "]][['data']] <- AutoQuant::AutoCatBoostScoring(\n  ",
+        "MultiClassTargetLevels = ", Quantico:::ExpandText(MCTargetLevels), ",\n  ",
+        "TargetType = ", Quantico:::CEP(TT), ",\n  ",
+        "ScoringData = data.table::copy(DataList[[data.table::copy(DataList[[", Quantico:::CEP(DataName), "]][['data']])), ]])\n  ",
+        "FeatureColumnNames = ", Quantico:::ExpandText(FeatColNames), ",\n  ",
+        "FactorLevelsList = ModelOutputList[[", Quantico:::CEP(ModelName), "]]$FactorLevelsList,\n  ",
+        "IDcols = ", Quantico:::ExpandText(idcols), ",\n  ",
+        "ReturnShapValues = ", Quantico:::CEPP(ReturnShap), ",\n  ",
+        "ModelObject = ModelOutputList[[", Quantico:::CEP(ModelName), "]]$Model,\n  ",
+        "ReturnFeatures = ", Quantico:::CEPP(ReturnFeats), ",\n  ",
+        "TransformNumeric = ", Quantico:::CEPP(TranNum), ",\n  ",
+        "BackTransNumeric = ", Quantico:::CEPP(if(TranNum) TRUE else FALSE), ",\n  ",
+        "TargetColumnName = ", Quantico:::CEP(TarColName), ",\n  ",
+        "TransformationObject = ModelOutputList[[", Quantico:::CEP(ModelName), "]]$TransformationResults,\n  ",
         "MDP_Impute = FALSE,\n  ",
         "MDP_CharToFactor = FALSE,\n  ",
         "MDP_RemoveDates = FALSE,\n  ",
@@ -4137,24 +4137,24 @@ Shiny.ML.Scoring <- function(input,
         Debug = Debug)
 
       # Code Print
-      CodeList <- tryCatch({DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+      CodeList <- tryCatch({Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
         "\n",
         "# XGBoost ML Scoring\n",
-        "DataList[[", DataMuse:::CEP(paste0(ModelName, "_ScoredData")), "]][['data']] <- AutoQuant::AutoCatBoostScoring(\n  ",
-        "EncodingMethod = ModelOutputList[[", DataMuse:::CEP(ModelName), "]]$FactorLevelsList$EncodingMethod,\n  ",
-        "TargetLevels = ", DataMuse:::ExpandText(MCTargetLevels), ",\n  ",
-        "TargetType = ", DataMuse:::CEP(TT), ",\n  ",
-        "ScoringData = data.table::copy(DataList[[data.table::copy(DataList[[", DataMuse:::CEP(DataName), "]][['data']])), ]])\n  ",
-        "FeatureColumnNames = ", DataMuse:::ExpandText(FeatColNames), ",\n  ",
-        "FactorLevelsList = ModelOutputList[[", DataMuse:::CEP(ModelName), "]]$FactorLevelsList,\n  ",
-        "IDcols = ", DataMuse:::ExpandText(idcols), ",\n  ",
-        "ReturnShapValues = ", DataMuse:::CEPP(ReturnShap), ",\n  ",
-        "ModelObject = ModelOutputList[[", DataMuse:::CEP(ModelName), "]]$Model,\n  ",
-        "ReturnFeatures = ", DataMuse:::CEPP(ReturnFeats), ",\n  ",
-        "TransformNumeric = ", DataMuse:::CEPP(TranNum), ",\n  ",
-        "BackTransNumeric = ", DataMuse:::CEPP(if(TranNum) TRUE else FALSE), ",\n  ",
-        "TargetColumnName = ", DataMuse:::CEP(TarColName), ",\n  ",
-        "TransformationObject = ModelOutputList[[", DataMuse:::CEP(ModelName), "]]$TransformationResults,\n  ",
+        "DataList[[", Quantico:::CEP(paste0(ModelName, "_ScoredData")), "]][['data']] <- AutoQuant::AutoCatBoostScoring(\n  ",
+        "EncodingMethod = ModelOutputList[[", Quantico:::CEP(ModelName), "]]$FactorLevelsList$EncodingMethod,\n  ",
+        "TargetLevels = ", Quantico:::ExpandText(MCTargetLevels), ",\n  ",
+        "TargetType = ", Quantico:::CEP(TT), ",\n  ",
+        "ScoringData = data.table::copy(DataList[[data.table::copy(DataList[[", Quantico:::CEP(DataName), "]][['data']])), ]])\n  ",
+        "FeatureColumnNames = ", Quantico:::ExpandText(FeatColNames), ",\n  ",
+        "FactorLevelsList = ModelOutputList[[", Quantico:::CEP(ModelName), "]]$FactorLevelsList,\n  ",
+        "IDcols = ", Quantico:::ExpandText(idcols), ",\n  ",
+        "ReturnShapValues = ", Quantico:::CEPP(ReturnShap), ",\n  ",
+        "ModelObject = ModelOutputList[[", Quantico:::CEP(ModelName), "]]$Model,\n  ",
+        "ReturnFeatures = ", Quantico:::CEPP(ReturnFeats), ",\n  ",
+        "TransformNumeric = ", Quantico:::CEPP(TranNum), ",\n  ",
+        "BackTransNumeric = ", Quantico:::CEPP(if(TranNum) TRUE else FALSE), ",\n  ",
+        "TargetColumnName = ", Quantico:::CEP(TarColName), ",\n  ",
+        "TransformationObject = ModelOutputList[[", Quantico:::CEP(ModelName), "]]$TransformationResults,\n  ",
         "MDP_Impute = FALSE,\n  ",
         "MDP_CharToFactor = FALSE,\n  ",
         "MDP_RemoveDates = FALSE,\n  ",
@@ -4193,24 +4193,24 @@ Shiny.ML.Scoring <- function(input,
         Debug = Debug)
 
       # Code Print
-      CodeList <- tryCatch({DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+      CodeList <- tryCatch({Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
         "\n",
         "# LightGBM ML Scoring\n",
-        "DataList[[", DataMuse:::CEP(paste0(ModelName, "_ScoredData")), "]][['data']] <- AutoQuant::AutoCatBoostScoring(\n  ",
-        "EncodingMethod = ModelOutputList[[", DataMuse:::CEP(ModelName), "]]$FactorLevelsList$EncodingMethod,\n  ",
-        "TargetLevels = ", DataMuse:::ExpandText(MCTargetLevels), ",\n  ",
-        "TargetType = ", DataMuse:::CEP(TT), ",\n  ",
-        "ScoringData = data.table::copy(DataList[[data.table::copy(DataList[[", DataMuse:::CEP(DataName), "]][['data']])), ]])\n  ",
-        "FeatureColumnNames = ", DataMuse:::ExpandText(FeatColNames), ",\n  ",
-        "FactorLevelsList = ModelOutputList[[", DataMuse:::CEP(ModelName), "]]$FactorLevelsList,\n  ",
-        "IDcols = ", DataMuse:::ExpandText(idcols), ",\n  ",
-        "ReturnShapValues = ", DataMuse:::CEPP(ReturnShap), ",\n  ",
-        "ModelObject = ModelOutputList[[", DataMuse:::CEP(ModelName), "]]$Model,\n  ",
-        "ReturnFeatures = ", DataMuse:::CEPP(ReturnFeats), ",\n  ",
-        "TransformNumeric = ", DataMuse:::CEPP(TranNum), ",\n  ",
-        "BackTransNumeric = ", DataMuse:::CEPP(if(TranNum) TRUE else FALSE), ",\n  ",
-        "TargetColumnName = ", DataMuse:::CEP(TarColName), ",\n  ",
-        "TransformationObject = ModelOutputList[[", DataMuse:::CEP(ModelName), "]]$TransformationResults,\n  ",
+        "DataList[[", Quantico:::CEP(paste0(ModelName, "_ScoredData")), "]][['data']] <- AutoQuant::AutoCatBoostScoring(\n  ",
+        "EncodingMethod = ModelOutputList[[", Quantico:::CEP(ModelName), "]]$FactorLevelsList$EncodingMethod,\n  ",
+        "TargetLevels = ", Quantico:::ExpandText(MCTargetLevels), ",\n  ",
+        "TargetType = ", Quantico:::CEP(TT), ",\n  ",
+        "ScoringData = data.table::copy(DataList[[data.table::copy(DataList[[", Quantico:::CEP(DataName), "]][['data']])), ]])\n  ",
+        "FeatureColumnNames = ", Quantico:::ExpandText(FeatColNames), ",\n  ",
+        "FactorLevelsList = ModelOutputList[[", Quantico:::CEP(ModelName), "]]$FactorLevelsList,\n  ",
+        "IDcols = ", Quantico:::ExpandText(idcols), ",\n  ",
+        "ReturnShapValues = ", Quantico:::CEPP(ReturnShap), ",\n  ",
+        "ModelObject = ModelOutputList[[", Quantico:::CEP(ModelName), "]]$Model,\n  ",
+        "ReturnFeatures = ", Quantico:::CEPP(ReturnFeats), ",\n  ",
+        "TransformNumeric = ", Quantico:::CEPP(TranNum), ",\n  ",
+        "BackTransNumeric = ", Quantico:::CEPP(if(TranNum) TRUE else FALSE), ",\n  ",
+        "TargetColumnName = ", Quantico:::CEP(TarColName), ",\n  ",
+        "TransformationObject = ModelOutputList[[", Quantico:::CEP(ModelName), "]]$TransformationResults,\n  ",
         "MDP_Impute = FALSE,\n  ",
         "MDP_CharToFactor = FALSE,\n  ",
         "MDP_RemoveDates = FALSE,\n  ",
@@ -4253,22 +4253,22 @@ Shiny.ML.Scoring <- function(input,
 
       # Code Print
       mem <- {gc();paste0(as.character(floor(as.numeric(system("awk '/MemFree/ {print $2}' /proc/meminfo", intern=TRUE)) / 1000000)),'G')}
-      CodeList <- tryCatch({DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+      CodeList <- tryCatch({Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
         "\n",
         "# H2O ML Scoring\n",
-        "DataList[[", DataMuse:::CEP(paste0(ModelName, "_ScoredData")), "]][['data']] <- AutoQuant::AutoCatBoostScoring(\n  ",
+        "DataList[[", Quantico:::CEP(paste0(ModelName, "_ScoredData")), "]][['data']] <- AutoQuant::AutoCatBoostScoring(\n  ",
         "H2OShutdown = TRUE,\n  ",
         "H2OStartUp = TRUE,\n  ",
-        "MaxMem = ", DataMuse:::CEP(mem),"\n  ",
-        "NThreads = ", DataMuse:::CEPP(max(1, parallel::detectCores()-2)), ",\n  ",
+        "MaxMem = ", Quantico:::CEP(mem),"\n  ",
+        "NThreads = ", Quantico:::CEPP(max(1, parallel::detectCores()-2)), ",\n  ",
         "JavaOptions = '-Xmx1g -XX:ReservedCodeCacheSize=256m',\n  ",
-        "ScoringData = data.table::copy(DataList[[data.table::copy(DataList[[", DataMuse:::CEP(DataName), "]][['data']])), ]])\n  ",
-        "ModelObject = ModelOutputList[[", DataMuse:::CEP(ModelName), "]]$Model,\n  ",
-        "ReturnFeatures = ", DataMuse:::CEPP(ReturnFeats), ",\n  ",
-        "TransformNumeric = ", DataMuse:::CEPP(TranNum), ",\n  ",
-        "BackTransNumeric = ", DataMuse:::CEPP(if(TranNum) TRUE else FALSE), ",\n  ",
-        "TargetColumnName = ", DataMuse:::CEP(TarColName), ",\n  ",
-        "TransformationObject = ModelOutputList[[", DataMuse:::CEP(ModelName), "]]$TransformationResults,\n  ",
+        "ScoringData = data.table::copy(DataList[[data.table::copy(DataList[[", Quantico:::CEP(DataName), "]][['data']])), ]])\n  ",
+        "ModelObject = ModelOutputList[[", Quantico:::CEP(ModelName), "]]$Model,\n  ",
+        "ReturnFeatures = ", Quantico:::CEPP(ReturnFeats), ",\n  ",
+        "TransformNumeric = ", Quantico:::CEPP(TranNum), ",\n  ",
+        "BackTransNumeric = ", Quantico:::CEPP(if(TranNum) TRUE else FALSE), ",\n  ",
+        "TargetColumnName = ", Quantico:::CEP(TarColName), ",\n  ",
+        "TransformationObject = ModelOutputList[[", Quantico:::CEP(ModelName), "]]$TransformationResults,\n  ",
         "MDP_Impute = FALSE,\n  ",
         "MDP_CharToFactor = FALSE,\n  ",
         "MDP_RemoveDates = FALSE,\n  ",
@@ -4351,7 +4351,7 @@ PredictionIntervals <- function(Model) {
 #' microbenchmark::microbenchmark(
 #'   times = 10,
 #'   merTools::REsim(Model),
-#'   DataMuse::REsim(Model))
+#'   Quantico::REsim(Model))
 #' }
 #'
 #' @export
@@ -4434,7 +4434,7 @@ REsim <- function(Model,
 #'   L2_Leaf_Reg = 10,
 #'   model_size_reg = 2)
 #'
-#' Output <- DataMuse::MEOW(
+#' Output <- Quantico::MEOW(
 #'   data = TestModel$TrainData,
 #'   TargetType = 'regression',
 #'   TargetVariable = TestModel$ArgsList$TargetColumnName,
@@ -4448,7 +4448,7 @@ REsim <- function(Model,
 #'   PolyN = NULL,
 #'   Debug = FALSE)
 #'
-#' Output <- DataMuse::MEOW(
+#' Output <- Quantico::MEOW(
 #'   data = Output$data,
 #'   TargetType = 'regression',
 #'   TargetVariable = TestModel$ArgsList$TargetColumnName,
@@ -4820,7 +4820,7 @@ MEOW <- function(data = NULL,
   # Fixed Effects Time
   # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
   if(length(FixedEffects) > 0L && Lmer) {
-    Output <- DataMuse::LMER(data, TargetVariable = TargetVariable, FixedEffects = FixedEffects, RandomEffects = RandomEffectsOld, Type = LmerType, Poly = PolyN, Family = if(TargetType == 'regression') 'gaussian' else 'binomial')
+    Output <- Quantico::LMER(data, TargetVariable = TargetVariable, FixedEffects = FixedEffects, RandomEffects = RandomEffectsOld, Type = LmerType, Poly = PolyN, Family = if(TargetType == 'regression') 'gaussian' else 'binomial')
     return(Output)
   } else if(length(FixedEffects) > 0L && !Lmer) {
     if(length(PolyN) == 1L) {
@@ -4830,7 +4830,7 @@ MEOW <- function(data = NULL,
     }
     return(list(
       data = data,
-      DensityPlot = function(MeasureVariables) DataMuse::Plot.Density(data = data, GroupVariables = RandomEffectsOld, MeasureVars = MeasureVariables)
+      DensityPlot = function(MeasureVariables) Quantico::Plot.Density(data = data, GroupVariables = RandomEffectsOld, MeasureVars = MeasureVariables)
     ))
   } else {
     FactorLevelsList <- data[, mean(get(paste0(RandomEffectsOld[length(RandomEffectsOld)], "_MixedEffects"))), by = c(RandomEffectsOld)]
@@ -5112,8 +5112,8 @@ LMER <- function(data,
     data = data,
     Model = model_lmer,
     EffectsInterval = function() EffectsInterval(Model = model_lmer)[],
-    PredictionInterval = function() suppressWarnings(DataMuse::PredictionIntervals(Model = model_lmer))[],
-    DensityPlot = function(MeasureVariables) DataMuse::Plot.Density(data, RandomEffects, MeasureVars = MeasureVariables)))
+    PredictionInterval = function() suppressWarnings(Quantico::PredictionIntervals(Model = model_lmer))[],
+    DensityPlot = function(MeasureVariables) Quantico::Plot.Density(data, RandomEffects, MeasureVars = MeasureVariables)))
 }
 
 # ----
@@ -5931,9 +5931,9 @@ Shiny.FC.Panel.Metrics.Raw <- function(DataList,
 
   # Add Calendar Variables for addition breakouts
   if(DebugFC) print('Shiny.FC.Panel.Metrics.Raw: FC.Backtest.CalendarGroups()')
-  cgs <- DataMuse:::FC.Backtest.CalendarGroups(ArgsList)
+  cgs <- Quantico:::FC.Backtest.CalendarGroups(ArgsList)
   if(DebugFC) {print("cgs == "); print(cgs)}
-  DateVarAggs <- DataMuse:::FC.Backtest.DateGroups(ArgsList)
+  DateVarAggs <- Quantico:::FC.Backtest.DateGroups(ArgsList)
   if(DebugFC) {print("DateVarAggs == "); print(DateVarAggs)}
   if(length(DateVarAggs) > 0L) for(j in DateVarAggs) DataList[[x]][['data']][, paste0(ArgsList$DateColumnName, "_", j) := lubridate::floor_date(get(ArgsList$DateColumnName), unit = j)]
 
@@ -5971,7 +5971,7 @@ Shiny.FC.Panel.Metrics.Raw <- function(DataList,
   DataList[[x]][['data']] <- DataList[[x]][['data']][, paste0(Metrics) := lapply(.SD, round, 4L), .SDcols = c(Metrics)]
   DataList[[x]][['data']][, ModelID := eval(ModelID)]
   data.table::setcolorder(x = DataList[[x]][['data']], neworder = c(ncol(DataList[[x]][['data']]), 1L:(ncol(DataList[[x]][['data']])-1L)))
-  DataList <- DataMuse:::DM.DataListUpdate(DataList, x)
+  DataList <- Quantico:::DM.DataListUpdate(DataList, x)
 
   # Return
   if(DebugFC) print('Shiny.FC.Panel.Metrics.Raw Finsihed up with Metrics.Raw')
@@ -6054,7 +6054,7 @@ Shiny.FC.Panel.Metrics.Agg <- function(DataList,
   mid <- ModelID # data.table doesn't work well will Name := eval(Name) when Name is a colname and Name is a value to be used to fill. Doesn't work
   DataList[[xx]][['data']][, ModelID := eval(mid)]
   if(names(DataList[[xx]][['data']])[ncol(DataList[[xx]][['data']])] == 'ModelID') data.table::setcolorder(x = DataList[[xx]][['data']], neworder = c(ncol(DataList[[xx]][['data']]), 1L:(ncol(DataList[[xx]][['data']])-1L)))
-  DataList <- DataMuse:::DM.DataListUpdate(DataList, xx)
+  DataList <- Quantico:::DM.DataListUpdate(DataList, xx)
 
   if(DebugFC) print(rep("t", 10))
   if(DebugFC) print(data.table::is.data.table(DataList[[xx]][['data']]))
@@ -6082,19 +6082,19 @@ Shiny.FC.Panel.Metric.Rollup <- function(ModelID,ArgsList,DataList,CodeList,Debu
 
   # Raw Eval Data Creation: No agg and Date Columns still exists
   if(DebugFC) print("Shiny.FC.Panel.Metric.Rollup Raw Eval")
-  DataList <- DataMuse::Shiny.FC.Panel.Metrics.Raw(DataList,ArgsList,ModelID,GroupVariables = ArgsList$GroupVariables, DebugFC = DebugFC, CrossEval = CE)
-  CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+  DataList <- Quantico::Shiny.FC.Panel.Metrics.Raw(DataList,ArgsList,ModelID,GroupVariables = ArgsList$GroupVariables, DebugFC = DebugFC, CrossEval = CE)
+  CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
     "\n",
     "# Error Metrics Raw: Raw data granularity and DateColumnName still exist\n",
-    "DataList <- DataMuse::Shiny.FC.Panel.Metrics.Raw(DataList,ArgsList,ModelID,GroupVariables = ArgsList$GroupVariables, DebugFC = DebugFC)\n"))
+    "DataList <- Quantico::Shiny.FC.Panel.Metrics.Raw(DataList,ArgsList,ModelID,GroupVariables = ArgsList$GroupVariables, DebugFC = DebugFC)\n"))
 
   # Agg Eval Total: everything in between can be created by user
   if(DebugFC) print("Shiny.FC.Panel.Metric.Rollup Agg Eval")
-  DataList <- DataMuse::Shiny.FC.Panel.Metrics.Agg(DataList,ArgsList,ModelID,GroupVariables = NULL, CrossEval = CE, DebugFC = DebugFC)
-  CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+  DataList <- Quantico::Shiny.FC.Panel.Metrics.Agg(DataList,ArgsList,ModelID,GroupVariables = NULL, CrossEval = CE, DebugFC = DebugFC)
+  CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
     "\n",
     "# Error Metrics: Total Full Period\n",
-    "DataList <- DataMuse::Shiny.FC.Panel.Metrics.Raw(DataList,ArgsList,ModelID,GroupVariables = NULL)\n"))
+    "DataList <- Quantico::Shiny.FC.Panel.Metrics.Raw(DataList,ArgsList,ModelID,GroupVariables = NULL)\n"))
 
   if(DebugFC) print("Shiny.FC.Panel.Metric.Rollup Return")
   return(list(
@@ -6122,7 +6122,7 @@ Shiny.FC.Panel.Metric.Rollup <- function(ModelID,ArgsList,DataList,CodeList,Debu
 Shiny.FC.Panel.Train <- function(ArgsList, CodeList, DataList, ModelID, Algo = 'catboost', VD = NULL, DebugFC = FALSE) {
 
   if(missing(ModelID) || length(ModelID) == 0L || is.na(ModelID)) {
-    ModelID <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0(Algo, 'CARMA_ModelID')]]}, error=function(x) NULL), Type='character', Default='FC001')
+    ModelID <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0(Algo, 'CARMA_ModelID')]]}, error=function(x) NULL), Type='character', Default='FC001')
     ArgsList$ModelID <- ModelID
   }
 
@@ -6134,7 +6134,7 @@ Shiny.FC.Panel.Train <- function(ArgsList, CodeList, DataList, ModelID, Algo = '
     if(DebugFC) print("Shiny.FC.Panel.Train 1.a")
     ArgsList[['data']] <- unique(data.table::rbindlist(list(ArgsList[['data']], VD), use.names = TRUE, fill = TRUE))
     VD <- NULL
-    CodeList <- tryCatch({DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+    CodeList <- tryCatch({Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
       "\n",
       "# Combine data for ML training only\n",
       "ArgsList[['data']] <- data.table::rbindlist(list(\n  ",
@@ -6168,13 +6168,13 @@ Shiny.FC.Panel.Train <- function(ArgsList, CodeList, DataList, ModelID, Algo = '
   #   of those, you must supply your own data
   ArgsList$data <- NULL
   if(DebugFC) print("Shiny.FC.Panel.Train 6")
-  CodeList <- tryCatch({DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+  CodeList <- tryCatch({Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
     "\n",
     "# Train ML Model\n",
     "dtc <- data.table::copy(ArgsList[['data']])\n",
     "Output <- do.call(what = AutoQuant::AutoCatBoostCARMA, args = ArgsList)\n",
     "ArgsList <- Output$ArgsList\n",
-    "ArgsList[[", DataMuse:::CEP(ModelID), "_Meta)]] <- Output$TestModel\n",
+    "ArgsList[[", Quantico:::CEP(ModelID), "_Meta)]] <- Output$TestModel\n",
     "if(!(length(ArgsList$data) > 0 && data.table::is.data.table(ArgsList$data))) {\n  ",
     "if(length(VD) > 0L) {\n    ",
     "ArgsList[['data']] <- unique(data.table::rbindlist(list(dtc, VD), use.names = TRUE, fill = TRUE))\n  ",
@@ -6185,14 +6185,14 @@ Shiny.FC.Panel.Train <- function(ArgsList, CodeList, DataList, ModelID, Algo = '
   if(DebugFC) print("Shiny.FC.Panel.Train 7")
 
   # ML Data: just like in the ML function shiny.ML.Trainer()
-  Output <- DataMuse:::Shiny.ML.ModelDataObjects(ArgsList[[paste0(ModelID, "_Meta")]], DebugFC, TT = 'catboost')
+  Output <- Quantico:::Shiny.ML.ModelDataObjects(ArgsList[[paste0(ModelID, "_Meta")]], DebugFC, TT = 'catboost')
 
   if(DebugFC) print("Shiny.FC.Panel.Train 8")
   if(length(Output$ScoringDataCombined) > 0L) {
     if(DebugFC) print("Shiny.FC.Panel.Train 8.a")
     DataList[[paste0('CatBoostFC_', ModelID, '_ScoringData')]][['data']] <- Output$ScoringDataCombined
     if(DebugFC) print("Shiny.FC.Panel.Train 8.b")
-    DataList <- tryCatch({DataMuse:::DM.DataListUpdate(DataList, paste0('CatBoostFC_', ModelID, '_ScoringData'))}, error = function(x) {print(names(DataList)); return(DataList)})
+    DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, paste0('CatBoostFC_', ModelID, '_ScoringData'))}, error = function(x) {print(names(DataList)); return(DataList)})
   }
 
   if(DebugFC) print("Shiny.FC.Panel.Train 9")
@@ -6200,7 +6200,7 @@ Shiny.FC.Panel.Train <- function(ArgsList, CodeList, DataList, ModelID, Algo = '
     if(DebugFC) print("Shiny.FC.Panel.Train 9.a")
     DataList[[paste0('CatBoostFC_', ModelID, '_Test_VI_Data')]][['data']] <- Output$VI_Train
     if(DebugFC) print("Shiny.FC.Panel.Train 9.b")
-    DataList <- DataMuse:::DM.DataListUpdate(DataList, paste0('CatBoostFC_', ModelID, '_Test_VI_Data'), Sample = FALSE)
+    DataList <- Quantico:::DM.DataListUpdate(DataList, paste0('CatBoostFC_', ModelID, '_Test_VI_Data'), Sample = FALSE)
   }
 
   if(DebugFC) print("Shiny.FC.Panel.Train 10")
@@ -6208,7 +6208,7 @@ Shiny.FC.Panel.Train <- function(ArgsList, CodeList, DataList, ModelID, Algo = '
     if(DebugFC) print("Shiny.FC.Panel.Train 10.a")
     DataList[[paste0('CatBoostFC_', ModelID, '_Train_VI_Data')]][['data']] <- Output$VI_Validation
     if(DebugFC) print("Shiny.FC.Panel.Train 10.b")
-    DataList <- DataMuse:::DM.DataListUpdate(DataList, paste0('CatBoostFC_', ModelID, '_Train_VI_Data'), Sample = FALSE)
+    DataList <- Quantico:::DM.DataListUpdate(DataList, paste0('CatBoostFC_', ModelID, '_Train_VI_Data'), Sample = FALSE)
   }
 
   if(DebugFC) print("Shiny.FC.Panel.Train 11")
@@ -6216,7 +6216,7 @@ Shiny.FC.Panel.Train <- function(ArgsList, CodeList, DataList, ModelID, Algo = '
     if(DebugFC) print("Shiny.FC.Panel.Train 11.a")
     DataList[[paste0('CatBoostFC_', ModelID, '_Validation_VI_Data')]][['data']] <- Output$VI_Test
     if(DebugFC) print("Shiny.FC.Panel.Train 11.b")
-    DataList <- DataMuse:::DM.DataListUpdate(DataList, paste0('CatBoostFC_', ModelID, '_Validation_VI_Data'), Sample = FALSE)
+    DataList <- Quantico:::DM.DataListUpdate(DataList, paste0('CatBoostFC_', ModelID, '_Validation_VI_Data'), Sample = FALSE)
   }
 
   if(DebugFC) print("Shiny.FC.Panel.Train 12")
@@ -6224,7 +6224,7 @@ Shiny.FC.Panel.Train <- function(ArgsList, CodeList, DataList, ModelID, Algo = '
     if(DebugFC) print("Shiny.FC.Panel.Train 12.a")
     DataList[[paste0('CatBoostFC_', ModelID, '_All_II_Data')]][['data']] <- Output$II_Train
     if(DebugFC) print("Shiny.FC.Panel.Train 12.b")
-    DataList <- DataMuse:::DM.DataListUpdate(DataList, paste0('CatBoostFC_', ModelID, '_All_II_Data'), Sample = FALSE)
+    DataList <- Quantico:::DM.DataListUpdate(DataList, paste0('CatBoostFC_', ModelID, '_All_II_Data'), Sample = FALSE)
   }
 
   if(DebugFC) print("Shiny.FC.Panel.Train return")
@@ -6259,7 +6259,7 @@ Shiny.FC.Panel.Retrain <- function(NewDataName, ArgsList, CodeList, DataList, Al
 
   # Model ID
   if(missing(ModelID) || length(ModelID) == 0L || is.na(ModelID)) {
-    ModelID <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0(Algo, 'CARMA_ModelID')]]}, error=function(x) NULL), Type='character', Default='FC001')
+    ModelID <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0(Algo, 'CARMA_ModelID')]]}, error=function(x) NULL), Type='character', Default='FC001')
     ArgsList$ModelID <- ModelID
   }
 
@@ -6283,7 +6283,7 @@ Shiny.FC.Panel.Retrain <- function(NewDataName, ArgsList, CodeList, DataList, Al
 
   # Code Collection
   if(DebugFC) print("Shiny.FC.Panel.Retrain 3")
-  CodeList <- tryCatch({DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+  CodeList <- tryCatch({Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
     "\n",
     "# Retrain Model\n",
     "Output <- AutoQuant::AutoCatBoostCARMA(\n  ",
@@ -6296,25 +6296,25 @@ Shiny.FC.Panel.Retrain <- function(NewDataName, ArgsList, CodeList, DataList, Al
   if(DebugFC) {print("Shiny.FC.Panel.Retrain 4"); if(length(ArgsList) > 0L) print(names(ArgsList))}
 
   x <- Output$ModelInformation
-  Output <- DataMuse:::Shiny.ML.ModelDataObjects(x, Debug, TT = 'catboost')
+  Output <- Quantico:::Shiny.ML.ModelDataObjects(x, Debug, TT = 'catboost')
   DataList[[paste0('CatBoostFC_', ModelID, '_ScoringData')]][['data']] <- Output$ScoringDataCombined
-  DataList <- DataMuse:::DM.DataListUpdate(DataList, paste0(Algo, 'FC_', ModelID, '_ScoringData'), Sample = FALSE)
+  DataList <- Quantico:::DM.DataListUpdate(DataList, paste0(Algo, 'FC_', ModelID, '_ScoringData'), Sample = FALSE)
 
   if(DebugFC) print("Shiny.FC.Panel.Retrain 5")
   DataList[[paste0('CatBoostFC_', ModelID, '_Test_VI_Data')]][['data']] <- Output$VI_Train
-  DataList <- DataMuse:::DM.DataListUpdate(DataList, paste0(Algo, 'FC_', ModelID, '_Test_VI_Data'), Sample = FALSE)
+  DataList <- Quantico:::DM.DataListUpdate(DataList, paste0(Algo, 'FC_', ModelID, '_Test_VI_Data'), Sample = FALSE)
 
   if(DebugFC) print("Shiny.FC.Panel.Retrain 6")
   DataList[[paste0('CatBoostFC_', ModelID, '_Train_VI_Data')]][['data']] <- Output$VI_Validation
-  DataList <- DataMuse:::DM.DataListUpdate(DataList, paste0(Algo, 'FC_', ModelID, '_Train_VI_Data'), Sample = FALSE)
+  DataList <- Quantico:::DM.DataListUpdate(DataList, paste0(Algo, 'FC_', ModelID, '_Train_VI_Data'), Sample = FALSE)
 
   if(DebugFC) print("Shiny.FC.Panel.Retrain 7")
   DataList[[paste0('CatBoostFC_', ModelID, '_Validation_VI_Data')]][['data']] <- Output$VI_Test
-  DataList <- DataMuse:::DM.DataListUpdate(DataList, paste0(Algo, 'FC_', ModelID, '_Validation_VI_Data'), Sample = FALSE)
+  DataList <- Quantico:::DM.DataListUpdate(DataList, paste0(Algo, 'FC_', ModelID, '_Validation_VI_Data'), Sample = FALSE)
 
   if(DebugFC) print("Shiny.FC.Panel.Retrain 8")
   DataList[[paste0('CatBoostFC_', ModelID, '_All_II_Data')]][['data']] <- Output$II_Train
-  DataList <- DataMuse:::DM.DataListUpdate(DataList, paste0(Algo, 'FC_', ModelID, '_All_II_Data'), Sample = FALSE)
+  DataList <- Quantico:::DM.DataListUpdate(DataList, paste0(Algo, 'FC_', ModelID, '_All_II_Data'), Sample = FALSE)
 
   # Return
   if(DebugFC) print("Shiny.FC.Panel.Retrain Return")
@@ -6364,7 +6364,7 @@ Shiny.FC.Panel.Forecast <- function(NewDataName, ArgsList, CodeList, DataList, M
 
     # Code Collection
     if(DebugFC) print("Shiny.FC.Panel.Forecast 3")
-    CodeList <- tryCatch({DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+    CodeList <- tryCatch({Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
       "\n",
       "# Generate Forecast\n",
       "Output <- AutoQuant::AutoCatBoostCARMA(\n  ",
@@ -6378,7 +6378,7 @@ Shiny.FC.Panel.Forecast <- function(NewDataName, ArgsList, CodeList, DataList, M
     if(DebugFC) print("Shiny.FC.Panel.Forecast 4")
     DataList[[paste0('FC_', ModelID)]][['data']] <- Output$Forecast
     if(DebugFC) print("Shiny.FC.Panel.Forecast 5")
-    DataList <- DataMuse:::DM.DataListUpdate(DataList, paste0('FC_', ModelID))
+    DataList <- Quantico:::DM.DataListUpdate(DataList, paste0('FC_', ModelID))
 
     # Return
     if(DebugFC) print("Shiny.FC.Panel.Forecast Return")
@@ -6425,7 +6425,7 @@ Shiny.FC.Panel.Backtest <- function(ArgsList,
   # Check if ModelID is NULL
   if(DebugFC) print("Shiny.FC.Panel.Backtest 1")
   if(missing(ModelID) || length(ModelID) == 0L || is.na(ModelID)) {
-    ModelID <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0(Algo, 'CARMA_ModelID')]]}, error=function(x) NULL), Type='character', Default='FC001')
+    ModelID <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0(Algo, 'CARMA_ModelID')]]}, error=function(x) NULL), Type='character', Default='FC001')
     ArgsList$ModelID <- ModelID
   }
 
@@ -6435,11 +6435,11 @@ Shiny.FC.Panel.Backtest <- function(ArgsList,
 
   # Reconcile FC_Periods: enforce --> min(requested FC_Periods, available FC_Periods)
   if(DebugFC) print("Shiny.FC.Panel.Backtest 2")
-  ArgsList <- DataMuse::FC.FCPeriods(ArgsList, VD = VD)
-  CodeList <- tryCatch({DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+  ArgsList <- Quantico::FC.FCPeriods(ArgsList, VD = VD)
+  CodeList <- tryCatch({Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
     "\n",
     "# Reconcile FC_Periods and set to TrainOnFull == TRUE\n",
-    "ArgsList <- DataMuse::FC.FCPeriods(ArgsList, VD = ValidationData)\n"))}, error = function(x) CodeList)
+    "ArgsList <- Quantico::FC.FCPeriods(ArgsList, VD = ValidationData)\n"))}, error = function(x) CodeList)
 
   # Build FC
   if(DebugFC) print("Shiny.FC.Panel.Backtest 3")
@@ -6456,7 +6456,7 @@ Shiny.FC.Panel.Backtest <- function(ArgsList,
   if(DebugFC) print("Shiny.FC.Panel.Backtest 4")
 
   # Code collect
-  CodeList <- tryCatch({DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+  CodeList <- tryCatch({Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
     "\n",
     "# Generate Forecast for Backtest\n",
     "Output <- do.call(what = AutoQuant::AutoCatBoostCARMA, args = ArgsList)\n"))}, error = function(x) CodeList)
@@ -6487,7 +6487,7 @@ Shiny.FC.Panel.Backtest <- function(ArgsList,
   data.table::setkeyv(x = VD, cols = c(ArgsList$GroupVariables, ArgsList$DateColumnName))
   DataList[[paste0(ModelID, dlname)]][['data']][VD, eval(ArgsList$TargetColumnName) := get(paste0("i.", ArgsList$TargetColumnName))]
   DataList[[paste0(ModelID, dlname)]][['data']] <- DataList[[paste0(ModelID, dlname)]][['data']][!is.na(get(ArgsList$TargetColumnName))]
-  CodeList <- tryCatch({DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+  CodeList <- tryCatch({Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
     "\n",
     "# Store Output Data\n",
     "if(!exists('CrossEval')) CrossEval <- FALSE\n",
@@ -6500,16 +6500,16 @@ Shiny.FC.Panel.Backtest <- function(ArgsList,
     "DataList[[paste0(ModelID, dlname)]] <- DataList[[paste0(ModelID, dlname)]][!is.na(get(ArgsList$TargetColumnName))]\n"))}, error = function(x) CodeList)
 
   # Rollup Metrics
-  # Output <- DataMuse:::Shiny.FC.Panel.Metrics.Raw(ArgsList,DataList,CodeList,DebugFC)
+  # Output <- Quantico:::Shiny.FC.Panel.Metrics.Raw(ArgsList,DataList,CodeList,DebugFC)
   # DataList <- Output$DataList; CodeList <- Output$CodeList
   if(DebugFC) print("Shiny.FC.Panel.Backtest 8")
-  Output <- DataMuse:::Shiny.FC.Panel.Metric.Rollup(ModelID,ArgsList,DataList,CodeList,DebugFC, CE = if(dlname == '_CE_Raw') TRUE else FALSE)
+  Output <- Quantico:::Shiny.FC.Panel.Metric.Rollup(ModelID,ArgsList,DataList,CodeList,DebugFC, CE = if(dlname == '_CE_Raw') TRUE else FALSE)
   DataList <- Output$DataList; CodeList <- Output$CodeList
 
   # Subset + Reorder Columns
   if(DebugFC) print("Shiny.FC.Panel.Backtest 9")
   if(length(DataList[[paste0(ModelID, dlrname)]]) > 0L) {
-    DataList <- tryCatch({DataMuse:::DM.DataListUpdate(DataList, paste0(ModelID, dlrname))}, error = function(x) DataList)
+    DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, paste0(ModelID, dlrname))}, error = function(x) DataList)
     DataList[[paste0(ModelID, dlrname)]][['sample']] <- DataList[[paste0(ModelID, dlrname)]][['data']]
   }
 
@@ -6553,7 +6553,7 @@ BasicLoop.SingleTest <- function(LM, Plan, ArgsList, DataList, CodeList, ModelID
   if(!data.table::is.data.table(VD)) {print('BasicLoop.SingleTest(): VD is NOT a data.table'); return(list(LoopMetrics = LM, ArgsList = ArgsList))}
 
   if(missing(ModelID) || length(ModelID) == 0L || is.na(ModelID)) {
-    ModelID <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0(Algo, 'CARMA_ModelID')]]}, error=function(x) NULL), Type='character', Default='FC001')
+    ModelID <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0(Algo, 'CARMA_ModelID')]]}, error=function(x) NULL), Type='character', Default='FC001')
     ArgsList$ModelID <- ModelID
   }
 
@@ -6572,7 +6572,7 @@ BasicLoop.SingleTest <- function(LM, Plan, ArgsList, DataList, CodeList, ModelID
     ArgsList$DebugMode <- TRUE
 
     if(trial == 1L) ArgsList[[Test]] <- Plan[[Test]]$ArgsOn else ArgsList[[Test]] <- Plan[[Test]]$ArgsOff
-    Output <- DataMuse::Shiny.FC.Panel.Backtest(ArgsList, CodeList, DataList, ModelID, VD = VD, DebugFC = DebugFC, Algo = Algo)
+    Output <- Quantico::Shiny.FC.Panel.Backtest(ArgsList, CodeList, DataList, ModelID, VD = VD, DebugFC = DebugFC, Algo = Algo)
     DataList <- Output$DataList; CodeList <- Output$CodeList; ArgsList <- Output$ArgsList; dlname <- Output$dlname
     totals <- DataList[[paste0(ModelID, dlname)]][['data']]
     if(trial == 1L) update_row <- LM[`RMSE On` > -5][, .N] + 1L
@@ -6638,7 +6638,7 @@ Shiny.FC.Panel.Backest.FeatureEval <- function(LoopMetrics, ArgsList, CodeList, 
 
   # Create ModelID if not defined
   if(missing(ModelID) || length(ModelID) == 0L || is.na(ModelID)) {
-    ModelID <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0(Algo, 'CARMA_ModelID')]]}, error=function(x) NULL), Type='character', Default='FC001')
+    ModelID <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0(Algo, 'CARMA_ModelID')]]}, error=function(x) NULL), Type='character', Default='FC001')
   }
 
   # Add to ArgsList if not there already
@@ -6683,16 +6683,16 @@ Shiny.FC.Panel.Backest.FeatureEval <- function(LoopMetrics, ArgsList, CodeList, 
   for(svs in seq_along(names(Plan))) {
     shiny::showNotification(paste("Begin running: ", names(Plan)[svs], " Test.."), duration = 300)
     if(DebugFC) {print('Run: BasicLoop.SingleTest()'); print(paste0('VD is data.table? :: ', data.table::is.data.table(VD)))}
-    Output <- DataMuse:::BasicLoop.SingleTest(LoopMetrics, Plan, ArgsList, DataList, CodeList, ModelID, VD = VD, DebugFC = DebugFC, Test = names(Plan)[svs], Algo = Algo)
+    Output <- Quantico:::BasicLoop.SingleTest(LoopMetrics, Plan, ArgsList, DataList, CodeList, ModelID, VD = VD, DebugFC = DebugFC, Test = names(Plan)[svs], Algo = Algo)
     ArgsList <- Output$ArgsList; LoopMetrics <- Output$LoopMetrics
   }
 
   # Update DataList
   LoopMetrics[, RunNumber := seq_len(.N)]
-  DataList <- DataMuse:::DM.DataListUpdate(dl = DataList, dn = paste0(ModelID, "_FeatureEngineeringTest"), Sample = TRUE)
+  DataList <- Quantico:::DM.DataListUpdate(dl = DataList, dn = paste0(ModelID, "_FeatureEngineeringTest"), Sample = TRUE)
 
   # Code Collection
-  CodeList <- tryCatch({DataMuse::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+  CodeList <- tryCatch({Quantico::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
     "\n",
     # Collection table
     "LoopMetrics <- data.table::data.table(\n  ",
@@ -6745,13 +6745,13 @@ Shiny.FC.Panel.Backest.FeatureEval <- function(LoopMetrics, ArgsList, CodeList, 
     "CodeList <- list()\n",
     "DebugFC <- FALSE\n",
     "for(svs in seq_along(names(Plan))) {\n  ",
-    "Output <- DataMuse:::BasicLoop.SingleTest(LoopMetrics, Plan, ArgsList, DataList, CodeList, ModelID, ValidationData, DebugFC, Test = names(Plan)[svs], Algo = ", DataMuse:::CEP(Algo), ")\n  ",
+    "Output <- Quantico:::BasicLoop.SingleTest(LoopMetrics, Plan, ArgsList, DataList, CodeList, ModelID, ValidationData, DebugFC, Test = names(Plan)[svs], Algo = ", Quantico:::CEP(Algo), ")\n  ",
     "ArgsList <- Output$ArgsList; LoopMetrics <- Output$LoopMetrics\n  ",
     "}\n\n",
     "# Store LoopMetrics in DataList \n",
     "mcn <- paste0(ModelID, '_FeatureEngineeringTest')\n",
     "DataList[[mcn]][['data']] <- LoopMetrics\n",
-    "DataList <- DataMuse:::DM.DataListUpdate(dl = DataList, dn = mcn, Sample = FALSE)\n"))}, error = function(x) CodeList)
+    "DataList <- Quantico:::DM.DataListUpdate(dl = DataList, dn = mcn, Sample = FALSE)\n"))}, error = function(x) CodeList)
 
   if(DebugFC) print('Shiny.FC.Panel.Backest.FeatureEval finished')
   if(DebugFC) print(LoopMetrics)
@@ -6803,7 +6803,7 @@ Shiny.FC.Panel.Backest.RollingEval <- function(ArgsList, DataList, CodeList, Mod
     ))
   }
   if(missing(ModelID) || length(ModelID) == 0L || is.na(ModelID)) {
-    ModelID <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0(Algo, 'CARMA_ModelID')]]}, error=function(x) NULL), Type='character', Default='FC001')
+    ModelID <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0(Algo, 'CARMA_ModelID')]]}, error=function(x) NULL), Type='character', Default='FC001')
     ArgsList$ModelID <- ModelID
   }
 
@@ -6817,7 +6817,7 @@ Shiny.FC.Panel.Backest.RollingEval <- function(ArgsList, DataList, CodeList, Mod
   for(run in Iter) {
     if(run > 1L) ArgsList$data <- VD[get(ArgsList$DateColumnName) <= DataList[[paste0(ModelID, '_CE_Raw')]][['data']][, max(get(ArgsList$DateColumnName), na.rm = TRUE)]]
     if(mu) ArgsList$Model <- NULL
-    Output <- DataMuse::Shiny.FC.Panel.Backtest(ArgsList, CodeList, DataList, ModelID, VD = VD, DebugFC = DebugFC, CrossEval = TRUE, Algo = Algo)
+    Output <- Quantico::Shiny.FC.Panel.Backtest(ArgsList, CodeList, DataList, ModelID, VD = VD, DebugFC = DebugFC, CrossEval = TRUE, Algo = Algo)
     DataList <- Output$DataList; CodeList <- Output$CodeList; ArgsList <- Output$ArgsList
     ArgsList$FC_Periods <- 1
     if(run == 1L) {
@@ -6836,7 +6836,7 @@ Shiny.FC.Panel.Backest.RollingEval <- function(ArgsList, DataList, CodeList, Mod
   # _CE_Rollup
   rm(Output)
   DataList[[paste0(ModelID, '_CE_Raw')]][['data']] <- FinalTable
-  DataList <- DataMuse::Shiny.FC.Panel.Metrics.Agg(DataList, ArgsList, ModelID, GroupVariables = NULL, CrossEval = TRUE, DebugFC = DebugFC)
+  DataList <- Quantico::Shiny.FC.Panel.Metrics.Agg(DataList, ArgsList, ModelID, GroupVariables = NULL, CrossEval = TRUE, DebugFC = DebugFC)
 
   # Return
   return(list(
@@ -6902,19 +6902,19 @@ Shiny.FC.CARMA <- function(input,
   # 'Forecast+Retrain': generate an updated model and use that model to generate a forecast
 
   # Prepare for any RunType
-  temp_data <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0(Algo, 'CARMA_TrainData')]]}, error=function(x) NULL), Type='character', Default=NULL)
-  xregs <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0(Algo, 'CARMA_XREGS')]]}, error=function(x) NULL), Type='character', Default=NULL)
+  temp_data <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0(Algo, 'CARMA_TrainData')]]}, error=function(x) NULL), Type='character', Default=NULL)
+  xregs <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0(Algo, 'CARMA_XREGS')]]}, error=function(x) NULL), Type='character', Default=NULL)
   ArgsList[["XREGS"]] <- xregs
-  RunMode <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0(Algo, 'CARMA_RunMode')]]}, error=function(x) NULL), Type='character', Default='Train New Model')
-  ModelID <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0(Algo, 'ModelID')]]}, error=function(x) NULL), Type='character', Default="FC001")
+  RunMode <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0(Algo, 'CARMA_RunMode')]]}, error=function(x) NULL), Type='character', Default='Train New Model')
+  ModelID <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0(Algo, 'ModelID')]]}, error=function(x) NULL), Type='character', Default="FC001")
 
   if(DebugFC) print('Shiny.FC.CARMA 1')
 
   if(ModelID == "") ModelID <- 'FC001'
   ArgsList[['ModelID']] <- ModelID
-  ArgsList[['FC_Periods']] <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0(Algo, 'CARMA_FCPeriods')]]}, error=function(x) NULL), Type='numeric', Default=5)
-  ArgsList[['DateColumnName']] <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0(Algo, 'CARMA_DateColumnName')]]}, error=function(x) NULL), Type='character', Default=NULL)
-  ArgsList[['TimeUnit']] <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0(Algo, 'CARMA_TimeUnit')]]}, error=function(x) NULL), Type='character', Default=NULL)
+  ArgsList[['FC_Periods']] <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0(Algo, 'CARMA_FCPeriods')]]}, error=function(x) NULL), Type='numeric', Default=5)
+  ArgsList[['DateColumnName']] <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0(Algo, 'CARMA_DateColumnName')]]}, error=function(x) NULL), Type='character', Default=NULL)
+  ArgsList[['TimeUnit']] <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0(Algo, 'CARMA_TimeUnit')]]}, error=function(x) NULL), Type='character', Default=NULL)
 
   if(DebugFC) print('Shiny.FC.CARMA 2')
 
@@ -6932,10 +6932,10 @@ Shiny.FC.CARMA <- function(input,
     # Build FC
     if(DebugFC) print(rep('Forecast', 10))
     if(length(temp_data) > 0L) {
-      Output <- DataMuse::Shiny.FC.Panel.Forecast(temp_data, ArgsList, CodeList, DataList, ModelID, VD = NULL, DebugFC = DebugFC, Algo = Algo)
+      Output <- Quantico::Shiny.FC.Panel.Forecast(temp_data, ArgsList, CodeList, DataList, ModelID, VD = NULL, DebugFC = DebugFC, Algo = Algo)
       DataList <- Output$DataList; CodeList <- Output$CodeList; rm(Output)
-      for(i in seq_len(TabCount)) DataMuse::PickerInput(session, input, Update = TRUE, InputID = paste0("EDAData", i), Label = 'Data Selection', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
-      for(i in seq_len(TabCount)) DataMuse::PickerInput(session, input, Update = TRUE, InputID = paste0("DataOutputSelection", i), Label = 'Display Data', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
+      for(i in seq_len(TabCount)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0("EDAData", i), Label = 'Data Selection', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
+      for(i in seq_len(TabCount)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0("DataOutputSelection", i), Label = 'Display Data', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
     } else {
       if(DebugFC) print('Forecast: NewData is not Defined')
     }
@@ -6958,10 +6958,10 @@ Shiny.FC.CARMA <- function(input,
     # Build FC
     if(DebugFC) print(rep('Retrain', 10))
     if(length(temp_data) > 0L) {
-      Output <- DataMuse::Shiny.FC.Panel.Retrain(temp_data, ArgsList, CodeList, DataList, DebugFC = DebugFC, Algo = Algo)
+      Output <- Quantico::Shiny.FC.Panel.Retrain(temp_data, ArgsList, CodeList, DataList, DebugFC = DebugFC, Algo = Algo)
       ArgsList <- Output$ArgsList; DataList <- Output$DataList; CodeList <- Output$CodeList; rm(Output)
-      for(i in seq_len(TabCount)) DataMuse::PickerInput(session, input, Update = TRUE, InputID = paste0("EDAData", i), Label = 'Data Selection', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
-      for(i in seq_len(TabCount)) DataMuse::PickerInput(session, input, Update = TRUE, InputID = paste0("DataOutputSelection", i), Label = 'Display Data', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
+      for(i in seq_len(TabCount)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0("EDAData", i), Label = 'Data Selection', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
+      for(i in seq_len(TabCount)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0("DataOutputSelection", i), Label = 'Display Data', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
     } else {
       if(DebugFC) print('NewData is not Defined')
     }
@@ -6981,7 +6981,7 @@ Shiny.FC.CARMA <- function(input,
 
   if(DebugFC) print('Shiny.FC.CARMA 3')
 
-  temp_validation <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0(Algo, 'CARMA_ValidationData')]]}, error=function(x) NULL), Type='character', Default=NULL)
+  temp_validation <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0(Algo, 'CARMA_ValidationData')]]}, error=function(x) NULL), Type='character', Default=NULL)
 
   if(DebugFC) print('Shiny.FC.CARMA 4')
 
@@ -7067,10 +7067,10 @@ Shiny.FC.CARMA <- function(input,
 
     # Backtest CatBoost for Forecasting Purposes
     if(DebugFC) {print('Backtest 1st version'); print(ArgsList[['Model']])}
-    Output <- DataMuse::Shiny.FC.Panel.Backtest(ArgsList, CodeList, DataList, ModelID, VD = ValidationData, DebugFC = DebugFC, Algo = Algo)
+    Output <- Quantico::Shiny.FC.Panel.Backtest(ArgsList, CodeList, DataList, ModelID, VD = ValidationData, DebugFC = DebugFC, Algo = Algo)
     DataList <- Output$DataList; CodeList <- Output$CodeList; ArgsList <- Output$ArgsList
-    for(i in seq_len(TabCount)) DataMuse::PickerInput(session, input, Update = TRUE, InputID = paste0("EDAData", i), Label = 'Data Selection', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
-    for(i in seq_len(TabCount)) DataMuse::PickerInput(session, input, Update = TRUE, InputID = paste0("DataOutputSelection", i), Label = 'Display Data', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
+    for(i in seq_len(TabCount)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0("EDAData", i), Label = 'Data Selection', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
+    for(i in seq_len(TabCount)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0("DataOutputSelection", i), Label = 'Display Data', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
 
     # Return results
     if(DebugFC) {print('Return from Shiny.FC.CARMA')}
@@ -7097,8 +7097,8 @@ Shiny.FC.CARMA <- function(input,
 
   if(DebugFC) print('Shiny.FC.CARMA 9')
 
-  ArgsList[['TargetColumnName']] <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0(Algo, 'CARMA_TargetColumnName')]]}, error=function(x) NULL), Type='character', Default=NULL)
-  ArgsList[['GroupVariables']]   <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0(Algo, 'CARMA_GroupVariables')]]}, error=function(x) NULL), Type='character', Default=NULL)
+  ArgsList[['TargetColumnName']] <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0(Algo, 'CARMA_TargetColumnName')]]}, error=function(x) NULL), Type='character', Default=NULL)
+  ArgsList[['GroupVariables']]   <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0(Algo, 'CARMA_GroupVariables')]]}, error=function(x) NULL), Type='character', Default=NULL)
 
   # FC Time Periods Update
 
@@ -7115,7 +7115,7 @@ Shiny.FC.CARMA <- function(input,
   }
 
   if(DebugFC) print('Shiny.FC.CARMA 11')
-  ArgsList <- DataMuse::FC.FCPeriods(ArgsList = ArgsList, VD = ValidationData) # Ensure FC_Periods is proper given ValidationData
+  ArgsList <- Quantico::FC.FCPeriods(ArgsList = ArgsList, VD = ValidationData) # Ensure FC_Periods is proper given ValidationData
 
   # Time Unit
   if(DebugFC) print('Shiny.FC.CARMA 12')
@@ -7130,106 +7130,106 @@ Shiny.FC.CARMA <- function(input,
   }
 
   if(DebugFC) print('Shiny.FC.CARMA 13')
-  ArgsList <- DataMuse::FC.TimeUnit(ArgsList) # Convert UI input selected value to value needed by AutoCatBoostCARMA()
+  ArgsList <- Quantico::FC.TimeUnit(ArgsList) # Convert UI input selected value to value needed by AutoCatBoostCARMA()
   ArgsList[['TimeGroups']] <- ArgsList[['TimeUnit']]
-  if(tolower(Algo) == 'catboost') ArgsList[['TimeWeights']] <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0(Algo, 'CARMA_TimeWeights')]]}, error=function(x) NULL), Type='numeric', Default=1)
-  ArgsList[['Methods']]     <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0(Algo, 'CARMA_Methods')]]}, error=function(x) NULL), Type='character', Default=NULL)
-  ArgsList[['Difference']]  <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0(Algo, 'CARMA_Difference')]]}, error=function(x) NULL), Type='logical', Default=FALSE)
-  if(length(DataMuse:::CEP(ArgsList[['Methods']])) > 0L && tolower(DataMuse:::CEP(ArgsList[['Methods']])) %in% c('','identity')) ArgsList[['TargetTransformation']] <- FALSE else ArgsList[['TargetTransformation']] <- TRUE
+  if(tolower(Algo) == 'catboost') ArgsList[['TimeWeights']] <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0(Algo, 'CARMA_TimeWeights')]]}, error=function(x) NULL), Type='numeric', Default=1)
+  ArgsList[['Methods']]     <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0(Algo, 'CARMA_Methods')]]}, error=function(x) NULL), Type='character', Default=NULL)
+  ArgsList[['Difference']]  <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0(Algo, 'CARMA_Difference')]]}, error=function(x) NULL), Type='logical', Default=FALSE)
+  if(length(Quantico:::CEP(ArgsList[['Methods']])) > 0L && tolower(Quantico:::CEP(ArgsList[['Methods']])) %in% c('','identity')) ArgsList[['TargetTransformation']] <- FALSE else ArgsList[['TargetTransformation']] <- TRUE
 
   # Code collection
-  CodeList <- tryCatch({DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+  CodeList <- tryCatch({Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
     "\n",
     "# Forecasting: Data Args\n",
-    "ModelID <- ", DataMuse:::CEP(ModelID), "\n",
+    "ModelID <- ", Quantico:::CEP(ModelID), "\n",
     "if(!exists('ArgsList')) ArgsList <- list()\n",
-    "ArgsList[['data']] <- data.table::copy(DataList[[", DataMuse:::CEP(temp_data), "]])\n",
-    if(length(temp_validation) > 0L && temp_validation != temp_data) paste0("ValidationData <- data.table::copy(DataList[[", DataMuse:::CEP(temp_validation), "]])\n") else paste0("ValidationData <- NULL\n"), "\n",
-    "ArgsList[['TargetColumnName']] <- ", DataMuse:::CEP(ArgsList[['TargetColumnName']]), "\n",
-    "ArgsList[['DateColumnName']] <- ", DataMuse:::CEP(ArgsList[['DateColumnName']]), "\n",
-    "ArgsList[['GroupVariables']] <- ", DataMuse:::ExpandText(ArgsList[['GroupVariables']]), "\n",
-    "ArgsList[['TimeUnit']] <- ", DataMuse:::CEP(ArgsList[['TimeUnit']]), "\n",
+    "ArgsList[['data']] <- data.table::copy(DataList[[", Quantico:::CEP(temp_data), "]])\n",
+    if(length(temp_validation) > 0L && temp_validation != temp_data) paste0("ValidationData <- data.table::copy(DataList[[", Quantico:::CEP(temp_validation), "]])\n") else paste0("ValidationData <- NULL\n"), "\n",
+    "ArgsList[['TargetColumnName']] <- ", Quantico:::CEP(ArgsList[['TargetColumnName']]), "\n",
+    "ArgsList[['DateColumnName']] <- ", Quantico:::CEP(ArgsList[['DateColumnName']]), "\n",
+    "ArgsList[['GroupVariables']] <- ", Quantico:::ExpandText(ArgsList[['GroupVariables']]), "\n",
+    "ArgsList[['TimeUnit']] <- ", Quantico:::CEP(ArgsList[['TimeUnit']]), "\n",
     "ArgsList[['TimeGroups']] <- ArgsList[['TimeUnit']]\n",
-    "ArgsList[['FC_Periods']] <- ", DataMuse:::CEPP(ArgsList[['FC_Periods']]), "\n",
-    "ArgsList[['TimeWeights']] <- ", DataMuse:::CEPP(ArgsList[['TimeWeights']]), "\n",
-    "ArgsList[['TargetTransformation']] <- ", DataMuse:::CEPP(ArgsList[['TargetTransformation']]), "\n",
-    "ArgsList[['Methods']] <- ", DataMuse:::CEP(ArgsList[['Methods']]), "\n",
-    "ArgsList[['Difference']] <- ", DataMuse:::CEPP(ArgsList[['Difference']]), "\n"))}, error = function(x) CodeList)
+    "ArgsList[['FC_Periods']] <- ", Quantico:::CEPP(ArgsList[['FC_Periods']]), "\n",
+    "ArgsList[['TimeWeights']] <- ", Quantico:::CEPP(ArgsList[['TimeWeights']]), "\n",
+    "ArgsList[['TargetTransformation']] <- ", Quantico:::CEPP(ArgsList[['TargetTransformation']]), "\n",
+    "ArgsList[['Methods']] <- ", Quantico:::CEP(ArgsList[['Methods']]), "\n",
+    "ArgsList[['Difference']] <- ", Quantico:::CEPP(ArgsList[['Difference']]), "\n"))}, error = function(x) CodeList)
 
   # If no validation data was selected and some sort of backtesting procedure is requested
   if(ValidationDataCheck && RunMode %in% c('Backtest', 'Feature Engineering Test', 'Backtest Cross Eval')) {
     if(ArgsList[['TimeUnit']] == "1-Minute") {
-      CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+      CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
         "\n",
         "# FC Create Validation Data\n",
         "if(!exists('ArgsList') ArgsList <- list()\n",
         "ValidationData <- data.table::copy(ArgsList[['data']])\n",
         "ArgsList[['data']] <- ArgsList[['data']][get(ArgsList[['DateColumnName']]) < max(get(ArgsList[['DateColumnName']])) - lubridate::minutes(eval(ArgsList[['FC_Periods']]))]\n"))
     } else if(ArgsList[['TimeUnit']] == "5-Minutes") {
-      CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+      CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
         "\n",
         "# FC Create Validation Data\n",
         "if(!exists('ArgsList') ArgsList <- list()\n",
         "ValidationData <- data.table::copy(ArgsList[['data']])\n",
         "ArgsList[['data']] <- ArgsList[['data']][get(ArgsList[['DateColumnName']]) < max(get(ArgsList[['DateColumnName']])) - lubridate::minutes(eval(ArgsList[['FC_Periods']]) * 5)]\n"))
     } else if(ArgsList[['TimeUnit']] == "10-Minutes") {
-      CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+      CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
         "\n",
         "# FC Create Validation Data\n",
         "if(!exists('ArgsList') ArgsList <- list()\n",
         "ValidationData <- data.table::copy(ArgsList[['data']])\n",
         "ArgsList[['data']] <- ArgsList[['data']][get(ArgsList[['DateColumnName']]) < max(get(ArgsList[['DateColumnName']])) - lubridate::minutes(eval(ArgsList[['FC_Periods']]) * 10)]\n"))
     } else if(ArgsList[['TimeUnit']] == "15-Minutes") {
-      CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+      CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
         "\n",
         "# FC Create Validation Data\n",
         "if(!exists('ArgsList') ArgsList <- list()\n",
         "ValidationData <- data.table::copy(ArgsList[['data']])\n",
         "ArgsList[['data']] <- ArgsList[['data']][get(ArgsList[['DateColumnName']]) < max(get(ArgsList[['DateColumnName']])) - lubridate::minutes(eval(ArgsList[['FC_Periods']]) * 15)]\n"))
     } else if(ArgsList[['TimeUnit']] == "30-Minutes") {
-      CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+      CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
         "\n",
         "# FC Create Validation Data\n",
         "if(!exists('ArgsList') ArgsList <- list()\n",
         "ValidationData <- data.table::copy(ArgsList[['data']])\n",
         "ArgsList[['data']] <- ArgsList[['data']][get(ArgsList[['DateColumnName']]) < max(get(ArgsList[['DateColumnName']])) - lubridate::minutes(eval(ArgsList[['FC_Periods']]) * 30)]\n"))
     } else if(ArgsList[['TimeUnit']] == "Hourly") {
-      CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+      CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
         "\n",
         "# FC Create Validation Data\n",
         "if(!exists('ArgsList') ArgsList <- list()\n",
         "ValidationData <- data.table::copy(ArgsList[['data']])\n",
         "ArgsList[['data']] <- ArgsList[['data']][get(ArgsList[['DateColumnName']]) < max(get(ArgsList[['DateColumnName']])) - lubridate::hours(eval(ArgsList[['FC_Periods']]))]\n"))
     } else if(ArgsList[['TimeUnit']] == "Daily") {
-      CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+      CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
         "\n",
         "# FC Create Validation Data\n",
         "if(!exists('ArgsList') ArgsList <- list()\n",
         "ValidationData <- data.table::copy(ArgsList[['data']])\n",
         "ArgsList[['data']] <- ArgsList[['data']][get(ArgsList[['DateColumnName']]) < max(get(ArgsList[['DateColumnName']])) - lubridate::days(eval(ArgsList[['FC_Periods']]))]\n"))
     } else if(ArgsList[['TimeUnit']] == "Weekly") {
-      CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+      CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
         "\n",
         "# FC Create Validation Data\n",
         "if(!exists('ArgsList') ArgsList <- list()\n",
         "ValidationData <- data.table::copy(ArgsList[['data']])\n",
         "ArgsList[['data']] <- ArgsList[['data']][get(ArgsList[['DateColumnName']]) < max(get(ArgsList[['DateColumnName']])) - lubridate::weeks(eval(ArgsList[['FC_Periods']]))]\n"))
     } else if(ArgsList[['TimeUnit']] == "Monthly") {
-      CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+      CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
         "\n",
         "# FC Create Validation Data\n",
         "if(!exists('ArgsList') ArgsList <- list()\n",
         "ValidationData <- data.table::copy(ArgsList[['data']])\n",
         "ArgsList[['data']] <- ArgsList[['data']][get(ArgsList[['DateColumnName']]) < max(get(ArgsList[['DateColumnName']])) %m-% lubridate::months(eval(ArgsList[['FC_Periods']]))]\n"))
     } else if(ArgsList[['TimeUnit']] == "Quarterly") {
-      CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+      CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
         "\n",
         "# FC Create Validation Data\n",
         "if(!exists('ArgsList') ArgsList <- list()\n",
         "ValidationData <- data.table::copy(ArgsList[['data']])\n",
         "ArgsList[['data']] <- ArgsList[['data']][get(ArgsList[['DateColumnName']]) < max(get(ArgsList[['DateColumnName']])) %m-% lubridate::months(eval(ArgsList[['FC_Periods']]) * 3)]\n"))
     } else if(ArgsList[['TimeUnit']] == "Yearly") {
-      CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+      CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
         "\n",
         "# FC Create Validation Data\n",
         "if(!exists('ArgsList') ArgsList <- list()\n",
@@ -7241,48 +7241,48 @@ Shiny.FC.CARMA <- function(input,
   # Production Args
   if(DebugFC) print('Shiny.FC.CARMA 14')
   if(tolower(Algo) == 'catboost') {
-    ArgsList[['TaskType']] <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0(Algo, 'CARMA_TaskType')]]}, error=function(x) NULL), Type='character', Default='CPU')
-    ArgsList[['NumGPU']]   <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0(Algo, 'CARMA_NumGPU')]]}, error=function(x) NULL), Type='numeric', Default=1)
+    ArgsList[['TaskType']] <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0(Algo, 'CARMA_TaskType')]]}, error=function(x) NULL), Type='character', Default='CPU')
+    ArgsList[['NumGPU']]   <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0(Algo, 'CARMA_NumGPU')]]}, error=function(x) NULL), Type='numeric', Default=1)
   } else if(tolower(Algo) == 'xgboost') {
-    bb <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0(Algo, 'CARMA_TaskType')]]}, error=function(x) NULL), Type='character', Default='CPU')
+    bb <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0(Algo, 'CARMA_TaskType')]]}, error=function(x) NULL), Type='character', Default='CPU')
     if(tolower(bb) !='gpu') ArgsList[['TreeMethod']] <- 'hist' else ArgsList[['TreeMethod']] <- 'gpu_hist'
   }
 
   if(DebugFC) print('Shiny.FC.CARMA 15')
-  ArgsList[['RoundPreds']]      <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0(Algo, 'CARMA_RoundPreds')]]}, error=function(x) NULL), Type='logical', Default=FALSE)
-  ArgsList[['NonNegativePred']] <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0(Algo, 'CARMA_NonNegativePred')]]}, error=function(x) NULL), Type='logical', Default=FALSE)
-  ArgsList[['SaveModel']]       <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0(Algo, 'CARMA_SaveModel')]]}, error=function(x) NULL), Type='logical', Default=FALSE)
-  ArgsList[['ZeroPadSeries']]   <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0(Algo, 'CARMA_ZeroPadSeries')]]}, error=function(x) NULL), Type='character', Default='dynamic:target_encode')
+  ArgsList[['RoundPreds']]      <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0(Algo, 'CARMA_RoundPreds')]]}, error=function(x) NULL), Type='logical', Default=FALSE)
+  ArgsList[['NonNegativePred']] <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0(Algo, 'CARMA_NonNegativePred')]]}, error=function(x) NULL), Type='logical', Default=FALSE)
+  ArgsList[['SaveModel']]       <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0(Algo, 'CARMA_SaveModel')]]}, error=function(x) NULL), Type='logical', Default=FALSE)
+  ArgsList[['ZeroPadSeries']]   <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0(Algo, 'CARMA_ZeroPadSeries')]]}, error=function(x) NULL), Type='character', Default='dynamic:target_encode')
   ArgsList[['DebugMode']] <- DebugFC
 
   # Code collection
-  CodeList <- tryCatch({DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+  CodeList <- tryCatch({Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
     "\n",
     "# Forecasting: Production Args\n",
-    "ArgsList[['TaskType']] <- ", DataMuse:::CEP(ArgsList[['TaskType']]), "\n",
-    "ArgsList[['NumGPU']] <- ", DataMuse:::CEPP(ArgsList[['NumGPU']]), "\n",
-    "ArgsList[['RoundPreds']] <- ", DataMuse:::CEPP(ArgsList[['RoundPreds']]), "\n",
-    "ArgsList[['NonNegativePred']] <- ", DataMuse:::CEPP(ArgsList[['NonNegativePred']]), "\n",
-    "ArgsList[['SaveModel']] <- ", DataMuse:::CEPP(ArgsList[['SaveModel']]), "\n",
-    "ArgsList[['DebugMode']] <- ", DataMuse:::CEPP(ArgsList[['DebugMode']]), "\n",
-    "ArgsList[['ZeroPadSeries']] <- ", DataMuse:::CEP(ArgsList[['ZeroPadSeries']]), "\n"))}, error = function(x) CodeList)
+    "ArgsList[['TaskType']] <- ", Quantico:::CEP(ArgsList[['TaskType']]), "\n",
+    "ArgsList[['NumGPU']] <- ", Quantico:::CEPP(ArgsList[['NumGPU']]), "\n",
+    "ArgsList[['RoundPreds']] <- ", Quantico:::CEPP(ArgsList[['RoundPreds']]), "\n",
+    "ArgsList[['NonNegativePred']] <- ", Quantico:::CEPP(ArgsList[['NonNegativePred']]), "\n",
+    "ArgsList[['SaveModel']] <- ", Quantico:::CEPP(ArgsList[['SaveModel']]), "\n",
+    "ArgsList[['DebugMode']] <- ", Quantico:::CEPP(ArgsList[['DebugMode']]), "\n",
+    "ArgsList[['ZeroPadSeries']] <- ", Quantico:::CEP(ArgsList[['ZeroPadSeries']]), "\n"))}, error = function(x) CodeList)
 
   if(DebugFC) print('Shiny.FC.CARMA 16')
-  ArgsList[['CalendarVariables']]  <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0(Algo, 'CARMA_CalendarVariables')]]}, error=function(x) NULL), Type='character', Default=NULL)
-  ArgsList[['HolidayVariable']]    <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0(Algo, 'CARMA_HolidayVariables')]]}, error=function(x) NULL), Type='character', Default=NULL)
-  ArgsList[['HolidayLookback']]    <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0(Algo, 'CARMA_Lookback')]]}, error=function(x) NULL), Type='numeric', Default=1)
-  ArgsList[['Quantiles_Selected']] <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0(Algo, 'CARMA_Quantiles_Selected')]]}, error=function(x) NULL), Type='character', Default=NULL)
-  ArgsList[['Lags']]               <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0(Algo, 'CARMA_Lags')]]}, error=function(x) NULL), Type='numeric', Default=NULL)
-  ArgsList[['MA_Periods']]         <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0(Algo, 'CARMA_MovingAverages')]]}, error=function(x) NULL), Type='numeric', Default=NULL)
-  ArgsList[['SD_Periods']]         <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0(Algo, 'CARMA_MovingSD')]]}, error=function(x) NULL), Type='numeric', Default=NULL)
-  ArgsList[['Kurt_Periods']]       <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0(Algo, 'CARMA_MovingKurt')]]}, error=function(x) NULL), Type='numeric', Default=NULL)
-  ArgsList[['Skew_Periods']]       <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0(Algo, 'CARMA_MovingSkew')]]}, error=function(x) NULL), Type='numeric', Default=NULL)
-  ArgsList[['Quantile_Periods']]   <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0(Algo, 'CARMA_MovingQuantiles')]]}, error=function(x) NULL), Type='numeric', Default=NULL)
-  ArgsList[['DataTruncate']]       <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0(Algo, 'CARMA_DataTruncate')]]}, error=function(x) NULL), Type='logical', Default=FALSE)
-  ArgsList[['TimeTrendVariable']]  <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0(Algo, 'CARMA_TimeTrend')]]}, error=function(x) NULL), Type='logical', Default=FALSE)
-  ArgsList[['EncodingMethod']]     <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0(Algo, 'CARMA_EncodingMethod')]]}, error=function(x) NULL), Type='character', Default='meow')
-  AnomalyDetection_LowThreshold    <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0(Algo, 'CARMA_AnomalyDetection_LowThreshold')]]}, error=function(x) NULL), Type='numeric', Default=NULL)
-  AnomalyDetection_HighThreshold   <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0(Algo, 'CARMA_AnomalyDetection_HighThreshold')]]}, error=function(x) NULL), Type='numeric', Default=NULL)
+  ArgsList[['CalendarVariables']]  <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0(Algo, 'CARMA_CalendarVariables')]]}, error=function(x) NULL), Type='character', Default=NULL)
+  ArgsList[['HolidayVariable']]    <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0(Algo, 'CARMA_HolidayVariables')]]}, error=function(x) NULL), Type='character', Default=NULL)
+  ArgsList[['HolidayLookback']]    <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0(Algo, 'CARMA_Lookback')]]}, error=function(x) NULL), Type='numeric', Default=1)
+  ArgsList[['Quantiles_Selected']] <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0(Algo, 'CARMA_Quantiles_Selected')]]}, error=function(x) NULL), Type='character', Default=NULL)
+  ArgsList[['Lags']]               <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0(Algo, 'CARMA_Lags')]]}, error=function(x) NULL), Type='numeric', Default=NULL)
+  ArgsList[['MA_Periods']]         <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0(Algo, 'CARMA_MovingAverages')]]}, error=function(x) NULL), Type='numeric', Default=NULL)
+  ArgsList[['SD_Periods']]         <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0(Algo, 'CARMA_MovingSD')]]}, error=function(x) NULL), Type='numeric', Default=NULL)
+  ArgsList[['Kurt_Periods']]       <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0(Algo, 'CARMA_MovingKurt')]]}, error=function(x) NULL), Type='numeric', Default=NULL)
+  ArgsList[['Skew_Periods']]       <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0(Algo, 'CARMA_MovingSkew')]]}, error=function(x) NULL), Type='numeric', Default=NULL)
+  ArgsList[['Quantile_Periods']]   <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0(Algo, 'CARMA_MovingQuantiles')]]}, error=function(x) NULL), Type='numeric', Default=NULL)
+  ArgsList[['DataTruncate']]       <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0(Algo, 'CARMA_DataTruncate')]]}, error=function(x) NULL), Type='logical', Default=FALSE)
+  ArgsList[['TimeTrendVariable']]  <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0(Algo, 'CARMA_TimeTrend')]]}, error=function(x) NULL), Type='logical', Default=FALSE)
+  ArgsList[['EncodingMethod']]     <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0(Algo, 'CARMA_EncodingMethod')]]}, error=function(x) NULL), Type='character', Default='meow')
+  AnomalyDetection_LowThreshold    <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0(Algo, 'CARMA_AnomalyDetection_LowThreshold')]]}, error=function(x) NULL), Type='numeric', Default=NULL)
+  AnomalyDetection_HighThreshold   <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0(Algo, 'CARMA_AnomalyDetection_HighThreshold')]]}, error=function(x) NULL), Type='numeric', Default=NULL)
 
   if(DebugFC) print('Shiny.FC.CARMA 17')
   if(length(AnomalyDetection_HighThreshold) > 0L && length(AnomalyDetection_LowThreshold) > 0L) {
@@ -7290,28 +7290,28 @@ Shiny.FC.CARMA <- function(input,
   }
 
   # Code collection
-  CodeList <- tryCatch({DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+  CodeList <- tryCatch({Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
     "\n",
     "# Forecasting: Feature Engineering Args\n",
-    "ArgsList[['CalendarVariables']] <- ", DataMuse:::ExpandText(ArgsList[['CalendarVariables']]), "\n",
-    "ArgsList[['HolidayVariable']] <- ", DataMuse:::ExpandText(ArgsList[['HolidayVariables']]), "\n",
-    "ArgsList[['HolidayLookback']] <- ", DataMuse:::CEPP(ArgsList[['Lookback']]), "\n",
-    "ArgsList[['Quantiles_Selected']] <- ", DataMuse:::ExpandText(ArgsList[['Quantiles_Selected']]), "\n",
+    "ArgsList[['CalendarVariables']] <- ", Quantico:::ExpandText(ArgsList[['CalendarVariables']]), "\n",
+    "ArgsList[['HolidayVariable']] <- ", Quantico:::ExpandText(ArgsList[['HolidayVariables']]), "\n",
+    "ArgsList[['HolidayLookback']] <- ", Quantico:::CEPP(ArgsList[['Lookback']]), "\n",
+    "ArgsList[['Quantiles_Selected']] <- ", Quantico:::ExpandText(ArgsList[['Quantiles_Selected']]), "\n",
 
-    "ArgsList[['Lags']] <- ", DataMuse:::ExpandText(ArgsList[['Lags']]), "\n",
-    "ArgsList[['MA_Periods']] <- ", DataMuse:::ExpandText(ArgsList[['MovingAverages']]), "\n",
-    "ArgsList[['SD_Periods']] <- ", DataMuse:::ExpandText(ArgsList[['MovingSD']]), "\n",
-    "ArgsList[['Kurt_Periods']] <- ", DataMuse:::ExpandText(ArgsList[['MovingKurt']]), "\n",
-    "ArgsList[['Skew_Periods']] <- ", DataMuse:::ExpandText(ArgsList[['MovingSkew']]), "\n",
-    "ArgsList[['Quantile_Periods']] <- ", DataMuse:::ExpandText(ArgsList[['MovingQuantiles']]), "\n",
+    "ArgsList[['Lags']] <- ", Quantico:::ExpandText(ArgsList[['Lags']]), "\n",
+    "ArgsList[['MA_Periods']] <- ", Quantico:::ExpandText(ArgsList[['MovingAverages']]), "\n",
+    "ArgsList[['SD_Periods']] <- ", Quantico:::ExpandText(ArgsList[['MovingSD']]), "\n",
+    "ArgsList[['Kurt_Periods']] <- ", Quantico:::ExpandText(ArgsList[['MovingKurt']]), "\n",
+    "ArgsList[['Skew_Periods']] <- ", Quantico:::ExpandText(ArgsList[['MovingSkew']]), "\n",
+    "ArgsList[['Quantile_Periods']] <- ", Quantico:::ExpandText(ArgsList[['MovingQuantiles']]), "\n",
 
-    "ArgsList[['DataTruncate']] <- ", DataMuse:::CEPP(ArgsList[['DataTruncate']]), "\n",
-    "ArgsList[['TimeTrend']] <- ", DataMuse:::CEPP(ArgsList[['TimeTrend']]), "\n",
+    "ArgsList[['DataTruncate']] <- ", Quantico:::CEPP(ArgsList[['DataTruncate']]), "\n",
+    "ArgsList[['TimeTrend']] <- ", Quantico:::CEPP(ArgsList[['TimeTrend']]), "\n",
 
-    "AnomalyDetection_LowThreshold <- ", DataMuse:::CEPP(AnomalyDetection_LowThreshold), "\n",
-    "AnomalyDetection_HighThreshold <- ", DataMuse:::CEPP(AnomalyDetection_LowThreshold), "\n",
+    "AnomalyDetection_LowThreshold <- ", Quantico:::CEPP(AnomalyDetection_LowThreshold), "\n",
+    "AnomalyDetection_HighThreshold <- ", Quantico:::CEPP(AnomalyDetection_LowThreshold), "\n",
     "if(length(AnomalyDetection_HighThreshold) > 0L && length(AnomalyDetection_LowThreshold) > 0L) {\n  ",
-    "ArgsList[['AnomalyDetection']] <- list('tstat_high' = ", DataMuse:::CEPP(AnomalyDetection_HighThreshold), ", 'tstat_low' = ", DataMuse:::CEPP(AnomalyDetection_LowThreshold), ")\n",
+    "ArgsList[['AnomalyDetection']] <- list('tstat_high' = ", Quantico:::CEPP(AnomalyDetection_HighThreshold), ", 'tstat_low' = ", Quantico:::CEPP(AnomalyDetection_LowThreshold), ")\n",
     "}\n"))}, error = function(x) CodeList)
 
   # @@@@@@@@@@@@@@@@@@@@@@@@
@@ -7321,92 +7321,92 @@ Shiny.FC.CARMA <- function(input,
   # CatBoost Args
   if(DebugFC) print('Shiny.FC.CARMA 18')
   if(tolower(Algo) == 'catboost') {
-    ArgsList[['EvalMetric']]           <- DataMuse:::ReturnParam(xx=tryCatch({input[['CatBoostCARMA_EvalMetric']]}, error = function(x) NULL), Type = 'character', Default = 'RMSE')
-    ArgsList[['LossFunction']]         <- DataMuse:::ReturnParam(xx=tryCatch({input[['CatBoostCARMA_LossFunction']]}, error = function(x) NULL), Type = 'character', Default = 'RMSE')
-    ArgsList[['NTrees']]               <- DataMuse:::ReturnParam(xx=tryCatch({input[['CatBoostCARMA_NTrees']]}, error=function(x) NULL), Type='numeric', Default=500)
-    ArgsList[['Depth']]                <- DataMuse:::ReturnParam(xx=tryCatch({input[['CatBoostCARMA_Depth']]}, error=function(x) NULL), Type='numeric', Default=6)
-    ArgsList[['EvalMetricValue']]      <- DataMuse:::ReturnParam(xx=tryCatch({input[['CatBoostCARMA_EvalMetricValue']]}, error = function(x) NULL), Type='numeric', Default = 1.2)
-    ArgsList[['LossFunctionValue']]    <- DataMuse:::ReturnParam(xx=tryCatch({input[['CatBoostCARMA_LossFunctionValue']]}, error = function(x) NULL), Type='numeric', Default = 1.2)
-    ArgsList[['Langevin']]             <- DataMuse:::ReturnParam(xx=tryCatch({input[['CatBoostCARMA_Langevin']]}, error=function(x) NULL), Type='logical', Default=FALSE)
-    ArgsList[['DiffusionTemperature']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['CatBoostCARMA_DiffusionTemperature']]}, error=function(x) NULL), Type='numeric', Default=10000)
-    ArgsList[['L2_Leaf_Reg']]          <- DataMuse:::ReturnParam(xx=tryCatch({input[['CatBoostCARMA_L2_Leaf_Reg']]}, error=function(x) NULL), Type='numeric', Default=NULL)
-    ArgsList[['ModelSizeReg']]         <- DataMuse:::ReturnParam(xx=tryCatch({input[['CatBoostCARMA_ModelSizeReg']]}, error=function(x) NULL), Type='numeric', Default=0.50)
-    ArgsList[['MinDataInLeaf']]        <- DataMuse:::ReturnParam(xx=tryCatch({input[['CatBoostCARMA_MinDataInLeaf']]}, error=function(x) NULL), Type='numeric', Default=2)
-    ArgsList[['LearningRate']]         <- DataMuse:::ReturnParam(xx=tryCatch({input[['CatBoostCARMA_LearningRate']]}, error=function(x) NULL), Type='numeric', Default=NULL)
-    ArgsList[['BootStrapType']]        <- DataMuse:::ReturnParam(xx=tryCatch({input[['CatBoostCARMA_BootStrapType']]}, error=function(x) NULL), Type='character', Default='Bayesian')
-    ArgsList[['GrowPolicy']]           <- DataMuse:::ReturnParam(xx=tryCatch({input[['CatBoostCARMA_GrowPolicy']]}, error=function(x) NULL), Type='character', Default='SymmetricTree')
-    ArgsList[['RandomStrength']]       <- DataMuse:::ReturnParam(xx=tryCatch({input[['CatBoostCARMA_RandomStrength']]}, error=function(x) NULL), Type='numeric', Default=0.90)
-    ArgsList[['RSM']]                  <- DataMuse:::ReturnParam(xx=tryCatch({input[['CatBoostCARMA_RSM']]}, error=function(x) NULL), Type='numeric', Default=0.90)
-    ArgsList[['SubSample']]            <- DataMuse:::ReturnParam(xx=tryCatch({input[['CatBoostCARMA_SubSample']]}, error=function(x) NULL), Type='numeric', Default=0.80)
-    ArgsList[['BorderCount']]          <- DataMuse:::ReturnParam(xx=tryCatch({input[['CatBoostCARMA_BorderCount']]}, error=function(x) NULL), Type='numeric', Default=128)
-    ArgsList[['FeatureBorderType']]    <- DataMuse:::ReturnParam(xx=tryCatch({input[['CatBoostCARMA_FeatureBorderType']]}, error=function(x) NULL), Type='character', Default='GreedyLogSum')
-    ArgsList[['ScoreFunction']]        <- DataMuse:::ReturnParam(xx=tryCatch({input[['CatBoostCARMA_ScoreFunction']]}, error=function(x) NULL), Type='character', Default='Cosine')
+    ArgsList[['EvalMetric']]           <- Quantico:::ReturnParam(xx=tryCatch({input[['CatBoostCARMA_EvalMetric']]}, error = function(x) NULL), Type = 'character', Default = 'RMSE')
+    ArgsList[['LossFunction']]         <- Quantico:::ReturnParam(xx=tryCatch({input[['CatBoostCARMA_LossFunction']]}, error = function(x) NULL), Type = 'character', Default = 'RMSE')
+    ArgsList[['NTrees']]               <- Quantico:::ReturnParam(xx=tryCatch({input[['CatBoostCARMA_NTrees']]}, error=function(x) NULL), Type='numeric', Default=500)
+    ArgsList[['Depth']]                <- Quantico:::ReturnParam(xx=tryCatch({input[['CatBoostCARMA_Depth']]}, error=function(x) NULL), Type='numeric', Default=6)
+    ArgsList[['EvalMetricValue']]      <- Quantico:::ReturnParam(xx=tryCatch({input[['CatBoostCARMA_EvalMetricValue']]}, error = function(x) NULL), Type='numeric', Default = 1.2)
+    ArgsList[['LossFunctionValue']]    <- Quantico:::ReturnParam(xx=tryCatch({input[['CatBoostCARMA_LossFunctionValue']]}, error = function(x) NULL), Type='numeric', Default = 1.2)
+    ArgsList[['Langevin']]             <- Quantico:::ReturnParam(xx=tryCatch({input[['CatBoostCARMA_Langevin']]}, error=function(x) NULL), Type='logical', Default=FALSE)
+    ArgsList[['DiffusionTemperature']] <- Quantico:::ReturnParam(xx=tryCatch({input[['CatBoostCARMA_DiffusionTemperature']]}, error=function(x) NULL), Type='numeric', Default=10000)
+    ArgsList[['L2_Leaf_Reg']]          <- Quantico:::ReturnParam(xx=tryCatch({input[['CatBoostCARMA_L2_Leaf_Reg']]}, error=function(x) NULL), Type='numeric', Default=NULL)
+    ArgsList[['ModelSizeReg']]         <- Quantico:::ReturnParam(xx=tryCatch({input[['CatBoostCARMA_ModelSizeReg']]}, error=function(x) NULL), Type='numeric', Default=0.50)
+    ArgsList[['MinDataInLeaf']]        <- Quantico:::ReturnParam(xx=tryCatch({input[['CatBoostCARMA_MinDataInLeaf']]}, error=function(x) NULL), Type='numeric', Default=2)
+    ArgsList[['LearningRate']]         <- Quantico:::ReturnParam(xx=tryCatch({input[['CatBoostCARMA_LearningRate']]}, error=function(x) NULL), Type='numeric', Default=NULL)
+    ArgsList[['BootStrapType']]        <- Quantico:::ReturnParam(xx=tryCatch({input[['CatBoostCARMA_BootStrapType']]}, error=function(x) NULL), Type='character', Default='Bayesian')
+    ArgsList[['GrowPolicy']]           <- Quantico:::ReturnParam(xx=tryCatch({input[['CatBoostCARMA_GrowPolicy']]}, error=function(x) NULL), Type='character', Default='SymmetricTree')
+    ArgsList[['RandomStrength']]       <- Quantico:::ReturnParam(xx=tryCatch({input[['CatBoostCARMA_RandomStrength']]}, error=function(x) NULL), Type='numeric', Default=0.90)
+    ArgsList[['RSM']]                  <- Quantico:::ReturnParam(xx=tryCatch({input[['CatBoostCARMA_RSM']]}, error=function(x) NULL), Type='numeric', Default=0.90)
+    ArgsList[['SubSample']]            <- Quantico:::ReturnParam(xx=tryCatch({input[['CatBoostCARMA_SubSample']]}, error=function(x) NULL), Type='numeric', Default=0.80)
+    ArgsList[['BorderCount']]          <- Quantico:::ReturnParam(xx=tryCatch({input[['CatBoostCARMA_BorderCount']]}, error=function(x) NULL), Type='numeric', Default=128)
+    ArgsList[['FeatureBorderType']]    <- Quantico:::ReturnParam(xx=tryCatch({input[['CatBoostCARMA_FeatureBorderType']]}, error=function(x) NULL), Type='character', Default='GreedyLogSum')
+    ArgsList[['ScoreFunction']]        <- Quantico:::ReturnParam(xx=tryCatch({input[['CatBoostCARMA_ScoreFunction']]}, error=function(x) NULL), Type='character', Default='Cosine')
   }
 
   # XGBoost Args
   if(DebugFC) print('Shiny.FC.CARMA 19')
   if(tolower(Algo) == 'xgboost') {
-    ArgsList[['EvalMetric']]      <- DataMuse:::ReturnParam(xx=tryCatch({input[['XGBoostCARMA_EvalMetric']]}, error = function(x) NULL), Type = 'character', Default = 'RMSE')
-    ArgsList[['LossFunction']]    <- DataMuse:::ReturnParam(xx=tryCatch({input[['XGBoostCARMA_LossFunction']]}, error = function(x) NULL), Type = 'character', Default = 'reg:squarederror')
-    ArgsList[['NTrees']]          <- DataMuse:::ReturnParam(xx=tryCatch({input[['XGBoostCARMA_NTrees']]}, error=function(x) NULL), Type='numeric', Default=500)
-    ArgsList[['LearningRate']]    <- DataMuse:::ReturnParam(xx=tryCatch({input[['XGBoostCARMA_LearningRate']]}, error=function(x) NULL), Type='numeric', Default=0.20)
-    ArgsList[['MaxDepth']]        <- DataMuse:::ReturnParam(xx=tryCatch({input[['XGBoostCARMA_MaxDepth']]}, error=function(x) NULL), Type='numeric', Default=6)
-    ArgsList[['MinChildWeight']]  <- DataMuse:::ReturnParam(xx=tryCatch({input[['XGBoostCARMA_MinChildWeight']]}, error=function(x) NULL), Type='numeric', Default=1)
-    ArgsList[['SubSample']]       <- DataMuse:::ReturnParam(xx=tryCatch({input[['XGBoostCARMA_SubSample']]}, error=function(x) NULL), Type='numeric', Default=0.85)
-    ArgsList[['ColSampleByTree']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['XGBoostCARMA_ColSampleByTree']]}, error=function(x) NULL), Type='numeric', Default=1.0)
-    ArgsList[['alpha']]           <- DataMuse:::ReturnParam(xx=tryCatch({input[['XGBoostCARMA_alpha']]}, error=function(x) NULL), Type='numeric', Default=4)
-    ArgsList[['lambda']]          <- DataMuse:::ReturnParam(xx=tryCatch({input[['XGBoostCARMA_lambda']]}, error=function(x) NULL), Type='numeric', Default=4)
+    ArgsList[['EvalMetric']]      <- Quantico:::ReturnParam(xx=tryCatch({input[['XGBoostCARMA_EvalMetric']]}, error = function(x) NULL), Type = 'character', Default = 'RMSE')
+    ArgsList[['LossFunction']]    <- Quantico:::ReturnParam(xx=tryCatch({input[['XGBoostCARMA_LossFunction']]}, error = function(x) NULL), Type = 'character', Default = 'reg:squarederror')
+    ArgsList[['NTrees']]          <- Quantico:::ReturnParam(xx=tryCatch({input[['XGBoostCARMA_NTrees']]}, error=function(x) NULL), Type='numeric', Default=500)
+    ArgsList[['LearningRate']]    <- Quantico:::ReturnParam(xx=tryCatch({input[['XGBoostCARMA_LearningRate']]}, error=function(x) NULL), Type='numeric', Default=0.20)
+    ArgsList[['MaxDepth']]        <- Quantico:::ReturnParam(xx=tryCatch({input[['XGBoostCARMA_MaxDepth']]}, error=function(x) NULL), Type='numeric', Default=6)
+    ArgsList[['MinChildWeight']]  <- Quantico:::ReturnParam(xx=tryCatch({input[['XGBoostCARMA_MinChildWeight']]}, error=function(x) NULL), Type='numeric', Default=1)
+    ArgsList[['SubSample']]       <- Quantico:::ReturnParam(xx=tryCatch({input[['XGBoostCARMA_SubSample']]}, error=function(x) NULL), Type='numeric', Default=0.85)
+    ArgsList[['ColSampleByTree']] <- Quantico:::ReturnParam(xx=tryCatch({input[['XGBoostCARMA_ColSampleByTree']]}, error=function(x) NULL), Type='numeric', Default=1.0)
+    ArgsList[['alpha']]           <- Quantico:::ReturnParam(xx=tryCatch({input[['XGBoostCARMA_alpha']]}, error=function(x) NULL), Type='numeric', Default=4)
+    ArgsList[['lambda']]          <- Quantico:::ReturnParam(xx=tryCatch({input[['XGBoostCARMA_lambda']]}, error=function(x) NULL), Type='numeric', Default=4)
   }
 
   # LightGBM Args
   if(DebugFC) print('Shiny.FC.CARMA 20')
   if(tolower(Algo) == 'lightgbm') {
-    ArgsList[['EvalMetric']]              <- DataMuse:::ReturnParam(xx=tryCatch({input[['LightGBMCARMA_EvalMetric']]}, error = function(x) NULL), Type = 'character', Default = 'RMSE')
-    ArgsList[['LossFunction']]            <- DataMuse:::ReturnParam(xx=tryCatch({input[['LightGBMCARMA_LossFunction']]}, error = function(x) NULL), Type = 'character', Default = 'reg:squarederror')
-    ArgsList[['Trees']]                   <- DataMuse:::ReturnParam(xx=tryCatch({input[['LightGBMCARMA_Trees']]}, error=function(x) NULL), Type='numeric', Default=500)
-    ArgsList[['Max_Depth']]               <- DataMuse:::ReturnParam(xx=tryCatch({input[['LightGBMCARMA_Max_Depth']]}, error=function(x) NULL), Type='numeric', Default=6)
-    ArgsList[['ETA']]                     <- DataMuse:::ReturnParam(xx=tryCatch({input[['LightGBMCARMA_ETA']]}, error=function(x) NULL), Type='numeric', Default=0.20)
-    ArgsList[['Min_Data_In_Leaf']]        <- DataMuse:::ReturnParam(xx=tryCatch({input[['LightGBMCARMA_Min_Data_In_Leaf']]}, error=function(x) NULL), Type='numeric', Default=1)
-    ArgsList[['Num_Leaves']]              <- DataMuse:::ReturnParam(xx=tryCatch({input[['LightGBMCARMA_Num_Leaves']]}, error=function(x) NULL), Type='numeric', Default=31)
-    ArgsList[['Bagging_Fraction']]        <- DataMuse:::ReturnParam(xx=tryCatch({input[['LightGBMCARMA_Bagging_Fraction']]}, error=function(x) NULL), Type='numeric', Default=1)
-    ArgsList[['Feature_Fraction']]        <- DataMuse:::ReturnParam(xx=tryCatch({input[['LightGBMCARMA_Feature_Fraction']]}, error=function(x) NULL), Type='numeric', Default=1)
-    ArgsList[['Feature_Fraction_Bynode']] <- DataMuse:::ReturnParam(xx=tryCatch({input[['LightGBMCARMA_Feature_Fraction_Bynode']]}, error=function(x) NULL), Type='numeric', Default=1)
-    ArgsList[['Lambda_L1']]               <- DataMuse:::ReturnParam(xx=tryCatch({input[['LightGBMCARMA_Lambda_L1']]}, error=function(x) NULL), Type='numeric', Default=4)
-    ArgsList[['Lambda_L2']]               <- DataMuse:::ReturnParam(xx=tryCatch({input[['LightGBMCARMA_Lambda_L2']]}, error=function(x) NULL), Type='numeric', Default=4)
+    ArgsList[['EvalMetric']]              <- Quantico:::ReturnParam(xx=tryCatch({input[['LightGBMCARMA_EvalMetric']]}, error = function(x) NULL), Type = 'character', Default = 'RMSE')
+    ArgsList[['LossFunction']]            <- Quantico:::ReturnParam(xx=tryCatch({input[['LightGBMCARMA_LossFunction']]}, error = function(x) NULL), Type = 'character', Default = 'reg:squarederror')
+    ArgsList[['Trees']]                   <- Quantico:::ReturnParam(xx=tryCatch({input[['LightGBMCARMA_Trees']]}, error=function(x) NULL), Type='numeric', Default=500)
+    ArgsList[['Max_Depth']]               <- Quantico:::ReturnParam(xx=tryCatch({input[['LightGBMCARMA_Max_Depth']]}, error=function(x) NULL), Type='numeric', Default=6)
+    ArgsList[['ETA']]                     <- Quantico:::ReturnParam(xx=tryCatch({input[['LightGBMCARMA_ETA']]}, error=function(x) NULL), Type='numeric', Default=0.20)
+    ArgsList[['Min_Data_In_Leaf']]        <- Quantico:::ReturnParam(xx=tryCatch({input[['LightGBMCARMA_Min_Data_In_Leaf']]}, error=function(x) NULL), Type='numeric', Default=1)
+    ArgsList[['Num_Leaves']]              <- Quantico:::ReturnParam(xx=tryCatch({input[['LightGBMCARMA_Num_Leaves']]}, error=function(x) NULL), Type='numeric', Default=31)
+    ArgsList[['Bagging_Fraction']]        <- Quantico:::ReturnParam(xx=tryCatch({input[['LightGBMCARMA_Bagging_Fraction']]}, error=function(x) NULL), Type='numeric', Default=1)
+    ArgsList[['Feature_Fraction']]        <- Quantico:::ReturnParam(xx=tryCatch({input[['LightGBMCARMA_Feature_Fraction']]}, error=function(x) NULL), Type='numeric', Default=1)
+    ArgsList[['Feature_Fraction_Bynode']] <- Quantico:::ReturnParam(xx=tryCatch({input[['LightGBMCARMA_Feature_Fraction_Bynode']]}, error=function(x) NULL), Type='numeric', Default=1)
+    ArgsList[['Lambda_L1']]               <- Quantico:::ReturnParam(xx=tryCatch({input[['LightGBMCARMA_Lambda_L1']]}, error=function(x) NULL), Type='numeric', Default=4)
+    ArgsList[['Lambda_L2']]               <- Quantico:::ReturnParam(xx=tryCatch({input[['LightGBMCARMA_Lambda_L2']]}, error=function(x) NULL), Type='numeric', Default=4)
   }
 
   # Code collection
-  CodeList <- tryCatch({DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+  CodeList <- tryCatch({Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
     "\n",
     "# Forecasting: Feature Enginnering Args\n",
-    "ArgsList[['NTrees']] <- ", DataMuse:::CEP(ArgsList[['NTrees']]), "\n",
-    "ArgsList[['Depth']] <- ", DataMuse:::CEP(ArgsList[['Depth']]), "\n",
-    "ArgsList[['Langevin']] <- ", DataMuse:::CEPP(ArgsList[['Langevin']]), "\n",
-    "ArgsList[['DiffusionTemperature']] <- ", DataMuse:::CEPP(ArgsList[['DiffusionTemperature']]), "\n",
-    "ArgsList[['L2_Leaf_Reg']] <- ", DataMuse:::CEP(ArgsList[['L2_Leaf_Reg']]), "\n",
-    "ArgsList[['ModelSizeReg']] <- ", DataMuse:::CEP(ArgsList[['ModelSizeReg']]), "\n",
-    "ArgsList[['MinDataInLeaf']] <- ", DataMuse:::CEPP(ArgsList[['MinDataInLeaf']]), "\n",
-    "ArgsList[['LearningRate']] <- ", DataMuse:::CEPP(ArgsList[['LearningRate']]), "\n",
-    "ArgsList[['BootStrapType']] <- ", DataMuse:::CEP(ArgsList[['BootStrapType']]), "\n",
-    "ArgsList[['GrowPolicy']] <- ", DataMuse:::CEP(ArgsList[['GrowPolicy']]), "\n",
-    "ArgsList[['RandomStrength']] <- ", DataMuse:::CEPP(ArgsList[['RandomStrength']]), "\n",
-    "ArgsList[['RSM']] <- ", DataMuse:::CEP(ArgsList[['RSM']]), "\n",
-    "ArgsList[['SubSample']] <- ", DataMuse:::CEP(ArgsList[['SubSample']]), "\n",
-    "ArgsList[['BorderCount']] <- ", DataMuse:::CEP(ArgsList[['BorderCount']]), "\n",
-    "ArgsList[['FeatureBorderType']] <- ", DataMuse:::CEP(ArgsList[['FeatureBorderType']]), "\n",
-    "ArgsList[['ScoreFunction']] <- ", DataMuse:::CEP(ArgsList[['ScoreFunction']]), "\n"))}, error = function(x) CodeList)
+    "ArgsList[['NTrees']] <- ", Quantico:::CEP(ArgsList[['NTrees']]), "\n",
+    "ArgsList[['Depth']] <- ", Quantico:::CEP(ArgsList[['Depth']]), "\n",
+    "ArgsList[['Langevin']] <- ", Quantico:::CEPP(ArgsList[['Langevin']]), "\n",
+    "ArgsList[['DiffusionTemperature']] <- ", Quantico:::CEPP(ArgsList[['DiffusionTemperature']]), "\n",
+    "ArgsList[['L2_Leaf_Reg']] <- ", Quantico:::CEP(ArgsList[['L2_Leaf_Reg']]), "\n",
+    "ArgsList[['ModelSizeReg']] <- ", Quantico:::CEP(ArgsList[['ModelSizeReg']]), "\n",
+    "ArgsList[['MinDataInLeaf']] <- ", Quantico:::CEPP(ArgsList[['MinDataInLeaf']]), "\n",
+    "ArgsList[['LearningRate']] <- ", Quantico:::CEPP(ArgsList[['LearningRate']]), "\n",
+    "ArgsList[['BootStrapType']] <- ", Quantico:::CEP(ArgsList[['BootStrapType']]), "\n",
+    "ArgsList[['GrowPolicy']] <- ", Quantico:::CEP(ArgsList[['GrowPolicy']]), "\n",
+    "ArgsList[['RandomStrength']] <- ", Quantico:::CEPP(ArgsList[['RandomStrength']]), "\n",
+    "ArgsList[['RSM']] <- ", Quantico:::CEP(ArgsList[['RSM']]), "\n",
+    "ArgsList[['SubSample']] <- ", Quantico:::CEP(ArgsList[['SubSample']]), "\n",
+    "ArgsList[['BorderCount']] <- ", Quantico:::CEP(ArgsList[['BorderCount']]), "\n",
+    "ArgsList[['FeatureBorderType']] <- ", Quantico:::CEP(ArgsList[['FeatureBorderType']]), "\n",
+    "ArgsList[['ScoreFunction']] <- ", Quantico:::CEP(ArgsList[['ScoreFunction']]), "\n"))}, error = function(x) CodeList)
 
   # Ensure data column is of correct type
   if(DebugFC) print('Shiny.FC.CARMA 21')
-  Output <- DataMuse::FC.DateCast(ArgsList, DebugFC, VD = ValidationData)
+  Output <- Quantico::FC.DateCast(ArgsList, DebugFC, VD = ValidationData)
   ArgsList <- Output$ArgsList; ValidationData <- Output$VD; rm(Output); gc()
 
   # Code collection
-  CodeList <- tryCatch({DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+  CodeList <- tryCatch({Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
     "\n",
     "# Ensure date column is correct date type\n",
     "DebugFC <- FALSE\n",
-    "Output <- DataMuse::FC.DateCast(ArgsList, DebugFC, VD = ValidationData)\n",
+    "Output <- Quantico::FC.DateCast(ArgsList, DebugFC, VD = ValidationData)\n",
     "ArgsList <- Output$ArgsList; ValidationData <- Output$VD; rm(Output); gc()\n"))}, error = function(x) CodeList)
 
   # ----
@@ -7437,10 +7437,10 @@ Shiny.FC.CARMA <- function(input,
       if(DebugFC) print('Shiny.FC.CARMA 22.a')
 
       # Train CatBoost for Forecasting Purposes
-      Output <- DataMuse::Shiny.FC.Panel.Train(ArgsList, CodeList, DataList, ModelID, VD = ValidationData, DebugFC = DebugFC, Algo = Algo)
+      Output <- Quantico::Shiny.FC.Panel.Train(ArgsList, CodeList, DataList, ModelID, VD = ValidationData, DebugFC = DebugFC, Algo = Algo)
       DataList <- Output$DataList; CodeList <- Output$CodeList; ArgsList <- Output$ArgsList; ReportOutput <- Output$ReportObjects
-      for(i in seq_len(TabCount)) DataMuse::PickerInput(session, input, Update = TRUE, InputID = paste0("EDAData", i), Label = 'Data Selection', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
-      for(i in seq_len(TabCount)) DataMuse::PickerInput(session, input, Update = TRUE, InputID = paste0("DataOutputSelection", i), Label = 'Display Data', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
+      for(i in seq_len(TabCount)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0("EDAData", i), Label = 'Data Selection', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
+      for(i in seq_len(TabCount)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0("DataOutputSelection", i), Label = 'Display Data', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
 
       # Return results
       if(DebugFC) print('return from Shiny.FC.CARMA')
@@ -7462,10 +7462,10 @@ Shiny.FC.CARMA <- function(input,
       if(DebugFC) print('Shiny.FC.CARMA 22.b')
 
       # Backtest CatBoost for Forecasting Purposes
-      Output <- DataMuse::Shiny.FC.Panel.Backtest(ArgsList, CodeList, DataList, ModelID, VD = ValidationData, DebugFC = DebugFC, Algo = Algo)
+      Output <- Quantico::Shiny.FC.Panel.Backtest(ArgsList, CodeList, DataList, ModelID, VD = ValidationData, DebugFC = DebugFC, Algo = Algo)
       DataList <- Output$DataList; CodeList <- Output$CodeList; ArgsList <- Output$ArgsList
-      for(i in seq_len(TabCount)) DataMuse::PickerInput(session, input, Update = TRUE, InputID = paste0("EDAData", i), Label = 'Data Selection', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
-      for(i in seq_len(TabCount)) DataMuse::PickerInput(session, input, Update = TRUE, InputID = paste0("DataOutputSelection", i), Label = 'Display Data', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
+      for(i in seq_len(TabCount)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0("EDAData", i), Label = 'Data Selection', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
+      for(i in seq_len(TabCount)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0("DataOutputSelection", i), Label = 'Display Data', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
 
       # Return results
       if(DebugFC) print('Return from Shiny.FC.CARMA')
@@ -7511,7 +7511,7 @@ Shiny.FC.CARMA <- function(input,
 
       # Backtest CatBoost for Forecasting Purposes
       if(DebugFC) {print('Run: Shiny.FC.Panel.Backest.FeatureEval()'); print(paste0('Validation is data.table = ', data.table::is.data.table(ValidationData)))}
-      Output <- DataMuse::Shiny.FC.Panel.Backest.FeatureEval(LoopMetrics, ArgsList, CodeList, DataList, ModelID, VD = ValidationData, DebugFC = DebugFC)
+      Output <- Quantico::Shiny.FC.Panel.Backest.FeatureEval(LoopMetrics, ArgsList, CodeList, DataList, ModelID, VD = ValidationData, DebugFC = DebugFC)
       DataList <- Output$DataList; CodeList <- Output$CodeList; ArgsList <- Output$ArgsList; LoopMetrics <- Output$LoopMetrics
       ColToCheck <- 'MAE On'
 
@@ -7544,9 +7544,9 @@ Shiny.FC.CARMA <- function(input,
       # tryCatch({data.table::set(DataList[[paste0(ModelID, "_FeatureEngineeringTest")]][['data']], j = "Methods", value = NULL)}, error = function(x) NULL)
 
       if(DebugFC) print('Shiny.FC.Panel.Backest.FeatureEval post step 6')
-      DataList <- DataMuse:::DM.DataListUpdate(dl = DataList, dn = paste0(ModelID, "_FeatureEngineeringTest"), Sample = TRUE)
-      for(i in seq_len(TabCount)) DataMuse::PickerInput(session, input, Update = TRUE, InputID = paste0("EDAData", i), Label = 'Data Selection', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
-      for(i in seq_len(TabCount)) DataMuse::PickerInput(session, input, Update = TRUE, InputID = paste0("DataOutputSelection", i), Label = 'Display Data', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
+      DataList <- Quantico:::DM.DataListUpdate(dl = DataList, dn = paste0(ModelID, "_FeatureEngineeringTest"), Sample = TRUE)
+      for(i in seq_len(TabCount)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0("EDAData", i), Label = 'Data Selection', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
+      for(i in seq_len(TabCount)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0("DataOutputSelection", i), Label = 'Display Data', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
 
       # Return results
       if(DebugFC) print('Return from Shiny.FC.CARMA')
@@ -7567,18 +7567,18 @@ Shiny.FC.CARMA <- function(input,
       if(DebugFC) print('Shiny.FC.CARMA 22.d')
 
       # Get the Model Update Frequency # Get the Values Update Frequency
-      muu <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0(Algo, 'CARMA_CrossEvalModelUpdate')]]}, error=function(x) NULL), Type='logical', Default=TRUE)
-      vuu <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0(Algo, 'CARMA_CrossEvalValuesUpdate')]]}, error=function(x) NULL), Type='logical', Default=TRUE)
+      muu <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0(Algo, 'CARMA_CrossEvalModelUpdate')]]}, error=function(x) NULL), Type='logical', Default=TRUE)
+      vuu <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0(Algo, 'CARMA_CrossEvalValuesUpdate')]]}, error=function(x) NULL), Type='logical', Default=TRUE)
 
-      muff <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0(Algo, 'CARMA_CrossEvalModelUpdateFreq')]]}, error=function(x) NULL), Type='numeric', Default=1)
-      vuff <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0(Algo, 'CARMA_CrossEvalValuesUpdateFreq')]]}, error=function(x) NULL), Type='numeric', Default=1)
+      muff <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0(Algo, 'CARMA_CrossEvalModelUpdateFreq')]]}, error=function(x) NULL), Type='numeric', Default=1)
+      vuff <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0(Algo, 'CARMA_CrossEvalValuesUpdateFreq')]]}, error=function(x) NULL), Type='numeric', Default=1)
 
       # Run Cross Eval
-      if(DebugFC) print('Run DataMuse::Shiny.FC.Panel.Backest.RollingEval()')
-      Output <- DataMuse::Shiny.FC.Panel.Backest.RollingEval(ArgsList, DataList, CodeList, ModelID, VD = ValidationData, mu = muu, vu = vuu, vuf = vuff, muf = muff, Algo = Algo, DebugFC = DebugFC)
+      if(DebugFC) print('Run Quantico::Shiny.FC.Panel.Backest.RollingEval()')
+      Output <- Quantico::Shiny.FC.Panel.Backest.RollingEval(ArgsList, DataList, CodeList, ModelID, VD = ValidationData, mu = muu, vu = vuu, vuf = vuff, muf = muff, Algo = Algo, DebugFC = DebugFC)
       DataList <- Output$DataList; CodeList <- Output$CodeList; ArgsList <- Output$ArgsList
-      for(i in seq_len(TabCount)) DataMuse::PickerInput(session, input, Update = TRUE, InputID = paste0("EDAData", i), Label = 'Data Selection', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
-      for(i in seq_len(TabCount)) DataMuse::PickerInput(session, input, Update = TRUE, InputID = paste0("DataOutputSelection", i), Label = 'Display Data', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
+      for(i in seq_len(TabCount)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0("EDAData", i), Label = 'Data Selection', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
+      for(i in seq_len(TabCount)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0("DataOutputSelection", i), Label = 'Display Data', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
 
       # Return results
       if(DebugFC) print('Return from Shiny.FC.CARMA')
@@ -7648,10 +7648,10 @@ Shiny.FC.SS <- function(input,
   if(length(wd) > 0L) {
     if(DebugFC) print(wd)
     ArgsList[['SaveDataPath']] <- wd
-    CodeList <- tryCatch({DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+    CodeList <- tryCatch({Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
       "\n",
       "# Directory for storing objects\n",
-      "ArgsList[['SaveDataPath']] <- ", DataMuse:::CEP(wd), "\n"))
+      "ArgsList[['SaveDataPath']] <- ", Quantico:::CEP(wd), "\n"))
     }, error = function(x) CodeList)
   } else {
     if(DebugFC) print('wd is NULL')
@@ -7671,32 +7671,32 @@ Shiny.FC.SS <- function(input,
   # Note: ArgsList is forced to NULL as an Argument to this function when Grid Tune is on
   if(length(ArgsList) > 0L) {
     if(DebugFC) print("ArgsList > 0")
-    ModelID <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0(Algo, '_ArgsList')]]}, error=function(x) NULL), Type='character', Default=NULL); if(DebugFC) print('here 3.2')
+    ModelID <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0(Algo, '_ArgsList')]]}, error=function(x) NULL), Type='character', Default=NULL); if(DebugFC) print('here 3.2')
     if(DebugFC) print('here 3.2')
     if(length(ModelID) == 0L) ModelID <- "SS001"
-    CodeList <- tryCatch({DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+    CodeList <- tryCatch({Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
       "\n",
       "# Define ModelID\n",
-      "ModelID <- ", DataMuse:::CEP(ModelID), "\n",
+      "ModelID <- ", Quantico:::CEP(ModelID), "\n",
       "if(length(ModelID) == 0L) ModelID <- 'SS001'\n"
     ))
     }, error = function(x) CodeList)
   } else {
     if(DebugFC) print("ArgsList == 0")
-    ModelID <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0(Algo, '_ModelID')]]}, error=function(x) NULL), Type='character', Default=NULL); if(DebugFC) print('here 3.2')
+    ModelID <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0(Algo, '_ModelID')]]}, error=function(x) NULL), Type='character', Default=NULL); if(DebugFC) print('here 3.2')
     if(ModelID == "") ModelID <- "SS001"
     ArgsList[['ModelID']] <- ModelID
 
     # ModelID code block
-    CodeList <- tryCatch({DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+    CodeList <- tryCatch({Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
       "\n",
       "# Define ModelID\n",
-      "ModelID <- ", DataMuse:::CEP(ModelID), "\n",
+      "ModelID <- ", Quantico:::CEP(ModelID), "\n",
       "if(length(ModelID) == 0L) ModelID <- 'SS001'\n",
-      "ArgsList[['ModelID']] <- ", DataMuse:::CEP(ModelID), "\n"))
+      "ArgsList[['ModelID']] <- ", Quantico:::CEP(ModelID), "\n"))
     }, error = function(x) {
       if(DebugFC) print("ModelID code block: failed")
-      if(DebugFC) print(paste0("DataMuse:::CEP(ModelID) = ", DataMuse:::CEP(ModelID)))
+      if(DebugFC) print(paste0("Quantico:::CEP(ModelID) = ", Quantico:::CEP(ModelID)))
       CodeList
     })
   }
@@ -7709,14 +7709,14 @@ Shiny.FC.SS <- function(input,
   # data, RunMode
   #
   # Note: data comes from user provided data for both Grid Tuning and Forecasting
-  ArgsList[['data']] <- data.table::copy(DataList[[DataMuse:::ReturnParam(xx=tryCatch({input[[paste0(Algo, '_Data')]]}, error=function(x) NULL), Type='character', Default=NULL)]][['data']])
-  ArgsList[['RunMode']] <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0(Algo, "_RunMode")]]}, error = NULL), Type = "character", Default = "Forecast")
-  CodeList <- tryCatch({DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+  ArgsList[['data']] <- data.table::copy(DataList[[Quantico:::ReturnParam(xx=tryCatch({input[[paste0(Algo, '_Data')]]}, error=function(x) NULL), Type='character', Default=NULL)]][['data']])
+  ArgsList[['RunMode']] <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0(Algo, "_RunMode")]]}, error = NULL), Type = "character", Default = "Forecast")
+  CodeList <- tryCatch({Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
     "\n",
     "# Grab data from DataList and store in ArgsList under parameter name 'data'\n",
     "# Store RunMode in ArgsList\n",
-    "ArgsList[['data']] <- DataList[[", DataMuse:::CEP(DataMuse:::ReturnParam(xx=tryCatch({input[[paste0(Algo, '_Data')]]}, error=function(x) NULL), Type='character', Default=NULL)), "]]\n",
-    "ArgsList[['RunMode']] <- ", DataMuse:::CEP(ArgsList[['RunMode']]), "\n",
+    "ArgsList[['data']] <- DataList[[", Quantico:::CEP(Quantico:::ReturnParam(xx=tryCatch({input[[paste0(Algo, '_Data')]]}, error=function(x) NULL), Type='character', Default=NULL)), "]]\n",
+    "ArgsList[['RunMode']] <- ", Quantico:::CEP(ArgsList[['RunMode']]), "\n",
     "\n"))
   }, error = function(x) CodeList)
 
@@ -7735,13 +7735,13 @@ Shiny.FC.SS <- function(input,
   if(ArgsList[['RunMode']] == "Grid Tune") {
 
     ArgsList[['ModelID']] <- ModelID
-    CodeList <- tryCatch({DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+    CodeList <- tryCatch({Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
       "\n",
       "# GRID TUNING ::::::::::: \n\n",
       "# Copy data from DataList and store in ArgsList under parameter name 'data'\n",
       "# Store ModelID in ArgsList\n",
       "if(!exists('ArgsList')) ArgsList <- list()\n",
-      "ArgsList[['ModelID']] <- ", DataMuse:::CEP(ModelID),
+      "ArgsList[['ModelID']] <- ", Quantico:::CEP(ModelID),
       "\n"))
     }, error = function(x) CodeList)
 
@@ -7753,7 +7753,7 @@ Shiny.FC.SS <- function(input,
     } else {
       ValidRun <- FALSE
     }
-    CodeList <- tryCatch({DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+    CodeList <- tryCatch({Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
       "\n",
       "# Check to see if run will be valid\n",
       "if(ArgsList[['RunMode']] == 'Grid Tune' && data.table::is.data.table(ArgsList[['data']]) && ArgsList[['data']][,.N] > 0) {\n  ",
@@ -7773,17 +7773,17 @@ Shiny.FC.SS <- function(input,
 
     if(DebugFC)  print('here 8.0')
 
-    ArgsList[['ArgsList']] <- NULL #DataMuse:::ReturnParam(xx=tryCatch({input[[paste0(Algo, "_ArgsList")]]}, error = NULL), Type = "character", Default = NULL)
-    ArgsList[['TargetColumnName']] <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0(Algo, "_TargetColumnName")]]}, error = NULL), Type = "character", Default = NULL)
-    ArgsList[['DateColumnName']] <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0(Algo, "_DateColumnName")]]}, error = NULL), Type = "character", Default = NULL)
-    ArgsList[['TimeUnit']] <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0(Algo, "_TimeUnit")]]}, error = NULL), Type = "character", Default = NULL)
-    CodeList <- tryCatch({DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+    ArgsList[['ArgsList']] <- NULL #Quantico:::ReturnParam(xx=tryCatch({input[[paste0(Algo, "_ArgsList")]]}, error = NULL), Type = "character", Default = NULL)
+    ArgsList[['TargetColumnName']] <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0(Algo, "_TargetColumnName")]]}, error = NULL), Type = "character", Default = NULL)
+    ArgsList[['DateColumnName']] <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0(Algo, "_DateColumnName")]]}, error = NULL), Type = "character", Default = NULL)
+    ArgsList[['TimeUnit']] <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0(Algo, "_TimeUnit")]]}, error = NULL), Type = "character", Default = NULL)
+    CodeList <- tryCatch({Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
       "\n",
       "# Store ArgsList, TargetColumnName, and DateColumnName into ArgsList\n",
       "ArgsList[['ArgsList']] <- NULL\n",
-      "ArgsList[['TargetColumnName']] <- ", DataMuse:::CEP(ArgsList[['TargetColumnName']]), "\n",
-      "ArgsList[['DateColumnName']] <- ", DataMuse:::CEP(ArgsList[['DateColumnName']]), "\n",
-      "ArgsList[['TimeUnit']] <- ", DataMuse:::CEP(ArgsList[['TimeUnit']], "\n")))
+      "ArgsList[['TargetColumnName']] <- ", Quantico:::CEP(ArgsList[['TargetColumnName']]), "\n",
+      "ArgsList[['DateColumnName']] <- ", Quantico:::CEP(ArgsList[['DateColumnName']]), "\n",
+      "ArgsList[['TimeUnit']] <- ", Quantico:::CEP(ArgsList[['TimeUnit']], "\n")))
     }, error = function(x) CodeList)
 
     # Ensure DateVariable is a Date Type
@@ -7811,7 +7811,7 @@ Shiny.FC.SS <- function(input,
     }
 
     # Target -> Date code blocks
-    CodeList <- tryCatch({DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+    CodeList <- tryCatch({Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
       "\n",
       "# Target must be defined, otherwise stop procedure\n",
       "if(length(ArgsList[['TargetColumnName']]) == 0) {\n  ",
@@ -7820,7 +7820,7 @@ Shiny.FC.SS <- function(input,
       "stop('TargetColumnName must be in data')\n",
       "}\n"))
     }, error = function(x) CodeList)
-    CodeList <- tryCatch({DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+    CodeList <- tryCatch({Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
       "\n",
       "# Date must be defined, otherwise stop procedure\n",
       "if(length(ArgsList[['DateColumnName']]) == 0) {\n  ",
@@ -7831,17 +7831,17 @@ Shiny.FC.SS <- function(input,
     }, error = function(x) CodeList)
 
     if(DebugFC) print('here 8.2')
-    ArgsList[['FCPeriods']] <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0(Algo, "_FCPeriods")]]}, error = NULL), Type = "numeric", Default = 5)
-    ArgsList[['EvaluationMetric']] <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0(Algo, "_EvaluationMetric")]]}, error = NULL), Type = "character", Default = "MSE")
-    ArgsList[['TrainWeighting']] <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0(Algo, "_TrainWeighting")]]}, error = NULL), Type = "numeric", Default = 0.50)
+    ArgsList[['FCPeriods']] <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0(Algo, "_FCPeriods")]]}, error = NULL), Type = "numeric", Default = 5)
+    ArgsList[['EvaluationMetric']] <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0(Algo, "_EvaluationMetric")]]}, error = NULL), Type = "character", Default = "MSE")
+    ArgsList[['TrainWeighting']] <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0(Algo, "_TrainWeighting")]]}, error = NULL), Type = "numeric", Default = 0.50)
     ArgsList[['DebugMode']] <- DebugFC
-    CodeList <- tryCatch({DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+    CodeList <- tryCatch({Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
       "\n",
       "# Define additional args\n",
-      "ArgsList[['FCPeriods']] <- ", DataMuse:::CEP(ArgsList[['FCPeriods']]), "\n",
-      "ArgsList[['EvaluationMetric']] <- ", DataMuse:::CEP(ArgsList[['EvaluationMetric']]), "\n",
-      "ArgsList[['TrainWeighting']] <- ", DataMuse:::CEP(ArgsList[['TrainWeighting']]), "\n",
-      "ArgsList[['DebugMode']] <- ", DataMuse:::CEPP(ArgsList[['DebugMode']]), "\n"))
+      "ArgsList[['FCPeriods']] <- ", Quantico:::CEP(ArgsList[['FCPeriods']]), "\n",
+      "ArgsList[['EvaluationMetric']] <- ", Quantico:::CEP(ArgsList[['EvaluationMetric']]), "\n",
+      "ArgsList[['TrainWeighting']] <- ", Quantico:::CEP(ArgsList[['TrainWeighting']]), "\n",
+      "ArgsList[['DebugMode']] <- ", Quantico:::CEPP(ArgsList[['DebugMode']]), "\n"))
     }, error = function(x) CodeList)
 
     # ********************************* ----
@@ -7850,7 +7850,7 @@ Shiny.FC.SS <- function(input,
 
     # Ensure only the required columns are used
     data <- data.table::copy(ArgsList[['data']][, .SD, .SDcols = c(ArgsList[['DateColumnName']], ArgsList[['TargetColumnName']])])
-    CodeList <- tryCatch({DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+    CodeList <- tryCatch({Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
       "\n",
       "# Define additional args\n",
       "data <- data.table::copy(ArgsList[['data']][, .SD, .SDcols = c(ArgsList[['DateColumnName']], ArgsList[['TargetColumnName']])])\n"))
@@ -7864,7 +7864,7 @@ Shiny.FC.SS <- function(input,
     # Aggregate data to ensure single timestamp per record
     data <- data[, mean(get(ArgsList[['TargetColumnName']]), na.rm = TRUE), by = eval(ArgsList[['DateColumnName']])]
     data.table::setnames(data, c(names(data)[1L], names(data)[2L]), c(ArgsList[['DateColumnName']], ArgsList[['TargetColumnName']]))
-    CodeList <- tryCatch({DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+    CodeList <- tryCatch({Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
       "\n",
       "# Aggregate data to ensure single timestamp per record\n",
       "data <- data[, mean(get(ArgsList[['TargetColumnName']]), na.rm = TRUE), by = eval(ArgsList[['DateColumnName']])]\n",
@@ -7874,7 +7874,7 @@ Shiny.FC.SS <- function(input,
     if(class(data[[ArgsList[['DateColumnName']]]])[1L] %in% "IDate") {
       data[, eval(ArgsList[['DateColumnName']]) := as.Date(get(ArgsList[['DateColumnName']]))]
     }
-    CodeList <- tryCatch({DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+    CodeList <- tryCatch({Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
       "\n",
       "# Convert date column to type date if of type IDate\n",
       "if(class(data[[ArgsList[['DateColumnName']]]])[1L] %in% 'IDate') {\n  ",
@@ -7890,60 +7890,60 @@ Shiny.FC.SS <- function(input,
 
     # SARIMA Features
     if(Algo == "SARIMA") {
-      ArgsList[['MaxLags']] <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0(Algo, "_MaxLags")]]}, error = NULL), Type = "numeric", Default = 0)
-      ArgsList[['MaxSeasonalLags']] <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0(Algo, "_MaxSeasonalLags")]]}, error = NULL), Type = "numeric", Default = 0)
-      ArgsList[['MaxMovingAverages']] <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0(Algo, "_MaxMovingAverages")]]}, error = NULL), Type = "numeric", Default = 0)
-      ArgsList[['MaxSeasonalMovingAverages']] <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0(Algo, "_MaxSeasonalMovingAverages")]]}, error = NULL), Type = "numeric", Default = 0)
-      ArgsList[['MaxFourierPairs']] <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0(Algo, "_MaxFourierPairs")]]}, error = NULL), Type = "numeric", Default = 0)
-      ArgsList[['MaxConsecutiveFail']] <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0(Algo, "_MaxConsecutiveFail")]]}, error = NULL), Type = "numeric", Default = 20)
-      ArgsList[['MaxNumberModel']] <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0(Algo, "_MaxNumberModel")]]}, error = NULL), Type = "numeric", Default = 30)
-      ArgsList[['MaxRunTimeMinute']] <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0(Algo, "_MaxRunTimeMinute")]]}, error = NULL), Type = "numeric", Default = 10)
-      #CodeList <- tryCatch({DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
-      CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+      ArgsList[['MaxLags']] <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0(Algo, "_MaxLags")]]}, error = NULL), Type = "numeric", Default = 0)
+      ArgsList[['MaxSeasonalLags']] <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0(Algo, "_MaxSeasonalLags")]]}, error = NULL), Type = "numeric", Default = 0)
+      ArgsList[['MaxMovingAverages']] <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0(Algo, "_MaxMovingAverages")]]}, error = NULL), Type = "numeric", Default = 0)
+      ArgsList[['MaxSeasonalMovingAverages']] <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0(Algo, "_MaxSeasonalMovingAverages")]]}, error = NULL), Type = "numeric", Default = 0)
+      ArgsList[['MaxFourierPairs']] <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0(Algo, "_MaxFourierPairs")]]}, error = NULL), Type = "numeric", Default = 0)
+      ArgsList[['MaxConsecutiveFail']] <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0(Algo, "_MaxConsecutiveFail")]]}, error = NULL), Type = "numeric", Default = 20)
+      ArgsList[['MaxNumberModel']] <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0(Algo, "_MaxNumberModel")]]}, error = NULL), Type = "numeric", Default = 30)
+      ArgsList[['MaxRunTimeMinute']] <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0(Algo, "_MaxRunTimeMinute")]]}, error = NULL), Type = "numeric", Default = 10)
+      #CodeList <- tryCatch({Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+      CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
         "\n",
         "# SARIMA Args\n",
-        "ArgsList[['MaxLags']] <- ", DataMuse:::CEPP(ArgsList[['MaxLags']]), "\n",
-        "ArgsList[['MaxSeasonalLags']] <- ", DataMuse:::CEPP(ArgsList[['MaxSeasonalLags']]), "\n",
-        "ArgsList[['MaxMovingAverages']] <- ", DataMuse:::CEPP(ArgsList[['MaxMovingAverages']]), "\n",
-        "ArgsList[['MaxSeasonalMovingAverages']] <- ", DataMuse:::CEPP(ArgsList[['MaxSeasonalMovingAverages']]), "\n",
-        "ArgsList[['MaxFourierPairs']] <- ", DataMuse:::CEPP(ArgsList[['MaxFourierPairs']]), "\n",
-        "ArgsList[['MaxConsecutiveFail']] <- ", DataMuse:::CEPP(ArgsList[['MaxConsecutiveFail']]), "\n",
-        "ArgsList[['MaxNumberModel']] <- ", DataMuse:::CEPP(ArgsList[['MaxNumberModel']]), "\n",
-        "ArgsList[['MaxRunTimeMinute']] <- ", DataMuse:::CEPP(ArgsList[['MaxRunTimeMinute']]), "\n"))
+        "ArgsList[['MaxLags']] <- ", Quantico:::CEPP(ArgsList[['MaxLags']]), "\n",
+        "ArgsList[['MaxSeasonalLags']] <- ", Quantico:::CEPP(ArgsList[['MaxSeasonalLags']]), "\n",
+        "ArgsList[['MaxMovingAverages']] <- ", Quantico:::CEPP(ArgsList[['MaxMovingAverages']]), "\n",
+        "ArgsList[['MaxSeasonalMovingAverages']] <- ", Quantico:::CEPP(ArgsList[['MaxSeasonalMovingAverages']]), "\n",
+        "ArgsList[['MaxFourierPairs']] <- ", Quantico:::CEPP(ArgsList[['MaxFourierPairs']]), "\n",
+        "ArgsList[['MaxConsecutiveFail']] <- ", Quantico:::CEPP(ArgsList[['MaxConsecutiveFail']]), "\n",
+        "ArgsList[['MaxNumberModel']] <- ", Quantico:::CEPP(ArgsList[['MaxNumberModel']]), "\n",
+        "ArgsList[['MaxRunTimeMinute']] <- ", Quantico:::CEPP(ArgsList[['MaxRunTimeMinute']]), "\n"))
       #}, error = function(x) CodeList)
     }
 
     # NNET Features
     if(Algo == "NNET") {
-      ArgsList[['MaxLags']] <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0(Algo, "_MaxLags")]]}, error = NULL), Type = "numeric", Default = 0)
-      ArgsList[['MaxSeasonalLags']] <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0(Algo, "_MaxSeasonalLags")]]}, error = NULL), Type = "numeric", Default = 0)
-      ArgsList[['MaxFourierPairs']] <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0(Algo, "_MaxFourierPairs")]]}, error = NULL), Type = "numeric", Default = 0)
-      ArgsList[['MaxConsecutiveFail']] <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0(Algo, "_MaxConsecutiveFail")]]}, error = NULL), Type = "numeric", Default = 20)
-      ArgsList[['MaxNumberModel']] <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0(Algo, "_MaxNumberModel")]]}, error = NULL), Type = "numeric", Default = 30)
-      ArgsList[['MaxRunTimeMinute']] <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0(Algo, "_MaxRunTimeMinute")]]}, error = NULL), Type = "numeric", Default = 10)
-      CodeList <- tryCatch({DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+      ArgsList[['MaxLags']] <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0(Algo, "_MaxLags")]]}, error = NULL), Type = "numeric", Default = 0)
+      ArgsList[['MaxSeasonalLags']] <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0(Algo, "_MaxSeasonalLags")]]}, error = NULL), Type = "numeric", Default = 0)
+      ArgsList[['MaxFourierPairs']] <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0(Algo, "_MaxFourierPairs")]]}, error = NULL), Type = "numeric", Default = 0)
+      ArgsList[['MaxConsecutiveFail']] <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0(Algo, "_MaxConsecutiveFail")]]}, error = NULL), Type = "numeric", Default = 20)
+      ArgsList[['MaxNumberModel']] <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0(Algo, "_MaxNumberModel")]]}, error = NULL), Type = "numeric", Default = 30)
+      ArgsList[['MaxRunTimeMinute']] <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0(Algo, "_MaxRunTimeMinute")]]}, error = NULL), Type = "numeric", Default = 10)
+      CodeList <- tryCatch({Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
         "\n",
         "# NNET Args\n",
-        "ArgsList[['MaxLags']] <- ", DataMuse:::CEPP(ArgsList[['MaxLags']]), "\n",
-        "ArgsList[['MaxSeasonalLags']] <- ", DataMuse:::CEPP(ArgsList[['MaxSeasonalLags']]), "\n",
-        "ArgsList[['MaxFourierPairs']] <- ", DataMuse:::CEPP(ArgsList[['MaxFourierPairs']]), "\n",
-        "ArgsList[['MaxConsecutiveFail']] <- ", DataMuse:::CEPP(ArgsList[['MaxConsecutiveFail']]), "\n",
-        "ArgsList[['MaxNumberModel']] <- ", DataMuse:::CEPP(ArgsList[['MaxNumberModel']]), "\n",
-        "ArgsList[['MaxRunTimeMinute']] <- ", DataMuse:::CEPP(ArgsList[['MaxRunTimeMinute']]), "\n"))
+        "ArgsList[['MaxLags']] <- ", Quantico:::CEPP(ArgsList[['MaxLags']]), "\n",
+        "ArgsList[['MaxSeasonalLags']] <- ", Quantico:::CEPP(ArgsList[['MaxSeasonalLags']]), "\n",
+        "ArgsList[['MaxFourierPairs']] <- ", Quantico:::CEPP(ArgsList[['MaxFourierPairs']]), "\n",
+        "ArgsList[['MaxConsecutiveFail']] <- ", Quantico:::CEPP(ArgsList[['MaxConsecutiveFail']]), "\n",
+        "ArgsList[['MaxNumberModel']] <- ", Quantico:::CEPP(ArgsList[['MaxNumberModel']]), "\n",
+        "ArgsList[['MaxRunTimeMinute']] <- ", Quantico:::CEPP(ArgsList[['MaxRunTimeMinute']]), "\n"))
       }, error = function(x) CodeList)
     }
 
     # TBATS Features
     if(Algo == "TBATS") {
-      ArgsList[['MaxLags']] <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0(Algo, "_MaxLags")]]}, error = NULL), Type = "numeric", Default = 0)
-      ArgsList[['MaxMovingAverages']] <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0(Algo, "_MaxMovingAverages")]]}, error = NULL), Type = "numeric", Default = 0)
-      ArgsList[['MaxSeasonalPeriods']] <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0(Algo, "_MaxSeasonalPeriods")]]}, error = NULL), Type = "numeric", Default = 0)
-      CodeList <- tryCatch({DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+      ArgsList[['MaxLags']] <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0(Algo, "_MaxLags")]]}, error = NULL), Type = "numeric", Default = 0)
+      ArgsList[['MaxMovingAverages']] <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0(Algo, "_MaxMovingAverages")]]}, error = NULL), Type = "numeric", Default = 0)
+      ArgsList[['MaxSeasonalPeriods']] <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0(Algo, "_MaxSeasonalPeriods")]]}, error = NULL), Type = "numeric", Default = 0)
+      CodeList <- tryCatch({Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
         "\n",
         "# TBATS Args\n",
-        "ArgsList[['MaxLags']] <- ", DataMuse:::CEPP(ArgsList[['MaxLags']]), "\n",
-        "ArgsList[['MaxMovingAverages']] <- ", DataMuse:::CEPP(ArgsList[['MaxMovingAverages']]), "\n",
-        "ArgsList[['MaxSeasonalPeriods']] <- ", DataMuse:::CEPP(ArgsList[['MaxSeasonalPeriods']]), "\n"))
+        "ArgsList[['MaxLags']] <- ", Quantico:::CEPP(ArgsList[['MaxLags']]), "\n",
+        "ArgsList[['MaxMovingAverages']] <- ", Quantico:::CEPP(ArgsList[['MaxMovingAverages']]), "\n",
+        "ArgsList[['MaxSeasonalPeriods']] <- ", Quantico:::CEPP(ArgsList[['MaxSeasonalPeriods']]), "\n"))
       }, error = function(x) CodeList)
     }
 
@@ -7955,13 +7955,13 @@ Shiny.FC.SS <- function(input,
     # ARFIMA Features
     if(Algo == "ARFIMA") {
       if(DebugFC)  print('here 9.50')
-      ArgsList[['MaxLags']] <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0(Algo, "_MaxLags")]]}, error = NULL), Type = "numeric", Default = 0)
-      ArgsList[['MaxMovingAverages']] <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0(Algo, "_MaxMovingAverages")]]}, error = NULL), Type = "numeric", Default = 0)
-      CodeList <- tryCatch({DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+      ArgsList[['MaxLags']] <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0(Algo, "_MaxLags")]]}, error = NULL), Type = "numeric", Default = 0)
+      ArgsList[['MaxMovingAverages']] <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0(Algo, "_MaxMovingAverages")]]}, error = NULL), Type = "numeric", Default = 0)
+      CodeList <- tryCatch({Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
         "\n",
         "# ARFIMA Args\n",
-        "ArgsList[['MaxLags']] <- ", DataMuse:::CEPP(ArgsList[['MaxLags']]), "\n",
-        "ArgsList[['MaxMovingAverages']] <- ", DataMuse:::CEPP(ArgsList[['MaxMovingAverages']]), "\n"))
+        "ArgsList[['MaxLags']] <- ", Quantico:::CEPP(ArgsList[['MaxLags']]), "\n",
+        "ArgsList[['MaxMovingAverages']] <- ", Quantico:::CEPP(ArgsList[['MaxMovingAverages']]), "\n"))
       }, error = function(x) CodeList)
     }
 
@@ -8012,21 +8012,21 @@ Shiny.FC.SS <- function(input,
         if(DebugFC) print("AutoQuant:::TimeSeriesDataPrepare failed")
         NULL
       })
-      CodeList <- tryCatch({DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+      CodeList <- tryCatch({Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
         "\n",
         "# TBATS Args\n",
         "TBATS_Artifacts_Build <- tryCatch({\n  ",
         "AutoQuant:::TimeSeriesDataPrepare(\n    ",
         "data = data,\n    ",
-        "TargetName = ", DataMuse:::CEP(ArgsList[['TargetColumnName']]),",\n    ",
-        "DateName = ", DataMuse:::CEP(ArgsList[['DatetColumnName']]),",\n    ",
-        "Lags = ", DataMuse:::CEPP(ArgsList[['MaxLags']]),",\n    ",
+        "TargetName = ", Quantico:::CEP(ArgsList[['TargetColumnName']]),",\n    ",
+        "DateName = ", Quantico:::CEP(ArgsList[['DatetColumnName']]),",\n    ",
+        "Lags = ", Quantico:::CEPP(ArgsList[['MaxLags']]),",\n    ",
         "SeasonalLags = ", 0,"\n    ",
-        "MovingAverages = ", DataMuse:::CEPP(ArgsList[['MaxMovingAverages']]),",\n    ",
+        "MovingAverages = ", Quantico:::CEPP(ArgsList[['MaxMovingAverages']]),",\n    ",
         "SeasonalMovingAverages = ", 0,",\n    ",
-        "TimeUnit = ", DataMuse:::CEP(ArgsList[['TimeUnit']]),",\n    ",
+        "TimeUnit = ", Quantico:::CEP(ArgsList[['TimeUnit']]),",\n    ",
         "FCPeriods = ", 1,",\n    ",
-        "HoldOutPeriods = ", DataMuse:::CEPP(ArgsList[['FCPeriods']]),",\n    ",
+        "HoldOutPeriods = ", Quantico:::CEPP(ArgsList[['FCPeriods']]),",\n    ",
         "TSClean = TRUE,\n    ",
         "ModelFreq = TRUE,\n    ",
         "FinalBuilt = FALSE)\n",
@@ -8036,12 +8036,12 @@ Shiny.FC.SS <- function(input,
         "})\n"))
       }, error = function(x) {
         if(DebugFC) print("TimeSeriesDataPrepare code collect failure")
-        if(DebugFC) print(DataMuse:::CEPP(ArgsList[['TargetColumnName']]))
-        if(DebugFC) print(DataMuse:::CEPP(ArgsList[['DatetColumnName']]))
-        if(DebugFC) print(DataMuse:::CEPP(ArgsList[['MaxLags']]))
-        if(DebugFC) print(DataMuse:::CEPP(ArgsList[['MaxMovingAverages']]))
-        if(DebugFC) print(DataMuse:::CEPP(ArgsList[['TimeUnit']]))
-        if(DebugFC) print(DataMuse:::CEPP(ArgsList[['FCPeriods']]))
+        if(DebugFC) print(Quantico:::CEPP(ArgsList[['TargetColumnName']]))
+        if(DebugFC) print(Quantico:::CEPP(ArgsList[['DatetColumnName']]))
+        if(DebugFC) print(Quantico:::CEPP(ArgsList[['MaxLags']]))
+        if(DebugFC) print(Quantico:::CEPP(ArgsList[['MaxMovingAverages']]))
+        if(DebugFC) print(Quantico:::CEPP(ArgsList[['TimeUnit']]))
+        if(DebugFC) print(Quantico:::CEPP(ArgsList[['FCPeriods']]))
         CodeList
       } )
 
@@ -8057,7 +8057,7 @@ Shiny.FC.SS <- function(input,
         } else {
           NumberCores <- cores
         }
-        CodeList <- tryCatch({DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+        CodeList <- tryCatch({Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
           "\n",
           "# Parallel Runs\n",
           "cores <- parallel::detectCores()\n",
@@ -8078,7 +8078,7 @@ Shiny.FC.SS <- function(input,
           if(DebugFC) print("AutoQuant:::ParallelAutoETS failed")
           NULL
         })
-        CodeList <- tryCatch({DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+        CodeList <- tryCatch({Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
           "\n",
           "# TBATS Build\n",
           "ExperimentGrid <- tryCatch({\n  ",
@@ -8142,21 +8142,21 @@ Shiny.FC.SS <- function(input,
         if(DebugFC) print("AutoQuant:::TimeSeriesDataPrepare failed")
         NULL
       })
-      CodeList <- tryCatch({DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+      CodeList <- tryCatch({Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
         "\n",
         "# SARIMA Args\n",
         "SARIMA_Artifacts_Build <- tryCatch({\n  ",
         "AutoQuant:::TimeSeriesDataPrepare(\n    ",
         "data = data,\n    ",
-        "TargetName = ", DataMuse:::CEP(ArgsList[['TargetColumnName']]),",\n    ",
-        "DateName = ", DataMuse:::CEP(ArgsList[['DatetColumnName']]),",\n    ",
-        "Lags = ", DataMuse:::CEPP(ArgsList[['MaxLags']]),",\n    ",
-        "SeasonalLags = ", DataMuse:::CEPP(ArgsList[['MaxSeasonalLags']]),",\n    ",
-        "MovingAverages = ", DataMuse:::CEPP(ArgsList[['MaxMovingAverages']]),",\n    ",
-        "SeasonalMovingAverages = ", DataMuse:::CEPP(ArgsList[['MaxSeasonalMovingAverages']]),",\n    ",
-        "TimeUnit = ", DataMuse:::CEP(ArgsList[['TimeUnit']]),",\n    ",
+        "TargetName = ", Quantico:::CEP(ArgsList[['TargetColumnName']]),",\n    ",
+        "DateName = ", Quantico:::CEP(ArgsList[['DatetColumnName']]),",\n    ",
+        "Lags = ", Quantico:::CEPP(ArgsList[['MaxLags']]),",\n    ",
+        "SeasonalLags = ", Quantico:::CEPP(ArgsList[['MaxSeasonalLags']]),",\n    ",
+        "MovingAverages = ", Quantico:::CEPP(ArgsList[['MaxMovingAverages']]),",\n    ",
+        "SeasonalMovingAverages = ", Quantico:::CEPP(ArgsList[['MaxSeasonalMovingAverages']]),",\n    ",
+        "TimeUnit = ", Quantico:::CEP(ArgsList[['TimeUnit']]),",\n    ",
         "FCPeriods = ", 1,",\n    ",
-        "HoldOutPeriods = ", DataMuse:::CEPP(ArgsList[['FCPeriods']]),",\n    ",
+        "HoldOutPeriods = ", Quantico:::CEPP(ArgsList[['FCPeriods']]),",\n    ",
         "TSClean = TRUE,\n    ",
         "ModelFreq = TRUE,\n    ",
         "FinalBuilt = FALSE)\n",
@@ -8178,7 +8178,7 @@ Shiny.FC.SS <- function(input,
         } else {
           NumberCores <- cores
         }
-        CodeList <- tryCatch({DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+        CodeList <- tryCatch({Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
           "\n",
           "# Parallel Runs\n",
           "cores <- parallel::detectCores()\n",
@@ -8203,17 +8203,17 @@ Shiny.FC.SS <- function(input,
           if(DebugFC) print("AutoQuant:::ParallelAutoARIMA failed")
           NULL
         })
-        CodeList <- tryCatch({DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+        CodeList <- tryCatch({Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
           "\n",
           "# SARIMA Build\n",
           "ExperimentGrid <- tryCatch({\n  ",
           "AutoQuant:::ParallelAutoARIMA(\n    ",
           "MetricSelection = ArgsList[['EvaluationMetric']],\n    ",
           "Output = SARIMA_Artifacts_Build,\n    ",
-          "MaxFourierTerms = ", DataMuse:::CEPP(ArgsList[['MaxFourierPairs']]), ",\n    ",
-          "MaxNumberModels = ", DataMuse:::CEPP(ArgsList[['MaxNumberModel']]), ",\n    ",
-          "MaxRunMinutes = ", DataMuse:::CEPP(ArgsList[['MaxRunTimeMinute']]), ",\n    ",
-          "MaxRunsWithoutNewWinner = ", DataMuse:::CEPP(ArgsList[['MaxConsecutiveFail']]), ",\n    ",
+          "MaxFourierTerms = ", Quantico:::CEPP(ArgsList[['MaxFourierPairs']]), ",\n    ",
+          "MaxNumberModels = ", Quantico:::CEPP(ArgsList[['MaxNumberModel']]), ",\n    ",
+          "MaxRunMinutes = ", Quantico:::CEPP(ArgsList[['MaxRunTimeMinute']]), ",\n    ",
+          "MaxRunsWithoutNewWinner = ", Quantico:::CEPP(ArgsList[['MaxConsecutiveFail']]), ",\n    ",
           "NumCores = NumberCores,\n    ",
           "TrainValidateShare = ArgsList[['TrainWeighting']])\n",
           "}, error = function(x) {\n  ",
@@ -8266,21 +8266,21 @@ Shiny.FC.SS <- function(input,
         if(DebugFC) print("AutoQuant:::TimeSeriesDataPrepare failed")
         NULL
       })
-      CodeList <- tryCatch({DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+      CodeList <- tryCatch({Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
         "\n",
         "# ETS Args\n",
         "ETS_Artifacts_Build <- tryCatch({\n  ",
         "AutoQuant:::TimeSeriesDataPrepare(\n    ",
         "data = data,\n    ",
-        "TargetName = ", DataMuse:::CEP(ArgsList[['TargetColumnName']]),",\n    ",
-        "DateName = ", DataMuse:::CEP(ArgsList[['DatetColumnName']]),",\n    ",
+        "TargetName = ", Quantico:::CEP(ArgsList[['TargetColumnName']]),",\n    ",
+        "DateName = ", Quantico:::CEP(ArgsList[['DatetColumnName']]),",\n    ",
         "Lags = 0,\n    ",
         "SeasonalLags = 0,\n    ",
         "MovingAverages = 0,\n    ",
         "SeasonalMovingAverages = 0,\n    ",
-        "TimeUnit = ", DataMuse:::CEP(ArgsList[['TimeUnit']]),",\n    ",
+        "TimeUnit = ", Quantico:::CEP(ArgsList[['TimeUnit']]),",\n    ",
         "FCPeriods = ", 1,",\n    ",
-        "HoldOutPeriods = ", DataMuse:::CEPP(ArgsList[['FCPeriods']]),",\n    ",
+        "HoldOutPeriods = ", Quantico:::CEPP(ArgsList[['FCPeriods']]),",\n    ",
         "TSClean = TRUE,\n    ",
         "ModelFreq = TRUE,\n    ",
         "FinalBuilt = FALSE)\n",
@@ -8302,7 +8302,7 @@ Shiny.FC.SS <- function(input,
         } else {
           NumberCores <- cores
         }
-        CodeList <- tryCatch({DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+        CodeList <- tryCatch({Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
           "\n",
           "# Parallel Runs\n",
           "cores <- parallel::detectCores()\n",
@@ -8323,7 +8323,7 @@ Shiny.FC.SS <- function(input,
           if(DebugFC) print("AutoQuant:::ParallelAutoETS failed")
           NULL
         })
-        CodeList <- tryCatch({DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+        CodeList <- tryCatch({Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
           "\n",
           "# ETS Build\n",
           "ExperimentGrid <- tryCatch({\n  ",
@@ -8384,21 +8384,21 @@ Shiny.FC.SS <- function(input,
         if(DebugFC) print("AutoQuant:::TimeSeriesDataPrepare failed")
         NULL
       })
-      CodeList <- tryCatch({DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+      CodeList <- tryCatch({Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
         "\n",
         "# ARFIMA Args\n",
         "ARFIMA_Artifacts_Build <- tryCatch({\n  ",
         "AutoQuant:::TimeSeriesDataPrepare(\n    ",
         "data = data,\n    ",
-        "TargetName = ", DataMuse:::CEP(ArgsList[['TargetColumnName']]),",\n    ",
-        "DateName = ", DataMuse:::CEP(ArgsList[['DatetColumnName']]),",\n    ",
-        "Lags = ", DataMuse:::CEPP(ArgsList[['MaxLags']]),",\n    ",
+        "TargetName = ", Quantico:::CEP(ArgsList[['TargetColumnName']]),",\n    ",
+        "DateName = ", Quantico:::CEP(ArgsList[['DatetColumnName']]),",\n    ",
+        "Lags = ", Quantico:::CEPP(ArgsList[['MaxLags']]),",\n    ",
         "SeasonalLags = 0,\n    ",
-        "MovingAverages = ", DataMuse:::CEPP(ArgsList[['MaxMovingAverages']]),",\n    ",
+        "MovingAverages = ", Quantico:::CEPP(ArgsList[['MaxMovingAverages']]),",\n    ",
         "SeasonalMovingAverages = 0,\n    ",
-        "TimeUnit = ", DataMuse:::CEP(ArgsList[['TimeUnit']]),",\n    ",
+        "TimeUnit = ", Quantico:::CEP(ArgsList[['TimeUnit']]),",\n    ",
         "FCPeriods = ", 1,",\n    ",
-        "HoldOutPeriods = ", DataMuse:::CEPP(ArgsList[['FCPeriods']]),",\n    ",
+        "HoldOutPeriods = ", Quantico:::CEPP(ArgsList[['FCPeriods']]),",\n    ",
         "TSClean = TRUE,\n    ",
         "ModelFreq = TRUE,\n    ",
         "FinalBuilt = FALSE)\n",
@@ -8420,7 +8420,7 @@ Shiny.FC.SS <- function(input,
         } else {
           NumberCores <- cores
         }
-        CodeList <- tryCatch({DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+        CodeList <- tryCatch({Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
           "\n",
           "# Parallel Runs\n",
           "cores <- parallel::detectCores()\n",
@@ -8441,7 +8441,7 @@ Shiny.FC.SS <- function(input,
           if(DebugFC) print("AutoQuant:::ParallelAutoArfima failed")
           NULL
         })
-        CodeList <- tryCatch({DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+        CodeList <- tryCatch({Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
           "\n",
           "# ARFIMA Build\n",
           "ExperimentGrid <- tryCatch({\n  ",
@@ -8502,21 +8502,21 @@ Shiny.FC.SS <- function(input,
         if(DebugFC) print("AutoQuant:::TimeSeriesDataPrepare failed")
         NULL
       })
-      CodeList <- tryCatch({DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+      CodeList <- tryCatch({Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
         "\n",
         "# NNET Args\n",
         "NNET_Artifacts_Build <- tryCatch({\n  ",
         "AutoQuant:::TimeSeriesDataPrepare(\n    ",
         "data = data,\n    ",
-        "TargetName = ", DataMuse:::CEP(ArgsList[['TargetColumnName']]),",\n    ",
-        "DateName = ", DataMuse:::CEP(ArgsList[['DatetColumnName']]),",\n    ",
-        "Lags = ", DataMuse:::CEPP(ArgsList[['MaxLags']]),",\n    ",
-        "SeasonalLags = ", DataMuse:::CEPP(ArgsList[['MaxSeasonalLags']]),",\n    ",
+        "TargetName = ", Quantico:::CEP(ArgsList[['TargetColumnName']]),",\n    ",
+        "DateName = ", Quantico:::CEP(ArgsList[['DatetColumnName']]),",\n    ",
+        "Lags = ", Quantico:::CEPP(ArgsList[['MaxLags']]),",\n    ",
+        "SeasonalLags = ", Quantico:::CEPP(ArgsList[['MaxSeasonalLags']]),",\n    ",
         "MovingAverages = 0,\n    ",
         "SeasonalMovingAverages = 0,\n    ",
-        "TimeUnit = ", DataMuse:::CEP(ArgsList[['TimeUnit']]),",\n    ",
+        "TimeUnit = ", Quantico:::CEP(ArgsList[['TimeUnit']]),",\n    ",
         "FCPeriods = ", 1,",\n    ",
-        "HoldOutPeriods = ", DataMuse:::CEPP(ArgsList[['FCPeriods']]),",\n    ",
+        "HoldOutPeriods = ", Quantico:::CEPP(ArgsList[['FCPeriods']]),",\n    ",
         "TSClean = TRUE,\n    ",
         "ModelFreq = TRUE,\n    ",
         "FinalBuilt = FALSE)\n",
@@ -8538,7 +8538,7 @@ Shiny.FC.SS <- function(input,
         } else {
           NumberCores <- cores
         }
-        CodeList <- tryCatch({DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+        CodeList <- tryCatch({Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
           "\n",
           "# Parallel Runs\n",
           "cores <- parallel::detectCores()\n",
@@ -8563,17 +8563,17 @@ Shiny.FC.SS <- function(input,
           if(DebugFC) print("AutoQuant:::ParallelAutoETS failed")
           NULL
         })
-        CodeList <- tryCatch({DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+        CodeList <- tryCatch({Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
           "\n",
           "# NNET Build\n",
           "ExperimentGrid <- tryCatch({\n  ",
           "AutoQuant:::ParallelAutoNNET(\n    ",
           "MetricSelection = ArgsList[['EvaluationMetric']],\n    ",
           "Output = NNET_Artifacts_Build,\n    ",
-          "MaxFourierTerms = ", DataMuse:::CEPP(ArgsList[['MaxFourierPairs']]), ",\n    ",
-          "MaxNumberModels = ", DataMuse:::CEPP(ArgsList[['MaxNumberModel']]), ",\n    ",
-          "MaxRunMinutes = ", DataMuse:::CEPP(ArgsList[['MaxRunTimeMinute']]), ",\n    ",
-          "MaxRunsWithoutNewWinner = ", DataMuse:::CEPP(ArgsList[['MaxConsecutiveFail']]), ",\n    ",
+          "MaxFourierTerms = ", Quantico:::CEPP(ArgsList[['MaxFourierPairs']]), ",\n    ",
+          "MaxNumberModels = ", Quantico:::CEPP(ArgsList[['MaxNumberModel']]), ",\n    ",
+          "MaxRunMinutes = ", Quantico:::CEPP(ArgsList[['MaxRunTimeMinute']]), ",\n    ",
+          "MaxRunsWithoutNewWinner = ", Quantico:::CEPP(ArgsList[['MaxConsecutiveFail']]), ",\n    ",
           "NumCores = NumberCores,\n    ",
           "TrainValidateShare = ArgsList[['TrainWeighting']])\n",
           "}, error = function(x) {\n  ",
@@ -8628,7 +8628,7 @@ Shiny.FC.SS <- function(input,
     DataList[[paste0(Algo, "_", ModelID, '_ExperimentGrid')]][['data']] <- ExperimentGrid
 
     # Rename and update list code blocks
-    CodeList <- tryCatch({DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+    CodeList <- tryCatch({Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
       "\n",
       "# Change Names of Columns in Experiment Grid\n",
       "if(length(ExperimentGrid) > 0L) {\n  ",
@@ -8659,8 +8659,8 @@ Shiny.FC.SS <- function(input,
       ")\n",
       "}\n\n",
       "# Update Collection Lists\n",
-      "ArgsList[[", paste0(DataMuse:::CEP(Algo), "_", DataMuse:::CEP(ModelID), "_ExperimentGrid"), "]] <- ExperimentGrid\n",
-      "DataList[[", paste0(DataMuse:::CEP(Algo), "_", DataMuse:::CEP(ModelID), "_ExperimentGrid"), "]][['data']] <- ExperimentGrid\n\n",
+      "ArgsList[[", paste0(Quantico:::CEP(Algo), "_", Quantico:::CEP(ModelID), "_ExperimentGrid"), "]] <- ExperimentGrid\n",
+      "DataList[[", paste0(Quantico:::CEP(Algo), "_", Quantico:::CEP(ModelID), "_ExperimentGrid"), "]][['data']] <- ExperimentGrid\n\n",
       "# GRID TUNING END ::::::::::: \n"))
     }, error = function(x) CodeList)
 
@@ -8694,7 +8694,7 @@ Shiny.FC.SS <- function(input,
     }
 
     # Valid run code block
-    CodeList <- tryCatch({DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+    CodeList <- tryCatch({Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
       "\n\n",
       "# FORECASTING ::::::::::: \n\n",
       "# Determine if a run is valid: if not, return NULL\n",
@@ -8729,7 +8729,7 @@ Shiny.FC.SS <- function(input,
       ), skip_absent = TRUE)
 
     # Rename columns code block
-    CodeList <- tryCatch({DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+    CodeList <- tryCatch({Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
       "\n",
       "# Change Names of Columns in Experiment Grid\n",
       "data.table::setnames(\n  ",
@@ -8766,11 +8766,11 @@ Shiny.FC.SS <- function(input,
     data <- data.table::copy(ArgsList[['data']][, .SD, .SDcols = c(ArgsList[['DateColumnName']], ArgsList[['TargetColumnName']])])
     data <- data[, mean(get(ArgsList[['TargetColumnName']])), by = eval(ArgsList[['DateColumnName']])]
     data.table::setnames(data, c(names(data)[1L], names(data)[2L]), c(ArgsList[['DateColumnName']], ArgsList[['TargetColumnName']]))
-    FCPeriods <- DataMuse::ReturnParam(xx = input[[paste0(Algo, "_FCPeriods")]], Type = "numeric", Default = 5)
-    ArgsList[['TimeUnit']] <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0(Algo, "_TimeUnit")]]}, error = NULL), Type = "character", Default = NULL)
+    FCPeriods <- Quantico::ReturnParam(xx = input[[paste0(Algo, "_FCPeriods")]], Type = "numeric", Default = 5)
+    ArgsList[['TimeUnit']] <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0(Algo, "_TimeUnit")]]}, error = NULL), Type = "character", Default = NULL)
 
     # Update Variables code block
-    CodeList <- tryCatch({DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+    CodeList <- tryCatch({Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
       "\n",
       "# Update Variables and data\n",
       "ExperimentGrid <- ExperimentGrid[order(-get(paste0('Blended_', ArgsList[['EvaluationMetric']])))]\n",
@@ -8779,8 +8779,8 @@ Shiny.FC.SS <- function(input,
       "data <- data.table::copy(ArgsList[['data']][, .SD, .SDcols = c(ArgsList[['DateColumnName']], ArgsList[['TargetColumnName']])])\n",
       "data <- data[, mean(get(ArgsList[['TargetColumnName']])), by = eval(ArgsList[['DateColumnName']])]\n",
       "data.table::setnames(data, c(names(data)[1L], names(data)[2L]), c(ArgsList[['DateColumnName']], ArgsList[['TargetColumnName']]))\n",
-      "FCPeriods <- ", DataMuse:::CEPP(FCPeriods), "\n",
-      "ArgsList[['TimeUnit']] <- ", DataMuse:::CEP(ArgsList[['TimeUnit']]), "\n",
+      "FCPeriods <- ", Quantico:::CEPP(FCPeriods), "\n",
+      "ArgsList[['TimeUnit']] <- ", Quantico:::CEP(ArgsList[['TimeUnit']]), "\n",
     ))
     }, error = function(x) {
       if(DebugFC) print("# Update Variables code block failed")
@@ -8806,7 +8806,7 @@ Shiny.FC.SS <- function(input,
       }
     }
 
-    CodeList <- tryCatch({DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+    CodeList <- tryCatch({Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
       "\n",
       "# Convert IDate class to Date class\n",
       "if(class(data[[ArgsList[['DateColumnName']]]])[1L] %in% 'IDate') {\n  ",
@@ -8884,7 +8884,7 @@ Shiny.FC.SS <- function(input,
         NULL
       })
 
-      CodeList <- tryCatch({DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+      CodeList <- tryCatch({Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
         "\n",
         "# Data Prepare\n",
         "TBATS_Artifacts_Score <- tryCatch({\n  ",
@@ -8956,7 +8956,7 @@ Shiny.FC.SS <- function(input,
           }
         }
 
-        CodeList <- tryCatch({DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+        CodeList <- tryCatch({Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
           "\n",
           "# Generate Final TBATS Forecast\n",
           "counter <- ExperimentGrid[, .N] + 1L\n",
@@ -9040,7 +9040,7 @@ Shiny.FC.SS <- function(input,
         NULL
       })
 
-      CodeList <- tryCatch({DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+      CodeList <- tryCatch({Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
         "\n",
         "# Data Prepare\n",
         "SARIMA_Artifacts_Score <- tryCatch({\n  ",
@@ -9110,7 +9110,7 @@ Shiny.FC.SS <- function(input,
           }
         }
 
-        CodeList <- tryCatch({DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+        CodeList <- tryCatch({Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
           "\n",
           "# Generate Final SARIMA Forecast\n",
           "counter <- ExperimentGrid[, .N] + 1L\n",
@@ -9191,7 +9191,7 @@ Shiny.FC.SS <- function(input,
         NULL
       })
 
-      CodeList <- tryCatch({DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+      CodeList <- tryCatch({Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
         "\n",
         "# Data Prepare\n",
         "ETS_Artifacts_Score <- tryCatch({\n  ",
@@ -9263,7 +9263,7 @@ Shiny.FC.SS <- function(input,
           }
         }
 
-        CodeList <- tryCatch({DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+        CodeList <- tryCatch({Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
           "\n",
           "# Generate Final ETS Forecast\n",
           "counter <- ExperimentGrid[, .N] + 1L\n",
@@ -9346,7 +9346,7 @@ Shiny.FC.SS <- function(input,
       })
 
       # Data Prepare code block
-      CodeList <- tryCatch({DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+      CodeList <- tryCatch({Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
         "\n",
         "# Data Prepare\n",
         "ARFIMA_Artifacts_Score <- tryCatch({\n  ",
@@ -9419,7 +9419,7 @@ Shiny.FC.SS <- function(input,
         }
 
         # Forecasting code block
-        CodeList <- tryCatch({DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+        CodeList <- tryCatch({Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
           "\n",
           "# Generate Final ARFIMA Forecast\n",
           "counter <- ExperimentGrid[, .N] + 1L\n",
@@ -9504,7 +9504,7 @@ Shiny.FC.SS <- function(input,
         NULL
       })
 
-      CodeList <- tryCatch({DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+      CodeList <- tryCatch({Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
         "\n",
         "# Data Prepare\n",
         "NNET_Artifacts_Score <- tryCatch({\n  ",
@@ -9576,7 +9576,7 @@ Shiny.FC.SS <- function(input,
           }
         }
 
-        CodeList <- tryCatch({DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+        CodeList <- tryCatch({Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
           "\n",
           "# Generate Final NNET Forecast\n",
           "counter <- ExperimentGrid[, .N] + 1L\n",
@@ -9629,7 +9629,7 @@ Shiny.FC.SS <- function(input,
     }
 
     # Rename columns code print
-    CodeList <- tryCatch({DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+    CodeList <- tryCatch({Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
       "\n",
       "# Change Names of Columns in Experiment Grid\n",
       "if(length(ExperimentGrid) > 0L) {\n  ",
@@ -9667,11 +9667,11 @@ Shiny.FC.SS <- function(input,
       data.table::set(ForecastOutput, j = c("ModelID", "ModelRank"), value = NULL)
       ForecastOutput[, ModelID := NULL]
       DataList[[paste0(ModelID, "_Forecast")]][['data']] <- ForecastOutput
-      for(i in seq_len(TabCount)) DataMuse::PickerInput(session, input, Update = TRUE, InputID = paste0("EDAData", i), Label = 'Data Selection', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
-      for(i in seq_len(TabCount)) DataMuse::PickerInput(session, input, Update = TRUE, InputID = paste0("DataOutputSelection", i), Label = 'Display Data', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
+      for(i in seq_len(TabCount)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0("EDAData", i), Label = 'Data Selection', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
+      for(i in seq_len(TabCount)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0("DataOutputSelection", i), Label = 'Display Data', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
 
       # Code Collect
-      CodeList <- tryCatch({DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+      CodeList <- tryCatch({Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
         "\n",
         "# Update Output\n",
         "if(length(ForecastOutput) > 0L) {\n  ",

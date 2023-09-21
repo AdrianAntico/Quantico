@@ -9,7 +9,7 @@ Keras(LayerFunc, PriorOutput = NULL, Name = NULL, Debug = FALSE, ...)
 \arguments{
 \item{LayerFunc}{Required, Positional. E.g. keras::layer_input without quotes}
 
-\item{PriorOutput}{The resulting list contained in Output <- DataMuse::Keras(). If you pass this LayerList and ArgsList will be ignored. Same Output from ArgsList and LayerList.}
+\item{PriorOutput}{The resulting list contained in Output <- Quantico::Keras(). If you pass this LayerList and ArgsList will be ignored. Same Output from ArgsList and LayerList.}
 
 \item{Name}{Name for the LayerList and ArgsList elements}
 
@@ -22,7 +22,7 @@ Keras functions simplified for tracking args
 }
 \examples{
 \dontrun{
-Output <- DataMuse::KerasInputs(keras::flatten, PriorOutput = Output, Name = 'flatten1', object = Output$LayerList$PreviousLayer)
+Output <- Quantico::KerasInputs(keras::flatten, PriorOutput = Output, Name = 'flatten1', object = Output$LayerList$PreviousLayer)
 }
 
 

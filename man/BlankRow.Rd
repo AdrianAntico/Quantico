@@ -17,7 +17,7 @@ BlankRow add blank row with width w
 }
 \examples{
 \dontrun{
-DataMuse:::BlankRow(12)
+Quantico:::BlankRow(12)
 }
 }
 \seealso{

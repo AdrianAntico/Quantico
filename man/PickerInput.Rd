@@ -69,7 +69,7 @@ PickerInput automatically builds a picker input with tryCatch's and ProjectList 
 \examples{
 \dontrun{
 output$TS_CARMA_HolidayMovingAverages <- renderUI({
-  DataMuse:::PickerInput(InputID = "TS_CARMA_HolidayMovingAverages", Label = "Select Holiday Count MA's", Choices = as.character(0:50),
+  Quantico:::PickerInput(InputID = "TS_CARMA_HolidayMovingAverages", Label = "Select Holiday Count MA's", Choices = as.character(0:50),
                            SelectedDefault = as.character(c(1,2)), Size = 10, SelectedText = "count > 1", Multiple = TRUE, ActionBox = TRUE)})
 }
 }

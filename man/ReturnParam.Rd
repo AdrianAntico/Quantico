@@ -34,7 +34,7 @@ Automatically save VarNames to project list
 }
 \examples{
 \dontrun{
-Aggregate <- DataMuse:::ReturnParam(input, VarName = "TS_AggregateFunction", Type = "character", Default = "mean")
+Aggregate <- Quantico:::ReturnParam(input, VarName = "TS_AggregateFunction", Type = "character", Default = "mean")
 }
 
 }

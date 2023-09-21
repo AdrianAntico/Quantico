@@ -62,7 +62,7 @@ PickerInput_GetLevels automatically builds a picker input with tryCatch's and Pr
 \examples{
 \dontrun{
 output$TS_CARMA_HolidayMovingAverages <- renderUI({
-  DataMuse:::PickerInput_GetLevels(
+  Quantico:::PickerInput_GetLevels(
     input, InputID = "TS_CARMA_HolidayMovingAverages", Label = "Select Holiday Count MA's", Choices = as.character(0:50),
     SelectedDefault = as.character(c(1,2)), Size = 10, SelectedText = "count > 1", Multiple = TRUE, ActionBox = TRUE)})
 }

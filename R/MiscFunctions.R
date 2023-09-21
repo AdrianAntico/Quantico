@@ -62,10 +62,10 @@ BuildBinary <- function(Root = NULL) {
   x <- getwd()
   if(!is.null(Root)) {
     setwd(Root)
-    devtools::install(pkg = "DataMuse", dependencies = FALSE)
+    devtools::install(pkg = "Quantico", dependencies = FALSE)
   } else {
     setwd("C:/Users/Bizon/Documents/GitHub")
-    devtools::build(pkg = "DataMuse")
+    devtools::build(pkg = "Quantico")
   }
   setwd(x)
 }
@@ -85,10 +85,10 @@ Install <- function(Root = NULL) {
   x <- getwd()
   if(!is.null(Root)) {
     setwd(Root)
-    devtools::install(pkg = "DataMuse", dependencies = FALSE)
+    devtools::install(pkg = "Quantico", dependencies = FALSE)
   } else {
     setwd("C:/Users/Bizon/Documents/GitHub")
-    devtools::install(pkg = "DataMuse", dependencies = FALSE)
+    devtools::install(pkg = "Quantico", dependencies = FALSE)
   }
   setwd(x)
 }
@@ -109,7 +109,7 @@ UpdateDocs <- function(BuildVignette = FALSE, Root = NULL) {
     devtools::document()
     if(BuildVignette) devtools::build_manual()
   } else {
-    setwd("C:/Users/Bizon/Documents/GitHub/DataMuse")
+    setwd("C:/Users/Bizon/Documents/GitHub/Quantico")
     devtools::document()
     if(BuildVignette) devtools::build_manual()
   }
@@ -289,8 +289,8 @@ DeleteVariablesServer <- function(session,id,DataList) {
   ns <- NS(id)
   shiny::observeEvent(input$DeleteVariablesInputs, {
     print('Delete Variables Inputs Dropdown')
-    DataMuse::SelectizeInput(session = session, Update = TRUE, InputID='DeleteVariables_SelectData', Label='Choose data set', Choices = names(DataList), Multiple = TRUE, MaxVars = 1, SelectedDefault = names(DataList)[1L], CloseAfterSelect = FALSE)
+    Quantico::SelectizeInput(session = session, Update = TRUE, InputID='DeleteVariables_SelectData', Label='Choose data set', Choices = names(DataList), Multiple = TRUE, MaxVars = 1, SelectedDefault = names(DataList)[1L], CloseAfterSelect = FALSE)
     dt <- shiny::reactive({shiny::req(tryCatch({DataList[[input$DeleteVariables_SelectData]][['colnames']]}, error = function(x) DataList[[1L]]))})
-    DataMuse::SelectizeInput(InputID='DeleteVariables', Label=tags$span(style=paste0('color: ', AppTextColor, ';'),'Delete Columns'), Choices = dt(), Multiple = TRUE, MaxVars = 1000, CloseAfterSelect = FALSE)
+    Quantico::SelectizeInput(InputID='DeleteVariables', Label=tags$span(style=paste0('color: ', AppTextColor, ';'),'Delete Columns'), Choices = dt(), Multiple = TRUE, MaxVars = 1000, CloseAfterSelect = FALSE)
   })
 }

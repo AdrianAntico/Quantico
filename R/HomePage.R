@@ -36,14 +36,14 @@ HomePage <- function(id, Page, AppWidth=12L) {
         width = 12L,
         style = "padding-left: 15px",
         id = "DocsID",
-        DataMuse::BlankRow(12),
-        DataMuse::BlankRow(12),
+        Quantico::BlankRow(12),
+        Quantico::BlankRow(12),
 
         shiny::fluidRow(
           width=12L,
           style="padding-left: 15px",
           id = "PlotAddButtonsUILocation",
-          #DataMuse:::BlankRow(12),
+          #Quantico:::BlankRow(12),
 
           # ----
 
@@ -59,7 +59,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
               style = "background-color: #0000; min-height: 1435px; max-height: 1435px; overflow-x: clip; overflow-y:auto;",
               shiny::fluidRow(
                 style = "padding-left: 15px; padding-right: 20px; background-color: #0000; overflow-y: auto; overflow-x: clip;",
-                DataMuse:::BlankRow(12L),
+                Quantico:::BlankRow(12L),
 
                 #  ----
 
@@ -71,14 +71,14 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 shiny::tags$details(
                   style = "padding-left: 5px",
                   shiny::tags$summary(shiny::tags$span(shiny::tags$b('Plotting'))),
-                  DataMuse::BlankLine(12L),
+                  Quantico::BlankLine(12L),
                   shiny::a(shiny::icon("newspaper"), href="#visualization", "Plotting"),
 
-                  DataMuse::BlankRow(12L),
+                  Quantico::BlankRow(12L),
                   shiny::tags$details(
                     style = "padding-left: 5px",
                     shiny::tags$summary(shiny::tags$span(shiny::tags$b('Standard Plots'))),
-                    DataMuse::BlankLine(12L),
+                    Quantico::BlankLine(12L),
 
                     shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#standardplots", "Standard Plots")),
                     shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#histogramplots", "Histogram")),
@@ -107,11 +107,11 @@ HomePage <- function(id, Page, AppWidth=12L) {
                     shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#parallelplots", "Parallel Plots")),
                     shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#correlogramplots", "Correlogram Plots"))),
 
-                  DataMuse::BlankRow(12L),
+                  Quantico::BlankRow(12L),
                   shiny::tags$details(
                     style = "padding-left: 5px",
                     shiny::tags$summary(shiny::tags$span(shiny::tags$b('Model Evaluation'))),
-                    DataMuse::BlankLine(12L),
+                    Quantico::BlankLine(12L),
                     shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#modelevaluationplots", "Model Evaluation Plots")),
                     shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#residualhistogram", "Residual Histogram")),
                     shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#residualscatterplot", "Residual Scatter")),
@@ -135,18 +135,18 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
                 # Data Wrangling Tab                   ----
                 # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
-                DataMuse::BlankRow(12L),
+                Quantico::BlankRow(12L),
                 shiny::tags$details(
                   style = "padding-left: 5px",
                   shiny::tags$summary(shiny::tags$span(shiny::tags$b('Data Wrangling'))),
-                  DataMuse::BlankLine(12L),
+                  Quantico::BlankLine(12L),
                   shiny::a(shiny::icon("newspaper"), href="#datawrangling", "Data Wrangling"),
 
-                  DataMuse::BlankRow(12L),
+                  Quantico::BlankRow(12L),
                   shiny::tags$details(
                     style = "padding-left: 5px",
                     shiny::tags$summary(shiny::tags$span(shiny::tags$b('Shink'))),
-                    DataMuse::BlankLine(12L),
+                    Quantico::BlankLine(12L),
                     shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#shrink", "Shrink")),
                     shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#aggregate", "Aggregate Data")),
                     shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#aggregate", "Subset Rows")),
@@ -154,21 +154,21 @@ HomePage <- function(id, Page, AppWidth=12L) {
                     shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#aggregate", "Sample Data"))
                   ),
 
-                  DataMuse::BlankRow(12L),
+                  Quantico::BlankRow(12L),
                   shiny::tags$details(
                     style = "padding-left: 5px",
                     shiny::tags$summary(shiny::tags$span(shiny::tags$b('Grow'))),
-                    DataMuse::BlankLine(12L),
+                    Quantico::BlankLine(12L),
                     shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#grow", "Grow")),
                     shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#join", "Join Data")),
                     shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#union", "Union Rows"))
                   ),
 
-                  DataMuse::BlankRow(12L),
+                  Quantico::BlankRow(12L),
                   shiny::tags$details(
                     style = "padding-left: 5px",
                     shiny::tags$summary(shiny::tags$span(shiny::tags$b('Dataset'))),
-                    DataMuse::BlankLine(12L),
+                    Quantico::BlankLine(12L),
                     shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#dataset", "Dataset")),
                     shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#partition", "Partition Data")),
                     shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#sort", "Sort Data")),
@@ -176,21 +176,21 @@ HomePage <- function(id, Page, AppWidth=12L) {
                     shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#remove", "Remove Data"))
                   ),
 
-                  DataMuse::BlankRow(12L),
+                  Quantico::BlankRow(12L),
                   shiny::tags$details(
                     style = "padding-left: 5px",
                     shiny::tags$summary(shiny::tags$span(shiny::tags$b('Pivot'))),
-                    DataMuse::BlankLine(12L),
+                    Quantico::BlankLine(12L),
                     shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#pivot", "Pivot")),
                     shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#melt", "Melt Data")),
                     shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#cast", "Cast Data"))
                   ),
 
-                  DataMuse::BlankRow(12L),
+                  Quantico::BlankRow(12L),
                   shiny::tags$details(
                     style = "padding-left: 5px",
                     shiny::tags$summary(shiny::tags$span(shiny::tags$b('Columns'))),
-                    DataMuse::BlankLine(12L),
+                    Quantico::BlankLine(12L),
                     shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#columns", "Columns")),
                     shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#typecasting", "Type Cast Columns")),
                     shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#rename", "Rename Columns")),
@@ -198,11 +198,11 @@ HomePage <- function(id, Page, AppWidth=12L) {
                     shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#concat", "Concat Colunms"))
                   ),
 
-                  DataMuse::BlankRow(12L),
+                  Quantico::BlankRow(12L),
                   shiny::tags$details(
                     style = "padding-left: 5px",
                     shiny::tags$summary(shiny::tags$span(shiny::tags$b('Misc'))),
-                    DataMuse::BlankLine(12L),
+                    Quantico::BlankLine(12L),
                     shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#misc", "Misc")),
                     shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#metaprogramming", "Meta Programming")),
                     shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#timeseriesfill", "Time Series Fill")),
@@ -217,44 +217,44 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
                 # Feature Engineering Tab              ----
                 # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
-                DataMuse::BlankRow(12L),
+                Quantico::BlankRow(12L),
                 shiny::tags$details(
                   style = "padding-left: 5px",
                   shiny::tags$summary(shiny::tags$span(shiny::tags$b('Feature Engineering'))),
-                  DataMuse::BlankLine(12L),
+                  Quantico::BlankLine(12L),
                   shiny::a(shiny::icon("newspaper"), href="#featureengineering", "Feature Engineering"),
 
-                  DataMuse::BlankRow(12L),
+                  Quantico::BlankRow(12L),
                   shiny::tags$details(
                     style = "padding-left: 5px",
                     shiny::tags$summary(shiny::tags$span(shiny::tags$b('Anomaly Detection'))),
-                    DataMuse::BlankLine(12L),
+                    Quantico::BlankLine(12L),
                     shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#anomalydetection", "Anomaly Detection"))
                   ),
 
-                  DataMuse::BlankRow(12L),
+                  Quantico::BlankRow(12L),
                   shiny::tags$details(
                     style = "padding-left: 5px",
                     shiny::tags$summary(shiny::tags$span(shiny::tags$b('Dim Reduction'))),
-                    DataMuse::BlankLine(12L),
+                    Quantico::BlankLine(12L),
                     shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#dimensionalityreduction", "Dim Reduction")),
                     shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#h2oautoencoder", "H2O Autoencoder"))
                   ),
 
-                  DataMuse::BlankRow(12L),
+                  Quantico::BlankRow(12L),
                   shiny::tags$details(
                     style = "padding-left: 5px",
                     shiny::tags$summary(shiny::tags$span(shiny::tags$b('Clustering'))),
-                    DataMuse::BlankLine(12L),
+                    Quantico::BlankLine(12L),
                     shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#clustering", "Clustering")),
                     shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#h2oclustering", "H2O Clustering"))
                   ),
 
-                  DataMuse::BlankRow(12L),
+                  Quantico::BlankRow(12L),
                   shiny::tags$details(
                     style = "padding-left: 5px",
                     shiny::tags$summary(shiny::tags$span(shiny::tags$b('NLP'))),
-                    DataMuse::BlankLine(12L),
+                    Quantico::BlankLine(12L),
                     shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#nlp", "NLP")),
                     shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#h2oword2vec", "H2O Word2Vec")),
                     shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#textsummary", "Text Summary")),
@@ -263,42 +263,42 @@ HomePage <- function(id, Page, AppWidth=12L) {
                     shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#lexicaldiversity", "Lexical Diversity")),
                   ),
 
-                  DataMuse::BlankRow(12L),
+                  Quantico::BlankRow(12L),
                   shiny::tags$details(
                     style = "padding-left: 5px",
                     shiny::tags$summary(shiny::tags$span(shiny::tags$b('Rolling'))),
-                    DataMuse::BlankLine(12L),
+                    Quantico::BlankLine(12L),
                     shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#rolling", "Rolling")),
                     shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#numericvariables", "Rolling Numeric")),
                     shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#diffvariables", "Differencing Variables")),
                     shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#categoricalvariables", "Rolling Categorical"))
                   ),
 
-                  DataMuse::BlankRow(12L),
+                  Quantico::BlankRow(12L),
                   shiny::tags$details(
                     style = "padding-left: 5px",
                     shiny::tags$summary(shiny::tags$span(shiny::tags$b('Categorical'))),
-                    DataMuse::BlankLine(12L),
+                    Quantico::BlankLine(12L),
                     shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#categorical", "Categorical")),
                     shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#categoricalencoding", "Categorical Encoding")),
                     shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#dummyvariables", "Dummy Variables"))
                   ),
 
-                  DataMuse::BlankRow(12L),
+                  Quantico::BlankRow(12L),
                   shiny::tags$details(
                     style = "padding-left: 5px",
                     shiny::tags$summary(shiny::tags$span(shiny::tags$b('Calendar'))),
-                    DataMuse::BlankLine(12L),
+                    Quantico::BlankLine(12L),
                     shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#calendar", "Calendar")),
                     shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#calendarvariables", "Calendar Variables")),
                     shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#dummyvariables", "Dummy Variables"))
                   ),
 
-                  DataMuse::BlankRow(12L),
+                  Quantico::BlankRow(12L),
                   shiny::tags$details(
                     style = "padding-left: 5px",
                     shiny::tags$summary(shiny::tags$span(shiny::tags$b('Numeric'))),
-                    DataMuse::BlankLine(12L),
+                    Quantico::BlankLine(12L),
                     shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#numeric", "Numeric")),
                     shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#percentrank", "Percent Rank Variables")),
                     shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#standardize", "Standardize Variables")),
@@ -314,11 +314,11 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
                 # ML + Inference Tab                   ----
                 # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
-                DataMuse::BlankRow(12L),
+                Quantico::BlankRow(12L),
                 shiny::tags$details(
                   style = "padding-left: 5px",
                   shiny::tags$summary(shiny::tags$span(shiny::tags$b('ML + Inference'))),
-                  DataMuse::BlankLine(12L),
+                  Quantico::BlankLine(12L),
                   shiny::a(shiny::icon("newspaper"), href="#mlinference", "ML + Inference"),
                   shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#catboost", "CatBoost")),
                   shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#xgboost", "XGBoost")),
@@ -337,11 +337,11 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
                 # Forecasting Tab                      ----
                 # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
-                DataMuse::BlankRow(12L),
+                Quantico::BlankRow(12L),
                 shiny::tags$details(
                   style = "padding-left: 5px",
                   shiny::tags$summary(shiny::tags$span(shiny::tags$b('Forecasting'))),
-                  DataMuse::BlankLine(12L),
+                  Quantico::BlankLine(12L),
                   shiny::a(shiny::icon("newspaper"), href="#forecasting", "Forecasting")
                   # shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#catboostpanel", "CatBoost Panel")),
                   # shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#xgboostpanel", "XGBoost Panel")),
@@ -361,11 +361,11 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
                 # Settings                             ----
                 # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
-                DataMuse::BlankRow(12L),
+                Quantico::BlankRow(12L),
                 shiny::tags$details(
                   style = "padding-left: 5px",
                   shiny::tags$summary(shiny::tags$span(shiny::tags$b('Settings'))),
-                  DataMuse::BlankLine(12L),
+                  Quantico::BlankLine(12L),
                   shiny::a(shiny::icon("newspaper"), href="#settings", "Settings"),
                   shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#appthemes", "App Themes")),
                   shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#plotthemes", "Plot Themes"))
@@ -394,7 +394,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
               ################################################# ----
               # Plotting                                        ----
               ################################################# ----
-              DataMuse::BlankRow(12L),
+              Quantico::BlankRow(12L),
               shinydashboard::box(
                 title = NULL, solidHeader = TRUE, collapsible = FALSE, status = "danger", width = 12L,
                 shiny::fluidRow(
@@ -414,7 +414,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                         their intended uses. While there are far too many combinations of each type I will be focusing on
                         the core aspects and let the user decide which combination makes the most sense for their use case.
                         The given info will be sufficient for users to generate any one of those combinations."),
-                    DataMuse::BlankRow(12L),
+                    Quantico::BlankRow(12L),
                     shiny::h1(shiny::tags$b("Basic Usage:")),
                     shiny::p("For the Create Plots buttons, you will go through a few steps to define your plot information"),
                     shiny::markdown(
@@ -434,7 +434,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                       * Formatting screen is where you can enable values to be shown and rename the title and axis titles
                       "
                     ),
-                    DataMuse::BlankRow(12L),
+                    Quantico::BlankRow(12L),
                     shiny::h1(shiny::tags$b("Important Features:")),
                     shiny::h3(shiny::tags$b("Numeric Transformations")),
                     shiny::markdown(
@@ -450,7 +450,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                       * 'YeoJohnson'
                       "),
 
-                    DataMuse::BlankRow(12L),
+                    Quantico::BlankRow(12L),
                     shiny::h3(shiny::tags$b("Group Variables and Aggregations")),
                     shiny::markdown(
                       "
@@ -478,7 +478,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                       * Faceting: for plots with by groups you can select to have the output faceted into a grid of plots
                       "),
 
-                    DataMuse::BlankRow(12L),
+                    Quantico::BlankRow(12L),
                     shiny::h3(shiny::tags$b("Filters and Formatting")),
                     shiny::markdown(
                       "
@@ -489,7 +489,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                       * Horizontal scrollers (and sometimes vertical scrollers)
                       "
                     ),
-                    DataMuse::BlankRow(12L),
+                    Quantico::BlankRow(12L),
                     shiny::h3(shiny::tags$b("Plotting Color Themes")),
                     shiny::markdown(
                       "
@@ -500,9 +500,9 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 )
               ),
 
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
 
               # ----
 
@@ -517,7 +517,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                     shiny::p("Standard Plot types are those that we encounter in a general setting.
                            These plots get used the most frequently and apply to most data and
                            contexts."),
-                    DataMuse::BlankRow(12L),
+                    Quantico::BlankRow(12L),
                     shiny::h3(tags$b("Standard Plots Types")),
                     shiny::markdown(
                       "
@@ -549,9 +549,9 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 )
               ),
 
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
 
               # Histograms ----
               shinydashboard::box(
@@ -567,15 +567,15 @@ HomePage <- function(id, Page, AppWidth=12L) {
                   )
                 ),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::tags$img(
                   src = "Histogram.PNG", # "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/Histogram.PNG?raw=true",
-                  alt = "DataMuse",
+                  alt = "Quantico",
                   `data-view-component` = "true",
                   height="100%",
                   width="100%"),
-                DataMuse::BlankRow(12),
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
+                Quantico::BlankRow(12),
 
                 shiny::fluidRow(shiny::column(width = 12L, shiny::h3("Histogram Plots Usage"))),
                 shiny::markdown(
@@ -588,9 +588,9 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 )
               ),
 
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
 
               # Density ----
               shinydashboard::box(
@@ -609,17 +609,17 @@ HomePage <- function(id, Page, AppWidth=12L) {
                   )
                 ),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::tags$img(
                   src = "Density.PNG", # "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/Density.PNG?raw=true",
-                  alt = "DataMuse",
+                  alt = "Quantico",
                   `data-view-component` = "true",
                   height="100%",
                   width="100%"),
-                DataMuse::BlankRow(12),
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
+                Quantico::BlankRow(12),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::fluidRow(shiny::column(width = 12L, shiny::h3("Density Plots Usage"))),
                 shiny::markdown(
                   "
@@ -631,9 +631,9 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 )
               ),
 
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
 
               # Box Plots ----
               shinydashboard::box(
@@ -649,17 +649,17 @@ HomePage <- function(id, Page, AppWidth=12L) {
                   )
                 ),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::tags$img(
                   src = "BoxPlot.PNG", # "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/BoxPlot.PNG?raw=true",
-                  alt = "DataMuse",
+                  alt = "Quantico",
                   `data-view-component` = "true",
                   height="100%",
                   width="100%"),
-                DataMuse::BlankRow(12),
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
+                Quantico::BlankRow(12),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::fluidRow(shiny::column(width = 12L, shiny::h3("Box Plots Usage"))),
                 shiny::markdown(
                   "
@@ -671,9 +671,9 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 )
               ),
 
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
 
               # Pie Plots ----
               shinydashboard::box(
@@ -689,17 +689,17 @@ HomePage <- function(id, Page, AppWidth=12L) {
                   )
                 ),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::tags$img(
                   src = "PiePlot.PNG", # "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/PiePlot.PNG?raw=true",
-                  alt = "DataMuse",
+                  alt = "Quantico",
                   `data-view-component` = "true",
                   height="100%",
                   width="100%"),
-                DataMuse::BlankRow(12),
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
+                Quantico::BlankRow(12),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::fluidRow(shiny::column(width = 12L, shiny::h3("Pie Plots Usage"))),
                 shiny::markdown(
                   "
@@ -708,9 +708,9 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 )
               ),
 
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
 
 
               # Donut Plots ----
@@ -727,17 +727,17 @@ HomePage <- function(id, Page, AppWidth=12L) {
                   )
                 ),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::tags$img(
                   src = "DonutPlot.PNG", # "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/PiePlot.PNG?raw=true",
-                  alt = "DataMuse",
+                  alt = "Quantico",
                   `data-view-component` = "true",
                   height="100%",
                   width="100%"),
-                DataMuse::BlankRow(12),
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
+                Quantico::BlankRow(12),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::fluidRow(shiny::column(width = 12L, shiny::h3("Donut Plots Usage"))),
                 shiny::markdown(
                   "
@@ -760,17 +760,17 @@ HomePage <- function(id, Page, AppWidth=12L) {
                   )
                 ),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::tags$img(
                   src = "RosetypePlot.PNG", # "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/PiePlot.PNG?raw=true",
-                  alt = "DataMuse",
+                  alt = "Quantico",
                   `data-view-component` = "true",
                   height="100%",
                   width="100%"),
-                DataMuse::BlankRow(12),
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
+                Quantico::BlankRow(12),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::fluidRow(shiny::column(width = 12L, shiny::h3("Rosetype Plots Usage"))),
                 shiny::markdown(
                   "
@@ -779,9 +779,9 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 )
               ),
 
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
 
               # Probability ----
               shinydashboard::box(
@@ -796,17 +796,17 @@ HomePage <- function(id, Page, AppWidth=12L) {
                   )
                 ),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::tags$img(
                   src = "ProbabilityPlot.PNG", # "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/Density.PNG?raw=true",
-                  alt = "DataMuse",
+                  alt = "Quantico",
                   `data-view-component` = "true",
                   height="100%",
                   width="100%"),
-                DataMuse::BlankRow(12),
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
+                Quantico::BlankRow(12),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::fluidRow(shiny::column(width = 12L, shiny::h3("Probability Plots Usage"))),
                 shiny::markdown(
                   "
@@ -815,9 +815,9 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 )
               ),
 
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
 
               # Word Cloud Plots ----
               shinydashboard::box(
@@ -832,17 +832,17 @@ HomePage <- function(id, Page, AppWidth=12L) {
                   )
                 ),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::tags$img(
                   src = "WordCloud.PNG",
-                  alt = "DataMuse",
+                  alt = "Quantico",
                   `data-view-component` = "true",
                   height="100%",
                   width="100%"),
-                DataMuse::BlankRow(12),
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
+                Quantico::BlankRow(12),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::fluidRow(shiny::column(width = 12L, shiny::h3("Rosetype Plots Usage"))),
                 shiny::markdown(
                   "
@@ -851,9 +851,9 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 )
               ),
 
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
 
               # Area Plots ----
               shinydashboard::box(
@@ -869,17 +869,17 @@ HomePage <- function(id, Page, AppWidth=12L) {
                   )
                 ),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::tags$img(
                   src = "AreaPlot.PNG", # "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/AreaPlot.PNG?raw=true",
-                  alt = "DataMuse",
+                  alt = "Quantico",
                   `data-view-component` = "true",
                   height="100%",
                   width="100%"),
-                DataMuse::BlankRow(12),
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
+                Quantico::BlankRow(12),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::fluidRow(shiny::column(width = 12L, shiny::h3("Area Plots Usage"))),
                 shiny::markdown(
                   "
@@ -889,9 +889,9 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 )
               ),
 
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
 
 
               # Line Plots ----
@@ -908,17 +908,17 @@ HomePage <- function(id, Page, AppWidth=12L) {
                   )
                 ),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::tags$img(
                   src = "LinePlot.PNG", # "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/LinePlot.PNG?raw=true",
-                  alt = "DataMuse",
+                  alt = "Quantico",
                   `data-view-component` = "true",
                   height="100%",
                   width="100%"),
-                DataMuse::BlankRow(12),
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
+                Quantico::BlankRow(12),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::fluidRow(shiny::column(width = 12L, shiny::h3("Line Plots Usage"))),
                 shiny::markdown(
                   "
@@ -928,9 +928,9 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 )
               ),
 
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
 
               # River Plots ----
               shinydashboard::box(
@@ -946,17 +946,17 @@ HomePage <- function(id, Page, AppWidth=12L) {
                   )
                 ),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::tags$img(
                   src = "RiverPlot.PNG", # "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/RiverPlot.PNG?raw=true",
-                  alt = "DataMuse",
+                  alt = "Quantico",
                   `data-view-component` = "true",
                   height="100%",
                   width="100%"),
-                DataMuse::BlankRow(12),
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
+                Quantico::BlankRow(12),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::fluidRow(shiny::column(width = 12L, shiny::h3("River Plots Usage"))),
                 shiny::markdown(
                   "
@@ -966,9 +966,9 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 )
               ),
 
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
 
               # Step Plots ----
               shinydashboard::box(
@@ -985,17 +985,17 @@ HomePage <- function(id, Page, AppWidth=12L) {
                   )
                 ),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::tags$img(
                   src = "StepPlot.PNG", # "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/StepPlot.PNG?raw=true",
-                  alt = "DataMuse",
+                  alt = "Quantico",
                   `data-view-component` = "true",
                   height="100%",
                   width="100%"),
-                DataMuse::BlankRow(12),
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
+                Quantico::BlankRow(12),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::fluidRow(shiny::column(width = 12L, shiny::h3("Step Plots Usage"))),
                 shiny::markdown(
                   "
@@ -1005,9 +1005,9 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 )
               ),
 
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
 
               # AutoCorr Plots ----
               shinydashboard::box(
@@ -1023,17 +1023,17 @@ HomePage <- function(id, Page, AppWidth=12L) {
                   )
                 ),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::tags$img(
                   src = "AutocorrelationPlot.PNG", # "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/StepPlot.PNG?raw=true",
-                  alt = "DataMuse",
+                  alt = "Quantico",
                   `data-view-component` = "true",
                   height="100%",
                   width="100%"),
-                DataMuse::BlankRow(12),
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
+                Quantico::BlankRow(12),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::fluidRow(shiny::column(width = 12L, shiny::h3("Step Plots Usage"))),
                 shiny::markdown(
                   "
@@ -1044,9 +1044,9 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 )
               ),
 
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
 
               # PartialAutoCorr Plots ----
               shinydashboard::box(
@@ -1062,17 +1062,17 @@ HomePage <- function(id, Page, AppWidth=12L) {
                   )
                 ),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::tags$img(
                   src = "PartialAutocorrelationPlot.PNG", # "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/StepPlot.PNG?raw=true",
-                  alt = "DataMuse",
+                  alt = "Quantico",
                   `data-view-component` = "true",
                   height="100%",
                   width="100%"),
-                DataMuse::BlankRow(12),
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
+                Quantico::BlankRow(12),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::fluidRow(shiny::column(width = 12L, shiny::h3("Step Plots Usage"))),
                 shiny::markdown(
                   "
@@ -1083,9 +1083,9 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 )
               ),
 
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
 
               # Bar Plots ----
               shinydashboard::box(
@@ -1102,17 +1102,17 @@ HomePage <- function(id, Page, AppWidth=12L) {
                   )
                 ),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::tags$img(
                   src = "BarPlot.PNG", # "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/BarPlot.PNG?raw=true",
-                  alt = "DataMuse",
+                  alt = "Quantico",
                   `data-view-component` = "true",
                   height="100%",
                   width="100%"),
-                DataMuse::BlankRow(12),
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
+                Quantico::BlankRow(12),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::fluidRow(shiny::column(width = 12L, shiny::h3("Bar Plots Usage"))),
                 shiny::markdown(
                   "
@@ -1122,9 +1122,9 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 )
               ),
 
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
 
               # Stacked Bar Plots ----
               shinydashboard::box(
@@ -1142,17 +1142,17 @@ HomePage <- function(id, Page, AppWidth=12L) {
                   )
                 ),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::tags$img(
                   src = "StackedBarPlot.PNG", # "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/StackedBarPlot.PNG?raw=true",
-                  alt = "DataMuse",
+                  alt = "Quantico",
                   `data-view-component` = "true",
                   height="100%",
                   width="100%"),
-                DataMuse::BlankRow(12),
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
+                Quantico::BlankRow(12),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::fluidRow(shiny::column(width = 12L, shiny::h3("Stacked Bar Plots Usage"))),
                 shiny::markdown(
                   "
@@ -1163,9 +1163,9 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 )
               ),
 
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
 
               # Bar Plots ----
               shinydashboard::box(
@@ -1180,17 +1180,17 @@ HomePage <- function(id, Page, AppWidth=12L) {
                   )
                 ),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::tags$img(
                   src = "RadarPlot.PNG", # "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/BarPlot.PNG?raw=true",
-                  alt = "DataMuse",
+                  alt = "Quantico",
                   `data-view-component` = "true",
                   height="100%",
                   width="100%"),
-                DataMuse::BlankRow(12),
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
+                Quantico::BlankRow(12),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::fluidRow(shiny::column(width = 12L, shiny::h3("Radar Plots Usage"))),
                 shiny::markdown(
                   "
@@ -1199,9 +1199,9 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 )
               ),
 
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
 
               # 3D Bar Plots ----
               shinydashboard::box(
@@ -1219,17 +1219,17 @@ HomePage <- function(id, Page, AppWidth=12L) {
                   )
                 ),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::tags$img(
                   src = "BarPlot3D.PNG", # "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/BarPlot3D.PNG?raw=true",
-                  alt = "DataMuse",
+                  alt = "Quantico",
                   `data-view-component` = "true",
                   height="100%",
                   width="100%"),
-                DataMuse::BlankRow(12),
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
+                Quantico::BlankRow(12),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::fluidRow(shiny::column(width = 12L, shiny::h3("3D Bar Plots Usage"))),
                 shiny::markdown(
                   "
@@ -1239,9 +1239,9 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 )
               ),
 
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
 
               # Scatter Plots ----
               shinydashboard::box(
@@ -1257,17 +1257,17 @@ HomePage <- function(id, Page, AppWidth=12L) {
                   )
                 ),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::tags$img(
                   src = "ScatterPlot.PNG", # "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/ScatterPlot.PNG?raw=true",
-                  alt = "DataMuse",
+                  alt = "Quantico",
                   `data-view-component` = "true",
                   height="100%",
                   width="100%"),
-                DataMuse::BlankRow(12),
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
+                Quantico::BlankRow(12),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::fluidRow(shiny::column(width = 12L, shiny::h3("Scatter Plots Usage"))),
                 shiny::markdown(
                   "
@@ -1277,9 +1277,9 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 )
               ),
 
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
 
               # 3D Scatter Plots ----
               shinydashboard::box(
@@ -1295,17 +1295,17 @@ HomePage <- function(id, Page, AppWidth=12L) {
                   )
                 ),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::tags$img(
                   src = "ScatterPlot3D.PNG", # "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/ScatterPlot3D.PNG?raw=true",
-                  alt = "DataMuse",
+                  alt = "Quantico",
                   `data-view-component` = "true",
                   height="100%",
                   width="100%"),
-                DataMuse::BlankRow(12),
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
+                Quantico::BlankRow(12),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::fluidRow(shiny::column(width = 12L, shiny::h3("3D Scatter Plots Usage"))),
                 shiny::markdown(
                   "
@@ -1315,9 +1315,9 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 )
               ),
 
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
 
               # Copula Plots ----
               shinydashboard::box(
@@ -1338,17 +1338,17 @@ HomePage <- function(id, Page, AppWidth=12L) {
                   )
                 ),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::tags$img(
                   src = "CopulaPlot.PNG", # "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/CopulaPlot.PNG?raw=true",
-                  alt = "DataMuse",
+                  alt = "Quantico",
                   `data-view-component` = "true",
                   height="100%",
                   width="100%"),
-                DataMuse::BlankRow(12),
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
+                Quantico::BlankRow(12),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::fluidRow(shiny::column(width = 12L, shiny::h3("Copula Plots Usage"))),
                 shiny::markdown(
                   "
@@ -1358,9 +1358,9 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 )
               ),
 
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
 
               # 3D Copula Plots ----
               shinydashboard::box(
@@ -1381,17 +1381,17 @@ HomePage <- function(id, Page, AppWidth=12L) {
                   )
                 ),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::tags$img(
                   src = "CopulaPlot3D.PNG", # "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/CopulaPlot3D.PNG?raw=true",
-                  alt = "DataMuse",
+                  alt = "Quantico",
                   `data-view-component` = "true",
                   height="100%",
                   width="100%"),
-                DataMuse::BlankRow(12),
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
+                Quantico::BlankRow(12),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::fluidRow(shiny::column(width = 12L, shiny::h3("3D Copula Plots Usage"))),
                 shiny::markdown(
                   "
@@ -1401,9 +1401,9 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 )
               ),
 
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
 
               # Heatmap Plots ----
               shinydashboard::box(
@@ -1421,17 +1421,17 @@ HomePage <- function(id, Page, AppWidth=12L) {
                   )
                 ),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::tags$img(
                   src = "Heatmap.PNG", # "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/Heatmap.PNG?raw=true",
-                  alt = "DataMuse",
+                  alt = "Quantico",
                   `data-view-component` = "true",
                   height="100%",
                   width="100%"),
-                DataMuse::BlankRow(12),
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
+                Quantico::BlankRow(12),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::fluidRow(shiny::column(width = 12L, shiny::h3("Heatmap Plots Usage"))),
                 shiny::markdown(
                   "
@@ -1441,9 +1441,9 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 )
               ),
 
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
 
               # Parallel Plots ----
               shinydashboard::box(
@@ -1458,17 +1458,17 @@ HomePage <- function(id, Page, AppWidth=12L) {
                   )
                 ),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::tags$img(
                   src = "ParallelPlot.PNG", # "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/CorrelogramPlot.PNG?raw=true",
-                  alt = "DataMuse",
+                  alt = "Quantico",
                   `data-view-component` = "true",
                   height="100%",
                   width="100%"),
-                DataMuse::BlankRow(12),
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
+                Quantico::BlankRow(12),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::fluidRow(shiny::column(width = 12L, shiny::h3("Parallel Plots Usage"))),
                 shiny::markdown(
                   "
@@ -1493,17 +1493,17 @@ HomePage <- function(id, Page, AppWidth=12L) {
                   )
                 ),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::tags$img(
                   src = "CorrelogramPlot.PNG", # "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/CorrelogramPlot.PNG?raw=true",
-                  alt = "DataMuse",
+                  alt = "Quantico",
                   `data-view-component` = "true",
                   height="100%",
                   width="100%"),
-                DataMuse::BlankRow(12),
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
+                Quantico::BlankRow(12),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::fluidRow(shiny::column(width = 12L, shiny::h3("Correlogram Plots Usage"))),
                 shiny::markdown(
                   "
@@ -1513,12 +1513,12 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 )
               ),
 
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
 
               # ----
 
@@ -1534,7 +1534,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                            learning contexts.")
                   )
                 ),
-                DataMuse::BlankRow(12L),
+                Quantico::BlankRow(12L),
                 shiny::h3(tags$b("Standard Plots Types")),
                 shiny::markdown(
                   "
@@ -1554,9 +1554,9 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 )
               ),
 
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
 
               # Residual Histogram ----
               shinydashboard::box(
@@ -1571,17 +1571,17 @@ HomePage <- function(id, Page, AppWidth=12L) {
                   )
                 ),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::tags$img(
                   src = "zz_ResidualHistogram.PNG", # "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/zz_ResidualHistogram.PNG?raw=true",
-                  alt = "DataMuse",
+                  alt = "Quantico",
                   `data-view-component` = "true",
                   height="100%",
                   width="100%"),
-                DataMuse::BlankRow(12),
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
+                Quantico::BlankRow(12),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::fluidRow(shiny::column(width = 12L, shiny::h3("Residual Histogram Plots Usage"))),
                 shiny::markdown(
                   "
@@ -1591,9 +1591,9 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 )
               ),
 
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
 
               # Residual Scatter Plot ----
               shinydashboard::box(
@@ -1609,17 +1609,17 @@ HomePage <- function(id, Page, AppWidth=12L) {
                   )
                 ),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::tags$img(
                   src = "zz_ResidualScatter.PNG", # "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/zz_ResidualScatter.PNG?raw=true",
-                  alt = "DataMuse",
+                  alt = "Quantico",
                   `data-view-component` = "true",
                   height="100%",
                   width="100%"),
-                DataMuse::BlankRow(12),
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
+                Quantico::BlankRow(12),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::fluidRow(shiny::column(width = 12L, shiny::h3("Residual Scatter Plots Usage"))),
                 shiny::markdown(
                   "
@@ -1629,9 +1629,9 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 )
               ),
 
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
 
               # Calibration Line Plot ----
               shinydashboard::box(
@@ -1648,17 +1648,17 @@ HomePage <- function(id, Page, AppWidth=12L) {
                   )
                 ),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::tags$img(
                   src = "zz_CalibrationLine.PNG", # "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/zz_CalibrationLine.PNG?raw=true",
-                  alt = "DataMuse",
+                  alt = "Quantico",
                   `data-view-component` = "true",
                   height="100%",
                   width="100%"),
-                DataMuse::BlankRow(12),
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
+                Quantico::BlankRow(12),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::fluidRow(shiny::column(width = 12L, shiny::h3("Calibration Line Plots Usage"))),
                 shiny::markdown(
                   "
@@ -1668,9 +1668,9 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 )
               ),
 
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
 
               # Calibration Box Plot ----
               shinydashboard::box(
@@ -1687,17 +1687,17 @@ HomePage <- function(id, Page, AppWidth=12L) {
                   )
                 ),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::tags$img(
                   src = "zz_CalibrationBox.PNG", # "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/zz_CalibrationBox.PNG?raw=true",
-                  alt = "DataMuse",
+                  alt = "Quantico",
                   `data-view-component` = "true",
                   height="100%",
                   width="100%"),
-                DataMuse::BlankRow(12),
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
+                Quantico::BlankRow(12),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::fluidRow(shiny::column(width = 12L, shiny::h3("Calibration Box Plots Usage"))),
                 shiny::markdown(
                   "
@@ -1707,9 +1707,9 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 )
               ),
 
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
 
               # Partial Dependence Line Plot ----
               shinydashboard::box(
@@ -1726,17 +1726,17 @@ HomePage <- function(id, Page, AppWidth=12L) {
                   )
                 ),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::tags$img(
                   src = "zz_PartialDependenceLine.PNG", # "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/zz_PartialDependenceLine.PNG?raw=true",
-                  alt = "DataMuse",
+                  alt = "Quantico",
                   `data-view-component` = "true",
                   height="100%",
                   width="100%"),
-                DataMuse::BlankRow(12),
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
+                Quantico::BlankRow(12),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::fluidRow(shiny::column(width = 12L, shiny::h3("Partial Dependence Line Plots Usage"))),
                 shiny::markdown(
                   "
@@ -1747,9 +1747,9 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 )
               ),
 
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
 
               # Partial Dependence Box Plot ----
               shinydashboard::box(
@@ -1766,17 +1766,17 @@ HomePage <- function(id, Page, AppWidth=12L) {
                   )
                 ),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::tags$img(
                   src = "zz_PartialDependenceHeatmap.PNG", # "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/zz_PartialDependenceHeatmap.PNG?raw=true",
-                  alt = "DataMuse",
+                  alt = "Quantico",
                   `data-view-component` = "true",
                   height="100%",
                   width="100%"),
-                DataMuse::BlankRow(12),
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
+                Quantico::BlankRow(12),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::fluidRow(shiny::column(width = 12L, shiny::h3("Partial Dependence Box Plots Usage"))),
                 shiny::markdown(
                   "
@@ -1787,9 +1787,9 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 )
               ),
 
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
 
               # Variable Importance Plot ----
               shinydashboard::box(
@@ -1804,17 +1804,17 @@ HomePage <- function(id, Page, AppWidth=12L) {
                   )
                 ),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::tags$img(
                   src = "zz_VariableImportance.PNG", # "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/zz_VariableImportance.PNG?raw=true",
-                  alt = "DataMuse",
+                  alt = "Quantico",
                   `data-view-component` = "true",
                   height="100%",
                   width="100%"),
-                DataMuse::BlankRow(12),
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
+                Quantico::BlankRow(12),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::fluidRow(shiny::column(width = 12L, shiny::h3("Variable Importance Plots Usage"))),
                 shiny::markdown(
                   "
@@ -1824,9 +1824,9 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 )
               ),
 
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
 
               # Shapley Importance Plot ----
               shinydashboard::box(
@@ -1845,17 +1845,17 @@ HomePage <- function(id, Page, AppWidth=12L) {
                   )
                 ),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::tags$img(
                   src = "zz_ShapleyImportance.PNG", # "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/zz_ShapleyImportance.PNG?raw=true",
-                  alt = "DataMuse",
+                  alt = "Quantico",
                   `data-view-component` = "true",
                   height="100%",
                   width="100%"),
-                DataMuse::BlankRow(12),
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
+                Quantico::BlankRow(12),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::fluidRow(shiny::column(width = 12L, shiny::h3("Shapley Importance Plots Usage"))),
                 shiny::markdown(
                   "
@@ -1880,9 +1880,9 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 )
               ),
 
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
 
               # ROC Plot ----
               shinydashboard::box(
@@ -1898,17 +1898,17 @@ HomePage <- function(id, Page, AppWidth=12L) {
                   )
                 ),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::tags$img(
                   src = "zz_ROC.PNG", # "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/zz_ROC.PNG?raw=true",
-                  alt = "DataMuse",
+                  alt = "Quantico",
                   `data-view-component` = "true",
                   height="100%",
                   width="100%"),
-                DataMuse::BlankRow(12),
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
+                Quantico::BlankRow(12),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::fluidRow(shiny::column(width = 12L, shiny::h3("ROC Plots Usage"))),
                 shiny::markdown(
                   "
@@ -1918,9 +1918,9 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 )
               ),
 
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
 
               # Confusion Matrix Plot ----
               shinydashboard::box(
@@ -1935,17 +1935,17 @@ HomePage <- function(id, Page, AppWidth=12L) {
                   )
                 ),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::tags$img(
                   src = "zz_ConfusionMatrix.PNG", # "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/zz_ConfusionMatrix.PNG?raw=true",
-                  alt = "DataMuse",
+                  alt = "Quantico",
                   `data-view-component` = "true",
                   height="100%",
                   width="100%"),
-                DataMuse::BlankRow(12),
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
+                Quantico::BlankRow(12),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::fluidRow(shiny::column(width = 12L, shiny::h3("Confusion Matrix Plots Usage"))),
                 shiny::markdown(
                   "
@@ -1955,9 +1955,9 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 )
               ),
 
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
 
               # Lift Plot ----
               shinydashboard::box(
@@ -1974,17 +1974,17 @@ HomePage <- function(id, Page, AppWidth=12L) {
                   )
                 ),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::tags$img(
                   src = "zz_Lift.PNG", # "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/zz_Lift.PNG?raw=true",
-                  alt = "DataMuse",
+                  alt = "Quantico",
                   `data-view-component` = "true",
                   height="100%",
                   width="100%"),
-                DataMuse::BlankRow(12),
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
+                Quantico::BlankRow(12),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::fluidRow(shiny::column(width = 12L, shiny::h3("Lift Plots Usage"))),
                 shiny::markdown(
                   "
@@ -1994,9 +1994,9 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 )
               ),
 
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
 
               # Gains Plot ----
               shinydashboard::box(
@@ -2013,17 +2013,17 @@ HomePage <- function(id, Page, AppWidth=12L) {
                   )
                 ),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::tags$img(
                   src = "zz_Gains.PNG", # "https://github.com/AdrianAntico/AutoPlots/blob/main/Images/zz_Gains.PNG?raw=true",
-                  alt = "DataMuse",
+                  alt = "Quantico",
                   `data-view-component` = "true",
                   height="100%",
                   width="100%"),
-                DataMuse::BlankRow(12),
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
+                Quantico::BlankRow(12),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::fluidRow(shiny::column(width = 12L, shiny::h3("Gains Plots Usage"))),
                 shiny::markdown(
                   "
@@ -2033,15 +2033,15 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 )
               ),
 
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
 
               # ----
 
@@ -2067,9 +2067,9 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 )
               ),
 
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
 
               # Shrink Button ----
               shinydashboard::box(
@@ -2086,9 +2086,9 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 )
               ),
 
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
 
               # Aggregate Data ----
               shinydashboard::box(
@@ -2104,7 +2104,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                   )
                 ),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::fluidRow(shiny::column(width = 12L, shiny::h3("Aggregate Data Usage"))),
                 shiny::markdown(
                   "
@@ -2126,9 +2126,9 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 )
               ),
 
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
 
               # Subset Rows ----
               shinydashboard::box(
@@ -2142,7 +2142,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                   )
                 ),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::fluidRow(shiny::column(width = 12L, shiny::h3("Subset Rows Usage"))),
                 shiny::markdown(
                   "
@@ -2154,9 +2154,9 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 )
               ),
 
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
 
               # Subset Cols ----
               shinydashboard::box(
@@ -2170,7 +2170,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                   )
                 ),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::fluidRow(shiny::column(width = 12L, shiny::h3("Subset Cols Usage"))),
                 shiny::markdown(
                   "
@@ -2182,9 +2182,9 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 )
               ),
 
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
 
               # Sample Data ----
               shinydashboard::box(
@@ -2199,7 +2199,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                   )
                 ),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::fluidRow(shiny::column(width = 12L, shiny::h3("Sample Data Usage"))),
                 shiny::markdown(
                   "
@@ -2212,12 +2212,12 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 )
               ),
 
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
 
               # ----
 
@@ -2235,9 +2235,9 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 )
               ),
 
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
 
               # Join Data ----
               shinydashboard::box(
@@ -2264,7 +2264,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                   )
                 ),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::fluidRow(shiny::column(width = 12L, shiny::h3("Join Data Usage"))),
                 shiny::markdown(
                   "
@@ -2279,9 +2279,9 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 )
               ),
 
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
 
               # Union Data ----
               shinydashboard::box(
@@ -2296,7 +2296,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                   )
                 ),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::fluidRow(shiny::column(width = 12L, shiny::h3("Union Data Usage"))),
                 shiny::markdown(
                   "
@@ -2310,9 +2310,9 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 )
               ),
 
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
 
               # ----
 
@@ -2332,9 +2332,9 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 )
               ),
 
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
 
               # Partition Data ----
               shinydashboard::box(
@@ -2352,7 +2352,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                   )
                 ),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::fluidRow(shiny::column(width = 12L, shiny::h3("Partition Data Usage"))),
                 shiny::markdown(
                   "
@@ -2369,9 +2369,9 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 )
               ),
 
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
 
               # Sort Data ----
               shinydashboard::box(
@@ -2386,7 +2386,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                   )
                 ),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::fluidRow(shiny::column(width = 12L, shiny::h3("Sort Data Usage"))),
                 shiny::markdown(
                   "
@@ -2398,9 +2398,9 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 )
               ),
 
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
 
               # Remove Data ----
               shinydashboard::box(
@@ -2415,7 +2415,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                   )
                 ),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::fluidRow(shiny::column(width = 12L, shiny::h3("Remove Data Usage"))),
                 shiny::markdown(
                   "
@@ -2425,9 +2425,9 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 )
               ),
 
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
 
               # Model Data Prep ----
               shinydashboard::box(
@@ -2444,7 +2444,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                   )
                 ),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::fluidRow(shiny::column(width = 12L, shiny::h3("Model Data Prep Usage"))),
                 shiny::markdown(
                   "
@@ -2462,9 +2462,9 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 )
               ),
 
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
 
               # ----
 
@@ -2483,9 +2483,9 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 )
               ),
 
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
 
               # Melt data ----
               shinydashboard::box(
@@ -2500,7 +2500,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                   )
                 ),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::fluidRow(shiny::column(width = 12L, shiny::h3("Melt Data Usage"))),
                 shiny::markdown(
                   "
@@ -2518,9 +2518,9 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 )
               ),
 
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
 
               # Cast data ----
               shinydashboard::box(
@@ -2535,7 +2535,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                   )
                 ),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::fluidRow(shiny::column(width = 12L, shiny::h3("Cast Data Usage"))),
                 shiny::markdown(
                   "
@@ -2559,12 +2559,12 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 )
               ),
 
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
 
               # ----
 
@@ -2583,9 +2583,9 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 )
               ),
 
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
 
               # Type Cast data ----
               shinydashboard::box(
@@ -2600,7 +2600,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                   )
                 ),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::fluidRow(shiny::column(width = 12L, shiny::h3("Type Cast Data Usage"))),
                 shiny::markdown(
                   "
@@ -2617,9 +2617,9 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 )
               ),
 
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
 
               # Renaming Columns ----
               shinydashboard::box(
@@ -2634,7 +2634,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                   )
                 ),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::fluidRow(shiny::column(width = 12L, shiny::h3("Renaming Columns Usage"))),
                 shiny::markdown(
                   "
@@ -2646,9 +2646,9 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 )
               ),
 
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
 
               # Time Trend Columns ----
               shinydashboard::box(
@@ -2664,7 +2664,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                   )
                 ),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::fluidRow(shiny::column(width = 12L, shiny::h3("Time Trend Usage"))),
                 shiny::markdown(
                   "
@@ -2678,9 +2678,9 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 )
               ),
 
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
 
               # Concatenating Columns ----
               shinydashboard::box(
@@ -2695,7 +2695,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                   )
                 ),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::fluidRow(shiny::column(width = 12L, shiny::h3("Concat Columns Usage"))),
                 shiny::markdown(
                   "
@@ -2706,12 +2706,12 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 )
               ),
 
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
 
 
               # ----
@@ -2730,9 +2730,9 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 )
               ),
 
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
 
               # MetaProgramming ----
               shinydashboard::box(
@@ -2748,7 +2748,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                   )
                 ),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::fluidRow(shiny::column(width = 12L, shiny::h3("Meta Programming Usage"))),
                 shiny::markdown(
                   "
@@ -2764,9 +2764,9 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 )
               ),
 
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
 
               # Time Series Fill ----
               shinydashboard::box(
@@ -2781,7 +2781,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                   )
                 ),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::fluidRow(shiny::column(width = 12L, shiny::h3("Time Series Fill Usage"))),
                 shiny::markdown(
                   "
@@ -2797,9 +2797,9 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 )
               ),
 
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
 
               # Time Series Fill Roll ----
               shinydashboard::box(
@@ -2815,7 +2815,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                   )
                 ),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::fluidRow(shiny::column(width = 12L, shiny::h3("Time Series Fill Roll Usage"))),
                 shiny::markdown(
                   "
@@ -2833,15 +2833,15 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 )
               ),
 
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
 
               # ----
 
@@ -2866,9 +2866,9 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 )
               ),
 
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
 
               # Anomaly Detection Button ----
               shinydashboard::box(
@@ -2884,9 +2884,9 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 )
               ),
 
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
 
               # Isolation Forest ----
               shinydashboard::box(
@@ -2911,7 +2911,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                   )
                 ),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::fluidRow(shiny::column(width = 12L, shiny::h3("Isolation Forest Usage"))),
                 shiny::markdown(
                   "
@@ -2932,12 +2932,12 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 )
               ),
 
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
 
               # ----
 
@@ -2955,9 +2955,9 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 )
               ),
 
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
 
               # Dimensionality Reduction ----
               shinydashboard::box(
@@ -2974,7 +2974,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                   )
                 ),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::fluidRow(shiny::column(width = 12L, shiny::h3("Dimensionality Reduction Usage"))),
                 shiny::markdown(
                   "
@@ -2998,12 +2998,12 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 )
               ),
 
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
 
               # ----
 
@@ -3020,9 +3020,9 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 )
               ),
 
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
 
               # Clustering ----
               shinydashboard::box(
@@ -3036,7 +3036,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                   )
                 ),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::fluidRow(shiny::column(width = 12L, shiny::h3("Clustering Usage"))),
                 shiny::markdown(
                   "
@@ -3054,12 +3054,12 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 )
               ),
 
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
 
               # ----
 
@@ -3089,7 +3089,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                   )
                 ),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::fluidRow(shiny::column(width = 12L, shiny::h3("Word2Vec Usage"))),
                 shiny::markdown(
                   "
@@ -3110,9 +3110,9 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 )
               ),
 
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
 
               # Text Summary ----
               shinydashboard::box(
@@ -3129,7 +3129,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                   )
                 ),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::fluidRow(shiny::column(width = 12L, shiny::h3("Text Summary Usage"))),
                 shiny::markdown(
                   "
@@ -3141,9 +3141,9 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 )
               ),
 
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
 
               # Sentiment ----
               shinydashboard::box(
@@ -3159,7 +3159,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                   )
                 ),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::fluidRow(shiny::column(width = 12L, shiny::h3("Sentiment Usage"))),
                 shiny::markdown(
                   "
@@ -3173,9 +3173,9 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 )
               ),
 
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
 
               # Readability ----
               shinydashboard::box(
@@ -3238,7 +3238,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                   )
                 ),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::fluidRow(shiny::column(width = 12L, shiny::h3("Readability Usage"))),
                 shiny::markdown(
                   "
@@ -3253,9 +3253,9 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 )
               ),
 
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
 
               # Lexical Diversity ----
               shinydashboard::box(
@@ -3291,7 +3291,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                   )
                 ),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::fluidRow(shiny::column(width = 12L, shiny::h3("Lexical Diversity Usage"))),
                 shiny::markdown(
                   "
@@ -3310,12 +3310,12 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 )
               ),
 
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
 
               # ----
 
@@ -3333,9 +3333,9 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 )
               ),
 
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
 
               # AutoLagRollStats ----
               shinydashboard::box(
@@ -3352,7 +3352,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                   )
                 ),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::fluidRow(shiny::column(width = 12L, shiny::h3("Numeric Variables Usage"))),
                 shiny::markdown(
                   "
@@ -3374,9 +3374,9 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 )
               ),
 
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
 
               # Diff Variables ----
               shinydashboard::box(
@@ -3395,7 +3395,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                   )
                 ),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::fluidRow(shiny::column(width = 12L, shiny::h3("Differencing Variables Usage"))),
                 shiny::markdown(
                   "
@@ -3412,9 +3412,9 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 )
               ),
 
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
 
               # Categorical Variables ----
               shinydashboard::box(
@@ -3429,7 +3429,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                   )
                 ),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::fluidRow(shiny::column(width = 12L, shiny::h3("Categorical Variables Usage"))),
                 shiny::markdown(
                   "
@@ -3445,12 +3445,12 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 )
               ),
 
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
 
               # ----
 
@@ -3468,9 +3468,9 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 )
               ),
 
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
 
               # Categorical Encoding ----
               shinydashboard::box(
@@ -3496,7 +3496,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                   )
                 ),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::fluidRow(shiny::column(width = 12L, shiny::h3("Categorical Encoding Usage"))),
                 shiny::markdown(
                   "
@@ -3511,9 +3511,9 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 )
               ),
 
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
 
               # Partial Dummies ----
               shinydashboard::box(
@@ -3529,7 +3529,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                   )
                 ),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::fluidRow(shiny::column(width = 12L, shiny::h3("Dummy Variables Usage"))),
                 shiny::markdown(
                   "
@@ -3542,12 +3542,12 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 )
               ),
 
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
 
               # ----
 
@@ -3565,9 +3565,9 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 )
               ),
 
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
 
               # Calendar Variables ----
               shinydashboard::box(
@@ -3596,7 +3596,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                   )
                 ),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::fluidRow(shiny::column(width = 12L, shiny::h3("Calendar Variables Usage"))),
                 shiny::markdown(
                   "
@@ -3608,9 +3608,9 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 )
               ),
 
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
 
               # Holiday Variables ----
               shinydashboard::box(
@@ -3633,7 +3633,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                   )
                 ),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::fluidRow(shiny::column(width = 12L, shiny::h3("Holiday Variables Usage"))),
                 shiny::markdown(
                   "
@@ -3646,12 +3646,12 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 )
               ),
 
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
 
               # ----
 
@@ -3669,9 +3669,9 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 )
               ),
 
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
 
               # Percent Rank Variables ----
               shinydashboard::box(
@@ -3687,7 +3687,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                   )
                 ),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::fluidRow(shiny::column(width = 12L, shiny::h3("Percent Rank Usage"))),
                 shiny::markdown(
                   "
@@ -3702,9 +3702,9 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 )
               ),
 
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
 
               # Standardize Variables ----
               shinydashboard::box(
@@ -3719,7 +3719,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                   )
                 ),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::fluidRow(shiny::column(width = 12L, shiny::h3("Standardize Usage"))),
                 shiny::markdown(
                   "
@@ -3735,9 +3735,9 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 )
               ),
 
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
 
               # Transform Variables ----
               shinydashboard::box(
@@ -3764,7 +3764,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                   )
                 ),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::fluidRow(shiny::column(width = 12L, shiny::h3("Transform Usage"))),
                 shiny::markdown(
                   "
@@ -3776,9 +3776,9 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 )
               ),
 
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
 
               # Interaction Variables ----
               shinydashboard::box(
@@ -3794,7 +3794,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                   )
                 ),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::fluidRow(shiny::column(width = 12L, shiny::h3("Interaction Usage"))),
                 shiny::markdown(
                   "
@@ -3808,15 +3808,15 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 )
               ),
 
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
 
               # ----
 
@@ -3853,9 +3853,9 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 )
               ),
 
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
 
               # CatBoost ML ----
               shinydashboard::box(
@@ -3871,10 +3871,10 @@ HomePage <- function(id, Page, AppWidth=12L) {
                   )
                 ),
 
-                DataMuse::BlankRow(12),
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::fluidRow(shiny::column(width = 12L, shiny::h3("CatBoost Usage"))),
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::markdown(
                   "
                 ### Data:
@@ -3891,7 +3891,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 * Transform Methods: Choose at least one method. The algorithms will determine which transformation among selected will best normalize your target variable and move forward with that one
                 "
                 ),
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::markdown(
                   "
                 ### Hardware:
@@ -3902,7 +3902,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 * CPU Threads: This will default to total available threads minus 2. CPU is still utilized even when you select GPU. If you have other processes running at the same time as modeling you will want to lower the CPU Threads count to give all processes a chance to keep running and prevent a queue pool from forming (which can slow down all processes)
                 "
                 ),
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::markdown(
                   "
                 ### Model:
@@ -3925,12 +3925,12 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 * Score Function: The score type used to select the next split during the tree construction. Links below for details
                 "
                 ),
-                DataMuse::BlankRow(12L),
+                Quantico::BlankRow(12L),
                 shiny::fluidRow(shiny::column(width = 12L,tags$a(target="_blank", shiny::icon("newspaper"), href="https://catboost.ai/en/docs/concepts/algorithm-main-stages_bootstrap-options", "Bootstrap Type Details"))),
                 shiny::fluidRow(shiny::column(width = 12L,tags$a(target="_blank", shiny::icon("newspaper"), href="https://catboost.ai/en/docs/concepts/quantization", "Feature Border Type Details"))),
                 shiny::fluidRow(shiny::column(width = 12L,tags$a(target="_blank", shiny::icon("newspaper"), href="https://catboost.ai/en/docs/concepts/algorithm-score-functions", "Score Function Details"))),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::markdown(
                   "
                 ### Grid Tuning:
@@ -3943,7 +3943,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 "
                 ),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::markdown(
                   "
                 ### Evaluation:
@@ -3957,13 +3957,13 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 "
                 ),
 
-                DataMuse::BlankRow(12L),
+                Quantico::BlankRow(12L),
                 shiny::fluidRow(shiny::column(width = 12L,tags$a(target="_blank", shiny::icon("newspaper"), href="https://catboost.ai/en/docs/concepts/loss-functions", "Loss Functions and Eval Metrics Details")))
               ),
 
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
 
               # XGBoost ML ----
               shinydashboard::box(
@@ -3979,13 +3979,13 @@ HomePage <- function(id, Page, AppWidth=12L) {
                   )
                 ),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::fluidRow(shiny::column(width = 12L, shiny::h3("XGBoost Usage"))),
 
-                DataMuse::BlankRow(12),
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::fluidRow(shiny::column(width = 12L, shiny::h3("CatBoost Usage"))),
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::markdown(
                   "
                 ### Data:
@@ -4002,7 +4002,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 * Transform Methods: Choose at least one method. The algorithms will determine which transformation among selected will best normalize your target variable and move forward with that one
                 "
                 ),
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::markdown(
                   "
                 ### Hardware:
@@ -4013,7 +4013,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 * CPU Threads: This will default to total available threads minus 2. CPU is still utilized even when you select GPU. If you have other processes running at the same time as modeling you will want to lower the CPU Threads count to give all processes a chance to keep running and prevent a queue pool from forming (which can slow down all processes)
                 "
                 ),
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::markdown(
                   "
                 ### Model:
@@ -4028,7 +4028,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 * Min Child Weight: Minimum number of records in leaves for continued splitting
                 "
                 ),
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::markdown(
                   "
                 ### Grid Tuning:
@@ -4041,7 +4041,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 "
                 ),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::markdown(
                   "
                 ### Evaluation:
@@ -4054,13 +4054,13 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 "
                 ),
 
-                DataMuse::BlankRow(12L),
+                Quantico::BlankRow(12L),
                 shiny::fluidRow(shiny::column(width = 12L,tags$a(target="_blank", shiny::icon("newspaper"), href="https://xgboost.readthedocs.io/en/stable/parameter.html", "XGBoost Parameter Docs")))
               ),
 
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
 
               # LightGBM ML ----
               shinydashboard::box(
@@ -4076,9 +4076,9 @@ HomePage <- function(id, Page, AppWidth=12L) {
                   )
                 ),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::fluidRow(shiny::column(width = 12L, shiny::h3("LightGBM Usage"))),
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::markdown(
                   "
                 ### Data:
@@ -4095,7 +4095,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 * Transform Methods: Choose at least one method. The algorithms will determine which transformation among selected will best normalize your target variable and move forward with that one
                 "
                 ),
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::markdown(
                   "
                 ### Hardware:
@@ -4106,7 +4106,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 * CPU Threads: This will default to total available threads minus 2. CPU is still utilized even when you select GPU. If you have other processes running at the same time as modeling you will want to lower the CPU Threads count to give all processes a chance to keep running and prevent a queue pool from forming (which can slow down all processes)
                 "
                 ),
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::markdown(
                   "
                 ### Model:
@@ -4123,7 +4123,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 * Number of Leaves: You can set the maximum number of leaves for a given tree
                 "
                 ),
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::markdown(
                   "
                 ### Grid Tuning:
@@ -4136,7 +4136,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 "
                 ),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::markdown(
                   "
                 ### Evaluation:
@@ -4147,13 +4147,13 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 "
                 ),
 
-                DataMuse::BlankRow(12L),
+                Quantico::BlankRow(12L),
                 shiny::fluidRow(shiny::column(width = 12L,tags$a(target="_blank", shiny::icon("newspaper"), href="https://lightgbm.readthedocs.io/en/v3.3.2/Parameters.html", "LightGBM Parameter Docs")))
               ),
 
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
 
               # H2O DRF ML ----
               shinydashboard::box(
@@ -4169,9 +4169,9 @@ HomePage <- function(id, Page, AppWidth=12L) {
                   )
                 ),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::fluidRow(shiny::column(width = 12L, shiny::h3("H2O-DRF Usage"))),
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::markdown(
                   "
                 ### Data:
@@ -4188,7 +4188,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 * Transform Methods: Choose at least one method. The algorithms will determine which transformation among selected will best normalize your target variable and move forward with that one
                 "
                 ),
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::markdown(
                   "
                 ### Hardware:
@@ -4198,7 +4198,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 * Max Memory: This will default to total available threads minus 2. CPU is still utilized even when you select GPU. If you have other processes running at the same time as modeling you will want to lower the CPU Threads count to give all processes a chance to keep running and prevent a queue pool from forming (which can slow down all processes)
                 "
                 ),
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::markdown(
                   "
                 ### Model:
@@ -4216,7 +4216,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 * Stopping Rounds: Stops training when model performance doesn’t improve for the specified number of training rounds, based on a simple moving average
                 "
                 ),
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::markdown(
                   "
                 ### Grid Tuning:
@@ -4226,7 +4226,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 "
                 ),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::markdown(
                   "
                 ### Evaluation:
@@ -4237,13 +4237,13 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 "
                 ),
 
-                DataMuse::BlankRow(12L),
+                Quantico::BlankRow(12L),
                 shiny::fluidRow(shiny::column(width = 12L,tags$a(target="_blank", shiny::icon("newspaper"), href="https://docs.h2o.ai/h2o/latest-stable/h2o-docs/data-science/drf.html", "H2O DRF Parameter Docs")))
               ),
 
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
 
               # H2O GBM ML ----
               shinydashboard::box(
@@ -4259,9 +4259,9 @@ HomePage <- function(id, Page, AppWidth=12L) {
                   )
                 ),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::fluidRow(shiny::column(width = 12L, shiny::h3("H2O-GBM Usage"))),
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::markdown(
                   "
                 ### Data:
@@ -4278,7 +4278,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 * Transform Methods: Choose at least one method. The algorithms will determine which transformation among selected will best normalize your target variable and move forward with that one
                 "
                 ),
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::markdown(
                   "
                 ### Hardware:
@@ -4288,7 +4288,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 * Max Memory: This will default to total available threads minus 2. CPU is still utilized even when you select GPU. If you have other processes running at the same time as modeling you will want to lower the CPU Threads count to give all processes a chance to keep running and prevent a queue pool from forming (which can slow down all processes)
                 "
                 ),
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::markdown(
                   "
                 ### Model:
@@ -4308,12 +4308,12 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 * Bins Top Level Categorical Variables: Number of bins for group variable levels at the top level of each tree. Fewer bins means that more group levels will be combined
                 "
                 ),
-                DataMuse::BlankRow(12L),
+                Quantico::BlankRow(12L),
                 shiny::fluidRow(shiny::column(width = 12L,tags$a(target="_blank", shiny::icon("newspaper"), href="https://catboost.ai/en/docs/concepts/algorithm-main-stages_bootstrap-options", "Bootstrap Type Details"))),
                 shiny::fluidRow(shiny::column(width = 12L,tags$a(target="_blank", shiny::icon("newspaper"), href="https://catboost.ai/en/docs/concepts/quantization", "Feature Border Type Details"))),
                 shiny::fluidRow(shiny::column(width = 12L,tags$a(target="_blank", shiny::icon("newspaper"), href="https://catboost.ai/en/docs/concepts/algorithm-score-functions", "Score Function Details"))),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::markdown(
                   "
                 ### Grid Tuning:
@@ -4323,7 +4323,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 "
                 ),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::markdown(
                   "
                 ### Evaluation:
@@ -4334,13 +4334,13 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 "
                 ),
 
-                DataMuse::BlankRow(12L),
+                Quantico::BlankRow(12L),
                 shiny::fluidRow(shiny::column(width = 12L,tags$a(target="_blank", shiny::icon("newspaper"), href="https://docs.h2o.ai/h2o/latest-stable/h2o-docs/data-science/gbm.html", "H2O GBM Parameter Docs")))
               ),
 
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
 
               # H2O GLM ML ----
               shinydashboard::box(
@@ -4355,7 +4355,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                   )
                 ),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::fluidRow(shiny::column(width = 12L, shiny::h3("H2O-GLM Usage"))),
                 shiny::markdown(
                   "
@@ -4372,7 +4372,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 * Transform Methods: Choose at least one method. The algorithms will determine which transformation among selected will best normalize your target variable and move forward with that one
                 "
                 ),
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::markdown(
                   "
                 ### Hardware:
@@ -4382,7 +4382,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 * Max Memory: This will default to total available threads minus 2. CPU is still utilized even when you select GPU. If you have other processes running at the same time as modeling you will want to lower the CPU Threads count to give all processes a chance to keep running and prevent a queue pool from forming (which can slow down all processes)
                 "
                 ),
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::markdown(
                   "
                 ### Model:
@@ -4397,7 +4397,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 * Non Negative Coefficients: defaults to FALSE for model interpretation purposes
                 "
                 ),
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::markdown(
                   "
                 ### Grid Tuning:
@@ -4407,7 +4407,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 "
                 ),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::markdown(
                   "
                 ### Evaluation:
@@ -4422,13 +4422,13 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 "
                 ),
 
-                DataMuse::BlankRow(12L),
+                Quantico::BlankRow(12L),
                 shiny::fluidRow(shiny::column(width = 12L,tags$a(target="_blank", shiny::icon("newspaper"), href="https://docs.h2o.ai/h2o/latest-stable/h2o-docs/data-science/glm.html", "H2O GLM Parameter Docs")))
               ),
 
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
 
               # H2O HGLM ML ----
               shinydashboard::box(
@@ -4444,7 +4444,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                   )
                 ),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::fluidRow(shiny::column(width = 12L, shiny::h3("H2O-HGLM Usage"))),
                 shiny::markdown(
                   "
@@ -4460,7 +4460,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 * Transform Methods: Choose at least one method. The algorithms will determine which transformation among selected will best normalize your target variable and move forward with that one
                 "
                 ),
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::markdown(
                   "
                 ### Hardware:
@@ -4470,7 +4470,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 * Max Memory: This will default to total available threads minus 2. CPU is still utilized even when you select GPU. If you have other processes running at the same time as modeling you will want to lower the CPU Threads count to give all processes a chance to keep running and prevent a queue pool from forming (which can slow down all processes)
                 "
                 ),
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::markdown(
                   "
                 ### Model:
@@ -4484,7 +4484,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 * Non Negative Coefficients: defaults to FALSE for model interpretation purposes
                 "
                 ),
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::markdown(
                   "
                 ### Grid Tuning:
@@ -4494,7 +4494,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 "
                 ),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::markdown(
                   "
                 ### Evaluation:
@@ -4509,13 +4509,13 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 "
                 ),
 
-                DataMuse::BlankRow(12L),
+                Quantico::BlankRow(12L),
                 shiny::fluidRow(shiny::column(width = 12L,tags$a(target="_blank", shiny::icon("newspaper"), href="https://docs.h2o.ai/h2o/latest-stable/h2o-docs/data-science/glm.html#hierarchical-glm", "H2O HGLM Parameter Docs")))
               ),
 
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
 
               # Causal Mediation ML ----
               shinydashboard::box(
@@ -4531,9 +4531,9 @@ HomePage <- function(id, Page, AppWidth=12L) {
                   )
                 ),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::fluidRow(shiny::column(width = 12L, shiny::h3("Causal Mediation Usage"))),
-                DataMuse::BlankRow(12L),
+                Quantico::BlankRow(12L),
                 shiny::markdown(
                   "
                 ### Variables:
@@ -4551,7 +4551,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 * Case Control Data: If the data comes from a case-control study then set this to TRUE
                 "
                 ),
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::markdown(
                   "
                 ### Evaluation Values:
@@ -4564,7 +4564,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 "
                 ),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::markdown(
                   "
                 ### Model Types:
@@ -4584,9 +4584,9 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 "
                 ),
 
-                DataMuse::BlankRow(12L),
-                shiny::tags$img(src = "https://github.com/AdrianAntico/prettydoc/blob/main/Images/CausalMediationData.PNG?raw=true", alt = "DataMuse", `data-view-component` = "true", height="100%", width="100%"),
-                DataMuse::BlankRow(12L),
+                Quantico::BlankRow(12L),
+                shiny::tags$img(src = "https://github.com/AdrianAntico/prettydoc/blob/main/Images/CausalMediationData.PNG?raw=true", alt = "Quantico", `data-view-component` = "true", height="100%", width="100%"),
+                Quantico::BlankRow(12L),
                 shiny::markdown(
                   "
                 ## Example Data Columns:
@@ -4611,19 +4611,19 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 * Outcome Target Type = 'survAFT_weibull'"
                 ),
 
-                DataMuse::BlankRow(12L),
+                Quantico::BlankRow(12L),
                 shiny::fluidRow(shiny::column(width = 12L,tags$a(target="_blank", shiny::icon("newspaper"), href="https://www.hsph.harvard.edu/tyler-vanderweele/tools-and-tutorials/", "Causal Mediation Background Learning")))
               ),
 
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
 
               # ----
 
@@ -4644,7 +4644,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                              how to use each and every one for each of their intended uses. If you've done forecasting in the
                              past you'll find that the methods provided are as feature rich as you've encountered, if at all.
                              There are serveral forecasting use cases covered in this software, including:"),
-                    DataMuse::BlankRow(12),
+                    Quantico::BlankRow(12),
                     shiny::markdown(
                       "
                       * Single Series
@@ -4654,7 +4654,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                       * Funnel / Cohort Series
                       "
                     ),
-                    DataMuse::BlankRow(12),
+                    Quantico::BlankRow(12),
                     shiny::h3("Algorithm Selection:"),
                     shiny::markdown(
                       "
@@ -4682,7 +4682,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                       * LightGBM Funnel
                       "
                     ),
-                    DataMuse::BlankRow(12),
+                    Quantico::BlankRow(12),
                     shiny::h3("Run Modes:"),
                     shiny::markdown(
                       "
@@ -4705,7 +4705,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                       * Retrain + Forecast: if you have a model you can refresh it and have it generate a forecast for you
                       "
                     ),
-                    DataMuse::BlankRow(12),
+                    Quantico::BlankRow(12),
                     shiny::h3("Features Engineering:"),
                     shiny::markdown(
                       "
@@ -4730,19 +4730,19 @@ HomePage <- function(id, Page, AppWidth=12L) {
                   )
                 ),
 
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::fluidRow(shiny::column(width = 12L, shiny::h3("Forecasting Usage"))),
               ),
 
-              DataMuse::BlankRow(12L),
-              DataMuse::BlankRow(12L),
-              DataMuse::BlankRow(12L),
-              DataMuse::BlankRow(12L),
-              DataMuse::BlankRow(12L),
-              DataMuse::BlankRow(12L),
-              DataMuse::BlankRow(12L),
-              DataMuse::BlankRow(12L),
-              DataMuse::BlankRow(12L),
+              Quantico::BlankRow(12L),
+              Quantico::BlankRow(12L),
+              Quantico::BlankRow(12L),
+              Quantico::BlankRow(12L),
+              Quantico::BlankRow(12L),
+              Quantico::BlankRow(12L),
+              Quantico::BlankRow(12L),
+              Quantico::BlankRow(12L),
+              Quantico::BlankRow(12L),
 
               # ----
 
@@ -4765,9 +4765,9 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 )
               ),
 
-              DataMuse::BlankRow(12L),
-              DataMuse::BlankRow(12L),
-              DataMuse::BlankRow(12L),
+              Quantico::BlankRow(12L),
+              Quantico::BlankRow(12L),
+              Quantico::BlankRow(12L),
 
               # App Themes ----
               shinydashboard::box(
@@ -4782,14 +4782,14 @@ HomePage <- function(id, Page, AppWidth=12L) {
                              images, scroll to the next section.")
                   )
                 ),
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::fluidRow(
                   shiny::column(
                     w = 4,
                     shiny::h3("App Theme: day-light-blue; Plot Theme: wef"),
                     shiny::tags$img(
                       src = "day-light-blue_wef.PNG",# "https://github.com/AdrianAntico/prettydoc/blob/main/Images/day-light-blue_wef.PNG?raw=true",
-                      alt = "DataMuse",
+                      alt = "Quantico",
                       `data-view-component` = "true",
                       height="100%",
                       width="100%")
@@ -4799,7 +4799,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                     shiny::h3("App Theme: light-gray; Plot Theme: wef"),
                     shiny::tags$img(
                       src = "light-gray_wef.PNG",# "https://github.com/AdrianAntico/prettydoc/blob/main/Images/light-gray_wef.PNG?raw=true",
-                      alt = "DataMuse",
+                      alt = "Quantico",
                       `data-view-component` = "true",
                       height="100%",
                       width="100%")
@@ -4809,21 +4809,21 @@ HomePage <- function(id, Page, AppWidth=12L) {
                     shiny::h3("App Theme: medium-gray; Plot Theme: wef"),
                     shiny::tags$img(
                       src = "medium-gray_wef.PNG", # "https://github.com/AdrianAntico/prettydoc/blob/main/Images/medium-gray_wef.PNG?raw=true",
-                      alt = "DataMuse",
+                      alt = "Quantico",
                       `data-view-component` = "true",
                       height="100%",
                       width="100%")
                   )
                 ),
-                DataMuse::BlankRow(12),
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::fluidRow(
                   shiny::column(
                     w = 4,
                     shiny::h3("App Theme: dark-gray; Plot Theme: wef"),
                     shiny::tags$img(
                       src = "dark-gray_wef.PNG", # "https://github.com/AdrianAntico/prettydoc/blob/main/Images/dark-gray_wef.PNG?raw=true",
-                      alt = "DataMuse",
+                      alt = "Quantico",
                       `data-view-component` = "true",
                       height="100%",
                       width="100%")
@@ -4833,7 +4833,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                     shiny::h3("App Theme: piano-black; Plot Theme: wef"),
                     shiny::tags$img(
                       src = "piano-black_wef.PNG", # "https://github.com/AdrianAntico/prettydoc/blob/main/Images/piano-black_wef.PNG?raw=true",
-                      alt = "DataMuse",
+                      alt = "Quantico",
                       `data-view-component` = "true",
                       height="100%",
                       width="100%")
@@ -4843,21 +4843,21 @@ HomePage <- function(id, Page, AppWidth=12L) {
                     shiny::h3("App Theme: yellow; Plot Theme: bee-inspired"),
                     shiny::tags$img(
                       src = "yellow_bee-inspired.PNG", # "https://github.com/AdrianAntico/prettydoc/blob/main/Images/yellow_bee-inspired.PNG?raw=true",
-                      alt = "DataMuse",
+                      alt = "Quantico",
                       `data-view-component` = "true",
                       height="100%",
                       width="100%")
                   )
                 ),
-                DataMuse::BlankRow(12),
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::fluidRow(
                   shiny::column(
                     w = 4,
                     shiny::h3("App Theme: yellow-green; Plot Theme: forest"),
                     shiny::tags$img(
                       src = "yellow-green_forest.PNG", # "https://github.com/AdrianAntico/prettydoc/blob/main/Images/yellow-green_forest.PNG?raw=true",
-                      alt = "DataMuse",
+                      alt = "Quantico",
                       `data-view-component` = "true",
                       height="100%",
                       width="100%")
@@ -4867,7 +4867,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                     shiny::h3("App Theme: green; Plot Theme: green"),
                     shiny::tags$img(
                       src = "green_green.PNG", # "https://github.com/AdrianAntico/prettydoc/blob/main/Images/green_green.PNG?raw=true",
-                      alt = "DataMuse",
+                      alt = "Quantico",
                       `data-view-component` = "true",
                       height="100%",
                       width="100%")
@@ -4877,21 +4877,21 @@ HomePage <- function(id, Page, AppWidth=12L) {
                     shiny::h3("App Theme: green-blue; Plot Theme: green"),
                     shiny::tags$img(
                       src = "green-blue_green.PNG", # "https://github.com/AdrianAntico/prettydoc/blob/main/Images/green-blue_green.PNG?raw=true",
-                      alt = "DataMuse",
+                      alt = "Quantico",
                       `data-view-component` = "true",
                       height="100%",
                       width="100%")
                   )
                 ),
-                DataMuse::BlankRow(12),
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::fluidRow(
                   shiny::column(
                     w = 4,
                     shiny::h3("App Theme: light-blue; Plot Theme: walden"),
                     shiny::tags$img(
                       src = "light-blue_walden.PNG", # "https://github.com/AdrianAntico/prettydoc/blob/main/Images/light-blue_walden.PNG?raw=true",
-                      alt = "DataMuse",
+                      alt = "Quantico",
                       `data-view-component` = "true",
                       height="100%",
                       width="100%")
@@ -4901,7 +4901,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                     shiny::h3("App Theme: dodger-blue; Plot Theme: walden"),
                     shiny::tags$img(
                       src = "dodger-blue_walden.PNG", # "https://github.com/AdrianAntico/prettydoc/blob/main/Images/dodger-blue_walden.PNG?raw=true",
-                      alt = "DataMuse",
+                      alt = "Quantico",
                       `data-view-component` = "true",
                       height="100%",
                       width="100%")
@@ -4911,21 +4911,21 @@ HomePage <- function(id, Page, AppWidth=12L) {
                     shiny::h3("App Theme: blue; Plot Theme: walden"),
                     shiny::tags$img(
                       src = "blue_walden.PNG", # "https://github.com/AdrianAntico/prettydoc/blob/main/Images/blue_walden.PNG?raw=true",
-                      alt = "DataMuse",
+                      alt = "Quantico",
                       `data-view-component` = "true",
                       height="100%",
                       width="100%")
                   )
                 ),
-                DataMuse::BlankRow(12),
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::fluidRow(
                   shiny::column(
                     w = 4,
                     shiny::h3("App Theme: blue-purple; Plot Theme: macarons"),
                     shiny::tags$img(
                       src = "blue-purple_macarons.PNG", # "https://github.com/AdrianAntico/prettydoc/blob/main/Images/blue-purple_macarons.PNG?raw=true",
-                      alt = "DataMuse",
+                      alt = "Quantico",
                       `data-view-component` = "true",
                       height="100%",
                       width="100%")
@@ -4935,7 +4935,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                     shiny::h3("App Theme: purple; Plot Theme: walden"),
                     shiny::tags$img(
                       src = "purple_walden.PNG", # "https://github.com/AdrianAntico/prettydoc/blob/main/Images/purple_walden.PNG?raw=true",
-                      alt = "DataMuse",
+                      alt = "Quantico",
                       `data-view-component` = "true",
                       height="100%",
                       width="100%")
@@ -4945,21 +4945,21 @@ HomePage <- function(id, Page, AppWidth=12L) {
                     shiny::h3("App Theme: pink; Plot Theme: wonderland"),
                     shiny::tags$img(
                       src = "pink_wonderland.PNG", # "https://github.com/AdrianAntico/prettydoc/blob/main/Images/pink_wonderland.PNG?raw=true",
-                      alt = "DataMuse",
+                      alt = "Quantico",
                       `data-view-component` = "true",
                       height="100%",
                       width="100%")
                   )
                 ),
-                DataMuse::BlankRow(12),
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::fluidRow(
                   shiny::column(
                     w = 4,
                     shiny::h3("App Theme: red; Plot Theme: red"),
                     shiny::tags$img(
                       src = "red_red.PNG", # "https://github.com/AdrianAntico/prettydoc/blob/main/Images/red_red.PNG?raw=true",
-                      alt = "DataMuse",
+                      alt = "Quantico",
                       `data-view-component` = "true",
                       height="100%",
                       width="100%")
@@ -4967,9 +4967,9 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 )
               ),
 
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
 
               # Plot Themes ----
               shinydashboard::box(
@@ -4984,14 +4984,14 @@ HomePage <- function(id, Page, AppWidth=12L) {
                              images, scroll to the next section.")
                   )
                 ),
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::fluidRow(
                   shiny::column(
                     w = 4,
                     shiny::h3("Plot Theme: auritus"),
                     shiny::tags$img(
                       src = "auritus.PNG", # "https://github.com/AdrianAntico/prettydoc/blob/main/Images/auritus.PNG?raw=true",
-                      alt = "DataMuse",
+                      alt = "Quantico",
                       `data-view-component` = "true",
                       height="100%",
                       width="100%")
@@ -5001,7 +5001,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                     shiny::h3("Plot Theme: azul"),
                     shiny::tags$img(
                       src = "azul.PNG", # "https://github.com/AdrianAntico/prettydoc/blob/main/Images/azul.PNG?raw=true",
-                      alt = "DataMuse",
+                      alt = "Quantico",
                       `data-view-component` = "true",
                       height="100%",
                       width="100%")
@@ -5011,21 +5011,21 @@ HomePage <- function(id, Page, AppWidth=12L) {
                     shiny::h3("Plot Theme: bee-inspired"),
                     shiny::tags$img(
                       src = "bee-inspired.PNG", # "https://github.com/AdrianAntico/prettydoc/blob/main/Images/bee-inspired.PNG?raw=true",
-                      alt = "DataMuse",
+                      alt = "Quantico",
                       `data-view-component` = "true",
                       height="100%",
                       width="100%")
                   )
                 ),
-                DataMuse::BlankRow(12),
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::fluidRow(
                   shiny::column(
                     w = 4,
                     shiny::h3("Plot Theme: blue"),
                     shiny::tags$img(
                       src = "blue.PNG", # "https://github.com/AdrianAntico/prettydoc/blob/main/Images/blue.PNG?raw=true",
-                      alt = "DataMuse",
+                      alt = "Quantico",
                       `data-view-component` = "true",
                       height="100%",
                       width="100%")
@@ -5035,7 +5035,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                     shiny::h3("Plot Theme: caravan"),
                     shiny::tags$img(
                       src = "caravan.PNG", # "https://github.com/AdrianAntico/prettydoc/blob/main/Images/caravan.PNG?raw=true",
-                      alt = "DataMuse",
+                      alt = "Quantico",
                       `data-view-component` = "true",
                       height="100%",
                       width="100%")
@@ -5045,21 +5045,21 @@ HomePage <- function(id, Page, AppWidth=12L) {
                     shiny::h3("Plot Theme: carp"),
                     shiny::tags$img(
                       src = "carp.PNG", # "https://github.com/AdrianAntico/prettydoc/blob/main/Images/carp.PNG?raw=true",
-                      alt = "DataMuse",
+                      alt = "Quantico",
                       `data-view-component` = "true",
                       height="100%",
                       width="100%")
                   )
                 ),
-                DataMuse::BlankRow(12),
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::fluidRow(
                   shiny::column(
                     w = 4,
                     shiny::h3("Plot Theme: chalk"),
                     shiny::tags$img(
                       src = "chalk.PNG", # "https://github.com/AdrianAntico/prettydoc/blob/main/Images/chalk.PNG?raw=true",
-                      alt = "DataMuse",
+                      alt = "Quantico",
                       `data-view-component` = "true",
                       height="100%",
                       width="100%")
@@ -5069,7 +5069,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                     shiny::h3("Plot Theme: cool"),
                     shiny::tags$img(
                       src = "cool.PNG", # "https://github.com/AdrianAntico/prettydoc/blob/main/Images/cool.PNG?raw=true",
-                      alt = "DataMuse",
+                      alt = "Quantico",
                       `data-view-component` = "true",
                       height="100%",
                       width="100%")
@@ -5079,21 +5079,21 @@ HomePage <- function(id, Page, AppWidth=12L) {
                     shiny::h3("Plot Theme: dark-bold"),
                     shiny::tags$img(
                       src = "dark-bold.PNG", # "https://github.com/AdrianAntico/prettydoc/blob/main/Images/dark-bold.PNG?raw=true",
-                      alt = "DataMuse",
+                      alt = "Quantico",
                       `data-view-component` = "true",
                       height="100%",
                       width="100%")
                   )
                 ),
-                DataMuse::BlankRow(12),
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::fluidRow(
                   shiny::column(
                     w = 4,
                     shiny::h3("Plot Theme: dark"),
                     shiny::tags$img(
                       src = "dark.PNG", # "https://github.com/AdrianAntico/prettydoc/blob/main/Images/dark.PNG?raw=true",
-                      alt = "DataMuse",
+                      alt = "Quantico",
                       `data-view-component` = "true",
                       height="100%",
                       width="100%")
@@ -5103,7 +5103,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                     shiny::h3("Plot Theme: eduardo"),
                     shiny::tags$img(
                       src = "eduardo.PNG", # "https://github.com/AdrianAntico/prettydoc/blob/main/Images/eduardo.PNG?raw=true",
-                      alt = "DataMuse",
+                      alt = "Quantico",
                       `data-view-component` = "true",
                       height="100%",
                       width="100%")
@@ -5113,21 +5113,21 @@ HomePage <- function(id, Page, AppWidth=12L) {
                     shiny::h3("Plot Theme: essos"),
                     shiny::tags$img(
                       src = "essos.PNG", # "https://github.com/AdrianAntico/prettydoc/blob/main/Images/essos.PNG?raw=true",
-                      alt = "DataMuse",
+                      alt = "Quantico",
                       `data-view-component` = "true",
                       height="100%",
                       width="100%")
                   )
                 ),
-                DataMuse::BlankRow(12),
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::fluidRow(
                   shiny::column(
                     w = 4,
                     shiny::h3("Plot Theme: forest"),
                     shiny::tags$img(
                       src = "forest.PNG", # "https://github.com/AdrianAntico/prettydoc/blob/main/Images/forest.PNG?raw=true",
-                      alt = "DataMuse",
+                      alt = "Quantico",
                       `data-view-component` = "true",
                       height="100%",
                       width="100%")
@@ -5137,7 +5137,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                     shiny::h3("Plot Theme: fresh-cut"),
                     shiny::tags$img(
                       src = "fresh-cut.PNG", # "https://github.com/AdrianAntico/prettydoc/blob/main/Images/fresh-cut.PNG?raw=true",
-                      alt = "DataMuse",
+                      alt = "Quantico",
                       `data-view-component` = "true",
                       height="100%",
                       width="100%")
@@ -5147,21 +5147,21 @@ HomePage <- function(id, Page, AppWidth=12L) {
                     shiny::h3("Plot Theme: fruit"),
                     shiny::tags$img(
                       src = "fruit.PNG", # "https://github.com/AdrianAntico/prettydoc/blob/main/Images/fruit.PNG?raw=true",
-                      alt = "DataMuse",
+                      alt = "Quantico",
                       `data-view-component` = "true",
                       height="100%",
                       width="100%")
                   )
                 ),
-                DataMuse::BlankRow(12),
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::fluidRow(
                   shiny::column(
                     w = 4,
                     shiny::h3("Plot Theme: gray"),
                     shiny::tags$img(
                       src = "gray.PNG", # "https://github.com/AdrianAntico/prettydoc/blob/main/Images/gray.PNG?raw=true",
-                      alt = "DataMuse",
+                      alt = "Quantico",
                       `data-view-component` = "true",
                       height="100%",
                       width="100%")
@@ -5171,7 +5171,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                     shiny::h3("Plot Theme: green"),
                     shiny::tags$img(
                       src = "green.PNG", # "https://github.com/AdrianAntico/prettydoc/blob/main/Images/green.PNG?raw=true",
-                      alt = "DataMuse",
+                      alt = "Quantico",
                       `data-view-component` = "true",
                       height="100%",
                       width="100%")
@@ -5181,21 +5181,21 @@ HomePage <- function(id, Page, AppWidth=12L) {
                     shiny::h3("Plot Theme: halloween"),
                     shiny::tags$img(
                       src = "halloween.PNG", # "https://github.com/AdrianAntico/prettydoc/blob/main/Images/halloween.PNG?raw=true",
-                      alt = "DataMuse",
+                      alt = "Quantico",
                       `data-view-component` = "true",
                       height="100%",
                       width="100%")
                   )
                 ),
-                DataMuse::BlankRow(12),
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::fluidRow(
                   shiny::column(
                     w = 4,
                     shiny::h3("Plot Theme: helianthus"),
                     shiny::tags$img(
                       src = "helianthus.PNG", # "https://github.com/AdrianAntico/prettydoc/blob/main/Images/helianthus.PNG?raw=true",
-                      alt = "DataMuse",
+                      alt = "Quantico",
                       `data-view-component` = "true",
                       height="100%",
                       width="100%")
@@ -5205,7 +5205,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                     shiny::h3("Plot Theme: infographic"),
                     shiny::tags$img(
                       src = "infographic.PNG", # "https://github.com/AdrianAntico/prettydoc/blob/main/Images/infographic.PNG?raw=true",
-                      alt = "DataMuse",
+                      alt = "Quantico",
                       `data-view-component` = "true",
                       height="100%",
                       width="100%")
@@ -5215,21 +5215,21 @@ HomePage <- function(id, Page, AppWidth=12L) {
                     shiny::h3("Plot Theme: inspired"),
                     shiny::tags$img(
                       src = "inspired.PNG", # https://github.com/AdrianAntico/prettydoc/blob/main/Images/inspired.PNG?raw=true",
-                      alt = "DataMuse",
+                      alt = "Quantico",
                       `data-view-component` = "true",
                       height="100%",
                       width="100%")
                   )
                 ),
-                DataMuse::BlankRow(12),
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::fluidRow(
                   shiny::column(
                     w = 4,
                     shiny::h3("Plot Theme: jazz"),
                     shiny::tags$img(
                       src = "jazz.PNG", # "https://github.com/AdrianAntico/prettydoc/blob/main/Images/jazz.PNG?raw=true",
-                      alt = "DataMuse",
+                      alt = "Quantico",
                       `data-view-component` = "true",
                       height="100%",
                       width="100%")
@@ -5239,7 +5239,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                     shiny::h3("Plot Theme: london"),
                     shiny::tags$img(
                       src = "london.PNG", # "https://github.com/AdrianAntico/prettydoc/blob/main/Images/london.PNG?raw=true",
-                      alt = "DataMuse",
+                      alt = "Quantico",
                       `data-view-component` = "true",
                       height="100%",
                       width="100%")
@@ -5249,21 +5249,21 @@ HomePage <- function(id, Page, AppWidth=12L) {
                     shiny::h3("Plot Theme: macarons"),
                     shiny::tags$img(
                       src = "macarons.PNG", # "https://github.com/AdrianAntico/prettydoc/blob/main/Images/macarons.PNG?raw=true",
-                      alt = "DataMuse",
+                      alt = "Quantico",
                       `data-view-component` = "true",
                       height="100%",
                       width="100%")
                   )
                 ),
-                DataMuse::BlankRow(12),
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::fluidRow(
                   shiny::column(
                     w = 4,
                     shiny::h3("Plot Theme: macarons2"),
                     shiny::tags$img(
                       src = "macarons2.PNG", # "https://github.com/AdrianAntico/prettydoc/blob/main/Images/macarons2.PNG?raw=true",
-                      alt = "DataMuse",
+                      alt = "Quantico",
                       `data-view-component` = "true",
                       height="100%",
                       width="100%")
@@ -5273,7 +5273,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                     shiny::h3("Plot Theme: mint"),
                     shiny::tags$img(
                       src = "mint.PNG", # "https://github.com/AdrianAntico/prettydoc/blob/main/Images/mint.PNG?raw=true",
-                      alt = "DataMuse",
+                      alt = "Quantico",
                       `data-view-component` = "true",
                       height="100%",
                       width="100%")
@@ -5283,21 +5283,21 @@ HomePage <- function(id, Page, AppWidth=12L) {
                     shiny::h3("Plot Theme: purple-passion"),
                     shiny::tags$img(
                       src = "purple-passion.PNG", # "https://github.com/AdrianAntico/prettydoc/blob/main/Images/purple-passion.PNG?raw=true",
-                      alt = "DataMuse",
+                      alt = "Quantico",
                       `data-view-component` = "true",
                       height="100%",
                       width="100%")
                   )
                 ),
-                DataMuse::BlankRow(12),
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::fluidRow(
                   shiny::column(
                     w = 4,
                     shiny::h3("Plot Theme: red-velvet"),
                     shiny::tags$img(
                       src = "red-velvet.PNG", # "https://github.com/AdrianAntico/prettydoc/blob/main/Images/red-velvet.PNG?raw=true",
-                      alt = "DataMuse",
+                      alt = "Quantico",
                       `data-view-component` = "true",
                       height="100%",
                       width="100%")
@@ -5307,7 +5307,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                     shiny::h3("Plot Theme: red"),
                     shiny::tags$img(
                       src = "red.PNG", # "https://github.com/AdrianAntico/prettydoc/blob/main/Images/red.PNG?raw=true",
-                      alt = "DataMuse",
+                      alt = "Quantico",
                       `data-view-component` = "true",
                       height="100%",
                       width="100%")
@@ -5317,21 +5317,21 @@ HomePage <- function(id, Page, AppWidth=12L) {
                     shiny::h3("Plot Theme: roma"),
                     shiny::tags$img(
                       src = "roma.PNG", # "https://github.com/AdrianAntico/prettydoc/blob/main/Images/roma.PNG?raw=true",
-                      alt = "DataMuse",
+                      alt = "Quantico",
                       `data-view-component` = "true",
                       height="100%",
                       width="100%")
                   )
                 ),
-                DataMuse::BlankRow(12),
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::fluidRow(
                   shiny::column(
                     w = 4,
                     shiny::h3("Plot Theme: royal"),
                     shiny::tags$img(
                       src = "royal.PNG", # "https://github.com/AdrianAntico/prettydoc/blob/main/Images/royal.PNG?raw=true",
-                      alt = "DataMuse",
+                      alt = "Quantico",
                       `data-view-component` = "true",
                       height="100%",
                       width="100%")
@@ -5341,7 +5341,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                     shiny::h3("Plot Theme: sakura"),
                     shiny::tags$img(
                       src = "sakura.PNG", # "https://github.com/AdrianAntico/prettydoc/blob/main/Images/sakura.PNG?raw=true",
-                      alt = "DataMuse",
+                      alt = "Quantico",
                       `data-view-component` = "true",
                       height="100%",
                       width="100%")
@@ -5351,21 +5351,21 @@ HomePage <- function(id, Page, AppWidth=12L) {
                     shiny::h3("Plot Theme: shine"),
                     shiny::tags$img(
                       src = "shine.PNG", # "https://github.com/AdrianAntico/prettydoc/blob/main/Images/shine.PNG?raw=true",
-                      alt = "DataMuse",
+                      alt = "Quantico",
                       `data-view-component` = "true",
                       height="100%",
                       width="100%")
                   )
                 ),
-                DataMuse::BlankRow(12),
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::fluidRow(
                   shiny::column(
                     w = 4,
                     shiny::h3("Plot Theme: tech-blue"),
                     shiny::tags$img(
                       src = "tech-blue.PNG", # "https://github.com/AdrianAntico/prettydoc/blob/main/Images/tech-blue.PNG?raw=true",
-                      alt = "DataMuse",
+                      alt = "Quantico",
                       `data-view-component` = "true",
                       height="100%",
                       width="100%")
@@ -5375,7 +5375,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                     shiny::h3("Plot Theme: vintage"),
                     shiny::tags$img(
                       src = "vintage.PNG", # "https://github.com/AdrianAntico/prettydoc/blob/main/Images/vintage.PNG?raw=true",
-                      alt = "DataMuse",
+                      alt = "Quantico",
                       `data-view-component` = "true",
                       height="100%",
                       width="100%")
@@ -5385,21 +5385,21 @@ HomePage <- function(id, Page, AppWidth=12L) {
                     shiny::h3("Plot Theme: walden"),
                     shiny::tags$img(
                       src = "walden.PNG", # "https://github.com/AdrianAntico/prettydoc/blob/main/Images/walden.PNG?raw=true",
-                      alt = "DataMuse",
+                      alt = "Quantico",
                       `data-view-component` = "true",
                       height="100%",
                       width="100%")
                   )
                 ),
-                DataMuse::BlankRow(12),
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::fluidRow(
                   shiny::column(
                     w = 4,
                     shiny::h3("Plot Theme: wef"),
                     shiny::tags$img(
                       src = "wef.PNG", # "https://github.com/AdrianAntico/prettydoc/blob/main/Images/wef.PNG?raw=true",
-                      alt = "DataMuse",
+                      alt = "Quantico",
                       `data-view-component` = "true",
                       height="100%",
                       width="100%")
@@ -5409,7 +5409,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                     shiny::h3("Plot Theme: weforum"),
                     shiny::tags$img(
                       src = "weforum.PNG", # "https://github.com/AdrianAntico/prettydoc/blob/main/Images/weforum.PNG?raw=true",
-                      alt = "DataMuse",
+                      alt = "Quantico",
                       `data-view-component` = "true",
                       height="100%",
                       width="100%")
@@ -5419,21 +5419,21 @@ HomePage <- function(id, Page, AppWidth=12L) {
                     shiny::h3("Plot Theme: westeros"),
                     shiny::tags$img(
                       src = "westeros.PNG", # "https://github.com/AdrianAntico/prettydoc/blob/main/Images/westeros.PNG?raw=true",
-                      alt = "DataMuse",
+                      alt = "Quantico",
                       `data-view-component` = "true",
                       height="100%",
                       width="100%")
                   )
                 ),
-                DataMuse::BlankRow(12),
-                DataMuse::BlankRow(12),
+                Quantico::BlankRow(12),
+                Quantico::BlankRow(12),
                 shiny::fluidRow(
                   shiny::column(
                     w = 4,
                     shiny::h3("Plot Theme: wonderland"),
                     shiny::tags$img(
                       src = "wonderland.PNG", # "https://github.com/AdrianAntico/prettydoc/blob/main/Images/wonderland.PNG?raw=true",
-                      alt = "DataMuse",
+                      alt = "Quantico",
                       `data-view-component` = "true",
                       height="100%",
                       width="100%")
@@ -5441,9 +5441,9 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 )
               ),
 
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12),
-              DataMuse::BlankRow(12)
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12)
             )
           )
         )
@@ -5460,8 +5460,8 @@ HomePage <- function(id, Page, AppWidth=12L) {
     #     width=12L,
     #     style="padding-left: 15px",
     #     id = "PlotAddButtonsUILocation",
-    #     DataMuse::BlankRow(12),
-    #     DataMuse::BlankRow(12),
+    #     Quantico::BlankRow(12),
+    #     Quantico::BlankRow(12),
     #     shiny::fluidRow(
     #       Swiper4r::Swiper4r(
     #         Images, height = "600px", width = "1100px",effect = "cube",
@@ -5482,8 +5482,8 @@ HomePage <- function(id, Page, AppWidth=12L) {
         width=12L,
         style="padding-left: 15px",
         id = "PlotAddButtonsUILocation",
-        DataMuse::BlankRow(12),
-        DataMuse::BlankRow(12)#,
+        Quantico::BlankRow(12),
+        Quantico::BlankRow(12)#,
         #shiny::fluidRow(
         #  shiny::h3("Enjoy the view", style = "padding-left: 45px")
         #)
@@ -5512,7 +5512,7 @@ CodePrintPage <- function(id, AppWidth=12L) {
     id = "Code_Print",
     title = 'Code Print',
     icon = shiny::icon('code'),
-    DataMuse:::BlankRow(12L),
+    Quantico:::BlankRow(12L),
     shinydashboard::box(
       title = NULL, solidHeader = TRUE, collapsible = FALSE, status = 'danger', width = 12L, class = "OutputPaneBox",
       style = "padding-top: 10px; min-height: 1540px; max-height: 1540px; overflow-x: clip; overflow-y:auto; margin-top: 1px; padding-left: 12px; background-color: #0000; border: 0px #0000 solid; box-shadow: 0px 0px 0px 0px #0000;",
@@ -5541,7 +5541,7 @@ CodePrintPage <- function(id, AppWidth=12L) {
           )
         )
       ),
-      DataMuse::BlankRow(12L),
+      Quantico::BlankRow(12L),
       shiny::fluidRow(
         width=12L,
         style = "padding-left: 10px; padding-right: 15px;",
@@ -5588,165 +5588,165 @@ SideBarUI <- function(id, AppWidth=12L) {
     shiny::fluidRow(
       style = "padding-left: 15px; padding-right: 20px; background-color: #0000; min-height: 1167px; max-height: 1167px; overflow-y: auto; overflow-x: clip;",
 
-      DataMuse:::BlankRow(12L),
+      Quantico:::BlankRow(12L),
       shiny::tags$details(
         shiny::tags$summary(shiny::tags$span(shiny::tags$b('Load & Save'))),
-        DataMuse::BlankLine(12L),
-        shiny::fluidRow(DataMuse::DM_Local(id = 'DM_Local', Align = "left", DropDownRight = FALSE)),
-        shiny::fluidRow(DataMuse::DM_Session(id = 'DM_Session', Align = "left", DropDownRight = FALSE)),
-        shiny::fluidRow(DataMuse::DM_PostGRE(id = 'DM_PostGRE', Align = "left", DropDownRight = FALSE)),
-        shiny::fluidRow(DataMuse::DM_AzureBlob(id = 'DM_AzureBlob', Align = "left", DropDownRight = FALSE))
+        Quantico::BlankLine(12L),
+        shiny::fluidRow(Quantico::DM_Local(id = 'DM_Local', Align = "left", DropDownRight = FALSE)),
+        shiny::fluidRow(Quantico::DM_Session(id = 'DM_Session', Align = "left", DropDownRight = FALSE)),
+        shiny::fluidRow(Quantico::DM_PostGRE(id = 'DM_PostGRE', Align = "left", DropDownRight = FALSE)),
+        shiny::fluidRow(Quantico::DM_AzureBlob(id = 'DM_AzureBlob', Align = "left", DropDownRight = FALSE))
       ),
 
-      DataMuse:::BlankRow(12L),
+      Quantico:::BlankRow(12L),
       shiny::tags$details(
-        DataMuse::BlankLine(12L),
+        Quantico::BlankLine(12L),
         shiny::tags$summary(shiny::tags$span(shiny::tags$b('Data Wrangling'))),
-        shiny::fluidRow(DataMuse:::DW_ShrinkData(id = 'DW_ShrinkData', Align = "left", DropDownRight = FALSE)),
-        shiny::fluidRow(DataMuse:::DW_GrowData(id = 'DW_GrowData', Align = "left", DropDownRight = FALSE)),
-        shiny::fluidRow(DataMuse:::DW_DataSets(id = 'DW_DataSets', Align = "left", DropDownRight=TRUE, Animate=TRUE, Status='custom', H3Color = '#FFFFFF')),
-        shiny::fluidRow(DataMuse:::DW_Pivot(id = 'DW_Pivot', Align = "left", DropDownRight = TRUE)),
-        shiny::fluidRow(DataMuse:::DW_Columns( id = 'DW_Columns', Align = "left", DropDownRight = TRUE)),
-        shiny::fluidRow(DataMuse:::DW_Misc(id = 'DW_Misc', Align = "left", DropDownRight = TRUE))
+        shiny::fluidRow(Quantico:::DW_ShrinkData(id = 'DW_ShrinkData', Align = "left", DropDownRight = FALSE)),
+        shiny::fluidRow(Quantico:::DW_GrowData(id = 'DW_GrowData', Align = "left", DropDownRight = FALSE)),
+        shiny::fluidRow(Quantico:::DW_DataSets(id = 'DW_DataSets', Align = "left", DropDownRight=TRUE, Animate=TRUE, Status='custom', H3Color = '#FFFFFF')),
+        shiny::fluidRow(Quantico:::DW_Pivot(id = 'DW_Pivot', Align = "left", DropDownRight = TRUE)),
+        shiny::fluidRow(Quantico:::DW_Columns( id = 'DW_Columns', Align = "left", DropDownRight = TRUE)),
+        shiny::fluidRow(Quantico:::DW_Misc(id = 'DW_Misc', Align = "left", DropDownRight = TRUE))
       ),
 
-      DataMuse:::BlankRow(12L),
+      Quantico:::BlankRow(12L),
       shiny::tags$details(
-        DataMuse::BlankLine(12L),
+        Quantico::BlankLine(12L),
         shiny::tags$summary(shiny::tags$span(shiny::tags$b('Feature Engineering'))),
-        shiny::fluidRow(DataMuse:::FE_NumericVariables(id = 'NumericVariables', Align='left', DropDownRight=TRUE, Animate=TRUE, Status='custom', H3Color = '#FFFFFF')),
-        shiny::fluidRow(DataMuse:::FE_CategoricalVariables(id = 'CategoricalVariables', Align='left', DropDownRight=FALSE, Animate=TRUE, Status='custom', H3Color = '#FFFFFF')),
-        shiny::fluidRow(DataMuse:::FE_DateVariables(id = 'CalendarVariables', Align='left')),
-        shiny::fluidRow(DataMuse:::FE_Windowing(id = 'FE_Windowing', Align = 'left')),
-        shiny::fluidRow(DataMuse:::FE_NLP(id = 'NLPFE', Align='left', DropDownRight=TRUE,  Animate=TRUE, Status='custom', H3Color = '#FFFFFF')),
-        shiny::fluidRow(DataMuse:::FE_AnomalyDetection(id = 'AnomDetectionID', Align='left', DropDownRight=TRUE,  Animate=TRUE, Status='custom', H3Color = '#FFFFFF')),
-        shiny::fluidRow(DataMuse:::FE_DimensionalityReduction(id = 'DimReductionID', Align='left', DropDownRight=TRUE,  Animate=TRUE, Status='custom', H3Color = '#FFFFFF')),
-        shiny::fluidRow(DataMuse:::FE_Clustering(id = 'ClusteringID', Align='left', DropDownRight=TRUE,  Animate=TRUE, Status='custom', H3Color = '#FFFFFF'))
+        shiny::fluidRow(Quantico:::FE_NumericVariables(id = 'NumericVariables', Align='left', DropDownRight=TRUE, Animate=TRUE, Status='custom', H3Color = '#FFFFFF')),
+        shiny::fluidRow(Quantico:::FE_CategoricalVariables(id = 'CategoricalVariables', Align='left', DropDownRight=FALSE, Animate=TRUE, Status='custom', H3Color = '#FFFFFF')),
+        shiny::fluidRow(Quantico:::FE_DateVariables(id = 'CalendarVariables', Align='left')),
+        shiny::fluidRow(Quantico:::FE_Windowing(id = 'FE_Windowing', Align = 'left')),
+        shiny::fluidRow(Quantico:::FE_NLP(id = 'NLPFE', Align='left', DropDownRight=TRUE,  Animate=TRUE, Status='custom', H3Color = '#FFFFFF')),
+        shiny::fluidRow(Quantico:::FE_AnomalyDetection(id = 'AnomDetectionID', Align='left', DropDownRight=TRUE,  Animate=TRUE, Status='custom', H3Color = '#FFFFFF')),
+        shiny::fluidRow(Quantico:::FE_DimensionalityReduction(id = 'DimReductionID', Align='left', DropDownRight=TRUE,  Animate=TRUE, Status='custom', H3Color = '#FFFFFF')),
+        shiny::fluidRow(Quantico:::FE_Clustering(id = 'ClusteringID', Align='left', DropDownRight=TRUE,  Animate=TRUE, Status='custom', H3Color = '#FFFFFF'))
       ),
 
-      DataMuse:::BlankRow(12L),
+      Quantico:::BlankRow(12L),
       shiny::tags$details(
-        DataMuse::BlankLine(12L),
+        Quantico::BlankLine(12L),
         shiny::tags$summary(shiny::tags$span(shiny::tags$b('Machine Learning'))),
-        shiny::fluidRow(DataMuse:::ML_CatBoost(id = 'CatBoostML', Align = 'left')),
-        shiny::fluidRow(DataMuse:::ML_XGBoost(id = 'XGBoostML' , Align = 'left')),
-        shiny::fluidRow(DataMuse:::ML_LightGBM(id = 'LightGBMML', Align = 'left')),
-        shiny::fluidRow(DataMuse:::ML_H2O_DRF(id = 'H2O_DRFML',  Align = 'left')),
-        shiny::fluidRow(DataMuse:::ML_H2O_GBM(id = 'H2O_GBMML',  Align = 'left')),
-        shiny::fluidRow(DataMuse:::ML_H2O_GLM(id = 'H2O_GLMML', Align = 'left')),
-        shiny::fluidRow(DataMuse:::ML_H2O_HGLM(id = 'H2O_HGLMML', Align = 'left')),
-        shiny::fluidRow(DataMuse:::ML_CausalMediation(id = 'ML_CausalMediationML', Align = 'left'))
+        shiny::fluidRow(Quantico:::ML_CatBoost(id = 'CatBoostML', Align = 'left')),
+        shiny::fluidRow(Quantico:::ML_XGBoost(id = 'XGBoostML' , Align = 'left')),
+        shiny::fluidRow(Quantico:::ML_LightGBM(id = 'LightGBMML', Align = 'left')),
+        shiny::fluidRow(Quantico:::ML_H2O_DRF(id = 'H2O_DRFML',  Align = 'left')),
+        shiny::fluidRow(Quantico:::ML_H2O_GBM(id = 'H2O_GBMML',  Align = 'left')),
+        shiny::fluidRow(Quantico:::ML_H2O_GLM(id = 'H2O_GLMML', Align = 'left')),
+        shiny::fluidRow(Quantico:::ML_H2O_HGLM(id = 'H2O_HGLMML', Align = 'left')),
+        shiny::fluidRow(Quantico:::ML_CausalMediation(id = 'ML_CausalMediationML', Align = 'left'))
       ),
 
-      DataMuse:::BlankRow(12L),
+      Quantico:::BlankRow(12L),
       shiny::tags$details(
-        DataMuse::BlankLine(12L),
+        Quantico::BlankLine(12L),
         shiny::tags$summary(shiny::tags$span(shiny::tags$b("ML Scoring"))),
-        shiny::fluidRow(DataMuse:::ML_Scoring(id = 'ML_Scoring_link', Align = "left"))
+        shiny::fluidRow(Quantico:::ML_Scoring(id = 'ML_Scoring_link', Align = "left"))
       ),
 
-      DataMuse:::BlankRow(12L),
+      Quantico:::BlankRow(12L),
       shiny::tags$details(
-        DataMuse::BlankLine(12L),
+        Quantico::BlankLine(12L),
         shiny::tags$summary(shiny::tags$span(shiny::tags$b("Inference"))),
-        shiny::fluidRow(DataMuse:::Inference_Normality(id = 'Inference_Normality_link', Align = "left")),
-        shiny::fluidRow(DataMuse:::Inference_Correlation(id = 'Inference_Correlation_link', Align = "left")),
-        shiny::fluidRow(DataMuse:::Inference_1STTest(id = 'Inference_1STTest_link', Align = "left")),
-        shiny::fluidRow(DataMuse:::Inference_2STTest(id = 'Inference_2STTest_link', Align = "left")),
-        shiny::fluidRow(DataMuse:::Inference_FTest(id = 'Inference_FTest_link', Align = "left")),
-        shiny::fluidRow(DataMuse:::Inference_ChiSq(id = 'Inference_ChiSq_link', Align = "left"))
+        shiny::fluidRow(Quantico:::Inference_Normality(id = 'Inference_Normality_link', Align = "left")),
+        shiny::fluidRow(Quantico:::Inference_Correlation(id = 'Inference_Correlation_link', Align = "left")),
+        shiny::fluidRow(Quantico:::Inference_1STTest(id = 'Inference_1STTest_link', Align = "left")),
+        shiny::fluidRow(Quantico:::Inference_2STTest(id = 'Inference_2STTest_link', Align = "left")),
+        shiny::fluidRow(Quantico:::Inference_FTest(id = 'Inference_FTest_link', Align = "left")),
+        shiny::fluidRow(Quantico:::Inference_ChiSq(id = 'Inference_ChiSq_link', Align = "left"))
       ),
 
-      DataMuse:::BlankRow(12L),
+      Quantico:::BlankRow(12L),
       shiny::tags$details(
         shiny::tags$summary(shiny::tags$span(shiny::tags$b('Forecasting'))),
-        DataMuse::BlankLine(12L),
+        Quantico::BlankLine(12L),
         shiny::tags$details(
-          DataMuse::BlankLine(12L),
+          Quantico::BlankLine(12L),
           shiny::tags$summary(shiny::tags$span(shiny::tags$b('Single Series'))),
-          shiny::fluidRow(DataMuse:::FC_TBATS(id = 'FC_TBATS_', Align = 'left')),
-          shiny::fluidRow(DataMuse:::FC_SARIMA(id = 'FC_SARIMA_', Align = 'left')),
-          shiny::fluidRow(DataMuse:::FC_ETS(id = 'FC_ETS_', Align = 'left')),
-          shiny::fluidRow(DataMuse:::FC_Arfima(id = 'FC_Arfima_', Align = 'left')),
-          shiny::fluidRow(DataMuse:::FC_NNet(id = 'FC_NNet_', Align = 'left')),
-          DataMuse::BlankRow(12L)
+          shiny::fluidRow(Quantico:::FC_TBATS(id = 'FC_TBATS_', Align = 'left')),
+          shiny::fluidRow(Quantico:::FC_SARIMA(id = 'FC_SARIMA_', Align = 'left')),
+          shiny::fluidRow(Quantico:::FC_ETS(id = 'FC_ETS_', Align = 'left')),
+          shiny::fluidRow(Quantico:::FC_Arfima(id = 'FC_Arfima_', Align = 'left')),
+          shiny::fluidRow(Quantico:::FC_NNet(id = 'FC_NNet_', Align = 'left')),
+          Quantico::BlankRow(12L)
         ),
         shiny::tags$details(
-          DataMuse::BlankLine(12L),
+          Quantico::BlankLine(12L),
           shiny::tags$summary(shiny::tags$span(shiny::tags$b('Panel Series'))),
-          shiny::fluidRow(DataMuse:::FC_CatBoostCARMA(id = 'CatBoostCARMA', Align = 'left')),
-          shiny::fluidRow(DataMuse:::FC_XGBoostCARMA(id = 'XGBoostCARMA', Align = 'left')),
-          shiny::fluidRow(DataMuse:::FC_LightGBMCARMA(id = 'LightGBMCARMA', Align = 'left')),
-          DataMuse::BlankRow(12L)
+          shiny::fluidRow(Quantico:::FC_CatBoostCARMA(id = 'CatBoostCARMA', Align = 'left')),
+          shiny::fluidRow(Quantico:::FC_XGBoostCARMA(id = 'XGBoostCARMA', Align = 'left')),
+          shiny::fluidRow(Quantico:::FC_LightGBMCARMA(id = 'LightGBMCARMA', Align = 'left')),
+          Quantico::BlankRow(12L)
         )
       ),
 
-      DataMuse:::BlankRow(12L),
+      Quantico:::BlankRow(12L),
       shiny::tags$details(
         shiny::tags$summary(shiny::tags$span(shiny::tags$b('Output Panels'))),
-        DataMuse::BlankLine(12L),
+        Quantico::BlankLine(12L),
         shiny::fluidRow(
           shiny::column(6L, align = 'center', shiny::actionButton(inputId = "NewDataTab", label = "Data", icon = shiny::icon(name = "plus"), style = PostGREButtonStyle)),
           shiny::column(6L, align = 'center', shiny::actionButton(inputId = "RemoveDataTab", label = "Data", icon = shiny::icon(name = "minus"), style = CloudButtonStyle))),
-        DataMuse::BlankRow(12L),
+        Quantico::BlankRow(12L),
         shiny::fluidRow(
           shiny::column(6L, align = 'center', shiny::actionButton(inputId = "NewPlotTab", label = "Plot", icon = shiny::icon(name = "plus"), style = PostGREButtonStyle)),
           shiny::column(6L, align = 'center', shiny::actionButton(inputId = "RemovePlotTab", label = "Plot", icon = shiny::icon(name = "minus"), style = CloudButtonStyle))),
-        DataMuse::BlankRow(12L),
+        Quantico::BlankRow(12L),
         shiny::fluidRow(
           shiny::column(6L, align = 'center', shiny::actionButton(inputId = "NewEDATab", label = "EDA", icon = shiny::icon(name = "plus"), style = PostGREButtonStyle)),
           shiny::column(6L, align = 'center', shiny::actionButton(inputId = "RemoveEDATab", label = "EDA", icon = shiny::icon(name = "minus"), style = CloudButtonStyle))),
-        DataMuse::BlankRow(12L),
+        Quantico::BlankRow(12L),
         shiny::fluidRow(
           shiny::column(6L, align = 'center', shiny::actionButton(inputId = "NewInferenceTab", label = "Inference", icon = shiny::icon(name = "plus"), style = PostGREButtonStyle)),
           shiny::column(6L, align = 'center', shiny::actionButton(inputId = "RemoveInferenceTab", label = "Inference", icon = shiny::icon(name = "minus"), style = CloudButtonStyle))),
-        DataMuse::BlankRow(12L),
+        Quantico::BlankRow(12L),
         shiny::fluidRow(
           shiny::column(6L, align = 'center', shiny::actionButton(inputId = "NewMLTab", label = "ML", icon = shiny::icon(name = "plus"), style = PostGREButtonStyle)),
           shiny::column(6L, align = 'center', shiny::actionButton(inputId = "RemoveMLTab", label = "ML", icon = shiny::icon(name = "minus"), style = CloudButtonStyle))),
-        DataMuse::BlankRow(12L),
+        Quantico::BlankRow(12L),
         shiny::fluidRow(
           shiny::column(6L, align = 'center', shiny::actionButton(inputId = "NewFCTab", label = "FC", icon = shiny::icon(name = "plus"), style = PostGREButtonStyle)),
           shiny::column(6L, align = 'center', shiny::actionButton(inputId = "RemoveFCTab", label = "FC", icon = shiny::icon(name = "minus"), style = CloudButtonStyle))),
-        DataMuse::BlankRow(12L)
+        Quantico::BlankRow(12L)
       ),
 
-      DataMuse::BlankRow(12L),
+      Quantico::BlankRow(12L),
       shiny::tags$details(
         shiny::tags$summary(shiny::tags$span(shiny::tags$b('Settings'))),
-        DataMuse::BlankLine(12L),
+        Quantico::BlankLine(12L),
         shiny::tags$details(
           shiny::tags$summary(shiny::tags$span(shiny::tags$b('Plots & Tables'))),
-          DataMuse::BlankRow(12L),
+          Quantico::BlankRow(12L),
           shiny::fluidRow(
             shiny::column(
               12L,
-              DataMuse::SelectizeInput(InputID = "EchartsTheme", Label = "Plots Theme", Choices = EchartThemes, SelectedDefault = "wef", Multiple = FALSE))),
-          DataMuse::BlankRow(12L),
+              Quantico::SelectizeInput(InputID = "EchartsTheme", Label = "Plots Theme", Choices = EchartThemes, SelectedDefault = "wef", Multiple = FALSE))),
+          Quantico::BlankRow(12L),
           shiny::fluidRow(
             shiny::column(
               12L,
-              DataMuse::SelectizeInput(InputID = "EchartsTimeLine", Label = "Plots Timeline", Choices = c(TRUE,FALSE), SelectedDefault = FALSE, Multiple = FALSE))),
-          DataMuse::BlankRow(12L),
+              Quantico::SelectizeInput(InputID = "EchartsTimeLine", Label = "Plots Timeline", Choices = c(TRUE,FALSE), SelectedDefault = FALSE, Multiple = FALSE))),
+          Quantico::BlankRow(12L),
           shiny::fluidRow(
             style = "padding-left: 15px;",
             shiny::tags$span(shiny::tags$b('Table & Plots Font Color')),
             shiny::column(
               12L, align = 'left', style = "padding-left: 0px; padding-right: 0px;",
               shiny.fluent::ColorPicker.shinyInput("ColorFont", value = "#dcdce3"),
-              DataMuse:::BlankRow(12)
+              Quantico:::BlankRow(12)
             )
           )
         ),
 
         shiny::tags$details(
           shiny::tags$summary(shiny::tags$span(shiny::tags$b('App Theme'))),
-          DataMuse::BlankRow(12L),
+          Quantico::BlankRow(12L),
           shiny::fluidRow(
             shiny::column(
               12L, align = 'left',
               shiny::tags$h5(shiny::tags$b('App Background')),
-              DataMuse::SelectizeInput(
+              Quantico::SelectizeInput(
                 InputID = 'BackgroundImageSelect', Label = NULL,
                 Multiple = TRUE, MaxVars = 1L, SelectedDefault = 'PalmTreesLake',
                 CloseAfterSelect = FALSE,
@@ -5757,7 +5757,7 @@ SideBarUI <- function(id, AppWidth=12L) {
             shiny::column(
               12L, align = 'left',
               shiny::tags$h5(shiny::tags$b('App Theme')),
-              DataMuse::SelectizeInput(
+              Quantico::SelectizeInput(
                 InputID = 'CssSelect', Label = NULL, Choices = c('day-light-blue','light-gray','medium-gray','dark-gray','piano-black','yellow','yellow-green','green','green-blue','light-blue','dodger-blue','blue','blue-purple','purple','pink','red'),
                 Multiple = TRUE, MaxVars = 1L, SelectedDefault = 'medium-gray', CloseAfterSelect = FALSE)
             )
@@ -5767,7 +5767,7 @@ SideBarUI <- function(id, AppWidth=12L) {
           #   shiny::column(
           #     12L, align = 'left',
           #     shiny::tags$h5(shiny::tags$b('Blank Plot')),
-          #     DataMuse::SelectizeInput(
+          #     Quantico::SelectizeInput(
           #       InputID = 'BlankPlotBackground', Label = NULL, Choices = c("Poincare","Divergence","Space", "Tenet"),
           #       Multiple = TRUE, MaxVars = 1L, SelectedDefault = 'Poincare', CloseAfterSelect = FALSE)
           #   )
@@ -5779,7 +5779,7 @@ SideBarUI <- function(id, AppWidth=12L) {
           shiny::fluidRow(
             shiny::column(
               12L,
-              DataMuse::BlankLine(12L),
+              Quantico::BlankLine(12L),
               shiny::fluidRow(
                 class = "PackageLinks",
                 style="padding-left: 20px; min-height: 35px",
@@ -5787,11 +5787,11 @@ SideBarUI <- function(id, AppWidth=12L) {
                   shiny::fluidRow(
                     shiny::column(
                       12L,
-                      shiny::tags$h3("DataMuse"))),
-                  shiny::HTML("<a class='github-button' href='https://github.com/AdrianAntico/DataMuse' data-color-scheme='no-preference: dark; light: light; dark: dark;' data-icon='octicon-star' data-size='large' aria-label='Star AdrianAntico/DataMuse on GitHub'>Star</a>"),
-                  shiny::HTML("<a class='github-button' href='https://github.com/AdrianAntico/DataMuse/issues' data-color-scheme='no-preference: dark; light: light; dark: dark;' data-icon='octicon-issue-opened' data-size='large' aria-label='Issue AdrianAntico/DataMuse on GitHub'>Issue</a>")
+                      shiny::tags$h3("Quantico"))),
+                  shiny::HTML("<a class='github-button' href='https://github.com/AdrianAntico/Quantico' data-color-scheme='no-preference: dark; light: light; dark: dark;' data-icon='octicon-star' data-size='large' aria-label='Star AdrianAntico/Quantico on GitHub'>Star</a>"),
+                  shiny::HTML("<a class='github-button' href='https://github.com/AdrianAntico/Quantico/issues' data-color-scheme='no-preference: dark; light: light; dark: dark;' data-icon='octicon-issue-opened' data-size='large' aria-label='Issue AdrianAntico/Quantico on GitHub'>Issue</a>")
                 )),
-              DataMuse:::BlankRow(12L),
+              Quantico:::BlankRow(12L),
               shiny::fluidRow(
                 class = "PackageLinks",
                 style="padding-left: 20px; min-height: 35px",
@@ -5804,7 +5804,7 @@ SideBarUI <- function(id, AppWidth=12L) {
                   shiny::HTML("<a class='github-button' href='https://github.com/AdrianAntico/Rodeo/issues' data-color-scheme='no-preference: dark; light: light; dark: dark;' data-icon='octicon-issue-opened' data-size='large' aria-label='Issue AdrianAntico/Rodeo on GitHub'>Issue</a>")
                 )
               ),
-              DataMuse:::BlankRow(12L),
+              Quantico:::BlankRow(12L),
               shiny::fluidRow(
                 class = "PackageLinks",
                 style="padding-left: 20px; min-height: 35px",
@@ -5817,7 +5817,7 @@ SideBarUI <- function(id, AppWidth=12L) {
                   shiny::HTML("<a class='github-button' href='https://github.com/AdrianAntico/AutoPlots/issues' data-color-scheme='no-preference: dark; light: light; dark: dark;' data-icon='octicon-issue-opened' data-size='large' aria-label='Issue AdrianAntico/AutoPlots on GitHub'>Issue</a>")
                 )
               ),
-              DataMuse:::BlankRow(12L),
+              Quantico:::BlankRow(12L),
               shiny::fluidRow(
                 class = "PackageLinks",
                 style="padding-left: 20px; min-height: 35px",
@@ -5830,7 +5830,7 @@ SideBarUI <- function(id, AppWidth=12L) {
                   shiny::HTML("<a class='github-button' href='https://github.com/AdrianAntico/AutoQuant/issues' data-color-scheme='no-preference: dark; light: light; dark: dark;' data-icon='octicon-issue-opened' data-size='large' aria-label='Issue AdrianAntico/AutoQuant on GitHub'>Issue</a>")
                 )
               ),
-              DataMuse:::BlankRow(12L),
+              Quantico:::BlankRow(12L),
               shiny::fluidRow(
                 class = "PackageLinks",
                 style="padding-left: 20px; min-height: 35px",
@@ -5848,7 +5848,7 @@ SideBarUI <- function(id, AppWidth=12L) {
         ) # R Packages Details
       ) # Settings Details
     ),
-    DataMuse:::BlankRow(12L),
+    Quantico:::BlankRow(12L),
     shiny::fluidRow(
       style = "background-color: #0000; min-height: 300px; max-height: 300px;",
       shiny::column(
@@ -5871,7 +5871,7 @@ SideBarUI <- function(id, AppWidth=12L) {
               shiny::column(
                 12L,
                 shiny::h5("Copyright © 2023 Adrian Antico - All Rights Reserved."))))),
-        DataMuse:::BlankRow(12L)
+        Quantico:::BlankRow(12L)
         # shiny::fluidRow(
         #   shiny::column(
         #     12L,
@@ -5880,7 +5880,7 @@ SideBarUI <- function(id, AppWidth=12L) {
         #     <a class='github-button' href='https://github.com/sponsors/AdrianAntico' data-color-scheme='no-preference: dark; light: light; dark: dark;' data-icon='octicon-heart' data-size='large' aria-label='Sponsor @AdrianAntico on GitHub'>Sponsor</a>
         #     "
         #     ),
-        #     shiny::HTML("<a class='github-button' href='https://github.com/AdrianAntico/DataMuse' data-color-scheme='no-preference: dark; light: light; dark: dark;' data-icon='octicon-star' data-size='large' aria-label='Star AdrianAntico/DataMuse on GitHub'>Star</a>")
+        #     shiny::HTML("<a class='github-button' href='https://github.com/AdrianAntico/Quantico' data-color-scheme='no-preference: dark; light: light; dark: dark;' data-icon='octicon-star' data-size='large' aria-label='Star AdrianAntico/Quantico on GitHub'>Star</a>")
         #   )
         # )
       ) # column

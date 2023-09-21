@@ -50,7 +50,7 @@ DateInput automatically builds a date input with ProjectList argument usage if i
 \examples{
 \dontrun{
 output$TS_Date <- renderUI({
-  DataMuse:::DateInput(InputID = "TS_CARMA_HolidayMovingAverages",
+  Quantico:::DateInput(InputID = "TS_CARMA_HolidayMovingAverages",
                          Label = "Import Data Creation Date",
                          Value = Sys.Date(),
                          Min = "1970-01-01",

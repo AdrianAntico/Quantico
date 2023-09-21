@@ -35,7 +35,7 @@ PostGRE DM.pgAppend get data from a database table
 }
 \examples{
 \dontrun{
-DataMuse::DM.pgAppend(
+Quantico::DM.pgAppend(
   data = data,
   Table = 'somename',
   Append = FALSE,

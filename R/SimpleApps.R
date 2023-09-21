@@ -41,7 +41,7 @@
 #' # PostGRE_Port           5432
 #'
 #' # Run App
-#' DataMuse::rapp()
+#' Quantico::rapp()
 #'
 #' }
 #'
@@ -96,6 +96,6 @@ Muse <- function(UserName_Password_DT = NULL,
     DebugFC = DebugFC)
 
   # Run shiny app
-  # shiny::runApp(appDir = file.path("C:/Users/Bizon/Documents/GitHub/DataMuse/inst/shiny-apps/DataMuse"), display.mode = "normal", launch.browser = TRUE)
-  shiny::runApp(appDir = system.file("shiny-apps","DataMuse", package = "DataMuse"), display.mode = "normal", launch.browser = TRUE)
+  # shiny::runApp(appDir = file.path("C:/Users/Bizon/Documents/GitHub/Quantico/inst/shiny-apps/Quantico"), display.mode = "normal", launch.browser = TRUE)
+  shiny::runApp(appDir = system.file("shiny-apps","Quantico", package = "Quantico"), display.mode = "normal", launch.browser = TRUE)
 }

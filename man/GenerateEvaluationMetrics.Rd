@@ -28,7 +28,7 @@ GenerateEvaluationMetrics calculates evaluation metrics for out of sample foreca
 }
 \examples{
 \dontrun{
-  PlotData <- DataMuse:::PreparePlotData(input, TargetVariable = "TargetVariables", DateVariable = "DateVariables", GroupVariables = GroupVariables, G1Levels = "TS_Group1Levels", G2Levels = "TS_Group2Levels", G3Levels = "TS_Group3Levels")
+  PlotData <- Quantico:::PreparePlotData(input, TargetVariable = "TargetVariables", DateVariable = "DateVariables", GroupVariables = GroupVariables, G1Levels = "TS_Group1Levels", G2Levels = "TS_Group2Levels", G3Levels = "TS_Group3Levels")
 }
 }
 \seealso{

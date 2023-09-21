@@ -1,5 +1,5 @@
-Package: DataMuse
-Title: DataMuse
+Package: Quantico
+Title: Quantico
 Version: 1.0.0
 Date: 2023-07-18
 Authors@R: 
@@ -9,8 +9,8 @@ Authors@R:
              email = "adrianantico@gmail.com"))
 Maintainer: Adrian Antico <adrianantico@gmail.com>
 Description: R Shiny App for Business Intelligence, Machine Learning, Forecasting, Visualization, and Code Generation, using the highest quality R packages available
-URL: https://github.com/AdrianAntico/DataMuse
-BugReports: https://github.com/AdrianAntico/DataMuse/issues
+URL: https://github.com/AdrianAntico/Quantico
+BugReports: https://github.com/AdrianAntico/Quantico/issues
 Depends: R (>= 3.5.0)
 Imports: bit64, data.table, doParallel, foreach, lubridate, timeDate
 Suggests: knitr, rmarkdown, gridExtra

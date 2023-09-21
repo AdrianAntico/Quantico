@@ -35,7 +35,7 @@ mixedup::extract_random_effects(Model)
 microbenchmark::microbenchmark(
   times = 10,
   merTools::REsim(Model),
-  DataMuse::REsim(Model))
+  Quantico::REsim(Model))
 }
 
 }

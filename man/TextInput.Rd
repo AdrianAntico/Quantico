@@ -49,7 +49,7 @@ TextInput automatically builds a text input with ProjectList argument usage if i
 \examples{
 \dontrun{
 output$TS_Date <- renderUI({
-  DataMuse:::TextInput(InputID = "TS_CARMA_HolidayMovingAverages",
+  Quantico:::TextInput(InputID = "TS_CARMA_HolidayMovingAverages",
                          Label = "Import Data Creation Date",
                          Value = Sys.Date(),
                          Placeholder = "yyyy-mm-dd")})

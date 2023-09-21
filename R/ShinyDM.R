@@ -352,7 +352,7 @@ QueryBuilder <- function(DB = NULL,
 #'   "CHILLED_Margin_PerDay",
 #'   "CHILLED_Liters_PerDay",
 #'   "CHILLED_Units_PerDay")
-#' data <- DataMuse::DM.pgQuery(
+#' data <- Quantico::DM.pgQuery(
 #'   Query = NULL,
 #'   DataBase = "KompsProcessed",
 #'   SELECT = Columns,
@@ -390,7 +390,7 @@ DM.pgQuery <- function(Host = NULL,
 
   if(length(Query) == 0L) {
     if(all(SELECT == "*")) SELECT <- NULL
-    Query <- DataMuse:::QueryBuilder(
+    Query <- Quantico:::QueryBuilder(
       DB = DataBase,
       Table = FROM,
       Columns = SELECT,
@@ -467,7 +467,7 @@ DM.ssQuery <- function(DataBaseName,
 #'
 #' @examples
 #' \dontrun{
-#' DataMuse::DM.pgAppend(
+#' Quantico::DM.pgAppend(
 #'   data = data,
 #'   Table = 'somename',
 #'   Append = FALSE,
@@ -559,7 +559,7 @@ DM.pgAppend <- function(data = NULL,
 #'
 #' @examples
 #' \dontrun{
-#' DataMuse::DM.pgCreateTable(
+#' Quantico::DM.pgCreateTable(
 #'   data,
 #'   DataBase = 'Testing',
 #'   Schema = NULL,
@@ -887,7 +887,7 @@ DM.pgTableColnames <- function(Host = NULL,
                                Port = NULL,
                                Password = NULL) {
   if(length(Table) > 0L) {
-    return(names(DataMuse::DM.pgQuery(
+    return(names(Quantico::DM.pgQuery(
       Host = Host,
       DataBase = DataBase,
       SELECT = "*",

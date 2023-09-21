@@ -22,7 +22,7 @@
 #'
 #' @examples
 #' \dontrun{
-#' Tokenize_Object <- DataMuse:::KerasTokenizerFit(
+#' Tokenize_Object <- Quantico:::KerasTokenizerFit(
 #'   Fit_Text = x_train_text,
 #'   Fit_Object = NULL,
 #'   Tok_num_words = NULL, # comment
@@ -243,14 +243,14 @@ Keras_t2s_pad <- function(RunText2Seq = TRUE,
 #' @author Adrian Antico
 #'
 #' @param LayerFunc Required, Positional. E.g. keras::layer_input without quotes
-#' @param PriorOutput The resulting list contained in Output <- DataMuse::Keras(). If you pass this LayerList and ArgsList will be ignored. Same Output from ArgsList and LayerList.
+#' @param PriorOutput The resulting list contained in Output <- Quantico::Keras(). If you pass this LayerList and ArgsList will be ignored. Same Output from ArgsList and LayerList.
 #' @param Name Name for the LayerList and ArgsList elements
 #' @param Debug FALSE
 #' @param ... Passthrough args for keras layer_input
 #'
 #' @examples
 #' \dontrun{
-#' Output <- DataMuse::KerasInputs(keras::flatten, PriorOutput = Output, Name = 'flatten1', object = Output$LayerList$PreviousLayer)
+#' Output <- Quantico::KerasInputs(keras::flatten, PriorOutput = Output, Name = 'flatten1', object = Output$LayerList$PreviousLayer)
 #' }
 #'
 #'
@@ -261,7 +261,7 @@ Keras <- function(LayerFunc,
                   Debug = FALSE,
                   ...) {
 
-  if(missing(LayerFunc)) stop(cat('LayerFunc is required. \nAn example: \n keras::layer_input \nNote: \n do not add quotes and do not add parentheses \n parameter is positional so I typically start with DataMuse::Keras(keras::layer_input, LayerList = NULL, Name =', if(is.null(Name)) shQuote('Args1') else shQuote(Name), ')'))
+  if(missing(LayerFunc)) stop(cat('LayerFunc is required. \nAn example: \n keras::layer_input \nNote: \n do not add quotes and do not add parentheses \n parameter is positional so I typically start with Quantico::Keras(keras::layer_input, LayerList = NULL, Name =', if(is.null(Name)) shQuote('Args1') else shQuote(Name), ')'))
 
   # Args fed to the function LayerFunc in: output <- do.call(LayerFunc, Args)
   Args <- list(...) #; for(i in seq_along(ArgsList)) assign(x = names(ArgsList)[i], value = ArgsList[[i]])
@@ -270,7 +270,7 @@ Keras <- function(LayerFunc,
     print('length(LayerList) == 0L'); print(length(LayerList) == 0L)
   }
 
-  # PriorOutput is an Output <- DataMuse::Keras() object
+  # PriorOutput is an Output <- Quantico::Keras() object
   if(length(PriorOutput) > 0) {
     LayerList <- PriorOutput$LayerList
     ArgsList <- PriorOutput$ArgsList
@@ -326,7 +326,7 @@ Keras <- function(LayerFunc,
 #' @author Adrian Antico
 #' @family DL
 #'
-#' @param PriorOutput Default NULL. E.g. Output from a previous DataMuse::Keras() call. Ignore if using Sequential Mode (API = FALSE)
+#' @param PriorOutput Default NULL. E.g. Output from a previous Quantico::Keras() call. Ignore if using Sequential Mode (API = FALSE)
 #' @param Name Default NULL. A name that is used to store and reference objects in the output list
 #' @param inputs Default NULL. E.g. c(Output$LayerList$text, Output$LayerList$features)
 #' @param outputs Default NULL. E.g. Output$LayerList$outputtot
@@ -350,7 +350,7 @@ Keras <- function(LayerFunc,
 #' @examples
 #' \dontrun{
 #'
-#' Output <- DataMuse:::KerasTrainEval(
+#' Output <- Quantico:::KerasTrainEval(
 #'   PriorOutput = NULL, # Output
 #'   inputs = NULL, # c(Output$LayerList$text, Output$LayerList$features),
 #'   outputs = NULL, # Output$LayerList$outputtot,
@@ -423,7 +423,7 @@ KerasTrainEval <- function(PriorOutput = NULL,
   # ... equivalent
   Args <- c(as.list(environment()))
 
-  # PriorOutput is an Output <- DataMuse::Keras() object
+  # PriorOutput is an Output <- Quantico::Keras() object
   if(length(PriorOutput) > 0) {
 
     # meta
@@ -450,13 +450,13 @@ KerasTrainEval <- function(PriorOutput = NULL,
   }
 
   # Build model structure
-  PriorOutput <- DataMuse::Keras(
+  PriorOutput <- Quantico::Keras(
     keras::keras_model, PriorOutput = PriorOutput, Name = nam,
     inputs = inputs,
     outputs = outputs)
 
   # Compile model
-  PriorOutput <- DataMuse::Keras(
+  PriorOutput <- Quantico::Keras(
     keras::compile, PriorOutput = PriorOutput, Name = nam,
     object = PriorOutput$LayerList[[length(PriorOutput$LayerList)]],
     optimizer = Compile_optimizer,
@@ -464,7 +464,7 @@ KerasTrainEval <- function(PriorOutput = NULL,
     metrics = Compile_metrics)
 
   # Train model
-  PriorOutput <- DataMuse::Keras(
+  PriorOutput <- Quantico::Keras(
     keras::fit, PriorOutput = PriorOutput, Name = paste0(nam, '_history'),
     object = PriorOutput$LayerList[[length(PriorOutput$LayerList)]],
     x = Data_FeaturesTrain, y = Data_YTrain,
@@ -482,7 +482,7 @@ KerasTrainEval <- function(PriorOutput = NULL,
     validation_steps = Fit_validation_steps)
 
   # Evaluate model
-  temp <- DataMuse:::Keras_BinaryScoreEval(
+  temp <- Quantico:::Keras_BinaryScoreEval(
     CompiledModel = PriorOutput$LayerList[[length(PriorOutput$LayerList) - 1L]],
     YTest = YTest,
     Features = FeaturesTest,
@@ -492,7 +492,7 @@ KerasTrainEval <- function(PriorOutput = NULL,
   PriorOutput[[paste0(nam, '_ScoreData')]] <- temp$ScoreData
   PriorOutput[[paste0(nam, '_EvalMetrics')]] <- temp$Metrics
   PriorOutput[[paste0(nam, '_ConfusionMatrix')]] <- temp[["ConfusionMatrix"]]
-  PriorOutput[[paste0(nam, '_PlotTrainHistory')]] <- plot(PriorOutput$LayerList[[length(PriorOutput$LayerList)]]) + DataMuse::ChartTheme() + ggplot2::ylab('')
+  PriorOutput[[paste0(nam, '_PlotTrainHistory')]] <- plot(PriorOutput$LayerList[[length(PriorOutput$LayerList)]]) + Quantico::ChartTheme() + ggplot2::ylab('')
 
   # Return output
   return(PriorOutput)

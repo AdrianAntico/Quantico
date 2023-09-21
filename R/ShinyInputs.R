@@ -23,7 +23,7 @@
 #' @examples
 #' \dontrun{
 #' output$TS_CARMA_HolidayMovingAverages <- renderUI({
-#'   DataMuse:::SelectizeInput(InputID = "TS_CARMA_HolidayMovingAverages", Update = FALSE, Label = "Select Holiday Count MA's", Choices = as.character(0:50),
+#'   Quantico:::SelectizeInput(InputID = "TS_CARMA_HolidayMovingAverages", Update = FALSE, Label = "Select Holiday Count MA's", Choices = as.character(0:50),
 #'                            SelectedDefault = as.character(c(1,2)), Size = 10, SelectedText = "count > 1", Multiple = TRUE, ActionBox = TRUE)})
 #' }
 #' @return SelectizeInput object for server.R to go into renderUI({SelectizeInput()})
@@ -82,7 +82,7 @@ TextAreaInput <- function(inputId,
 #' @examples
 #' \dontrun{
 #' output$TS_CARMA_HolidayMovingAverages <- renderUI({
-#'   DataMuse:::SelectizeInput(InputID = "TS_CARMA_HolidayMovingAverages", Update = FALSE, Label = "Select Holiday Count MA's", Choices = as.character(0:50),
+#'   Quantico:::SelectizeInput(InputID = "TS_CARMA_HolidayMovingAverages", Update = FALSE, Label = "Select Holiday Count MA's", Choices = as.character(0:50),
 #'                            SelectedDefault = as.character(c(1,2)), Size = 10, SelectedText = "count > 1", Multiple = TRUE, ActionBox = TRUE)})
 #' }
 #' @return SelectizeInput object for server.R to go into renderUI({SelectizeInput()})
@@ -154,7 +154,7 @@ SelectizeInput <- function(InputID = "",
 #' @examples
 #' \dontrun{
 #' output$TS_CARMA_HolidayMovingAverages <- renderUI({
-#'   DataMuse:::SelectizeInput(InputID = "TS_CARMA_HolidayMovingAverages", Update = FALSE, Label = "Select Holiday Count MA's", Choices = as.character(0:50),
+#'   Quantico:::SelectizeInput(InputID = "TS_CARMA_HolidayMovingAverages", Update = FALSE, Label = "Select Holiday Count MA's", Choices = as.character(0:50),
 #'                            SelectedDefault = as.character(c(1,2)), Size = 10, SelectedText = "count > 1", Multiple = TRUE, ActionBox = TRUE)})
 #' }
 #' @return SelectizeInput object for server.R to go into renderUI({SelectizeInput()})
@@ -214,7 +214,7 @@ SelectizeInput1 <- function(InputID = "",
 #' @examples
 #' \dontrun{
 #' output$TS_CARMA_HolidayMovingAverages <- renderUI({
-#'   DataMuse:::SliderInput(InputID = "TS_CARMA_HolidayMovingAverages",
+#'   Quantico:::SliderInput(InputID = "TS_CARMA_HolidayMovingAverages",
 #'                             Label = "Select Holiday Count MA's",
 #'                             Min = 1,
 #'                             Max = 1,
@@ -288,7 +288,7 @@ SliderInput <- function(InputID = NULL,
 #' @examples
 #' \dontrun{
 #' output$TS_CARMA_HolidayMovingAverages <- renderUI({
-#'   DataMuse:::NumericInput(InputID = "TS_CARMA_HolidayMovingAverages",
+#'   Quantico:::NumericInput(InputID = "TS_CARMA_HolidayMovingAverages",
 #'                             Label = "Select Holiday Count MA's",
 #'                             Min = 1,
 #'                             Max = 1,
@@ -355,7 +355,7 @@ NumericInput <- function(InputID = NULL,
 #' @examples
 #' \dontrun{
 #' output$TS_Date <- renderUI({
-#'   DataMuse:::DateInput(InputID = "TS_CARMA_HolidayMovingAverages",
+#'   Quantico:::DateInput(InputID = "TS_CARMA_HolidayMovingAverages",
 #'                          Label = "Import Data Creation Date",
 #'                          Value = Sys.Date(),
 #'                          Min = "1970-01-01",
@@ -422,7 +422,7 @@ DateInput <- function(InputID = NULL,
 #' @examples
 #' \dontrun{
 #' output$TS_Date <- renderUI({
-#'   DataMuse:::TextInput(InputID = "TS_CARMA_HolidayMovingAverages",
+#'   Quantico:::TextInput(InputID = "TS_CARMA_HolidayMovingAverages",
 #'                          Label = "Import Data Creation Date",
 #'                          Value = Sys.Date(),
 #'                          Placeholder = "yyyy-mm-dd")})
@@ -505,7 +505,7 @@ TextInput <- function(InputID = NULL,
 #' @examples
 #' \dontrun{
 #' output$TS_CARMA_HolidayMovingAverages <- renderUI({
-#'   DataMuse:::PickerInput(InputID = "TS_CARMA_HolidayMovingAverages", Label = "Select Holiday Count MA's", Choices = as.character(0:50),
+#'   Quantico:::PickerInput(InputID = "TS_CARMA_HolidayMovingAverages", Label = "Select Holiday Count MA's", Choices = as.character(0:50),
 #'                            SelectedDefault = as.character(c(1,2)), Size = 10, SelectedText = "count > 1", Multiple = TRUE, ActionBox = TRUE)})
 #' }
 #' @return PickerInput object for server.R to go into renderUI({PickerInput()})
@@ -607,7 +607,7 @@ PickerInput <- function(session = NULL,
 #' @examples
 #' \dontrun{
 #' output$TS_CARMA_HolidayMovingAverages <- renderUI({
-#'   DataMuse:::PickerInput_GetLevels(
+#'   Quantico:::PickerInput_GetLevels(
 #'     input, InputID = "TS_CARMA_HolidayMovingAverages", Label = "Select Holiday Count MA's", Choices = as.character(0:50),
 #'     SelectedDefault = as.character(c(1,2)), Size = 10, SelectedText = "count > 1", Multiple = TRUE, ActionBox = TRUE)})
 #' }
@@ -675,7 +675,7 @@ PickerInput_GetLevels <- function(input,
 #' @examples
 #' \dontrun{
 #' output$TS_CARMA_HolidayMovingAverages <- renderUI({
-#'   DataMuse:::PickerInput_GetLevels2(
+#'   Quantico:::PickerInput_GetLevels2(
 #'     InputID = "TS_CARMA_HolidayMovingAverages", Label = "Select Holiday Count MA's", Choices = as.character(0:50),
 #'     SelectedDefault = as.character(c(1,2)), Multiple = TRUE)})
 #' }

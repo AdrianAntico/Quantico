@@ -1,4 +1,4 @@
-# DataMuse
+# Quantico
 
 ![Version:0.1.0](https://img.shields.io/static/v1?label=Version&message=0.1.0&color=blue&?style=plastic)
 ![Build:Passing](https://img.shields.io/static/v1?label=Build&message=passing&color=brightgreen)
@@ -6,13 +6,13 @@
 [![PRsWelcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=default)](http://makeapullrequest.com)
 [![GitHubStars](https://img.shields.io/github/stars/AdrianAntico/ShinyDS.svg?style=social)](https://github.com/AdrianAntico/ShinyDS)
 
-<img src="https://raw.githubusercontent.com/AdrianAntico/Quantico/master/inst/shiny-apps/DataMuse/www/LogoWhite.png" align="center" width="800" />
+<img src="https://raw.githubusercontent.com/AdrianAntico/Quantico/master/inst/shiny-apps/Quantico/www/LogoWhite.png" align="center" width="800" />
 
-DataMuse is a GUI for Visualization, Data Wrangling, Feature Engineering, NLP, Machine Learning, Statistical Modeling, Forecasting, and Code Generation.
+Quantico is a GUI for Visualization, Data Wrangling, Feature Engineering, NLP, Machine Learning, Statistical Modeling, Forecasting, and Code Generation.
 
 ## Installation
 
-Note: if you're only looking to update DataMuse, you only have to reinstall the DataMuse package below.
+Note: if you're only looking to update Quantico, you only have to reinstall the Quantico package below.
 
 Step 1: install the "R-release" version of **rtools** and have it placed in your C:\ drive https://cran.r-project.org/bin/windows/Rtools/
 
@@ -86,25 +86,25 @@ devtools::install_github("AdrianAntico/AutoPlots", upgrade = FALSE, dependencies
 devtools::install_github("AdrianAntico/Rodeo", upgrade = FALSE, dependencies = FALSE, force = TRUE)
 devtools::install_github("AdrianAntico/AutoQuant", upgrade = FALSE, dependencies = FALSE, force = TRUE)
 devtools::install_github("AdrianAntico/esquisse", upgrade = FALSE, dependencies = FALSE, force = TRUE)
-devtools::install_github("AdrianAntico/DataMuse", upgrade = FALSE, dependencies = FALSE, force = TRUE, auth_token = "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")
+devtools::install_github("AdrianAntico/Quantico", upgrade = FALSE, dependencies = FALSE, force = TRUE, auth_token = "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")
 ```
 
 ## Quickstart
 
-In your RStudio session, run the DataMuse::Muse() function to kick off a DataMuse session
+In your RStudio session, run the Quantico::Muse() function to kick off a Quantico session
 
 Easy start (no PostGRE, no Azure, no Polygon)
 
 ```r
 # Optionally, you can change up the WorkingDirectory argument for your desired file path location
-DataMuse::Muse(MaxPlots = 12L, MaxPlotTabs = 5L, WorkingDirectory = getwd())
+Quantico::Muse(MaxPlots = 12L, MaxPlotTabs = 5L, WorkingDirectory = getwd())
 ```
 
 If you have a PostGRE installation you can add in the PostGRE parameters
 
 ```r
 # Optionally, you can change up the WorkingDirectory argument for your desired file path location (don't forget to use these "/" instead of these "\" in your path)
-DataMuse::Muse(
+Quantico::Muse(
   MaxPlots = 12L,
   MaxPlotTabs = 5L,
   WorkingDirectory = getwd(),

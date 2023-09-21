@@ -19,9 +19,9 @@ Shiny.DW.DeleteColumns <- function(input,output,session,DataList,CodeList,TabCou
 
   # Pull in values
   if(Debug) print('Shiny.DW.DeleteColumns')
-  SelectData <- DataList[[DataMuse:::ReturnParam(xx = tryCatch({input$DeleteVariables_SelectData}, error = function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)]][['data']]
-  Cols <- DataMuse:::ReturnParam(xx = tryCatch({input$DeleteVariables}, error = function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
-  NewName <- DataMuse:::ReturnParam(xx = tryCatch({input$DeleteVariables_NewName}, error = function(x) NULL), Type = 'character', Default = "Overwrite", Debug = Debug)
+  SelectData <- DataList[[Quantico:::ReturnParam(xx = tryCatch({input$DeleteVariables_SelectData}, error = function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)]][['data']]
+  Cols <- Quantico:::ReturnParam(xx = tryCatch({input$DeleteVariables}, error = function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
+  NewName <- Quantico:::ReturnParam(xx = tryCatch({input$DeleteVariables_NewName}, error = function(x) NULL), Type = 'character', Default = "Overwrite", Debug = Debug)
 
   # Dispatch
   if(Debug) print(Cols)
@@ -31,29 +31,29 @@ Shiny.DW.DeleteColumns <- function(input,output,session,DataList,CodeList,TabCou
   if(NewName == 'Overwrite') {
     if(all(Cols %in% names(SelectData))) data.table::set(SelectData, j = c(eval(Cols)), value = NULL)
     DataList[[SelectData]][['data']] <- SelectData
-    DataList <- tryCatch({DataMuse:::DM.DataListUpdate(DataList, SelectData)}, error = function(x) DataList)
+    DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, SelectData)}, error = function(x) DataList)
   } else {
     temp <- data.table::copy(SelectData)
     if(all(Cols %in% names(temp))) data.table::set(temp, j = c(eval(Cols)), value = NULL)
     DataList[[NewName]][['data']] <- temp
-    DataList <- tryCatch({DataMuse:::DM.DataListUpdate(DataList, NewName)}, error = function(x) DataList)
+    DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, NewName)}, error = function(x) DataList)
   }
 
   # Code
   if(Debug) print('Shiny.DW.DeleteColumns 5')
-  CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+  CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
     "\n",
     "# Delete Columns\n",
-    "SelectData <- ", DataMuse:::CEP(input$DeleteVariables_SelectData), "\n",
-    "Cols <- c(", DataMuse:::ExpandText(Cols), ")\n",
+    "SelectData <- ", Quantico:::CEP(input$DeleteVariables_SelectData), "\n",
+    "Cols <- c(", Quantico:::ExpandText(Cols), ")\n",
     "data.table::set(DataList[[SelectData]], j = c(Cols), value = NULL)\n"))
 
   # Update meta
-  DataList <- tryCatch({DataMuse:::DM.DataListUpdate(DataList, SelectData)}, error = function(x) DataList)
+  DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, SelectData)}, error = function(x) DataList)
 
-  for(i in seq_len(TabCount)) DataMuse::PickerInput(session, input, Update = TRUE, InputID = paste0("EDAData", i), Label = 'Data Selection', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
-  DataMuse::SelectizeInput(session, input, Update = TRUE, InputID = "ScoreML_Data", Label = 'Select Data', Choices = names(DataList))
-  for(i in seq_len(TabCount)) DataMuse::PickerInput(session, input, Update = TRUE, InputID = paste0("DataOutputSelection", i), Label = 'Display Data', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
+  for(i in seq_len(TabCount)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0("EDAData", i), Label = 'Data Selection', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
+  Quantico::SelectizeInput(session, input, Update = TRUE, InputID = "ScoreML_Data", Label = 'Select Data', Choices = names(DataList))
+  for(i in seq_len(TabCount)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0("DataOutputSelection", i), Label = 'Display Data', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
 
   return(list(
     DataList = DataList,
@@ -84,8 +84,8 @@ Shiny.DW.ConcatenateColumns <- function(input,output,session,DataList,CodeList,T
     if(Debug) print('Shiny.DW.ConcatenateColumns')
 
     # Pull in values
-    Cols <- DataMuse:::ReturnParam(xx = tryCatch({input$ConcatColumns}, error = function(x) NULL), VarName = 'ConcatColumns', Type = 'character', Default = NULL, Debug = Debug)
-    SelectData <- DataMuse:::ReturnParam(xx = tryCatch({input$ConcatColumns_SelectData}, error = function(x) NULL), VarName = 'ConcatColumns_SelectData', Type = 'character', Default = NULL, Debug = Debug)
+    Cols <- Quantico:::ReturnParam(xx = tryCatch({input$ConcatColumns}, error = function(x) NULL), VarName = 'ConcatColumns', Type = 'character', Default = NULL, Debug = Debug)
+    SelectData <- Quantico:::ReturnParam(xx = tryCatch({input$ConcatColumns_SelectData}, error = function(x) NULL), VarName = 'ConcatColumns_SelectData', Type = 'character', Default = NULL, Debug = Debug)
 
     # Run code
     if(Debug) print('Shiny.DW.ConcatenateColumns 2')
@@ -93,18 +93,18 @@ Shiny.DW.ConcatenateColumns <- function(input,output,session,DataList,CodeList,T
 
     # Code
     if(Debug) print('Shiny.DW.ConcatenateColumns 5')
-    CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+    CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
       "\n",
       "# Concatenate Columns\n",
-      "Cols <- c(", DataMuse:::ExpandText(Cols), ")\n",
-      "DataList[[", DataMuse:::CEP(SelectData), "]][, paste0(Cols, collapse = '_') := do.call(paste, c(.SD, sep = ' ')), .SDcols = c(Cols)]\n"))
+      "Cols <- c(", Quantico:::ExpandText(Cols), ")\n",
+      "DataList[[", Quantico:::CEP(SelectData), "]][, paste0(Cols, collapse = '_') := do.call(paste, c(.SD, sep = ' ')), .SDcols = c(Cols)]\n"))
 
     # Update meta
-    DataList <- tryCatch({DataMuse:::DM.DataListUpdate(DataList, SelectData)}, error = function(x) DataList)
+    DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, SelectData)}, error = function(x) DataList)
 
-    for(i in seq_len(TabCount)) DataMuse::PickerInput(session, input, Update = TRUE, InputID = paste0("EDAData", i), Label = 'Data Selection', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
-    DataMuse::SelectizeInput(session, input, Update = TRUE, InputID = "ScoreML_Data", Label = 'Select Data', Choices = names(DataList))
-    for(i in seq_len(TabCount)) DataMuse::PickerInput(session, input, Update = TRUE, InputID = paste0("DataOutputSelection", i), Label = 'Display Data', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
+    for(i in seq_len(TabCount)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0("EDAData", i), Label = 'Data Selection', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
+    Quantico::SelectizeInput(session, input, Update = TRUE, InputID = "ScoreML_Data", Label = 'Select Data', Choices = names(DataList))
+    for(i in seq_len(TabCount)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0("DataOutputSelection", i), Label = 'Display Data', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
 
     return(list(
       DataList = DataList,
@@ -136,9 +136,9 @@ Shiny.DW.RenameColumns <- function(input,output,session,DataList,CodeList,TabCou
     if(Debug) print('Shiny.DW.RenameColumns')
 
     # Pull in values
-    RenameColumn <- DataMuse:::ReturnParam(xx = tryCatch({input$RenameColumns_RenameColumn}, error = function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
-    SelectData <- DataMuse:::ReturnParam(xx = tryCatch({input$RenameColumns_SelectData}, error = function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
-    NewName <- DataMuse:::ReturnParam(xx = tryCatch({input$RenameColumns_NewName}, error = function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
+    RenameColumn <- Quantico:::ReturnParam(xx = tryCatch({input$RenameColumns_RenameColumn}, error = function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
+    SelectData <- Quantico:::ReturnParam(xx = tryCatch({input$RenameColumns_SelectData}, error = function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
+    NewName <- Quantico:::ReturnParam(xx = tryCatch({input$RenameColumns_NewName}, error = function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
 
     # Run code
     if(Debug) print('Shiny.DW.RenameColumns 2')
@@ -146,19 +146,19 @@ Shiny.DW.RenameColumns <- function(input,output,session,DataList,CodeList,TabCou
 
     # Code
     if(Debug) print('Shiny.DW.RenameColumns 5')
-    CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+    CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
       "\n",
       "# Rename Columns\n",
       "data.table::setnames(\n  ",
-      "x = DataList[[", DataMuse:::CEP(SelectData), "]],\n  ",
-      "old = ", DataMuse:::ExpandText(RenameColumn), ",\n  ",
-      "new = ", DataMuse:::ExpandText(NewName), ", skip_absent = TRUE)\n"))
+      "x = DataList[[", Quantico:::CEP(SelectData), "]],\n  ",
+      "old = ", Quantico:::ExpandText(RenameColumn), ",\n  ",
+      "new = ", Quantico:::ExpandText(NewName), ", skip_absent = TRUE)\n"))
 
     # Update meta
-    DataList <- tryCatch({DataMuse:::DM.DataListUpdate(DataList, SelectData)}, error = function(x) DataList)
-    for(i in seq_len(TabCount)) DataMuse::PickerInput(session, input, Update = TRUE, InputID = paste0("EDAData", i), Label = 'Data Selection', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
-    DataMuse::SelectizeInput(session, input, Update = TRUE, InputID = "ScoreML_Data", Label = 'Select Data', Choices = names(DataList))
-    for(i in seq_len(TabCount)) DataMuse::PickerInput(session, input, Update = TRUE, InputID = paste0("DataOutputSelection", i), Label = 'Display Data', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
+    DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, SelectData)}, error = function(x) DataList)
+    for(i in seq_len(TabCount)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0("EDAData", i), Label = 'Data Selection', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
+    Quantico::SelectizeInput(session, input, Update = TRUE, InputID = "ScoreML_Data", Label = 'Select Data', Choices = names(DataList))
+    for(i in seq_len(TabCount)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0("DataOutputSelection", i), Label = 'Display Data', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
     return(list(
       DataList = DataList,
       CodeList = CodeList
@@ -187,12 +187,12 @@ Shiny.DW.TimeTrendColumn <- function(input,output,session,DataList,CodeList,TabC
   shiny::withProgress(message = 'Concatenate columns has begun..', value = 0, {
 
     # Pull in values
-    SelectData <- DataMuse:::ReturnParam(xx = tryCatch({input$TimeTrendColumn_SelectData}, error = function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
-    TimeTrendOrder <- DataMuse:::ReturnParam(xx = tryCatch({input$TimeTrendColumn_TimeTrendOrder}, error = function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
-    DateColumn <- DataMuse:::ReturnParam(xx = tryCatch({input$TimeTrendColumn_DateColumn}, error = function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
-    NewName <- DataMuse:::ReturnParam(xx = tryCatch({input$TimeTrendColumn_NewName}, error = function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
+    SelectData <- Quantico:::ReturnParam(xx = tryCatch({input$TimeTrendColumn_SelectData}, error = function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
+    TimeTrendOrder <- Quantico:::ReturnParam(xx = tryCatch({input$TimeTrendColumn_TimeTrendOrder}, error = function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
+    DateColumn <- Quantico:::ReturnParam(xx = tryCatch({input$TimeTrendColumn_DateColumn}, error = function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
+    NewName <- Quantico:::ReturnParam(xx = tryCatch({input$TimeTrendColumn_NewName}, error = function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
     if(length(NewName) == 0 || NewName == "" || is.na(NewName)) NewName <- "TimeTrend"
-    GroupVars <- DataMuse:::ReturnParam(xx = tryCatch({input$TimeTrendColumn_GroupVars}, error = function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
+    GroupVars <- Quantico:::ReturnParam(xx = tryCatch({input$TimeTrendColumn_GroupVars}, error = function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
 
     # Time Trend
     if(TimeTrendOrder == 'Ascending') {
@@ -212,11 +212,11 @@ Shiny.DW.TimeTrendColumn <- function(input,output,session,DataList,CodeList,TabC
 
       # Code
       if(Debug) print('Shiny.DW.TimeTrendColumn 5')
-      CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+      CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
         "\n",
         "# Time Trend\n",
-        "data.table::setorderv(x = DataList[[", DataMuse:::CEP(SelectData), "]], cols = ", DataMuse:::ExpandText(paste0(GroupVars, DateColumn, collapse = ",")), ", order = ", DataMuse:::ExpandText(rep(TimeTrendOrder, length(paste0(GroupVars, DateColumn, collapse = ",")))), "\n",
-        "DataList[[", DataMuse:::CEP(SelectData), "]][, eval(", DataMuse:::CEP(NewName), ") := seq_len(.N), by = c(", DataMuse:::CEP(GroupVars), ")]\n"))
+        "data.table::setorderv(x = DataList[[", Quantico:::CEP(SelectData), "]], cols = ", Quantico:::ExpandText(paste0(GroupVars, DateColumn, collapse = ",")), ", order = ", Quantico:::ExpandText(rep(TimeTrendOrder, length(paste0(GroupVars, DateColumn, collapse = ",")))), "\n",
+        "DataList[[", Quantico:::CEP(SelectData), "]][, eval(", Quantico:::CEP(NewName), ") := seq_len(.N), by = c(", Quantico:::CEP(GroupVars), ")]\n"))
 
     } else {
 
@@ -226,18 +226,18 @@ Shiny.DW.TimeTrendColumn <- function(input,output,session,DataList,CodeList,TabC
 
       # Code
       if(Debug) print('Shiny.DW.TimeTrendColumn 5')
-      CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+      CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
         "\n",
         "# Time Trend\n",
-        "data.table::setorderv(x = DataList[[", DataMuse:::CEP(SelectData), "]], cols = ", DataMuse:::CEP(DateColumn), ", order = ", DataMuse:::CEP(TimeTrendOrder), "), \n",
-        "DataList[[", DataMuse:::CEP(SelectData), "]][, eval(", DataMuse:::CEP(NewName), ") := seq_len(.N)]\n"))
+        "data.table::setorderv(x = DataList[[", Quantico:::CEP(SelectData), "]], cols = ", Quantico:::CEP(DateColumn), ", order = ", Quantico:::CEP(TimeTrendOrder), "), \n",
+        "DataList[[", Quantico:::CEP(SelectData), "]][, eval(", Quantico:::CEP(NewName), ") := seq_len(.N)]\n"))
     }
 
     # Update meta
-    DataList <- tryCatch({DataMuse:::DM.DataListUpdate(DataList, SelectData)}, error = function(x) DataList)
-    for(i in seq_len(TabCount)) DataMuse::PickerInput(session, input, Update = TRUE, InputID = paste0("EDAData", i), Label = 'Data Selection', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
-    DataMuse::SelectizeInput(session, input, Update = TRUE, InputID = "ScoreML_Data", Label = 'Select Data', Choices = names(DataList))
-    for(i in seq_len(TabCount)) DataMuse::PickerInput(session, input, Update = TRUE, InputID = paste0("DataOutputSelection", i), Label = 'Display Data', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
+    DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, SelectData)}, error = function(x) DataList)
+    for(i in seq_len(TabCount)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0("EDAData", i), Label = 'Data Selection', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
+    Quantico::SelectizeInput(session, input, Update = TRUE, InputID = "ScoreML_Data", Label = 'Select Data', Choices = names(DataList))
+    for(i in seq_len(TabCount)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0("DataOutputSelection", i), Label = 'Display Data', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
     return(list(
       DataList = DataList,
       CodeList = CodeList
@@ -269,15 +269,15 @@ Shiny.DW.TypeCast <- function(input,output,session,DataList,CodeList,TabCount=5L
     options(warn = -1)
 
     # Pull in values
-    SelectData <- DataMuse:::ReturnParam(xx = tryCatch({input$TypeCast_SelectData}, error = function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
-    Numeric <- DataMuse:::ReturnParam(xx = tryCatch({input$TypeCast_Numeric}, error = function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
-    Integer <- DataMuse:::ReturnParam(xx = tryCatch({input$TypeCast_Integer}, error = function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
-    Character <- DataMuse:::ReturnParam(xx = tryCatch({input$TypeCast_Character}, error = function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
-    Factor <- DataMuse:::ReturnParam(xx = tryCatch({input$TypeCast_Factor}, error = function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
-    Logical <- DataMuse:::ReturnParam(xx = tryCatch({input$TypeCast_Logical}, error = function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
-    Date <- DataMuse:::ReturnParam(xx = tryCatch({input$TypeCast_Date}, error = function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
-    ExcelDate <- DataMuse:::ReturnParam(xx = tryCatch({input$TypeCast_ExcelDate}, error = function(x) NULL), Type = "character", Default = NULL)
-    Posix <- DataMuse:::ReturnParam(xx = tryCatch({input$TypeCast_Posix}, error = function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
+    SelectData <- Quantico:::ReturnParam(xx = tryCatch({input$TypeCast_SelectData}, error = function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
+    Numeric <- Quantico:::ReturnParam(xx = tryCatch({input$TypeCast_Numeric}, error = function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
+    Integer <- Quantico:::ReturnParam(xx = tryCatch({input$TypeCast_Integer}, error = function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
+    Character <- Quantico:::ReturnParam(xx = tryCatch({input$TypeCast_Character}, error = function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
+    Factor <- Quantico:::ReturnParam(xx = tryCatch({input$TypeCast_Factor}, error = function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
+    Logical <- Quantico:::ReturnParam(xx = tryCatch({input$TypeCast_Logical}, error = function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
+    Date <- Quantico:::ReturnParam(xx = tryCatch({input$TypeCast_Date}, error = function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
+    ExcelDate <- Quantico:::ReturnParam(xx = tryCatch({input$TypeCast_ExcelDate}, error = function(x) NULL), Type = "character", Default = NULL)
+    Posix <- Quantico:::ReturnParam(xx = tryCatch({input$TypeCast_Posix}, error = function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
 
     # Numeric
     if(Debug) print("Shiny.DW.TypeCast Numeric")
@@ -293,66 +293,66 @@ Shiny.DW.TypeCast <- function(input,output,session,DataList,CodeList,TabCount=5L
       # Numeric <- c("Global_active_power","Global_reactive_power","Voltage","Global_intensity","Sub_metering_1","Sub_metering_2","Sub_metering_3")
       # dt[, paste0(Numeric) := lapply(.SD, as.numeric), .SDcols = c(Numeric)]
       DataList[[SelectData]][['data']][, paste0(Numeric) := lapply(.SD, as.numeric), .SDcols = c(Numeric)]
-      CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+      CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
         "\n",
         "# Convert to numeric\n",
-        "Numeric <- ", DataMuse:::ExpandText(Numeric), "\n",
-        "DataList[[", DataMuse:::CEP(SelectData), "]] <- DataList[[", DataMuse:::CEP(SelectData), "]][, paste0(Numeric) := lapply(.SD, as.numeric), .SDcols = c(Numeric)]\n"))
+        "Numeric <- ", Quantico:::ExpandText(Numeric), "\n",
+        "DataList[[", Quantico:::CEP(SelectData), "]] <- DataList[[", Quantico:::CEP(SelectData), "]][, paste0(Numeric) := lapply(.SD, as.numeric), .SDcols = c(Numeric)]\n"))
     }
 
     # Excel Date
     if(Debug) print("Shiny.DW.TypeCast Excel Date")
     if(length(ExcelDate) > 0L) {
       DataList[[SelectData]][["data"]][, eval(ExcelDate) := openxlsx::convertToDate(get(ExcelDate))]
-      CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+      CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
         "\n",
         "# Convert to numeric\n",
-        "Numeric <- ", DataMuse:::ExpandText(Numeric), "\n",
-        "DataList[[", DataMuse:::CEP(SelectData), "]][, ", DataMuse::CEP(eval(ExcelData)), " := openxlsx::convertToDate(get(", DataMuse:::CEP(ExcelDate), "))]\n"))
+        "Numeric <- ", Quantico:::ExpandText(Numeric), "\n",
+        "DataList[[", Quantico:::CEP(SelectData), "]][, ", Quantico::CEP(eval(ExcelData)), " := openxlsx::convertToDate(get(", Quantico:::CEP(ExcelDate), "))]\n"))
     }
 
     # Integer
     if(Debug) print("Shiny.DW.TypeCast Integer")
     if(length(Integer) > 0L) {
       DataList[[SelectData]][['data']][, paste0(Integer) := lapply(.SD, as.integer), .SDcols = c(Integer)]
-      CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+      CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
         "\n",
         "# Convert to integer\n",
-        "Integer <- ", DataMuse:::ExpandText(Integer), "\n",
-        "DataList[[", DataMuse:::CEP(SelectData), "]][, paste0(Integer) := lapply(.SD, as.integer), .SDcols = c(Integer)]\n"))
+        "Integer <- ", Quantico:::ExpandText(Integer), "\n",
+        "DataList[[", Quantico:::CEP(SelectData), "]][, paste0(Integer) := lapply(.SD, as.integer), .SDcols = c(Integer)]\n"))
     }
 
     # Character
     if(Debug) print("Shiny.DW.TypeCast Character")
     if(length(Character) > 0L) {
       DataList[[SelectData]][['data']][, paste0(Character) := lapply(.SD, as.character), .SDcols = c(Character)]
-      CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+      CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
         "\n",
         "# Convert to character\n",
-        "Character <- ", DataMuse:::ExpandText(Character), "\n",
-        "DataList[[", DataMuse:::CEP(SelectData), "]][, paste0(Character) := lapply(.SD, as.character), .SDcols = c(Character)]\n"))
+        "Character <- ", Quantico:::ExpandText(Character), "\n",
+        "DataList[[", Quantico:::CEP(SelectData), "]][, paste0(Character) := lapply(.SD, as.character), .SDcols = c(Character)]\n"))
     }
 
     # Factor
     if(Debug) print("Shiny.DW.TypeCast Factor")
     if(length(Factor) > 0L) {
       DataList[[SelectData]][['data']][, paste0(Factor) := lapply(.SD, as.factor), .SDcols = c(Factor)]
-      CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+      CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
         "\n",
         "# Convert to factor\n",
-        "Factor <- ", DataMuse:::ExpandText(Factor), "\n",
-        "DataList[[", DataMuse:::CEP(SelectData), "]][, paste0(Factor) := lapply(.SD, as.factor), .SDcols = c(Factor)]\n"))
+        "Factor <- ", Quantico:::ExpandText(Factor), "\n",
+        "DataList[[", Quantico:::CEP(SelectData), "]][, paste0(Factor) := lapply(.SD, as.factor), .SDcols = c(Factor)]\n"))
     }
 
     # Logical
     if(Debug) print("Shiny.DW.TypeCast Logical")
     if(length(Logical) > 0L) {
       DataList[[SelectData]][['data']][, paste0(Logical) := lapply(.SD, as.logical), .SDcols = c(Logical)]
-      CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+      CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
         "\n",
         "# Convert to logical\n",
-        "Logical <- ", DataMuse:::ExpandText(Logical), "\n",
-        "DataList[[", DataMuse:::CEP(SelectData), "]][, paste0(Logical) := lapply(.SD, as.logical), .SDcols = c(Logical)]\n"))
+        "Logical <- ", Quantico:::ExpandText(Logical), "\n",
+        "DataList[[", Quantico:::CEP(SelectData), "]][, paste0(Logical) := lapply(.SD, as.logical), .SDcols = c(Logical)]\n"))
     }
 
     # Date
@@ -363,61 +363,61 @@ Shiny.DW.TypeCast <- function(input,output,session,DataList,CodeList,TabCount=5L
         x1 <- lubridate::guess_formats(x, orders = c('mdY', 'BdY', 'Bdy', 'bdY', 'bdy', 'mdy', 'dby', 'Ymd', 'Ydm', 'dmy'))
         DataList[[SelectData]][['data']][, eval(d) := as.Date(get(d), tryFormats = x1)]
       }
-      CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+      CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
         "\n",
         "# Convert to date\n",
         "for(d in Date) {\n  ",
-        "x <- DataList[[", DataMuse:::CEP(SelectData), "]][1L, get(d)]\n  ",
+        "x <- DataList[[", Quantico:::CEP(SelectData), "]][1L, get(d)]\n  ",
         "x1 <- lubridate::guess_formats(x, orders = c('mdY', 'BdY', 'Bdy', 'bdY', 'bdy', 'mdy', 'dby', 'Ymd', 'Ydm', 'dmy'))\n  ",
-        "DataList[[", DataMuse:::CEP(SelectData), "]][, eval(d) := as.Date(get(d), tryFormats = ", DataMuse:::CEP(x1), "]\n"))
+        "DataList[[", Quantico:::CEP(SelectData), "]][, eval(d) := as.Date(get(d), tryFormats = ", Quantico:::CEP(x1), "]\n"))
     }
 
     # Posix
     if(Debug) print("Shiny.DW.TypeCast Posix")
     if(length(Posix) > 0L) {
       DataList[[SelectData]][['data']][, paste0(Posix) := lapply(.SD, as.POSIXct), .SDcols = c(Posix)]
-      CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+      CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
         "\n",
         "# Convert to posixct\n",
-        "Posix <- ", DataMuse:::ExpandText(Posix), "\n",
-        "DataList[[", DataMuse:::CEP(SelectData), "]][, paste0(Posix) := lapply(.SD, as.POSIXct), .SDcols = c(Posix)]\n"))
+        "Posix <- ", Quantico:::ExpandText(Posix), "\n",
+        "DataList[[", Quantico:::CEP(SelectData), "]][, paste0(Posix) := lapply(.SD, as.POSIXct), .SDcols = c(Posix)]\n"))
     }
 
     # Update meta
     if(Debug) print("Shiny.DW.TypeCast Update meta")
-    DataList <- tryCatch({DataMuse:::DM.DataListUpdate(DataList, SelectData)}, error = function(x) DataList)
+    DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, SelectData)}, error = function(x) DataList)
     for(i in seq_len(TabCount)) {
-      DataMuse::PickerInput(session, input, Update = TRUE, InputID = paste0("EDAData", i), Label = 'Data Selection', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
-      EDAData <- DataMuse::ReturnParam(xx = tryCatch({input[[paste0("EDAData", i)]]}, error = function(x) NULL), Type = "character", Default = NULL)
+      Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0("EDAData", i), Label = 'Data Selection', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
+      EDAData <- Quantico::ReturnParam(xx = tryCatch({input[[paste0("EDAData", i)]]}, error = function(x) NULL), Type = "character", Default = NULL)
       ChoiceList <- list()
       dd <- tryCatch({DataList[[EDAData]][['data']]}, error = function(x) NULL)
       if(data.table::is.data.table(dd)) {
-        ColTypes <- unique(DataMuse:::ColTypes(dd))
-        for(i in seq_along(ColTypes)) ChoiceList[[ColTypes[i]]] <- DataMuse:::ColNameFilter(dd, Types = ColTypes[i])
-        DataMuse::PickerInput(
+        ColTypes <- unique(Quantico:::ColTypes(dd))
+        for(i in seq_along(ColTypes)) ChoiceList[[ColTypes[i]]] <- Quantico:::ColNameFilter(dd, Types = ColTypes[i])
+        Quantico::PickerInput(
           session = session, input = input, Update = TRUE,
           InputID = paste0('EDAUnivariateVars',i),
           Label = 'Univariate Vars', Choices = ChoiceList, Multiple = TRUE, MaxVars = 100L)
-        DataMuse::PickerInput(
+        Quantico::PickerInput(
           session = session, input = input, Update = TRUE,
           InputID = paste0('EDACorrVars',i),
           Label = 'Corr Vars', Choices = ChoiceList, Multiple = TRUE, MaxVars = 100L)
-        DataMuse::PickerInput(
+        Quantico::PickerInput(
           session = session, input = input, Update = TRUE,
           InputID = paste0('EDATrendVars',i),
           Label = 'Trend Vars', Choices = ChoiceList, Multiple = TRUE, MaxVars = 100L)
-        DataMuse::PickerInput(
+        Quantico::PickerInput(
           session = session, input = input, Update = TRUE,
           InputID = paste0('EDADateVar',i),
           Label = 'Trend Date Var', Choices = ChoiceList, Multiple = TRUE, MaxVars = 100L)
-        DataMuse::PickerInput(
+        Quantico::PickerInput(
           session = session, input = input, Update = TRUE,
           InputID = paste0('EDAGroupVar',i),
           Label = 'Trend By-Variable', Choices = ChoiceList, Multiple = TRUE, MaxVars = 100L)
       }
     }
-    DataMuse::SelectizeInput(session, input, Update = TRUE, InputID = "ScoreML_Data", Label = 'Select Data', Choices = names(DataList))
-    for(i in seq_len(TabCount)) DataMuse::PickerInput(session, input, Update = TRUE, InputID = paste0("DataOutputSelection", i), Label = 'Display Data', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
+    Quantico::SelectizeInput(session, input, Update = TRUE, InputID = "ScoreML_Data", Label = 'Select Data', Choices = names(DataList))
+    for(i in seq_len(TabCount)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0("DataOutputSelection", i), Label = 'Display Data', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
     return(list(
       DataList = DataList,
       CodeList = CodeList
@@ -445,30 +445,30 @@ Shiny.DW.TypeCast <- function(input,output,session,DataList,CodeList,TabCount=5L
 Shiny.DW.SampleData <- function(input,output,session,DataList,CodeList,TabCount=5L,CacheDir=CacheDir,CacheName=CacheName,Debug=Debug) {
 
   # Vars
-  SelectData <- DataMuse:::ReturnParam(xx = tryCatch({input$SampleData_SelectData}, error = function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
+  SelectData <- Quantico:::ReturnParam(xx = tryCatch({input$SampleData_SelectData}, error = function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
   data <- DataList[[SelectData]][['data']]
-  NewName <- DataMuse:::ReturnParam(xx = tryCatch({input$SampleData_NewName}, error = function(x) NULL), Type = 'character', Default = 'Overwrite', Debug = Debug)
-  StratifyColumns <- DataMuse:::ReturnParam(xx = tryCatch({input$SampleData_StratifyColumns}, error = function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
-  Rate <- DataMuse:::ReturnParam(xx = tryCatch({input$SampleData_Rate}, error = function(x) NULL), Type = 'numeric', Default = NULL, Debug = Debug)
+  NewName <- Quantico:::ReturnParam(xx = tryCatch({input$SampleData_NewName}, error = function(x) NULL), Type = 'character', Default = 'Overwrite', Debug = Debug)
+  StratifyColumns <- Quantico:::ReturnParam(xx = tryCatch({input$SampleData_StratifyColumns}, error = function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
+  Rate <- Quantico:::ReturnParam(xx = tryCatch({input$SampleData_Rate}, error = function(x) NULL), Type = 'numeric', Default = NULL, Debug = Debug)
 
   # Procedure
   if(length(StratifyColumns) == 0L) {
     temp <- data[order(runif(.N))][seq_len(floor(.N * Rate))]
     if(NewName == 'Overwrite') {
       DataList[[SelectData]][['data']] <- temp
-      DataList <- tryCatch({DataMuse:::DM.DataListUpdate(DataList, SelectData)}, error = function(x) DataList)
+      DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, SelectData)}, error = function(x) DataList)
     } else {
       DataList[[NewName]][['data']] <- temp
-      DataList <- tryCatch({DataMuse:::DM.DataListUpdate(DataList, NewName)}, error = function(x) DataList)
+      DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, NewName)}, error = function(x) DataList)
     }
     DataList <<- DataList
-    CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+    CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
       "\n",
       "# Sample Data\n",
-      "NewName <- ", DataMuse:::CEP(NewName), "\n",
-      "StratifyColumns <- ", DataMuse:::CEP(StratifyColumns), "\n",
-      "Rate <- ", DataMuse:::CEPP(Rate), "\n",
-      "DataList[[", if(NewName == 'Overwrite') DataMuse:::CEP(SelectData) else DataMuse:::CEP(NewName), "]] <- DataList[[", DataMuse:::CEP(SelectData), "]][order(runif(.N))][seq_len(floor(.N * ", DataMuse:::CEPP(Rate), "]\n"
+      "NewName <- ", Quantico:::CEP(NewName), "\n",
+      "StratifyColumns <- ", Quantico:::CEP(StratifyColumns), "\n",
+      "Rate <- ", Quantico:::CEPP(Rate), "\n",
+      "DataList[[", if(NewName == 'Overwrite') Quantico:::CEP(SelectData) else Quantico:::CEP(NewName), "]] <- DataList[[", Quantico:::CEP(SelectData), "]][order(runif(.N))][seq_len(floor(.N * ", Quantico:::CEPP(Rate), "]\n"
     ))
   } else {
     for(i in 1:20) print("ADRIAN YOOOOO")
@@ -480,24 +480,24 @@ Shiny.DW.SampleData <- function(input,output,session,DataList,CodeList,TabCount=
               , Max_ID__temp_col := NULL]
     if(NewName == 'Overwrite') {
       DataList[[SelectData]][['data']] <- temp
-      DataList <- tryCatch({DataMuse:::DM.DataListUpdate(DataList, SelectData)}, error = function(x) DataList)
+      DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, SelectData)}, error = function(x) DataList)
     } else {
       DataList[[NewName]][['data']] <- temp
-      DataList <- tryCatch({DataMuse:::DM.DataListUpdate(DataList, NewName)}, error = function(x) DataList)
-      for(i in seq_len(TabCount)) DataMuse::PickerInput(session, input, Update = TRUE, InputID = paste0("EDAData", i), Label = 'Data Selection', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
-      DataMuse::SelectizeInput(session, input, Update = TRUE, InputID = "ScoreML_Data", Label = 'Select Data', Choices = names(DataList))
-      for(i in seq_len(TabCount)) DataMuse::PickerInput(session, input, Update = TRUE, InputID = paste0("DataOutputSelection", i), Label = 'Display Data', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
+      DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, NewName)}, error = function(x) DataList)
+      for(i in seq_len(TabCount)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0("EDAData", i), Label = 'Data Selection', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
+      Quantico::SelectizeInput(session, input, Update = TRUE, InputID = "ScoreML_Data", Label = 'Select Data', Choices = names(DataList))
+      for(i in seq_len(TabCount)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0("DataOutputSelection", i), Label = 'Display Data', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
     }
     DataList <<- DataList
-    CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+    CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
       "\n",
       "# Sample Data\n",
-      "SelectData <- ", DataMuse:::CEP(SelectData), "\n",
+      "SelectData <- ", Quantico:::CEP(SelectData), "\n",
       "data <- DataList[[SelectData]]\n",
-      "NewName <- ", DataMuse:::CEP(NewName), "\n",
-      "StratifyColumns <- ", DataMuse:::CEP(StratifyColumns), "\n",
-      "Rate <- ", DataMuse:::CEPP(Rate), "\n",
-      "DataList[[", DataMuse:::CEP(NewName), "]] <- data[, ID__temp_col := runif(.N), by = c(StratifyColumns)][\n  ",
+      "NewName <- ", Quantico:::CEP(NewName), "\n",
+      "StratifyColumns <- ", Quantico:::CEP(StratifyColumns), "\n",
+      "Rate <- ", Quantico:::CEPP(Rate), "\n",
+      "DataList[[", Quantico:::CEP(NewName), "]] <- data[, ID__temp_col := runif(.N), by = c(StratifyColumns)][\n  ",
       ", Max_ID__temp_col := max(ID__temp_col), by = c(StratifyColumns)][\n    ",
       "order(ID__temp_col)][\n      ",
       "ID_temp_col <= eval(Rate) * Max_ID__temp_col][\n        ",
@@ -531,24 +531,24 @@ Shiny.DW.SampleData <- function(input,output,session,DataList,CodeList,TabCount=
 #'
 #' @export
 Shiny.DW.SubsetData <- function(input,output,session,DataList,CodeList,TabCount=5L,CacheDir=CacheDir,CacheName=CacheName,Debug=Debug) {
-  SubsetData_SelectData <- DataMuse:::ReturnParam(xx=tryCatch({input[['SubsetData_SelectData']]}, error=function(x) NULL), Type='character', Default=NULL)
-  SubsetData_NewName <- DataMuse:::ReturnParam(xx=tryCatch({input[['SubsetData_NewName']]}, error=function(x) NULL), Type='character', Default='Overwrite')
-  SubsetData_FilterVariable1  <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0('SubsetData_FilterVariable1')]]},    error=function(x) NULL), Type='character', Default=NULL)
-  SubsetData_FilterVariable2  <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0('SubsetData_FilterVariable2')]]},    error=function(x) NULL), Type='character', Default=NULL)
-  SubsetData_FilterVariable3  <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0('SubsetData_FilterVariable3')]]},    error=function(x) NULL), Type='character', Default=NULL)
-  SubsetData_FilterVariable4  <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0('SubsetData_FilterVariable4')]]},    error=function(x) NULL), Type='character', Default=NULL)
-  SubsetData_FilterLogic1     <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0('SubsetData_FilterLogic1')]]},       error=function(x) NULL), Type='character', Default=NULL)
-  SubsetData_FilterLogic2     <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0('SubsetData_FilterLogic2')]]},       error=function(x) NULL), Type='character', Default=NULL)
-  SubsetData_FilterLogic3     <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0('SubsetData_FilterLogic3')]]},       error=function(x) NULL), Type='character', Default=NULL)
-  SubsetData_FilterLogic4     <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0('SubsetData_FilterLogic4')]]},       error=function(x) NULL), Type='character', Default=NULL)
-  SubsetData_FilterValue_1_1  <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0('SubsetData_FilterValue_1_1')]]},    error=function(x) NULL), Type='character', Default=NULL)
-  SubsetData_FilterValue_1_2  <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0('SubsetData_FilterValue_1_2')]]},    error=function(x) NULL), Type='character', Default=NULL)
-  SubsetData_FilterValue_2_1  <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0('SubsetData_FilterValue_2_1')]]},    error=function(x) NULL), Type='character', Default=NULL)
-  SubsetData_FilterValue_2_2  <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0('SubsetData_FilterValue_2_2')]]},    error=function(x) NULL), Type='character', Default=NULL)
-  SubsetData_FilterValue_3_1  <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0('SubsetData_FilterValue_3_1')]]},    error=function(x) NULL), Type='character', Default=NULL)
-  SubsetData_FilterValue_3_2  <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0('SubsetData_FilterValue_3_2')]]},    error=function(x) NULL), Type='character', Default=NULL)
-  SubsetData_FilterValue_4_1  <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0('SubsetData_FilterValue_4_1')]]},    error=function(x) NULL), Type='character', Default=NULL)
-  SubsetData_FilterValue_4_2  <- DataMuse:::ReturnParam(xx=tryCatch({input[[paste0('SubsetData_FilterValue_4_2')]]},    error=function(x) NULL), Type='character', Default=NULL)
+  SubsetData_SelectData <- Quantico:::ReturnParam(xx=tryCatch({input[['SubsetData_SelectData']]}, error=function(x) NULL), Type='character', Default=NULL)
+  SubsetData_NewName <- Quantico:::ReturnParam(xx=tryCatch({input[['SubsetData_NewName']]}, error=function(x) NULL), Type='character', Default='Overwrite')
+  SubsetData_FilterVariable1  <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0('SubsetData_FilterVariable1')]]},    error=function(x) NULL), Type='character', Default=NULL)
+  SubsetData_FilterVariable2  <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0('SubsetData_FilterVariable2')]]},    error=function(x) NULL), Type='character', Default=NULL)
+  SubsetData_FilterVariable3  <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0('SubsetData_FilterVariable3')]]},    error=function(x) NULL), Type='character', Default=NULL)
+  SubsetData_FilterVariable4  <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0('SubsetData_FilterVariable4')]]},    error=function(x) NULL), Type='character', Default=NULL)
+  SubsetData_FilterLogic1     <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0('SubsetData_FilterLogic1')]]},       error=function(x) NULL), Type='character', Default=NULL)
+  SubsetData_FilterLogic2     <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0('SubsetData_FilterLogic2')]]},       error=function(x) NULL), Type='character', Default=NULL)
+  SubsetData_FilterLogic3     <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0('SubsetData_FilterLogic3')]]},       error=function(x) NULL), Type='character', Default=NULL)
+  SubsetData_FilterLogic4     <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0('SubsetData_FilterLogic4')]]},       error=function(x) NULL), Type='character', Default=NULL)
+  SubsetData_FilterValue_1_1  <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0('SubsetData_FilterValue_1_1')]]},    error=function(x) NULL), Type='character', Default=NULL)
+  SubsetData_FilterValue_1_2  <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0('SubsetData_FilterValue_1_2')]]},    error=function(x) NULL), Type='character', Default=NULL)
+  SubsetData_FilterValue_2_1  <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0('SubsetData_FilterValue_2_1')]]},    error=function(x) NULL), Type='character', Default=NULL)
+  SubsetData_FilterValue_2_2  <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0('SubsetData_FilterValue_2_2')]]},    error=function(x) NULL), Type='character', Default=NULL)
+  SubsetData_FilterValue_3_1  <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0('SubsetData_FilterValue_3_1')]]},    error=function(x) NULL), Type='character', Default=NULL)
+  SubsetData_FilterValue_3_2  <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0('SubsetData_FilterValue_3_2')]]},    error=function(x) NULL), Type='character', Default=NULL)
+  SubsetData_FilterValue_4_1  <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0('SubsetData_FilterValue_4_1')]]},    error=function(x) NULL), Type='character', Default=NULL)
+  SubsetData_FilterValue_4_2  <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0('SubsetData_FilterValue_4_2')]]},    error=function(x) NULL), Type='character', Default=NULL)
   if(Debug) print(length(SubsetData_FilterVariable1) != 0L)
   Var1 <- length(SubsetData_FilterVariable1) > 0L
   Var2 <- length(SubsetData_FilterVariable2) > 0L
@@ -562,37 +562,37 @@ Shiny.DW.SubsetData <- function(input,output,session,DataList,CodeList,TabCount=
   }
   if(any(Var1,Var2,Var3,Var4)) {
     for(i in seq_len(sum(Var1,Var2,Var3,Var4))) {
-      DataList[[if(SubsetData_NewName == 'Overwrite') SubsetData_SelectData else SubsetData_NewName]][['data']] <- DataMuse:::FilterLogicData(
+      DataList[[if(SubsetData_NewName == 'Overwrite') SubsetData_SelectData else SubsetData_NewName]][['data']] <- Quantico:::FilterLogicData(
         DataList[[if(i == 1 || SubsetData_NewName == 'Overwrite') SubsetData_SelectData else SubsetData_NewName]][['data']],
         FilterLogic    = get(paste0('SubsetData_FilterLogic', i)),
         FilterVariable = get(paste0('SubsetData_FilterVariable', i)),
         FilterValue    = get(paste0('SubsetData_FilterValue_',i,'_1')),
         FilterValue2   = get(paste0('SubsetData_FilterValue_',i,'_2')),
         Debug          = Debug)
-      CodeList <- DataMuse:::Shiny.CodePrint.Collect(CodeList, paste0(
+      CodeList <- Quantico:::Shiny.CodePrint.Collect(CodeList, paste0(
         "\n",
         "# Subset Data\n",
         "if(!exists('DataList')) DataList <- list()\n",
-        "DataList[[", DataMuse:::CEP(if(SubsetData_NewName == 'Overwrite') SubsetData_SelectData else SubsetData_NewName),"]] <- DataMuse:::FilterLogicData(\n  ",
-        "DataList[[", DataMuse:::CEP(SubsetData_SelectData),"]],\n  ",
-        "FilterLogic = ",DataMuse:::CEP(get(paste0('SubsetData_FilterLogic',i))),",\n  ",
-        "FilterVariable = ", DataMuse:::CEP(get(paste0('SubsetData_FilterVariable',i))),",\n  ",
-        "FilterValue = ", DataMuse:::CEP(get(paste0('SubsetData_FilterValue_',i,'_1'))),",\n  ",
-        "FilterValue2 = ", if(DataMuse:::CEP(get(paste0('SubsetData_FilterLogic',i))) %in% c('%in%','<','>','<=','>=')) "NULL" else DataMuse:::CEP(get(paste0('SubsetData_FilterValue_',i,'_2'))),")\n"))
+        "DataList[[", Quantico:::CEP(if(SubsetData_NewName == 'Overwrite') SubsetData_SelectData else SubsetData_NewName),"]] <- Quantico:::FilterLogicData(\n  ",
+        "DataList[[", Quantico:::CEP(SubsetData_SelectData),"]],\n  ",
+        "FilterLogic = ",Quantico:::CEP(get(paste0('SubsetData_FilterLogic',i))),",\n  ",
+        "FilterVariable = ", Quantico:::CEP(get(paste0('SubsetData_FilterVariable',i))),",\n  ",
+        "FilterValue = ", Quantico:::CEP(get(paste0('SubsetData_FilterValue_',i,'_1'))),",\n  ",
+        "FilterValue2 = ", if(Quantico:::CEP(get(paste0('SubsetData_FilterLogic',i))) %in% c('%in%','<','>','<=','>=')) "NULL" else Quantico:::CEP(get(paste0('SubsetData_FilterValue_',i,'_2'))),")\n"))
     }
   }
 
   # Display data
   if(Debug) print('DW Subset Data')
   if(SubsetData_NewName == 'Overwrite') {
-    DataList <- tryCatch({DataMuse:::DM.DataListUpdate(DataList, SubsetData_SelectData)}, error = function(x) DataList)
+    DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, SubsetData_SelectData)}, error = function(x) DataList)
   } else {
-    DataList <- tryCatch({DataMuse:::DM.DataListUpdate(DataList, SubsetData_NewName)}, error = function(x) DataList)
+    DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, SubsetData_NewName)}, error = function(x) DataList)
 
     # Add data to DataOutputSelection Page
-    for(i in seq_len(TabCount)) DataMuse::PickerInput(session, input, Update = TRUE, InputID = paste0("EDAData", i), Label = 'Data Selection', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
-    DataMuse::SelectizeInput(session, input, Update = TRUE, InputID = "ScoreML_Data", Label = 'Select Data', Choices = names(DataList))
-    for(i in seq_len(TabCount)) DataMuse::PickerInput(session, input, Update = TRUE, InputID = paste0("DataOutputSelection", i), Label = 'Display Data', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
+    for(i in seq_len(TabCount)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0("EDAData", i), Label = 'Data Selection', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
+    Quantico::SelectizeInput(session, input, Update = TRUE, InputID = "ScoreML_Data", Label = 'Select Data', Choices = names(DataList))
+    for(i in seq_len(TabCount)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0("DataOutputSelection", i), Label = 'Display Data', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
   }
 
   # Return
@@ -622,13 +622,13 @@ Shiny.DW.SubsetData <- function(input,output,session,DataList,CodeList,TabCount=
 Shiny.DW.AggregateData <- function(input,output,session,DataList,CodeList,TabCount=5L,CacheDir=CacheDir,CacheName=CacheName,Debug=Debug) {
 
   # Params
-  AggregateData_SelectData <- DataMuse:::ReturnParam(xx = tryCatch({input$AggregateData_SelectData}, error = function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
-  AggregateData_NewName <- DataMuse:::ReturnParam(xx = tryCatch({input$AggregateData_NewName}, error = function(x) NULL), Type = 'character', Default = 'Overwrite', Debug = Debug)
-  Aggregate_Columns <- DataMuse:::ReturnParam(xx = tryCatch({input$Aggregate_Columns}, error = function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
-  Aggregate_ByVariables <- DataMuse:::ReturnParam(xx = tryCatch({input$Aggregate_ByVariables}, error = function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
-  Aggregate_Stat <- DataMuse:::ReturnParam(xx = tryCatch({input$Aggregate_Stat}, error = function(x) NULL), Type = 'character', Default = 'mean', Debug = Debug)
-  Aggregate_DateVariable <- DataMuse:::ReturnParam(xx = tryCatch({input$Aggregate_DateVariable}, error = function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
-  Aggregate_TimeAgg <- DataMuse:::ReturnParam(xx = tryCatch({input$Aggregate_TimeAgg}, error = function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
+  AggregateData_SelectData <- Quantico:::ReturnParam(xx = tryCatch({input$AggregateData_SelectData}, error = function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
+  AggregateData_NewName <- Quantico:::ReturnParam(xx = tryCatch({input$AggregateData_NewName}, error = function(x) NULL), Type = 'character', Default = 'Overwrite', Debug = Debug)
+  Aggregate_Columns <- Quantico:::ReturnParam(xx = tryCatch({input$Aggregate_Columns}, error = function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
+  Aggregate_ByVariables <- Quantico:::ReturnParam(xx = tryCatch({input$Aggregate_ByVariables}, error = function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
+  Aggregate_Stat <- Quantico:::ReturnParam(xx = tryCatch({input$Aggregate_Stat}, error = function(x) NULL), Type = 'character', Default = 'mean', Debug = Debug)
+  Aggregate_DateVariable <- Quantico:::ReturnParam(xx = tryCatch({input$Aggregate_DateVariable}, error = function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
+  Aggregate_TimeAgg <- Quantico:::ReturnParam(xx = tryCatch({input$Aggregate_TimeAgg}, error = function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
 
   # Time Agg Prep Work
   if(length(Aggregate_DateVariable) > 0L && length(Aggregate_TimeAgg) > 0L) {
@@ -655,48 +655,48 @@ Shiny.DW.AggregateData <- function(input,output,session,DataList,CodeList,TabCou
     temp <- DataList[[AggregateData_SelectData]][['data']][, lapply(.SD, mean, na.rm = TRUE), .SDcols = c(Aggregate_Columns), keyby = c(Aggregate_ByVariables)]
     if(AggregateData_NewName == 'Overwrite') {
       DataList[[AggregateData_SelectData]][['data']] <- temp
-      CodeList <- DataMuse:::Shiny.CodePrint.Collect(CodeList, paste0(
+      CodeList <- Quantico:::Shiny.CodePrint.Collect(CodeList, paste0(
         "\n",
-        "# Aggregate ", DataMuse:::CEP(AggregateData_SelectData), "\n",
-        "DataList[[", DataMuse:::CEP(AggregateData_SelectData), "]] <- DataList[[", DataMuse:::CEP(AggregateData_SelectData), "]][, lapply(.SD, mean, na.rm = TRUE), .SDcols = ", DataMuse:::ExpandText(Aggregate_Columns), ", keyby = ", DataMuse:::ExpandText(Aggregate_ByVariables), "]\n"
+        "# Aggregate ", Quantico:::CEP(AggregateData_SelectData), "\n",
+        "DataList[[", Quantico:::CEP(AggregateData_SelectData), "]] <- DataList[[", Quantico:::CEP(AggregateData_SelectData), "]][, lapply(.SD, mean, na.rm = TRUE), .SDcols = ", Quantico:::ExpandText(Aggregate_Columns), ", keyby = ", Quantico:::ExpandText(Aggregate_ByVariables), "]\n"
       ))
     } else {
       DataList[[AggregateData_NewName]][['data']] <- temp
-      CodeList <- DataMuse:::Shiny.CodePrint.Collect(CodeList, paste0(
+      CodeList <- Quantico:::Shiny.CodePrint.Collect(CodeList, paste0(
         "\n",
-        "# Aggregate ", DataMuse:::CEP(AggregateData_SelectData), "\n",
-        "DataList[[", DataMuse:::CEP(AggregateData_NewName), "]] <- DataList[[", DataMuse:::CEP(AggregateData_SelectData), "]][, lapply(.SD, mean, na.rm = TRUE), .SDcols = ", DataMuse:::ExpandText(Aggregate_Columns), ", keyby = ", DataMuse:::ExpandText(Aggregate_ByVariables), "]\n"
+        "# Aggregate ", Quantico:::CEP(AggregateData_SelectData), "\n",
+        "DataList[[", Quantico:::CEP(AggregateData_NewName), "]] <- DataList[[", Quantico:::CEP(AggregateData_SelectData), "]][, lapply(.SD, mean, na.rm = TRUE), .SDcols = ", Quantico:::ExpandText(Aggregate_Columns), ", keyby = ", Quantico:::ExpandText(Aggregate_ByVariables), "]\n"
       ))
     }
   } else if(Aggregate_Stat == 'count') {
     temp <- DataList[[AggregateData_SelectData]][['data']][, list(Count = .N), keyby = c(Aggregate_ByVariables)]
     if(AggregateData_NewName == 'Overwrite') {
       DataList[[AggregateData_SelectData]][['data']] <- temp
-      CodeList <- DataMuse:::Shiny.CodePrint.Collect(CodeList, paste0(
+      CodeList <- Quantico:::Shiny.CodePrint.Collect(CodeList, paste0(
         "\n",
-        "# Aggregate ", DataMuse:::CEP(AggregateData_SelectData), "\n",
-        "DataList[[", DataMuse:::CEP(AggregateData_SelectData), "]] <- DataList[[", DataMuse:::CEP(AggregateData_SelectData), "]][, list(Count = .N), keyby = ", DataMuse:::ExpandText(Aggregate_ByVariables), "]\n"
+        "# Aggregate ", Quantico:::CEP(AggregateData_SelectData), "\n",
+        "DataList[[", Quantico:::CEP(AggregateData_SelectData), "]] <- DataList[[", Quantico:::CEP(AggregateData_SelectData), "]][, list(Count = .N), keyby = ", Quantico:::ExpandText(Aggregate_ByVariables), "]\n"
       ))
     } else {
       DataList[[AggregateData_NewName]][['data']] <- temp
-      CodeList <- DataMuse:::Shiny.CodePrint.Collect(CodeList, paste0(
-        "\n# Aggregate ", DataMuse:::CEP(AggregateData_SelectData), "\n",
-        "DataList[[", DataMuse:::CEP(AggregateData_NewName), "]] <- DataList[[", DataMuse:::CEP(AggregateData_SelectData), "]][, list(Count = .N), keyby = ", DataMuse:::ExpandText(Aggregate_ByVariables), "]\n"
+      CodeList <- Quantico:::Shiny.CodePrint.Collect(CodeList, paste0(
+        "\n# Aggregate ", Quantico:::CEP(AggregateData_SelectData), "\n",
+        "DataList[[", Quantico:::CEP(AggregateData_NewName), "]] <- DataList[[", Quantico:::CEP(AggregateData_SelectData), "]][, list(Count = .N), keyby = ", Quantico:::ExpandText(Aggregate_ByVariables), "]\n"
       ))
     }
   } else if(Aggregate_Stat == 'median') {
     temp <- DataList[[AggregateData_SelectData]][['data']][, lapply(.SD, median, na.rm = TRUE), .SDcols = c(Aggregate_Columns), keyby = c(Aggregate_ByVariables)]
     if(AggregateData_NewName == 'Overwrite') {
       DataList[[AggregateData_SelectData]][['data']] <- temp
-      CodeList <- DataMuse:::Shiny.CodePrint.Collect(CodeList, paste0(
-        "\n# Aggregate ", DataMuse:::CEP(AggregateData_SelectData), "\n",
-        "DataList[[", DataMuse:::CEP(AggregateData_SelectData), "]] <- DataList[[", DataMuse:::CEP(AggregateData_SelectData), "]][, lapply(.SD, median, na.rm = TRUE), .SDcols = ", DataMuse:::ExpandText(Aggregate_Columns), ", keyby = ", DataMuse:::ExpandText(Aggregate_ByVariables), "]\n"
+      CodeList <- Quantico:::Shiny.CodePrint.Collect(CodeList, paste0(
+        "\n# Aggregate ", Quantico:::CEP(AggregateData_SelectData), "\n",
+        "DataList[[", Quantico:::CEP(AggregateData_SelectData), "]] <- DataList[[", Quantico:::CEP(AggregateData_SelectData), "]][, lapply(.SD, median, na.rm = TRUE), .SDcols = ", Quantico:::ExpandText(Aggregate_Columns), ", keyby = ", Quantico:::ExpandText(Aggregate_ByVariables), "]\n"
       ))
     } else {
       DataList[[AggregateData_NewName]][['data']] <- temp
-      CodeList <- DataMuse:::Shiny.CodePrint.Collect(CodeList, paste0(
-        "\n# Aggregate ", DataMuse:::CEP(AggregateData_SelectData), "\n",
-        "DataList[[", DataMuse:::CEP(AggregateData_NewName), "]] <- DataList[[", DataMuse:::CEP(AggregateData_SelectData), "]][, lapply(.SD, median, na.rm = TRUE), .SDcols = ", DataMuse:::ExpandText(Aggregate_Columns), ", keyby = ", DataMuse:::ExpandText(Aggregate_ByVariables), "]\n"
+      CodeList <- Quantico:::Shiny.CodePrint.Collect(CodeList, paste0(
+        "\n# Aggregate ", Quantico:::CEP(AggregateData_SelectData), "\n",
+        "DataList[[", Quantico:::CEP(AggregateData_NewName), "]] <- DataList[[", Quantico:::CEP(AggregateData_SelectData), "]][, lapply(.SD, median, na.rm = TRUE), .SDcols = ", Quantico:::ExpandText(Aggregate_Columns), ", keyby = ", Quantico:::ExpandText(Aggregate_ByVariables), "]\n"
       ))
     }
 
@@ -704,82 +704,82 @@ Shiny.DW.AggregateData <- function(input,output,session,DataList,CodeList,TabCou
     temp <- DataList[[AggregateData_SelectData]][['data']][, lapply(.SD, sd, na.rm = TRUE), .SDcols = c(Aggregate_Columns), keyby = c(Aggregate_ByVariables)]
     if(AggregateData_NewName == 'Overwrite') {
       DataList[[AggregateData_SelectData]][['data']] <- temp
-      CodeList <- DataMuse:::Shiny.CodePrint.Collect(CodeList, paste0(
+      CodeList <- Quantico:::Shiny.CodePrint.Collect(CodeList, paste0(
         "\n",
-        "# Aggregate ", DataMuse:::CEP(AggregateData_SelectData), "\n",
-        "DataList[[", DataMuse:::CEP(AggregateData_SelectData), "]] <- DataList[[", DataMuse:::CEP(AggregateData_SelectData), "]][, lapply(.SD, sd, na.rm = TRUE), .SDcols = ", DataMuse:::ExpandText(Aggregate_Columns), ", keyby = ", DataMuse:::ExpandText(Aggregate_ByVariables), "]\n"
+        "# Aggregate ", Quantico:::CEP(AggregateData_SelectData), "\n",
+        "DataList[[", Quantico:::CEP(AggregateData_SelectData), "]] <- DataList[[", Quantico:::CEP(AggregateData_SelectData), "]][, lapply(.SD, sd, na.rm = TRUE), .SDcols = ", Quantico:::ExpandText(Aggregate_Columns), ", keyby = ", Quantico:::ExpandText(Aggregate_ByVariables), "]\n"
       ))
     } else {
       DataList[[AggregateData_NewName]][['data']] <- temp
-      CodeList <- DataMuse:::Shiny.CodePrint.Collect(CodeList, paste0(
-        "# Aggregate ", DataMuse:::CEP(AggregateData_SelectData), "\n",
-        "DataList[[", DataMuse:::CEP(AggregateData_NewName), "]] <- DataList[[", DataMuse:::CEP(AggregateData_SelectData), "]][, lapply(.SD, sd, na.rm = TRUE), .SDcols = ", DataMuse:::ExpandText(Aggregate_Columns), ", keyby = ", DataMuse:::ExpandText(Aggregate_ByVariables), "]\n"
+      CodeList <- Quantico:::Shiny.CodePrint.Collect(CodeList, paste0(
+        "# Aggregate ", Quantico:::CEP(AggregateData_SelectData), "\n",
+        "DataList[[", Quantico:::CEP(AggregateData_NewName), "]] <- DataList[[", Quantico:::CEP(AggregateData_SelectData), "]][, lapply(.SD, sd, na.rm = TRUE), .SDcols = ", Quantico:::ExpandText(Aggregate_Columns), ", keyby = ", Quantico:::ExpandText(Aggregate_ByVariables), "]\n"
       ))
     }
   } else if(Aggregate_Stat == 'min') {
     temp <- DataList[[AggregateData_SelectData]][['data']][, lapply(.SD, min, na.rm = TRUE), .SDcols = c(Aggregate_Columns), keyby = c(Aggregate_ByVariables)]
     if(AggregateData_NewName == 'Overwrite') {
       DataList[[AggregateData_SelectData]][['data']] <- temp
-      CodeList <- DataMuse:::Shiny.CodePrint.Collect(CodeList, paste0(
+      CodeList <- Quantico:::Shiny.CodePrint.Collect(CodeList, paste0(
         "\n",
-        "# Aggregate ", DataMuse:::CEP(AggregateData_SelectData), "\n",
-        "DataList[[", DataMuse:::CEP(AggregateData_SelectData), "]] <- DataList[[", DataMuse:::CEP(AggregateData_SelectData), "]][, lapply(.SD, min, na.rm = TRUE), .SDcols = ", DataMuse:::ExpandText(Aggregate_Columns), ", keyby = ", DataMuse:::ExpandText(Aggregate_ByVariables), "]\n"
+        "# Aggregate ", Quantico:::CEP(AggregateData_SelectData), "\n",
+        "DataList[[", Quantico:::CEP(AggregateData_SelectData), "]] <- DataList[[", Quantico:::CEP(AggregateData_SelectData), "]][, lapply(.SD, min, na.rm = TRUE), .SDcols = ", Quantico:::ExpandText(Aggregate_Columns), ", keyby = ", Quantico:::ExpandText(Aggregate_ByVariables), "]\n"
       ))
     } else {
-      CodeList <- DataMuse:::Shiny.CodePrint.Collect(CodeList, paste0(
-        "# Aggregate ", DataMuse:::CEP(AggregateData_SelectData), "\n",
-        "DataList[[", DataMuse:::CEP(AggregateData_NewName), "]] <- DataList[[", DataMuse:::CEP(AggregateData_SelectData), "]][, lapply(.SD, min, na.rm = TRUE), .SDcols = ", DataMuse:::ExpandText(Aggregate_Columns), ", keyby = ", DataMuse:::ExpandText(Aggregate_ByVariables), "]\n"
+      CodeList <- Quantico:::Shiny.CodePrint.Collect(CodeList, paste0(
+        "# Aggregate ", Quantico:::CEP(AggregateData_SelectData), "\n",
+        "DataList[[", Quantico:::CEP(AggregateData_NewName), "]] <- DataList[[", Quantico:::CEP(AggregateData_SelectData), "]][, lapply(.SD, min, na.rm = TRUE), .SDcols = ", Quantico:::ExpandText(Aggregate_Columns), ", keyby = ", Quantico:::ExpandText(Aggregate_ByVariables), "]\n"
       ))
     }
   } else if(Aggregate_Stat == 'max') {
     temp <- DataList[[AggregateData_SelectData]][['data']][, lapply(.SD, max, na.rm = TRUE), .SDcols = c(Aggregate_Columns), keyby = c(Aggregate_ByVariables)]
     if(AggregateData_NewName == 'Overwrite') {
       DataList[[AggregateData_SelectData]][['data']] <- temp
-      CodeList <- DataMuse:::Shiny.CodePrint.Collect(CodeList, paste0(
+      CodeList <- Quantico:::Shiny.CodePrint.Collect(CodeList, paste0(
         "\n",
-        "# Aggregate ", DataMuse:::CEP(AggregateData_SelectData), "\n",
-        "DataList[[", DataMuse:::CEP(AggregateData_SelectData), "]] <- DataList[[", DataMuse:::CEP(AggregateData_SelectData), "]][, lapply(.SD, max, na.rm = TRUE), .SDcols = ", DataMuse:::ExpandText(Aggregate_Columns), ", keyby = ", DataMuse:::ExpandText(Aggregate_ByVariables), "]\n"
+        "# Aggregate ", Quantico:::CEP(AggregateData_SelectData), "\n",
+        "DataList[[", Quantico:::CEP(AggregateData_SelectData), "]] <- DataList[[", Quantico:::CEP(AggregateData_SelectData), "]][, lapply(.SD, max, na.rm = TRUE), .SDcols = ", Quantico:::ExpandText(Aggregate_Columns), ", keyby = ", Quantico:::ExpandText(Aggregate_ByVariables), "]\n"
       ))
     } else {
       DataList[[AggregateData_NewName]][['data']] <- temp
-      CodeList <- DataMuse:::Shiny.CodePrint.Collect(CodeList, paste0(
+      CodeList <- Quantico:::Shiny.CodePrint.Collect(CodeList, paste0(
         "\n",
-        "# Aggregate ", DataMuse:::CEP(AggregateData_SelectData), "\n",
-        "DataList[[", DataMuse:::CEP(AggregateData_NewName), "]] <- DataList[[", DataMuse:::CEP(AggregateData_SelectData), "]][, lapply(.SD, max, na.rm = TRUE), .SDcols = ", DataMuse:::ExpandText(Aggregate_Columns), ", keyby = ", DataMuse:::ExpandText(Aggregate_ByVariables), "]\n"
+        "# Aggregate ", Quantico:::CEP(AggregateData_SelectData), "\n",
+        "DataList[[", Quantico:::CEP(AggregateData_NewName), "]] <- DataList[[", Quantico:::CEP(AggregateData_SelectData), "]][, lapply(.SD, max, na.rm = TRUE), .SDcols = ", Quantico:::ExpandText(Aggregate_Columns), ", keyby = ", Quantico:::ExpandText(Aggregate_ByVariables), "]\n"
       ))
     }
   } else if(Aggregate_Stat == 'first') {
     temp <- DataList[[AggregateData_SelectData]][['data']][, lapply(.SD, data.table::first, na.rm = TRUE), .SDcols = c(Aggregate_Columns), keyby = c(Aggregate_ByVariables)]
     if(AggregateData_NewName == 'Overwrite') {
       DataList[[AggregateData_SelectData]][['data']] <- temp
-      CodeList <- DataMuse:::Shiny.CodePrint.Collect(CodeList, paste0(
+      CodeList <- Quantico:::Shiny.CodePrint.Collect(CodeList, paste0(
         "\n",
-        "# Aggregate ", DataMuse:::CEP(AggregateData_SelectData), "\n",
-        "DataList[[", DataMuse:::CEP(AggregateData_SelectData), "]] <- DataList[[", DataMuse:::CEP(AggregateData_SelectData), "]][, lapply(.SD, data.table::first, na.rm = TRUE), .SDcols = ", DataMuse:::ExpandText(Aggregate_Columns), ", keyby = ", DataMuse:::ExpandText(Aggregate_ByVariables), "]\n"
+        "# Aggregate ", Quantico:::CEP(AggregateData_SelectData), "\n",
+        "DataList[[", Quantico:::CEP(AggregateData_SelectData), "]] <- DataList[[", Quantico:::CEP(AggregateData_SelectData), "]][, lapply(.SD, data.table::first, na.rm = TRUE), .SDcols = ", Quantico:::ExpandText(Aggregate_Columns), ", keyby = ", Quantico:::ExpandText(Aggregate_ByVariables), "]\n"
       ))
     } else {
       DataList[[AggregateData_NewName]][['data']] <- temp
-      CodeList <- DataMuse:::Shiny.CodePrint.Collect(CodeList, paste0(
+      CodeList <- Quantico:::Shiny.CodePrint.Collect(CodeList, paste0(
         "\n",
-        "# Aggregate ", DataMuse:::CEP(AggregateData_SelectData), "\n",
-        "DataList[[", DataMuse:::CEP(AggregateData_NewName), "]] <- DataList[[", DataMuse:::CEP(AggregateData_SelectData), "]][, lapply(.SD, data.table::first, na.rm = TRUE), .SDcols = ", DataMuse:::ExpandText(Aggregate_Columns), ", keyby = ", DataMuse:::ExpandText(Aggregate_ByVariables), "]\n"
+        "# Aggregate ", Quantico:::CEP(AggregateData_SelectData), "\n",
+        "DataList[[", Quantico:::CEP(AggregateData_NewName), "]] <- DataList[[", Quantico:::CEP(AggregateData_SelectData), "]][, lapply(.SD, data.table::first, na.rm = TRUE), .SDcols = ", Quantico:::ExpandText(Aggregate_Columns), ", keyby = ", Quantico:::ExpandText(Aggregate_ByVariables), "]\n"
       ))
     }
   } else if(Aggregate_Stat == 'last') {
     temp <- DataList[[AggregateData_SelectData]][['data']][, lapply(.SD, data.table::last, na.rm = TRUE), .SDcols = c(Aggregate_Columns), keyby = c(Aggregate_ByVariables)]
     if(AggregateData_NewName == 'Overwrite') {
       DataList[[AggregateData_SelectData]][['data']] <- temp
-      CodeList <- DataMuse:::Shiny.CodePrint.Collect(CodeList, paste0(
+      CodeList <- Quantico:::Shiny.CodePrint.Collect(CodeList, paste0(
         "\n",
-        "# Aggregate ", DataMuse:::CEP(AggregateData_SelectData), "\n",
-        "DataList[[", DataMuse:::CEP(AggregateData_SelectData), "]] <- DataList[[", DataMuse:::CEP(AggregateData_SelectData), "]][, lapply(.SD, data.table::last, na.rm = TRUE), .SDcols = ", DataMuse:::ExpandText(Aggregate_Columns), ", keyby = ", DataMuse:::ExpandText(Aggregate_ByVariables), "]\n"
+        "# Aggregate ", Quantico:::CEP(AggregateData_SelectData), "\n",
+        "DataList[[", Quantico:::CEP(AggregateData_SelectData), "]] <- DataList[[", Quantico:::CEP(AggregateData_SelectData), "]][, lapply(.SD, data.table::last, na.rm = TRUE), .SDcols = ", Quantico:::ExpandText(Aggregate_Columns), ", keyby = ", Quantico:::ExpandText(Aggregate_ByVariables), "]\n"
       ))
     } else {
       DataList[[AggregateData_NewName]][['data']] <- temp
-      CodeList <- DataMuse:::Shiny.CodePrint.Collect(CodeList, paste0(
+      CodeList <- Quantico:::Shiny.CodePrint.Collect(CodeList, paste0(
         "\n",
-        "# Aggregate ", DataMuse:::CEP(AggregateData_SelectData), "\n",
-        "DataList[[", DataMuse:::CEP(AggregateData_NewName), "]] <- DataList[[", DataMuse:::CEP(AggregateData_SelectData), "]][, lapply(.SD, data.table::last, na.rm = TRUE), .SDcols = ", DataMuse:::ExpandText(Aggregate_Columns), ", keyby = ", DataMuse:::ExpandText(Aggregate_ByVariables), "]\n"
+        "# Aggregate ", Quantico:::CEP(AggregateData_SelectData), "\n",
+        "DataList[[", Quantico:::CEP(AggregateData_NewName), "]] <- DataList[[", Quantico:::CEP(AggregateData_SelectData), "]][, lapply(.SD, data.table::last, na.rm = TRUE), .SDcols = ", Quantico:::ExpandText(Aggregate_Columns), ", keyby = ", Quantico:::ExpandText(Aggregate_ByVariables), "]\n"
       ))
     }
   }
@@ -787,14 +787,14 @@ Shiny.DW.AggregateData <- function(input,output,session,DataList,CodeList,TabCou
   # Display data
   if(Debug) print('DW Aggregate Data')
   if(AggregateData_NewName == 'Overwrite') {
-    DataList <- tryCatch({DataMuse:::DM.DataListUpdate(DataList, AggregateData_SelectData)}, error = function(x) DataList)
+    DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, AggregateData_SelectData)}, error = function(x) DataList)
   } else {
-    DataList <- tryCatch({DataMuse:::DM.DataListUpdate(DataList, AggregateData_NewName)}, error = function(x) DataList)
+    DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, AggregateData_NewName)}, error = function(x) DataList)
 
     # Add data to DataOutputSelection Page
-    for(i in seq_len(TabCount)) DataMuse::PickerInput(session, input, Update = TRUE, InputID = paste0("EDAData", i), Label = 'Data Selection', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
-    DataMuse::SelectizeInput(session, input, Update = TRUE, InputID = "ScoreML_Data", Label = 'Select Data', Choices = names(DataList))
-    for(i in seq_len(TabCount)) DataMuse::PickerInput(session, input, Update = TRUE, InputID = paste0("DataOutputSelection", i), Label = 'Display Data', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
+    for(i in seq_len(TabCount)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0("EDAData", i), Label = 'Data Selection', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
+    Quantico::SelectizeInput(session, input, Update = TRUE, InputID = "ScoreML_Data", Label = 'Select Data', Choices = names(DataList))
+    for(i in seq_len(TabCount)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0("DataOutputSelection", i), Label = 'Display Data', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
   }
 
   # Return
@@ -822,13 +822,13 @@ Shiny.DW.AggregateData <- function(input,output,session,DataList,CodeList,TabCou
 #'
 #' @export
 Shiny.DW.JoinData <- function(input,output,session,DataList,CodeList,TabCount=5L,CacheDir=CacheDir,CacheName=CacheName,Debug=Debug) {
-  JoinData_NewName         <- DataMuse:::ReturnParam(xx=tryCatch({input[['JoinData_NewName']]},         error=function(x) NULL), Type='character', Default='Overwrite')
-  JoinData_SelectData1     <- DataMuse:::ReturnParam(xx=tryCatch({input[['JoinData_SelectData1']]},     error=function(x) NULL), Type='character', Default=NULL)
-  JoinData_SelectData2     <- DataMuse:::ReturnParam(xx=tryCatch({input[['JoinData_SelectData2']]},     error=function(x) NULL), Type='character', Default=NULL)
-  JoinData_JoinType        <- DataMuse:::ReturnParam(xx=tryCatch({input[['JoinData_JoinType']]},        error=function(x) NULL), Type='character', Default=NULL)
-  JoinData_Cartesian       <- DataMuse:::ReturnParam(xx=tryCatch({input[['JoinData_Cartesian']]},       error=function(x) NULL), Type='logical',   Default=FALSE)
-  JoinData_ByXVariables    <- DataMuse:::ReturnParam(xx=tryCatch({input[['JoinData_ByXVariables']]},    error=function(x) NULL), Type='character', Default=NULL)
-  JoinData_ByYVariables    <- DataMuse:::ReturnParam(xx=tryCatch({input[['JoinData_ByYVariables']]},    error=function(x) NULL), Type='character', Default=NULL)
+  JoinData_NewName         <- Quantico:::ReturnParam(xx=tryCatch({input[['JoinData_NewName']]},         error=function(x) NULL), Type='character', Default='Overwrite')
+  JoinData_SelectData1     <- Quantico:::ReturnParam(xx=tryCatch({input[['JoinData_SelectData1']]},     error=function(x) NULL), Type='character', Default=NULL)
+  JoinData_SelectData2     <- Quantico:::ReturnParam(xx=tryCatch({input[['JoinData_SelectData2']]},     error=function(x) NULL), Type='character', Default=NULL)
+  JoinData_JoinType        <- Quantico:::ReturnParam(xx=tryCatch({input[['JoinData_JoinType']]},        error=function(x) NULL), Type='character', Default=NULL)
+  JoinData_Cartesian       <- Quantico:::ReturnParam(xx=tryCatch({input[['JoinData_Cartesian']]},       error=function(x) NULL), Type='logical',   Default=FALSE)
+  JoinData_ByXVariables    <- Quantico:::ReturnParam(xx=tryCatch({input[['JoinData_ByXVariables']]},    error=function(x) NULL), Type='character', Default=NULL)
+  JoinData_ByYVariables    <- Quantico:::ReturnParam(xx=tryCatch({input[['JoinData_ByYVariables']]},    error=function(x) NULL), Type='character', Default=NULL)
 
   # DataList <- list()
   # JoinData_SelectData1 <- "C:/Users/Bizon/Documents/GitHub/rappwd/FakeBevData.csv"
@@ -843,9 +843,9 @@ Shiny.DW.JoinData <- function(input,output,session,DataList,CodeList,TabCount=5L
   # right_names <- names(DataList[["bla"]][["data"]])
   # common_cols <- intersect(left_names,right_names)
   # if(identical(character(0),common_cols)) common_cols <- NULL
-  # right_diff_cols <- DataMuse::CharNull(setdiff(left_names,right_names))
+  # right_diff_cols <- Quantico::CharNull(setdiff(left_names,right_names))
   # if(identical(character(0),right_names)) right_diff_cols <- NULL
-  # left_diff_cols <- DataMuse::CharNull(setdiff(right_names,left_names))
+  # left_diff_cols <- Quantico::CharNull(setdiff(right_names,left_names))
   # if(identical(character(0),left_diff_cols)) left_diff_cols <- NULL
 
   # Define tables and create keys (index + sorting)
@@ -887,108 +887,108 @@ Shiny.DW.JoinData <- function(input,output,session,DataList,CodeList,TabCount=5L
     print("Join 10")
     left_table <- left_table[right_table[, .SD, .SDcols = c(unique(c(JoinData_ByYVariables,left_diff_cols)))], nomatch = NULL, allow.cartesian = TRUE]
     print("Join 11")
-    CodeList <- DataMuse:::Shiny.CodePrint.Collect(CodeList, paste0(
+    CodeList <- Quantico:::Shiny.CodePrint.Collect(CodeList, paste0(
       "\n",
       "# Join Data\n",
-      "JoinData_ByXVariables <- ", DataMuse:::ExpandText(JoinData_ByXVariables), "\n",
-      "JoinData_ByYVariables <- ", DataMuse:::ExpandText(JoinData_ByYVariables), "\n",
-      "data.table::setkeyv(x = DataList[[", DataMuse:::CEP(JoinData_SelectData1),"]], cols = c(JoinData_ByXVariables), physical = TRUE)\n",
-      "data.table::setkeyv(x = DataList[[", DataMuse:::CEP(JoinData_SelectData2),"]], cols = c(JoinData_ByYVariables), physical = TRUE)\n",
-      "left_names <- names(DataList[[", DataMuse:::CEP(JoinData_SelectData1),"]])\n",
-      "right_names <- names(DataList[[", DataMuse:::CEP(JoinData_SelectData2),"]])\n",
+      "JoinData_ByXVariables <- ", Quantico:::ExpandText(JoinData_ByXVariables), "\n",
+      "JoinData_ByYVariables <- ", Quantico:::ExpandText(JoinData_ByYVariables), "\n",
+      "data.table::setkeyv(x = DataList[[", Quantico:::CEP(JoinData_SelectData1),"]], cols = c(JoinData_ByXVariables), physical = TRUE)\n",
+      "data.table::setkeyv(x = DataList[[", Quantico:::CEP(JoinData_SelectData2),"]], cols = c(JoinData_ByYVariables), physical = TRUE)\n",
+      "left_names <- names(DataList[[", Quantico:::CEP(JoinData_SelectData1),"]])\n",
+      "right_names <- names(DataList[[", Quantico:::CEP(JoinData_SelectData2),"]])\n",
       "left_diff_cols <- setdiff(right_names,left_names)\n",
       "if(identical(character(0),left_diff_cols)) left_diff_cols <- NULL\n",
-      "DataList[[", if(JoinData_NewName == 'Overwrite') DataMuse:::CEP(JoinData_NewName) else DataMuse:::CEP(JoinData_SelectData1),"]] <- DataList[[", DataMuse:::CEP(JoinData_SelectData1),"]][DataList[[", DataMuse:::CEP(JoinData_SelectData2),"]][, .SD, .SDcols = c(unique(c(JoinData_ByXVariables,left_diff_cols)))], nomatch = NULL, allow.cartesian = TRUE]\n"))
+      "DataList[[", if(JoinData_NewName == 'Overwrite') Quantico:::CEP(JoinData_NewName) else Quantico:::CEP(JoinData_SelectData1),"]] <- DataList[[", Quantico:::CEP(JoinData_SelectData1),"]][DataList[[", Quantico:::CEP(JoinData_SelectData2),"]][, .SD, .SDcols = c(unique(c(JoinData_ByXVariables,left_diff_cols)))], nomatch = NULL, allow.cartesian = TRUE]\n"))
 
   } else if(JoinData_JoinType == 'left') {
     left_table[right_table, paste0(left_diff_cols) := mget(paste0('i.', left_diff_cols)), allow.cartesian = TRUE]
-    CodeList <- DataMuse:::Shiny.CodePrint.Collect(CodeList, paste0(
+    CodeList <- Quantico:::Shiny.CodePrint.Collect(CodeList, paste0(
       "\n",
       "# Join Data\n",
-      "JoinData_ByXVariables <- ", DataMuse:::ExpandText(JoinData_ByXVariables), "\n",
-      "JoinData_ByYVariables <- ", DataMuse:::ExpandText(JoinData_ByYVariables), "\n",
-      "data.table::setkeyv(x = DataList[[", DataMuse:::CEP(JoinData_SelectData1),"]], cols = c(JoinData_ByXVariables), physical = TRUE)\n",
-      "data.table::setkeyv(x = DataList[[", DataMuse:::CEP(JoinData_SelectData2),"]], cols = c(JoinData_ByYVariables), physical = TRUE)\n",
-      "left_names <- names(DataList[[", DataMuse:::CEP(JoinData_SelectData1),"]])\n",
-      "right_names <- names(DataList[[", DataMuse:::CEP(JoinData_SelectData2),"]])\n",
-      "left_diff_cols <- DataMuse::CharNull(setdiff(right_names,left_names))\n",
+      "JoinData_ByXVariables <- ", Quantico:::ExpandText(JoinData_ByXVariables), "\n",
+      "JoinData_ByYVariables <- ", Quantico:::ExpandText(JoinData_ByYVariables), "\n",
+      "data.table::setkeyv(x = DataList[[", Quantico:::CEP(JoinData_SelectData1),"]], cols = c(JoinData_ByXVariables), physical = TRUE)\n",
+      "data.table::setkeyv(x = DataList[[", Quantico:::CEP(JoinData_SelectData2),"]], cols = c(JoinData_ByYVariables), physical = TRUE)\n",
+      "left_names <- names(DataList[[", Quantico:::CEP(JoinData_SelectData1),"]])\n",
+      "right_names <- names(DataList[[", Quantico:::CEP(JoinData_SelectData2),"]])\n",
+      "left_diff_cols <- Quantico::CharNull(setdiff(right_names,left_names))\n",
       "if(identical(character(0),left_diff_cols)) left_diff_cols <- NULL\n",
-      "DataList[[", DataMuse:::CEP(JoinData_SelectData1),"]][DataList[[",DataMuse:::CEP(JoinData_SelectData2),"]], paste0(left_diff_cols) := mget(paste0('i.', left_diff_cols)), allow.cartesian = TRUE]\n"))
+      "DataList[[", Quantico:::CEP(JoinData_SelectData1),"]][DataList[[",Quantico:::CEP(JoinData_SelectData2),"]], paste0(left_diff_cols) := mget(paste0('i.', left_diff_cols)), allow.cartesian = TRUE]\n"))
 
   } else if(JoinData_JoinType == 'full') {
     left_table <- merge(left_table, right_table, by.x = JoinData_ByXVariables, by.y = JoinData_ByYVariables, all = TRUE, allow.cartesian = TRUE)
-    CodeList <- DataMuse:::Shiny.CodePrint.Collect(CodeList, paste0(
+    CodeList <- Quantico:::Shiny.CodePrint.Collect(CodeList, paste0(
       "\n",
       "# Join Data\n",
-      "JoinData_ByXVariables <- ", DataMuse:::ExpandText(JoinData_ByXVariables), "\n",
-      "JoinData_ByYVariables <- ", DataMuse:::ExpandText(JoinData_ByYVariables), "\n",
-      "DataList[[", DataMuse:::CEP(JoinData_SelectData1),"]] <- merge(DataList[[", DataMuse:::CEP(JoinData_SelectData1),"]], DataList[[", DataMuse:::CEP(JoinData_SelectData2),"]], by.x = JoinData_ByXVariables, by.y = JoinData_ByYVariables, all = TRUE, allow.cartesian = TRUE)\n"))
+      "JoinData_ByXVariables <- ", Quantico:::ExpandText(JoinData_ByXVariables), "\n",
+      "JoinData_ByYVariables <- ", Quantico:::ExpandText(JoinData_ByYVariables), "\n",
+      "DataList[[", Quantico:::CEP(JoinData_SelectData1),"]] <- merge(DataList[[", Quantico:::CEP(JoinData_SelectData1),"]], DataList[[", Quantico:::CEP(JoinData_SelectData2),"]], by.x = JoinData_ByXVariables, by.y = JoinData_ByYVariables, all = TRUE, allow.cartesian = TRUE)\n"))
 
   } else if(JoinData_JoinType == 'anti') {
     left_table <- left_table[!right_table, allow.cartesian = TRUE]
-    CodeList <- DataMuse:::Shiny.CodePrint.Collect(CodeList, paste0(
+    CodeList <- Quantico:::Shiny.CodePrint.Collect(CodeList, paste0(
       "\n",
       "# Join Data\n",
-      "JoinData_ByXVariables <- ", DataMuse:::ExpandText(JoinData_ByXVariables), "\n",
-      "JoinData_ByYVariables <- ", DataMuse:::ExpandText(JoinData_ByYVariables), "\n",
-      "data.table::setkeyv(x = DataList[[", DataMuse:::CEP(JoinData_SelectData1),"]], cols = c(JoinData_ByXVariables), physical = TRUE)\n",
-      "data.table::setkeyv(x = DataList[[", DataMuse:::CEP(JoinData_SelectData2),"]], cols = c(JoinData_ByYVariables), physical = TRUE)\n",
-      "DataList[[", if(JoinData_NewName == 'Overwrite') DataMuse:::CEP(JoinData_NewName) else DataMuse:::CEP(JoinData_SelectData1),"]] <- DataList[[", DataMuse:::CEP(JoinData_SelectData1),"]][!DataList[[", DataMuse:::CEP(JoinData_SelectData2),"]], allow.cartesian = TRUE]\n"))
+      "JoinData_ByXVariables <- ", Quantico:::ExpandText(JoinData_ByXVariables), "\n",
+      "JoinData_ByYVariables <- ", Quantico:::ExpandText(JoinData_ByYVariables), "\n",
+      "data.table::setkeyv(x = DataList[[", Quantico:::CEP(JoinData_SelectData1),"]], cols = c(JoinData_ByXVariables), physical = TRUE)\n",
+      "data.table::setkeyv(x = DataList[[", Quantico:::CEP(JoinData_SelectData2),"]], cols = c(JoinData_ByYVariables), physical = TRUE)\n",
+      "DataList[[", if(JoinData_NewName == 'Overwrite') Quantico:::CEP(JoinData_NewName) else Quantico:::CEP(JoinData_SelectData1),"]] <- DataList[[", Quantico:::CEP(JoinData_SelectData1),"]][!DataList[[", Quantico:::CEP(JoinData_SelectData2),"]], allow.cartesian = TRUE]\n"))
 
   } else if(JoinData_JoinType == 'semi') {
     left_table <- left_table[na.omit(left_table[right_table, which = TRUE], allow.cartesian = TRUE)]
-    CodeList <- DataMuse:::Shiny.CodePrint.Collect(CodeList, paste0(
+    CodeList <- Quantico:::Shiny.CodePrint.Collect(CodeList, paste0(
       "\n",
       "# Join Data\n",
-      "JoinData_ByXVariables <- ", DataMuse:::ExpandText(JoinData_ByXVariables), "\n",
-      "JoinData_ByYVariables <- ", DataMuse:::ExpandText(JoinData_ByYVariables), "\n",
-      "data.table::setkeyv(x = DataList[[", DataMuse:::CEP(JoinData_SelectData1),"]], cols = c(JoinData_ByXVariables), physical = TRUE)\n",
-      "data.table::setkeyv(x = DataList[[", DataMuse:::CEP(JoinData_SelectData2),"]], cols = c(JoinData_ByYVariables), physical = TRUE)\n",
-      "DataList[[", if(JoinData_NewName == 'Overwrite') DataMuse:::CEP(JoinData_NewName) else DataMuse:::CEP(JoinData_SelectData1),"]] <- DataList[[", DataMuse:::CEP(JoinData_SelectData1),"]][na.omit(DataList[[", DataMuse:::CEP(JoinData_SelectData1),"]][DataList[[", DataMuse:::CEP(JoinData_SelectData2),"]], which = TRUE, allow.cartesian = TRUE])]\n"))
+      "JoinData_ByXVariables <- ", Quantico:::ExpandText(JoinData_ByXVariables), "\n",
+      "JoinData_ByYVariables <- ", Quantico:::ExpandText(JoinData_ByYVariables), "\n",
+      "data.table::setkeyv(x = DataList[[", Quantico:::CEP(JoinData_SelectData1),"]], cols = c(JoinData_ByXVariables), physical = TRUE)\n",
+      "data.table::setkeyv(x = DataList[[", Quantico:::CEP(JoinData_SelectData2),"]], cols = c(JoinData_ByYVariables), physical = TRUE)\n",
+      "DataList[[", if(JoinData_NewName == 'Overwrite') Quantico:::CEP(JoinData_NewName) else Quantico:::CEP(JoinData_SelectData1),"]] <- DataList[[", Quantico:::CEP(JoinData_SelectData1),"]][na.omit(DataList[[", Quantico:::CEP(JoinData_SelectData1),"]][DataList[[", Quantico:::CEP(JoinData_SelectData2),"]], which = TRUE, allow.cartesian = TRUE])]\n"))
 
   } else if(JoinData_JoinType == 'cross') {
     left_table <- data.table::CJ(left_table, right_table)
-    CodeList <- DataMuse:::Shiny.CodePrint.Collect(CodeList, paste0(
+    CodeList <- Quantico:::Shiny.CodePrint.Collect(CodeList, paste0(
       "\n",
       "# Join Data\n",
-      "DataList[[", if(JoinData_NewName == 'Overwrite') DataMuse:::CEP(JoinData_NewName) else DataMuse:::CEP(JoinData_SelectData1),"]] <- data.table::CJ(DataList[[", DataMuse:::CEP(JoinData_SelectData1),"]], DataList[[", DataMuse:::CEP(JoinData_SelectData2),"]])\n"))
+      "DataList[[", if(JoinData_NewName == 'Overwrite') Quantico:::CEP(JoinData_NewName) else Quantico:::CEP(JoinData_SelectData1),"]] <- data.table::CJ(DataList[[", Quantico:::CEP(JoinData_SelectData1),"]], DataList[[", Quantico:::CEP(JoinData_SelectData2),"]])\n"))
 
   } else if(JoinData_JoinType == 'RollBackward') {
     left_table <- left_table[right_table, roll = -Inf, allow.cartesian = TRUE]
-    CodeList <- DataMuse:::Shiny.CodePrint.Collect(CodeList, paste0(
+    CodeList <- Quantico:::Shiny.CodePrint.Collect(CodeList, paste0(
       "\n",
       "# Join Data\n",
-      "JoinData_ByXVariables <- ", DataMuse:::ExpandText(JoinData_ByXVariables), "\n",
-      "JoinData_ByYVariables <- ", DataMuse:::ExpandText(JoinData_ByYVariables), "\n",
-      "data.table::setkeyv(x = DataList[[", DataMuse:::CEP(JoinData_SelectData1),"]], cols = c(JoinData_ByXVariables), physical = TRUE)\n",
-      "data.table::setkeyv(x = DataList[[", DataMuse:::CEP(JoinData_SelectData2),"]], cols = c(JoinData_ByYVariables), physical = TRUE)\n",
-      "DataList[[",if(JoinData_NewName == 'Overwrite') DataMuse:::CEP(JoinData_NewName) else DataMuse:::CEP(JoinData_SelectData1),"]] <- DataList[[", DataMuse:::CEP(JoinData_SelectData1),"]][DataList[[", DataMuse:::CEP(JoinData_SelectData2),"]], roll = -Inf, allow.cartesian = TRUE]\n"))
+      "JoinData_ByXVariables <- ", Quantico:::ExpandText(JoinData_ByXVariables), "\n",
+      "JoinData_ByYVariables <- ", Quantico:::ExpandText(JoinData_ByYVariables), "\n",
+      "data.table::setkeyv(x = DataList[[", Quantico:::CEP(JoinData_SelectData1),"]], cols = c(JoinData_ByXVariables), physical = TRUE)\n",
+      "data.table::setkeyv(x = DataList[[", Quantico:::CEP(JoinData_SelectData2),"]], cols = c(JoinData_ByYVariables), physical = TRUE)\n",
+      "DataList[[",if(JoinData_NewName == 'Overwrite') Quantico:::CEP(JoinData_NewName) else Quantico:::CEP(JoinData_SelectData1),"]] <- DataList[[", Quantico:::CEP(JoinData_SelectData1),"]][DataList[[", Quantico:::CEP(JoinData_SelectData2),"]], roll = -Inf, allow.cartesian = TRUE]\n"))
 
   } else if(JoinData_JoinType == 'RollForward') {
     left_table <- left_table[right_table, roll = TRUE, allow.cartesian = TRUE]
-    CodeList <- DataMuse:::Shiny.CodePrint.Collect(CodeList, paste0(
+    CodeList <- Quantico:::Shiny.CodePrint.Collect(CodeList, paste0(
       "\n",
       "# Join Data\n",
-      "JoinData_ByXVariables <- ", DataMuse:::ExpandText(JoinData_ByXVariables), "\n",
-      "JoinData_ByYVariables <- ", DataMuse:::ExpandText(JoinData_ByYVariables), "\n",
-      "data.table::setkeyv(x = DataList[[", DataMuse:::CEP(JoinData_SelectData1),"]], cols = c(JoinData_ByXVariables), physical = TRUE)\n",
-      "data.table::setkeyv(x = DataList[[", DataMuse:::CEP(JoinData_SelectData2),"]], cols = c(JoinData_ByYVariables), physical = TRUE)\n",
-      "DataList[[", if(JoinData_NewName == 'Overwrite') DataMuse:::CEP(JoinData_NewName) else DataMuse:::CEP(JoinData_SelectData1),"]] <- DataList[[", DataMuse:::CEP(JoinData_SelectData1),"]][DataList[[", DataMuse:::CEP(JoinData_SelectData2),"]], roll = TRUE, allow.cartesian = TRUE]\n"))
+      "JoinData_ByXVariables <- ", Quantico:::ExpandText(JoinData_ByXVariables), "\n",
+      "JoinData_ByYVariables <- ", Quantico:::ExpandText(JoinData_ByYVariables), "\n",
+      "data.table::setkeyv(x = DataList[[", Quantico:::CEP(JoinData_SelectData1),"]], cols = c(JoinData_ByXVariables), physical = TRUE)\n",
+      "data.table::setkeyv(x = DataList[[", Quantico:::CEP(JoinData_SelectData2),"]], cols = c(JoinData_ByYVariables), physical = TRUE)\n",
+      "DataList[[", if(JoinData_NewName == 'Overwrite') Quantico:::CEP(JoinData_NewName) else Quantico:::CEP(JoinData_SelectData1),"]] <- DataList[[", Quantico:::CEP(JoinData_SelectData1),"]][DataList[[", Quantico:::CEP(JoinData_SelectData2),"]], roll = TRUE, allow.cartesian = TRUE]\n"))
 
   }
 
   # Update DataList
   if(JoinData_NewName == 'Overwrite') {
     DataList[[JoinData_SelectData1]][['data']] <- left_table
-    DataList <- tryCatch({DataMuse:::DM.DataListUpdate(DataList, JoinData_NewName)}, error = function(x) DataList)
+    DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, JoinData_NewName)}, error = function(x) DataList)
   } else {
     DataList[[JoinData_NewName]][['data']] <- left_table
-    DataList <- tryCatch({DataMuse:::DM.DataListUpdate(DataList, JoinData_SelectData1)}, error = function(x) DataList)
+    DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, JoinData_SelectData1)}, error = function(x) DataList)
 
     # Add data to DataOutputSelection Page
-    for(i in seq_len(TabCount)) DataMuse::PickerInput(session, input, Update = TRUE, InputID = paste0("EDAData", i), Label = 'Data Selection', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
-    DataMuse::SelectizeInput(session, input, Update = TRUE, InputID = "ScoreML_Data", Label = 'Select Data', Choices = names(DataList))
-    for(i in seq_len(TabCount)) DataMuse::PickerInput(session, input, Update = TRUE, InputID = paste0("DataOutputSelection", i), Label = 'Display Data', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
+    for(i in seq_len(TabCount)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0("EDAData", i), Label = 'Data Selection', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
+    Quantico::SelectizeInput(session, input, Update = TRUE, InputID = "ScoreML_Data", Label = 'Select Data', Choices = names(DataList))
+    for(i in seq_len(TabCount)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0("DataOutputSelection", i), Label = 'Display Data', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
   }
 
   # Return
@@ -1018,11 +1018,11 @@ Shiny.DW.JoinData <- function(input,output,session,DataList,CodeList,TabCount=5L
 Shiny.DW.UnionData <- function(input,output,session,DataList,CodeList,TabCount=5L,CacheDir=CacheDir,CacheName=CacheName,Debug=Debug) {
 
   # Params
-  UnionData_NewName     <- DataMuse:::ReturnParam(xx=tryCatch({input[['UnionData_NewName']]},     error=function(x) NULL), Type='character', Default='Overwrite')
-  UnionData_SelectData1 <- DataMuse:::ReturnParam(xx=tryCatch({input[['UnionData_SelectData1']]}, error=function(x) NULL), Type='character', Default=NULL)
-  UnionData_SelectData2 <- DataMuse:::ReturnParam(xx=tryCatch({input[['UnionData_SelectData2']]}, error=function(x) NULL), Type='character', Default=NULL)
-  UnionData_Fill        <- TRUE#DataMuse:::ReturnParam(xx=tryCatch({input[['UnionData_Fill']]},        error=function(x) NULL), Type='logical', Default=TRUE)
-  UnionData_UseNames    <- TRUE#DataMuse:::ReturnParam(xx=tryCatch({input[['UnionData_UseNames']]},    error=function(x) NULL), Type='logical',   Default=TRUE)
+  UnionData_NewName     <- Quantico:::ReturnParam(xx=tryCatch({input[['UnionData_NewName']]},     error=function(x) NULL), Type='character', Default='Overwrite')
+  UnionData_SelectData1 <- Quantico:::ReturnParam(xx=tryCatch({input[['UnionData_SelectData1']]}, error=function(x) NULL), Type='character', Default=NULL)
+  UnionData_SelectData2 <- Quantico:::ReturnParam(xx=tryCatch({input[['UnionData_SelectData2']]}, error=function(x) NULL), Type='character', Default=NULL)
+  UnionData_Fill        <- TRUE#Quantico:::ReturnParam(xx=tryCatch({input[['UnionData_Fill']]},        error=function(x) NULL), Type='logical', Default=TRUE)
+  UnionData_UseNames    <- TRUE#Quantico:::ReturnParam(xx=tryCatch({input[['UnionData_UseNames']]},    error=function(x) NULL), Type='logical',   Default=TRUE)
 
   # Define tables and create keys (index + sorting)
   if(UnionData_NewName == 'Overwrite') {
@@ -1032,26 +1032,26 @@ Shiny.DW.UnionData <- function(input,output,session,DataList,CodeList,TabCount=5
   }
 
   # Code collect
-  CodeList <- DataMuse:::Shiny.CodePrint.Collect(CodeList, paste0(
+  CodeList <- Quantico:::Shiny.CodePrint.Collect(CodeList, paste0(
     "\n",
     "# Union Data\n",
-    "DataList[[", if(UnionData_NewName == 'Overwrite') DataMuse:::CEP(UnionData_SelectData1) else DataMuse:::CEP(UnionData_NewName), "]] <- data.table::rbindlist(\n  ",
-    "list(\n    DataList[[", DataMuse:::CEP(UnionData_SelectData1), "]],\n    ",
-    "DataList[[", DataMuse:::CEP(UnionData_SelectData2), "]]),\n  ",
-    "use.names = ", DataMuse:::CEPP(UnionData_UseNames), ",\n  ",
-    "fill = ", DataMuse:::CEPP(UnionData_Fill), ")\n"))
+    "DataList[[", if(UnionData_NewName == 'Overwrite') Quantico:::CEP(UnionData_SelectData1) else Quantico:::CEP(UnionData_NewName), "]] <- data.table::rbindlist(\n  ",
+    "list(\n    DataList[[", Quantico:::CEP(UnionData_SelectData1), "]],\n    ",
+    "DataList[[", Quantico:::CEP(UnionData_SelectData2), "]]),\n  ",
+    "use.names = ", Quantico:::CEPP(UnionData_UseNames), ",\n  ",
+    "fill = ", Quantico:::CEPP(UnionData_Fill), ")\n"))
 
   # Display data
   if(Debug) print('DW Join Data')
   if(UnionData_NewName == 'Overwrite') {
-    DataList <- tryCatch({DataMuse:::DM.DataListUpdate(DataList, UnionData_SelectData1)}, error = function(x) DataList)
+    DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, UnionData_SelectData1)}, error = function(x) DataList)
   } else {
-    DataList <- tryCatch({DataMuse:::DM.DataListUpdate(DataList, UnionData_NewName)}, error = function(x) DataList)
+    DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, UnionData_NewName)}, error = function(x) DataList)
 
     # Add data to DataOutputSelection Page
-    for(i in seq_len(TabCount)) DataMuse::PickerInput(session, input, Update = TRUE, InputID = paste0("EDAData", i), Label = 'Data Selection', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
-    DataMuse::SelectizeInput(session, input, Update = TRUE, InputID = "ScoreML_Data", Label = 'Select Data', Choices = names(DataList))
-    for(i in seq_len(TabCount)) DataMuse::PickerInput(session, input, Update = TRUE, InputID = paste0("DataOutputSelection", i), Label = 'Display Data', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
+    for(i in seq_len(TabCount)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0("EDAData", i), Label = 'Data Selection', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
+    Quantico::SelectizeInput(session, input, Update = TRUE, InputID = "ScoreML_Data", Label = 'Select Data', Choices = names(DataList))
+    for(i in seq_len(TabCount)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0("DataOutputSelection", i), Label = 'Display Data', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
   }
 
   # Return
@@ -1081,15 +1081,15 @@ Shiny.DW.UnionData <- function(input,output,session,DataList,CodeList,TabCount=5
 Shiny.DW.MeltData <- function(input,output,session,DataList,CodeList,TabCount=5L,CacheDir=CacheDir,CacheName=CacheName,Debug=Debug) {
 
   # Params
-  MeltData_NewName <- DataMuse:::ReturnParam(xx=tryCatch({input[['MeltData_NewName']]}, error=function(x) NULL), Type='character', Default='Overwrite')
-  MeltData_SelectData <- DataMuse:::ReturnParam(xx = tryCatch({input$MeltData_SelectData}, error = function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
-  MeltData_id.vars <- DataMuse:::ReturnParam(xx = tryCatch({input$MeltData_id.vars}, error = function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
-  MeltData_measure.vars <- DataMuse:::ReturnParam(xx = tryCatch({input$MeltData_measure.vars}, error = function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
-  MeltData_variable.name <- DataMuse:::ReturnParam(xx = tryCatch({input$MeltData_variable.name}, error = function(x) NULL), Type = 'character', Default = 'Variable', Debug = Debug)
-  MeltData_value.name <- DataMuse:::ReturnParam(xx = tryCatch({input$MeltData_value.name}, error = function(x) NULL), Type = 'character', Default = 'Value', Debug = Debug)
-  MeltData_na.rm <- DataMuse:::ReturnParam(xx = tryCatch({input$MeltData_na.rm}, error = function(x) NULL), Type = 'logical', Default = TRUE, Debug = Debug)
-  MeltData_variable.factor <- DataMuse:::ReturnParam(xx = tryCatch({input$MeltData_variable.factor}, error = function(x) NULL), Type = 'logical', Default = FALSE, Debug = Debug)
-  MeltData_value.factor <- DataMuse:::ReturnParam(xx = tryCatch({input$MeltData_value.factor}, error = function(x) NULL), Type = 'logical', Default = FALSE, Debug = Debug)
+  MeltData_NewName <- Quantico:::ReturnParam(xx=tryCatch({input[['MeltData_NewName']]}, error=function(x) NULL), Type='character', Default='Overwrite')
+  MeltData_SelectData <- Quantico:::ReturnParam(xx = tryCatch({input$MeltData_SelectData}, error = function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
+  MeltData_id.vars <- Quantico:::ReturnParam(xx = tryCatch({input$MeltData_id.vars}, error = function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
+  MeltData_measure.vars <- Quantico:::ReturnParam(xx = tryCatch({input$MeltData_measure.vars}, error = function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
+  MeltData_variable.name <- Quantico:::ReturnParam(xx = tryCatch({input$MeltData_variable.name}, error = function(x) NULL), Type = 'character', Default = 'Variable', Debug = Debug)
+  MeltData_value.name <- Quantico:::ReturnParam(xx = tryCatch({input$MeltData_value.name}, error = function(x) NULL), Type = 'character', Default = 'Value', Debug = Debug)
+  MeltData_na.rm <- Quantico:::ReturnParam(xx = tryCatch({input$MeltData_na.rm}, error = function(x) NULL), Type = 'logical', Default = TRUE, Debug = Debug)
+  MeltData_variable.factor <- Quantico:::ReturnParam(xx = tryCatch({input$MeltData_variable.factor}, error = function(x) NULL), Type = 'logical', Default = FALSE, Debug = Debug)
+  MeltData_value.factor <- Quantico:::ReturnParam(xx = tryCatch({input$MeltData_value.factor}, error = function(x) NULL), Type = 'logical', Default = FALSE, Debug = Debug)
 
   # # QA
   # data <- data.table::data.table(Z = letters[1:6], A = rep(c('A', 'B', 'C'), 2), B = 1:6, C = 7:12)
@@ -1119,30 +1119,30 @@ Shiny.DW.MeltData <- function(input,output,session,DataList,CodeList,TabCount=5L
   }
 
   # Code collect
-  CodeList <- DataMuse:::Shiny.CodePrint.Collect(CodeList, paste0(
+  CodeList <- Quantico:::Shiny.CodePrint.Collect(CodeList, paste0(
     "\n",
     "# Melt Data\n",
-    "DataList[[", if(MeltData_NewName == 'Overwrite') DataMuse:::CEP(MeltData_SelectData) else DataMuse:::CEP(MeltData_NewName), "]] <- data.table::melt.data.table(\n  ",
-    "data = DataList[[", DataMuse:::CEP(MeltData_SelectData),"]],\n  ",
-    "id.vars = ", DataMuse:::CEP(MeltData_id.vars),",\n  ",
-    "measure.vars = ", DataMuse:::CEP(MeltData_measure.vars),",\n  ",
-    "variable.name = ", DataMuse:::CEP(MeltData_variable.name), ",\n  ",
-    "value.name = ", DataMuse:::CEP(MeltData_value.name), ",\n  ",
-    "na.rm = ", DataMuse:::CEPP(MeltData_na.rm), ",\n  ",
-    "variable.factor = ", DataMuse:::CEPP(MeltData_variable.factor), ",\n  ",
-    "value.factor = ", DataMuse:::CEPP(MeltData_value.factor), ")\n"))
+    "DataList[[", if(MeltData_NewName == 'Overwrite') Quantico:::CEP(MeltData_SelectData) else Quantico:::CEP(MeltData_NewName), "]] <- data.table::melt.data.table(\n  ",
+    "data = DataList[[", Quantico:::CEP(MeltData_SelectData),"]],\n  ",
+    "id.vars = ", Quantico:::CEP(MeltData_id.vars),",\n  ",
+    "measure.vars = ", Quantico:::CEP(MeltData_measure.vars),",\n  ",
+    "variable.name = ", Quantico:::CEP(MeltData_variable.name), ",\n  ",
+    "value.name = ", Quantico:::CEP(MeltData_value.name), ",\n  ",
+    "na.rm = ", Quantico:::CEPP(MeltData_na.rm), ",\n  ",
+    "variable.factor = ", Quantico:::CEPP(MeltData_variable.factor), ",\n  ",
+    "value.factor = ", Quantico:::CEPP(MeltData_value.factor), ")\n"))
 
   # Display data
   if(Debug) print('DW Join Data')
   if(MeltData_NewName == 'Overwrite') {
-    DataList <- tryCatch({DataMuse:::DM.DataListUpdate(DataList, MeltData_SelectData)}, error = function(x) DataList)
+    DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, MeltData_SelectData)}, error = function(x) DataList)
   } else {
-    DataList <- tryCatch({DataMuse:::DM.DataListUpdate(DataList, MeltData_NewName)}, error = function(x) DataList)
+    DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, MeltData_NewName)}, error = function(x) DataList)
 
     # Add data to DataOutputSelection Page
-    for(i in seq_len(TabCount)) DataMuse::PickerInput(session, input, Update = TRUE, InputID = paste0("EDAData", i), Label = 'Data Selection', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
-    DataMuse::SelectizeInput(session, input, Update = TRUE, InputID = "ScoreML_Data", Label = 'Select Data', Choices = names(DataList))
-    for(i in seq_len(TabCount)) DataMuse::PickerInput(session, input, Update = TRUE, InputID = paste0("DataOutputSelection", i), Label = 'Display Data', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
+    for(i in seq_len(TabCount)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0("EDAData", i), Label = 'Data Selection', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
+    Quantico::SelectizeInput(session, input, Update = TRUE, InputID = "ScoreML_Data", Label = 'Select Data', Choices = names(DataList))
+    for(i in seq_len(TabCount)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0("DataOutputSelection", i), Label = 'Display Data', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
   }
 
   # Return
@@ -1172,15 +1172,15 @@ Shiny.DW.MeltData <- function(input,output,session,DataList,CodeList,TabCount=5L
 Shiny.DW.CastData <- function(input,output,session,DataList,CodeList,TabCount=5L,CacheDir=CacheDir,CacheName=CacheName,Debug=Debug) {
 
   # Params
-  CastData_NewName       <- DataMuse:::ReturnParam(xx = tryCatch({input$CastData_NewName},    error = function(x) NULL), Type = 'character', Default = 'Overwrite', Debug = Debug)
-  CastData_SelectData    <- DataMuse:::ReturnParam(xx = tryCatch({input$CastData_SelectData},    error = function(x) NULL), Type = 'character', Default = NULL,        Debug = Debug)
+  CastData_NewName       <- Quantico:::ReturnParam(xx = tryCatch({input$CastData_NewName},    error = function(x) NULL), Type = 'character', Default = 'Overwrite', Debug = Debug)
+  CastData_SelectData    <- Quantico:::ReturnParam(xx = tryCatch({input$CastData_SelectData},    error = function(x) NULL), Type = 'character', Default = NULL,        Debug = Debug)
 
-  CastData_id.vars       <- DataMuse:::ReturnParam(xx = tryCatch({input$CastData_id.vars},       error = function(x) NULL), Type = 'character', Default = NULL,        Debug = Debug)
-  CastData_CastColumns   <- DataMuse:::ReturnParam(xx = tryCatch({input$CastData_CastColumns},   error = function(x) NULL), Type = 'character', Default = NULL,        Debug = Debug)
-  CastData_value.var     <- DataMuse:::ReturnParam(xx = tryCatch({input$CastData_value.var},     error = function(x) NULL), Type = 'character', Default = NULL,        Debug = Debug)
+  CastData_id.vars       <- Quantico:::ReturnParam(xx = tryCatch({input$CastData_id.vars},       error = function(x) NULL), Type = 'character', Default = NULL,        Debug = Debug)
+  CastData_CastColumns   <- Quantico:::ReturnParam(xx = tryCatch({input$CastData_CastColumns},   error = function(x) NULL), Type = 'character', Default = NULL,        Debug = Debug)
+  CastData_value.var     <- Quantico:::ReturnParam(xx = tryCatch({input$CastData_value.var},     error = function(x) NULL), Type = 'character', Default = NULL,        Debug = Debug)
 
-  CastData_fun.aggregate <- DataMuse:::ReturnParam(xx = tryCatch({input$CastData_fun.aggregate}, error = function(x) NULL), Type = 'character', Default = 'sum',       Debug = Debug)
-  CastData_fill          <- DataMuse:::ReturnParam(xx = tryCatch({input$CastData_fill},          error = function(x) NULL), Type = 'numeric',   Default = 0,           Debug = Debug)
+  CastData_fun.aggregate <- Quantico:::ReturnParam(xx = tryCatch({input$CastData_fun.aggregate}, error = function(x) NULL), Type = 'character', Default = 'sum',       Debug = Debug)
+  CastData_fill          <- Quantico:::ReturnParam(xx = tryCatch({input$CastData_fill},          error = function(x) NULL), Type = 'numeric',   Default = 0,           Debug = Debug)
 
   # Dcast
   if(Debug) {
@@ -1198,27 +1198,27 @@ Shiny.DW.CastData <- function(input,output,session,DataList,CodeList,TabCount=5L
   # Code collect (dcastformula needs to be reassembled upon paste0())
   dcastformula <- as.formula(paste0(paste0(CastData_id.vars, collapse = "+"), " ~ ", paste0(CastData_CastColumns, collapse = "+")))
   if(Debug) print(paste0(dcastformula[2],' ',dcastformula[1],' ',dcastformula[3]))
-  CodeList <- DataMuse:::Shiny.CodePrint.Collect(CodeList, paste0(
+  CodeList <- Quantico:::Shiny.CodePrint.Collect(CodeList, paste0(
     "\n",
     "# Cast Data\n",
-    "DataList[[", if('OVerwrite' == CastData_NewName) DataMuse:::CEP(CastData_NewName) else DataMuse:::CEP(CastData_SelectData), "]] <- data.table::dcast.data.table(\n  ",
-    "data = DataList[[", if('OVerwrite' == CastData_NewName) DataMuse:::CEP(CastData_NewName) else DataMuse:::CEP(CastData_SelectData), "]],\n  ",
+    "DataList[[", if('OVerwrite' == CastData_NewName) Quantico:::CEP(CastData_NewName) else Quantico:::CEP(CastData_SelectData), "]] <- data.table::dcast.data.table(\n  ",
+    "data = DataList[[", if('OVerwrite' == CastData_NewName) Quantico:::CEP(CastData_NewName) else Quantico:::CEP(CastData_SelectData), "]],\n  ",
     "formula = ", paste0(dcastformula[2],' ',dcastformula[1],' ',dcastformula[3]),",\n  ",
-    "fun.aggregate = ", DataMuse:::CEPP(CastData_fun.aggregate),",\n  ",
-    "fill = ", DataMuse:::CEP(CastData_fill), ",\n  ",
-    "value.var = ", DataMuse:::CEP(CastData_value.var),")\n"))
+    "fun.aggregate = ", Quantico:::CEPP(CastData_fun.aggregate),",\n  ",
+    "fill = ", Quantico:::CEP(CastData_fill), ",\n  ",
+    "value.var = ", Quantico:::CEP(CastData_value.var),")\n"))
 
   # Display data
   if(Debug) print('DW Join Data')
   if(CastData_NewName == 'Overwrite') {
-    DataList <- tryCatch({DataMuse:::DM.DataListUpdate(DataList, CastData_SelectData)}, error = function(x) DataList)
+    DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, CastData_SelectData)}, error = function(x) DataList)
   } else {
-    DataList <- tryCatch({DataMuse:::DM.DataListUpdate(DataList, CastData_NewName)}, error = function(x) DataList)
+    DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, CastData_NewName)}, error = function(x) DataList)
 
     # Add data to DataOutputSelection Page
-    for(i in seq_len(TabCount)) DataMuse::PickerInput(session, input, Update = TRUE, InputID = paste0("EDAData", i), Label = 'Data Selection', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
-    DataMuse::SelectizeInput(session, input, Update = TRUE, InputID = "ScoreML_Data", Label = 'Select Data', Choices = names(DataList))
-    for(i in seq_len(TabCount)) DataMuse::PickerInput(session, input, Update = TRUE, InputID = paste0("DataOutputSelection", i), Label = 'Display Data', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
+    for(i in seq_len(TabCount)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0("EDAData", i), Label = 'Data Selection', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
+    Quantico::SelectizeInput(session, input, Update = TRUE, InputID = "ScoreML_Data", Label = 'Select Data', Choices = names(DataList))
+    for(i in seq_len(TabCount)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0("DataOutputSelection", i), Label = 'Display Data', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
   }
 
   # Return
@@ -1248,7 +1248,7 @@ Shiny.DW.CastData <- function(input,output,session,DataList,CodeList,TabCount=5L
 Shiny.DW.RemoveData <- function(input,output,session,DataList,CodeList,TabCount=5L,CacheDir=CacheDir,CacheName=CacheName,Debug=Debug) {
 
   # Params
-  RemoveData_Datasets <- DataMuse:::ReturnParam(xx = tryCatch({input$RemoveData_Datasets}, error = function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
+  RemoveData_Datasets <- Quantico:::ReturnParam(xx = tryCatch({input$RemoveData_Datasets}, error = function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
 
   if(Debug) {
     print('Shiny.DW.RemoveData')
@@ -1263,15 +1263,15 @@ Shiny.DW.RemoveData <- function(input,output,session,DataList,CodeList,TabCount=
   }
 
   # Add data to DataOutputSelection Page
-  for(i in seq_len(TabCount)) DataMuse::PickerInput(session, input, Update = TRUE, InputID = paste0("EDAData", i), Label = 'Data Selection', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
-  DataMuse::SelectizeInput(session, input, Update = TRUE, InputID = "ScoreML_Data", Label = 'Select Data', Choices = names(DataList))
-  for(i in seq_len(TabCount)) DataMuse::PickerInput(session, input, Update = TRUE, InputID = paste0("DataOutputSelection", i), Label = 'Display Data', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
+  for(i in seq_len(TabCount)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0("EDAData", i), Label = 'Data Selection', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
+  Quantico::SelectizeInput(session, input, Update = TRUE, InputID = "ScoreML_Data", Label = 'Select Data', Choices = names(DataList))
+  for(i in seq_len(TabCount)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0("DataOutputSelection", i), Label = 'Display Data', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
 
   # Code collect (dcastformula needs to be reassembled upon paste0())
-  CodeList <- DataMuse:::Shiny.CodePrint.Collect(CodeList, paste0(
+  CodeList <- Quantico:::Shiny.CodePrint.Collect(CodeList, paste0(
     "\n",
     "# Remove Data\n",
-    "RemoveData_Datasets <- ", DataMuse:::ExpandText(RemoveData_Datasets), "\n",
+    "RemoveData_Datasets <- ", Quantico:::ExpandText(RemoveData_Datasets), "\n",
     "for(i in RemoveData_Datasets) DataList[[i]] <- NULL\n  "))
 
   # Return
@@ -1303,13 +1303,13 @@ Shiny.DW.TimeSeriesFill <- function(input,output,session,DataList,CodeList,TabCo
   if(Debug) print('Shiny.DW.TimeSeriesFill 1')
 
   # Params
-  TSF_SelectData <- DataMuse:::ReturnParam(xx = tryCatch({input$TSF_SelectData}, error = function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
-  TSF_NewName <- DataMuse:::ReturnParam(xx = tryCatch({input$TSF_NewName}, error = function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
-  TSF_DateColumnName <- DataMuse:::ReturnParam(xx = tryCatch({input$TSF_DateColumnName}, error = function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
-  TSF_GroupVariables <- DataMuse:::ReturnParam(xx = tryCatch({input$TSF_GroupVariables}, error = function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
-  TSF_TimeUnit <- DataMuse:::ReturnParam(xx = tryCatch({input$TSF_TimeUnit}, error = function(x) NULL), Type = 'character', Default = 'day', Debug = Debug)
-  TSF_MaxMissingPercent <- DataMuse:::ReturnParam(xx = tryCatch({input$TSF_MaxMissingPercent}, error = function(x) NULL), Type = 'numeric', Default = 0.50, Debug = Debug)
-  TSF_SimpleImpute <- DataMuse:::ReturnParam(xx = tryCatch({input$TSF_SimpleImpute}, error = function(x) NULL), Type = 'numeric', Default = 0, Debug = Debug)
+  TSF_SelectData <- Quantico:::ReturnParam(xx = tryCatch({input$TSF_SelectData}, error = function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
+  TSF_NewName <- Quantico:::ReturnParam(xx = tryCatch({input$TSF_NewName}, error = function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
+  TSF_DateColumnName <- Quantico:::ReturnParam(xx = tryCatch({input$TSF_DateColumnName}, error = function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
+  TSF_GroupVariables <- Quantico:::ReturnParam(xx = tryCatch({input$TSF_GroupVariables}, error = function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
+  TSF_TimeUnit <- Quantico:::ReturnParam(xx = tryCatch({input$TSF_TimeUnit}, error = function(x) NULL), Type = 'character', Default = 'day', Debug = Debug)
+  TSF_MaxMissingPercent <- Quantico:::ReturnParam(xx = tryCatch({input$TSF_MaxMissingPercent}, error = function(x) NULL), Type = 'numeric', Default = 0.50, Debug = Debug)
+  TSF_SimpleImpute <- Quantico:::ReturnParam(xx = tryCatch({input$TSF_SimpleImpute}, error = function(x) NULL), Type = 'numeric', Default = 0, Debug = Debug)
 
   if(Debug) print('Shiny.DW.TimeSeriesFill 2')
   if(Debug) print(TSF_NewName)
@@ -1325,15 +1325,15 @@ Shiny.DW.TimeSeriesFill <- function(input,output,session,DataList,CodeList,TabCo
   if(Debug) print('Shiny.DW.TimeSeriesFill 3')
 
   # Code Fill
-  CodeList <- DataMuse:::Shiny.CodePrint.Collect(CodeList, paste0(
+  CodeList <- Quantico:::Shiny.CodePrint.Collect(CodeList, paste0(
     "\n",
     "# Time Series Fill\n",
-    "DataList[[", if(TSF_NewName == 'Overwrite') DataMuse:::CEP(TSF_NewName) else DataMuse:::CEP(TSF_SelectData), "]] <- AutoQuant::TimeSeriesFill(\n  ",
-    "DataList[[", DataMuse:::CEP(TSF_SelectData), "]],\n  ",
-    "DateColumnName = ", DataMuse:::CEP(DateColumnName),",\n  ",
-    "GroupVariables = ", DataMuse:::CEP(GroupVariables),",\n  ",
-    "TimeUnit = ", DataMuse:::CEP(TimeUnit), ",\n  ",
-    "MaxMissingPercent = ", DataMuse:::CEP(MaxMissingPercent), ")\n"))
+    "DataList[[", if(TSF_NewName == 'Overwrite') Quantico:::CEP(TSF_NewName) else Quantico:::CEP(TSF_SelectData), "]] <- AutoQuant::TimeSeriesFill(\n  ",
+    "DataList[[", Quantico:::CEP(TSF_SelectData), "]],\n  ",
+    "DateColumnName = ", Quantico:::CEP(DateColumnName),",\n  ",
+    "GroupVariables = ", Quantico:::CEP(GroupVariables),",\n  ",
+    "TimeUnit = ", Quantico:::CEP(TimeUnit), ",\n  ",
+    "MaxMissingPercent = ", Quantico:::CEP(MaxMissingPercent), ")\n"))
 
   if(Debug) print('Shiny.DW.TimeSeriesFill 4')
   if(Debug) print(TSF_SimpleImpute)
@@ -1353,29 +1353,29 @@ Shiny.DW.TimeSeriesFill <- function(input,output,session,DataList,CodeList,TabCo
 
   # Code Model Data Prep
   if(length(TSF_SimpleImpute) > 0L && !is.na(TSF_SimpleImpute)) {
-    CodeList <- DataMuse:::Shiny.CodePrint.Collect(CodeList, paste0(
+    CodeList <- Quantico:::Shiny.CodePrint.Collect(CodeList, paste0(
       "\n",
       "# Impute missing values\n",
-      "DataList[[", if(TSF_NewName == 'Overwrite') DataMuse:::CEP(TSF_NewName) else DataMuse:::CEP(TSF_SelectData), "]] <- AutoQuant::ModelDataPrep(\n  ",
-      "DataList[[", if(TSF_NewName == 'Overwrite') DataMuse:::CEP(TSF_NewName) else DataMuse:::CEP(TSF_SelectData), "]],\n  ",
+      "DataList[[", if(TSF_NewName == 'Overwrite') Quantico:::CEP(TSF_NewName) else Quantico:::CEP(TSF_SelectData), "]] <- AutoQuant::ModelDataPrep(\n  ",
+      "DataList[[", if(TSF_NewName == 'Overwrite') Quantico:::CEP(TSF_NewName) else Quantico:::CEP(TSF_SelectData), "]],\n  ",
       "Impute = TRUE,\n  ",
       "CharToFactor = FALSE,\n  ",
       "IntToNumeric = FALSE,\n  ",
       "MissFactor = 'missing',\n  ",
-      "MissNum = ", DataMuse:::CEP(TSF_SimpleImpute), ")\n"))
+      "MissNum = ", Quantico:::CEP(TSF_SimpleImpute), ")\n"))
   }
 
   # Display data
   if(Debug) print('DW Subset Data')
   if(TSF_NewName == 'Overwrite') {
-    DataList <- tryCatch({DataMuse:::DM.DataListUpdate(DataList, TSF_SelectData)}, error = function(x) DataList)
+    DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, TSF_SelectData)}, error = function(x) DataList)
   } else {
-    DataList <- tryCatch({DataMuse:::DM.DataListUpdate(DataList, TSF_NewName)}, error = function(x) DataList)
+    DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, TSF_NewName)}, error = function(x) DataList)
 
     # Add data to DataOutputSelection Page
-    for(i in seq_len(TabCount)) DataMuse::PickerInput(session, input, Update = TRUE, InputID = paste0("EDAData", i), Label = 'Data Selection', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
-    DataMuse::SelectizeInput(session, input, Update = TRUE, InputID = "ScoreML_Data", Label = 'Select Data', Choices = names(DataList))
-    for(i in seq_len(TabCount)) DataMuse::PickerInput(session, input, Update = TRUE, InputID = paste0("DataOutputSelection", i), Label = 'Display Data', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
+    for(i in seq_len(TabCount)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0("EDAData", i), Label = 'Data Selection', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
+    Quantico::SelectizeInput(session, input, Update = TRUE, InputID = "ScoreML_Data", Label = 'Select Data', Choices = names(DataList))
+    for(i in seq_len(TabCount)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0("DataOutputSelection", i), Label = 'Display Data', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
   }
 
   # Return
@@ -1407,15 +1407,15 @@ Shiny.DW.TimeSeriesRoll <- function(input,output,session,DataList,CodeList,TabCo
   if(Debug) print('Shiny.DW.TimeSeriesRoll 1')
 
   # Params
-  Roll_SelectData <- DataMuse:::ReturnParam(xx = tryCatch({input$Roll_SelectData}, error = function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
-  Roll_NewName <- DataMuse:::ReturnParam(xx = tryCatch({input$Roll_NewName}, error = function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
-  Roll_DateColumnName <- DataMuse:::ReturnParam(xx = tryCatch({input$Roll_DateColumnName}, error = function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
-  Roll_RollVars <- DataMuse:::ReturnParam(xx = tryCatch({input$Roll_RollVars}, error = function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
-  Roll_NonRollVars <- DataMuse:::ReturnParam(xx = tryCatch({input$Roll_NonRollVars}, error = function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
-  Roll_RollDirection <- DataMuse:::ReturnParam(xx = tryCatch({input$Roll_RollDirection}, error = function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
-  Roll_GroupVariables <- DataMuse:::ReturnParam(xx = tryCatch({input$Roll_GroupVariables}, error = function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
-  Roll_TimeUnit <- DataMuse:::ReturnParam(xx = tryCatch({input$Roll_TimeUnit}, error = function(x) NULL), Type = 'character', Default = 'day', Debug = Debug)
-  Roll_SimpleImpute <- DataMuse:::ReturnParam(xx = tryCatch({input$Roll_SimpleImpute}, error = function(x) NULL), Type = 'numeric', Default = 0, Debug = Debug)
+  Roll_SelectData <- Quantico:::ReturnParam(xx = tryCatch({input$Roll_SelectData}, error = function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
+  Roll_NewName <- Quantico:::ReturnParam(xx = tryCatch({input$Roll_NewName}, error = function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
+  Roll_DateColumnName <- Quantico:::ReturnParam(xx = tryCatch({input$Roll_DateColumnName}, error = function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
+  Roll_RollVars <- Quantico:::ReturnParam(xx = tryCatch({input$Roll_RollVars}, error = function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
+  Roll_NonRollVars <- Quantico:::ReturnParam(xx = tryCatch({input$Roll_NonRollVars}, error = function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
+  Roll_RollDirection <- Quantico:::ReturnParam(xx = tryCatch({input$Roll_RollDirection}, error = function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
+  Roll_GroupVariables <- Quantico:::ReturnParam(xx = tryCatch({input$Roll_GroupVariables}, error = function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
+  Roll_TimeUnit <- Quantico:::ReturnParam(xx = tryCatch({input$Roll_TimeUnit}, error = function(x) NULL), Type = 'character', Default = 'day', Debug = Debug)
+  Roll_SimpleImpute <- Quantico:::ReturnParam(xx = tryCatch({input$Roll_SimpleImpute}, error = function(x) NULL), Type = 'numeric', Default = 0, Debug = Debug)
 
   if(Debug) print('Shiny.DW.TimeSeriesRoll 2')
   if(Debug) print(Roll_NewName)
@@ -1425,11 +1425,11 @@ Shiny.DW.TimeSeriesRoll <- function(input,output,session,DataList,CodeList,TabCo
   temp_data <- unique(DataList[[Roll_SelectData]][['data']][,.SD,.SDcols=c(JoinBack)])
 
   # Code Fill
-  CodeList <- DataMuse:::Shiny.CodePrint.Collect(CodeList, paste0(
+  CodeList <- Quantico:::Shiny.CodePrint.Collect(CodeList, paste0(
     "\n",
     "# Time Series Fill Prep\n",
-    "JoinBack <- names(DataList[[", DataMuse:::CEP(Roll_SelectData), "]])[!names(DataList[[", DataMuse:::CEP(Roll_SelectData), "]]) %in% ", DataMuse:::ExpandText(c(Roll_NonRollVars,Roll_RollVars,Roll_DateColumnName)), "],\n",
-    "temp_data <- unique(DataList[[", DataMuse:::CEP(Roll_SelectData), "]][, .SD, .SDcols = ", DataMuse:::ExpandText(JoinBack), "]),\n"))
+    "JoinBack <- names(DataList[[", Quantico:::CEP(Roll_SelectData), "]])[!names(DataList[[", Quantico:::CEP(Roll_SelectData), "]]) %in% ", Quantico:::ExpandText(c(Roll_NonRollVars,Roll_RollVars,Roll_DateColumnName)), "],\n",
+    "temp_data <- unique(DataList[[", Quantico:::CEP(Roll_SelectData), "]][, .SD, .SDcols = ", Quantico:::ExpandText(JoinBack), "]),\n"))
 
   # Fill
   DataList[[if(Roll_NewName == 'Overwrite') Roll_NewName else Roll_SelectData]][['data']] <- AutoQuant::TimeSeriesFillRoll(
@@ -1444,17 +1444,17 @@ Shiny.DW.TimeSeriesRoll <- function(input,output,session,DataList,CodeList,TabCo
   if(Debug) print('Shiny.DW.TimeSeriesRoll 3')
 
   # Code Fill
-  CodeList <- DataMuse:::Shiny.CodePrint.Collect(CodeList, paste0(
+  CodeList <- Quantico:::Shiny.CodePrint.Collect(CodeList, paste0(
     "\n",
     "# Time Series Fill\n",
-    "DataList[[", if(Roll_NewName == 'Overwrite') DataMuse:::CEP(Roll_NewName) else DataMuse:::CEP(Roll_SelectData), "]] <- AutoQuant::TimeSeriesFill(\n  ",
-    "DataList[[", DataMuse:::CEP(Roll_SelectData), "]],\n  ",
-    "DateColumnName = ", DataMuse:::CEP(Roll_DateColumnName),",\n  ",
-    "GroupVariables = ", DataMuse:::CEP(Roll_GroupVariables),",\n  ",
-    "TimeUnit = ", DataMuse:::CEP(Roll_TimeUnit), ",\n  ",
-    "RollVars = ", DataMuse:::ExpandText(Roll_RollVars), ",\n  ",
-    "NonRollVars = ", DataMuse:::ExpandText(Roll_NonRollVars), ",\n  ",
-    "RollDirection = ", DataMuse:::CEP(Roll_RollDirection), ")\n"))
+    "DataList[[", if(Roll_NewName == 'Overwrite') Quantico:::CEP(Roll_NewName) else Quantico:::CEP(Roll_SelectData), "]] <- AutoQuant::TimeSeriesFill(\n  ",
+    "DataList[[", Quantico:::CEP(Roll_SelectData), "]],\n  ",
+    "DateColumnName = ", Quantico:::CEP(Roll_DateColumnName),",\n  ",
+    "GroupVariables = ", Quantico:::CEP(Roll_GroupVariables),",\n  ",
+    "TimeUnit = ", Quantico:::CEP(Roll_TimeUnit), ",\n  ",
+    "RollVars = ", Quantico:::ExpandText(Roll_RollVars), ",\n  ",
+    "NonRollVars = ", Quantico:::ExpandText(Roll_NonRollVars), ",\n  ",
+    "RollDirection = ", Quantico:::CEP(Roll_RollDirection), ")\n"))
 
   if(Debug) print('Shiny.DW.TimeSeriesRoll 3.25')
 
@@ -1464,10 +1464,10 @@ Shiny.DW.TimeSeriesRoll <- function(input,output,session,DataList,CodeList,TabCo
   if(Debug) print('Shiny.DW.TimeSeriesRoll 3.5')
 
   # Code Fill
-  CodeList <- DataMuse:::Shiny.CodePrint.Collect(CodeList, paste0(
+  CodeList <- Quantico:::Shiny.CodePrint.Collect(CodeList, paste0(
     "\n",
     "# Merge temp_data\n",
-    "DataList[[", if(Roll_NewName == 'Overwrite') Roll_NewName else Roll_SelectData, "]] <- merge(DataList[[", if(Roll_NewName == 'Overwrite') Roll_NewName else Roll_SelectData, "]], temp_data, by = ", DataMuse:::CEP(Roll_GroupVariables), ", all = FALSE),\n"))
+    "DataList[[", if(Roll_NewName == 'Overwrite') Roll_NewName else Roll_SelectData, "]] <- merge(DataList[[", if(Roll_NewName == 'Overwrite') Roll_NewName else Roll_SelectData, "]], temp_data, by = ", Quantico:::CEP(Roll_GroupVariables), ", all = FALSE),\n"))
 
   if(Debug) print('Shiny.DW.TimeSeriesRoll 4')
 
@@ -1486,23 +1486,23 @@ Shiny.DW.TimeSeriesRoll <- function(input,output,session,DataList,CodeList,TabCo
 
   # Code Model Data Prep
   if(length(Roll_SimpleImpute) > 0L && !is.na(Roll_SimpleImpute)) {
-    CodeList <- DataMuse:::Shiny.CodePrint.Collect(CodeList, paste0(
+    CodeList <- Quantico:::Shiny.CodePrint.Collect(CodeList, paste0(
       "\n",
       "# Impute missing values\n",
-      "DataList[[", if(Roll_NewName == 'Overwrite') DataMuse:::CEP(Roll_NewName) else DataMuse:::CEP(Roll_SelectData), "]] <- AutoQuant::ModelDataPrep(\n  ",
-      "DataList[[", if(Roll_NewName == 'Overwrite') DataMuse:::CEP(Roll_NewName) else DataMuse:::CEP(Roll_SelectData), "]],\n  ",
+      "DataList[[", if(Roll_NewName == 'Overwrite') Quantico:::CEP(Roll_NewName) else Quantico:::CEP(Roll_SelectData), "]] <- AutoQuant::ModelDataPrep(\n  ",
+      "DataList[[", if(Roll_NewName == 'Overwrite') Quantico:::CEP(Roll_NewName) else Quantico:::CEP(Roll_SelectData), "]],\n  ",
       "Impute = TRUE,\n  ",
       "CharToFactor = FALSE,\n  ",
       "IntToNumeric = FALSE,\n  ",
       "MissFactor = 'missing',\n  ",
-      "MissNum = ", DataMuse:::CEP(Roll_SimpleImpute), ")\n"))
+      "MissNum = ", Quantico:::CEP(Roll_SimpleImpute), ")\n"))
   }
 
   # Add data to DataOutputSelection Page
   if(Roll_NewName != 'Overwrite') {
-    for(i in seq_len(TabCount)) DataMuse::PickerInput(session, input, Update = TRUE, InputID = paste0("EDAData", i), Label = 'Data Selection', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
-    DataMuse::SelectizeInput(session, input, Update = TRUE, InputID = "ScoreML_Data", Label = 'Select Data', Choices = names(DataList))
-    for(i in seq_len(TabCount)) DataMuse::PickerInput(session, input, Update = TRUE, InputID = paste0("DataOutputSelection", i), Label = 'Display Data', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
+    for(i in seq_len(TabCount)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0("EDAData", i), Label = 'Data Selection', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
+    Quantico::SelectizeInput(session, input, Update = TRUE, InputID = "ScoreML_Data", Label = 'Select Data', Choices = names(DataList))
+    for(i in seq_len(TabCount)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0("DataOutputSelection", i), Label = 'Display Data', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
   }
 
   # Return
@@ -1534,23 +1534,23 @@ Shiny.DW.MetaProgramming <- function(input,output,session,DataList,CodeList,TabC
   if(Debug) print('Shiny.DW.MetaProgramming 1')
 
   # Params
-  MetaProgramming_TextCode <- DataMuse:::ReturnParam(xx = tryCatch({input$MetaProgramming_TextCode}, error = function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
+  MetaProgramming_TextCode <- Quantico:::ReturnParam(xx = tryCatch({input$MetaProgramming_TextCode}, error = function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
 
   if(Debug) print('Shiny.DW.MetaProgramming 2')
   if(Debug) print(MetaProgramming_TextCode)
   eval(parse(text = MetaProgramming_TextCode))
 
   # Code Model Data Prep
-  CodeList <- DataMuse:::Shiny.CodePrint.Collect(CodeList, paste0(
+  CodeList <- Quantico:::Shiny.CodePrint.Collect(CodeList, paste0(
     "\n",
     "# Meta Programming User Code\n",
     MetaProgramming_TextCode,
     "\n"))
 
   # Update Data Panel
-  for(i in seq_len(TabCount)) DataMuse::PickerInput(session, input, Update = TRUE, InputID = paste0("EDAData", i), Label = 'Data Selection', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
-  DataMuse::SelectizeInput(session, input, Update = TRUE, InputID = "ScoreML_Data", Label = 'Select Data', Choices = names(DataList))
-  for(i in seq_len(TabCount)) DataMuse::PickerInput(session, input, Update = TRUE, InputID = paste0("DataOutputSelection", i), Label = 'Display Data', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
+  for(i in seq_len(TabCount)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0("EDAData", i), Label = 'Data Selection', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
+  Quantico::SelectizeInput(session, input, Update = TRUE, InputID = "ScoreML_Data", Label = 'Select Data', Choices = names(DataList))
+  for(i in seq_len(TabCount)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0("DataOutputSelection", i), Label = 'Display Data', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
 
   # Return
   return(list(
@@ -1581,9 +1581,9 @@ Shiny.DW.SortData <- function(input,output,session,DataList,CodeList,TabCount=5L
   if(Debug) print('Shiny.DW.SortData 1')
 
   # Params
-  SortData_SelectData <- DataMuse:::ReturnParam(xx = tryCatch({input$SortData_SelectData}, error = function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
-  SortData_SortColumns <- DataMuse:::ReturnParam(xx = tryCatch({input$SortData_SortColumns}, error = function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
-  SortData_SortOrder <- DataMuse:::ReturnParam(xx = tryCatch({input$SortData_SortOrder}, error = function(x) NULL), Type = 'character', Default = 'Ascending', Debug = Debug)
+  SortData_SelectData <- Quantico:::ReturnParam(xx = tryCatch({input$SortData_SelectData}, error = function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
+  SortData_SortColumns <- Quantico:::ReturnParam(xx = tryCatch({input$SortData_SortColumns}, error = function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
+  SortData_SortOrder <- Quantico:::ReturnParam(xx = tryCatch({input$SortData_SortOrder}, error = function(x) NULL), Type = 'character', Default = 'Ascending', Debug = Debug)
 
   if(Debug) print('Shiny.DW.SortData 2')
   if(SortData_SortOrder == 'Ascending') {
@@ -1594,13 +1594,13 @@ Shiny.DW.SortData <- function(input,output,session,DataList,CodeList,TabCount=5L
   data.table::setorderv(x = DataList[[SortData_SelectData]][['data']], cols = c(SortData_SortColumns), order = c(Order), na.last = TRUE)
 
   # Code Model Data Prep
-  CodeList <- DataMuse:::Shiny.CodePrint.Collect(CodeList, paste0(
+  CodeList <- Quantico:::Shiny.CodePrint.Collect(CodeList, paste0(
     "\n",
     "# Sort Data\n",
     "data.table::setorderv(\n  ",
-    "x = DataList[[", DataMuse:::CEP(SortData_SelectData), "]],\n  ",
-    "cols = ", DataMuse:::ExpandText(SortData_SortColumns), ",\n  ",
-    "order = ", DataMuse:::ExpandText(Order), ",\n  ",
+    "x = DataList[[", Quantico:::CEP(SortData_SelectData), "]],\n  ",
+    "cols = ", Quantico:::ExpandText(SortData_SortColumns), ",\n  ",
+    "order = ", Quantico:::ExpandText(Order), ",\n  ",
     "na.last = TRUE)\n"))
 
   # Return

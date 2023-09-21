@@ -18,12 +18,12 @@
 Shiny.FE.Date.Calendar <- function(input,output,session,DataList,CodeList,CacheDir=NULL,CacheName='data',Debug=FALSE) {
 
   # Dispatch
-  CalendarVar_DateVariables <- DataMuse:::ReturnParam(xx = tryCatch({input[['CalendarVariables_DateVariables']]}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
+  CalendarVar_DateVariables <- Quantico:::ReturnParam(xx = tryCatch({input[['CalendarVariables_DateVariables']]}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
   if(Debug) print(CalendarVar_DateVariables)
 
   # Pull in values
-  CalendarVar_TimeUnits <- DataMuse:::ReturnParam(xx = tryCatch({input[['CalendarVariables_TimeUnits']]}, error=function(x) NULL), VarName = NULL, Type = 'character', Default = NULL, Debug = Debug)
-  SelectData <- DataMuse:::ReturnParam(xx = tryCatch({input$CalendarVariables_SelectData}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
+  CalendarVar_TimeUnits <- Quantico:::ReturnParam(xx = tryCatch({input[['CalendarVariables_TimeUnits']]}, error=function(x) NULL), VarName = NULL, Type = 'character', Default = NULL, Debug = Debug)
+  SelectData <- Quantico:::ReturnParam(xx = tryCatch({input$CalendarVariables_SelectData}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
 
   # Caching
   if(Debug) print('FE Calendar Variables 1')
@@ -40,14 +40,14 @@ Shiny.FE.Date.Calendar <- function(input,output,session,DataList,CodeList,CacheD
 
   # Code
   if(Debug) print('FE Calendar Variables 5')
-  CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+  CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
     "\n",
     "# Calendar Variables\n",
-    "DataList[[", DataMuse:::CEP(SelectData), "]] <- Rodeo::CreateCalendarVariables(\n  ",
-    "data = DataList[[", DataMuse:::CEP(SelectData), "]],\n  ",
-    "DateCols = ", DataMuse:::ExpandText(CalendarVar_DateVariables), ",\n  ",
+    "DataList[[", Quantico:::CEP(SelectData), "]] <- Rodeo::CreateCalendarVariables(\n  ",
+    "data = DataList[[", Quantico:::CEP(SelectData), "]],\n  ",
+    "DateCols = ", Quantico:::ExpandText(CalendarVar_DateVariables), ",\n  ",
     "AsFactor = FALSE,\n  ",
-    "TimeUnits = ", DataMuse:::ExpandText(CalendarVar_TimeUnits), ")\n"
+    "TimeUnits = ", Quantico:::ExpandText(CalendarVar_TimeUnits), ")\n"
   ))
 
   # Return
@@ -58,7 +58,7 @@ Shiny.FE.Date.Calendar <- function(input,output,session,DataList,CodeList,CacheD
   }
 
   # Update meta
-  DataList <- tryCatch({DataMuse:::DM.DataListUpdate(DataList, SelectData)}, error = function(x) DataList)
+  DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, SelectData)}, error = function(x) DataList)
 
   return(list(
     DataList = DataList,
@@ -89,13 +89,13 @@ Shiny.FE.Date.Holiday <- function(input,output,session,DataList,CodeList,CacheDi
     print('FE Holiday Variables')
 
     # Dispatch
-    HolidayVar_DateVariables <- DataMuse:::ReturnParam(xx = tryCatch({input[['HolidayVariables_DateVariables']]}, error=function(x) NULL), VarName = NULL, Type = 'character', Default = NULL, Debug = Debug)
+    HolidayVar_DateVariables <- Quantico:::ReturnParam(xx = tryCatch({input[['HolidayVariables_DateVariables']]}, error=function(x) NULL), VarName = NULL, Type = 'character', Default = NULL, Debug = Debug)
 
     # Pull in values
     if(Debug) print('FE Holiday Variables 1')
-    HolidayVar_HolidayGroups <- DataMuse:::ReturnParam(xx = tryCatch({input[['HolidayVariables_HolidayGroups']]}, error=function(x) NULL), VarName = 'HolidayVariables_HolidayGroups', Type = 'character', Default = NULL, Debug = Debug)
-    HolidayVar_LookbackDays <- DataMuse:::ReturnParam(xx = tryCatch({input[['HolidayVariables_LookbackDays']]}, error=function(x) NULL), VarName = 'HolidayVariables_LookbackDays', Type = 'numeric', Default = 1, Debug = Debug)
-    SelectData <- DataMuse:::ReturnParam(xx = tryCatch({input$HolidayVariables_SelectData}, error=function(x) NULL), VarName = 'HolidayVariables_SelectData', Type = 'character', Default = NULL, Debug = Debug)
+    HolidayVar_HolidayGroups <- Quantico:::ReturnParam(xx = tryCatch({input[['HolidayVariables_HolidayGroups']]}, error=function(x) NULL), VarName = 'HolidayVariables_HolidayGroups', Type = 'character', Default = NULL, Debug = Debug)
+    HolidayVar_LookbackDays <- Quantico:::ReturnParam(xx = tryCatch({input[['HolidayVariables_LookbackDays']]}, error=function(x) NULL), VarName = 'HolidayVariables_LookbackDays', Type = 'numeric', Default = 1, Debug = Debug)
+    SelectData <- Quantico:::ReturnParam(xx = tryCatch({input$HolidayVariables_SelectData}, error=function(x) NULL), VarName = 'HolidayVariables_SelectData', Type = 'character', Default = NULL, Debug = Debug)
 
     # if path is a character then data will be pulled inside the function
     #  otherwise you're passing data directly to function
@@ -110,19 +110,19 @@ Shiny.FE.Date.Holiday <- function(input,output,session,DataList,CodeList,CacheDi
 
     # Create code
     if(Debug) print('FE Holiday Variables 6')
-    CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+    CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
       "\n",
       "# Holiday Variables\n",
-      "DataList[[", DataMuse:::CEP(SelectData), "]] <- Rodeo::CreateHolidayVariables(\n  ",
-      "DataList[[", DataMuse:::CEP(SelectData), "]],\n  ",
-      "DateCols = ", DataMuse:::ExpandText(HolidayVar_DateVariables), ",\n  ",
-      "LookbackDays = ", DataMuse:::CEP(HolidayVar_LookbackDays), ",\n  ",
-      "HolidayGroups = ", DataMuse:::ExpandText(HolidayVar_HolidayGroups),
+      "DataList[[", Quantico:::CEP(SelectData), "]] <- Rodeo::CreateHolidayVariables(\n  ",
+      "DataList[[", Quantico:::CEP(SelectData), "]],\n  ",
+      "DateCols = ", Quantico:::ExpandText(HolidayVar_DateVariables), ",\n  ",
+      "LookbackDays = ", Quantico:::CEP(HolidayVar_LookbackDays), ",\n  ",
+      "HolidayGroups = ", Quantico:::ExpandText(HolidayVar_HolidayGroups),
       ")\n"))
 
     # Return
     if(Debug) {print('FE Holiday Variables 6'); print(names(DataList)); print(CodeList)}
-    DataList <- tryCatch({DataMuse:::DM.DataListUpdate(DataList, SelectData)}, error = function(x) DataList)
+    DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, SelectData)}, error = function(x) DataList)
     return(list(
       DataList = DataList,
       CodeList = CodeList
@@ -149,15 +149,15 @@ Shiny.FE.Date.Holiday <- function(input,output,session,DataList,CodeList,CacheDi
 #' @export
 Shiny.FE.Numeric.PercentRank <- function(input,output,session,DataList,CodeList,CacheDir=NULL,CacheName='data',Debug=FALSE) {
   shiny::withProgress(message = 'Numeric PercentRank has begun..', value = 0, {
-    PercentRank_ColNames <- DataMuse:::ReturnParam(xx = tryCatch({input[['PercentRank_ColNames']]}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
+    PercentRank_ColNames <- Quantico:::ReturnParam(xx = tryCatch({input[['PercentRank_ColNames']]}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
     if(length(PercentRank_ColNames) > 0L) {
 
       # Args
-      PercentRank_SelectData <- DataMuse:::ReturnParam(xx = tryCatch({input$PercentRank_SelectData}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
-      PercentRank_SelectValidationData <- DataMuse:::ReturnParam(xx = tryCatch({input[['PercentRank_SelectValidationData']]}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
-      PercentRank_SelectTestData <- DataMuse:::ReturnParam(xx = tryCatch({input[['PercentRank_SelectTestData']]}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
-      PercentRank_GroupVars <- DataMuse:::ReturnParam(xx = tryCatch({input[['PercentRank_GroupVars']]}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
-      PercentRank_Granularity <- DataMuse:::ReturnParam(xx = tryCatch({input[['PercentRank_Granularity']]}, error=function(x) NULL), Type = 'numeric', Default = NULL, Debug = Debug)
+      PercentRank_SelectData <- Quantico:::ReturnParam(xx = tryCatch({input$PercentRank_SelectData}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
+      PercentRank_SelectValidationData <- Quantico:::ReturnParam(xx = tryCatch({input[['PercentRank_SelectValidationData']]}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
+      PercentRank_SelectTestData <- Quantico:::ReturnParam(xx = tryCatch({input[['PercentRank_SelectTestData']]}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
+      PercentRank_GroupVars <- Quantico:::ReturnParam(xx = tryCatch({input[['PercentRank_GroupVars']]}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
+      PercentRank_Granularity <- Quantico:::ReturnParam(xx = tryCatch({input[['PercentRank_Granularity']]}, error=function(x) NULL), Type = 'numeric', Default = NULL, Debug = Debug)
 
       # Function
       if(length(PercentRank_SelectValidationData) == 0L && length(PercentRank_SelectTestData) == 0L) {
@@ -165,14 +165,14 @@ Shiny.FE.Numeric.PercentRank <- function(input,output,session,DataList,CodeList,
 
         # Create code
         if(Debug) print('FE PercRank 6')
-        CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+        CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
           "\n",
           "# Percent Rank: value --> percentile\n",
-          "DataList[[", DataMuse:::CEP(PercentRank_SelectData),"]] <- Rodeo::PercRank(\n  ",
-          "data = DataList[[", DataMuse:::CEP(PercentRank_SelectData), "]],\n  ",
-          "ColNames = ", DataMuse:::ExpandText(PercentRank_ColNames), ",\n  ",
-          "GroupVars = ", DataMuse:::ExpandText(PercentRank_GroupVars), ",\n  ",
-          "Granularity = ", DataMuse:::CEP(PercentRank_Granularity),")\n"))
+          "DataList[[", Quantico:::CEP(PercentRank_SelectData),"]] <- Rodeo::PercRank(\n  ",
+          "data = DataList[[", Quantico:::CEP(PercentRank_SelectData), "]],\n  ",
+          "ColNames = ", Quantico:::ExpandText(PercentRank_ColNames), ",\n  ",
+          "GroupVars = ", Quantico:::ExpandText(PercentRank_GroupVars), ",\n  ",
+          "Granularity = ", Quantico:::CEP(PercentRank_Granularity),")\n"))
 
       } else {
 
@@ -182,47 +182,47 @@ Shiny.FE.Numeric.PercentRank <- function(input,output,session,DataList,CodeList,
 
         # Create code
         if(Debug) print('FE PercRank 6')
-        CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+        CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
           "\n",
           "# Percent Rank: value --> percentile\n",
           "Output <- Rodeo::PercRank(\n  ",
-          "data = DataList[[", DataMuse:::CEP(PercentRank_SelectData), "]],\n  ",
-          "ColNames = ", DataMuse:::ExpandText(PercentRank_ColNames), ",\n  ",
-          "GroupVars = ", DataMuse:::ExpandText(PercentRank_GroupVars), ",\n  ",
-          "Granularity = ", DataMuse:::CEP(PercentRank_Granularity), ",\n  ",
+          "data = DataList[[", Quantico:::CEP(PercentRank_SelectData), "]],\n  ",
+          "ColNames = ", Quantico:::ExpandText(PercentRank_ColNames), ",\n  ",
+          "GroupVars = ", Quantico:::ExpandText(PercentRank_GroupVars), ",\n  ",
+          "Granularity = ", Quantico:::CEP(PercentRank_Granularity), ",\n  ",
           "ScoreTable = TRUE)\n"))
 
         # Apply Standardization to Validation Data
         if(length(PercentRank_SelectValidationData) > 0L) {
           DataList[[PercentRank_SelectValidationData]][['data']] <- Rodeo::PercRankScoring(data = DataList[[PercentRank_SelectValidationData]][['data']], ScoreTable = ScoreTable, GroupVars = PercentRank_GroupVars, RollDirection = 'forward')
-          CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+          CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
             "\n",
             "# Percent Rank: value --> percentile\n",
-            "DataList[[",DataMuse:::CEP(PercentRank_SelectValidationData),"]] <- Rodeo::PercRankScoring(\n  ",
-            "data = DataList[[", DataMuse:::CEP(PercentRank_SelectData), "]],\n  ",
+            "DataList[[",Quantico:::CEP(PercentRank_SelectValidationData),"]] <- Rodeo::PercRankScoring(\n  ",
+            "data = DataList[[", Quantico:::CEP(PercentRank_SelectData), "]],\n  ",
             "ScoreTable = ScoreTable,\n  ",
             "RollDirection = 'forward',\n  ",
-            "GroupVars = ", DataMuse:::ExpandText(PercentRank_GroupVars),")\n"))
+            "GroupVars = ", Quantico:::ExpandText(PercentRank_GroupVars),")\n"))
         }
 
         # Apply Standardization to Test Data
         if(length(PercentRank_SelectTestData) > 0L) {
           DataList[[PercentRank_SelectTestData]][['data']] <- Rodeo::PercRankScoring(data = DataList[[PercentRank_SelectTestData]][['data']], ScoreTable = ScoreTable, GroupVars = PercentRank_GroupVars, RollDirection = 'forward')
-          CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+          CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
             "\n",
             "# Percent Rank: value --> percentile\n",
-            "DataList[[",DataMuse:::CEP(PercentRank_SelectTestData),"]] <- Rodeo::PercRankScoring(\n  ",
-            "data = DataList[[", DataMuse:::CEP(PercentRank_SelectData), "]],\n  ",
+            "DataList[[",Quantico:::CEP(PercentRank_SelectTestData),"]] <- Rodeo::PercRankScoring(\n  ",
+            "data = DataList[[", Quantico:::CEP(PercentRank_SelectData), "]],\n  ",
             "ScoreTable = ScoreTable,\n  ",
             "RollDirection = 'forward',\n  ",
-            "GroupVars = ", DataMuse:::ExpandText(PercentRank_GroupVars),")\n"))
+            "GroupVars = ", Quantico:::ExpandText(PercentRank_GroupVars),")\n"))
         }
       }
     }
 
     # Return
     if(Debug) {print('FE PercRank 6'); print(names(DataList)); print(CodeList)}
-    DataList <- tryCatch({DataMuse:::DM.DataListUpdate(DataList, PercentRank_SelectData)}, error = function(x) DataList)
+    DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, PercentRank_SelectData)}, error = function(x) DataList)
     return(list(
       DataList = DataList,
       CodeList = CodeList
@@ -249,16 +249,16 @@ Shiny.FE.Numeric.PercentRank <- function(input,output,session,DataList,CodeList,
 #' @export
 Shiny.FE.Numeric.Standardize <- function(input,output,session,DataList,CodeList,CacheDir=NULL,CacheName='data',Debug=FALSE) {
   shiny::withProgress(message = 'Numeric Standardize has begun..', value = 0, {
-    Standardize_ColNames <- DataMuse:::ReturnParam(xx = tryCatch({input[['Standardize_ColNames']]}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
+    Standardize_ColNames <- Quantico:::ReturnParam(xx = tryCatch({input[['Standardize_ColNames']]}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
     if(length(Standardize_ColNames) > 0L) {
 
       # Args
-      Standardize_SelectData <- DataMuse:::ReturnParam(xx = tryCatch({input$Standardize_SelectData}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
-      Standardize_SelectValidationData <- DataMuse:::ReturnParam(xx = tryCatch({input[['Standardize_SelectValidationData']]}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
-      Standardize_SelectTestData <- DataMuse:::ReturnParam(xx = tryCatch({input[['Standardize_SelectTestData']]}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
-      Standardize_GroupVars <- DataMuse:::ReturnParam(xx = tryCatch({input[['Standardize_GroupVars']]}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
-      Standardize_Center <- DataMuse:::ReturnParam(xx = tryCatch({input[['Standardize_Center']]}, error=function(x) NULL), Type = 'logical', Default = TRUE, Debug = Debug)
-      Standardize_Scale <- DataMuse:::ReturnParam(xx = tryCatch({input[['Standardize_Scale']]}, error=function(x) NULL), Type = 'logical', Default = TRUE, Debug = Debug)
+      Standardize_SelectData <- Quantico:::ReturnParam(xx = tryCatch({input$Standardize_SelectData}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
+      Standardize_SelectValidationData <- Quantico:::ReturnParam(xx = tryCatch({input[['Standardize_SelectValidationData']]}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
+      Standardize_SelectTestData <- Quantico:::ReturnParam(xx = tryCatch({input[['Standardize_SelectTestData']]}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
+      Standardize_GroupVars <- Quantico:::ReturnParam(xx = tryCatch({input[['Standardize_GroupVars']]}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
+      Standardize_Center <- Quantico:::ReturnParam(xx = tryCatch({input[['Standardize_Center']]}, error=function(x) NULL), Type = 'logical', Default = TRUE, Debug = Debug)
+      Standardize_Scale <- Quantico:::ReturnParam(xx = tryCatch({input[['Standardize_Scale']]}, error=function(x) NULL), Type = 'logical', Default = TRUE, Debug = Debug)
 
       # Function
       if(length(Standardize_SelectValidationData) == 0L && length(Standardize_SelectTestData) == 0L) {
@@ -266,15 +266,15 @@ Shiny.FE.Numeric.Standardize <- function(input,output,session,DataList,CodeList,
 
         # Create code
         if(Debug) print('FE Standardize 6')
-        CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+        CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
           "\n",
           "# Standardize\n",
-          "DataList[[", DataMuse:::CEP(Standardize_SelectData),"]] <- Rodeo::Standardize(\n  ",
-          "data = DataList[[", DataMuse:::CEP(Standardize_SelectData), "]],\n  ",
-          "ColNames = ", DataMuse:::ExpandText(Standardize_ColNames), ",\n  ",
-          "GroupVars = ", DataMuse:::ExpandText(Standardize_GroupVars), ",\n  ",
-          "Center = ", DataMuse:::CEP(Standardize_Center),",\n  ",
-          "Scale = ", DataMuse:::CEP(Standardize_Scale),")\n"))
+          "DataList[[", Quantico:::CEP(Standardize_SelectData),"]] <- Rodeo::Standardize(\n  ",
+          "data = DataList[[", Quantico:::CEP(Standardize_SelectData), "]],\n  ",
+          "ColNames = ", Quantico:::ExpandText(Standardize_ColNames), ",\n  ",
+          "GroupVars = ", Quantico:::ExpandText(Standardize_GroupVars), ",\n  ",
+          "Center = ", Quantico:::CEP(Standardize_Center),",\n  ",
+          "Scale = ", Quantico:::CEP(Standardize_Scale),")\n"))
 
       } else {
 
@@ -285,48 +285,48 @@ Shiny.FE.Numeric.Standardize <- function(input,output,session,DataList,CodeList,
 
         # Create code
         if(Debug) print('FE Standardize 6')
-        CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+        CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
           "\n",
           "# Standardize\n",
           "Output <- Rodeo::Standardize(\n  ",
-          "data = DataList[[", DataMuse:::CEP(Standardize_SelectData), "]],\n  ",
-          "ColNames = ", DataMuse:::ExpandText(Standardize_ColNames), ",\n  ",
-          "GroupVars = ", DataMuse:::ExpandText(Standardize_GroupVars), ",\n  ",
-          "Center = ", DataMuse:::CEP(Standardize_Center),",\n  ",
-          "Scale = ", DataMuse:::CEP(Standardize_Scale),",\n  ",
+          "data = DataList[[", Quantico:::CEP(Standardize_SelectData), "]],\n  ",
+          "ColNames = ", Quantico:::ExpandText(Standardize_ColNames), ",\n  ",
+          "GroupVars = ", Quantico:::ExpandText(Standardize_GroupVars), ",\n  ",
+          "Center = ", Quantico:::CEP(Standardize_Center),",\n  ",
+          "Scale = ", Quantico:::CEP(Standardize_Scale),",\n  ",
           "ScoreTable = TRUE)\n"))
 
         # Apply Standardization to Validation Data
         if(length(Standardize_SelectValidationData) > 0L) {
           DataList[[Standardize_SelectValidationData]][['data']] <- Rodeo::StandardizeScoring(data = DataList[[Standardize_SelectValidationData]][['data']], ScoreTable = ScoreTable, Apply = 'apply', GroupVars = Standardize_GroupVars)
-          CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+          CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
             "\n",
             "# Percent Rank: value --> percentile\n",
-            "DataList[[",DataMuse:::CEP(Standardize_SelectValidationData),"]] <- Rodeo::StandardizeScoring(\n  ",
-            "data = DataList[[", DataMuse:::CEP(Standardize_SelectData), "]],\n  ",
+            "DataList[[",Quantico:::CEP(Standardize_SelectValidationData),"]] <- Rodeo::StandardizeScoring(\n  ",
+            "data = DataList[[", Quantico:::CEP(Standardize_SelectData), "]],\n  ",
             "ScoreTable = ScoreTable,\n  ",
             "Apply = 'apply',\n  ",
-            "GroupVars = ", DataMuse:::ExpandText(Standardize_GroupVars),")\n"))
+            "GroupVars = ", Quantico:::ExpandText(Standardize_GroupVars),")\n"))
         }
 
         # Apply Standardization to Test Data
         if(length(Standardize_SelectTestData) > 0L) {
           DataList[[Standardize_SelectTestData]][['data']] <- Rodeo::StandardizeScoring(data = DataList[[Standardize_SelectTestData]][['data']], ScoreTable = ScoreTable, Apply = 'apply', GroupVars = Standardize_GroupVars)
-          CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+          CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
             "\n",
             "# Percent Rank: value --> percentile\n",
-            "DataList[[",DataMuse:::CEP(Standardize_SelectTestData),"]] <- Rodeo::StandardizeScoring(\n  ",
-            "data = DataList[[", DataMuse:::CEP(Standardize_SelectData), "]],\n  ",
+            "DataList[[",Quantico:::CEP(Standardize_SelectTestData),"]] <- Rodeo::StandardizeScoring(\n  ",
+            "data = DataList[[", Quantico:::CEP(Standardize_SelectData), "]],\n  ",
             "ScoreTable = ScoreTable,\n  ",
             "Apply = 'apply',\n  ",
-            "GroupVars = ", DataMuse:::ExpandText(Standardize_GroupVars),")\n"))
+            "GroupVars = ", Quantico:::ExpandText(Standardize_GroupVars),")\n"))
         }
       }
     }
 
     # Return
     if(Debug) {print('FE Standardize 6'); print(names(DataList)); print(CodeList)}
-    DataList <- tryCatch({DataMuse:::DM.DataListUpdate(DataList, Standardize_SelectData)}, error = function(x) DataList)
+    DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, Standardize_SelectData)}, error = function(x) DataList)
     return(list(
       DataList = DataList,
       CodeList = CodeList
@@ -353,12 +353,12 @@ Shiny.FE.Numeric.Standardize <- function(input,output,session,DataList,CodeList,
 #' @export
 Shiny.FE.Numeric.Interactions <- function(input,output,session,DataList,CodeList,CacheDir=NULL,CacheName='data',Debug=FALSE) {
   shiny::withProgress(message = 'Numeric Variable Interaction has begun..', value = 0, {
-    AutoInteraction_NumericVars <- DataMuse:::ReturnParam(xx = tryCatch({input[['AutoInteraction_NumericVars']]}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
+    AutoInteraction_NumericVars <- Quantico:::ReturnParam(xx = tryCatch({input[['AutoInteraction_NumericVars']]}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
     if(length(AutoInteraction_NumericVars) != 0) {
-      AutoInteraction_SelectData <- DataMuse:::ReturnParam(xx = tryCatch({input$AutoInteraction_SelectData}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
-      AutoInteraction_InteractionDepth <- DataMuse:::ReturnParam(xx = tryCatch({input[['AutoInteraction_InteractionDepth']]}, error=function(x) NULL), Type = 'numeric', Default = 2, Debug = Debug)
-      AutoInteraction_Scale <- DataMuse:::ReturnParam(xx = tryCatch({input[['AutoInteraction_Scale']]}, error=function(x) NULL), Type = 'logical', Default = TRUE, Debug = Debug)
-      AutoInteraction_Center <- DataMuse:::ReturnParam(xx = tryCatch({input[['AutoInteraction_Center']]}, error=function(x) NULL), Type = 'logical', Default = TRUE, Debug = Debug)
+      AutoInteraction_SelectData <- Quantico:::ReturnParam(xx = tryCatch({input$AutoInteraction_SelectData}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
+      AutoInteraction_InteractionDepth <- Quantico:::ReturnParam(xx = tryCatch({input[['AutoInteraction_InteractionDepth']]}, error=function(x) NULL), Type = 'numeric', Default = 2, Debug = Debug)
+      AutoInteraction_Scale <- Quantico:::ReturnParam(xx = tryCatch({input[['AutoInteraction_Scale']]}, error=function(x) NULL), Type = 'logical', Default = TRUE, Debug = Debug)
+      AutoInteraction_Center <- Quantico:::ReturnParam(xx = tryCatch({input[['AutoInteraction_Center']]}, error=function(x) NULL), Type = 'logical', Default = TRUE, Debug = Debug)
       DataList[[AutoInteraction_SelectData]][['data']] <- Rodeo::AutoInteraction(
         data = DataList[[AutoInteraction_SelectData]][['data']],
         NumericVars = AutoInteraction_NumericVars,
@@ -372,23 +372,23 @@ Shiny.FE.Numeric.Interactions <- function(input,output,session,DataList,CodeList
 
     # Create code
     if(Debug) print('FE Numeric Interaction 1')
-    CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+    CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
       "\n",
       "# Numeric Interaction: value --> percentile\n",
-      "temp <- ", DataMuse:::CEP(AutoInteraction_SelectData),"\n",
+      "temp <- ", Quantico:::CEP(AutoInteraction_SelectData),"\n",
       "DataList[[temp]] <- Rodeo::AutoInteraction(\n  ",
       "data = DataList[[temp]],\n  ",
-      "NumericVars = ", DataMuse:::ExpandText(AutoInteraction_NumericVars), ",\n  ",
-      "InteractionDepth = ", DataMuse:::CEP(AutoInteraction_InteractionDepth), ",\n  ",
-      "Center = ", DataMuse:::CEP(AutoInteraction_Center), ",\n  ",
-      "Scale = ", DataMuse:::CEP(AutoInteraction_Scale), ",\n  ",
+      "NumericVars = ", Quantico:::ExpandText(AutoInteraction_NumericVars), ",\n  ",
+      "InteractionDepth = ", Quantico:::CEP(AutoInteraction_InteractionDepth), ",\n  ",
+      "Center = ", Quantico:::CEP(AutoInteraction_Center), ",\n  ",
+      "Scale = ", Quantico:::CEP(AutoInteraction_Scale), ",\n  ",
       "SkipCols = NULL,\n  ",
       "Scoring = FALSE,\n  ",
       "File = NULL)\n"))
 
     # Return
     if(Debug) {print('FE Numeric Interaction 2'); print(names(DataList)); print(CodeList)}
-    DataList <- tryCatch({DataMuse:::DM.DataListUpdate(DataList, AutoInteraction_SelectData)}, error = function(x) DataList)
+    DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, AutoInteraction_SelectData)}, error = function(x) DataList)
     return(list(
       DataList = DataList,
       CodeList = CodeList
@@ -415,10 +415,10 @@ Shiny.FE.Numeric.Interactions <- function(input,output,session,DataList,CodeList
 #' @export
 Shiny.FE.Numeric.Transformations <- function(input,output,session,DataList,CodeList,CacheDir=NULL,CacheName='data',Debug=FALSE) {
   shiny::withProgress(message = 'Numeric Variable Transformations has begun..', value = 0, {
-    AutoTransformationCreate_ColumnNames <- DataMuse:::ReturnParam(xx = tryCatch({input[['AutoTransformationCreate_ColumnNames']]}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
+    AutoTransformationCreate_ColumnNames <- Quantico:::ReturnParam(xx = tryCatch({input[['AutoTransformationCreate_ColumnNames']]}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
     if(length(AutoTransformationCreate_ColumnNames) != 0) {
-      AutoTransformationCreate_SelectData <- DataMuse:::ReturnParam(xx = tryCatch({input$AutoTransformationCreate_SelectData}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
-      AutoTransformationCreate_Methods <- DataMuse:::ReturnParam(xx = tryCatch({input[['AutoTransformationCreate_Methods']]}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
+      AutoTransformationCreate_SelectData <- Quantico:::ReturnParam(xx = tryCatch({input$AutoTransformationCreate_SelectData}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
+      AutoTransformationCreate_Methods <- Quantico:::ReturnParam(xx = tryCatch({input[['AutoTransformationCreate_Methods']]}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
       for(col in AutoTransformationCreate_ColumnNames) {
         DataList[[AutoTransformationCreate_SelectData]][['data']][, paste0(col, "_Trans") := get(col)]
       }
@@ -434,14 +434,14 @@ Shiny.FE.Numeric.Transformations <- function(input,output,session,DataList,CodeL
 
     # Create code
     if(Debug) print('FE Numeric Transformation 1')
-    CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+    CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
       "\n",
       "# Numeric Transformation: value --> percentile\n",
-      "temp <- ", DataMuse:::CEP(AutoTransformationCreate_SelectData),"\n",
+      "temp <- ", Quantico:::CEP(AutoTransformationCreate_SelectData),"\n",
       "DataList[[temp]] <- Rodeo::AutoTransformationCreate(\n  ",
       "data = DataList[[temp]],\n  ",
-      "ColumnNames = ", DataMuse:::ExpandText(AutoTransformationCreate_ColumnNames), ",\n  ",
-      "Methods = ", DataMuse:::ExpandText(AutoTransformationCreate_Methods), ",\n  ",
+      "ColumnNames = ", Quantico:::ExpandText(AutoTransformationCreate_ColumnNames), ",\n  ",
+      "Methods = ", Quantico:::ExpandText(AutoTransformationCreate_Methods), ",\n  ",
       "Path = NULL,\n  ",
       "TransID = 'ModelID',\n  ",
       "SaveOutput = FALSE)\n"))
@@ -474,11 +474,11 @@ Shiny.FE.Numeric.Transformations <- function(input,output,session,DataList,CodeL
 #' @export
 Shiny.FE.Categorical.Dummify <- function(input,output,session,DataList,CodeList,CacheDir=NULL,CacheName='data',Debug=FALSE) {
   shiny::withProgress(message = 'Dummy variables creation has begun..', value = 0, {
-    DummifyDT_Cols <- DataMuse:::ReturnParam(xx = tryCatch({input[['DummifyDT_Cols']]}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
+    DummifyDT_Cols <- Quantico:::ReturnParam(xx = tryCatch({input[['DummifyDT_Cols']]}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
     if(length(DummifyDT_Cols) != 0) {
-      DummifyDT_TopN <- DataMuse:::ReturnParam(xx = tryCatch({input[['DummifyDT_TopN']]}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
-      DummifyDT_KeepBaseCols <- DataMuse:::ReturnParam(xx = tryCatch({input[['DummifyDT_KeepBaseCols']]}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
-      DummifyDT_SelectData <- DataMuse:::ReturnParam(xx = tryCatch({input[['DummifyDT_SelectData']]}, error = function(x) NULL), VarName = 'DummifyDT_SelectData', Type = 'character', Default = NULL, Debug = Debug)
+      DummifyDT_TopN <- Quantico:::ReturnParam(xx = tryCatch({input[['DummifyDT_TopN']]}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
+      DummifyDT_KeepBaseCols <- Quantico:::ReturnParam(xx = tryCatch({input[['DummifyDT_KeepBaseCols']]}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
+      DummifyDT_SelectData <- Quantico:::ReturnParam(xx = tryCatch({input[['DummifyDT_SelectData']]}, error = function(x) NULL), VarName = 'DummifyDT_SelectData', Type = 'character', Default = NULL, Debug = Debug)
       DataList[[DummifyDT_SelectData]][['data']] <- Rodeo::DummifyDT(
         data = DataList[[DummifyDT_SelectData]][['data']],
         cols = DummifyDT_Cols,
@@ -489,15 +489,15 @@ Shiny.FE.Categorical.Dummify <- function(input,output,session,DataList,CodeList,
 
     # Create code
     if(Debug) print('FE Partial Dummies 1')
-    CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+    CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
       "\n",
       "# Partial Dummify Variables\n",
-      "temp <- ", DataMuse:::CEP(DummifyDT_SelectData),"\n",
+      "temp <- ", Quantico:::CEP(DummifyDT_SelectData),"\n",
       "DataList[[temp]] <- Rodeo::DummifyDT(\n  ",
       "data = DataList[[temp]],\n  ",
-      "cols = ", DataMuse:::ExpandText(DummifyDT_Cols), ",\n  ",
-      "TopN = ", DataMuse:::CEP(DummifyDT_TopN), ",\n  ",
-      "KeepFactorCols = ", DataMuse:::CEP(as.logical(DummifyDT_KeepBaseCols)), ",\n  ",
+      "cols = ", Quantico:::ExpandText(DummifyDT_Cols), ",\n  ",
+      "TopN = ", Quantico:::CEP(DummifyDT_TopN), ",\n  ",
+      "KeepFactorCols = ", Quantico:::CEP(as.logical(DummifyDT_KeepBaseCols)), ",\n  ",
       "OneHot = FALSE,\n  ",
       "SaveFactorLevels = FALSE,\n  ",
       "SavePath = NULL,\n  ",
@@ -507,7 +507,7 @@ Shiny.FE.Categorical.Dummify <- function(input,output,session,DataList,CodeList,
 
     # Return
     if(Debug) {print('FE Partial Dummies 2'); print(names(DataList)); print(CodeList)}
-    DataList <- tryCatch({DataMuse:::DM.DataListUpdate(DataList, DummifyDT_SelectData)}, error = function(x) DataList)
+    DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, DummifyDT_SelectData)}, error = function(x) DataList)
     return(list(
       DataList = DataList,
       CodeList = CodeList
@@ -534,15 +534,15 @@ Shiny.FE.Categorical.Dummify <- function(input,output,session,DataList,CodeList,
 #' @export
 Shiny.FE.CrossRow.CategoricalEncoding <- function(input,output,session,DataList,CodeList,CacheDir=NULL,CacheName='data',Debug=FALSE) {
   shiny::withProgress(message = 'Categorical Encoding has begun..', value = 0, {
-    CategoricalEncoding_GroupVariables <- DataMuse:::ReturnParam(xx = tryCatch({input[['CategoricalEncoding_GroupVariables']]}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
+    CategoricalEncoding_GroupVariables <- Quantico:::ReturnParam(xx = tryCatch({input[['CategoricalEncoding_GroupVariables']]}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
     if(length(CategoricalEncoding_GroupVariables) != 0) {
-      CategoricalEncoding_TargetVariable <- DataMuse:::ReturnParam(xx = tryCatch({input[['CategoricalEncoding_TargetVariable']]}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
-      CategoricalEncoding_Method <- DataMuse:::ReturnParam(xx = tryCatch({input[['CategoricalEncoding_Method']]}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
-      temp_train <- DataMuse:::ReturnParam(xx = tryCatch({input$CategoricalEncoding_TrainData}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
+      CategoricalEncoding_TargetVariable <- Quantico:::ReturnParam(xx = tryCatch({input[['CategoricalEncoding_TargetVariable']]}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
+      CategoricalEncoding_Method <- Quantico:::ReturnParam(xx = tryCatch({input[['CategoricalEncoding_Method']]}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
+      temp_train <- Quantico:::ReturnParam(xx = tryCatch({input$CategoricalEncoding_TrainData}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
       x <- DataList[[temp_train]][['data']]
-      temp_validate <- DataMuse:::ReturnParam(xx = tryCatch({input$CategoricalEncoding_ValidationData}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
+      temp_validate <- Quantico:::ReturnParam(xx = tryCatch({input$CategoricalEncoding_ValidationData}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
       if(length(temp_validate) > 0L) y <- DataList[[temp_validate]][['data']] else y <- NULL
-      temp_test <- DataMuse:::ReturnParam(xx = tryCatch({input$CategoricalEncoding_TestData}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
+      temp_test <- Quantico:::ReturnParam(xx = tryCatch({input$CategoricalEncoding_TestData}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
       if(length(temp_test) > 0L) z <- DataList[[temp_train]][['data']] else z <- NULL
 
       # Identify target type
@@ -555,7 +555,7 @@ Shiny.FE.CrossRow.CategoricalEncoding <- function(input,output,session,DataList,
       }
 
       # Build Features
-      Output <- DataMuse:::EncodeCharacterVariables(
+      Output <- Quantico:::EncodeCharacterVariables(
         RunMode = 'train',
         ModelType = MLType,
         TrainData = x,
@@ -576,14 +576,14 @@ Shiny.FE.CrossRow.CategoricalEncoding <- function(input,output,session,DataList,
 
     # Create code
     if(Debug) print('FE Categorical Encoding 1')
-    CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+    CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
       "\n",
       "# Categorical Encoding\n",
-      "temp_train <- ", DataMuse:::CEP(temp_train),"\n",
+      "temp_train <- ", Quantico:::CEP(temp_train),"\n",
       "if(class(x[[eval(CategoricalEncoding_TargetVariable)]])[1L] %in% c('character','factor')) {\n  ",
-      "temp_validate <- ", DataMuse:::CEP(temp_validate), "\n",
+      "temp_validate <- ", Quantico:::CEP(temp_validate), "\n",
       "if(length(temp_validate) > 0L) y <- DataList[[temp_validate]] else y <- NULL\n",
-      "temp_test <- ", DataMuse:::CEP(temp_test), "\n",
+      "temp_test <- ", Quantico:::CEP(temp_test), "\n",
       "if(length(temp_test) > 0L) z <- DataList[[temp_train]] else z <- NULL\n  ",
       "MLType <- 'multiclass'\n",
       "} else if(all(unique(x[[eval(CategoricalEncoding_TargetVariable)]]) %in% c(0,1))) {\n  ",
@@ -591,15 +591,15 @@ Shiny.FE.CrossRow.CategoricalEncoding <- function(input,output,session,DataList,
       "} else {\n  ",
       "MLType <- 'regression'\n",
       "}\n",
-      "Output <- DataMuse:::EncodeCharacterVariables(","\n  ",
+      "Output <- Quantico:::EncodeCharacterVariables(","\n  ",
       "RunMode = 'train',\n  ",
       "ModelType = MLType,\n  ",
       "TrainData = x,\n  ",
       "ValidationData = y,\n  ",
       "TestData = z,\n  ",
-      "TargetVariableName = ", DataMuse:::CEP(CategoricalEncoding_TargetVariable), ",\n  ",
-      "CategoricalVariableNames = ", DataMuse:::ExpandText(CategoricalEncoding_GroupVariables), ",\n  ",
-      "EncodeMethod = ", DataMuse:::CEP(CategoricalEncoding_Method), ",\n  ",
+      "TargetVariableName = ", Quantico:::CEP(CategoricalEncoding_TargetVariable), ",\n  ",
+      "CategoricalVariableNames = ", Quantico:::ExpandText(CategoricalEncoding_GroupVariables), ",\n  ",
+      "EncodeMethod = ", Quantico:::CEP(CategoricalEncoding_Method), ",\n  ",
       "KeepCategoricalVariables = TRUE,\n  ",
       "ReturnMetaData = TRUE,\n  ",
       "MetaDataPath = NULL,\n  ",
@@ -611,9 +611,9 @@ Shiny.FE.CrossRow.CategoricalEncoding <- function(input,output,session,DataList,
 
     # Return
     if(Debug) {print('FE Categorical Encoding 2'); print(names(DataList)); print(CodeList)}
-    DataList <- tryCatch({DataMuse:::DM.DataListUpdate(DataList, temp_train)}, error = function(x) DataList)
-    DataList <- tryCatch({DataMuse:::DM.DataListUpdate(DataList, temp_validate)}, error = function(x) DataList)
-    DataList <- tryCatch({DataMuse:::DM.DataListUpdate(DataList, temp_test)}, error = function(x) DataList)
+    DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, temp_train)}, error = function(x) DataList)
+    DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, temp_validate)}, error = function(x) DataList)
+    DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, temp_test)}, error = function(x) DataList)
     return(list(
       DataList = DataList,
       CodeList = CodeList
@@ -641,22 +641,22 @@ Shiny.FE.CrossRow.CategoricalEncoding <- function(input,output,session,DataList,
 Shiny.FE.CrossRow.RollingMode <- function(input,output,session,DataList,CodeList,CacheDir=NULL,CacheName='data',Debug=FALSE) {
   shiny::withProgress(message = 'Rolling Mode has begun..', value = 0, {
     if(Debug) print('FE Auto Lag Roll Mode')
-    AutoLagRollMode_Targets <- DataMuse:::ReturnParam(xx = tryCatch({input[['AutoLagRollMode_Targets']]}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
+    AutoLagRollMode_Targets <- Quantico:::ReturnParam(xx = tryCatch({input[['AutoLagRollMode_Targets']]}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
     if(Debug) print('FE Auto Lag Roll Mode 1')
-    AutoLagRollMode_SortDateName <- DataMuse:::ReturnParam(xx = tryCatch({input[['AutoLagRollMode_SortDateName']]}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
+    AutoLagRollMode_SortDateName <- Quantico:::ReturnParam(xx = tryCatch({input[['AutoLagRollMode_SortDateName']]}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
     if(Debug) print('FE Auto Lag Roll Mode 6')
     if(Debug) print(input[['AutoLagRollMode_WindowingLag']])
     if(length(AutoLagRollMode_Targets) > 0 && length(AutoLagRollMode_SortDateName) > 0) {
       if(Debug) print('FE Auto Lag Roll Mode 2')
-      AutoLagRollMode_Lags <- DataMuse:::ReturnParam(xx = tryCatch({input[['AutoLagRollMode_Lags', Type = 'numeric']]}, error=function(x) NULL), Default = 1, Debug = Debug)
+      AutoLagRollMode_Lags <- Quantico:::ReturnParam(xx = tryCatch({input[['AutoLagRollMode_Lags', Type = 'numeric']]}, error=function(x) NULL), Default = 1, Debug = Debug)
       if(Debug) print('FE Auto Lag Roll Mode 3')
-      AutoLagRollMode_ModePeriods <- DataMuse:::ReturnParam(xx = tryCatch({input[['AutoLagRollMode_ModePeriods']]}, error=function(x) NULL), Type = 'numeric', Default = NULL, Debug = Debug)
+      AutoLagRollMode_ModePeriods <- Quantico:::ReturnParam(xx = tryCatch({input[['AutoLagRollMode_ModePeriods']]}, error=function(x) NULL), Type = 'numeric', Default = NULL, Debug = Debug)
       if(Debug) print('FE Auto Lag Roll Mode 4')
-      AutoLagRollMode_GroupingVars <- DataMuse:::ReturnParam(xx = tryCatch({input[['AutoLagRollMode_GroupingVars']]}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
+      AutoLagRollMode_GroupingVars <- Quantico:::ReturnParam(xx = tryCatch({input[['AutoLagRollMode_GroupingVars']]}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
       if(Debug) print('FE Auto Lag Roll Mode 5')
-      AutoLagRollMode_WindowingLag <- DataMuse:::ReturnParam(xx = tryCatch({input[['AutoLagRollMode_WindowingLag']]}, error=function(x) NULL), Type = 'numeric', Default = 1, Debug = Debug)
+      AutoLagRollMode_WindowingLag <- Quantico:::ReturnParam(xx = tryCatch({input[['AutoLagRollMode_WindowingLag']]}, error=function(x) NULL), Type = 'numeric', Default = 1, Debug = Debug)
       if(Debug) print('FE Auto Lag Roll Mode 7')
-      AutoLagRollMode_SelectData <- DataMuse:::ReturnParam(xx = tryCatch({input$AutoLagRollMode_SelectData}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
+      AutoLagRollMode_SelectData <- Quantico:::ReturnParam(xx = tryCatch({input$AutoLagRollMode_SelectData}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
       if(Debug) print('FE Auto Lag Roll Mode 8')
 
       # Checkpoint
@@ -689,24 +689,24 @@ Shiny.FE.CrossRow.RollingMode <- function(input,output,session,DataList,CodeList
 
       # Create code
       if(Debug) print('FE Auto Lag Roll Mode 1')
-      CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+      CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
         "\n",
         "# Auto Lag Roll Mode\n",
-        "temp <- ", DataMuse:::CEP(AutoLagRollMode_SelectData),"\n",
+        "temp <- ", Quantico:::CEP(AutoLagRollMode_SelectData),"\n",
         "DataList[[temp]] <- Rodeo::AutoLagRollMode(\n  ",
         "data = DataList[[temp]],\n  ",
-        "Targets = ", DataMuse:::ExpandText(AutoLagRollMode_Targets), ",\n  ",
-        "GroupingVars = ", DataMuse:::ExpandText(AutoLagRollMode_GroupingVars), ",\n  ",
-        "SortDateName = ", DataMuse:::CEP(AutoLagRollMode_SortDateName), ",\n  ",
-        "WindowingLag = ", DataMuse:::CEP(AutoLagRollMode_WindowingLag), ",\n  ",
-        "Lags = ", DataMuse:::ExpandText(AutoLagRollMode_Lags), ",\n  ",
-        "ModePeriods = ", DataMuse:::ExpandText(AutoLagRollMode_ModePeriods), ",\n  ",
+        "Targets = ", Quantico:::ExpandText(AutoLagRollMode_Targets), ",\n  ",
+        "GroupingVars = ", Quantico:::ExpandText(AutoLagRollMode_GroupingVars), ",\n  ",
+        "SortDateName = ", Quantico:::CEP(AutoLagRollMode_SortDateName), ",\n  ",
+        "WindowingLag = ", Quantico:::CEP(AutoLagRollMode_WindowingLag), ",\n  ",
+        "Lags = ", Quantico:::ExpandText(AutoLagRollMode_Lags), ",\n  ",
+        "ModePeriods = ", Quantico:::ExpandText(AutoLagRollMode_ModePeriods), ",\n  ",
         "Type = 'Lag',\n  ",
         "SimpleImpute = TRUE)\n"))
 
       # Return
       if(Debug) {print('FE Auto Lag Roll Mode 2'); print(names(DataList)); print(CodeList)}
-      DataList <- tryCatch({DataMuse:::DM.DataListUpdate(DataList, AutoLagRollMode_SelectData)}, error = function(x) DataList)
+      DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, AutoLagRollMode_SelectData)}, error = function(x) DataList)
       return(list(
         DataList = DataList,
         CodeList = CodeList
@@ -734,29 +734,29 @@ Shiny.FE.CrossRow.RollingMode <- function(input,output,session,DataList,CodeList
 #' @export
 Shiny.FE.CrossRow.RollingStats <- function(input,output,session,DataList,CodeList,CacheDir=NULL,CacheName='data',Debug=FALSE) {
   shiny::withProgress(message = 'Rolling Stats has begun..', value = 0, {
-    AutoLagRollStats_Targets <- DataMuse:::ReturnParam(xx = tryCatch({input[['AutoLagRollStats_Targets']]}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
-    AutoLagRollStats_DateColumn <- DataMuse:::ReturnParam(xx = tryCatch({input[['AutoLagRollStats_DateColumn']]}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
-    AutoLagRollStats_TimeUnits <- DataMuse:::ReturnParam(xx = tryCatch({input[['AutoLagRollStats_TimeUnits']]}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
+    AutoLagRollStats_Targets <- Quantico:::ReturnParam(xx = tryCatch({input[['AutoLagRollStats_Targets']]}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
+    AutoLagRollStats_DateColumn <- Quantico:::ReturnParam(xx = tryCatch({input[['AutoLagRollStats_DateColumn']]}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
+    AutoLagRollStats_TimeUnits <- Quantico:::ReturnParam(xx = tryCatch({input[['AutoLagRollStats_TimeUnits']]}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
     if(length(AutoLagRollStats_Targets) != 0 && length(AutoLagRollStats_DateColumn) != 0 && length(AutoLagRollStats_TimeUnits) != 0) {
-      AutoLagRollStats_SelectData <- DataMuse:::ReturnParam(xx = tryCatch({input$AutoLagRollStats_SelectData}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
-      AutoLagRollStats_GroupVars <- DataMuse:::ReturnParam(xx = tryCatch({input[['AutoLagRollStats_GroupVars']]}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
+      AutoLagRollStats_SelectData <- Quantico:::ReturnParam(xx = tryCatch({input$AutoLagRollStats_SelectData}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
+      AutoLagRollStats_GroupVars <- Quantico:::ReturnParam(xx = tryCatch({input[['AutoLagRollStats_GroupVars']]}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
       if(length(AutoLagRollStats_GroupVars) > 1L) {
         DataList[[AutoLagRollStats_SelectData]][['data']][, paste0(AutoLagRollStats_GroupVars, collapse = '_') := do.call(paste, c(.SD, sep = ' ')), .SDcols = c(AutoLagRollStats_GroupVars)]
         AutoLagRollStats_GroupVars <- paste0(AutoLagRollStats_GroupVars, collapse = '_')
       }
-      AutoLagRollStats_Lags <- DataMuse:::ReturnParam(xx = tryCatch({input[['AutoLagRollStats_Lags']]}, error=function(x) NULL), Type = 'numeric', Default = NULL, Debug = Debug)
-      AutoLagRollStats_RollOnLag1 <- DataMuse:::ReturnParam(xx = tryCatch({input[['AutoLagRollStats_RollOnLag1']]}, error=function(x) NULL), Type = 'logical', Default = NULL, Debug = Debug)
+      AutoLagRollStats_Lags <- Quantico:::ReturnParam(xx = tryCatch({input[['AutoLagRollStats_Lags']]}, error=function(x) NULL), Type = 'numeric', Default = NULL, Debug = Debug)
+      AutoLagRollStats_RollOnLag1 <- Quantico:::ReturnParam(xx = tryCatch({input[['AutoLagRollStats_RollOnLag1']]}, error=function(x) NULL), Type = 'logical', Default = NULL, Debug = Debug)
       if(AutoLagRollStats_RollOnLag1 == 0) {
         AutoLagRollStats_RollOnLag1 <- FALSE
       } else {
         AutoLagRollStats_RollOnLag1 <- TRUE
       }
-      AutoLagRollStats_MA_RollWindows <- DataMuse:::ReturnParam(xx = tryCatch({input[['AutoLagRollStats_MA_RollWindows']]}, error=function(x) NULL), Type = 'numeric', Default = NULL, Debug = Debug)
-      AutoLagRollStats_SD_RollWindows <- DataMuse:::ReturnParam(xx = tryCatch({input[['AutoLagRollStats_SD_RollWindows']]}, error=function(x) NULL), Type = 'numeric', Default = NULL, Debug = Debug)
-      AutoLagRollStats_Skew_RollWindows <- DataMuse:::ReturnParam(xx = tryCatch({input[['AutoLagRollStats_Skew_RollWindows']]}, error=function(x) NULL), Type = 'numeric', Default = NULL, Debug = Debug)
-      AutoLagRollStats_Kurt_RollWindows <- DataMuse:::ReturnParam(xx = tryCatch({input[['AutoLagRollStats_Kurt_RollWindows']]}, error=function(x) NULL), Type = 'numeric', Default = NULL, Debug = Debug)
-      AutoLagRollStats_Quantile_RollWindows <- DataMuse:::ReturnParam(xx = tryCatch({input[['AutoLagRollStats_Quantile_RollWindows']]}, error=function(x) NULL), Type = 'numeric', Default = NULL, Debug = Debug)
-      AutoLagRollStats_Quantiles_Selected <- DataMuse:::ReturnParam(xx = tryCatch({input[['AutoLagRollStats_Quantiles_Selected']]}, error=function(x) NULL), Type = 'numeric', Default = NULL, Debug = Debug)
+      AutoLagRollStats_MA_RollWindows <- Quantico:::ReturnParam(xx = tryCatch({input[['AutoLagRollStats_MA_RollWindows']]}, error=function(x) NULL), Type = 'numeric', Default = NULL, Debug = Debug)
+      AutoLagRollStats_SD_RollWindows <- Quantico:::ReturnParam(xx = tryCatch({input[['AutoLagRollStats_SD_RollWindows']]}, error=function(x) NULL), Type = 'numeric', Default = NULL, Debug = Debug)
+      AutoLagRollStats_Skew_RollWindows <- Quantico:::ReturnParam(xx = tryCatch({input[['AutoLagRollStats_Skew_RollWindows']]}, error=function(x) NULL), Type = 'numeric', Default = NULL, Debug = Debug)
+      AutoLagRollStats_Kurt_RollWindows <- Quantico:::ReturnParam(xx = tryCatch({input[['AutoLagRollStats_Kurt_RollWindows']]}, error=function(x) NULL), Type = 'numeric', Default = NULL, Debug = Debug)
+      AutoLagRollStats_Quantile_RollWindows <- Quantico:::ReturnParam(xx = tryCatch({input[['AutoLagRollStats_Quantile_RollWindows']]}, error=function(x) NULL), Type = 'numeric', Default = NULL, Debug = Debug)
+      AutoLagRollStats_Quantiles_Selected <- Quantico:::ReturnParam(xx = tryCatch({input[['AutoLagRollStats_Quantiles_Selected']]}, error=function(x) NULL), Type = 'numeric', Default = NULL, Debug = Debug)
       for(i in AutoLagRollStats_Targets) {
         DataList[[AutoLagRollStats_SelectData]][['data']] <- Rodeo::AutoLagRollStats(
           data                 = DataList[[AutoLagRollStats_SelectData]][['data']],
@@ -785,42 +785,42 @@ Shiny.FE.CrossRow.RollingStats <- function(input,output,session,DataList,CodeLis
 
       # Create code
       if(Debug) print('FE Auto Lag Roll Stats 1')
-      CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+      CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
         "\n",
         "# Auto Lag Roll Stats\n",
-        "temp <- ", DataMuse:::CEP(AutoLagRollStats_SelectData),"\n",
-        "AutoLagRollStats_GroupVars <- ", DataMuse:::ExpandText(AutoLagRollStats_GroupVars), "\n",
+        "temp <- ", Quantico:::CEP(AutoLagRollStats_SelectData),"\n",
+        "AutoLagRollStats_GroupVars <- ", Quantico:::ExpandText(AutoLagRollStats_GroupVars), "\n",
         "if(length(AutoLagRollStats_GroupVars) > 1L) {\n  ",
         "DataList[[temp]][, paste0(AutoLagRollStats_GroupVars, collapse = '_') := do.call(paste, c(.SD, sep = ' ')), .SDcols = c(AutoLagRollStats_GroupVars)]\n  ",
         "AutoLagRollStats_GroupVars <- paste0(AutoLagRollStats_GroupVars, collapse = '_')\n",
         "}\n",
-        "AutoLagRollStats_Targets <- ", DataMuse:::ExpandText(AutoLagRollStats_Targets), "\n",
+        "AutoLagRollStats_Targets <- ", Quantico:::ExpandText(AutoLagRollStats_Targets), "\n",
         "for(i in AutoLagRollStats_Targets) {",
         "DataList[[temp]] <- Rodeo::AutoLagRollStats(\n    ",
         "data <- DataList[[temp]],\n    ",
         "Targets = i,\n    ",
         "HierarchyGroups = NULL,\n    ",
         "IndependentGroups = AutoLagRollStats_GroupVars,\n    ",
-        "DateColumn = ", DataMuse:::CEP(AutoLagRollStats_DateColumn), ",\n    ",
-        "TimeUnit = ", DataMuse:::ExpandText(AutoLagRollStats_TimeUnits), ",\n    ",
-        "TimeUnitAgg = ", DataMuse:::ExpandText(AutoLagRollStats_TimeUnits), ",\n    ",
-        "TimeGroups = ", DataMuse:::ExpandText(AutoLagRollStats_TimeUnits), ",\n    ",
+        "DateColumn = ", Quantico:::CEP(AutoLagRollStats_DateColumn), ",\n    ",
+        "TimeUnit = ", Quantico:::ExpandText(AutoLagRollStats_TimeUnits), ",\n    ",
+        "TimeUnitAgg = ", Quantico:::ExpandText(AutoLagRollStats_TimeUnits), ",\n    ",
+        "TimeGroups = ", Quantico:::ExpandText(AutoLagRollStats_TimeUnits), ",\n    ",
         "TimeBetween = NULL,\n    ",
-        "RollOnLag1 = ", DataMuse:::CEP(AutoLagRollStats_RollOnLag1), ",\n    ",
+        "RollOnLag1 = ", Quantico:::CEP(AutoLagRollStats_RollOnLag1), ",\n    ",
         "Type = 'Lag',\n    ",
         "SimpleImpute = TRUE,\n    ",
-        "Lags = ", DataMuse:::ExpandText(AutoLagRollStats_Lags), ",\n    ",
-        "MA_RollWindows = ", DataMuse:::ExpandText(AutoLagRollStats_MA_RollWindows), ",\n    ",
-        "SD_RollWindows = ", DataMuse:::ExpandText(AutoLagRollStats_SD_RollWindows), ",\n    ",
-        "Skew_RollWindows = ", DataMuse:::ExpandText(AutoLagRollStats_Skew_RollWindows), ",\n    ",
-        "Kurt_RollWindows = ", DataMuse:::ExpandText(AutoLagRollStats_Kurt_RollWindows),",\n    ",
-        "Quantile_RollWindows = ", DataMuse:::ExpandText(AutoLagRollStats_Quantile_RollWindows), ",\n    ",
-        "Quantiles_Selected = ", DataMuse:::ExpandText(AutoLagRollStats_Quantiles_Selected), ")\n",
+        "Lags = ", Quantico:::ExpandText(AutoLagRollStats_Lags), ",\n    ",
+        "MA_RollWindows = ", Quantico:::ExpandText(AutoLagRollStats_MA_RollWindows), ",\n    ",
+        "SD_RollWindows = ", Quantico:::ExpandText(AutoLagRollStats_SD_RollWindows), ",\n    ",
+        "Skew_RollWindows = ", Quantico:::ExpandText(AutoLagRollStats_Skew_RollWindows), ",\n    ",
+        "Kurt_RollWindows = ", Quantico:::ExpandText(AutoLagRollStats_Kurt_RollWindows),",\n    ",
+        "Quantile_RollWindows = ", Quantico:::ExpandText(AutoLagRollStats_Quantile_RollWindows), ",\n    ",
+        "Quantiles_Selected = ", Quantico:::ExpandText(AutoLagRollStats_Quantiles_Selected), ")\n",
         "}\n"))
 
       # Return
       if(Debug) {print('FE Auto Lag Roll Stats 2'); print(names(DataList)); print(CodeList)}
-      DataList <- tryCatch({DataMuse:::DM.DataListUpdate(DataList, AutoLagRollStats_SelectData)}, error = function(x) DataList)
+      DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, AutoLagRollStats_SelectData)}, error = function(x) DataList)
       return(list(
         DataList = DataList,
         CodeList = CodeList
@@ -849,17 +849,17 @@ Shiny.FE.CrossRow.RollingStats <- function(input,output,session,DataList,CodeLis
 #' @export
 Shiny.FE.CrossRow.Differencing <- function(input,output,session,DataList,CodeList,CacheDir=NULL,CacheName='data',Debug=FALSE) {
   shiny::withProgress(message = 'Differencing has begun..', value = 0, {
-    AutoDiffLagN_DateVariable <- DataMuse:::ReturnParam(xx = tryCatch({input[['AutoDiffLagN_DateVariable']]}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
-    AutoDiffLagN_NLag1 <- DataMuse:::ReturnParam(xx = tryCatch({input[['AutoDiffLagN_NLag1']]}, error=function(x) NULL), Type = 'numeric', Default = NULL, Debug = Debug)
-    AutoDiffLagN_NLag2 <- DataMuse:::ReturnParam(xx = tryCatch({input[['AutoDiffLagN_NLag2']]}, error=function(x) NULL), Type = 'numeric', Default = NULL, Debug = Debug)
+    AutoDiffLagN_DateVariable <- Quantico:::ReturnParam(xx = tryCatch({input[['AutoDiffLagN_DateVariable']]}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
+    AutoDiffLagN_NLag1 <- Quantico:::ReturnParam(xx = tryCatch({input[['AutoDiffLagN_NLag1']]}, error=function(x) NULL), Type = 'numeric', Default = NULL, Debug = Debug)
+    AutoDiffLagN_NLag2 <- Quantico:::ReturnParam(xx = tryCatch({input[['AutoDiffLagN_NLag2']]}, error=function(x) NULL), Type = 'numeric', Default = NULL, Debug = Debug)
     if(length(AutoDiffLagN_DateVariable) != 0 &&
        length(AutoDiffLagN_NLag1) != 0 &&
        length(AutoDiffLagN_NLag2) != 0) {
-      AutoDiffLagN_GroupVariables <- DataMuse:::ReturnParam(xx = tryCatch({input[['AutoDiffLagN_GroupVariables']]}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
-      AutoDiffLagN_DiffVariables <- DataMuse:::ReturnParam(xx = tryCatch({input[['AutoDiffLagN_DiffVariables']]}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
-      AutoDiffLagN_DiffDateVariables <- DataMuse:::ReturnParam(xx = tryCatch({input[['AutoDiffLagN_DiffDateVariables']]}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
-      AutoDiffLagN_DiffGroupVariables <- DataMuse:::ReturnParam(xx = tryCatch({input[['AutoDiffLagN_DiffGroupVariables']]}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
-      AutoDiffLagN_SelectData <- DataMuse:::ReturnParam(xx = tryCatch({input$AutoDiffLagN_SelectData}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
+      AutoDiffLagN_GroupVariables <- Quantico:::ReturnParam(xx = tryCatch({input[['AutoDiffLagN_GroupVariables']]}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
+      AutoDiffLagN_DiffVariables <- Quantico:::ReturnParam(xx = tryCatch({input[['AutoDiffLagN_DiffVariables']]}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
+      AutoDiffLagN_DiffDateVariables <- Quantico:::ReturnParam(xx = tryCatch({input[['AutoDiffLagN_DiffDateVariables']]}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
+      AutoDiffLagN_DiffGroupVariables <- Quantico:::ReturnParam(xx = tryCatch({input[['AutoDiffLagN_DiffGroupVariables']]}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
+      AutoDiffLagN_SelectData <- Quantico:::ReturnParam(xx = tryCatch({input$AutoDiffLagN_SelectData}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
       DataList[[AutoDiffLagN_SelectData]][['data']] <- Rodeo::AutoDiffLagN(
         data = DataList[[AutoDiffLagN_SelectData]][['data']],
         DateVariable = AutoDiffLagN_DateVariable,
@@ -875,25 +875,25 @@ Shiny.FE.CrossRow.Differencing <- function(input,output,session,DataList,CodeLis
 
     # Create code
     if(Debug) print('FE Auto Diff Lag N 1')
-    CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+    CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
       "\n",
       "# Differencing Variables\n",
-      "temp <- ", DataMuse:::CEP(AutoDiffLagN_SelectData),"\n",
+      "temp <- ", Quantico:::CEP(AutoDiffLagN_SelectData),"\n",
       "DataList[[temp]] <- Rodeo::AutoDiffLagN(\n  ",
       "data = DataList[[temp]],\n  ",
-      "DateVariable = ", DataMuse:::ExpandText(AutoDiffLagN_DateVariable), ",\n  ",
-      "GroupVariables = ", DataMuse:::ExpandText(AutoDiffLagN_GroupVariables), ",\n  ",
-      "DiffVariables = ", DataMuse:::ExpandText(AutoDiffLagN_DiffVariables), ",\n  ",
-      "DiffDateVariables = ", DataMuse:::ExpandText(AutoDiffLagN_DiffDateVariables), ",\n  ",
-      "DiffGroupVariables = ", DataMuse:::ExpandText(AutoDiffLagN_DiffGroupVariables), ",\n  ",
-      "NLag1 = ", DataMuse:::CEP(AutoDiffLagN_NLag1), ",\n  ",
-      "NLag2 = ", DataMuse:::CEP(AutoDiffLagN_NLag2), ",\n  ",
+      "DateVariable = ", Quantico:::ExpandText(AutoDiffLagN_DateVariable), ",\n  ",
+      "GroupVariables = ", Quantico:::ExpandText(AutoDiffLagN_GroupVariables), ",\n  ",
+      "DiffVariables = ", Quantico:::ExpandText(AutoDiffLagN_DiffVariables), ",\n  ",
+      "DiffDateVariables = ", Quantico:::ExpandText(AutoDiffLagN_DiffDateVariables), ",\n  ",
+      "DiffGroupVariables = ", Quantico:::ExpandText(AutoDiffLagN_DiffGroupVariables), ",\n  ",
+      "NLag1 = ", Quantico:::CEP(AutoDiffLagN_NLag1), ",\n  ",
+      "NLag2 = ", Quantico:::CEP(AutoDiffLagN_NLag2), ",\n  ",
       "Sort = TRUE,\n  ",
       "RemoveNA = TRUE)\n"))
 
     # Return
     if(Debug) {print('FE Auto Diff Lag N 2'); print(names(DataList)); print(CodeList)}
-    DataList <- tryCatch({DataMuse:::DM.DataListUpdate(DataList, AutoDiffLagN_SelectData)}, error = function(x) DataList)
+    DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, AutoDiffLagN_SelectData)}, error = function(x) DataList)
     return(list(
       DataList = DataList,
       CodeList = CodeList
@@ -920,17 +920,17 @@ Shiny.FE.CrossRow.Differencing <- function(input,output,session,DataList,CodeLis
 #' @export
 Shiny.FE.ModelDataPrep <- function(input,output,session,DataList,CodeList,CacheDir=NULL,CacheName='data',Debug=FALSE) {
   shiny::withProgress(message = 'Type Casting has begun..', value = 0, {
-    ModelDataPrep_IgnoreCols <- DataMuse:::ReturnParam(xx = tryCatch({input[['ModelDataPrep_IgnoreCols']]}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
-    ModelDataPrep_CharToFactor <- DataMuse:::ReturnParam(xx = tryCatch({input[['ModelDataPrep_CharToFactor']]}, error=function(x) NULL), Type = 'logical', Default = FALSE, Debug = Debug)
-    ModelDataPrep_FactorToChar <- DataMuse:::ReturnParam(xx = tryCatch({input[['ModelDataPrep_FactorToChar']]}, error=function(x) NULL), Type = 'logical', Default = FALSE, Debug = Debug)
-    ModelDataPrep_DateToChar <- DataMuse:::ReturnParam(xx = tryCatch({input[['ModelDataPrep_DateToChar']]}, error=function(x) NULL), Type = 'logical', Default = FALSE, Debug = Debug)
-    ModelDataPrep_IDateConversion <- DataMuse:::ReturnParam(xx = tryCatch({input[['ModelDataPrep_IDateConversion']]}, error=function(x) NULL), Type = 'logical', Default = FALSE, Debug = Debug)
-    ModelDataPrep_RemoveDates <- DataMuse:::ReturnParam(xx = tryCatch({input[['ModelDataPrep_RemoveDates']]}, error=function(x) NULL), Type = 'logical', Default = FALSE, Debug = Debug)
-    ModelDataPrep_IntToNumeric <- DataMuse:::ReturnParam(xx = tryCatch({input[['ModelDataPrep_IntToNumeric']]}, error=function(x) NULL), Type = 'logical', Default = FALSE, Debug = Debug)
-    ModelDataPrep_LogicalToBinary <- DataMuse:::ReturnParam(xx = tryCatch({input[['ModelDataPrep_LogicalToBinary']]}, error=function(x) NULL), Type = 'logical', Default = FALSE, Debug = Debug)
-    ModelDataPrep_MissFactor <- DataMuse:::ReturnParam(xx = tryCatch({input[['ModelDataPrep_MissFactor']]}, error=function(x) NULL), Type = 'character', Default = FALSE, Debug = Debug)
-    ModelDataPrep_MissNum <- DataMuse:::ReturnParam(xx = tryCatch({input[['ModelDataPrep_MissNum']]}, error=function(x) NULL), Type = 'numeric', Default = FALSE, Debug = Debug)
-    ModelDataPrep_SelectData <- DataMuse:::ReturnParam(xx = tryCatch({input$ModelDataPrep_SelectData}, error=function(x) NULL), Type = 'character', Default = FALSE, Debug = Debug)
+    ModelDataPrep_IgnoreCols <- Quantico:::ReturnParam(xx = tryCatch({input[['ModelDataPrep_IgnoreCols']]}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
+    ModelDataPrep_CharToFactor <- Quantico:::ReturnParam(xx = tryCatch({input[['ModelDataPrep_CharToFactor']]}, error=function(x) NULL), Type = 'logical', Default = FALSE, Debug = Debug)
+    ModelDataPrep_FactorToChar <- Quantico:::ReturnParam(xx = tryCatch({input[['ModelDataPrep_FactorToChar']]}, error=function(x) NULL), Type = 'logical', Default = FALSE, Debug = Debug)
+    ModelDataPrep_DateToChar <- Quantico:::ReturnParam(xx = tryCatch({input[['ModelDataPrep_DateToChar']]}, error=function(x) NULL), Type = 'logical', Default = FALSE, Debug = Debug)
+    ModelDataPrep_IDateConversion <- Quantico:::ReturnParam(xx = tryCatch({input[['ModelDataPrep_IDateConversion']]}, error=function(x) NULL), Type = 'logical', Default = FALSE, Debug = Debug)
+    ModelDataPrep_RemoveDates <- Quantico:::ReturnParam(xx = tryCatch({input[['ModelDataPrep_RemoveDates']]}, error=function(x) NULL), Type = 'logical', Default = FALSE, Debug = Debug)
+    ModelDataPrep_IntToNumeric <- Quantico:::ReturnParam(xx = tryCatch({input[['ModelDataPrep_IntToNumeric']]}, error=function(x) NULL), Type = 'logical', Default = FALSE, Debug = Debug)
+    ModelDataPrep_LogicalToBinary <- Quantico:::ReturnParam(xx = tryCatch({input[['ModelDataPrep_LogicalToBinary']]}, error=function(x) NULL), Type = 'logical', Default = FALSE, Debug = Debug)
+    ModelDataPrep_MissFactor <- Quantico:::ReturnParam(xx = tryCatch({input[['ModelDataPrep_MissFactor']]}, error=function(x) NULL), Type = 'character', Default = FALSE, Debug = Debug)
+    ModelDataPrep_MissNum <- Quantico:::ReturnParam(xx = tryCatch({input[['ModelDataPrep_MissNum']]}, error=function(x) NULL), Type = 'numeric', Default = FALSE, Debug = Debug)
+    ModelDataPrep_SelectData <- Quantico:::ReturnParam(xx = tryCatch({input$ModelDataPrep_SelectData}, error=function(x) NULL), Type = 'character', Default = FALSE, Debug = Debug)
     DataList[[ModelDataPrep_SelectData]][['data']] <- Rodeo::ModelDataPrep(
       DataList[[ModelDataPrep_SelectData]][['data']],
       Impute          = FALSE,
@@ -947,26 +947,26 @@ Shiny.FE.ModelDataPrep <- function(input,output,session,DataList,CodeList,CacheD
 
     # Create code
     if(Debug) print('FE Auto Diff Lag N 1')
-    CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+    CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
       "\n",
       "# Model Data Prep\n",
-      "temp <- ", DataMuse:::CEP(ModelDataPrep_SelectData),"\n",
+      "temp <- ", Quantico:::CEP(ModelDataPrep_SelectData),"\n",
       "DataList[[temp]] <- Rodeo::ModelDataPrep(","\n  ",
       "DataList[[temp]],\n  ",
-      "CharToFactor = ", DataMuse:::CEP(ModelDataPrep_CharToFactor), ",\n  ",
-      "FactorToChar = ", DataMuse:::CEP(ModelDataPrep_FactorToChar), ",\n  ",
-      "IntToNumeric = ", DataMuse:::CEP(ModelDataPrep_IntToNumeric), ",\n  ",
-      "LogicalToBinary = ", DataMuse:::CEP(ModelDataPrep_LogicalToBinary), ",\n  ",
-      "DateToChar = ", DataMuse:::CEP(ModelDataPrep_DateToChar), ",\n  ",
-      "IDateConversion <- ", DataMuse:::CEP(ModelDataPrep_IDateConversion), ",\n  ",
-      "RemoveDates <- ", DataMuse:::CEP(ModelDataPrep_RemoveDates), ",\n  ",
-      "MissFactor <- ", DataMuse:::CEP(ModelDataPrep_MissFactor), ",\n  ",
-      "MissNum <- ", DataMuse:::CEP(ModelDataPrep_MissNum), ",\n  ",
-      "IgnoreCols <- ", DataMuse:::ExpandText(ModelDataPrep_IgnoreCols), ")\n"))
+      "CharToFactor = ", Quantico:::CEP(ModelDataPrep_CharToFactor), ",\n  ",
+      "FactorToChar = ", Quantico:::CEP(ModelDataPrep_FactorToChar), ",\n  ",
+      "IntToNumeric = ", Quantico:::CEP(ModelDataPrep_IntToNumeric), ",\n  ",
+      "LogicalToBinary = ", Quantico:::CEP(ModelDataPrep_LogicalToBinary), ",\n  ",
+      "DateToChar = ", Quantico:::CEP(ModelDataPrep_DateToChar), ",\n  ",
+      "IDateConversion <- ", Quantico:::CEP(ModelDataPrep_IDateConversion), ",\n  ",
+      "RemoveDates <- ", Quantico:::CEP(ModelDataPrep_RemoveDates), ",\n  ",
+      "MissFactor <- ", Quantico:::CEP(ModelDataPrep_MissFactor), ",\n  ",
+      "MissNum <- ", Quantico:::CEP(ModelDataPrep_MissNum), ",\n  ",
+      "IgnoreCols <- ", Quantico:::ExpandText(ModelDataPrep_IgnoreCols), ")\n"))
 
     # Return
     if(Debug) {print('FE Auto Diff Lag N 2'); print(names(DataList)); print(CodeList)}
-    DataList <- tryCatch({DataMuse:::DM.DataListUpdate(DataList, ModelDataPrep_SelectData)}, error = function(x) DataList)
+    DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, ModelDataPrep_SelectData)}, error = function(x) DataList)
     return(list(
       DataList = DataList,
       CodeList = CodeList
@@ -993,14 +993,14 @@ Shiny.FE.ModelDataPrep <- function(input,output,session,DataList,CodeList,CacheD
 #' @export
 Shiny.FE.PartitionData <- function(input,output,session,DataList,CodeList,TabCount=5L,CacheDir=NULL,CacheName='data',Debug=FALSE) {
   shiny::withProgress(message = 'Data Partitioning has begun..', value = 0, {
-    AutoDataPartition_NumDataSets <- DataMuse:::ReturnParam(xx = tryCatch({input[['AutoDataPartition_NumDataSets']]}, error=function(x) NULL), Type = 'numeric', Default = 3L, Debug = Debug)
-    AutoDataPartition_Ratios_Train <- DataMuse:::ReturnParam(xx = tryCatch({input[['AutoDataPartition_Ratios_Train']]}, error=function(x) NULL), Type = 'numeric', Default = c(0.70), Debug = Debug)
-    AutoDataPartition_Ratios_Validation <- DataMuse:::ReturnParam(xx = tryCatch({input[['AutoDataPartition_Ratios_Validation']]}, error=function(x) NULL), Type = 'numeric', Default = c(0.20), Debug = Debug)
-    AutoDataPartition_Ratios_Test <- DataMuse:::ReturnParam(xx = tryCatch({input[['AutoDataPartition_Ratios_Test']]}, error=function(x) NULL), Type = 'numeric', Default = c(0.10), Debug = Debug)
-    AutoDataPartition_PartitionType <- DataMuse:::ReturnParam(xx = tryCatch({input[['AutoDataPartition_PartitionType']]}, error=function(x) NULL), Type = 'character', Default = "random", Debug = Debug)
-    AutoDataPartition_StratifyColumnNames <- DataMuse:::ReturnParam(xx = tryCatch({input[['AutoDataPartition_StratifyColumnNames']]}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
-    AutoDataPartition_TimeColumnName <- DataMuse:::ReturnParam(xx = tryCatch({input[['AutoDataPartition_TimeColumnName']]}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
-    AutoDataPartition_SelectData <- DataMuse:::ReturnParam(xx = tryCatch({input$AutoDataPartition_SelectData}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
+    AutoDataPartition_NumDataSets <- Quantico:::ReturnParam(xx = tryCatch({input[['AutoDataPartition_NumDataSets']]}, error=function(x) NULL), Type = 'numeric', Default = 3L, Debug = Debug)
+    AutoDataPartition_Ratios_Train <- Quantico:::ReturnParam(xx = tryCatch({input[['AutoDataPartition_Ratios_Train']]}, error=function(x) NULL), Type = 'numeric', Default = c(0.70), Debug = Debug)
+    AutoDataPartition_Ratios_Validation <- Quantico:::ReturnParam(xx = tryCatch({input[['AutoDataPartition_Ratios_Validation']]}, error=function(x) NULL), Type = 'numeric', Default = c(0.20), Debug = Debug)
+    AutoDataPartition_Ratios_Test <- Quantico:::ReturnParam(xx = tryCatch({input[['AutoDataPartition_Ratios_Test']]}, error=function(x) NULL), Type = 'numeric', Default = c(0.10), Debug = Debug)
+    AutoDataPartition_PartitionType <- Quantico:::ReturnParam(xx = tryCatch({input[['AutoDataPartition_PartitionType']]}, error=function(x) NULL), Type = 'character', Default = "random", Debug = Debug)
+    AutoDataPartition_StratifyColumnNames <- Quantico:::ReturnParam(xx = tryCatch({input[['AutoDataPartition_StratifyColumnNames']]}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
+    AutoDataPartition_TimeColumnName <- Quantico:::ReturnParam(xx = tryCatch({input[['AutoDataPartition_TimeColumnName']]}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
+    AutoDataPartition_SelectData <- Quantico:::ReturnParam(xx = tryCatch({input$AutoDataPartition_SelectData}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
 
     if(AutoDataPartition_NumDataSets == 2L) {
       xx <- AutoDataPartition_Ratios_Train + AutoDataPartition_Ratios_Validation < 1 || AutoDataPartition_Ratios_Train + AutoDataPartition_Ratios_Validation > 1
@@ -1024,17 +1024,17 @@ Shiny.FE.PartitionData <- function(input,output,session,DataList,CodeList,TabCou
 
       # Create code
       if(Debug) print('FE Auto Diff Lag N 1')
-      CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+      CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
         "\n",
         "# Data Partition\n",
-        "temp <- ", DataMuse:::CEP(AutoDataPartition_SelectData),"\n",
+        "temp <- ", Quantico:::CEP(AutoDataPartition_SelectData),"\n",
         "DataSets <- Rodeo::AutoDataPartition(\n  ",
         "DataList[[temp]],\n  ",
-        "NumDataSets = ", DataMuse:::CEP(AutoDataPartition_NumDataSets), ",\n  ",
-        "Ratios = ", DataMuse:::ExpandText(c(AutoDataPartition_Ratios_Train, AutoDataPartition_Ratios_Validation, AutoDataPartition_Ratios_Test)), ",\n  ",
-        "PartitionType = ", DataMuse:::CEP(AutoDataPartition_PartitionType), ",\n  ",
-        "StratifyColumnNames = ", DataMuse:::ExpandText(AutoDataPartition_StratifyColumnNames), ",\n  ",
-        "TimeColumnName = ", DataMuse:::CEP(AutoDataPartition_TimeColumnName), ")\n",
+        "NumDataSets = ", Quantico:::CEP(AutoDataPartition_NumDataSets), ",\n  ",
+        "Ratios = ", Quantico:::ExpandText(c(AutoDataPartition_Ratios_Train, AutoDataPartition_Ratios_Validation, AutoDataPartition_Ratios_Test)), ",\n  ",
+        "PartitionType = ", Quantico:::CEP(AutoDataPartition_PartitionType), ",\n  ",
+        "StratifyColumnNames = ", Quantico:::ExpandText(AutoDataPartition_StratifyColumnNames), ",\n  ",
+        "TimeColumnName = ", Quantico:::CEP(AutoDataPartition_TimeColumnName), ")\n",
         "DataList[[paste0(temp, '_TrainData')]] <- DataSets[['TrainData']]\n",
         "DataList[[paste0(temp, '_ValidationData')]] <- DataSets[['ValidationData']]\n",
         "DataList[[paste0(temp, '_TestData')]] <- DataSets[['TestData']]\n",
@@ -1042,14 +1042,14 @@ Shiny.FE.PartitionData <- function(input,output,session,DataList,CodeList,TabCou
 
       # Return
       if(Debug) {print('FE Data Partition 2'); print(names(DataList)); print(CodeList)}
-      DataList <- tryCatch({DataMuse:::DM.DataListUpdate(DataList, paste0(AutoDataPartition_SelectData, '_TrainData'))}, error = function(x) DataList)
-      DataList <- tryCatch({DataMuse:::DM.DataListUpdate(DataList, paste0(AutoDataPartition_SelectData, '_ValidationData'))}, error = function(x) DataList)
-      DataList <- tryCatch({DataMuse:::DM.DataListUpdate(DataList, paste0(AutoDataPartition_SelectData, '_TestData'))}, error = function(x) DataList)
+      DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, paste0(AutoDataPartition_SelectData, '_TrainData'))}, error = function(x) DataList)
+      DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, paste0(AutoDataPartition_SelectData, '_ValidationData'))}, error = function(x) DataList)
+      DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, paste0(AutoDataPartition_SelectData, '_TestData'))}, error = function(x) DataList)
 
       # Add data to DataOutputSelection Page
-      for(i in seq_len(TabCount)) DataMuse::PickerInput(session, input, Update = TRUE, InputID = paste0("EDAData", i), Label = 'Data Selection', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
-      DataMuse::SelectizeInput(session, input, Update = TRUE, InputID = "ScoreML_Data", Label = 'Select Data', Choices = names(DataList))
-      for(i in seq_len(TabCount)) DataMuse::PickerInput(session, input, Update = TRUE, InputID = paste0("DataOutputSelection", i), Label = 'Display Data', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
+      for(i in seq_len(TabCount)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0("EDAData", i), Label = 'Data Selection', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
+      Quantico::SelectizeInput(session, input, Update = TRUE, InputID = "ScoreML_Data", Label = 'Select Data', Choices = names(DataList))
+      for(i in seq_len(TabCount)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0("DataOutputSelection", i), Label = 'Display Data', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
 
       shinyWidgets::sendSweetAlert(session, title = NULL, text = NULL, type = NULL, btn_labels = 'success', btn_colors = NULL, html = FALSE, closeOnClickOutside = TRUE, showCloseButton = TRUE, width = "40%")
       return(list(
@@ -1083,27 +1083,27 @@ Shiny.FE.Word2Vec.H2O <- function(input,output,session,DataList,CodeList,CacheDi
   if(Debug) print('FE Word2Vec H2O 1')
 
   # Data
-  stringCol <- DataMuse:::ReturnParam(xx = tryCatch({input[['Word2Vec_H2O_stringCol']]}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
+  stringCol <- Quantico:::ReturnParam(xx = tryCatch({input[['Word2Vec_H2O_stringCol']]}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
   if(Debug) print(input[['H2O_Word2Vec_TrainData']])
-  temp_train <- DataMuse:::ReturnParam(xx = tryCatch({input[['Word2Vec_H2O_TrainData']]}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
+  temp_train <- Quantico:::ReturnParam(xx = tryCatch({input[['Word2Vec_H2O_TrainData']]}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
   TrainData <- DataList[[temp_train]][['data']]
-  temp_validate <- DataMuse:::ReturnParam(xx = tryCatch({input[['Word2Vec_H2O_ValidationData']]}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
+  temp_validate <- Quantico:::ReturnParam(xx = tryCatch({input[['Word2Vec_H2O_ValidationData']]}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
   if(length(temp_validate) > 0L) ValidationData <- DataList[[temp_validate]][['data']] else ValidationData <- NULL
-  temp_test <- DataMuse:::ReturnParam(xx = tryCatch({input[['Word2Vec_H2O_TestData']]}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
+  temp_test <- Quantico:::ReturnParam(xx = tryCatch({input[['Word2Vec_H2O_TestData']]}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
   if(length(temp_test) > 0L) TestData <- DataList[[temp_test]][['data']] else TestData <- NULL
   if(Debug) print('FE Word2Vec H2O 2')
 
   # Create code
   if(Debug) print('FFE Word2Vec H2O 3')
-  CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+  CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
     "\n",
     "# Word2Vec H2O: Data\n",
-    "stringCol <- ", DataMuse:::ExpandText(stringCol),"\n",
-    "temp_train <- ", DataMuse:::CEP(temp_train),"\n",
+    "stringCol <- ", Quantico:::ExpandText(stringCol),"\n",
+    "temp_train <- ", Quantico:::CEP(temp_train),"\n",
     "TrainData <- DataList[[temp_train]]\n",
-    "temp_validate <- ", DataMuse:::CEP(temp_validate),"\n",
+    "temp_validate <- ", Quantico:::CEP(temp_validate),"\n",
     "if(length(temp_validate) > 0L) ValidationData <- DataList[[temp_validate]] else ValidationData <- NULL\n",
-    "temp_test <- ", DataMuse:::CEP(temp_test),"\n",
+    "temp_test <- ", Quantico:::CEP(temp_test),"\n",
     "if(length(temp_test) > 0L) TestData <- DataList[[temp_test]] else TestData <- NULL\n"))
 
   # Build
@@ -1113,13 +1113,13 @@ Shiny.FE.Word2Vec.H2O <- function(input,output,session,DataList,CodeList,CacheDi
     shiny::withProgress(message = 'Word2Vec H2O has begun..', value = 0, {
 
       # Args
-      BuildType <- DataMuse:::ReturnParam(xx = tryCatch({input[['Word2Vec_H2O_BuildType']]}, error=function(x) NULL), Type = 'character', Default = 'combined', Debug = Debug)
-      KeepStringCol <- DataMuse:::ReturnParam(xx = tryCatch({input[['Word2Vec_H2O_KeepStringCol']]}, error=function(x) NULL), Type = 'logical', Default = TRUE, Debug = Debug)
-      vects <- DataMuse:::ReturnParam(xx = tryCatch({input[['Word2Vec_H2O_vects']]}, error=function(x) NULL), Type = 'numeric', Default = 30, Debug = Debug)
-      H2O_Word2Vec_MinWords <- DataMuse:::ReturnParam(xx = tryCatch({input[['Word2Vec_H2O_MinWords']]}, error=function(x) NULL), Type = 'numeric', Default = 1, Debug = Debug)
-      WindowSize <- DataMuse:::ReturnParam(xx = tryCatch({input[['Word2Vec_H2O_WindowSize']]}, error=function(x) NULL), Type = 'numeric', Default = 5, Debug = Debug)
-      Epochs <- DataMuse:::ReturnParam(xx = tryCatch({input[['Word2Vec_H2O_Epochs']]}, error=function(x) NULL), Type = 'numeric', Default = 10, Debug = Debug)
-      MinWords <- DataMuse:::ReturnParam(xx = tryCatch({input[['Word2Vec_H2O_MinWords']]}, error=function(x) NULL), Type = 'numeric', Default = 2, Debug = Debug)
+      BuildType <- Quantico:::ReturnParam(xx = tryCatch({input[['Word2Vec_H2O_BuildType']]}, error=function(x) NULL), Type = 'character', Default = 'combined', Debug = Debug)
+      KeepStringCol <- Quantico:::ReturnParam(xx = tryCatch({input[['Word2Vec_H2O_KeepStringCol']]}, error=function(x) NULL), Type = 'logical', Default = TRUE, Debug = Debug)
+      vects <- Quantico:::ReturnParam(xx = tryCatch({input[['Word2Vec_H2O_vects']]}, error=function(x) NULL), Type = 'numeric', Default = 30, Debug = Debug)
+      H2O_Word2Vec_MinWords <- Quantico:::ReturnParam(xx = tryCatch({input[['Word2Vec_H2O_MinWords']]}, error=function(x) NULL), Type = 'numeric', Default = 1, Debug = Debug)
+      WindowSize <- Quantico:::ReturnParam(xx = tryCatch({input[['Word2Vec_H2O_WindowSize']]}, error=function(x) NULL), Type = 'numeric', Default = 5, Debug = Debug)
+      Epochs <- Quantico:::ReturnParam(xx = tryCatch({input[['Word2Vec_H2O_Epochs']]}, error=function(x) NULL), Type = 'numeric', Default = 10, Debug = Debug)
+      MinWords <- Quantico:::ReturnParam(xx = tryCatch({input[['Word2Vec_H2O_MinWords']]}, error=function(x) NULL), Type = 'numeric', Default = 2, Debug = Debug)
 
       # Args tracking
       ModelID <- 'temp'
@@ -1129,21 +1129,21 @@ Shiny.FE.Word2Vec.H2O <- function(input,output,session,DataList,CodeList,CacheDi
 
       # Create code
       if(Debug) print('WFE Word2Vec H2O 4')
-      CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+      CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
         "\n",
         "# Word2Vec H2O Args\n",
-        "BuildType <- ", DataMuse:::CEP(BuildType),"\n",
-        "KeepStringCol <- ", DataMuse:::CEP(KeepStringCol),"\n",
-        "vects <- ", DataMuse:::CEP(vects), "\n",
-        "H2O_Word2Vec_MinWords <- ", DataMuse:::CEP(H2O_Word2Vec_MinWords),"\n",
-        "WindowSize <- ", DataMuse:::CEP(WindowSize), "\n",
-        "Epochs <- ", DataMuse:::CEP(Epochs), "\n",
-        "MinWords <- ", DataMuse:::CEP(MinWords), "\n",
-        "ModelID <- ", DataMuse:::CEP(ModelID), "\n",
-        "model_path <- ", DataMuse:::CEP(model_path), "\n",
-        "Threads <- ", DataMuse:::CEP(Threads), "\n",
+        "BuildType <- ", Quantico:::CEP(BuildType),"\n",
+        "KeepStringCol <- ", Quantico:::CEP(KeepStringCol),"\n",
+        "vects <- ", Quantico:::CEP(vects), "\n",
+        "H2O_Word2Vec_MinWords <- ", Quantico:::CEP(H2O_Word2Vec_MinWords),"\n",
+        "WindowSize <- ", Quantico:::CEP(WindowSize), "\n",
+        "Epochs <- ", Quantico:::CEP(Epochs), "\n",
+        "MinWords <- ", Quantico:::CEP(MinWords), "\n",
+        "ModelID <- ", Quantico:::CEP(ModelID), "\n",
+        "model_path <- ", Quantico:::CEP(model_path), "\n",
+        "Threads <- ", Quantico:::CEP(Threads), "\n",
         "gc()\n",
-        "MaxMemory <- ", DataMuse:::CEP(MaxMem), "\n"))
+        "MaxMemory <- ", Quantico:::CEP(MaxMem), "\n"))
 
       # Run function
       if(Debug) print('FE Word2Vec H2O 3')
@@ -1153,7 +1153,7 @@ Shiny.FE.Word2Vec.H2O <- function(input,output,session,DataList,CodeList,CacheDi
       tempnames <- names(TrainData)
 
       # Code
-      CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+      CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
         "\n",
         "# Word2Vec H2O MetaData\n",
         "Start <- Sys.time()\n",
@@ -1176,7 +1176,7 @@ Shiny.FE.Word2Vec.H2O <- function(input,output,session,DataList,CodeList,CacheDi
         MaxMemory = MaxMemory)
 
       # Code
-      CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+      CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
         "\n",
         "# Word2Vec H2O Generate\n",
         "TrainData <- Rodeo::AutoWord2VecModeler(\n  ",
@@ -1198,7 +1198,7 @@ Shiny.FE.Word2Vec.H2O <- function(input,output,session,DataList,CodeList,CacheDi
       shiny::incProgress(1/3, detail = 'Train Data is complete. Validation Data is next up')
 
       # Code
-      CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+      CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
         "\n",
         "# Update DataList\n",
         "DataList[[temp_train]] <- TrainData; rm(TrainData); gc()\n"))
@@ -1208,7 +1208,7 @@ Shiny.FE.Word2Vec.H2O <- function(input,output,session,DataList,CodeList,CacheDi
       H2OWord2Vec_Training <- difftime(End, Start, units = "mins")
 
       # Code
-      CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+      CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
         "\n",
         "# Word2Vec H2O Generate\n",
         "End <- Sys.time()\n",
@@ -1232,7 +1232,7 @@ Shiny.FE.Word2Vec.H2O <- function(input,output,session,DataList,CodeList,CacheDi
         shiny::incProgress(2/3, detail = 'Validation Data is complete. Test Data is next up')
 
         # Code
-        CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+        CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
           "\n",
           "# Score validation data\n",
           "if(!is.null(ValidationData)) {\n  ",
@@ -1273,7 +1273,7 @@ Shiny.FE.Word2Vec.H2O <- function(input,output,session,DataList,CodeList,CacheDi
         shiny::incProgress(3/3, detail = 'Test Data is complete')
 
         # Code
-        CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+        CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
           "\n",
           "# Score test data\n",
           "if(!is.null(ValidationData)) {\n  ",
@@ -1298,9 +1298,9 @@ Shiny.FE.Word2Vec.H2O <- function(input,output,session,DataList,CodeList,CacheDi
 
       # Update meta
       if(Debug) {print('FE Word2Vec_H2O 5'); print(names(DataList)); print(CodeList)}
-      DataList <- tryCatch({DataMuse:::DM.DataListUpdate(DataList, temp_train)}, error = function(x) DataList)
-      DataList <- tryCatch({DataMuse:::DM.DataListUpdate(DataList, temp_validate)}, error = function(x) DataList)
-      DataList <- tryCatch({DataMuse:::DM.DataListUpdate(DataList, temp_test)}, error = function(x) DataList)
+      DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, temp_train)}, error = function(x) DataList)
+      DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, temp_validate)}, error = function(x) DataList)
+      DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, temp_test)}, error = function(x) DataList)
       return(list(
         DataList = DataList,
         CodeList = CodeList
@@ -1334,33 +1334,33 @@ Shiny.FE.DimReduction.AutoEncoder.H2O <- function(input,output,session,DataList,
   if(!exists('ArgsList')) ArgsList <- list()
 
   # Features
-  Features <- DataMuse:::ReturnParam(xx = tryCatch({input$AutoEncoder_H2O_Features}, error = function(x) NULL), Type = 'character', Default = NULL)
+  Features <- Quantico:::ReturnParam(xx = tryCatch({input$AutoEncoder_H2O_Features}, error = function(x) NULL), Type = 'character', Default = NULL)
 
   # Data
   if(Debug) print(input[['AutoEncoder_H2O_TrainData']])
-  temp_train <- DataMuse:::ReturnParam(xx = tryCatch({input[['AutoEncoder_H2O_TrainData']]}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
+  temp_train <- Quantico:::ReturnParam(xx = tryCatch({input[['AutoEncoder_H2O_TrainData']]}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
   TrainData <- DataList[[temp_train]][['data']]
 
   # ValidationData
-  temp_validate <- DataMuse:::ReturnParam(xx = tryCatch({input[['AutoEncoder_H2O_ValidationData']]}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
+  temp_validate <- Quantico:::ReturnParam(xx = tryCatch({input[['AutoEncoder_H2O_ValidationData']]}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
   if(length(temp_validate) > 0L) ValidationData <- DataList[[temp_validate]][['data']] else ValidationData <- NULL
 
   # TestData
-  temp_test <- DataMuse:::ReturnParam(xx = tryCatch({input[['AutoEncoder_H2O_TestData']]}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
+  temp_test <- Quantico:::ReturnParam(xx = tryCatch({input[['AutoEncoder_H2O_TestData']]}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
   if(length(temp_test) > 0L) TestData <- DataList[[temp_test]][['data']] else TestData <- NULL
 
 
   # Create code
   if(Debug) print('FFE Word2Vec H2O 3')
-  CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+  CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
     "\n",
     "# FE AutoEncoder H2O: Data\n",
-    "Features <- ", DataMuse:::ExpandText(Features),"\n",
-    "temp_train <- ", DataMuse:::CEP(temp_train),"\n",
+    "Features <- ", Quantico:::ExpandText(Features),"\n",
+    "temp_train <- ", Quantico:::CEP(temp_train),"\n",
     "TrainData <- DataList[[temp_train]]\n",
-    "temp_validate <- ", DataMuse:::CEP(temp_validate),"\n",
+    "temp_validate <- ", Quantico:::CEP(temp_validate),"\n",
     "if(length(temp_validate) > 0L) ValidationData <- DataList[[temp_validate]] else ValidationData <- NULL\n",
-    "temp_test <- ", DataMuse:::CEP(temp_test),"\n",
+    "temp_test <- ", Quantico:::CEP(temp_test),"\n",
     "if(length(temp_test) > 0L) TestData <- DataList[[temp_test]] else TestData <- NULL\n"))
 
 
@@ -1373,18 +1373,18 @@ Shiny.FE.DimReduction.AutoEncoder.H2O <- function(input,output,session,DataList,
       if(Debug) print('FE AutoEncoder H2O 2')
 
       # Non-Data Args
-      AnomalyDetection <- DataMuse:::ReturnParam(xx = tryCatch({input$AutoEncoder_H2O_AnomalyDetection}, error = function(x) NULL), Type = 'logical', Default = FALSE)
+      AnomalyDetection <- Quantico:::ReturnParam(xx = tryCatch({input$AutoEncoder_H2O_AnomalyDetection}, error = function(x) NULL), Type = 'logical', Default = FALSE)
       DimensionReduction <- TRUE
-      per_feature <- DataMuse:::ReturnParam(xx = tryCatch({input$AutoEncoder_H2O_per_feature}, error = function(x) NULL), Type = 'logical', Default = FALSE)
-      RemoveFeatures <- DataMuse:::ReturnParam(xx = tryCatch({input$AutoEncoder_H2O_RemoveFeatures}, error = function(x) NULL), Type = 'logical', Default = FALSE)
-      LayerStructure <- DataMuse:::ReturnParam(xx = tryCatch({input$AutoEncoder_H2O_LayerStructure}, error = function(x) NULL), Type = 'numeric', Default = 2L)
-      NodeShrinkRate <- DataMuse:::ReturnParam(xx = tryCatch({input$AutoEncoder_H2O_NodeShrinkRate}, error = function(x) NULL), Type = 'numeric', Default = sqrt(5)/2-0.5)
-      ReturnLayer <- DataMuse:::ReturnParam(xx = tryCatch({input$AutoEncoder_H2O_ReturnLayer}, error = function(x) NULL), Type = 'numeric', Default = 2L)
-      Epochs <- DataMuse:::ReturnParam(xx = tryCatch({input$AutoEncoder_H2O_Epochs}, error = function(x) NULL), Type = 'numeric', Default = NULL)
-      L2 <- DataMuse:::ReturnParam(xx = tryCatch({input$AutoEncoder_H2O_L2}, error = function(x) NULL), Type = 'numeric', Default = NULL)
-      ElasticAveraging <- DataMuse:::ReturnParam(xx = tryCatch({input$AutoEncoder_H2O_ElasticAveraging}, error = function(x) NULL), Type = 'logical', Default = NULL)
-      ElasticAveragingMovingRate <- DataMuse:::ReturnParam(xx = tryCatch({input$AutoEncoder_H2O_ElasticAveragingMovingRate}, error = function(x) NULL), Type = 'numeric', Default = NULL)
-      ElasticAveragingRegularization <- DataMuse:::ReturnParam(xx = tryCatch({input$AutoEncoder_H2O_ElasticAveragingRegularization}, error = function(x) NULL), Type = 'numeric', Default = NULL)
+      per_feature <- Quantico:::ReturnParam(xx = tryCatch({input$AutoEncoder_H2O_per_feature}, error = function(x) NULL), Type = 'logical', Default = FALSE)
+      RemoveFeatures <- Quantico:::ReturnParam(xx = tryCatch({input$AutoEncoder_H2O_RemoveFeatures}, error = function(x) NULL), Type = 'logical', Default = FALSE)
+      LayerStructure <- Quantico:::ReturnParam(xx = tryCatch({input$AutoEncoder_H2O_LayerStructure}, error = function(x) NULL), Type = 'numeric', Default = 2L)
+      NodeShrinkRate <- Quantico:::ReturnParam(xx = tryCatch({input$AutoEncoder_H2O_NodeShrinkRate}, error = function(x) NULL), Type = 'numeric', Default = sqrt(5)/2-0.5)
+      ReturnLayer <- Quantico:::ReturnParam(xx = tryCatch({input$AutoEncoder_H2O_ReturnLayer}, error = function(x) NULL), Type = 'numeric', Default = 2L)
+      Epochs <- Quantico:::ReturnParam(xx = tryCatch({input$AutoEncoder_H2O_Epochs}, error = function(x) NULL), Type = 'numeric', Default = NULL)
+      L2 <- Quantico:::ReturnParam(xx = tryCatch({input$AutoEncoder_H2O_L2}, error = function(x) NULL), Type = 'numeric', Default = NULL)
+      ElasticAveraging <- Quantico:::ReturnParam(xx = tryCatch({input$AutoEncoder_H2O_ElasticAveraging}, error = function(x) NULL), Type = 'logical', Default = NULL)
+      ElasticAveragingMovingRate <- Quantico:::ReturnParam(xx = tryCatch({input$AutoEncoder_H2O_ElasticAveragingMovingRate}, error = function(x) NULL), Type = 'numeric', Default = NULL)
+      ElasticAveragingRegularization <- Quantico:::ReturnParam(xx = tryCatch({input$AutoEncoder_H2O_ElasticAveragingRegularization}, error = function(x) NULL), Type = 'numeric', Default = NULL)
 
       # Create Layer Structure
       LS <- c()
@@ -1400,25 +1400,25 @@ Shiny.FE.DimReduction.AutoEncoder.H2O <- function(input,output,session,DataList,
 
       # Create code
       if(Debug) print('FE AutoEncoder H2O 3')
-      CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+      CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
         "\n",
         "# AutoEncoder H2O Args\n",
-        "AnomalyDetection <- ", DataMuse:::CEPP(AnomalyDetection),"\n",
-        "DimensionReduction <- ", DataMuse:::CEPP(DimensionReduction),"\n",
-        "per_feature <- ", DataMuse:::CEPP(per_feature), "\n",
-        "RemoveFeatures <- ", DataMuse:::CEPP(RemoveFeatures),"\n",
-        "LayerStructure <- ", DataMuse:::ExpandText(LayerStructure), "\n",
-        "NodeShrinkRate <- ", DataMuse:::CEPP(NodeShrinkRate), "\n",
-        "Epochs <- ", DataMuse:::CEPP(Epochs), "\n",
-        "L2 <- ", DataMuse:::CEPP(L2), "\n",
-        "ElasticAveraging <- ", DataMuse:::CEPP(ElasticAveraging), "\n",
-        "ElasticAveragingMovingRate <- ", DataMuse:::CEPP(ElasticAveragingMovingRate), "\n",
-        "ElasticAveragingRegularization <- ", DataMuse:::CEPP(ElasticAveragingRegularization), "\n",
-        "ModelID <- ", DataMuse:::CEP(ModelID), "\n",
-        "Models_Path <- ", DataMuse:::CEP(Models_Path), "\n",
-        "NThreads <- ", DataMuse:::CEP(NThreads), "\n",
+        "AnomalyDetection <- ", Quantico:::CEPP(AnomalyDetection),"\n",
+        "DimensionReduction <- ", Quantico:::CEPP(DimensionReduction),"\n",
+        "per_feature <- ", Quantico:::CEPP(per_feature), "\n",
+        "RemoveFeatures <- ", Quantico:::CEPP(RemoveFeatures),"\n",
+        "LayerStructure <- ", Quantico:::ExpandText(LayerStructure), "\n",
+        "NodeShrinkRate <- ", Quantico:::CEPP(NodeShrinkRate), "\n",
+        "Epochs <- ", Quantico:::CEPP(Epochs), "\n",
+        "L2 <- ", Quantico:::CEPP(L2), "\n",
+        "ElasticAveraging <- ", Quantico:::CEPP(ElasticAveraging), "\n",
+        "ElasticAveragingMovingRate <- ", Quantico:::CEPP(ElasticAveragingMovingRate), "\n",
+        "ElasticAveragingRegularization <- ", Quantico:::CEPP(ElasticAveragingRegularization), "\n",
+        "ModelID <- ", Quantico:::CEP(ModelID), "\n",
+        "Models_Path <- ", Quantico:::CEP(Models_Path), "\n",
+        "NThreads <- ", Quantico:::CEP(NThreads), "\n",
         "gc()\n",
-        "MaxMem <- ", DataMuse:::CEP(MaxMem), "\n"))
+        "MaxMem <- ", Quantico:::CEP(MaxMem), "\n"))
 
       # Run function
       if(Debug) print('FE AutoEncoder H2O 3')
@@ -1427,7 +1427,7 @@ Shiny.FE.DimReduction.AutoEncoder.H2O <- function(input,output,session,DataList,
       if(length(TestData) > 0L) TestData <- Rodeo::ModelDataPrep(data=TestData, Impute=TRUE, CharToFactor=TRUE, FactorToChar=FALSE, IntToNumeric=TRUE, LogicalToBinary=TRUE, DateToChar=TRUE, IDateConversion=FALSE, RemoveDates=FALSE, MissFactor='missing', MissNum=-1, IgnoreCols=NULL)
 
       # Code
-      CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+      CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
         "\n",
         "# TrainData: Convert character columns to factors\n",
         "TrainData <- Rodeo::ModelDataPrep(\n  ",
@@ -1446,7 +1446,7 @@ Shiny.FE.DimReduction.AutoEncoder.H2O <- function(input,output,session,DataList,
 
       # Code
       if(length(ValidationData) > 0L) {
-        CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+        CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
           "\n",
           "# ValidationData: Convert character columns to factors\n",
           "if(length(ValidationData) > 0L) {\n  ",
@@ -1468,7 +1468,7 @@ Shiny.FE.DimReduction.AutoEncoder.H2O <- function(input,output,session,DataList,
 
       # Code
       if(length(TestData) > 0L) {
-        CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+        CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
           "\n",
           "# TestData: Convert character columns to factors\n",
           "if(length(TestData) > 0L) {\n  ",
@@ -1495,7 +1495,7 @@ Shiny.FE.DimReduction.AutoEncoder.H2O <- function(input,output,session,DataList,
       if(!exists('Models_Path') || length(Models_Path) == 0L) Models_Path <- getwd()
 
       # Code
-      CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+      CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
         "\n",
         "# Metadata Args\n",
         "if(length(ModelID) == 0L) ModelID <- 'temp1'\n",
@@ -1508,7 +1508,7 @@ Shiny.FE.DimReduction.AutoEncoder.H2O <- function(input,output,session,DataList,
       tempnames <- names(data.table::copy(TrainData))
 
       # Code
-      CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+      CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
         "\n",
         "# Metadata\n",
         "Start <- Sys.time()\n",
@@ -1548,7 +1548,7 @@ Shiny.FE.DimReduction.AutoEncoder.H2O <- function(input,output,session,DataList,
         ElasticAveragingRegularization = ElasticAveragingRegularization)
 
       # Code
-      CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+      CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
         "\n",
         "# Run function\n",
         "TrainData <- Rodeo::H2OAutoencoder(\n\n  ",
@@ -1599,7 +1599,7 @@ Shiny.FE.DimReduction.AutoEncoder.H2O <- function(input,output,session,DataList,
       if(Debug) print('AE ::: 5')
 
       # Code
-      CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+      CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
         "\n",
         "# Store Data\n",
         "DataList[[temp_train]] <- TrainData\n",
@@ -1643,7 +1643,7 @@ Shiny.FE.DimReduction.AutoEncoder.H2O <- function(input,output,session,DataList,
         rm(ValidationData); gc()
 
         # Code
-        CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+        CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
           "\n",
           "# Score Validation Data\n",
           "if(length(ValidationData) > 0L) {\n  ",
@@ -1713,7 +1713,7 @@ Shiny.FE.DimReduction.AutoEncoder.H2O <- function(input,output,session,DataList,
         rm(TestData); gc()
 
         # Code
-        CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+        CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
           "\n",
           "# Score Test Data\n",
           "if(length(TestData) > 0L) {\n  ",
@@ -1752,9 +1752,9 @@ Shiny.FE.DimReduction.AutoEncoder.H2O <- function(input,output,session,DataList,
 
     # Return
     if(Debug) {print('FE Word2Vec_H2O 5'); print(names(DataList)); print(CodeList)}
-    DataList <- tryCatch({DataMuse:::DM.DataListUpdate(DataList, temp_train)}, error = function(x) DataList)
-    DataList <- tryCatch({DataMuse:::DM.DataListUpdate(DataList, temp_validate)}, error = function(x) DataList)
-    DataList <- tryCatch({DataMuse:::DM.DataListUpdate(DataList, temp_test)}, error = function(x) DataList)
+    DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, temp_train)}, error = function(x) DataList)
+    DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, temp_validate)}, error = function(x) DataList)
+    DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, temp_test)}, error = function(x) DataList)
     return(list(
       DataList = DataList,
       CodeList = CodeList
@@ -1787,28 +1787,28 @@ Shiny.FE.AnomalyDetection.IsolationForest.H2O <- function(input,output,session,D
   if(!exists('ArgsList')) ArgsList <- list()
 
   # Features
-  Features <- DataMuse:::ReturnParam(xx = tryCatch({input$IsolationForest_H2O_Features}, error = function(x) NULL), Type = 'character', Default = NULL)
+  Features <- Quantico:::ReturnParam(xx = tryCatch({input$IsolationForest_H2O_Features}, error = function(x) NULL), Type = 'character', Default = NULL)
 
   # Data
   if(Debug) print(input[['IsolationForest_H2O_TrainData']])
-  temp_train <- DataMuse:::ReturnParam(xx = tryCatch({input[['IsolationForest_H2O_TrainData']]}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
+  temp_train <- Quantico:::ReturnParam(xx = tryCatch({input[['IsolationForest_H2O_TrainData']]}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
 
   # ValidationData
-  temp_validate <- DataMuse:::ReturnParam(xx = tryCatch({input[['IsolationForest_H2O_ValidationData']]}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
+  temp_validate <- Quantico:::ReturnParam(xx = tryCatch({input[['IsolationForest_H2O_ValidationData']]}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
 
   # TestData
-  temp_test <- DataMuse:::ReturnParam(xx = tryCatch({input[['IsolationForest_H2O_TestData']]}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
+  temp_test <- Quantico:::ReturnParam(xx = tryCatch({input[['IsolationForest_H2O_TestData']]}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
 
 
   # Create code
   if(Debug) print('FE IsolationForest H2O 3')
-  CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+  CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
     "\n",
     "# FE IsolationForest H2O: Data\n",
-    "Features <- ", DataMuse:::ExpandText(Features),"\n",
-    "temp_train <- ", DataMuse:::CEP(temp_train),"\n",
-    "temp_validate <- ", DataMuse:::CEP(temp_validate),"\n",
-    "temp_test <- ", DataMuse:::CEP(temp_test),"\n"))
+    "Features <- ", Quantico:::ExpandText(Features),"\n",
+    "temp_train <- ", Quantico:::CEP(temp_train),"\n",
+    "temp_validate <- ", Quantico:::CEP(temp_validate),"\n",
+    "temp_test <- ", Quantico:::CEP(temp_test),"\n"))
 
   # Build
   if(length(Features) > 0L && length(temp_train) > 0L) {
@@ -1818,14 +1818,14 @@ Shiny.FE.AnomalyDetection.IsolationForest.H2O <- function(input,output,session,D
 
       if(Debug) print('FE IsolationForest H2O 2')
       IDcols <- setdiff(names(DataList[[temp_train]][['data']]), Features)
-      Threshold <- DataMuse:::ReturnParam(xx = tryCatch({input$IsolationForest_H2O_Threshold}, error = function(x) NULL), Type = 'numeric', Default = 0.95)
-      NTrees <- DataMuse:::ReturnParam(xx = tryCatch({input$IsolationForest_H2O_NTrees}, error = function(x) NULL), Type = 'numeric', Default = 50)
-      MaxDepth <- DataMuse:::ReturnParam(xx = tryCatch({input$IsolationForest_H2O_MaxDepth}, error = function(x) NULL), Type = 'numeric', Default = 20)
-      MinRows <- DataMuse:::ReturnParam(xx = tryCatch({input$IsolationForest_H2O_MinRows}, error = function(x) NULL), Type = 'numeric', Default = 1)
-      RowSampleRate <- DataMuse:::ReturnParam(xx = tryCatch({input$IsolationForest_H2O_RowSampleRate}, error = function(x) NULL), Type = 'numeric', Default = 1)
-      ColSampleRate <- DataMuse:::ReturnParam(xx = tryCatch({input$IsolationForest_H2O_ColSampleRate}, error = function(x) NULL), Type = 'numeric', Default = 1)
-      ColSampleRatePerLevel <- DataMuse:::ReturnParam(xx = tryCatch({input$IsolationForest_H2O_ColSampleRatePerLevel}, error = function(x) NULL), Type = 'numeric', Default = 1)
-      ColSampleRatePerTree <- DataMuse:::ReturnParam(xx = tryCatch({input$IsolationForest_H2O_ColSampleRatePerTree}, error = function(x) NULL), Type = 'numeric', Default = 1)
+      Threshold <- Quantico:::ReturnParam(xx = tryCatch({input$IsolationForest_H2O_Threshold}, error = function(x) NULL), Type = 'numeric', Default = 0.95)
+      NTrees <- Quantico:::ReturnParam(xx = tryCatch({input$IsolationForest_H2O_NTrees}, error = function(x) NULL), Type = 'numeric', Default = 50)
+      MaxDepth <- Quantico:::ReturnParam(xx = tryCatch({input$IsolationForest_H2O_MaxDepth}, error = function(x) NULL), Type = 'numeric', Default = 20)
+      MinRows <- Quantico:::ReturnParam(xx = tryCatch({input$IsolationForest_H2O_MinRows}, error = function(x) NULL), Type = 'numeric', Default = 1)
+      RowSampleRate <- Quantico:::ReturnParam(xx = tryCatch({input$IsolationForest_H2O_RowSampleRate}, error = function(x) NULL), Type = 'numeric', Default = 1)
+      ColSampleRate <- Quantico:::ReturnParam(xx = tryCatch({input$IsolationForest_H2O_ColSampleRate}, error = function(x) NULL), Type = 'numeric', Default = 1)
+      ColSampleRatePerLevel <- Quantico:::ReturnParam(xx = tryCatch({input$IsolationForest_H2O_ColSampleRatePerLevel}, error = function(x) NULL), Type = 'numeric', Default = 1)
+      ColSampleRatePerTree <- Quantico:::ReturnParam(xx = tryCatch({input$IsolationForest_H2O_ColSampleRatePerTree}, error = function(x) NULL), Type = 'numeric', Default = 1)
       CategoricalEncoding <- 'AUTO'
 
       # Args tracking
@@ -1836,23 +1836,23 @@ Shiny.FE.AnomalyDetection.IsolationForest.H2O <- function(input,output,session,D
 
       # Create code
       if(Debug) print('FE IsolationForest H2O 3')
-      CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+      CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
         "\n",
         "# IsolationForest H2O Args\n",
-        "IDcols <- ", DataMuse:::CEP(IDcols),"\n",
-        "ModelID <- ", DataMuse:::CEP(ModelID),"\n",
-        "Threshold <- ", DataMuse:::CEP(Threshold), "\n",
-        "NTrees <- ", DataMuse:::CEP(NTrees),"\n",
-        "MaxDepth <- ", DataMuse:::CEP(MaxDepth), "\n",
-        "MinRows <- ", DataMuse:::CEP(MinRows), "\n",
-        "RowSampleRate <- ", DataMuse:::CEP(RowSampleRate), "\n",
-        "ColSampleRate <- ", DataMuse:::CEP(ColSampleRate), "\n",
-        "ColSampleRatePerLevel <- ", DataMuse:::CEP(ColSampleRatePerLevel), "\n",
-        "ColSampleRatePerTree <- ", DataMuse:::CEP(ColSampleRatePerTree), "\n",
-        "CategoricalEncoding <- ", DataMuse:::CEP(CategoricalEncoding), "\n",
-        "NThreads <- ", DataMuse:::CEP(NThreads), "\n",
+        "IDcols <- ", Quantico:::CEP(IDcols),"\n",
+        "ModelID <- ", Quantico:::CEP(ModelID),"\n",
+        "Threshold <- ", Quantico:::CEP(Threshold), "\n",
+        "NTrees <- ", Quantico:::CEP(NTrees),"\n",
+        "MaxDepth <- ", Quantico:::CEP(MaxDepth), "\n",
+        "MinRows <- ", Quantico:::CEP(MinRows), "\n",
+        "RowSampleRate <- ", Quantico:::CEP(RowSampleRate), "\n",
+        "ColSampleRate <- ", Quantico:::CEP(ColSampleRate), "\n",
+        "ColSampleRatePerLevel <- ", Quantico:::CEP(ColSampleRatePerLevel), "\n",
+        "ColSampleRatePerTree <- ", Quantico:::CEP(ColSampleRatePerTree), "\n",
+        "CategoricalEncoding <- ", Quantico:::CEP(CategoricalEncoding), "\n",
+        "NThreads <- ", Quantico:::CEP(NThreads), "\n",
         "gc()\n",
-        "MaxMem <- ", DataMuse:::CEP(MaxMem), "\n"))
+        "MaxMem <- ", Quantico:::CEP(MaxMem), "\n"))
 
       # Run function
       if(Debug) print('FE IsolationForest H2O 3')
@@ -1861,7 +1861,7 @@ Shiny.FE.AnomalyDetection.IsolationForest.H2O <- function(input,output,session,D
       if(length(temp_test) > 0L) DataList[[temp_test]][['data']] <- Rodeo::ModelDataPrep(data=DataList[[temp_test]][['data']], Impute=TRUE, CharToFactor=TRUE, FactorToChar=FALSE, IntToNumeric=TRUE, LogicalToBinary=TRUE, DateToChar=TRUE, IDateConversion=FALSE, RemoveDates=FALSE, MissFactor='missing', MissNum=-1, IgnoreCols=NULL)
 
       # Code
-      CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+      CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
         "\n",
         "# DataList[[temp_train]]: Convert character columns to factors\n",
         "DataList[[temp_train]] <- Rodeo::ModelDataPrep(\n  ",
@@ -1879,7 +1879,7 @@ Shiny.FE.AnomalyDetection.IsolationForest.H2O <- function(input,output,session,D
         "IgnoreCols=NULL)\n"))
 
       # Code
-      CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+      CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
         "\n",
         "# DataList[[temp_validate]]: Convert character columns to factors\n",
         "if(length(temp_validate) > 0L && length(DataList[[temp_validate]]) > 0L) {\n  ",
@@ -1899,7 +1899,7 @@ Shiny.FE.AnomalyDetection.IsolationForest.H2O <- function(input,output,session,D
         "}\n"))
 
       # Code
-      CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+      CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
         "\n",
         "# DataList[[temp_test]]: Convert character columns to factors\n",
         "if(length(temp_test) > 0L && length(DataList[[temp_test]]) > 0L) {\n  ",
@@ -1941,7 +1941,7 @@ Shiny.FE.AnomalyDetection.IsolationForest.H2O <- function(input,output,session,D
         Debug = Debug)
 
       # Code
-      CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+      CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
         "\n",
         "# DataList[[temp_train]]: Convert character columns to factors\n",
         "if(length(DataList[[temp_train]]) > 0L) {\n  ",
@@ -1991,7 +1991,7 @@ Shiny.FE.AnomalyDetection.IsolationForest.H2O <- function(input,output,session,D
           Debug = Debug)
 
         # Code
-        CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+        CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
           "\n",
           "# Score test data\n",
           "if(length(temp_validate) > 0L && length(DataList[[temp_validate]]) > 0L) {\n  ",
@@ -2033,7 +2033,7 @@ Shiny.FE.AnomalyDetection.IsolationForest.H2O <- function(input,output,session,D
           Debug = Debug)
 
         # Code
-        CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+        CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
           "\n",
           "# Score test data\n",
           "if(length(temp_test) > 0L && length(DataList[[temp_test]]) > 0L) {\n  ",
@@ -2054,9 +2054,9 @@ Shiny.FE.AnomalyDetection.IsolationForest.H2O <- function(input,output,session,D
 
     # Return
     if(Debug) {print('FE IsolationForest H2O 6'); print(names(DataList)); print(CodeList)}
-    DataList <- tryCatch({DataMuse:::DM.DataListUpdate(DataList, temp_train)}, error = function(x) DataList)
-    DataList <- tryCatch({DataMuse:::DM.DataListUpdate(DataList, temp_validate)}, error = function(x) DataList)
-    DataList <- tryCatch({DataMuse:::DM.DataListUpdate(DataList, temp_test)}, error = function(x) DataList)
+    DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, temp_train)}, error = function(x) DataList)
+    DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, temp_validate)}, error = function(x) DataList)
+    DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, temp_test)}, error = function(x) DataList)
     return(list(
       DataList = DataList,
       CodeList = CodeList
@@ -2084,17 +2084,17 @@ Shiny.FE.AnomalyDetection.IsolationForest.H2O <- function(input,output,session,D
 Shiny.FE.Clustering.Kmeans.H2O <- function(input,output,session,DataList,CodeList,CacheDir=NULL,CacheName='data',Debug=FALSE) {
 
   # Features
-  Features <- DataMuse:::ReturnParam(xx = tryCatch({input[['Kmeans_H2O_Features']]}, error = function(x) NULL), Type = 'character', Default = NULL)
+  Features <- Quantico:::ReturnParam(xx = tryCatch({input[['Kmeans_H2O_Features']]}, error = function(x) NULL), Type = 'character', Default = NULL)
 
   # Data
   if(Debug) print(input[['Kmeans_H2O_TrainData']])
-  temp_train <- DataMuse:::ReturnParam(xx = tryCatch({input[['Kmeans_H2O_TrainData']]}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
+  temp_train <- Quantico:::ReturnParam(xx = tryCatch({input[['Kmeans_H2O_TrainData']]}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
 
   # ValidationData
-  temp_validate <- DataMuse:::ReturnParam(xx = tryCatch({input[['Kmeans_H2O_ValidationData']]}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
+  temp_validate <- Quantico:::ReturnParam(xx = tryCatch({input[['Kmeans_H2O_ValidationData']]}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
 
   # TestData
-  temp_test <- DataMuse:::ReturnParam(xx = tryCatch({input[['Kmeans_H2O_TestData']]}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
+  temp_test <- Quantico:::ReturnParam(xx = tryCatch({input[['Kmeans_H2O_TestData']]}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
 
   # Create code
   if(Debug) {
@@ -2102,13 +2102,13 @@ Shiny.FE.Clustering.Kmeans.H2O <- function(input,output,session,DataList,CodeLis
     print(temp_train)
     print(Features)
   }
-  CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+  CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
     "\n",
     "# FE Kmeans H2O: Data\n",
-    "Features <- ", DataMuse:::ExpandText(Features),"\n",
-    "temp_train <- ", DataMuse:::CEP(temp_train),"\n",
-    "temp_validate <- ", DataMuse:::CEP(temp_validate),"\n",
-    "temp_test <- ", DataMuse:::CEP(temp_test),"\n"))
+    "Features <- ", Quantico:::ExpandText(Features),"\n",
+    "temp_train <- ", Quantico:::CEP(temp_train),"\n",
+    "temp_validate <- ", Quantico:::CEP(temp_validate),"\n",
+    "temp_test <- ", Quantico:::CEP(temp_test),"\n"))
 
   if(Debug) print('FE Kmeans H2O 4')
 
@@ -2122,8 +2122,8 @@ Shiny.FE.Clustering.Kmeans.H2O <- function(input,output,session,DataList,CodeLis
 
       if(Debug) print('FE Kmeans H2O 6')
 
-      MaxClusters <- DataMuse:::ReturnParam(xx = tryCatch({input[['Kmeans_H2O_MaxClusters']]}, error = function(x) NULL), Type = 'numeric', Default = 50)
-      ClusterMetric <- DataMuse:::ReturnParam(xx = tryCatch({input[['Kmeans_H2O_ClusterMetric']]}, error = function(x) NULL), Type = 'character', Default = 0.95)
+      MaxClusters <- Quantico:::ReturnParam(xx = tryCatch({input[['Kmeans_H2O_MaxClusters']]}, error = function(x) NULL), Type = 'numeric', Default = 50)
+      ClusterMetric <- Quantico:::ReturnParam(xx = tryCatch({input[['Kmeans_H2O_ClusterMetric']]}, error = function(x) NULL), Type = 'character', Default = 0.95)
 
       if(Debug) print('FE Kmeans H2O 7')
 
@@ -2137,15 +2137,15 @@ Shiny.FE.Clustering.Kmeans.H2O <- function(input,output,session,DataList,CodeLis
 
       # Create code
       if(Debug) print('FE Kmeans H2O 3')
-      CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+      CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
         "\n",
         "# Kmeans H2O Args\n",
-        "ModelID <- ", DataMuse:::CEP(ModelID),"\n",
-        "NThreads <- ", DataMuse:::CEP(NThreads), "\n",
-        "MaxClusters <- ", DataMuse:::CEP(MaxClusters), "\n",
-        "ClusterMetric <- ", DataMuse:::CEP(ClusterMetric), "\n",
+        "ModelID <- ", Quantico:::CEP(ModelID),"\n",
+        "NThreads <- ", Quantico:::CEP(NThreads), "\n",
+        "MaxClusters <- ", Quantico:::CEP(MaxClusters), "\n",
+        "ClusterMetric <- ", Quantico:::CEP(ClusterMetric), "\n",
         "gc()\n",
-        "MaxMem <- ", DataMuse:::CEP(MaxMem), "\n"))
+        "MaxMem <- ", Quantico:::CEP(MaxMem), "\n"))
 
       # Run function
       if(Debug) print('FE Kmeans H2O 9')
@@ -2156,7 +2156,7 @@ Shiny.FE.Clustering.Kmeans.H2O <- function(input,output,session,DataList,CodeLis
       if(Debug) print('FE Kmeans H2O 10')
 
       # Code
-      CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+      CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
         "\n",
         "# DataList[[temp_train]]: Convert character columns to factors\n",
         "DataList[[temp_train]] <- Rodeo::ModelDataPrep(\n  ",
@@ -2176,7 +2176,7 @@ Shiny.FE.Clustering.Kmeans.H2O <- function(input,output,session,DataList,CodeLis
       if(Debug) print('FE Kmeans H2O 11')
 
       # Code
-      CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+      CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
         "\n",
         "# DataList[[temp_validate]]: Convert character columns to factors\n",
         "if(length(temp_validate) > 0L && length(DataList[[temp_validate]]) > 0L) {\n  ",
@@ -2198,7 +2198,7 @@ Shiny.FE.Clustering.Kmeans.H2O <- function(input,output,session,DataList,CodeLis
       if(Debug) print('FE Kmeans H2O 12')
 
       # Code
-      CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+      CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
         "\n",
         "# DataList[[temp_test]]: Convert character columns to factors\n",
         "if(length(temp_test) > 0L && length(DataList[[temp_test]]) > 0L) {\n  ",
@@ -2233,7 +2233,7 @@ Shiny.FE.Clustering.Kmeans.H2O <- function(input,output,session,DataList,CodeLis
         ElasticAveraging = NULL, ElasticAveragingMovingRate = NULL, ElasticAveragingRegularization = NULL)
 
       # Code
-      CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+      CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
         "\n",
         "# DataList[[temp_train]]: Convert character columns to factors\n",
         "if(length(DataList[[temp_train]]) > 0L) {\n  ",
@@ -2277,7 +2277,7 @@ Shiny.FE.Clustering.Kmeans.H2O <- function(input,output,session,DataList,CodeLis
         if(Debug) print('FE Kmeans H2O 17')
 
         # Code
-        CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+        CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
           "\n",
           "# Score test data\n",
           "if(length(temp_validate) > 0L && length(DataList[[temp_validate]]) > 0L) {\n  ",
@@ -2319,7 +2319,7 @@ Shiny.FE.Clustering.Kmeans.H2O <- function(input,output,session,DataList,CodeLis
         if(Debug) print('FE Kmeans H2O 20')
 
         # Code
-        CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+        CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
           "\n",
           "# Score test data\n",
           "if(length(temp_test) > 0L && length(DataList[[temp_test]]) > 0L) {\n  ",
@@ -2338,9 +2338,9 @@ Shiny.FE.Clustering.Kmeans.H2O <- function(input,output,session,DataList,CodeLis
 
     # Return
     if(Debug) {print('FE Kmeans H2O 6'); print(names(DataList)); print(CodeList)}
-    DataList <- tryCatch({DataMuse:::DM.DataListUpdate(DataList, temp_train)}, error = function(x) DataList)
-    DataList <- tryCatch({DataMuse:::DM.DataListUpdate(DataList, temp_validate)}, error = function(x) DataList)
-    DataList <- tryCatch({DataMuse:::DM.DataListUpdate(DataList, temp_test)}, error = function(x) DataList)
+    DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, temp_train)}, error = function(x) DataList)
+    DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, temp_validate)}, error = function(x) DataList)
+    DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, temp_test)}, error = function(x) DataList)
     return(list(
       DataList = DataList,
       CodeList = CodeList
@@ -2369,14 +2369,14 @@ FE.Impute.TimeSeriesFill <- function(input,output,session,DataList,CodeList,Cach
 
   # Pull in values
   if(Debug) print('Time Series Fill 1')
-  TSF_TargetColumn <- DataMuse:::ReturnParam(xx = tryCatch({input[['TSF_TargetColumn']]}, error=function(x) NULL), VarName = NULL, Type = 'character', Default = NULL, Debug = Debug)
-  TSF_DateColumnName <- DataMuse:::ReturnParam(xx = tryCatch({input[['TSF_DateColumnName']]}, error=function(x) NULL), VarName = NULL, Type = 'character', Default = NULL, Debug = Debug)
-  TSF_GroupVariables <- DataMuse:::ReturnParam(xx = tryCatch({input[['TSF_GroupVariables']]}, error=function(x) NULL), VarName = NULL, Type = 'character', Default = NULL, Debug = Debug)
-  TSF_TimeUnit <- DataMuse:::ReturnParam(xx = tryCatch({input[['TSF_TimeUnit']]}, error=function(x) NULL), VarName = NULL, Type = 'character', Default = NULL, Debug = Debug)
-  TSF_FillType <- DataMuse:::ReturnParam(xx = tryCatch({input[['TSF_FillType']]}, error=function(x) NULL), VarName = NULL, Type = 'character', Default = NULL, Debug = Debug)
-  TSF_MaxMissingPercentage <- DataMuse:::ReturnParam(xx = tryCatch({input[['TSF_MaxMissingPercentage']]}, error=function(x) NULL), VarName = NULL, Type = 'numeric', Default = NULL, Debug = Debug)
-  TSF_SimpleImpute <- DataMuse:::ReturnParam(xx = tryCatch({input[['TSF_SimpleImpute']]}, error=function(x) NULL), VarName = NULL, Type = 'logical', Default = NULL, Debug = Debug)
-  SelectData <- DataMuse:::ReturnParam(xx = tryCatch({input$TSF_SelectData}, error=function(x) NULL), VarName = 'TSF_SelectData', Type = 'character', Default = NULL, Debug = Debug)
+  TSF_TargetColumn <- Quantico:::ReturnParam(xx = tryCatch({input[['TSF_TargetColumn']]}, error=function(x) NULL), VarName = NULL, Type = 'character', Default = NULL, Debug = Debug)
+  TSF_DateColumnName <- Quantico:::ReturnParam(xx = tryCatch({input[['TSF_DateColumnName']]}, error=function(x) NULL), VarName = NULL, Type = 'character', Default = NULL, Debug = Debug)
+  TSF_GroupVariables <- Quantico:::ReturnParam(xx = tryCatch({input[['TSF_GroupVariables']]}, error=function(x) NULL), VarName = NULL, Type = 'character', Default = NULL, Debug = Debug)
+  TSF_TimeUnit <- Quantico:::ReturnParam(xx = tryCatch({input[['TSF_TimeUnit']]}, error=function(x) NULL), VarName = NULL, Type = 'character', Default = NULL, Debug = Debug)
+  TSF_FillType <- Quantico:::ReturnParam(xx = tryCatch({input[['TSF_FillType']]}, error=function(x) NULL), VarName = NULL, Type = 'character', Default = NULL, Debug = Debug)
+  TSF_MaxMissingPercentage <- Quantico:::ReturnParam(xx = tryCatch({input[['TSF_MaxMissingPercentage']]}, error=function(x) NULL), VarName = NULL, Type = 'numeric', Default = NULL, Debug = Debug)
+  TSF_SimpleImpute <- Quantico:::ReturnParam(xx = tryCatch({input[['TSF_SimpleImpute']]}, error=function(x) NULL), VarName = NULL, Type = 'logical', Default = NULL, Debug = Debug)
+  SelectData <- Quantico:::ReturnParam(xx = tryCatch({input$TSF_SelectData}, error=function(x) NULL), VarName = 'TSF_SelectData', Type = 'character', Default = NULL, Debug = Debug)
 
   # if path is a character then data will be pulled inside the function
   #  otherwise you're passing data directly to function
@@ -2393,23 +2393,23 @@ FE.Impute.TimeSeriesFill <- function(input,output,session,DataList,CodeList,Cach
 
   # Create code
   if(Debug) print('Time Series Fill 6')
-  CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+  CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
     "\n",
     "# Lexical Diversity\n",
-    "DataList[[", DataMuse:::CEP(SelectData), "]] <- Rodeo::TimeSeriesFill(\n  ",
-    "data = DataList[[", DataMuse:::CEP(SelectData), "]],\n  ",
-    "TargetColumn = ", DataMuse:::CEP(TSF_TargetColumn), ",\n  ",
-    "DateColumnName = ", DataMuse:::CEP(TSF_DateColumnName), ",\n  ",
-    "GroupVariables = ", DataMuse:::ExpandText(TSF_GroupVariables), ",\n  ",
-    "TimeUnit = ", DataMuse:::CEP(TSF_TimeUnit), ",\n  ",
-    "FillType = ", DataMuse:::CEP(TSF_FillType), ",\n  ",
-    "MaxMissingPercent = ", DataMuse:::CEPP(TSF_MaxMissingPercentage), ",\n  ",
-    "SimpleImpute = ", DataMuse:::CEPP(TSF_SimpleImpute),
+    "DataList[[", Quantico:::CEP(SelectData), "]] <- Rodeo::TimeSeriesFill(\n  ",
+    "data = DataList[[", Quantico:::CEP(SelectData), "]],\n  ",
+    "TargetColumn = ", Quantico:::CEP(TSF_TargetColumn), ",\n  ",
+    "DateColumnName = ", Quantico:::CEP(TSF_DateColumnName), ",\n  ",
+    "GroupVariables = ", Quantico:::ExpandText(TSF_GroupVariables), ",\n  ",
+    "TimeUnit = ", Quantico:::CEP(TSF_TimeUnit), ",\n  ",
+    "FillType = ", Quantico:::CEP(TSF_FillType), ",\n  ",
+    "MaxMissingPercent = ", Quantico:::CEPP(TSF_MaxMissingPercentage), ",\n  ",
+    "SimpleImpute = ", Quantico:::CEPP(TSF_SimpleImpute),
     ")\n"))
 
   # Return
   if(Debug) {print('Time Series Fill 6'); print(names(DataList)); print(CodeList)}
-  DataList <- tryCatch({DataMuse:::DM.DataListUpdate(DataList, SelectData)}, error = function(x) DataList)
+  DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, SelectData)}, error = function(x) DataList)
   return(list(
     DataList = DataList,
     CodeList = CodeList
@@ -2437,15 +2437,15 @@ FE.Impute.TimeSeriesFillRoll <- function(input,output,session,DataList,CodeList,
 
   # Pull in values
   if(Debug) print('Time Series Fill 1')
-  Roll_NewName <- DataMuse:::ReturnParam(xx = tryCatch({input[['Roll_NewName']]}, error=function(x) NULL), VarName = NULL, Type = 'character', Default = NULL, Debug = Debug)
-  Roll_TimeUnit <- DataMuse:::ReturnParam(xx = tryCatch({input[['Roll_TimeUnit']]}, error=function(x) NULL), VarName = NULL, Type = 'character', Default = NULL, Debug = Debug)
-  Roll_DateColumnName <- DataMuse:::ReturnParam(xx = tryCatch({input[['Roll_DateColumnName']]}, error=function(x) NULL), VarName = NULL, Type = 'character', Default = NULL, Debug = Debug)
-  Roll_GroupVariables <- DataMuse:::ReturnParam(xx = tryCatch({input[['Roll_GroupVariables']]}, error=function(x) NULL), VarName = NULL, Type = 'character', Default = NULL, Debug = Debug)
-  Roll_SimpleImpute <- DataMuse:::ReturnParam(xx = tryCatch({input[['Roll_SimpleImpute']]}, error=function(x) NULL), VarName = NULL, Type = 'character', Default = NULL, Debug = Debug)
-  Roll_RollVars <- DataMuse:::ReturnParam(xx = tryCatch({input[['Roll_RollVars']]}, error=function(x) NULL), VarName = NULL, Type = 'numeric', Default = NULL, Debug = Debug)
-  Roll_NonRollVars <- DataMuse:::ReturnParam(xx = tryCatch({input[['Roll_NonRollVars']]}, error=function(x) NULL), VarName = NULL, Type = 'logical', Default = NULL, Debug = Debug)
-  Roll_RollDirection <- DataMuse:::ReturnParam(xx = tryCatch({input[['Roll_RollDirection']]}, error=function(x) NULL), VarName = NULL, Type = 'logical', Default = NULL, Debug = Debug)
-  SelectData <- DataMuse:::ReturnParam(xx = tryCatch({input$TSF_SelectData}, error=function(x) NULL), VarName = 'TSF_SelectData', Type = 'character', Default = NULL, Debug = Debug)
+  Roll_NewName <- Quantico:::ReturnParam(xx = tryCatch({input[['Roll_NewName']]}, error=function(x) NULL), VarName = NULL, Type = 'character', Default = NULL, Debug = Debug)
+  Roll_TimeUnit <- Quantico:::ReturnParam(xx = tryCatch({input[['Roll_TimeUnit']]}, error=function(x) NULL), VarName = NULL, Type = 'character', Default = NULL, Debug = Debug)
+  Roll_DateColumnName <- Quantico:::ReturnParam(xx = tryCatch({input[['Roll_DateColumnName']]}, error=function(x) NULL), VarName = NULL, Type = 'character', Default = NULL, Debug = Debug)
+  Roll_GroupVariables <- Quantico:::ReturnParam(xx = tryCatch({input[['Roll_GroupVariables']]}, error=function(x) NULL), VarName = NULL, Type = 'character', Default = NULL, Debug = Debug)
+  Roll_SimpleImpute <- Quantico:::ReturnParam(xx = tryCatch({input[['Roll_SimpleImpute']]}, error=function(x) NULL), VarName = NULL, Type = 'character', Default = NULL, Debug = Debug)
+  Roll_RollVars <- Quantico:::ReturnParam(xx = tryCatch({input[['Roll_RollVars']]}, error=function(x) NULL), VarName = NULL, Type = 'numeric', Default = NULL, Debug = Debug)
+  Roll_NonRollVars <- Quantico:::ReturnParam(xx = tryCatch({input[['Roll_NonRollVars']]}, error=function(x) NULL), VarName = NULL, Type = 'logical', Default = NULL, Debug = Debug)
+  Roll_RollDirection <- Quantico:::ReturnParam(xx = tryCatch({input[['Roll_RollDirection']]}, error=function(x) NULL), VarName = NULL, Type = 'logical', Default = NULL, Debug = Debug)
+  SelectData <- Quantico:::ReturnParam(xx = tryCatch({input$TSF_SelectData}, error=function(x) NULL), VarName = 'TSF_SelectData', Type = 'character', Default = NULL, Debug = Debug)
 
   # if path is a character then data will be pulled inside the function
   #  otherwise you're passing data directly to function
@@ -2462,23 +2462,23 @@ FE.Impute.TimeSeriesFillRoll <- function(input,output,session,DataList,CodeList,
 
   # Create code
   if(Debug) print('Time Series Fill 6')
-  CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+  CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
     "\n",
     "# Lexical Diversity\n",
-    "DataList[[", DataMuse:::CEP(if(length(Roll_NewName) > 0L) Roll_NewName else SelectData), "]] <- Rodeo::TimeSeriesFillRoll(\n  ",
-    "data = DataList[[", DataMuse:::CEP(SelectData), "]],\n  ",
-    "RollVars = ", DataMuse:::ExpandText(Roll_RollVars), ",\n  ",
-    "NonRollVars = ", DataMuse:::ExpandText(NonRollVars), ",\n  ",
-    "RollDirection = ", DataMuse:::ExpandText(RollDirection), ",\n  ",
-    "DateColumnName = ", DataMuse:::CEP(Roll_DateColumnName), ",\n  ",
-    "GroupVariables = ", DataMuse:::ExpandText(Roll_GroupVariables), ",\n  ",
-    "TimeUnit = ", DataMuse:::CEPP(Roll_TimeUnit), ",\n  ",
-    "SimpleImpute = ", DataMuse:::CEPP(Roll_SimpleImpute),
+    "DataList[[", Quantico:::CEP(if(length(Roll_NewName) > 0L) Roll_NewName else SelectData), "]] <- Rodeo::TimeSeriesFillRoll(\n  ",
+    "data = DataList[[", Quantico:::CEP(SelectData), "]],\n  ",
+    "RollVars = ", Quantico:::ExpandText(Roll_RollVars), ",\n  ",
+    "NonRollVars = ", Quantico:::ExpandText(NonRollVars), ",\n  ",
+    "RollDirection = ", Quantico:::ExpandText(RollDirection), ",\n  ",
+    "DateColumnName = ", Quantico:::CEP(Roll_DateColumnName), ",\n  ",
+    "GroupVariables = ", Quantico:::ExpandText(Roll_GroupVariables), ",\n  ",
+    "TimeUnit = ", Quantico:::CEPP(Roll_TimeUnit), ",\n  ",
+    "SimpleImpute = ", Quantico:::CEPP(Roll_SimpleImpute),
     ")\n"))
 
   # Return
   if(Debug) {print('Time Series Fill 6'); print(names(DataList)); print(CodeList)}
-  DataList <- tryCatch({DataMuse:::DM.DataListUpdate(DataList, SelectData)}, error = function(x) DataList)
+  DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, SelectData)}, error = function(x) DataList)
   return(list(
     DataList = DataList,
     CodeList = CodeList
@@ -2506,12 +2506,12 @@ FE.Impute.TimeSeriesFillRoll <- function(input,output,session,DataList,CodeList,
 Shiny.NLP.TextSummary <- function(input,output,session,DataList,CodeList,CacheDir=NULL,CacheName='data',Debug=FALSE) {
 
   # Dispatch
-  TextSummary_TextColumns <- DataMuse:::ReturnParam(xx = tryCatch({input[['TextSummary_TextColumns']]}, error=function(x) NULL), VarName = NULL, Type = 'character', Default = NULL, Debug = Debug)
+  TextSummary_TextColumns <- Quantico:::ReturnParam(xx = tryCatch({input[['TextSummary_TextColumns']]}, error=function(x) NULL), VarName = NULL, Type = 'character', Default = NULL, Debug = Debug)
 
   # Pull in values
   if(Debug) print('NLP Text Summary 1')
-  TextSummary_RemoveStats <- DataMuse:::ReturnParam(xx = tryCatch({input[['TextSummary_RemoveStats']]}, error=function(x) NULL), VarName = 'TextSummary_RemoveStats', Type = 'character', Default = NULL, Debug = Debug)
-  SelectData <- DataMuse:::ReturnParam(xx = tryCatch({input$TextSummary_SelectData}, error=function(x) NULL), VarName = 'TextSummary_SelectData', Type = 'character', Default = NULL, Debug = Debug)
+  TextSummary_RemoveStats <- Quantico:::ReturnParam(xx = tryCatch({input[['TextSummary_RemoveStats']]}, error=function(x) NULL), VarName = 'TextSummary_RemoveStats', Type = 'character', Default = NULL, Debug = Debug)
+  SelectData <- Quantico:::ReturnParam(xx = tryCatch({input$TextSummary_SelectData}, error=function(x) NULL), VarName = 'TextSummary_SelectData', Type = 'character', Default = NULL, Debug = Debug)
 
   # if path is a character then data will be pulled inside the function
   #  otherwise you're passing data directly to function
@@ -2523,18 +2523,18 @@ Shiny.NLP.TextSummary <- function(input,output,session,DataList,CodeList,CacheDi
 
   # Create code
   if(Debug) print('NLP Text Summary 6')
-  CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+  CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
     "\n",
     "# Text Summary\n",
-    "DataList[[", DataMuse:::CEP(SelectData), "]] <- AutoNLP::TextSummary(\n  ",
-    "DataList[[", DataMuse:::CEP(SelectData), "]],\n  ",
-    "TextColumns = ", DataMuse:::ExpandText(TextSummary_TextColumns), ",\n  ",
-    "RemoveStats = ", DataMuse:::CEPP(TextSummary_RemoveStats),
+    "DataList[[", Quantico:::CEP(SelectData), "]] <- AutoNLP::TextSummary(\n  ",
+    "DataList[[", Quantico:::CEP(SelectData), "]],\n  ",
+    "TextColumns = ", Quantico:::ExpandText(TextSummary_TextColumns), ",\n  ",
+    "RemoveStats = ", Quantico:::CEPP(TextSummary_RemoveStats),
     ")\n"))
 
   # Return
   if(Debug) {print('NLP Text Summary 6'); print(names(DataList)); print(CodeList)}
-  DataList <- tryCatch({DataMuse:::DM.DataListUpdate(DataList, SelectData)}, error = function(x) DataList)
+  DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, SelectData)}, error = function(x) DataList)
   return(list(
     DataList = DataList,
     CodeList = CodeList
@@ -2562,12 +2562,12 @@ Shiny.NLP.Sentiment <- function(input,output,session,DataList,CodeList,CacheDir=
 
   # Pull in values
   if(Debug) print('NLP Sentiment 1')
-  Sentiment_TextColumns <- DataMuse:::ReturnParam(xx = tryCatch({input[['Sentiment_TextColumns']]}, error=function(x) NULL), VarName = NULL, Type = 'character', Default = NULL, Debug = Debug)
-  Sentiment_CombineTextGroupVar <- DataMuse:::ReturnParam(xx = tryCatch({input[['Sentiment_CombineTextGroupVar']]}, error=function(x) NULL), VarName = NULL, Type = 'character', Default = NULL, Debug = Debug)
-  Sentiment_Response <- DataMuse:::ReturnParam(xx = tryCatch({input[['Sentiment_Response']]}, error=function(x) NULL), VarName = NULL, Type = 'character', Default = NULL, Debug = Debug)
-  Sentiment_RemoveStopWords <- DataMuse:::ReturnParam(xx = tryCatch({input[['Sentiment_RemoveStopWords']]}, error=function(x) NULL), VarName = NULL, Type = 'logical', Default = NULL, Debug = Debug)
-  Sentiment_Stemming <- DataMuse:::ReturnParam(xx = tryCatch({input[['Sentiment_Stemming']]}, error=function(x) NULL), VarName = NULL, Type = 'logical', Default = NULL, Debug = Debug)
-  SelectData <- DataMuse:::ReturnParam(xx = tryCatch({input$Sentiment_SelectData}, error=function(x) NULL), VarName = 'TextSummary_SelectData', Type = 'character', Default = NULL, Debug = Debug)
+  Sentiment_TextColumns <- Quantico:::ReturnParam(xx = tryCatch({input[['Sentiment_TextColumns']]}, error=function(x) NULL), VarName = NULL, Type = 'character', Default = NULL, Debug = Debug)
+  Sentiment_CombineTextGroupVar <- Quantico:::ReturnParam(xx = tryCatch({input[['Sentiment_CombineTextGroupVar']]}, error=function(x) NULL), VarName = NULL, Type = 'character', Default = NULL, Debug = Debug)
+  Sentiment_Response <- Quantico:::ReturnParam(xx = tryCatch({input[['Sentiment_Response']]}, error=function(x) NULL), VarName = NULL, Type = 'character', Default = NULL, Debug = Debug)
+  Sentiment_RemoveStopWords <- Quantico:::ReturnParam(xx = tryCatch({input[['Sentiment_RemoveStopWords']]}, error=function(x) NULL), VarName = NULL, Type = 'logical', Default = NULL, Debug = Debug)
+  Sentiment_Stemming <- Quantico:::ReturnParam(xx = tryCatch({input[['Sentiment_Stemming']]}, error=function(x) NULL), VarName = NULL, Type = 'logical', Default = NULL, Debug = Debug)
+  SelectData <- Quantico:::ReturnParam(xx = tryCatch({input$Sentiment_SelectData}, error=function(x) NULL), VarName = 'TextSummary_SelectData', Type = 'character', Default = NULL, Debug = Debug)
 
   # if path is a character then data will be pulled inside the function
   #  otherwise you're passing data directly to function
@@ -2583,22 +2583,22 @@ Shiny.NLP.Sentiment <- function(input,output,session,DataList,CodeList,CacheDir=
 
   # Create code
   if(Debug) print('NLP Sentiment 6')
-  CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+  CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
     "\n",
     "# Sentiment\n",
-    "DataList[[", DataMuse:::CEP(SelectData), "]] <- AutoNLP::Sentiment(\n  ",
-    "DataList[[", DataMuse:::CEP(SelectData), "]],\n  ",
-    "TextColumns = ", DataMuse:::ExpandText(Sentiment_TextColumns), ",\n  ",
-    "CombineTextGroupVar = ", DataMuse:::CEP(Sentiment_CombineTextGroupVar), ",\n  ",
-    "Response = ", DataMuse:::CEP(Sentiment_Response), ",\n  ",
+    "DataList[[", Quantico:::CEP(SelectData), "]] <- AutoNLP::Sentiment(\n  ",
+    "DataList[[", Quantico:::CEP(SelectData), "]],\n  ",
+    "TextColumns = ", Quantico:::ExpandText(Sentiment_TextColumns), ",\n  ",
+    "CombineTextGroupVar = ", Quantico:::CEP(Sentiment_CombineTextGroupVar), ",\n  ",
+    "Response = ", Quantico:::CEP(Sentiment_Response), ",\n  ",
     "Language = 'english',\n  ",
-    "RemoveStopWords = ", DataMuse:::CEPP(Sentiment_RemoveStopWords), ",\n  ",
-    "Stemming = ", DataMuse:::CEPP(Sentiment_Stemming),
+    "RemoveStopWords = ", Quantico:::CEPP(Sentiment_RemoveStopWords), ",\n  ",
+    "Stemming = ", Quantico:::CEPP(Sentiment_Stemming),
     ")\n"))
 
   # Return
   if(Debug) {print('NLP Sentiment 6'); print(names(DataList)); print(CodeList)}
-  DataList <- tryCatch({DataMuse:::DM.DataListUpdate(DataList, SelectData)}, error = function(x) DataList)
+  DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, SelectData)}, error = function(x) DataList)
   return(list(
     DataList = DataList,
     CodeList = CodeList
@@ -2626,13 +2626,13 @@ Shiny.NLP.Readability <- function(input,output,session,DataList,CodeList,CacheDi
 
   # Pull in values
   if(Debug) print('NLP Readability 1')
-  Readability_TextColumns <- DataMuse:::ReturnParam(xx = tryCatch({input[['Readability_TextColumns']]}, error=function(x) NULL), VarName = NULL, Type = 'character', Default = NULL, Debug = Debug)
-  Readability_Measures <- DataMuse:::ReturnParam(xx = tryCatch({input[['Readability_Measures']]}, error=function(x) NULL), VarName = NULL, Type = 'character', Default = NULL, Debug = Debug)
-  Readability_RemoveHyphens <- DataMuse:::ReturnParam(xx = tryCatch({input[['Readability_RemoveHyphens']]}, error=function(x) NULL), VarName = NULL, Type = 'logical', Default = NULL, Debug = Debug)
-  Readability_MinSentenceLength <- DataMuse:::ReturnParam(xx = tryCatch({input[['Readability_MinSentenceLength']]}, error=function(x) NULL), VarName = NULL, Type = 'numeric', Default = NULL, Debug = Debug)
-  Readability_MaxSentenceLength <- DataMuse:::ReturnParam(xx = tryCatch({input[['Readability_MaxSentenceLength']]}, error=function(x) NULL), VarName = NULL, Type = 'numeric', Default = NULL, Debug = Debug)
-  Readability_Intermediate <- DataMuse:::ReturnParam(xx = tryCatch({input[['Readability_Intermediate']]}, error=function(x) NULL), VarName = NULL, Type = 'logical', Default = NULL, Debug = Debug)
-  SelectData <- DataMuse:::ReturnParam(xx = tryCatch({input$Readability_SelectData}, error=function(x) NULL), VarName = 'Readability_SelectData', Type = 'character', Default = NULL, Debug = Debug)
+  Readability_TextColumns <- Quantico:::ReturnParam(xx = tryCatch({input[['Readability_TextColumns']]}, error=function(x) NULL), VarName = NULL, Type = 'character', Default = NULL, Debug = Debug)
+  Readability_Measures <- Quantico:::ReturnParam(xx = tryCatch({input[['Readability_Measures']]}, error=function(x) NULL), VarName = NULL, Type = 'character', Default = NULL, Debug = Debug)
+  Readability_RemoveHyphens <- Quantico:::ReturnParam(xx = tryCatch({input[['Readability_RemoveHyphens']]}, error=function(x) NULL), VarName = NULL, Type = 'logical', Default = NULL, Debug = Debug)
+  Readability_MinSentenceLength <- Quantico:::ReturnParam(xx = tryCatch({input[['Readability_MinSentenceLength']]}, error=function(x) NULL), VarName = NULL, Type = 'numeric', Default = NULL, Debug = Debug)
+  Readability_MaxSentenceLength <- Quantico:::ReturnParam(xx = tryCatch({input[['Readability_MaxSentenceLength']]}, error=function(x) NULL), VarName = NULL, Type = 'numeric', Default = NULL, Debug = Debug)
+  Readability_Intermediate <- Quantico:::ReturnParam(xx = tryCatch({input[['Readability_Intermediate']]}, error=function(x) NULL), VarName = NULL, Type = 'logical', Default = NULL, Debug = Debug)
+  SelectData <- Quantico:::ReturnParam(xx = tryCatch({input$Readability_SelectData}, error=function(x) NULL), VarName = 'Readability_SelectData', Type = 'character', Default = NULL, Debug = Debug)
 
   # if path is a character then data will be pulled inside the function
   #  otherwise you're passing data directly to function
@@ -2648,22 +2648,22 @@ Shiny.NLP.Readability <- function(input,output,session,DataList,CodeList,CacheDi
 
   # Create code
   if(Debug) print('NLP Readability 6')
-  CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+  CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
     "\n",
     "# Readability\n",
-    "DataList[[", DataMuse:::CEP(SelectData), "]] <- AutoNLP::Readability(\n  ",
-    "DataList[[", DataMuse:::CEP(SelectData), "]],\n  ",
-    "Measures = ", DataMuse:::ExpandText(Readability_Measures), ",\n  ",
-    "TextColumns = ", DataMuse:::ExpandText(Readability_TextColumns), ",\n  ",
-    "RemoveHyphens = ", DataMuse:::CEPP(Readability_RemoveHyphens), ",\n  ",
-    "MinSentenceLength = ", DataMuse:::CEPP(Readability_MinSentenceLength), ",\n  ",
-    "MaxSentenceLength = ", DataMuse:::CEPP(Readability_MaxSentenceLength), ",\n  ",
-    "Intermediate = ", DataMuse:::CEPP(Readability_Intermediate),
+    "DataList[[", Quantico:::CEP(SelectData), "]] <- AutoNLP::Readability(\n  ",
+    "DataList[[", Quantico:::CEP(SelectData), "]],\n  ",
+    "Measures = ", Quantico:::ExpandText(Readability_Measures), ",\n  ",
+    "TextColumns = ", Quantico:::ExpandText(Readability_TextColumns), ",\n  ",
+    "RemoveHyphens = ", Quantico:::CEPP(Readability_RemoveHyphens), ",\n  ",
+    "MinSentenceLength = ", Quantico:::CEPP(Readability_MinSentenceLength), ",\n  ",
+    "MaxSentenceLength = ", Quantico:::CEPP(Readability_MaxSentenceLength), ",\n  ",
+    "Intermediate = ", Quantico:::CEPP(Readability_Intermediate),
     ")\n"))
 
   # Return
   if(Debug) {print('NLP Readability 6'); print(names(DataList)); print(CodeList)}
-  DataList <- tryCatch({DataMuse:::DM.DataListUpdate(DataList, SelectData)}, error = function(x) DataList)
+  DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, SelectData)}, error = function(x) DataList)
   return(list(
     DataList = DataList,
     CodeList = CodeList
@@ -2691,15 +2691,15 @@ Shiny.NLP.LexicalDiversity <- function(input,output,session,DataList,CodeList,Ca
 
   # Pull in values
   if(Debug) print('NLP LexicalDiversity 1')
-  LexicalDiversity_TextColumns <- DataMuse:::ReturnParam(xx = tryCatch({input[['LexicalDiversity_TextColumns']]}, error=function(x) NULL), VarName = NULL, Type = 'character', Default = NULL, Debug = Debug)
-  LexicalDiversity_Measures <- DataMuse:::ReturnParam(xx = tryCatch({input[['LexicalDiversity_Measures']]}, error=function(x) NULL), VarName = NULL, Type = 'character', Default = NULL, Debug = Debug)
-  LexicalDiversity_RemoveHyphens <- DataMuse:::ReturnParam(xx = tryCatch({input[['LexicalDiversity_RemoveHyphens']]}, error=function(x) NULL), VarName = NULL, Type = 'logical', Default = NULL, Debug = Debug)
-  LexicalDiversity_RemoveSymbols <- DataMuse:::ReturnParam(xx = tryCatch({input[['LexicalDiversity_RemoveSymbols']]}, error=function(x) NULL), VarName = NULL, Type = 'numeric', Default = NULL, Debug = Debug)
-  LexicalDiversity_RemoveNumbers <- DataMuse:::ReturnParam(xx = tryCatch({input[['LexicalDiversity_RemoveNumbers']]}, error=function(x) NULL), VarName = NULL, Type = 'numeric', Default = NULL, Debug = Debug)
-  LexicalDiversity_LogBase <- DataMuse:::ReturnParam(xx = tryCatch({input[['LexicalDiversity_LogBase']]}, error=function(x) NULL), VarName = NULL, Type = 'numeric', Default = NULL, Debug = Debug)
-  LexicalDiversity_MATTR_Window <- DataMuse:::ReturnParam(xx = tryCatch({input[['LexicalDiversity_MATTR_Window']]}, error=function(x) NULL), VarName = NULL, Type = 'logical', Default = NULL, Debug = Debug)
-  LexicalDiversity_MSTTR_Segment <- DataMuse:::ReturnParam(xx = tryCatch({input[['LexicalDiversity_MSTTR_Segment']]}, error=function(x) NULL), VarName = NULL, Type = 'logical', Default = NULL, Debug = Debug)
-  SelectData <- DataMuse:::ReturnParam(xx = tryCatch({input$LexicalDiversity_SelectData}, error=function(x) NULL), VarName = 'LexicalDiversity_SelectData', Type = 'character', Default = NULL, Debug = Debug)
+  LexicalDiversity_TextColumns <- Quantico:::ReturnParam(xx = tryCatch({input[['LexicalDiversity_TextColumns']]}, error=function(x) NULL), VarName = NULL, Type = 'character', Default = NULL, Debug = Debug)
+  LexicalDiversity_Measures <- Quantico:::ReturnParam(xx = tryCatch({input[['LexicalDiversity_Measures']]}, error=function(x) NULL), VarName = NULL, Type = 'character', Default = NULL, Debug = Debug)
+  LexicalDiversity_RemoveHyphens <- Quantico:::ReturnParam(xx = tryCatch({input[['LexicalDiversity_RemoveHyphens']]}, error=function(x) NULL), VarName = NULL, Type = 'logical', Default = NULL, Debug = Debug)
+  LexicalDiversity_RemoveSymbols <- Quantico:::ReturnParam(xx = tryCatch({input[['LexicalDiversity_RemoveSymbols']]}, error=function(x) NULL), VarName = NULL, Type = 'numeric', Default = NULL, Debug = Debug)
+  LexicalDiversity_RemoveNumbers <- Quantico:::ReturnParam(xx = tryCatch({input[['LexicalDiversity_RemoveNumbers']]}, error=function(x) NULL), VarName = NULL, Type = 'numeric', Default = NULL, Debug = Debug)
+  LexicalDiversity_LogBase <- Quantico:::ReturnParam(xx = tryCatch({input[['LexicalDiversity_LogBase']]}, error=function(x) NULL), VarName = NULL, Type = 'numeric', Default = NULL, Debug = Debug)
+  LexicalDiversity_MATTR_Window <- Quantico:::ReturnParam(xx = tryCatch({input[['LexicalDiversity_MATTR_Window']]}, error=function(x) NULL), VarName = NULL, Type = 'logical', Default = NULL, Debug = Debug)
+  LexicalDiversity_MSTTR_Segment <- Quantico:::ReturnParam(xx = tryCatch({input[['LexicalDiversity_MSTTR_Segment']]}, error=function(x) NULL), VarName = NULL, Type = 'logical', Default = NULL, Debug = Debug)
+  SelectData <- Quantico:::ReturnParam(xx = tryCatch({input$LexicalDiversity_SelectData}, error=function(x) NULL), VarName = 'LexicalDiversity_SelectData', Type = 'character', Default = NULL, Debug = Debug)
 
   # if path is a character then data will be pulled inside the function
   #  otherwise you're passing data directly to function
@@ -2718,25 +2718,25 @@ Shiny.NLP.LexicalDiversity <- function(input,output,session,DataList,CodeList,Ca
 
   # Create code
   if(Debug) print('NLP Lexical Diversity 6')
-  CodeList <- DataMuse:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+  CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
     "\n",
     "# Lexical Diversity\n",
-    "DataList[[", DataMuse:::CEP(SelectData), "]] <- AutoNLP::LexicalDiversity(\n  ",
-    "DataList[[", DataMuse:::CEP(SelectData), "]],\n  ",
-    "Measures = ", DataMuse:::ExpandText(LexicalDiversity_Measures), ",\n  ",
-    "TextColumns = ", DataMuse:::ExpandText(LexicalDiversity_TextColumns), ",\n  ",
-    "RemoveHyphens = ", DataMuse:::CEPP(LexicalDiversity_RemoveHyphens), ",\n  ",
-    "RemoveSymbols = ", DataMuse:::CEPP(LexicalDiversity_RemoveSymbols), ",\n  ",
-    "RemovePunctuation = ", DataMuse:::CEPP(LexicalDiversity_RemovePunctuation), ",\n  ",
-    "RemoveNumbers = ", DataMuse:::CEPP(LexicalDiversity_RemoveNumbers), ",\n  ",
-    "LogBase = ", DataMuse:::CEPP(LexicalDiversity_LogBase), ",\n  ",
-    "MATTR_Window = ", DataMuse:::CEPP(LexicalDiversity_MATTR_Window), ",\n  ",
-    "MSTTR_Segment = ", DataMuse:::CEPP(Readability_MSTTR_Segment),
+    "DataList[[", Quantico:::CEP(SelectData), "]] <- AutoNLP::LexicalDiversity(\n  ",
+    "DataList[[", Quantico:::CEP(SelectData), "]],\n  ",
+    "Measures = ", Quantico:::ExpandText(LexicalDiversity_Measures), ",\n  ",
+    "TextColumns = ", Quantico:::ExpandText(LexicalDiversity_TextColumns), ",\n  ",
+    "RemoveHyphens = ", Quantico:::CEPP(LexicalDiversity_RemoveHyphens), ",\n  ",
+    "RemoveSymbols = ", Quantico:::CEPP(LexicalDiversity_RemoveSymbols), ",\n  ",
+    "RemovePunctuation = ", Quantico:::CEPP(LexicalDiversity_RemovePunctuation), ",\n  ",
+    "RemoveNumbers = ", Quantico:::CEPP(LexicalDiversity_RemoveNumbers), ",\n  ",
+    "LogBase = ", Quantico:::CEPP(LexicalDiversity_LogBase), ",\n  ",
+    "MATTR_Window = ", Quantico:::CEPP(LexicalDiversity_MATTR_Window), ",\n  ",
+    "MSTTR_Segment = ", Quantico:::CEPP(Readability_MSTTR_Segment),
     ")\n"))
 
   # Return
   if(Debug) {print('NLP Lexical Diversity 6'); print(names(DataList)); print(CodeList)}
-  DataList <- tryCatch({DataMuse:::DM.DataListUpdate(DataList, SelectData)}, error = function(x) DataList)
+  DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, SelectData)}, error = function(x) DataList)
   return(list(
     DataList = DataList,
     CodeList = CodeList

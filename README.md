@@ -20,7 +20,13 @@ Step 2: install **R** https://cran.r-project.org/bin/windows/base/
 
 Step 3: install **RStudio Desktop** https://posit.co/download/rstudio-desktop/
 
-Step 4: open up an RStudio session and run the following installation commands from the list of package below. It's best to go one by one in case there is an issue installing any one of them
+Step 4: Install dependencies and Quantico two ways:
+
+1. Download DataMuse.rar, open it up, go into the DataMuse folder, and then run the installer, "Datamuse_installer_Win10x64"
+
+2. Open up an RStudio session and run the following installation commands from the list of package below. It's best to go one by one in case there is an issue installing any one of them
+
+<details><summary> List of packages to install by hand </summary>
 
 ```r
 options(install.packages.compile.from.source = "always")
@@ -89,6 +95,9 @@ devtools::install_github("AdrianAntico/esquisse", upgrade = FALSE, dependencies 
 devtools::install_github("AdrianAntico/Quantico", upgrade = FALSE, dependencies = FALSE, force = TRUE, auth_token = "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")
 ```
 
+</details>
+
+
 ## Quickstart
 
 In your RStudio session, run the Quantico::Muse() function to kick off a Quantico session
@@ -97,18 +106,17 @@ Easy start (no PostGRE, no Azure)
 
 ```r
 # Optionally, you can change up the WorkingDirectory argument for your desired file path location
-Quantico::Muse(MaxPlots = 12L, MaxPlotTabs = 5L, WorkingDirectory = getwd())
+Quantico::runQuantico(MaxTabs = 5L, WorkingDirectory = getwd())
 ```
 
 If you have a PostGRE installation you can add in the PostGRE parameters
 
 ```r
 # Optionally, you can change up the WorkingDirectory argument for your desired file path location (don't forget to use these "/" instead of these "\" in your path)
-Quantico::Muse(
-  MaxPlots = 12L,
-  MaxPlotTabs = 5L,
+Quantico::runQuantico(
+  MaxTabs = 5L,
   WorkingDirectory = getwd(),
-  PostGRE_DBNames = NULL, # list out database names you want exposed (or limited to)
+  PostGRE_DBNames = NULL, # list of database names you want connected
   PostGRE_Host = 'localhost',
   PostGRE_Port = 54321,
   PostGRE_User = '...',

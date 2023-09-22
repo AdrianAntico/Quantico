@@ -248,7 +248,7 @@ Shiny.Plot.Build <- function(input,
         if(!(exists('SubsetList') && length(SubsetList[[paste0('PlotNumberss', PlotNumberss)]]) > 0L && SubsetList[[paste0('PlotNumberss', PlotNumberss)]] >= 1L)) {
 
           # SubsetList <- list()
-          SubsetList[["PlotEngine"]] <- PlotEngine
+          SubsetList[[paste0("PlotType", PlotNumberss)]] <- PlotType
           SubsetList[["EchartsTheme"]] <- EchartsTheme
           SubsetList[["Timeline"]] <- Timeline
           SubsetList[["ColorFont"]] <- ColorFont
@@ -316,6 +316,11 @@ Shiny.Plot.Build <- function(input,
           if(!all(SubsetList[[paste0('GroupVars', PlotNumberss)]] == GroupVars)) {
             SubsetList[[paste0('GroupVars', PlotNumberss)]] <- GroupVars
             SubsetList[[paste0('DataPrep', PlotNumberss)]] <- TRUE
+          }
+
+          # Plot Type
+          if(!all(SubsetList[[paste0("PlotType", PlotNumberss)]] == PlotType)) {
+            SubsetList[[paste0("PlotType", PlotNumberss)]] <- PlotType; SubsetList[[paste0('DataPrep', PlotNumberss)]] <- TRUE
           }
 
           # Levels

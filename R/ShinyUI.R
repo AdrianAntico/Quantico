@@ -6036,7 +6036,7 @@ NLP_Modal_Fun <- function(id,
       ns <- session$ns
       shiny::showModal(
         shiny::modalDialog(
-          title = 'NLP',
+          title = 'Text',
           size = "l",
           easyClose = FALSE,
           fade = TRUE,

@@ -7033,10 +7033,6 @@ Shiny.FC.CARMA <- function(input,
       ValidationData <- data.table::copy(ArgsList[['data']])
       ArgsList[['data']] <- ArgsList[['data']][get(ArgsList[['DateColumnName']]) < max(get(ArgsList[['DateColumnName']])) - lubridate::hours(eval(ArgsList[['FC_Periods']]))]
     } else if(ArgsList[['TimeUnit']] == "Daily") {
-      print("Create Validation Data 1")
-      print(ArgsList[['DateColumnName']])
-      print(ArgsList[['FC_Periods']])
-      print(ArgsList[['data']])
       ValidationData <- data.table::copy(ArgsList[['data']])
       ArgsList[['data']] <- ArgsList[['data']][get(ArgsList[['DateColumnName']]) < max(get(ArgsList[['DateColumnName']])) - lubridate::days(eval(ArgsList[['FC_Periods']]))]
     } else if(ArgsList[['TimeUnit']] == "Weekly") {

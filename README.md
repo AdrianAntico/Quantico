@@ -26,7 +26,9 @@ Step 4: Install dependencies and Quantico two ways:
 
 2. Open up an RStudio session and run the following installation commands from the list of package below. It's best to go one by one in case there is an issue installing any one of them
 
-<details><summary> List of packages to install by hand </summary>
+Step 5: Here is a list of the dependencies to install
+
+<details><summary> Click to expand </summary>
 
 ```r
 options(install.packages.compile.from.source = "always")

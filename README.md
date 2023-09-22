@@ -139,6 +139,24 @@ Below is a subset of the various themes to choose from
 
 In the plotting panel you simply click on the top buttons (e.g. Plot 1) and select a plot from the dropdown menu. Then you click the button below to fill out the necessary parameters for your plot. Lastly, drop the newly created box in the dragula pane and move it to the bottom row in order for it to display.
 
+Plot types include:
+
+| Distribution     | Aggregate       | Time Series      | Relationship | Model Evaluation           |
+| ---------------- | --------------- | ---------------- | ------------ | -------------------------- |
+| Histogram        | Barplot         | Line             | Correlogram  | Residuals                  |
+| Density          | Stacked Barplot | Area             | Parallel     | Residulas Scatter          |
+| Boxplot          | 3D Barplot      | Step             | Scatter      | Partial Dependence Line    |
+| Word Cloud       | Heatmap         | River            | 3D Scatter   | Partial Dependence Heatmap |
+| Probability Plot | Radar           | Autocorrelation  | Copula       | Calibration Line           |
+|                  | Piechart        | Partial Autocorr | 3D Copula    | Calibration Boxplot        |
+|                  | Donut           |                  |              | Variable Importance        |
+|                  | Rosetype        |                  |              | Shapley Importance         |
+|                  |                 |                  |              | ROC Plot                   |
+|                  |                 |                  |              | Confusion Matrix           |
+|                  |                 |                  |              | Gains                      |
+|                  |                 |                  |              | Lift                       |
+
+
 <img src="https://github.com/AdrianAntico/Quantico/blob/main/inst/Plotting1.PNG" align="center" width="400" /> <img src="https://github.com/AdrianAntico/Quantico/blob/main/inst/Plotting2.PNG" align="center" width="400" />
 
 <img src="https://github.com/AdrianAntico/Quantico/blob/main/inst/Plotting3.PNG" align="center" width="400" /> <img src="https://github.com/AdrianAntico/Quantico/blob/main/inst/Plotting4.PNG" align="center" width="400" />

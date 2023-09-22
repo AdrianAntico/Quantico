@@ -139,7 +139,7 @@ Below is a subset of the various themes to choose from
 
 In the plotting panel you simply click on the top buttons (e.g. Plot 1) and select a plot from the dropdown menu. Then you click the button below to fill out the necessary parameters for your plot. Lastly, drop the newly created box in the dragula pane and move it to the bottom row in order for it to display.
 
-Plot types include:
+### 37 Plot types:
 
 | Distribution     | Aggregate       | Time Series      | Relationship | Model Evaluation           |
 | ---------------- | --------------- | ---------------- | ------------ | -------------------------- |

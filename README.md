@@ -129,7 +129,9 @@ Quantico::runQuantico(
 
 When you kick off the app this is the main page you will land on
 
-<img src="https://github.com/AdrianAntico/Quantico/blob/main/inst/AppMain.PNG" align="center" width="800" />
+<img src="https://github.com/AdrianAntico/Quantico/blob/main/inst/AppMain.PNG" align="center" width="266" />
+<img src="https://github.com/AdrianAntico/Quantico/blob/main/inst/AppMain2.PNG" align="center" width="266" />
+<img src="https://github.com/AdrianAntico/Quantico/blob/main/inst/AppMain3.PNG" align="center" width="266" />
 
 ## Plotting Page
 

@@ -209,14 +209,14 @@ DM_Session <- function(id = 'DM_Session',
                      Animate=TRUE,
                      Status='custom',
                      H3Color = 'white')  {
-  #Height <- '43px'
+
   ns <- shiny::NS(id)
   shiny::tagList(
     shiny::column(
       width = 12L,
       align=Align,
       #tags$h4(tags$b('Sessions')),
-      shiny::actionLink("Session_Modal", label = "Sessions", icon = shiny::icon("right-from-bracket"))#, style = ButtonStyle)
+      shiny::actionLink("Session_Modal", label = "Sessions", icon = shiny::icon("right-from-bracket"))
   ))
 }
 
@@ -245,14 +245,14 @@ DM_Local <- function(id = 'DM_Local',
                      Animate=TRUE,
                      Status='custom',
                      H3Color = 'white')  {
-  #Height <- '43px'
+
   ns <- shiny::NS(id)
   shiny::tagList(
     shiny::column(
       width = 12L,
       align=Align,
       #tags$h4(tags$b('Local')),
-      shiny::actionLink("Local_Modal", label = "Local", icon = shiny::icon("right-from-bracket"))#, style = ButtonStyle)
+      shiny::actionLink("Local_Modal", label = "Local", icon = shiny::icon("right-from-bracket"))
   ))
 }
 
@@ -281,14 +281,14 @@ DM_PostGRE <- function(id = 'DM_PostGRE',
                        Animate=TRUE,
                        Status='custom',
                        H3Color = 'white')  {
-  #Height <- '43px'
+
   ns <- shiny::NS(id)
   shiny::tagList(
     shiny::column(
       width = 12L,
       align=Align,
       #tags$h4(tags$b('PostGRE')),
-      shiny::actionLink("PostGRE_Modal", label = "PostGRE", icon = shiny::icon("right-from-bracket"))#, style = ButtonStyle)
+      shiny::actionLink("PostGRE_Modal", label = "PostGRE", icon = shiny::icon("right-from-bracket"))
   ))
 }
 
@@ -317,14 +317,14 @@ DM_AzureBlob <- function(id = 'DM_AzureBlob',
                          Animate=TRUE,
                          Status='custom',
                          H3Color = 'white')  {
-  #Height <- '43px'
+
   ns <- shiny::NS(id)
   shiny::tagList(
     shiny::column(
       width = 12L,
       align=Align,
       #tags$h4(tags$b('Azure')),
-      shiny::actionLink("AzureBlob_Modal", label = "Azure Blob", icon = shiny::icon("right-from-bracket"))#, style = ButtonStyle)
+      shiny::actionLink("AzureBlob_Modal", label = "Azure Blob", icon = shiny::icon("right-from-bracket"))
   ))
 }
 
@@ -353,7 +353,7 @@ DW_ShrinkData <- function(id='DW_ShrinkData',
                           Animate=TRUE,
                           Status='custom',
                           H3Color = 'white') {
-  #Height <- '43px'
+
   ns <- shiny::NS(id)
   shiny::tagList(
     shiny::column(
@@ -389,14 +389,14 @@ DW_GrowData <- function(id='DW_GrowData',
                           Animate=TRUE,
                           Status='custom',
                           H3Color = 'white') {
-  #Height <- '43px'
+
   ns <- shiny::NS(id)
   shiny::tagList(
     shiny::column(
       width = 12L,
       align=Align,
       # tags$h4(tags$b('Grow')),
-      shiny::actionLink("Grow_Modal", label = "Grow", icon = shiny::icon("right-from-bracket"))#, style = ButtonStyle)
+      shiny::actionLink("Grow_Modal", label = "Grow", icon = shiny::icon("right-from-bracket"))
   ))
 }
 
@@ -425,14 +425,14 @@ DW_DataSets <- function(id='DW_DataSets',
                         Animate=TRUE,
                         Status='custom',
                         H3Color = 'white') {
-  #Height <- '43px'
+
   ns <- shiny::NS(id)
   shiny::tagList(
     shiny::column(
       width = 12L,
       align=Align,
       #tags$h4(tags$b('Dataset')),
-      shiny::actionLink("DataSets_Modal", label = "DataSet", icon = shiny::icon("right-from-bracket"))#, style = ButtonStyle)
+      shiny::actionLink("DataSets_Modal", label = "DataSet", icon = shiny::icon("right-from-bracket"))
   ))
 }
 
@@ -462,14 +462,14 @@ DW_Pivot <- function(id='DW_Pivot',
                      Status='custom',
                      H3Color = 'white') {
 
-  #Height <- '43px'
+
   ns <- shiny::NS(id)
   shiny::tagList(
     shiny::column(
       width = 12L,
       align=Align,
       #tags$h4(tags$b('Pivot')),
-      shiny::actionLink("Pivot_Modal", label = "Pivot", icon = shiny::icon("right-from-bracket"))#, style = ButtonStyle)
+      shiny::actionLink("Pivot_Modal", label = "Pivot", icon = shiny::icon("right-from-bracket"))
   ))
 }
 
@@ -499,14 +499,14 @@ DW_Misc <- function(id='DW_Misc',
                       Status='custom',
                       H3Color = 'white') {
 
-  #Height <- '43px'
+
   ns <- shiny::NS(id)
   shiny::tagList(
     shiny::column(
       width = 12L,
       align=Align,
       #tags$h4(tags$b('Misc')),
-      shiny::actionLink("Misc_Modal", label = "Miscellaneous", icon = shiny::icon("right-from-bracket"))#, style = ButtonStyle)
+      shiny::actionLink("Misc_Modal", label = "Miscellaneous", icon = shiny::icon("right-from-bracket"))
   ))
 }
 
@@ -536,14 +536,14 @@ DW_Columns <- function(id='DW_Columns',
                     Status='custom',
                     H3Color = 'white') {
 
-  #Height <- '43px'
+
   ns <- shiny::NS(id)
   shiny::tagList(
     shiny::column(
       width = 12L,
       align=Align,
       #tags$h4(tags$b('Columns')),
-      shiny::actionLink("Columns_Modal", label = "Columns", icon = shiny::icon("right-from-bracket"))#, style = ButtonStyle)
+      shiny::actionLink("Columns_Modal", label = "Columns", icon = shiny::icon("right-from-bracket"))
   ))
 }
 
@@ -573,14 +573,14 @@ FE_Windowing <- function(id='FE_Windowing',
                         Status='custom',
                         H3Color = 'white') {
 
-  #Height <- '43px'
+
   ns <- shiny::NS(id)
   shiny::tagList(
     shiny::column(
       width = 12L,
       align=Align,
       #tags$h4(tags$b('Rolling')),
-      shiny::actionLink("Windowing_Modal", label = "Windowing", icon = shiny::icon("right-from-bracket"))#, style = ButtonStyle)
+      shiny::actionLink("Windowing_Modal", label = "Windowing", icon = shiny::icon("right-from-bracket"))
   ))
 }
 
@@ -609,14 +609,14 @@ FE_DateVariables <- function(id='FE_DateVariables',
                              Animate=TRUE,
                              Status='custom',
                              H3Color = 'white') {
-  #Height <- '43px'
+
   ns <- shiny::NS(id)
   shiny::tagList(
     shiny::column(
       width = 12L,
       align=Align,
       #tags$h4(tags$b('Calendar')),
-      shiny::actionLink("Calendar_Modal", label = "Calendar", icon = shiny::icon("right-from-bracket"))#, style = ButtonStyle)
+      shiny::actionLink("Calendar_Modal", label = "Calendar", icon = shiny::icon("right-from-bracket"))
   ))
 }
 
@@ -645,14 +645,14 @@ FE_CategoricalVariables <- function(id='CategoricalVariables',
                                     Animate=TRUE,
                                     Status='custom',
                                     H3Color = 'white') {
-  #Height <- '43px'
+
   ns <- shiny::NS(id)
   shiny::tagList(
     shiny::column(
       width = 12L,
       align=Align,
       #tags$h4(tags$b('Categorical')),
-      shiny::actionLink("Categorical_Modal", label = "Categorical", icon = shiny::icon("right-from-bracket"))#, style = ButtonStyle)
+      shiny::actionLink("Categorical_Modal", label = "Categorical", icon = shiny::icon("right-from-bracket"))
   ))
 }
 
@@ -681,14 +681,14 @@ FE_NumericVariables <- function(id='NumericVariables',
                                 Animate=TRUE,
                                 Status='custom',
                                 H3Color = 'white') {
-  #Height <- '43px'
+
   ns <- shiny::NS(id)
   shiny::tagList(
     shiny::column(
       width = 12L,
       align=Align,
       #tags$h4(tags$b('Numeric')),
-      shiny::actionLink("Numeric_Modal", label = "Numeric", icon = shiny::icon("right-from-bracket"))#, style = ButtonStyle)
+      shiny::actionLink("Numeric_Modal", label = "Numeric", icon = shiny::icon("right-from-bracket"))
   ))
 }
 
@@ -717,14 +717,14 @@ FE_AnomalyDetection <- function(id='AnomalyDetection_Modal',
                           Animate=TRUE,
                           Status='custom',
                           H3Color = 'white') {
-  #Height <- '43px'
+
   ns <- shiny::NS(id)
   shiny::tagList(
     shiny::column(
       width = 12L,
       align=Align,
       #tags$h4(tags$b('Anomaly')),
-      shiny::actionLink("AnomalyDetection_Modal", label = "Anomaly Detection", icon = shiny::icon("right-from-bracket"))#, style = ButtonStyle)
+      shiny::actionLink("AnomalyDetection_Modal", label = "Anomaly Detection", icon = shiny::icon("right-from-bracket"))
   ))
 }
 
@@ -753,14 +753,14 @@ FE_DimensionalityReduction <- function(id='DimensionalityReduction_Modal',
                                        Animate=TRUE,
                                        Status='custom',
                                        H3Color = 'white') {
-  #Height <- '43px'
+
   ns <- shiny::NS(id)
   shiny::tagList(
     shiny::column(
       width = 12L,
       align=Align,
       #tags$h4(tags$b('DimReduction')),
-      shiny::actionLink("DimensionalityReduction_Modal", label = "Dim Reduction", icon = shiny::icon("right-from-bracket"))#, style = ButtonStyle)
+      shiny::actionLink("DimensionalityReduction_Modal", label = "Dim Reduction", icon = shiny::icon("right-from-bracket"))
   ))
 }
 
@@ -789,14 +789,14 @@ FE_Clustering <- function(id='ClusteringID',
                           Animate=TRUE,
                           Status='custom',
                           H3Color = 'white') {
-  #Height <- '43px'
+
   ns <- shiny::NS(id)
   shiny::tagList(
     shiny::column(
       width = 12L,
       align=Align,
       #tags$h4(tags$b('Clustering')),
-      shiny::actionLink("Clustering_Modal", label = "Clustering", icon = shiny::icon("right-from-bracket"))#, style = ButtonStyle)
+      shiny::actionLink("Clustering_Modal", label = "Clustering", icon = shiny::icon("right-from-bracket"))
   ))
 }
 
@@ -825,14 +825,12 @@ FE_NLP <- function(id='NLP_Modal',
                    Animate=TRUE,
                    Status='custom',
                    H3Color = 'white') {
-  #Height <- '43px'
   ns <- shiny::NS(id)
   shiny::tagList(
     shiny::column(
       width = 12L,
       align=Align,
-      #tags$h4(tags$b('NLP')),
-      shiny::actionLink("NLP_Modal", label = "NLP", icon = shiny::icon("right-from-bracket"))#, style = ButtonStyle)
+      shiny::actionLink("NLP_Modal", label = "Text", icon = shiny::icon("right-from-bracket"))
   ))
 }
 
@@ -862,7 +860,6 @@ ML_CatBoostReport <- function(id='ML_CatBoostReport',
                               Status='custom',
                               H3Color = 'white') {
 
-  Height <- '43px'
   ns <- shiny::NS(id)
   shiny::tagList(
     shiny::fluidRow(
@@ -900,7 +897,6 @@ ML_XGBoostReport <- function(id='ML_XGBoostReport',
                              Status='custom',
                              H3Color = 'white') {
 
-  Height <- '43px'
   ns <- shiny::NS(id)
   shiny::tagList(
     shiny::fluidRow(
@@ -937,7 +933,6 @@ ML_LightGBMReport <- function(id='ML_LightGBMReport',
                               Status='custom',
                               H3Color = 'white') {
 
-  Height <- '43px'
   ns <- shiny::NS(id)
   shiny::tagList(
     shiny::fluidRow(
@@ -1007,13 +1002,11 @@ ML_CatBoost <- function(id='CatBoostML',
                         Status='custom',
                         H3Color = 'white') {
 
-  #Height <- '43px'
   ns <- shiny::NS(id)
   shiny::tagList(
     shiny::column(
       width = 12L,
       align=Align,
-      #tags$h4(tags$b('CatBoost')),
       shiny::actionLink("CatBoost_Modal", label = "CatBoost", icon = shiny::icon("right-from-bracket"))
   ))
 }
@@ -1041,14 +1034,12 @@ ML_XGBoost <- function(id='XGBoostML',
                        Animate=TRUE,
                        Status='custom',
                        H3Color = 'white') {
-  #Height <- '43px'
   ns <- shiny::NS(id)
   shiny::tagList(
     shiny::column(
       width = 12L,
       align=Align,
-      #tags$h4(tags$b('XGBoost')),
-      shiny::actionLink("XGBoost_Modal", label = "XGBoost", icon = shiny::icon("right-from-bracket"))# , style = ButtonStyle)
+      shiny::actionLink("XGBoost_Modal", label = "XGBoost", icon = shiny::icon("right-from-bracket"))
   ))
 }
 
@@ -1075,14 +1066,13 @@ ML_LightGBM <- function(id='LightGBMML',
                         Animate=TRUE,
                         Status='custom',
                         H3Color = 'white') {
-  #Height <- '43px'
+
   ns <- shiny::NS(id)
   shiny::tagList(
     shiny::column(
       width = 12L,
       align=Align,
-      #tags$h4(tags$b('LightGBM')),
-      shiny::actionLink("LightGBM_Modal", label = "LightGBM", icon = shiny::icon("right-from-bracket"))#, style = ButtonStyle)
+      shiny::actionLink("LightGBM_Modal", label = "LightGBM", icon = shiny::icon("right-from-bracket"))
   ))
 }
 
@@ -1109,13 +1099,12 @@ ML_H2O_DRF <- function(id='H2O_DRFML',
                         Animate=TRUE,
                         Status='custom',
                         H3Color = 'white') {
-  #Height <- '43px'
+
   ns <- shiny::NS(id)
   shiny::tagList(
     shiny::column(
       width = 12L,
       align=Align,
-      #tags$h4(tags$b('H2O.DRF')),
       shiny::actionLink("H2O_DRF_Modal", label = "H2O DRF", icon = shiny::icon("right-from-bracket"))# , style = ButtonStyle)
   ))
 }
@@ -1143,13 +1132,12 @@ ML_H2O_GBM <- function(id='H2O_GBMML',
                        Animate=TRUE,
                        Status='custom',
                        H3Color = 'white') {
-  #Height <- '43px'
+
   ns <- shiny::NS(id)
   shiny::tagList(
     shiny::column(
       width = 12L,
       align=Align,
-      # tags$h4(tags$b('H2O.GBM')),
       shiny::actionLink("H2O_GBM_Modal", label = "H2O GBM", icon = shiny::icon("right-from-bracket"))# , style = ButtonStyle)
   ))
 }
@@ -1177,13 +1165,12 @@ ML_H2O_GLM <- function(id='H2O_GLMML',
                        Animate=TRUE,
                        Status='custom',
                        H3Color = 'white') {
-  #Height <- '43px'
+
   ns <- shiny::NS(id)
   shiny::tagList(
     shiny::column(
       width = 12L,
       align=Align,
-      #tags$h4(tags$b('H2O.GLM')),
       shiny::actionLink("H2O_GLM_Modal", label = "H2O GLM", icon = shiny::icon("right-from-bracket"))# , style = ButtonStyle)
   ))
 }
@@ -1211,13 +1198,12 @@ ML_H2O_HGLM <- function(id='H2O_HGLMML',
                        Animate=TRUE,
                        Status='custom',
                        H3Color = 'white') {
-  #Height <- '43px'
+
   ns <- shiny::NS(id)
   shiny::tagList(
     shiny::column(
       width = 12L,
       align=Align,
-      #tags$h4(tags$b('H2O.HGLM')),
       shiny::actionLink("H2O_HGLM_Modal", label = "H2O HGLM", icon = shiny::icon("right-from-bracket"))# , style = ButtonStyle)
   ))
 }
@@ -1245,13 +1231,12 @@ ML_MixedEffects <- function(id='ML_MixedEffects',
                             Animate=TRUE,
                             Status='custom',
                             H3Color = 'white') {
-  Height <- '43px'
+
   ns <- shiny::NS(id)
   shiny::tagList(
     shiny::column(
       width = 1L,
       align=Align,
-      tags$h4(tags$b('MixedEffects')),
       shiny::actionButton("MixedEffects_Modal", label = NULL, icon = shiny::icon("share-from-square"), style = ButtonStyle)
   ))
 }
@@ -1279,13 +1264,12 @@ ML_GEE <- function(id='ML_GEE',
                    Animate=TRUE,
                    Status='custom',
                    H3Color = 'white') {
-  Height <- '43px'
+
   ns <- shiny::NS(id)
   shiny::tagList(
     shiny::column(
       width = 1L,
       align=Align,
-      tags$h4(tags$b('GEE')),
       shiny::actionButton("GEE_Modal", label = NULL, icon = shiny::icon("share-from-square"), style = ButtonStyle)
   ))
 }
@@ -1313,13 +1297,12 @@ ML_CausalMediation <- function(id='ML_CausalMediationML',
                                Animate=TRUE,
                                Status='custom',
                                H3Color = 'white') {
-  #Height <- '43px'
+
   ns <- shiny::NS(id)
   shiny::tagList(
     shiny::column(
       width = 12L,
       align=Align,
-      #tags$h4(tags$b('Mediation')),
       shiny::actionLink("CausalMediation_Modal", label = "Causal Mediation", icon = shiny::icon("right-from-bracket"))# , style = ButtonStyle)
   ))
 }
@@ -1347,7 +1330,7 @@ FC_SARIMA <- function(id='FC_SARIMA',
                       Animate=TRUE,
                       Status='custom',
                       H3Color = 'white') {
-  #Height <- '43px'
+
   ns <- shiny::NS(id)
   shiny::tagList(
     shiny::column(
@@ -1380,7 +1363,7 @@ FC_NNet <- function(id='FC_NNet',
                     Animate=TRUE,
                     Status='custom',
                     H3Color = 'white') {
-  #Height <- '43px'
+
   ns <- shiny::NS(id)
   shiny::tagList(
     shiny::column(
@@ -1413,7 +1396,7 @@ FC_TBATS <- function(id='FC_TBATS',
                      Animate=TRUE,
                      Status='custom',
                      H3Color = 'white') {
-  #Height <- '43px'
+
   ns <- shiny::NS(id)
   shiny::tagList(
     shiny::column(
@@ -1446,7 +1429,7 @@ FC_ETS <- function(id='FC_ETS',
                    Animate=TRUE,
                    Status='custom',
                    H3Color = 'white') {
-  #Height <- '43px'
+
   ns <- shiny::NS(id)
   shiny::tagList(
     shiny::column(
@@ -1479,7 +1462,7 @@ FC_Arfima <- function(id='FC_Arfima',
                       Animate=TRUE,
                       Status='custom',
                       H3Color = 'white') {
-  #Height <- '43px'
+
   ns <- shiny::NS(id)
   shiny::tagList(
     shiny::column(
@@ -1512,14 +1495,13 @@ FC_CatBoostCARMA <- function(id='FC_CatBoostCARMA',
                              Animate=TRUE,
                              Status='custom',
                              H3Color = 'white') {
-  #Height <- '43px'
+
   ns <- shiny::NS(id)
   shiny::tagList(
     shiny::column(
       width = 12L,
       align=Align,
-      #tags$h4(tags$b('CatBoost Panel')),
-      shiny::actionLink("CatBoostCARMA_Modal", label = "CatBoost", icon = shiny::icon("right-from-bracket"))#, style = ButtonStyle)
+      shiny::actionLink("CatBoostCARMA_Modal", label = "CatBoost", icon = shiny::icon("right-from-bracket"))
   ))
 }
 
@@ -1546,14 +1528,13 @@ FC_XGBoostCARMA <- function(id='FC_XGBoostCARMA',
                              Animate=TRUE,
                              Status='custom',
                              H3Color = 'white') {
-  #Height <- '43px'
+
   ns <- shiny::NS(id)
   shiny::tagList(
     shiny::column(
       width = 12L,
       align=Align,
-      #tags$h4(tags$b('XGBoost Panel')),
-      shiny::actionLink("XGBoostCARMA_Modal", label = "XGBoost", icon = shiny::icon("right-from-bracket"))#, style = ButtonStyle)
+      shiny::actionLink("XGBoostCARMA_Modal", label = "XGBoost", icon = shiny::icon("right-from-bracket"))
   ))
 }
 
@@ -1580,14 +1561,13 @@ FC_LightGBMCARMA <- function(id='FC_LightGBMCARMA',
                             Animate=TRUE,
                             Status='custom',
                             H3Color = 'white') {
-  #Height <- '43px'
+
   ns <- shiny::NS(id)
   shiny::tagList(
     shiny::column(
       width = 12L,
       align=Align,
-      #tags$h4(tags$b('LightGBM Panel')),
-      shiny::actionLink("LightGBMCARMA_Modal", label = "LightGBM", icon = shiny::icon("right-from-bracket"))#, style = ButtonStyle)
+      shiny::actionLink("LightGBMCARMA_Modal", label = "LightGBM", icon = shiny::icon("right-from-bracket"))
   ))
 }
 
@@ -1614,14 +1594,13 @@ FC_CatBoostCARMAID <- function(id='FC_CatBoostCARMAID',
                              Animate=TRUE,
                              Status='custom',
                              H3Color = 'white') {
-  #Height <- '43px'
+
   ns <- shiny::NS(id)
   shiny::tagList(
     shiny::column(
       width = 12L,
       align=Align,
-      #tags$h4(tags$b('CatBoost IDemand')),
-      shiny::actionLink("CatBoostCARMA_Modal", label = "CatBoost", icon = shiny::icon("right-from-bracket"))#, style = ButtonStyle)
+      shiny::actionLink("CatBoostCARMA_Modal", label = "CatBoost", icon = shiny::icon("right-from-bracket"))
   ))
 }
 
@@ -1648,14 +1627,13 @@ FC_XGBoostCARMAID <- function(id='FC_XGBoostCARMAID',
                             Animate=TRUE,
                             Status='custom',
                             H3Color = 'white') {
-  #Height <- '43px'
+
   ns <- shiny::NS(id)
   shiny::tagList(
     shiny::column(
       width = 12L,
       align=Align,
-      #tags$h4(tags$b('XGBoost IDemand')),
-      shiny::actionLink("XGBoostCARMA_Modal", label = "XGBoost", icon = shiny::icon("right-from-bracket"))#, style = ButtonStyle)
+      shiny::actionLink("XGBoostCARMA_Modal", label = "XGBoost", icon = shiny::icon("right-from-bracket"))
   ))
 }
 
@@ -1682,14 +1660,13 @@ FC_LightGBMCARMAID <- function(id='FC_LightGBMCARMAID',
                              Animate=TRUE,
                              Status='custom',
                              H3Color = 'white') {
-  #Height <- '43px'
+
   ns <- shiny::NS(id)
   shiny::tagList(
     shiny::column(
       width = 12L,
       align=Align,
-      #tags$h4(tags$b('LightGBM IDemand')),
-      shiny::actionLink("LightGBMCARMA_Modal", label = "LightGBM", icon = shiny::icon("right-from-bracket"))#, style = ButtonStyle)
+      shiny::actionLink("LightGBMCARMA_Modal", label = "LightGBM", icon = shiny::icon("right-from-bracket"))
   ))
 }
 
@@ -1716,14 +1693,13 @@ FC_CatBoostCARMAFUN <- function(id='FC_CatBoostCARMAFUN',
                                Animate=TRUE,
                                Status='custom',
                                H3Color = 'white') {
-  #Height <- '43px'
+
   ns <- shiny::NS(id)
   shiny::tagList(
     shiny::column(
       width = 12L,
       align=Align,
-      #tags$h4(tags$b('CatBoost Funnel')),
-      shiny::actionLink("CatBoostCARMA_Modal", label = "CatBoost", icon = shiny::icon("right-from-bracket"))#, style = ButtonStyle)
+      shiny::actionLink("CatBoostCARMA_Modal", label = "CatBoost", icon = shiny::icon("right-from-bracket"))
   ))
 }
 
@@ -1750,14 +1726,13 @@ FC_XGBoostCARMAFUN <- function(id='FC_XGBoostCARMAFUN',
                               Animate=TRUE,
                               Status='custom',
                               H3Color = 'white') {
- #Height <- '43px'
+
   ns <- shiny::NS(id)
   shiny::tagList(
     shiny::column(
       width = 12L,
       align=Align,
-      #tags$h4(tags$b('XGBoost Funnel')),
-      shiny::actionLink("XGBoostCARMA_Modal", label = "XGBoost", icon = shiny::icon("right-from-bracket"))#, style = ButtonStyle)
+      shiny::actionLink("XGBoostCARMA_Modal", label = "XGBoost", icon = shiny::icon("right-from-bracket"))
   ))
 }
 
@@ -1784,14 +1759,13 @@ FC_LightGBMCARMAFUN <- function(id='FC_LightGBMCARMAFUN',
                                Animate=TRUE,
                                Status='custom',
                                H3Color = 'white') {
-  #Height <- '43px'
+
   ns <- shiny::NS(id)
   shiny::tagList(
     shiny::column(
       width = 12L,
       align=Align,
-      #tags$h4(tags$b('LightGBM Funnel')),
-      shiny::actionLink("LightGBMCARMA_Modal", label = "LightGBM", icon = shiny::icon("right-from-bracket"))#, style = ButtonStyle)
+      shiny::actionLink("LightGBMCARMA_Modal", label = "LightGBM", icon = shiny::icon("right-from-bracket"))
   ))
 }
 
@@ -1846,14 +1820,13 @@ Inference_Normality <- function(id='Inference_Normality_link',
                                 Status='custom',
                                 H3Color = 'white') {
 
-  #Height <- '43px'
+
   ns <- shiny::NS(id)
   shiny::tagList(
     shiny::column(
       width = 12L,
       align=Align,
-      #tags$h4(tags$b('Pivot')),
-      shiny::actionLink("Inference_Normality", label = "Normality", icon = shiny::icon("right-from-bracket"))#, style = ButtonStyle)
+      shiny::actionLink("Inference_Normality", label = "Normality", icon = shiny::icon("right-from-bracket"))
     ))
 }
 
@@ -1881,14 +1854,13 @@ Inference_Correlation <- function(id='Inference_Correlation_link',
                                   Status='custom',
                                   H3Color = 'white') {
 
-  #Height <- '43px'
+
   ns <- shiny::NS(id)
   shiny::tagList(
     shiny::column(
       width = 12L,
       align=Align,
-      #tags$h4(tags$b('Pivot')),
-      shiny::actionLink("Inference_Correlation", label = "Correlation", icon = shiny::icon("right-from-bracket"))#, style = ButtonStyle)
+      shiny::actionLink("Inference_Correlation", label = "Correlation", icon = shiny::icon("right-from-bracket"))
     ))
 }
 
@@ -1921,7 +1893,7 @@ Inference_1STTest <- function(id='Inference_1STTest_link',
     shiny::column(
       width = 12L,
       align=Align,
-      shiny::actionLink("Inference_1STTest", label = "1-Sample T-Test", icon = shiny::icon("right-from-bracket"))#, style = ButtonStyle)
+      shiny::actionLink("Inference_1STTest", label = "1-Sample T-Test", icon = shiny::icon("right-from-bracket"))
     ))
 }
 
@@ -1954,7 +1926,7 @@ Inference_2STTest <- function(id='Inference_2STTest_link',
     shiny::column(
       width = 12L,
       align=Align,
-      shiny::actionLink("Inference_2STTest", label = "2-Sample T-Test", icon = shiny::icon("right-from-bracket"))#, style = ButtonStyle)
+      shiny::actionLink("Inference_2STTest", label = "2-Sample T-Test", icon = shiny::icon("right-from-bracket"))
     ))
 }
 
@@ -1987,7 +1959,7 @@ Inference_FTest <- function(id='Inference_FTest_link',
     shiny::column(
       width = 12L,
       align=Align,
-      shiny::actionLink("Inference_FTest", label = "F-Test", icon = shiny::icon("right-from-bracket"))#, style = ButtonStyle)
+      shiny::actionLink("Inference_FTest", label = "F-Test", icon = shiny::icon("right-from-bracket"))
     ))
 }
 

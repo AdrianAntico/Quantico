@@ -385,6 +385,10 @@ PostGRE_Modal_Fun <- function(id,
                               SaveData_DataBaseName_Choices_Choices = NULL,
 
                               # Updaters
+                              PostGRE_Host_Selected = NULL,
+                              PostGRE_Port_Selected = NULL,
+                              PostGRE_User_Selected = NULL,
+                              PostGRE_Password_Selected = NULL,
                               PostGRE_PullTable_AggStat_Selected = NULL,
                               PostGRE_SamplePercent_Selected = NULL,
                               PostGRE_PullTable_DB_Selected = NULL,
@@ -414,6 +418,45 @@ PostGRE_Modal_Fun <- function(id,
               id = 'PostGRE_TabPanel',
               selected = 'Pull Table',
 
+              # PostGRE Drop Table
+              shiny::tabPanel(
+                title = "Credentials",
+                icon = shiny::icon('code'),
+                Quantico:::BlankRow(12L),
+                shiny::fluidRow(
+                  shinydashboard::box(
+                    title = NULL, solidHeader = TRUE, collapsible = FALSE, status = NULL, width = 12L,
+                    Quantico:::BlankRow(12L),
+                    tags$h4(tags$span(tags$b(paste0('Credentials for Connecting to PostGRE')))),
+                    Quantico:::BlankRow(12L),
+                    shiny::fluidRow(
+                      shiny::column(width = 6L, align = 'center', Quantico:::TextInput(InputID = 'PostGRE_Host', Label = 'Host', Value = PostGRE_Host_Selected, Placeholder = 'localhost')),
+                      shiny::column(width = 6L, align = 'center', Quantico:::NumericInput(InputID = 'PostGRE_Port', Label = 'Port', Value = PostGRE_Port_Selected, Min = 1000, Max = 9999, Step = 1))),
+                    Quantico:::BlankRow(12L),
+                    shiny::fluidRow(
+                      shiny::column(width = 6L, align = 'center', Quantico:::TextInput(InputID = 'PostGRE_User', Label = 'Select DB', Value = PostGRE_User_Selected, Placeholder = 'Username')),
+                      shiny::column(width = 6L, align = 'center', shiny::passwordInput(inputId = "PostGRE_Password", label = "Password", value = PostGRE_Password_Selected, width = NULL, placeholder = 'Password'))),
+
+                    # Row 3
+                    Quantico:::BlankRow(12L),
+                    shiny::fluidRow(
+
+                      # Drop Table
+                      shiny::column(width = 1L, align = 'center'),
+                      shiny::column(
+                        width = 4L,
+                        align = 'center',
+                        shiny::actionButton(
+                          inputId = 'PostGRE_UpdateCredentials',
+                          label = 'Update',
+                          icon = shiny::icon('chevron-right', lib='font-awesome')))),
+
+                    Quantico:::BlankRow(12L),
+                    Quantico:::BlankRow(12L),
+                    Quantico:::BlankRow(12L),
+                    Quantico:::BlankRow(12L)))),
+
+
               # PostGRE Pull Table
               shiny::tabPanel(
                 title = "Pull Table",
@@ -426,7 +469,7 @@ PostGRE_Modal_Fun <- function(id,
                     tags$h4(tags$span(tags$b(paste0('Pull a table down from a PostGRE database')))),
                     Quantico:::BlankRow(12L),
                     shiny::fluidRow(
-                      shiny::column(width = 4L, align = 'center', Quantico:::SelectizeInput(InputID = 'PostGRE_PullTable_DB', Label = 'Select DB', Choices = PostGRE_PullTable_DB_Choices, SelectedDefault = PostGRE_PullTable_DB_Selected, Multiple = TRUE, MaxVars = 100)),
+                      shiny::column(width = 4L, align = 'center', Quantico:::SelectizeInput(InputID = 'PostGRE_PullTable_DB', Label = 'Select DB', Choices = PostGRE_PullTable_DB_Choices, SelectedDefault = PostGRE_PullTable_DB_Selected, Multiple = TRUE, MaxVars = 1)),
                       shiny::column(width = 4L, align = 'center', Quantico:::SelectizeInput(InputID = 'PostGRE_PullTable_Table', Label = 'Select Table', Choices = NULL, SelectedDefault = PostGRE_PullTable_Table_Selected, Multiple = TRUE, MaxVars = 1L)),
                       shiny::column(width = 4L, align = 'center', Quantico:::SelectizeInput(InputID = 'PostGRE_SamplePercent', Label = 'Random Sample %', Choices = PostGRE_SamplePercent_Choices, SelectedDefault = PostGRE_SamplePercent_Selected, Multiple = TRUE, MaxVars = 1L))),
                     Quantico:::BlankRow(12L),

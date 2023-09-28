@@ -764,6 +764,32 @@ server <- function(input, output, session) {
       shinyAce::updateAceEditor(session,"sql_code",mode = "sql",theme = input$editor_theme)
     })
 
+
+    PostGRE_Host_Selected  <- Quantico::ReturnParam(xx = tryCatch({input$PostGRE_Host}, error = function(x) NULL), Type = 'character', Default = NULL)
+    PostGRE_Port_Selected <- Quantico::ReturnParam(xx = tryCatch({input$PostGRE_Port}, error = function(x) NULL), Type = 'numeric', Default = NULL)
+    PostGRE_User_Selected <- Quantico::ReturnParam(xx = tryCatch({input$PostGRE_User}, error = function(x) NULL), Type = 'character', Default = NULL)
+    PostGRE_Password_Selected <- Quantico::ReturnParam(xx = tryCatch({input$PostGRE_Password}, error = function(x) NULL), Type = 'character', Default = NULL)
+
+    if(length(PostGRE_Host_Selected) > 0L) {
+      PostGRE_Host <- PostGRE_Host_Selected
+      PostGRE_Host <<- PostGRE_Host
+    }
+
+    if(length(PostGRE_Port_Selected) > 0L) {
+      PostGRE_Port <- PostGRE_Port_Selected
+      PostGRE_Port <<- PostGRE_Port
+    }
+
+    if(length(PostGRE_User_Selected) > 0L) {
+      PostGRE_User <- PostGRE_User_Selected
+      PostGRE_User <<- PostGRE_User
+    }
+
+    if(length(PostGRE_Password_Selected) > 0L) {
+      PostGRE_Password <- PostGRE_Password_Selected
+      PostGRE_Password <<- PostGRE_Password
+    }
+
     # Check if there is a database connection
     if(length(PostGRE_Host) > 0L && length(PostGRE_Port) > 0L && length(PostGRE_User) > 0L && length(PostGRE_Password) > 0L) {
       PostGRE_DBNames <- Quantico:::DM.pgListDatabases(Host = PostGRE_Host, Port = PostGRE_Port, User = PostGRE_User, Password = PostGRE_Password)
@@ -791,6 +817,10 @@ server <- function(input, output, session) {
       SaveData_DataBaseName_Choices = PostGRE_DBNames,
 
       # Updaters
+      PostGRE_Host_Selected = PostGRE_Host,
+      PostGRE_Port_Selected = PostGRE_Port,
+      PostGRE_User_Selected = PostGRE_User,
+      PostGRE_Password_Selected = PostGRE_Password,
       PostGRE_PullTable_AggStat_Selected = if(length(input$PostGRE_PullTable_AggStat)) input$PostGRE_PullTable_AggStat else NULL,
       PostGRE_SamplePercent_Selected = if(length(input$PostGRE_SamplePercent)) input$PostGRE_SamplePercent else NULL,
       PostGRE_PullTable_DB_Selected = if(length(input$PostGRE_PullTable_DB)) input$PostGRE_PullTable_DB else NULL,
@@ -7416,6 +7446,58 @@ server <- function(input, output, session) {
   # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
   # :: Obs Event :: Import | Export      ----
   # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
+
+  # Update PostGRE Credentials
+  shiny::observeEvent(input$PostGRE_UpdateCredentials, {
+
+    PostGRE_Host_Selected  <- Quantico::ReturnParam(xx = tryCatch({input$PostGRE_Host}, error = function(x) NULL), Type = 'character', Default = 'localhost')
+    PostGRE_Port_Selected <- Quantico::ReturnParam(xx = tryCatch({input$PostGRE_Port}, error = function(x) NULL), Type = 'numeric', Default = NULL)
+    PostGRE_User_Selected <- Quantico::ReturnParam(xx = tryCatch({input$PostGRE_User}, error = function(x) NULL), Type = 'character', Default = NULL)
+    PostGRE_Password_Selected <- Quantico::ReturnParam(xx = tryCatch({input$PostGRE_Password}, error = function(x) NULL), Type = 'character', Default = NULL)
+
+    if(length(PostGRE_Host_Selected) > 0L) {
+      PostGRE_Host <- PostGRE_Host_Selected
+      PostGRE_Host <<- PostGRE_Host
+    }
+
+    if(length(PostGRE_Port_Selected) > 0L) {
+      PostGRE_Port <- PostGRE_Port_Selected
+      PostGRE_Port <<- PostGRE_Port
+    }
+
+    if(length(PostGRE_User_Selected) > 0L) {
+      PostGRE_User <- PostGRE_User_Selected
+      PostGRE_User <<- PostGRE_User
+    }
+
+    if(length(PostGRE_Password_Selected) > 0L) {
+      PostGRE_Password <- PostGRE_Password_Selected
+      PostGRE_Password <<- PostGRE_Password
+    }
+
+    # Check if there is a database connection
+    print(PostGRE_Host)
+    print(PostGRE_Port)
+    print(PostGRE_User)
+    print(PostGRE_Password)
+    if(length(PostGRE_Host) > 0L && length(PostGRE_Port) > 0L && length(PostGRE_User) > 0L && length(PostGRE_Password) > 0L) {
+      PostGRE_DBNames <- tryCatch({Quantico:::DM.pgListDatabases(Host = PostGRE_Host, Port = PostGRE_Port, User = PostGRE_User, Password = PostGRE_Password)}, error = function(x) NULL)
+    } else {
+      PostGRE_DBNames <- NULL
+    }
+
+    print(PostGRE_DBNames)
+
+    PostGRE_DBNames <<- PostGRE_DBNames
+    Quantico:::SelectizeInput(Update = TRUE, input = input, session = session, InputID = 'PostGRE_PullTable_DB', Label = 'Select DB', Choices = PostGRE_DBNames, SelectedDefault = NULL, Multiple = TRUE, MaxVars = 1)
+    Quantico:::SelectizeInput(Update = TRUE, input = input, session = session, InputID = 'SaveData_DataBaseName', Label='PostGRE Database Name', Choices = PostGRE_DBNames, SelectedDefault = NULL, Multiple = TRUE, MaxVars = 1)
+    Quantico:::SelectizeInput(Update = TRUE, input = input, session = session, InputID = 'PostGRE_DropTable_DB', Label = 'Select DB', Choices = PostGRE_DBNames, SelectedDefault = NULL, Multiple = TRUE, MaxVars = 1)
+    Quantico:::SelectizeInput(Update = TRUE, input = input, session = session, InputID = 'PostGRE_DropDB_DB', Label = 'Select DB', Choices = PostGRE_DBNames, SelectedDefault = NULL, Multiple = TRUE, MaxVars = 1)
+
+
+    shinyWidgets::sendSweetAlert(session, title = NULL, text = NULL, type = NULL, btn_labels = "Success", btn_colors = NULL, html = FALSE, closeOnClickOutside = TRUE, showCloseButton = TRUE, width = "40%")
+
+  })
 
   # Save Session
   shiny::observeEvent(input$SaveSessionButton, {

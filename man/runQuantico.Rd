@@ -6,7 +6,7 @@
 \usage{
 runQuantico(
   UserName_Password_DT = NULL,
-  MaxTabs = 2L,
+  MaxTabs = 3L,
   AzureCredsFile = NULL,
   WorkingDirectory = getwd(),
   PostGRE_DBNames = NULL,

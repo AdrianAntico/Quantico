@@ -1,19 +1,25 @@
 # Quantico
 
-![Version:0.1.0](https://img.shields.io/static/v1?label=Version&message=0.1.0&color=blue&?style=plastic)
+![Version:1.0.0](https://img.shields.io/static/v1?label=Version&message=1.0.0&color=blue&?style=plastic)
 ![Build:Passing](https://img.shields.io/static/v1?label=Build&message=passing&color=brightgreen)
-[![Maintenance](https://img.shields.io/badge/Maintained%253F-yes-green.svg)](https://GitHub.com/Naereen/StrapDown.js/graphs/commit-activity)
 [![PRsWelcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=default)](http://makeapullrequest.com)
 [![GitHubStars](https://img.shields.io/github/stars/AdrianAntico/ShinyDS.svg?style=social)](https://github.com/AdrianAntico/ShinyDS)
 
 <img src="https://github.com/AdrianAntico/Quantico/blob/main/inst/LogoWhite.png" align="center" width="800" />
 
-Quantico is a GUI for Visualization, Data Wrangling, Feature Engineering, NLP, Machine Learning, Statistical Modeling, Forecasting, and Code Generation.
+Quantico is a GUI for Visualization, Data Wrangling, Feature Engineering, NLP, Machine Learning, Statistical Modeling, Forecasting, Reporting, and Code Generation. 
+
+Automated output reports are included for:
+1. EDA
+2. Inference
+3. Machine Learning
+4. Forecasting
 
 ## Installation
 
 Note: if you're only looking to update Quantico, you only have to reinstall the Quantico package below.
 
+If you are setting up R for the first time run Steps 1-3
 <b>Step 1:</b> install the "R-release" version of **rtools** and have it placed in your C:\ drive https://cran.r-project.org/bin/windows/Rtools/
 
 <b>Step 2:</b> install **R** https://cran.r-project.org/bin/windows/base/

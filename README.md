@@ -14,19 +14,19 @@ Quantico is a GUI for Visualization, Data Wrangling, Feature Engineering, NLP, M
 
 Note: if you're only looking to update Quantico, you only have to reinstall the Quantico package below.
 
-Step 1: install the "R-release" version of **rtools** and have it placed in your C:\ drive https://cran.r-project.org/bin/windows/Rtools/
+<b>Step 1:</b> install the "R-release" version of **rtools** and have it placed in your C:\ drive https://cran.r-project.org/bin/windows/Rtools/
 
-Step 2: install **R** https://cran.r-project.org/bin/windows/base/
+<b>Step 2:</b> install **R** https://cran.r-project.org/bin/windows/base/
 
-Step 3: install **RStudio Desktop** https://posit.co/download/rstudio-desktop/
+<b>Step 3:</b> install **RStudio Desktop** https://posit.co/download/rstudio-desktop/
 
-Step 4: Install dependencies and Quantico two ways:
+<b>Step 4:</b> Install dependencies and Quantico two ways:
 
-1. Download DataMuse.rar, open it up, go into the DataMuse folder, and then run the installer, "Datamuse_installer_Win10x64"
+1. For Windows users, download DataMuse.rar, open it up, go into the DataMuse folder, and then run the installer, "Datamuse_installer_Win10x64"
 
 2. Open up an RStudio session and run the following installation commands from the list of package below. It's best to go one by one in case there is an issue installing any one of them
 
-Step 5: Here is a list of the dependencies to install
+<b>Step 5:</b> Here is a list of the dependencies to install
 
 <details><summary> Click to expand </summary>
 

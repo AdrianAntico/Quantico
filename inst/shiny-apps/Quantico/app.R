@@ -7476,17 +7476,11 @@ server <- function(input, output, session) {
     }
 
     # Check if there is a database connection
-    print(PostGRE_Host)
-    print(PostGRE_Port)
-    print(PostGRE_User)
-    print(PostGRE_Password)
     if(length(PostGRE_Host) > 0L && length(PostGRE_Port) > 0L && length(PostGRE_User) > 0L && length(PostGRE_Password) > 0L) {
       PostGRE_DBNames <- tryCatch({Quantico:::DM.pgListDatabases(Host = PostGRE_Host, Port = PostGRE_Port, User = PostGRE_User, Password = PostGRE_Password)}, error = function(x) NULL)
     } else {
       PostGRE_DBNames <- NULL
     }
-
-    print(PostGRE_DBNames)
 
     PostGRE_DBNames <<- PostGRE_DBNames
     Quantico:::SelectizeInput(Update = TRUE, input = input, session = session, InputID = 'PostGRE_PullTable_DB', Label = 'Select DB', Choices = PostGRE_DBNames, SelectedDefault = NULL, Multiple = TRUE, MaxVars = 1)
@@ -7494,8 +7488,11 @@ server <- function(input, output, session) {
     Quantico:::SelectizeInput(Update = TRUE, input = input, session = session, InputID = 'PostGRE_DropTable_DB', Label = 'Select DB', Choices = PostGRE_DBNames, SelectedDefault = NULL, Multiple = TRUE, MaxVars = 1)
     Quantico:::SelectizeInput(Update = TRUE, input = input, session = session, InputID = 'PostGRE_DropDB_DB', Label = 'Select DB', Choices = PostGRE_DBNames, SelectedDefault = NULL, Multiple = TRUE, MaxVars = 1)
 
-
-    shinyWidgets::sendSweetAlert(session, title = NULL, text = NULL, type = NULL, btn_labels = "Success", btn_colors = NULL, html = FALSE, closeOnClickOutside = TRUE, showCloseButton = TRUE, width = "40%")
+    if(length(PostGRE_DBNames) > 0L) {
+      shinyWidgets::sendSweetAlert(session, title = NULL, text = NULL, type = NULL, btn_labels = "Success", btn_colors = NULL, html = FALSE, closeOnClickOutside = TRUE, showCloseButton = TRUE, width = "40%")
+    } else {
+      shinyWidgets::sendSweetAlert(session, title = NULL, text = NULL, type = NULL, btn_labels = "No dbnames found", btn_colors = NULL, html = FALSE, closeOnClickOutside = TRUE, showCloseButton = TRUE, width = "40%")
+    }
 
   })
 

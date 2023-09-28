@@ -108,9 +108,7 @@ Easy start (no PostGRE, no Azure Blob access)
 
 ```r
 # Optionally, you can change up the WorkingDirectory argument for your desired file path location
-Quantico::runQuantico(
-  MaxTabs = 2L, 
-  WorkingDirectory = getwd())
+Quantico::runQuantico(WorkingDirectory = getwd())
 ```
 
 If you have a PostGRE installation you can add in the PostGRE parameters

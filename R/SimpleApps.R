@@ -48,7 +48,7 @@
 runQuantico <- function(UserName_Password_DT = NULL,
 
                        # Plotting
-                       MaxTabs = 2L,
+                       MaxTabs = 3L,
 
                        # Data Management
                        AzureCredsFile = NULL,

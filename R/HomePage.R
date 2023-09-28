@@ -5594,8 +5594,8 @@ SideBarUI <- function(id, AppWidth=12L) {
         Quantico::BlankLine(12L),
         shiny::fluidRow(Quantico::DM_Local(id = 'DM_Local', Align = "left", DropDownRight = FALSE)),
         shiny::fluidRow(Quantico::DM_Session(id = 'DM_Session', Align = "left", DropDownRight = FALSE)),
-        shiny::fluidRow(Quantico::DM_PostGRE(id = 'DM_PostGRE', Align = "left", DropDownRight = FALSE)),
-        shiny::fluidRow(Quantico::DM_AzureBlob(id = 'DM_AzureBlob', Align = "left", DropDownRight = FALSE))
+        shiny::fluidRow(Quantico::DM_PostGRE(id = 'DM_PostGRE', Align = "left", DropDownRight = FALSE))#,
+        #shiny::fluidRow(Quantico::DM_AzureBlob(id = 'DM_AzureBlob', Align = "left", DropDownRight = FALSE))
       ),
 
       Quantico:::BlankRow(12L),

@@ -833,41 +833,41 @@ server <- function(input, output, session) {
   shiny::observeEvent(input$PostGRE_OK, {shiny::removeModal()})
 
   # Azure Blob
-  shiny::observeEvent(input$AzureBlob_Modal, {
-
-    # Azure Blob .csv or .txt
-    if(Debug) paste0('https://', StorageAccount, '.blob.core.windows.net/', Container)
-    BlobStorageURL <- paste0('https://', StorageAccount, '.blob.core.windows.net/', Container)
-    assign(x = 'BlobStorageURL', value = BlobStorageURL, envir = .GlobalEnv)
-    cont <<- tryCatch({AzureStor::blob_container(BlobStorageURL, key = Key)}, error = function(x) NULL)
-    rawfiles <<- tryCatch({AzureStor::list_storage_files(cont, info = 'name')}, error = function(x) NULL)
-    if(length(rawfiles) != 0) {
-      rawfiles <<- rawfiles[c(which(grepl(pattern = '.csv', x = rawfiles)), which(grepl(pattern = '.Rdata', x = rawfiles)))]
-      rawfiles_csv <- rawfiles[which(grepl(pattern = '.csv', x = rawfiles))]
-    } else {
-      rawfiles_csv <<- NULL
-    }
-
-    # Azure blob .Rdata
-    if(length(rawfiles) != 0) {
-      rawfiles_rdata <- rawfiles[which(grepl(pattern = '.Rdata', x = rawfiles))]
-    } else {
-      rawfiles_rdata <- NULL
-    }
-
-    # Dispatch Modal
-    Quantico:::AzureBlob_Modal_Fun(
-      id = 'AzureBlobDMID',
-
-      # Statics
-      AzureBlobStorageTabular_Choices = rawfiles_csv,
-      AzureBlobStorageRdata_Choices = rawfiles_rdata,
-
-      # Updaters
-      AzureBlobStorageTabular_Selected = if(length(input$AzureBlobStorageTabular) > 0L) input$AzureBlobStorageTabular else NULL,
-      AzureBlobStorageRdata_Selected = if(length(input$AzureBlobStorageRdata) > 0L) input$AzureBlobStorageRdata else NULL)
-  })
-  shiny::observeEvent(input$AzureBlob_OK, {shiny::removeModal()})
+  # shiny::observeEvent(input$AzureBlob_Modal, {
+  #
+  #   # Azure Blob .csv or .txt
+  #   if(Debug) paste0('https://', StorageAccount, '.blob.core.windows.net/', Container)
+  #   BlobStorageURL <- paste0('https://', StorageAccount, '.blob.core.windows.net/', Container)
+  #   assign(x = 'BlobStorageURL', value = BlobStorageURL, envir = .GlobalEnv)
+  #   cont <<- tryCatch({AzureStor::blob_container(BlobStorageURL, key = Key)}, error = function(x) NULL)
+  #   rawfiles <<- tryCatch({AzureStor::list_storage_files(cont, info = 'name')}, error = function(x) NULL)
+  #   if(length(rawfiles) != 0) {
+  #     rawfiles <<- rawfiles[c(which(grepl(pattern = '.csv', x = rawfiles)), which(grepl(pattern = '.Rdata', x = rawfiles)))]
+  #     rawfiles_csv <- rawfiles[which(grepl(pattern = '.csv', x = rawfiles))]
+  #   } else {
+  #     rawfiles_csv <<- NULL
+  #   }
+  #
+  #   # Azure blob .Rdata
+  #   if(length(rawfiles) != 0) {
+  #     rawfiles_rdata <- rawfiles[which(grepl(pattern = '.Rdata', x = rawfiles))]
+  #   } else {
+  #     rawfiles_rdata <- NULL
+  #   }
+  #
+  #   # Dispatch Modal
+  #   Quantico:::AzureBlob_Modal_Fun(
+  #     id = 'AzureBlobDMID',
+  #
+  #     # Statics
+  #     AzureBlobStorageTabular_Choices = rawfiles_csv,
+  #     AzureBlobStorageRdata_Choices = rawfiles_rdata,
+  #
+  #     # Updaters
+  #     AzureBlobStorageTabular_Selected = if(length(input$AzureBlobStorageTabular) > 0L) input$AzureBlobStorageTabular else NULL,
+  #     AzureBlobStorageRdata_Selected = if(length(input$AzureBlobStorageRdata) > 0L) input$AzureBlobStorageRdata else NULL)
+  # })
+  # shiny::observeEvent(input$AzureBlob_OK, {shiny::removeModal()})
 
   #                                      ----
 
@@ -8666,158 +8666,6 @@ server <- function(input, output, session) {
     }
   }, ignoreInit = TRUE)
 
-  # Azure Import CSV
-  shiny::observeEvent(input$ImportAzureCSV,    {
-
-    # Code Collection
-    if(!exists('DataMgtCode')) DataMgtCode <- list()
-    if(!exists('DataWranglingCode')) DataWranglingCode <- list()
-    if(!exists('FeatureEngineeringCode')) FeatureEngineeringCode <- list()
-    if(!exists('MachineLearningCode')) MachineLearningCode <- list()
-    if(!exists('ForecastingCode')) ForecastingCode <- list()
-    if(!exists('PlotterCode')) PlotterCode <- list()
-
-    # Notify user that data is being loaded
-    shiny::showNotification('Data loading has begun')
-
-    # File Type .csv
-    FileName <- tryCatch({input[['AzureBlobStorageTabular']]}, error = function(x) NULL)
-    if(Debug) print(FileName)
-    if(length(FileName) != 0 && FileName != "Load" && FileName != "") {
-      AzureStor::download_blob(container = cont, src = input[['AzureBlobStorageTabular']], dest = file.path('/inputdata', input[['AzureBlobStorageTabular']]), overwrite=TRUE)
-
-      # Azure .csv
-      x <- tryCatch({input[['AzureBlobStorageTabular']]}, error = function(x) NULL)
-      if(Debug) print('AzureBlobStorageTabular')
-      if(Debug) print(x)
-      if(length(x) > 0L) {
-        filename <- tryCatch({basename(input$AzureBlobStorageTabular)}, error = function(x) NULL)
-        for(i in seq_len(24L)) {
-          DataList[[filename]] <<- tryCatch({Quantico:::LoadCSV(Infile = file.path('/inputdata', input[['AzureBlobStorageTabular']]), Debug = Debug)}, error = function(x) NULL)
-          if(length(DataList[[filename]]) > 0L) {
-            xx <- tryCatch({DataList[[PostGRE_PullTable_Table]][['data']][,.N]}, error = function(x) NULL)
-            if(length(xx) > 0L) {
-              DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, PostGRE_PullTable_Table)}, error = function(x) DataList)
-            }
-            break
-          } else {
-            Sys.sleep(5)
-          }
-        }
-
-        DataList <<- DataList; CurrentData <<- filename
-        DataMgtCode <- Quantico::Shiny.CodePrint.Collect(y = DataMgtCode, x = paste0(
-          "\n",
-          "# Load ModelOutputList\n",
-          "x <- ", Quantico:::CEP(x), "\n",
-          "filename <<- basename(", Quantico:::CEP(filename), "\n",
-          "ModelOutputList <- readRDS(file.path('/inputdata', x)),\n",
-          "DataList[[filename]] <- Quantico:::LoadCSV(Infile = file.path('/inputdata', input[['AzureBlobStorageTabular']]))\n"))
-
-        # Sweet Alert
-        shinyWidgets::sendSweetAlert(session, title = NULL, text = NULL, type = NULL, btn_labels = "Success", btn_colors = NULL, html = FALSE, closeOnClickOutside = TRUE, showCloseButton = TRUE, width = "40%")
-      }
-
-      # Sweet Alert
-      print("Data was loaded")
-      shinyWidgets::sendSweetAlert(session, title = NULL, text = NULL, type = NULL, btn_labels = "Missing Name", btn_colors = NULL, html = FALSE, closeOnClickOutside = TRUE, showCloseButton = TRUE, width = "40%")
-    } else {
-      print("Data was loaded")
-      shinyWidgets::sendSweetAlert(session, title = NULL, text = NULL, type = NULL, btn_labels = "Missing Name", btn_colors = NULL, html = FALSE, closeOnClickOutside = TRUE, showCloseButton = TRUE, width = "40%")
-    }
-  }, ignoreInit = TRUE)
-
-  # Azure Import Rdata or rds file
-  shiny::observeEvent(input$ImportAzureRdata,  {
-
-    # Notify user that data is being loaded
-    shiny::showNotification('Data loading has begun')
-
-    # File Type .Rdata
-    inFile2 <- tryCatch({input[['AzureBlobStorageRdata']]}, error = function(x) NULL)
-    if(!is.null(inFile2)) print(inFile2)
-    if(length(inFile2) != 0 && inFile2 != "") {
-      if(Debug) {print('data check 3')}
-
-      # Download data
-      tryCatch({AzureStor::download_blob(container = cont, src = input[['AzureBlobStorageRdata']], dest = file.path('/inputdata', input[['AzureBlobStorageRdata']]), overwrite=TRUE)}, error = function(x) NULL)
-
-      # Load ModelOutputList
-      x <- tryCatch({input[['AzureBlobStorageRdata']]}, error = function(x) NULL)
-      if(Debug) print('AzureBlobStorageRdata')
-      if(length(x) > 0L && x != "" && !is.na(x)) {
-        for(i in seq_len(24L)) {
-          filename <- basename(x)
-          ModelOutputList <<- tryCatch({readRDS(file.path('/inputdata', x))}, error = function(x) NULL)
-
-          # Grab or loop
-          if(length(ModelOutputList) > 0L) {
-            if(!is.null(ModelOutputList$TrainData) && !is.null(ModelOutputList$TestData)) {
-              DataList[[filename]][['data']] <<- data.table::rbindlist(list(ModelOutputList$TrainData, ModelOutputList$TestData), use.names = TRUE, fill = TRUE)
-              xx <- tryCatch({DataList[[filename]][['data']][,.N]}, error = function(x) NULL)
-              if(length(xx) > 0L) {
-                DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, filename)}, error = function(x) DataList)
-              }
-              DataList <<- DataList
-              CurrentData <<- filename
-              DataMgtCode <- Quantico::Shiny.CodePrint.Collect(y = DataMgtCode, x = paste0(
-                "\n",
-                "# Load ModelOutputList\n",
-                "AzureStor::download_blob(container = ", Quantico:::CEP(cont),", src = ", Quantico:::CEP(input[['AzureBlobStorageRdata']]), ", dest = ", Quantico:::CEP(file.path('/inputdata', input[['AzureBlobStorageRdata']])), ", overwrite=TRUE)\n",
-                "x <- ", Quantico:::CEP(x), "\n",
-                "filename <- basename(x)\n",
-                "ModelOutputList <- readRDS(file.path('/inputdata', x)),\n",
-                "DataList[[filename]] <- data.table::rbindlist(list(ModelOutputList$TrainData, ModelOutputList$TestData), use.names = TRUE, fill = TRUE)\n"))
-            } else if(is.null(ModelOutputList$TrainData) && !is.null(ModelOutputList$TestData)) {
-              DataList[[filename]][['data']] <<- ModelOutputList$TestData
-              xx <- tryCatch({DataList[[filename]][['data']][,.N]}, error = function(x) NULL)
-              if(length(xx) > 0L) {
-                DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, filename)}, error = function(x) DataList)
-              }
-              DataList <<- DataList
-              CurrentData <<- filename
-              DataMgtCode <- Quantico::Shiny.CodePrint.Collect(y = DataMgtCode, x = paste0(
-                "\n",
-                "# Load ModelOutputList\n",
-                "AzureStor::download_blob(container = ", Quantico:::CEP(cont),", src = ", Quantico:::CEP(input[['AzureBlobStorageRdata']]), ", dest = ", Quantico:::CEP(file.path('/inputdata', input[['AzureBlobStorageRdata']])), ", overwrite=TRUE)\n",
-                "x <- ", Quantico:::CEP(x), "\n",
-                "filename <- basename(x)\n",
-                "ModelOutputList <- readRDS(file.path('/inputdata', x)),\n",
-                "DataList[[filename]] <- ModelOutputList$TestData\n"))
-            } else if(!is.null(ModelOutputList$TrainData) && is.null(ModelOutputList$TestData)) {
-              DataList[[filename]][['data']] <<- ModelOutputList$TrainData
-              xx <- tryCatch({DataList[[filename]][['data']][,.N]}, error = function(x) NULL)
-              if(length(xx) > 0L) {
-                DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, filename)}, error = function(x) DataList)
-              }
-              DataList <<- DataList
-              CurrentData <<- filename
-              DataMgtCode <- Quantico::Shiny.CodePrint.Collect(y = DataMgtCode, x = paste0(
-                "\n",
-                "# Load ModelOutputList\n",
-                "AzureStor::download_blob(container = ", Quantico:::CEP(cont),", src = ", Quantico:::CEP(input[['AzureBlobStorageRdata']]), ", dest = ", Quantico:::CEP(file.path('/inputdata', input[['AzureBlobStorageRdata']])), ", overwrite=TRUE)\n",
-                "x <- ", Quantico:::CEP(x), "\n",
-                "filename <- basename(x)\n",
-                "ModelOutputList <- readRDS(file.path('/inputdata', x)),\n",
-                "DataList[[filename]] <- ModelOutputList$TrainData\n"))
-            }
-            break
-          } else {
-            Sys.sleep(5L)
-          }
-        }
-
-        # Sweet Alert
-        print("Data was loaded")
-        shinyWidgets::sendSweetAlert(session, title = NULL, text = NULL, type = NULL, btn_labels = "Success", btn_colors = NULL, html = FALSE, closeOnClickOutside = TRUE, showCloseButton = TRUE, width = "40%")
-      } else {
-        shinyWidgets::sendSweetAlert(session, title = NULL, text = NULL, type = NULL, btn_labels = "Missing Info", btn_colors = NULL, html = FALSE, closeOnClickOutside = TRUE, showCloseButton = TRUE, width = "40%")
-      }
-    } else {
-      shinyWidgets::sendSweetAlert(session, title = NULL, text = NULL, type = NULL, btn_labels = "Missing Info", btn_colors = NULL, html = FALSE, closeOnClickOutside = TRUE, showCloseButton = TRUE, width = "40%")
-    }
-  }, ignoreInit = TRUE)
-
   # Export Local CSV
   shiny::observeEvent(input$SaveLocalData,     {
     SaveData <- Quantico:::ReturnParam(xx = tryCatch({shiny::req(input$SaveData_SelectData)}, error = function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
@@ -8948,6 +8796,158 @@ server <- function(input, output, session) {
       shinyWidgets::sendSweetAlert(session, title = NULL, text = NULL, type = NULL, btn_labels = 'data not sent', btn_colors = NULL, html = FALSE, closeOnClickOutside = TRUE, showCloseButton = TRUE, width = "40%")
     }
   }, ignoreInit = TRUE)
+
+  # # Azure Import CSV
+  # shiny::observeEvent(input$ImportAzureCSV,    {
+  #
+  #   # Code Collection
+  #   if(!exists('DataMgtCode')) DataMgtCode <- list()
+  #   if(!exists('DataWranglingCode')) DataWranglingCode <- list()
+  #   if(!exists('FeatureEngineeringCode')) FeatureEngineeringCode <- list()
+  #   if(!exists('MachineLearningCode')) MachineLearningCode <- list()
+  #   if(!exists('ForecastingCode')) ForecastingCode <- list()
+  #   if(!exists('PlotterCode')) PlotterCode <- list()
+  #
+  #   # Notify user that data is being loaded
+  #   shiny::showNotification('Data loading has begun')
+  #
+  #   # File Type .csv
+  #   FileName <- tryCatch({input[['AzureBlobStorageTabular']]}, error = function(x) NULL)
+  #   if(Debug) print(FileName)
+  #   if(length(FileName) != 0 && FileName != "Load" && FileName != "") {
+  #     AzureStor::download_blob(container = cont, src = input[['AzureBlobStorageTabular']], dest = file.path('/inputdata', input[['AzureBlobStorageTabular']]), overwrite=TRUE)
+  #
+  #     # Azure .csv
+  #     x <- tryCatch({input[['AzureBlobStorageTabular']]}, error = function(x) NULL)
+  #     if(Debug) print('AzureBlobStorageTabular')
+  #     if(Debug) print(x)
+  #     if(length(x) > 0L) {
+  #       filename <- tryCatch({basename(input$AzureBlobStorageTabular)}, error = function(x) NULL)
+  #       for(i in seq_len(24L)) {
+  #         DataList[[filename]] <<- tryCatch({Quantico:::LoadCSV(Infile = file.path('/inputdata', input[['AzureBlobStorageTabular']]), Debug = Debug)}, error = function(x) NULL)
+  #         if(length(DataList[[filename]]) > 0L) {
+  #           xx <- tryCatch({DataList[[PostGRE_PullTable_Table]][['data']][,.N]}, error = function(x) NULL)
+  #           if(length(xx) > 0L) {
+  #             DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, PostGRE_PullTable_Table)}, error = function(x) DataList)
+  #           }
+  #           break
+  #         } else {
+  #           Sys.sleep(5)
+  #         }
+  #       }
+  #
+  #       DataList <<- DataList; CurrentData <<- filename
+  #       DataMgtCode <- Quantico::Shiny.CodePrint.Collect(y = DataMgtCode, x = paste0(
+  #         "\n",
+  #         "# Load ModelOutputList\n",
+  #         "x <- ", Quantico:::CEP(x), "\n",
+  #         "filename <<- basename(", Quantico:::CEP(filename), "\n",
+  #         "ModelOutputList <- readRDS(file.path('/inputdata', x)),\n",
+  #         "DataList[[filename]] <- Quantico:::LoadCSV(Infile = file.path('/inputdata', input[['AzureBlobStorageTabular']]))\n"))
+  #
+  #       # Sweet Alert
+  #       shinyWidgets::sendSweetAlert(session, title = NULL, text = NULL, type = NULL, btn_labels = "Success", btn_colors = NULL, html = FALSE, closeOnClickOutside = TRUE, showCloseButton = TRUE, width = "40%")
+  #     }
+  #
+  #     # Sweet Alert
+  #     print("Data was loaded")
+  #     shinyWidgets::sendSweetAlert(session, title = NULL, text = NULL, type = NULL, btn_labels = "Missing Name", btn_colors = NULL, html = FALSE, closeOnClickOutside = TRUE, showCloseButton = TRUE, width = "40%")
+  #   } else {
+  #     print("Data was loaded")
+  #     shinyWidgets::sendSweetAlert(session, title = NULL, text = NULL, type = NULL, btn_labels = "Missing Name", btn_colors = NULL, html = FALSE, closeOnClickOutside = TRUE, showCloseButton = TRUE, width = "40%")
+  #   }
+  # }, ignoreInit = TRUE)
+  #
+  # # Azure Import Rdata or rds file
+  # shiny::observeEvent(input$ImportAzureRdata,  {
+  #
+  #   # Notify user that data is being loaded
+  #   shiny::showNotification('Data loading has begun')
+  #
+  #   # File Type .Rdata
+  #   inFile2 <- tryCatch({input[['AzureBlobStorageRdata']]}, error = function(x) NULL)
+  #   if(!is.null(inFile2)) print(inFile2)
+  #   if(length(inFile2) != 0 && inFile2 != "") {
+  #     if(Debug) {print('data check 3')}
+  #
+  #     # Download data
+  #     tryCatch({AzureStor::download_blob(container = cont, src = input[['AzureBlobStorageRdata']], dest = file.path('/inputdata', input[['AzureBlobStorageRdata']]), overwrite=TRUE)}, error = function(x) NULL)
+  #
+  #     # Load ModelOutputList
+  #     x <- tryCatch({input[['AzureBlobStorageRdata']]}, error = function(x) NULL)
+  #     if(Debug) print('AzureBlobStorageRdata')
+  #     if(length(x) > 0L && x != "" && !is.na(x)) {
+  #       for(i in seq_len(24L)) {
+  #         filename <- basename(x)
+  #         ModelOutputList <<- tryCatch({readRDS(file.path('/inputdata', x))}, error = function(x) NULL)
+  #
+  #         # Grab or loop
+  #         if(length(ModelOutputList) > 0L) {
+  #           if(!is.null(ModelOutputList$TrainData) && !is.null(ModelOutputList$TestData)) {
+  #             DataList[[filename]][['data']] <<- data.table::rbindlist(list(ModelOutputList$TrainData, ModelOutputList$TestData), use.names = TRUE, fill = TRUE)
+  #             xx <- tryCatch({DataList[[filename]][['data']][,.N]}, error = function(x) NULL)
+  #             if(length(xx) > 0L) {
+  #               DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, filename)}, error = function(x) DataList)
+  #             }
+  #             DataList <<- DataList
+  #             CurrentData <<- filename
+  #             DataMgtCode <- Quantico::Shiny.CodePrint.Collect(y = DataMgtCode, x = paste0(
+  #               "\n",
+  #               "# Load ModelOutputList\n",
+  #               "AzureStor::download_blob(container = ", Quantico:::CEP(cont),", src = ", Quantico:::CEP(input[['AzureBlobStorageRdata']]), ", dest = ", Quantico:::CEP(file.path('/inputdata', input[['AzureBlobStorageRdata']])), ", overwrite=TRUE)\n",
+  #               "x <- ", Quantico:::CEP(x), "\n",
+  #               "filename <- basename(x)\n",
+  #               "ModelOutputList <- readRDS(file.path('/inputdata', x)),\n",
+  #               "DataList[[filename]] <- data.table::rbindlist(list(ModelOutputList$TrainData, ModelOutputList$TestData), use.names = TRUE, fill = TRUE)\n"))
+  #           } else if(is.null(ModelOutputList$TrainData) && !is.null(ModelOutputList$TestData)) {
+  #             DataList[[filename]][['data']] <<- ModelOutputList$TestData
+  #             xx <- tryCatch({DataList[[filename]][['data']][,.N]}, error = function(x) NULL)
+  #             if(length(xx) > 0L) {
+  #               DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, filename)}, error = function(x) DataList)
+  #             }
+  #             DataList <<- DataList
+  #             CurrentData <<- filename
+  #             DataMgtCode <- Quantico::Shiny.CodePrint.Collect(y = DataMgtCode, x = paste0(
+  #               "\n",
+  #               "# Load ModelOutputList\n",
+  #               "AzureStor::download_blob(container = ", Quantico:::CEP(cont),", src = ", Quantico:::CEP(input[['AzureBlobStorageRdata']]), ", dest = ", Quantico:::CEP(file.path('/inputdata', input[['AzureBlobStorageRdata']])), ", overwrite=TRUE)\n",
+  #               "x <- ", Quantico:::CEP(x), "\n",
+  #               "filename <- basename(x)\n",
+  #               "ModelOutputList <- readRDS(file.path('/inputdata', x)),\n",
+  #               "DataList[[filename]] <- ModelOutputList$TestData\n"))
+  #           } else if(!is.null(ModelOutputList$TrainData) && is.null(ModelOutputList$TestData)) {
+  #             DataList[[filename]][['data']] <<- ModelOutputList$TrainData
+  #             xx <- tryCatch({DataList[[filename]][['data']][,.N]}, error = function(x) NULL)
+  #             if(length(xx) > 0L) {
+  #               DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, filename)}, error = function(x) DataList)
+  #             }
+  #             DataList <<- DataList
+  #             CurrentData <<- filename
+  #             DataMgtCode <- Quantico::Shiny.CodePrint.Collect(y = DataMgtCode, x = paste0(
+  #               "\n",
+  #               "# Load ModelOutputList\n",
+  #               "AzureStor::download_blob(container = ", Quantico:::CEP(cont),", src = ", Quantico:::CEP(input[['AzureBlobStorageRdata']]), ", dest = ", Quantico:::CEP(file.path('/inputdata', input[['AzureBlobStorageRdata']])), ", overwrite=TRUE)\n",
+  #               "x <- ", Quantico:::CEP(x), "\n",
+  #               "filename <- basename(x)\n",
+  #               "ModelOutputList <- readRDS(file.path('/inputdata', x)),\n",
+  #               "DataList[[filename]] <- ModelOutputList$TrainData\n"))
+  #           }
+  #           break
+  #         } else {
+  #           Sys.sleep(5L)
+  #         }
+  #       }
+  #
+  #       # Sweet Alert
+  #       print("Data was loaded")
+  #       shinyWidgets::sendSweetAlert(session, title = NULL, text = NULL, type = NULL, btn_labels = "Success", btn_colors = NULL, html = FALSE, closeOnClickOutside = TRUE, showCloseButton = TRUE, width = "40%")
+  #     } else {
+  #       shinyWidgets::sendSweetAlert(session, title = NULL, text = NULL, type = NULL, btn_labels = "Missing Info", btn_colors = NULL, html = FALSE, closeOnClickOutside = TRUE, showCloseButton = TRUE, width = "40%")
+  #     }
+  #   } else {
+  #     shinyWidgets::sendSweetAlert(session, title = NULL, text = NULL, type = NULL, btn_labels = "Missing Info", btn_colors = NULL, html = FALSE, closeOnClickOutside = TRUE, showCloseButton = TRUE, width = "40%")
+  #   }
+  # }, ignoreInit = TRUE)
 
   #                                      ----
 

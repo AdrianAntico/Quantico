@@ -111,7 +111,7 @@ devtools::install_github("AdrianAntico/Quantico", upgrade = FALSE, dependencies 
 
 In your RStudio session, run the Quantico::Muse() function to kick off a Quantico session
 
-Easy start (no PostGRE, no Azure Blob access)
+Easy start
 
 ```r
 # Optionally, you can change up the WorkingDirectory argument for your desired file path location
@@ -144,9 +144,10 @@ Below is a subset of the various themes to choose from
 
 ## Plotting Page
 
-In the plotting panel you simply click on the top buttons (e.g. Plot 1) and select a plot from the dropdown menu. Then you click the button below to fill out the necessary parameters for your plot. Lastly, drop the newly created box in the dragula pane and move it to the bottom row in order for it to display.
+#### Plotting Basics
+Plotting is a vitally important aspect of this software. It's important that you know how to utilize the functionality as intended. One of the goals is to make plotting as easy as possible. You don't have to pre-aggrgate or prepare your data for plotting (although it can be). Just pass it in and utilize the inputs to tell the software what you want.
 
-### 37 Plot types:
+### Plot types:
 
 | Distribution     | Aggregate       | Time Series      | Relationship | Model Evaluation           |
 | ---------------- | --------------- | ---------------- | ------------ | -------------------------- |
@@ -163,6 +164,35 @@ In the plotting panel you simply click on the top buttons (e.g. Plot 1) and sele
 |                  |                 |                  |              | Gains                      |
 |                  |                 |                  |              | Lift                       |
 
+#### Build and display a plot:
+In the plotting panel you simply click on the top buttons (e.g. Plot 1, Plot 2, ...) and select a plot type from the dropdown menu. Then you click the button below to fill out the necessary parameters for your plot. Lastly, drop the newly created box in the dragula pane and move it to the bottom row in order for it to display.
+
+When you click the button below the plot type dropdown, a modal will appear with up to five tabs for inputs and selections:
+1 Data Selection Tab
+2 Axis Variables Tab
+3 Grouping Variables Tab (in most cases but not all)
+4 Filter Variables Tab
+5 Formatting Tab
+
+##### Data Selection
+The Data Selection tab is where you'll choose your dataset and number of records to display. The display record count is the number of records used for display purposes. For plots that require data aggregation display records won't typically matter but for non-aggregated data plots the records displayed are randomly sampled from your data right before the plot build occurs; not before any data preparation steps. 
+
+##### Axis Variables
+
+Axis variables:
+The Axis Variables tab is where you'll define your axis variables and any transformations you'd like applied. The modals are designed to only supply inputs that are actually used for the given plot type. For example, histogram plots only required variables to be defined across a single dimension (you can select more than one variable however), whereas with line plots, you'll need to defined an X-Axis variable (a date variable) and Y-Axis variables.
+
+Transformations:
+Automatic transformations can be selected and generated for numeric variables during the data preparation process while the software builds the plots.
+
+##### Group Variables
+The Group Variables tab is where you'll <i>optionally</i> define up to 3 group variables and faceting selection (if applicable). Since multiple group variables are allowed for the plotting engine the group variables will be concatenated and the combined levels will be displayed. For each group variable you can select the levels you wish to have displayed. For faceting, you simply select the number of rows and columns desired to form the grid of your choice.
+
+##### Filter Variables
+The Filter Variables tab is where you can optionally define filters for your data before having the plot displayed. You can select up to 4 filter variables, you'll define the logical operation you want conducted, and associated values based on the logical operation you selected. 
+
+##### Formatting
+The Formatting tab is where you can rename the plot title and axis titles. You can also select to have data values shown on the plots.
 
 <img src="https://github.com/AdrianAntico/Quantico/blob/main/inst/Plotting1.PNG" align="center" width="400" /> <img src="https://github.com/AdrianAntico/Quantico/blob/main/inst/Plotting2.PNG" align="center" width="400" />
 

@@ -15,6 +15,9 @@ Automated output reports are included for:
 3. Machine Learning
 4. Forecasting
 
+<br>
+<br>
+
 ## Installation
 
 Note: if you're only looking to update Quantico, you only have to reinstall the Quantico package below in Step 5.
@@ -108,8 +111,6 @@ devtools::install_github("AdrianAntico/Quantico", upgrade = FALSE, dependencies 
 
 <br>
 <br>
-<br>
-<br>
 
 ## Quickstart
 
@@ -136,6 +137,9 @@ Quantico::runQuantico(
   PostGRE_Password = '...')
 ```
 
+<br>
+<br>
+
 ## App Interface
 
 Below is a subset of the various themes to choose from
@@ -161,12 +165,18 @@ Below is a subset of the various themes to choose from
 - [Forecasting](#Forecasting)
 - [Forecasting Reporting](#Forecasting-Reporting-)
 
+<br>
+<br>
+
 ## Documentation
 The documentation is located in the Home Tab in the Documentation tab. There is a side bar full of hyperlinks to speed up navigation. You simply click the topic of choice (and perhaps again if there are sub-categories) and the app will navigate to that location.
 
 <img src="https://github.com/AdrianAntico/Quantico/blob/main/inst/Documentation1.PNG" align="center" width="800" /> 
 
 <img src="https://github.com/AdrianAntico/Quantico/blob/main/inst/Documentation2.PNG" align="center" width="800" />
+
+<br>
+<br>
 
 ## Visualization
 

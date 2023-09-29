@@ -106,6 +106,10 @@ devtools::install_github("AdrianAntico/Quantico", upgrade = FALSE, dependencies 
 
 </details>
 
+<br>
+<br>
+<br>
+<br>
 
 ## Quickstart
 

@@ -161,6 +161,7 @@ Below is a subset of the various themes to choose from
 The documentation is located in the Home Tab in the Documentation tab. There is a side bar full of hyperlinks to speed up navigation. You simply click the topic of choice (and perhaps again if there are sub-categories) and the app will navigate to that location.
 
 <img src="https://github.com/AdrianAntico/Quantico/blob/main/inst/Documentation1.PNG" align="center" width="400" /> 
+
 <img src="https://github.com/AdrianAntico/Quantico/blob/main/inst/Documentation2.PNG" align="center" width="400" />
 
 ## Visualization

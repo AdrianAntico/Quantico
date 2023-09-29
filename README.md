@@ -219,11 +219,11 @@ Plotting is a vitally important aspect of this software. It's important that you
 In the plotting panel you simply click on the top buttons (e.g. Plot 1, Plot 2, ...) and select a plot type from the dropdown menu. Then you click the button below to fill out the necessary parameters for your plot. Lastly, drop the newly created box in the dragula pane and move it to the bottom row in order for it to display.
 
 When you click the button below the plot type dropdown, a modal will appear with up to five tabs for inputs and selections:
-1 Data Selection Tab
-2 Axis Variables Tab
-3 Grouping Variables Tab (in most cases but not all)
-4 Filter Variables Tab
-5 Formatting Tab
+1. Data Selection Tab
+2. Axis Variables Tab
+3. Grouping Variables Tab (in most cases but not all)
+4. Filter Variables Tab
+5. Formatting Tab
 
 ##### Data Selection
 The Data Selection tab is where you'll choose your dataset and number of records to display. The display record count is the number of records used for display purposes. For plots that require data aggregation display records won't typically matter but for non-aggregated data plots the records displayed are randomly sampled from your data right before the plot build occurs; not before any data preparation steps. 

@@ -19,10 +19,11 @@ At a high level the app enables:
 * Natural Language Processing
 
 Automated output reports are included for:
-1. Exploratory Data Analysis
-2. Inference (specific to the tests)
-3. Machine Learning (specific to target type)
-4. Forecasting (specific to procedure)
+1. Plotting Reports
+2. Exploratory Data Analysis
+3. Inference (specific to the tests)
+4. Machine Learning (specific to target type)
+5. Forecasting (specific to procedure)
 
 <br>
 
@@ -250,6 +251,8 @@ The Formatting tab is where you can rename the plot title and axis titles. You c
 <img src="https://github.com/AdrianAntico/Quantico/blob/main/inst/Plotting3.PNG" align="center" width="400" /> <img src="https://github.com/AdrianAntico/Quantico/blob/main/inst/Plotting4.PNG" align="center" width="400" />
 
 <img src="https://github.com/AdrianAntico/Quantico/blob/main/inst/Plotting5.PNG" align="center" width="400" /> <img src="https://github.com/AdrianAntico/Quantico/blob/main/inst/Plotting6.PNG" align="center" width="400" />
+
+<img src="https://github.com/AdrianAntico/Quantico/blob/main/inst/PlottingReport.PNG" align="center" width="800" />
 
 <br>
 

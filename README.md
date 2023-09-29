@@ -163,6 +163,7 @@ Below is a subset of the various themes to choose from
 - [Code Generation](#Code-Generation-)
 - [Visualization](#Visualization)
 - [Table Viewing](#Table-Viewing-)
+- [EDA](#Exploratory-Data-Analysis-)
 - [Data Wrangling](#Data-Wrangling-)
 - [Feature Engineering](#Feature-Engineering-)
 - [Inference](#Inference)
@@ -240,3 +241,21 @@ The Formatting tab is where you can rename the plot title and axis titles. You c
 <img src="https://github.com/AdrianAntico/Quantico/blob/main/inst/Plotting3.PNG" align="center" width="400" /> <img src="https://github.com/AdrianAntico/Quantico/blob/main/inst/Plotting4.PNG" align="center" width="400" />
 
 <img src="https://github.com/AdrianAntico/Quantico/blob/main/inst/Plotting5.PNG" align="center" width="400" /> <img src="https://github.com/AdrianAntico/Quantico/blob/main/inst/Plotting6.PNG" align="center" width="400" />
+
+<br>
+
+## Tables Viewer
+
+## Exploratory Data Analysis
+The Exploratory Data Analysis Report can display a variety of data insights, by a group variable if desired, including:
+1. Data dictionary information
+2. Univariate statistics
+3. Univariate box plots
+4. Correlogram
+5. Trend line plots
+
+<img src="https://github.com/AdrianAntico/Quantico/blob/main/inst/Plotting5.PNG" align="center" width="400" /> <img src="https://github.com/AdrianAntico/Quantico/blob/main/inst/EDA1.PNG" align="center" width="400" />
+
+
+
+

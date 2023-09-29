@@ -184,6 +184,15 @@ The documentation is located in the Home Tab in the Documentation tab. There is 
 
 <br>
 
+## Code Generation
+The Code generation tab returns the code that was run under the hood to run the various tasks and generated output. You can select from a variety of code themes as well. 
+
+<img src="https://github.com/AdrianAntico/Quantico/blob/main/inst/CodeGeneration1.PNG" align="center" width="800" />
+
+<img src="https://github.com/AdrianAntico/Quantico/blob/main/inst/CodeGeneration2.PNG" align="center" width="800" />
+
+<br>
+
 ## Visualization
 
 #### Plotting Basics

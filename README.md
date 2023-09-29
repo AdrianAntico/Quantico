@@ -277,6 +277,8 @@ The Exploratory Data Analysis Report can display a variety of data insights, by 
 
 <img src="https://github.com/AdrianAntico/Quantico/blob/main/inst/EDA2.PNG" align="center" width="800" />
 
+### EDA Report
 
 
+<img src="https://github.com/AdrianAntico/Quantico/blob/main/inst/EDAReport.PNG" align="center" width="800" />
 

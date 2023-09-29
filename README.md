@@ -254,7 +254,9 @@ The Exploratory Data Analysis Report can display a variety of data insights, by 
 4. Correlogram
 5. Trend line plots
 
-<img src="https://github.com/AdrianAntico/Quantico/blob/main/inst/Plotting5.PNG" align="center" width="400" /> <img src="https://github.com/AdrianAntico/Quantico/blob/main/inst/EDA1.PNG" align="center" width="400" />
+<img src="https://github.com/AdrianAntico/Quantico/blob/main/inst/EDA1.PNG" align="center" width="400" /> 
+
+<img src="https://github.com/AdrianAntico/Quantico/blob/main/inst/EDA2.PNG" align="center" width="400" />
 
 
 

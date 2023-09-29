@@ -252,6 +252,10 @@ The Formatting tab is where you can rename the plot title and axis titles. You c
 
 <img src="https://github.com/AdrianAntico/Quantico/blob/main/inst/Plotting5.PNG" align="center" width="400" /> <img src="https://github.com/AdrianAntico/Quantico/blob/main/inst/Plotting6.PNG" align="center" width="400" />
 
+
+### Plotting Report RMarkdown
+You can save you plotting setup to an html file. Just click the Save button after you've setup your plots. While you can setup a grid of output in the app the plots will be stacked on top of each other in the html file due to limited space. The only time this doesn't occur is for faceted plots, which are themselves a grid within a grid. 
+
 <img src="https://github.com/AdrianAntico/Quantico/blob/main/inst/PlottingReport.PNG" align="center" width="800" />
 
 <br>

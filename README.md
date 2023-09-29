@@ -1,5 +1,3 @@
-# Quantico
-
 ![Version:1.0.0](https://img.shields.io/static/v1?label=Version&message=1.0.0&color=blue&?style=plastic)
 ![Build:Passing](https://img.shields.io/static/v1?label=Build&message=passing&color=brightgreen)
 [![PRsWelcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=default)](http://makeapullrequest.com)
@@ -7,15 +5,23 @@
 
 <img src="https://github.com/AdrianAntico/Quantico/blob/main/inst/LogoWhite.png" align="center" width="800" />
 
-Quantico is a GUI for Visualization, Data Wrangling, Feature Engineering, NLP, Machine Learning, Statistical Modeling, Forecasting, Reporting, and Code Generation. 
+Quantico is a Shiny App for data science, analytics, and business intelligence. The app is non-reactive where big data can cause a poor user experience. All data operations utilize data.table and collapse. Visualizations are based on the echarts4r library and the best machine learning and forecasting models are available. At a high level the app enables:
+* Code Generation
+* Plotting
+* Tables viewer
+* Data Wrangling
+* Feature Engineering
+* Machine Learning
+* Inference
+* Forecasting
+* Natural Language Processing
 
 Automated output reports are included for:
-1. EDA
-2. Inference
-3. Machine Learning
-4. Forecasting
+1. Exploratory Data Analysis
+2. Inference (specific to the tests)
+3. Machine Learning (specific to target type)
+4. Forecasting (specific to procedure)
 
-<br>
 <br>
 
 ## Installation
@@ -110,7 +116,6 @@ devtools::install_github("AdrianAntico/Quantico", upgrade = FALSE, dependencies 
 </details>
 
 <br>
-<br>
 
 ## Quickstart
 
@@ -138,7 +143,6 @@ Quantico::runQuantico(
 ```
 
 <br>
-<br>
 
 ## App Interface
 
@@ -150,6 +154,7 @@ Below is a subset of the various themes to choose from
 
 <img src="https://github.com/AdrianAntico/Quantico/blob/main/inst/AppMain5.PNG" align="center" width="400" /> <img src="https://github.com/AdrianAntico/Quantico/blob/main/inst/AppMain6.PNG" align="center" width="400" />
 
+<br>
 
 ## App Usage
 - [Documentation](#Documentation)
@@ -166,7 +171,6 @@ Below is a subset of the various themes to choose from
 - [Forecasting Reporting](#Forecasting-Reporting-)
 
 <br>
-<br>
 
 ## Documentation
 The documentation is located in the Home Tab in the Documentation tab. There is a side bar full of hyperlinks to speed up navigation. You simply click the topic of choice (and perhaps again if there are sub-categories) and the app will navigate to that location.
@@ -175,7 +179,6 @@ The documentation is located in the Home Tab in the Documentation tab. There is 
 
 <img src="https://github.com/AdrianAntico/Quantico/blob/main/inst/Documentation2.PNG" align="center" width="800" />
 
-<br>
 <br>
 
 ## Visualization

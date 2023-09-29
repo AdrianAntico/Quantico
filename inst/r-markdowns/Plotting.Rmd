@@ -1,6 +1,6 @@
 ---
 title: "Plotting Report"
-author: "Provided by DataMuse"
+author: "Provided by Quantico"
 date: "`r format(Sys.time(), '%Y-%m-%d')`"
 output:
   prettydoc::html_pretty:

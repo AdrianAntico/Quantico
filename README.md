@@ -257,6 +257,9 @@ The Formatting tab is where you can rename the plot title and axis titles. You c
 <br>
 
 ## Tables Viewer
+The Tables Viewer output tab allows you to views multiple tables stacked on top of each other. You can alter the number of records displayed, total records brought into the table, randomly sampled or not, and a few other formatting options. This can be useful for inspecting data after running some of the various tasks when you want to view new data or altered data.
+
+<img src="https://github.com/AdrianAntico/Quantico/blob/main/inst/TablesViewer1.PNG" align="center" width="800" />
 
 ## Exploratory Data Analysis
 The Exploratory Data Analysis Report can display a variety of data insights, by a group variable if desired, including:

@@ -317,7 +317,7 @@ a:hover {
 }
 ```
 
-#  <font size="5">DataMuse Plotting Output</font>
+#  <font size="5">Quantico Plotting Output</font>
 
 ```{r PlotOutputList, echo=FALSE}
 

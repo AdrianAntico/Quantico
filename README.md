@@ -142,7 +142,29 @@ Below is a subset of the various themes to choose from
 
 <img src="https://github.com/AdrianAntico/Quantico/blob/main/inst/AppMain5.PNG" align="center" width="400" /> <img src="https://github.com/AdrianAntico/Quantico/blob/main/inst/AppMain6.PNG" align="center" width="400" />
 
-## Plotting Page
+Documentation + Code Examples
+- [Supervised Learning](#supervised-learning-)
+- [Model Scoring](#model-scoring-)
+- [Model Evaluation](#model-evaluation-)
+- [Panel Data Forecasting](#panel-data-forecasting-)
+- [Time Series Forecasting](#time-series-forecasting-)
+
+## App Usage
+- [Documentation](#Documentation)
+- [Code Generation](#Code Generation)
+- [Visualization](#Visualization)
+- [Table Viewing](#Table Viewing)
+- [Data Wrangling](#Data Wrangling)
+- [Feature Engineering](#Feature Engineering)
+- [Inference](#Inference)
+- [Inference Reporting](#Inference Reporting)
+- [Machine Learning](#Machine Learning)
+- [Machine Learning Reporting](#Machine Learning Reporting)
+- [Forecasting](#Forecasting)
+- [Forecasting Reporting](#Forecasting Reporting)
+
+
+## Visualization
 
 #### Plotting Basics
 Plotting is a vitally important aspect of this software. It's important that you know how to utilize the functionality as intended. One of the goals is to make plotting as easy as possible. You don't have to pre-aggrgate or prepare your data for plotting (although it can be). Just pass it in and utilize the inputs to tell the software what you want.

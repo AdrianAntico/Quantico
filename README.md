@@ -404,6 +404,10 @@ The Inference Reports are dependent upon the inference method chosen. They all r
 
 <br>
 
+##### F-Test Report
+<img src="https://github.com/AdrianAntico/Quantico/blob/main/inst/Inference_FTest1.PNG" align="center" width="400" /> <img src="https://github.com/AdrianAntico/Quantico/blob/main/inst/Inference_FTest2.PNG" align="center" width="400" />
+
+<br>
 
 
 

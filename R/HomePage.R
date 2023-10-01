@@ -3828,7 +3828,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                     shiny::a(name = "mlinference"),
                     shiny::h2(tags$b("ML + Inference")),
                     shiny::p("ML is a vitally important aspect of this software. It's important that you know how to
-                        utilize the functionality as intended. Below are all of the plot types with descriptions about
+                        utilize the functionality as intended. Below are all of the ML Algo types with descriptions about
                         how to use each and every one for each of their intended uses. While there are far too many
                         combinations of each type I will be focusing on the core aspects and let the user decide which
                         combination makes the most sense for their use case. The given info will be sufficient for users

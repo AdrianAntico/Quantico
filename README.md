@@ -32,6 +32,7 @@ Automated output reports are included for:
 - [Quick Start](#Quickstart)
 - [App Interface](#app-interface)
 - [Documentation](#Documentation)
+- [Data Management](#data-management)
 - [Code Generation](#code-generation)
 - [Visualization](#Visualization)
 - [Table Viewing](#tables-viewer)
@@ -186,6 +187,16 @@ The documentation is located in the Home Tab in the Documentation tab. There is 
 <img src="https://github.com/AdrianAntico/Quantico/blob/main/inst/Documentation1.PNG" align="center" width="800" /> 
 
 <img src="https://github.com/AdrianAntico/Quantico/blob/main/inst/Documentation2.PNG" align="center" width="800" />
+
+<br>
+
+## Data Management
+Data management is currently handled a few ways. You can load up csv data locally or a saved machine learning model, connect to a PostGRE database, or work with previously saved sessions which will reload all objects that were previously available in your last session.
+
+You can also save csv data or machine learning models locally, along with saving data to PostGRE, and save your sessions.
+
+With PostGRE, you can query data, create tables, create databases, along with removing tables and removing databases.
+
 
 <br>
 

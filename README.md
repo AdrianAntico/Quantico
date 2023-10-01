@@ -27,6 +27,27 @@ Automated output reports are included for:
 
 <br>
 
+## App Usage
+- [Installation](#Installation)
+- [Quick Start](#Quickstart)
+- [App Interface](#App-Interface-)
+- [Documentation](#Documentation)
+- [Code Generation](#Code-Generation-)
+- [Visualization](#Visualization)
+- [Table Viewing](#Table-Viewing-)
+- [EDA](#Exploratory-Data-Analysis-)
+- [Data Wrangling](#Data-Wrangling-)
+- [Feature Engineering](#Feature-Engineering-)
+- [Inference](#Inference)
+- [Inference Reporting](#Inference-Reporting-)
+- [Machine Learning](#Machine-Learning-)
+- [Machine Learning Reporting](#Machine-Learning-Reporting-)
+- [Forecasting](#Forecasting)
+- [Forecasting Reporting](#Forecasting-Reporting-)
+
+
+<br>
+
 ## Installation
 
 Note: if you're only looking to update Quantico, you only have to reinstall the Quantico package below in Step 5.
@@ -156,23 +177,6 @@ Below is a subset of the various themes to choose from
 <img src="https://github.com/AdrianAntico/Quantico/blob/main/inst/AppMain3.PNG" align="center" width="400" /> <img src="https://github.com/AdrianAntico/Quantico/blob/main/inst/AppMain4.PNG" align="center" width="400" />
 
 <img src="https://github.com/AdrianAntico/Quantico/blob/main/inst/AppMain5.PNG" align="center" width="400" /> <img src="https://github.com/AdrianAntico/Quantico/blob/main/inst/AppMain6.PNG" align="center" width="400" />
-
-<br>
-
-## App Usage
-- [Documentation](#Documentation)
-- [Code Generation](#Code-Generation-)
-- [Visualization](#Visualization)
-- [Table Viewing](#Table-Viewing-)
-- [EDA](#Exploratory-Data-Analysis-)
-- [Data Wrangling](#Data-Wrangling-)
-- [Feature Engineering](#Feature-Engineering-)
-- [Inference](#Inference)
-- [Inference Reporting](#Inference-Reporting-)
-- [Machine Learning](#Machine-Learning-)
-- [Machine Learning Reporting](#Machine-Learning-Reporting-)
-- [Forecasting](#Forecasting)
-- [Forecasting Reporting](#Forecasting-Reporting-)
 
 <br>
 

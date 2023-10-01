@@ -384,8 +384,12 @@ Inference is a vitally important aspect of this software. It's important that yo
 ## Inference Reporting
 The Inference Reports are dependent upon the inference method chosen. They all return summary statistics and visuals to help assess effects and assumptions. 
 
+##### Normality Report
 <img src="https://github.com/AdrianAntico/Quantico/blob/main/inst/Inference_Normality1.PNG" align="center" width="400" /> <img src="https://github.com/AdrianAntico/Quantico/blob/main/inst/Inference_Normality2.PNG" align="center" width="400" />
 
+<br>
+
+##### Correlation Report
 <img src="https://github.com/AdrianAntico/Quantico/blob/main/inst/Inference_Correlation1.PNG" align="center" width="400" /> <img src="https://github.com/AdrianAntico/Quantico/blob/main/inst/Inference_Correlation2.PNG" align="center" width="400" />
 
 <br>

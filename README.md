@@ -191,11 +191,16 @@ The documentation is located in the Home Tab in the Documentation tab. There is 
 <br>
 
 ## Data Management
-Data management is currently handled a few ways. You can load up csv data locally or a saved machine learning model, connect to a PostGRE database, or work with previously saved sessions which will reload all objects that were previously available in your last session.
+Data management is currently handled a few ways. From your local file system you can load up csv data or parquet data or a saved machine learning model. You can also connect to a PostGRE database. And lastly, you can work with previously saved sessions which will reload all objects that were previously available in your last session.
 
 You can also save csv data or machine learning models locally, along with saving data to PostGRE, and save your sessions.
 
-With PostGRE, you can query data, create tables, create databases, along with removing tables and removing databases.
+With PostGRE, you can:
+1. Query data
+2. Create tables
+3. Create databases
+4. Remove tables
+5. Remove databases
 
 
 <br>
@@ -311,4 +316,24 @@ Data wrangling is a vitally important aspect of this software. It's important th
 | Aggregate      | Join  | Partition Data  | Melt Data | Type Casting        | Meta Programming      |
 | Subset Rows    | Union | Sort Data       | Cast Data | Rename Columns      | Time Series Fill      |
 | Subset Columns |       | Model Data Prep |           | Time Trend Column   | Time Series Roll Fill |
-| Sampling       |       | Remove Data     |           | Concatenate Columns |
+| Sampling       |       | Remove Data     |           | Concatenate Columns |                       |
+
+<br>
+
+## Feature Engineering
+
+#### Feature Engineering Basics
+Feature Engineering is a vitally important aspect of this software. It's important that you know how to utilize the functionality as intended. Below are all of the available methods with descriptions about how to use each and every one for each of their intended uses.
+
+### Feature Engineering Methods:
+
+| Numeric         | Categorical        | Calendar | Windowing           | Text              | Unsupervised             |
+| ----------------| -------------------| ---------| --------------------| ------------------|--------------------------|
+| Percent Rank    | Character Encoding | Calendar | Rolling Numeric     | Word2Vec          | Clustering               |
+| Standardize     | Partial Dummies    | Holiday  | Differencing        | Text Summary      | Anomaly Detection        |
+| Transformations |                    |          | Rolling Categorical | Sentiment         | Dimensionality Reduction |
+| Interaction     |                    |          |                     | Readability       |                          |
+|                 |                    |          |                     | Lexical Diversity |                          |
+
+
+

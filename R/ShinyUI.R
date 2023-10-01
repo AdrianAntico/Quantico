@@ -4127,7 +4127,7 @@ Windowing_Modal_Fun <- function(id,
 
               # Categorical: Auto Lag Roll Mode ----
               shiny::tabPanel(
-                title = "Categorical Variables",
+                title = "Rolling Categorical",
                 icon = shiny::icon('code'),
                 Quantico:::BlankRow(12L),
                 shiny::fluidRow(

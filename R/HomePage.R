@@ -2095,9 +2095,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                     width = 12L,
                     shiny::a(name = "aggregate"),
                     shiny::h3("Aggregate Data"),
-                    shiny::p("ROC plots are used to evaluate classification and multiclass models where
-                           the model performance is measured over the range of possible cutoff values
-                           used to classify... ")
+                    shiny::p("Aggregating data here is just like aggregating data using SQL with a GROUP BY clause.")
                   )
                 ),
 

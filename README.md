@@ -34,7 +34,7 @@ Automated output reports are included for:
 - [Documentation](#Documentation)
 - [Code Generation](#code-generation)
 - [Visualization](#Visualization)
-- [Table Viewing](#table-viewing)
+- [Table Viewing](#tables-viewer)
 - [EDA](#exploratory-data-analysis)
 - [Data Wrangling](#data-wrangling)
 - [Feature Engineering](#feature-engineering)

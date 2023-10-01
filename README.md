@@ -32,7 +32,7 @@ Automated output reports are included for:
 - [Quick Start](#Quickstart)
 - [App Interface](#App-Interface-)
 - [Documentation](#Documentation)
-- [Code Generation](#Code-Generation-)
+- [Code Generation](#code-generation-)
 - [Visualization](#Visualization)
 - [Table Viewing](#Table-Viewing-)
 - [EDA](#Exploratory-Data-Analysis-)

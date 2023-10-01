@@ -394,6 +394,11 @@ The Inference Reports are dependent upon the inference method chosen. They all r
 
 <br>
 
+##### One Sample T-Test Report
+<img src="https://github.com/AdrianAntico/Quantico/blob/main/inst/Inference_OneSampleTTest1.PNG" align="center" width="400" /> <img src="https://github.com/AdrianAntico/Quantico/blob/main/inst/Inference_OneSampleTTest2.PNG" align="center" width="400" />
+
+<br>
+
 
 
 

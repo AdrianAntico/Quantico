@@ -342,13 +342,25 @@ Feature Engineering is a vitally important aspect of this software. It's importa
 
 ### Feature Engineering Methods:
 
-| Numeric         | Categorical        | Calendar | Windowing           | Text              | Unsupervised             |
-| ----------------| -------------------| ---------| --------------------| ------------------|--------------------------|
-| Percent Rank    | Character Encoding | Calendar | Rolling Numeric     | Word2Vec          | Clustering               |
-| Standardize     | Partial Dummies    | Holiday  | Differencing        | Text Summary      | Anomaly Detection        |
-| Transformations |                    |          | Rolling Categorical | Sentiment         | Dimensionality Reduction |
-| Interaction     |                    |          |                     | Readability       |                          |
-|                 |                    |          |                     | Lexical Diversity |                          |
-
-
+| Category     | Method                   |
+| -------------| -------------------------|
+| Numeric      | Percent Rank             |
+|              | Standardize              |
+|              | Transformations          |
+|              | Interaction              |
+| Categorical  | Character Encoding       |
+|              | Partial Dummies          |
+| Calendar     | Calendar Variables       |
+|              | Holiday Variables        |
+| Windowing    | Rolling Numeric          |
+|              | Differencing             |
+|              | Rolling Categorical      |
+| Text         | Word2Vec                 |
+|              | Text Summary             |
+|              | Sentiment                |
+|              | Readability              |
+|              | Lexical Diversity        |
+| Unsupervised | Clustering               |
+|              | Anomaly Detection        |
+|              | Dimensionality Reduction |
 

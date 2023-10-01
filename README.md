@@ -311,12 +311,27 @@ Data wrangling is a vitally important aspect of this software. It's important th
 
 ### Data Wrangling Methods:
 
-| Shrink         | Grow  | Dataset         | Pivot     | Columns             | Misc                  |
-| ---------------| ------| ----------------| ----------| --------------------|-----------------------|
-| Aggregate      | Join  | Partition Data  | Melt Data | Type Casting        | Meta Programming      |
-| Subset Rows    | Union | Sort Data       | Cast Data | Rename Columns      | Time Series Fill      |
-| Subset Columns |       | Model Data Prep |           | Time Trend Column   | Time Series Roll Fill |
-| Sampling       |       | Remove Data     |           | Concatenate Columns |                       |
+| Category       | Method                |
+| ---------------|-----------------------|
+| Shrink         | Aggregate             |
+|                | Subset Rows           |
+|                | Subset Columns        |
+|                | Sampling              |
+| Grow           | Join                  |
+|                | Union                 |
+| Dataset        | Partition Data        |
+|                | Sort Data             |
+|                | Remove Data           |
+|                | Model Data Prep       |
+| Pivot          | Melt Data             |
+|                | Cast Data             |
+| Columns        | Type Casting          |
+|                | Time Trend            |
+|                | Rename Columns        |
+|                | Concatenate Columns   |
+| Misc           | Meta Programming      |
+|                | Time Series Fill      |
+|                | Time Series Roll Fill |
 
 <br>
 

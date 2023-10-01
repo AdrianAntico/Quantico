@@ -2058,11 +2058,8 @@ HomePage <- function(id, Page, AppWidth=12L) {
                     shiny::a(name = "datawrangling"),
                     shiny::h2(tags$b("Data Wrangling")),
                     shiny::p("Data wrangling is a vitally important aspect of this software. It's important that you know how to
-                        utilize the functionality as intended. Below are all of the plot types with descriptions about
-                        how to use each and every one for each of their intended uses. While there are far too many
-                        combinations of each type I will be focusing on the core aspects and let the user decide which
-                        combination makes the most sense for their use case. The given info will be sufficient for users
-                        to generate any one of those combinations. ")
+                        utilize the functionality as intended. Below are all of the available methods
+                        with descriptions about how to use each and every one for each of their intended uses.")
                   )
                 )
               ),
@@ -2861,7 +2858,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                              you know how to utilize the functionality as intended. Below are all of the available methods
                              with descriptions about how to use each and every one for each of their intended uses. I find that
                              feature engineering is fastest way to generate a sufficiently good model, when combined with one of
-                             the ML methods in the ML+Inference Tab.")
+                             the ML methods.")
                   )
                 )
               ),

@@ -30,7 +30,7 @@ Automated output reports are included for:
 ## App Usage
 - [Installation](#Installation)
 - [Quick Start](#Quickstart)
-- [App Interface](#App-Interface-)
+- [App Interface](#app-interface)
 - [Documentation](#Documentation)
 - [Code Generation](#code-generation-)
 - [Visualization](#Visualization)

@@ -196,22 +196,31 @@ The documentation is located in the Home Tab in the Documentation tab. There is 
 <br>
 
 ## Data Management
-Data management is currently handled a few ways. From your local file system you can load up csv data or parquet data or a saved machine learning model. You can also connect to a PostGRE database. And lastly, you can work with previously saved sessions which will reload all objects that were previously available in your last session.
+On the side bar, under Load / Save, you have a few options:
+1. Local
+2. Sessions
+3. PostGRE
 
-You can also save csv data or machine learning models locally, along with saving data to PostGRE, and save your sessions.
+##### Local
+With the local modal you can load and save:
+1. csv data
+2. parquet data
+3. machine learning models
 
-With PostGRE, you can:
+##### Sessions
+You can save your session state and reload this at a later time. You can have a pre-configured plot output setup that you don't want to have to recreate every time you run the app. This would be similar to having saved reports. Further, all output panels will re-populate with what was previously setup at the time of the last save. 
+
+##### PostGRE
 1. Query data
 2. Create tables
 3. Create databases
 4. Remove tables
 5. Remove databases
 
-
 <br>
 
 ## Code Generation
-The Code generation tab returns the code that was run under the hood to run the various tasks and generated output. You can select from a variety of code themes as well. 
+The Code generation tab returns the code that was used to execute the various tasks and generate output. You can select from a variety of code themes as well. This can be really helpful to those who are looking to kickstart a project and then convert to a coding environment later. Some output can simply be generated much more quickly utilizing the app so this should be a time saver even to the most seasoned programmers. 
 
 <img src="https://github.com/AdrianAntico/Quantico/blob/main/inst/CodeGeneration1.PNG" align="center" width="800" />
 
@@ -222,9 +231,9 @@ The Code generation tab returns the code that was run under the hood to run the 
 ## Visualization
 
 #### Plotting Basics
-Plotting is a vitally important aspect of this software. It's important that you know how to utilize the functionality as intended. One of the goals is to make plotting as easy as possible. You don't have to pre-aggrgate or prepare your data for plotting (although it can be). Just pass it in and utilize the inputs to tell the software what you want.
+Plotting is a vitally important aspect of this software. It's important that you know how to utilize the functionality as intended. One of the goals is to make plotting as easy as possible. You don't have to pre-aggrgate your data for plotting purposes since those steps will be carried out for you (although it can be). Just pass in your data and utilize the inputs to tell the software what you want.
 
-### Plot types:
+### Plot Types
 
 | Distribution     | Aggregate       | Time Series      | Relationship | Model Evaluation           |
 | ---------------- | --------------- | ---------------- | ------------ | -------------------------- |
@@ -240,6 +249,39 @@ Plotting is a vitally important aspect of this software. It's important that you
 |                  |                 |                  |              | Confusion Matrix           |
 |                  |                 |                  |              | Gains                      |
 |                  |                 |                  |              | Lift                       |
+
+### Faceting
+For the plots that enable faceting you only have to select the number of columns and rows and the app will take care of the rest. Note that, if your group variable contains more levels than the total allotted facet grid and you didn't subset the group levels to match that count, in the case that there are more levels than grid elements then the levels with the most records will be displayed first. Ties go to ABC order.
+
+### Aggregation Methods
+Since the software will automatically aggregate your data (for some of the plot types) you can specify how you'd like your data aggregated. Below is a list of options:
+1. 'count' Counts of values by group. Here, you need to select any of the numeric YVars available in your data just so it doesn't create an error for a missing YVar
+2. 'proportion' Proportion of total by group. Here, you need to select any of the numeric YVars available in your data just so it doesn't create an error for a missing YVar
+3. 'mean'
+4. 'meanabs' (absolute values are taken first, then the measure)
+5. 'median'
+6. 'medianabs' (absolute values are taken first, then the measure)
+7. 'sum'
+8. 'sumabs' (absolute values are taken first, then the measure)
+9. 'sd' (standard deviation)
+10. 'sdabs' (absolute values are taken first, then the measure)
+11. 'skewness'
+12. 'skewnessabs' (absolute values are taken first, then the measure)
+13. 'kurtosis'
+14. 'kurtosisabs' (absolute values are taken first, then the measure)
+15. 'CoeffVar' (coefficient of variation)
+16. 'CoeffVarabs' (absolute values are taken first, then the measure)
+
+### Variable Transformation Methods
+For numeric variables you can choose to have them transformed automatically
+1. 'Asinh': inverse hyperbolic sine
+2. 'Log': natural logarithm
+3. 'LogPlus1' (natural log(x + absolute value of minimum value if min value is negative))
+4. 'Sqrt': square root
+5. 'Asin': inverse sine
+6. 'Logit'
+7. 'BoxCox'
+8. 'YeoJohnson'
 
 #### Build and display a plot:
 In the plotting panel you simply click on the top buttons (e.g. Plot 1, Plot 2, ...) and select a plot type from the dropdown menu. Then you click the button below to fill out the necessary parameters for your plot. Lastly, drop the newly created box in the dragula pane and move it to the bottom row in order for it to display.

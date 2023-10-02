@@ -456,8 +456,8 @@ HomePage <- function(id, Page, AppWidth=12L) {
                       "
                       * Date Time Aggregation: e.g. if you data is on a daily grain you can have it aggregated it to a weekly grain
                       * Group Variables: you can choose up to three group variables and the columns will be concatenated for the final plot
-                      * Group Variables: you can filter for any group levels you want to be displayed
-                      * Timeline: there is a option
+                      * Group Variables Levels: you can filter for any group levels you want to be displayed
+                      * Timeline: there is a option on the side bar under Settings -> Plot Themes
                       * Grouping Variables Aggregation Method: you don't have to pre-aggregate your data for plotting. Aggreation stats include:
                         * 'count' Counts of values by group. Here, you need to select any of the numeric YVars available in your data just so it doesn't create an error for a missing YVar
                         * 'proportion' Proportion of total by group. Here, you need to select any of the numeric YVars available in your data just so it doesn't create an error for a missing YVar

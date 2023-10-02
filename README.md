@@ -3,7 +3,7 @@
 [![PRsWelcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=default)](http://makeapullrequest.com)
 [![GitHubStars](https://img.shields.io/github/stars/AdrianAntico/ShinyDS.svg?style=social)](https://github.com/AdrianAntico/ShinyDS)
 
-<img src="https://github.com/AdrianAntico/Quantico/blob/main/inst/LogoBlue1.png" align="center" width="800" />
+<img src="https://github.com/AdrianAntico/Quantico/blob/main/inst/LogoBlue1.png" align="center" width="600" />
 
 Quantico is a Shiny App for data science, analytics, and business intelligence. The app is non-reactive where big data can cause a poor user experience. All data operations utilize data.table and collapse for fast processing and low memory utilization. Visualizations are based on the echarts4r library and the best machine learning and forecasting models are available. Data can be accessed in several ways and session saving and restoration is available. 15 app themes are available with a large variety of background images as well. 
 
@@ -528,7 +528,7 @@ There are various Run modes to train, backtest, and forecast:
 ##### Backtesting Options
 1. Backtest: This task will train a new model (if FC ArgsList is not supplied) and generate an N-Period ahead forecast that will be evaluated using Validation Data supplied by the user. If you don't have a Validation dataset, go to Data Wrangling and subset rows based on a time variable. The subset data will be your Training Data and your original dataset will be the Validation Data
 2. Backtest Cross Evaluation: Once you have a good model designed you can mock production by running this procedure. Here, you'll set the data refresh rate and the model update rate. Performance measure are returned in a data.table once the procedure is finished.
-3. Feature Engineering Test: This task will loop through various builds starting from the most simple up to a moderately sophisticated models. An evaluation table is generated that you can view in the Tables tab when the procedure is complete. Evaluation metrics are based on the Backtest method. Features tested are below and are in order. If a feature is beneficial it will remain in the models trained thereafter:
+3. Feature Engineering Test: This task will loop through various builds starting from the most simple up to a moderately sophisticated model. An evaluation table is generated that you can view in the Tables tab when the procedure is complete. Evaluation metrics are based on the Backtest method. Features tested are below and are in order. If a feature is beneficial it will remain in the models trained thereafter:
 > LogPlus1 vs None: this will test whether a target variable transformation is beneficial
 
 > Series Difference vs None: this will test whether utilizing Differencing your series is useful
@@ -545,7 +545,7 @@ There are various Run modes to train, backtest, and forecast:
 
 > Time Trend Variable vs None: this will test whether utilizing a Time Trend Variable is useful
 
-> Lag 1 vs None: this will test whether utilizing Lags are useful (user supplies the lags and if none are set then a lag1 is tested)
+> Lag 1 vs None: this will test whether utilizing Lags are useful
 
 ##### Forecasting Options
 1. Forecast: if you have a trained model you can call it to generate a forecast for you

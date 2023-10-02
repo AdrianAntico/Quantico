@@ -530,13 +530,21 @@ There are various Run modes to train, backtest, and forecast:
 2. Backtest Cross Evaluation: Once you have a good model designed you can mock production by running this procedure. Here, you'll set the data refresh rate and the model update rate. Performance measure are returned in a data.table once the procedure is finished.
 3. Feature Engineering Test: This task will loop through various builds starting from the most simple up to a moderately sophisticated models. An evaluation table is generated that you can view in the Tables tab when the procedure is complete. Evaluation metrics are based on the Backtest method. Features tested are below and are in order. If a feature is beneficial it will remain in the models trained thereafter:
 > LogPlus1 vs None: this will test whether a target variable transformation is beneficial
+
 > Series Difference vs None: this will test whether utilizing Differencing your series is useful
+
 > Calendar Variables vs None: this will test whether utilizing Calendar Variables is useful
+
 > Holiday Variable vs None: this will test whether utilizing Holiday Variables is useful
+
 > Credibility vs Target Encoding : this will test whether a target encoding is better than a credibility encoding
+
 > Time Weights vs None: this will test whether utilizing Time Weighting is useful
+
 > Anomaly Detection vs None: this will test whether utilizing Anomaly Detection is useful
+
 > Time Trend Variable vs None: this will test whether utilizing a Time Trend Variable is useful
+
 > Lag 1 vs None: this will test whether utilizing Lags are useful (user supplies the lags and if none are set then a lag1 is tested)
 
 ##### Forecasting Options

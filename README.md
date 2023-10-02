@@ -7,6 +7,8 @@
 
 Quantico is a Shiny App for data science, analytics, and business intelligence. The app is non-reactive where big data can cause a poor user experience. All data operations utilize data.table and collapse for fast processing and low memory utilization. Visualizations are based on the echarts4r library and the best machine learning and forecasting models are available. Data can be accessed in several ways and session saving and restoration is available. 15 app themes are available with a large variety of background images as well. 
 
+Note: For the best user experience I recommend using Chrome and having the zoom level at 75%
+
 At a high level the app enables:
 * Data Management
 * Session Saving / Loading

@@ -416,7 +416,7 @@ The Inference Reports are dependent upon the inference method chosen. They all r
 
 ## Machine Learning
 
-ML is a vitally important aspect of this software. It's important that you know how to utilize the functionality as intended. The documentation contains information all of the ML Algo types with descriptions about how to use each and every one for each of their intended use-cases.
+ML is a vitally important aspect of this software. It's important that you know how to utilize the functionality as intended. The documentation in-app contains information on each of the ML Algo types.
 
 Currently available algorithms include:
 1. CatBoost

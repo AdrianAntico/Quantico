@@ -1099,9 +1099,9 @@ pre {
 }
 
 body{
-    width:100%;
-    overflow-x:hidden;
-    overflow-y:hidden;
+  width:100%;
+  overflow-x:hidden;
+  overflow-y:auto;
 }
 
 code,

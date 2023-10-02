@@ -272,6 +272,9 @@ Since the software will automatically aggregate your data (for some of the plot 
 15. 'CoeffVar' (coefficient of variation)
 16. 'CoeffVarabs' (absolute values are taken first, then the measure)
 
+### Datetime Aggregation
+If you have a numeric X-Variable you can choose to display your plot on a higher grain datetime. For example, if you have daily data and you are looking to build a barplot time series, you can switch the default date aggregate parameter from "as-is" to "month" to display monthly aggregated time series.
+
 ### Variable Transformation Methods
 For numeric variables you can choose to have them transformed automatically
 1. 'Asinh': inverse hyperbolic sine
@@ -283,7 +286,7 @@ For numeric variables you can choose to have them transformed automatically
 7. 'BoxCox'
 8. 'YeoJohnson'
 
-#### Build and display a plot:
+### Plot Inputs
 In the plotting panel you simply click on the top buttons (e.g. Plot 1, Plot 2, ...) and select a plot type from the dropdown menu. Then you click the button below to fill out the necessary parameters for your plot. Lastly, drop the newly created box in the dragula pane and move it to the bottom row in order for it to display.
 
 When you click the button below the plot type dropdown, a modal will appear with up to five tabs for inputs and selections:

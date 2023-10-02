@@ -7,7 +7,7 @@
 
 Quantico is a Shiny App for data science, analytics, and business intelligence. The app is non-reactive where big data can cause a poor user experience. All data operations utilize data.table and collapse for fast processing and low memory utilization. Visualizations are based on the echarts4r library and the best machine learning and forecasting models are available. Data can be accessed in several ways and session saving and restoration is available. 15 app themes are available with a large variety of background images as well. 
 
-Note: For the best user experience I recommend using Chrome and having the zoom level at 75%
+Note: For the best user experience I recommend using Chrome and having the zoom level set to 75%
 
 At a high level the app enables:
 * Data Management
@@ -153,6 +153,7 @@ Easy start
 
 ```r
 # Optionally, you can change up the WorkingDirectory argument for your desired file path location
+# Note: For the best user experience I recommend using Chrome and having the zoom level set to 75%
 Quantico::runQuantico(WorkingDirectory = getwd())
 ```
 
@@ -160,6 +161,7 @@ If you have a PostGRE installation you can add in the PostGRE parameters (or jus
 
 ```r
 # Optionally, you can change up the WorkingDirectory argument for your desired file path location (don't forget to use these "/" instead of these "\" in your path)
+# Note: For the best user experience I recommend using Chrome and having the zoom level set to 75%
 Quantico::runQuantico(
   MaxTabs = 2L,
   WorkingDirectory = getwd(),

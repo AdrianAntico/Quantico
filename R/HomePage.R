@@ -4644,9 +4644,6 @@ HomePage <- function(id, Page, AppWidth=12L) {
                       "
                       * Single Series
                       * Panel Series
-                      * Irregular Panel Series (irregular start / end of panel levels)
-                      * Intermittent Demand (large time gaps between positive instances of demand)
-                      * Funnel / Cohort Series
                       "
                     ),
                     Quantico::BlankRow(12),
@@ -4664,17 +4661,6 @@ HomePage <- function(id, Page, AppWidth=12L) {
                       * CatBoost Panel
                       * XGBoost Panel
                       * LightGBM Panel
-
-                      Intermittent Demand Models
-
-                      * CatBoost ID (Intermittent Demand)
-                      * XGBoost ID (Intermittent Demand)
-                      * LightGBM ID (Intermittent Demand)
-
-                      Funnel Models (calendar date + cohort date)
-                      * CatBoost Funnel
-                      * XGBoost Funnel
-                      * LightGBM Funnel
                       "
                     ),
                     Quantico::BlankRow(12),
@@ -4704,8 +4690,6 @@ HomePage <- function(id, Page, AppWidth=12L) {
                     shiny::h3("Features Engineering:"),
                     shiny::markdown(
                       "
-                      * Single shot backtesting over a defined horizon
-                      * Roll forward backtesting over a defined horizon
                       * Series filling for any missing gaps
                       * Lags
                       * Moving averages
@@ -4719,7 +4703,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                       * Time trend variable
                       * Anomaly detection as variables
                       * Data truncation testing for NA produced by rolling stats
-                      * All the ML hyperparameters that come with the underlying ML algorithms
+                      * ML Hyperparameters
                       "
                     )
                   )

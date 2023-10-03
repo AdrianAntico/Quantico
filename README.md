@@ -511,22 +511,26 @@ Currently available algorithms can be split into Single Series and Panel Series:
 4. ARFIMA
 5. NNET
 
+#### Single Series Run Modes
+1. Grid Tuning
+2. Forecasting
+
 ### Panel Series Forecasting
 1. CatBoost
 2. XGBoost
 3. LightGBM
 
-#### Run Modes
+#### Panel Forecasting Run Modes
 There are various Run modes to train, backtest, and forecast:
 
 ##### Training Options
-1. Train Model: This is equivalent to building an ML model
-2. Retrain Existing Model: This is for retraining a model that's already been built before. Perhaps you simply want an updated model but not a new forecast at the moment
+1. <b>Train Model:</b> This is equivalent to building an ML model
+2. <b>Retrain Existing Model:</b> This is for retraining a model that's already been built before. Perhaps you simply want an updated model but not a new forecast at the moment
 
 ##### Backtesting Options
-1. Backtest: This task will train a new model (if FC ArgsList is not supplied) and generate an N-Period ahead forecast that will be evaluated using Validation Data supplied by the user. If you don't have a Validation dataset, go to Data Wrangling and subset rows based on a time variable. The subset data will be your Training Data and your original dataset will be the Validation Data
-2. Backtest Cross Evaluation: Once you have a good model designed you can mock production by running this procedure. Here, you'll set the data refresh rate and the model update rate. Performance measure are returned in a data.table once the procedure is finished.
-3. Feature Engineering Test: This task will loop through various builds starting from the most simple up to a moderately sophisticated model. An evaluation table is generated that you can view in the Tables tab when the procedure is complete. Evaluation metrics are based on the Backtest method. Features tested are below and are in order. If a feature is beneficial it will remain in the models trained thereafter:
+1. <b>Backtest:</b> This task will train a new model (if FC ArgsList is not supplied) and generate an N-Period ahead forecast that will be evaluated using Validation Data supplied by the user. If you don't have a Validation dataset, go to Data Wrangling and subset rows based on a time variable. The subset data will be your Training Data and your original dataset will be the Validation Data
+2. <b>Backtest Cross Evaluation:</b> Once you have a good model designed you can mock production by running this procedure. Here, you'll set the data refresh rate and the model update rate. Performance measure are returned in a data.table once the procedure is finished.
+3. <b>Feature Engineering Test:</b> This task will loop through various builds starting from the most simple up to a moderately sophisticated model. An evaluation table is generated that you can view in the Tables tab when the procedure is complete. Evaluation metrics are based on the Backtest method. Features tested are below and are in order. If a feature is beneficial it will remain in the models trained thereafter:
 > LogPlus1 vs None: this will test whether a target variable transformation is beneficial
 
 > Series Difference vs None: this will test whether utilizing Differencing your series is useful
@@ -546,5 +550,5 @@ There are various Run modes to train, backtest, and forecast:
 > Lag 1 vs None: this will test whether utilizing Lags are useful
 
 ##### Forecasting Options
-1. Forecast: if you have a trained model you can call it to generate a forecast for you
-2. Retrain + Forecast: if you have a model you can refresh it and have it generate a forecast for you
+1. <b>Forecast:</b> if you have a trained model you can call it to generate a forecast for you
+2. <b>Retrain + Forecast:</b> if you have a model you can refresh it and have it generate a forecast for you

@@ -22,7 +22,7 @@ At a high level the app enables:
 * Forecasting
 
 Automated output reports are included for:
-1. Plotting Reports
+1. Plotting
 2. Exploratory Data Analysis
 3. Inference (specific to the tests)
 4. Machine Learning (specific to target type)
@@ -487,10 +487,8 @@ Some of the built-in features include:
 * Data conversion to the structure appropriate for the given algorithm selected
 * Multi-arm bandit grid tuning
 
-#### ML Report Collapsed Output View
 <img src="https://github.com/AdrianAntico/Quantico/blob/main/inst/ML1.PNG" align="center" width="400" /> <img src="https://github.com/AdrianAntico/Quantico/blob/main/inst/ML2.PNG" align="center" width="400" />
 
-#### ML Report Expanded Output View
 <img src="https://github.com/AdrianAntico/Quantico/blob/main/inst/ML3.PNG" align="center" width="400" /> <img src="https://github.com/AdrianAntico/Quantico/blob/main/inst/ML4.PNG" align="center" width="400" />
 
 ## Machine Learning Reports

@@ -15,7 +15,9 @@ Shiny.FC.ReportOutput(
   ModelID = NULL,
   RunMode = NULL,
   Theme = "dark",
-  FontColor = NULL
+  FontColor = NULL,
+  PlotWidth = "1450px",
+  PlotHeight = "850px"
 )
 }
 \arguments{

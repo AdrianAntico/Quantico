@@ -4,7 +4,7 @@
 \alias{FCPanels}
 \title{FCPanels}
 \usage{
-FCPanels(id, Page, AppWidth = 12L, IOL = NULL)
+FCPanels(id, Page, AppWidth = 12L, MOL = NULL)
 }
 \arguments{
 \item{id}{= 'FCPanels'}

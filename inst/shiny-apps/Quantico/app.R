@@ -374,14 +374,14 @@ server <- function(input, output, session) {
     paste0("input$MLMarkdownExecute", seq_len(NumTabs), collapse = ",\n  "),
     ")"
   ))
-  DataOutputExpression <- parse(text = paste0(
-    "list(\n  ",
-    paste0("input$DataOutputExecute", seq_len(NumTabs), collapse = ",\n  "),
-    ")"
-  ))
   MLModelSelectionExpression <- parse(text = paste0(
     "list(\n  ",
     paste0("input$MLReportsModelSelection", seq_len(NumTabs), collapse = ",\n  "),
+    ")"
+  ))
+  DataOutputExpression <- parse(text = paste0(
+    "list(\n  ",
+    paste0("input$DataOutputExecute", seq_len(NumTabs), collapse = ",\n  "),
     ")"
   ))
   EDAOutputExpression <- parse(text = paste0(
@@ -417,6 +417,21 @@ server <- function(input, output, session) {
   InferenceReportOutputExpression <- parse(text = paste0(
     "list(\n  ",
     paste0("input$InferenceMarkdownExecute", seq_len(NumTabs), collapse = ",\n  "),
+    ")"
+  ))
+  FCOutputExpression <- parse(text = paste0(
+    "list(\n  ",
+    paste0("input$FCOutputExecute", seq_len(NumTabs), collapse = ",\n  "),
+    ")"
+  ))
+  FCReportOutputExpression <- parse(text = paste0(
+    "list(\n  ",
+    paste0("input$FCMarkdownExecute", seq_len(NumTabs), collapse = ",\n  "),
+    ")"
+  ))
+  FCModelSelectionExpression <- parse(text = paste0(
+    "list(\n  ",
+    paste0("input$FCReportsModelSelection", seq_len(NumTabs), collapse = ",\n  "),
     ")"
   ))
 
@@ -679,7 +694,7 @@ server <- function(input, output, session) {
           id = paste0("FCPanels", NumFCTabsCurrent),
           NumFCTabsCurrent,
           AppWidth=12L,
-          IOL = tryCatch({FCOutputList}, error = function(x) NULL)),
+          MOL = tryCatch({MLOutputList}, error = function(x) NULL)),
         select = TRUE)
     } else {
       NumFCTabsCurrent <- NumFCTabsCurrent - 1L
@@ -7270,7 +7285,7 @@ server <- function(input, output, session) {
 
           # Get remaining elements
           if(DebugFC) print('CatBoost FC 5')
-          ForecastingCode <- Output$CodeList; ForecastingCode <<- ForecastingCode; RunMode <- Output$RunMode;
+          ForecastingCode <- Output$CodeList; ForecastingCode <<- ForecastingCode; RunMode <- Output$RunMode; RunMode <<- RunMode
           DataList <- Output$DataList; DataList <<- DataList; CatBoostFC <- Output$ArgsList; CatBoostFC <<- CatBoostFC
 
           # CatBoostFC will be NULL for Backtest Simple Loop.
@@ -7278,9 +7293,10 @@ server <- function(input, output, session) {
           # see which parameter set is best to train a keeper
           if(DebugFC) print('CatBoost FC 6 DONE')
           if(length(CatBoostFC) > 0L) {
-            ModelOutputList[[CatBoostFC$ModelID]] <- CatBoostFC; ModelOutputList[[paste0(CatBoostFC$ModelID, "_MLOutput")]] <- CatBoostFC[[paste0(CatBoostFC$ModelID, "_Meta")]]
+            ModelOutputList[[CatBoostFC$ModelID]] <- CatBoostFC#; ModelOutputList[[paste0(CatBoostFC$ModelID, "_MLOutput")]] <- CatBoostFC[[paste0(CatBoostFC$ModelID, "_Meta")]]
             ModelOutputList <<- ModelOutputList; rm(Output); gc()
             for(i in seq_len(NumTabs)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0("DataOutputSelection",i), Label = 'Display Data', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
+            for(i in seq_len(NumTabs)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0('FCReportsModelSelection',i), Label = 'FC Output', Choices = names(ModelOutputList), Multiple = TRUE, MaxVars = 100L)
             shinyWidgets::sendSweetAlert(session, title = NULL, text = paste0('Model: ', CatBoostFC$CatBoostCARMA_ModelID, "\n", CatBoostFC$CatBoostCARMA_RunMode, " ran successfully"), type = NULL, btn_labels = paste0("Success"), btn_colors = NULL, html = FALSE, closeOnClickOutside = TRUE, showCloseButton = TRUE, width = "40%")
           } else {
             shinyWidgets::sendSweetAlert(session, title = NULL, text = paste0("Forecasting task was unsuccessful"), type = NULL, btn_labels = paste0("No Success"), btn_colors = NULL, html = FALSE, closeOnClickOutside = TRUE, showCloseButton = TRUE, width = "40%")
@@ -7343,7 +7359,7 @@ server <- function(input, output, session) {
 
           # Get remaining elements
           if(DebugFC) print('XGBoost FC 6')
-          ForecastingCode <- Output$CodeList; ForecastingCode <<- ForecastingCode; RunMode <- Output$RunMode;
+          ForecastingCode <- Output$CodeList; ForecastingCode <<- ForecastingCode; RunMode <- Output$RunMode; RunMode <<- RunMode
           DataList <- Output$DataList; DataList <<- DataList; XGBoostFC <- Output$ArgsList; XGBoostFC <<- XGBoostFC
 
           # XGBoostFC will be NULL for Backtest Simple Loop.
@@ -7354,6 +7370,7 @@ server <- function(input, output, session) {
             ModelOutputList[[XGBoostFC$ModelID]] <- XGBoostFC; ModelOutputList[[paste0(XGBoostFC$ModelID, "_MLOutput")]] <- XGBoostFC[[paste0(XGBoostFC$ModelID, "_Meta")]]
             ModelOutputList <<- ModelOutputList; rm(Output); gc()
             for(i in seq_len(NumTabs)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0("DataOutputSelection",i) , Label = 'Display Data', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
+            for(i in seq_len(NumTabs)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0('FCReportsModelSelection',i), Label = 'FC Output', Choices = names(ModelOutputList), Multiple = TRUE, MaxVars = 100L)
             shinyWidgets::sendSweetAlert(session, title = NULL, text = paste0('Model: ', XGBoostFC$XGBoostCARMA_ModelID, "\n", XGBoostFC$XGBoostCARMA_RunMode, " ran successfully"), type = NULL, btn_labels = paste0("Success"), btn_colors = NULL, html = FALSE, closeOnClickOutside = TRUE, showCloseButton = TRUE, width = "40%")
           } else {
             shinyWidgets::sendSweetAlert(session, title = NULL, text = paste0("Process ran successfully"), type = NULL, btn_labels = paste0("Success"), btn_colors = NULL, html = FALSE, closeOnClickOutside = TRUE, showCloseButton = TRUE, width = "40%")
@@ -7416,7 +7433,7 @@ server <- function(input, output, session) {
 
           # Get remaining elements
           if(DebugFC) print('LightGBM FC 6')
-          ForecastingCode <- Output$CodeList; ForecastingCode <<- ForecastingCode; RunMode <- Output$RunMode;
+          ForecastingCode <- Output$CodeList; ForecastingCode <<- ForecastingCode; RunMode <- Output$RunMode; RunMode <<- RunMode
           DataList <- Output$DataList; DataList <<- DataList; LightGBMFC <- Output$ArgsList; LightGBMFC <<- LightGBMFC
 
           # LightGBMFC will be NULL for Backtest Simple Loop.
@@ -7427,6 +7444,7 @@ server <- function(input, output, session) {
             ModelOutputList[[LightGBMFC$ModelID]] <- LightGBMFC; ModelOutputList[[paste0(LightGBMFC$ModelID, "_MLOutput")]] <- LightGBMFC[[paste0(LightGBMFC$ModelID, "_Meta")]]
             ModelOutputList <<- ModelOutputList; rm(Output); gc()
             for(i in seq_len(NumTabs)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0("DataOutputSelection",i), Label = 'Display Data', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
+            for(i in seq_len(NumTabs)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0('FCReportsModelSelection',i), Label = 'FC Output', Choices = names(ModelOutputList), Multiple = TRUE, MaxVars = 100L)
             shinyWidgets::sendSweetAlert(session, title = NULL, text = paste0('Model: ', LightGBMFC$LightGBMCARMA_ModelID, "\n", LightGBMFC$LightGBMCARMA_RunMode, " ran successfully"), type = NULL, btn_labels = paste0("Success"), btn_colors = NULL, html = FALSE, closeOnClickOutside = TRUE, showCloseButton = TRUE, width = "40%")
           } else {
             shinyWidgets::sendSweetAlert(session, title = NULL, text = paste0("Process ran successfully"), type = NULL, btn_labels = paste0("Success"), btn_colors = NULL, html = FALSE, closeOnClickOutside = TRUE, showCloseButton = TRUE, width = "40%")
@@ -9442,6 +9460,97 @@ server <- function(input, output, session) {
           "ModelObject = ModelOutputList)\n"))
 
         if(Debug) print("ML Markdown 2")
+      })
+    }
+
+  }, ignoreInit = TRUE)
+
+  #                                      ----
+
+  #                                      ----
+
+  # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
+  # :: Obs Event :: FC Tabs Output       ----
+  # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
+  shiny::observeEvent({eval(FCOutputExpression)}, {
+
+    if(Debug) print("FC Panel Report 1")
+
+    # Code Collection
+    if(!exists('MachineLearningCode')) MachineLearningCode <- list()
+    if(!exists("FCOutputList")) FCOutputList <- list()
+
+    # tabss refers to the entire tabsetPanel that houses the plotting, tables, and ml output panes
+    # pane names are as such:
+    #   Plots 1, Plots 2, ...
+    #   Tables 1, Tables 2, ...
+    #   FC 1, FC 2, ...
+    Page <- tryCatch({as.integer(gsub("[^\\d]+", "", input$tabss, perl=TRUE))}, error = function(x) 0L)
+    if(length(ModelOutputList) > 0L) {
+      shiny::withProgress(message = 'FC Reporting Has Begun..', value = 0, {
+
+        # Inputs
+        FCModelSelection <- Quantico:::ReturnParam(xx = tryCatch({input[[paste0('FCReportsModelSelection',Page)]]}, error = function(x) NULL), Type = "character", Default = NULL)
+        FontColorData <- Quantico:::rgba2hex(Quantico:::ReturnParam(xx = input[["ColorFont"]], Type = "character", Default = "#e2e2e2"))
+        EchartsTheme <- Quantico:::ReturnParam(xx = input[["EchartsTheme"]], Type = "character", Default = "dark")
+
+        if(Debug) {
+          print("FC Panel Report 2")
+          print(names(ModelOutputList))
+        }
+
+        saveRDS(object = DataList, file = file.path(WorkingDirectory, "DataList.rds"))
+
+        # Run Quantico:::Shiny.FC.ReportOutput
+        if(Debug) {
+          FCOut <- Quantico:::Shiny.FC.ReportOutput(
+            input, output, DataList, MachineLearningCode, Page,
+            Debug = Debug,
+            MOL = ModelOutputList,
+            ModelID = FCModelSelection,
+            RunMode = RunMode,
+            Theme = EchartsTheme,
+            FontColor = FontColorData)
+        } else {
+          FCOut <- tryCatch({
+            Quantico:::Shiny.FC.ReportOutput(
+              input, output, DataList, MachineLearningCode, Page,
+              Debug = Debug,
+              MOL = ModelOutputList,
+              ModelID = FCModelSelection,
+              RunMode = RunMode,
+              Theme = EchartsTheme,
+              FontColor = FontColorData)
+          }, error = function(x) NULL)
+        }
+
+        if(Debug) print("FC Panel Report 3")
+
+        # Collect output
+        if(length(FCOut) > 0L) {
+          FCOutputList[[Page]] <- FCOut[["OutputList"]]; FCOutputList <<- FCOutputList
+          DataList <- FCOut[["DataList"]]; DataList <<- DataList
+          MachineLearningCode <- FCOut[["CodeList"]]; MachineLearningCode <<- MachineLearningCode
+
+          if(Debug) {
+            print("FC Panel Report 4")
+            print(names(FCOutputList[[Page]]))
+          }
+
+          # Render Function
+          #if(length(FCOutputList) > 0L) {
+          Quantico:::Shiny.Display(
+            input, output, session,
+            FCOutputList[[Page]], Debug,
+            OutputId = paste0("FCOutput",Page),
+            Cols = 1,
+            FontColor = FontColorData$flv,
+            PM = names(FCOutputList[[Page]]))
+          #}
+
+          if(Debug) print("FC Panel Report 5")
+
+        }
       })
     }
 

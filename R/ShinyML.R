@@ -6181,11 +6181,11 @@ Shiny.FC.Panel.Train <- function(ArgsList, CodeList, DataList, ModelID, Algo = '
     "}\n",
     "}\n"))}, error = function(x) NULL)
 
-  ArgsList[[paste0(ModelID, "_Meta")]] <- Output$TestModel
+  #ArgsList$Model <- Output$TestModel
   if(DebugFC) print("Shiny.FC.Panel.Train 7")
 
   # ML Data: just like in the ML function shiny.ML.Trainer()
-  Output <- Quantico:::Shiny.ML.ModelDataObjects(ArgsList[[paste0(ModelID, "_Meta")]], DebugFC, TT = 'catboost')
+  Output <- Quantico:::Shiny.ML.ModelDataObjects(Output$TestModel, DebugFC, TT = 'catboost')
 
   if(DebugFC) print("Shiny.FC.Panel.Train 8")
   if(length(Output$ScoringDataCombined) > 0L) {
@@ -6232,8 +6232,7 @@ Shiny.FC.Panel.Train <- function(ArgsList, CodeList, DataList, ModelID, Algo = '
     DataList = DataList,
     CodeList = CodeList,
     ArgsList = ArgsList,
-    ValidationData = VD,
-    ReportObjects = Output
+    ValidationData = VD
   ))
 }
 
@@ -6268,8 +6267,10 @@ Shiny.FC.Panel.Retrain <- function(NewDataName, ArgsList, CodeList, DataList, Al
   ArgsList$Model <- NULL
 
   # Build model
-  if(DebugFC) print("Shiny.FC.Panel.Retrain 2")
-  print(length(ArgsList))
+  if(DebugFC) {
+    print("Shiny.FC.Panel.Retrain 2")
+    print(length(ArgsList))
+  }
   if(length(ArgsList) > 0L) print(tryCatch({names(ArgsList)}, error = function(x) NULL))
 
   ArgsList$TrainOnFull <- FALSE
@@ -6444,7 +6445,7 @@ Shiny.FC.Panel.Backtest <- function(ArgsList,
   # Build FC
   if(DebugFC) print("Shiny.FC.Panel.Backtest 3")
   ArgsList$TrainOnFull <- TRUE
-  print(ArgsList)
+  if(DebugFC) print(ArgsList)
   if(tolower(Algo) == 'catboost') {
     Output <- do.call(what = AutoQuant::AutoCatBoostCARMA, args = ArgsList)
   } else if(tolower(Algo) == 'xgboost') {
@@ -6514,8 +6515,10 @@ Shiny.FC.Panel.Backtest <- function(ArgsList,
   }
 
   # Return
-  if(DebugFC) print('Shiny.FC.Panel.Backtest 10 Done')
-  print(paste0("TYT has length: ", length(ArgsList$TVT)))
+  if(DebugFC) {
+    print('Shiny.FC.Panel.Backtest 10 Done')
+    print(paste0("TYT has length: ", length(ArgsList$TVT)))
+  }
   DataList[[paste0(ModelID, dlname)]][['sample']] <- DataList[[paste0(ModelID, dlname)]][['data']]
   return(list(
     DataList = DataList,
@@ -7445,13 +7448,12 @@ Shiny.FC.CARMA <- function(input,
         CodeList = CodeList,
         ArgsList = ArgsList,
         RunMode = RunMode,
-        ModelID = ModelID,
-        ReportOutput = ReportOutput
+        ModelID = ModelID
       ))
     }
 
     # *************************************
-    # Train + Backtest
+    # Backtest
     # *************************************
     if(RunMode == 'Backtest' && data.table::is.data.table(ValidationData)) {
 
@@ -9698,3 +9700,828 @@ Shiny.FC.SS <- function(input,
 # ----
 
 # ----
+
+# @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
+# FC Reporting                                                                               ----
+# @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
+
+#' @title Shiny.FC.ReportOutput
+#'
+#' @description Shiny FC Report
+#'
+#' @author Adrian Antico
+#' @family FC
+#'
+#' @param input shiny input
+#' @param output shiny output
+#' @param DataList DataList stores data in app
+#' @param ArgsList ArgsList
+#' @param CodeList CodeList from app
+#' @param Debug DebugFC from app
+#'
+#' @return a list of columns names by data type
+#'
+#' @export
+Shiny.FC.ReportOutput <- function(input,
+                                  output,
+                                  DataList,
+                                  CodeList,
+                                  Page,
+                                  Debug = FALSE,
+                                  MOL = NULL,
+                                  ModelID = NULL,
+                                  RunMode = NULL,
+                                  Theme = "dark",
+                                  FontColor = NULL) {
+
+  # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
+  # Create collection lists                                                   ----
+  # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
+
+  if(Debug) print("FC Reports 1")
+
+  # Checks
+  if(length(ModelID) == 0L) return(NULL)
+  if(!exists("DataList")) return(NULL)
+  if(!exists("CodeList")) return(NULL)
+
+  # temp_model_rdata$ArgsList$TargetColumnName
+  TargetColumnName <- MOL[[ModelID]][["TargetColumnName"]]
+
+  # temp_model_rdata$ArgsList$
+  PredictionColumnName <- "Predict"
+
+  # temp_model_rdata$ArgsList$FeatureColNames
+  FeatureColumnNames <- MOL[[ModelID]][["FeatureColNames"]]
+
+  # DateCol
+  DateColumnName <- MOL[[ModelID]]$DateColumnName
+
+  # Group Var
+  GroupVariableInclude <- "GroupVar"
+
+  # Data sets
+  if(Debug) print("FC Reports 2")
+
+  if(Debug) print("FC Reports 2.1")
+  TestData <- DataList[[paste0("CatBoostFC_", ModelID, "_ScoringData")]]$data
+  # print(TestData)
+  if(Debug) print("FC Reports 2.2")
+
+  OutputList <- list()
+
+  if(Debug) print("FC Reports 3")
+
+  # Args
+  PlotWidthinff <- Quantico:::ReturnParam(xx = tryCatch({input[[paste0('PlotWidthinff',Page)]]}, error = function(x) NULL), Type = "numeric", Default = NULL)
+  PlotWidthinff <- paste0(PlotWidthinff, "px")
+  PlotHeightinff <- Quantico:::ReturnParam(xx = tryCatch({input[[paste0('PlotHeightinff',Page)]]}, error = function(x) NULL), Type = "numeric", Default = NULL)
+  PlotHeightinff <- paste0(PlotHeightinff, "px")
+
+  if(Debug) print("ML Reports 7")
+
+  # ----
+
+  # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
+  # Train Outputs                                                             ----
+  # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
+
+  ScoringData <- tryCatch({DataList[[paste0("CatBoostFC_", ModelID, "_ScoringData")]]$data}, error = function(x) NULL)
+  if(length(ScoringData) > 0L) {
+
+    # Metrics
+    ScoringData[, AvgError := get(TargetColumnName) - Predict]
+    AvgError <- round(ScoringData[, mean(AvgError, na.rm = TRUE)], 4)
+    ScoringData[, MAE := abs(AvgError)]
+    MAE <- round(ScoringData[, mean(MAE, na.rm = TRUE)], 4)
+    ScoringData[, MSE := (get(TargetColumnName) - Predict)^2]
+    RMSE <- round(sqrt(ScoringData[, mean(MSE, na.rm = TRUE)]), 4)
+    ScoringData[, MAPE := get(TargetColumnName) / Predict - 1]
+    MAPE <- paste0(round(ScoringData[Predict != 0, mean(MAPE, na.rm = TRUE)], 4) * 100, "%")
+    ScoringData[, SMAPE := 2 * MAE / (abs(get(TargetColumnName)) + abs(Predict))]
+    SMAPE <- paste0(round(ScoringData[, mean(SMAPE, na.rm = TRUE)], 4) * 100, "%")
+
+    MetricsTable <- data.table::data.table(AvgError, MAE, RMSE, MAPE, SMAPE)
+
+    # Evaluation Metrics ----
+    OutputList[["ML Evaluation Metrics"]] <- reactable::reactable(
+      data = MetricsTable,
+      compact = TRUE,
+      defaultPageSize = 10,
+      wrap = TRUE,
+      filterable = TRUE,
+      fullWidth = TRUE,
+      highlight = TRUE,
+      pagination = TRUE,
+      resizable = TRUE,
+      searchable = TRUE,
+      selection = "multiple",
+      showPagination = TRUE,
+      showSortable = TRUE,
+      showSortIcon = TRUE,
+      sortable = TRUE,
+      striped = TRUE,
+      theme = reactable::reactableTheme(
+        color = FontColor$flv,
+        backgroundColor = "#4f4f4f26",
+        borderColor = "#dfe2e5",
+        stripedColor = "#4f4f4f8f",
+        highlightColor = "#8989898f",
+        cellPadding = "8px 12px",
+        style = list(
+          fontFamily = "-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif"
+        ),
+        searchInputStyle = list(width = "100%")
+      )
+    )
+
+    if(Debug) print("FC Reports 4")
+
+    # Variable Importance
+    Test_Importance <- DataList[[paste0("CatBoostFC_", ModelID, "_Test_VI_Data")]]$data
+
+    # Test Importance ----
+    OutputList[["ML Test Importance"]] <- reactable::reactable(
+      data = Test_Importance,
+      compact = TRUE,
+      defaultPageSize = 10,
+      wrap = TRUE,
+      filterable = TRUE,
+      fullWidth = TRUE,
+      highlight = TRUE,
+      pagination = TRUE,
+      resizable = TRUE,
+      searchable = TRUE,
+      selection = "multiple",
+      showPagination = TRUE,
+      showSortable = TRUE,
+      showSortIcon = TRUE,
+      sortable = TRUE,
+      striped = TRUE,
+      theme = reactable::reactableTheme(
+        color = FontColor$flv,
+        backgroundColor = "#4f4f4f26",
+        borderColor = "#dfe2e5",
+        stripedColor = "#4f4f4f8f",
+        highlightColor = "#8989898f",
+        cellPadding = "8px 12px",
+        style = list(
+          fontFamily = "-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif"
+        ),
+        searchInputStyle = list(width = "100%")
+      )
+    )
+
+    if(Debug) print("FC Reports 6")
+
+    Validation_Importance <- tryCatch({DataList[[paste0("CatBoostFC_", ModelID, "_Validation_VI_Data")]]$data}, error = function(x) NULL)
+
+    # Validation Importance ----
+    if(length(Validation_Importance) > 0) {
+      OutputList[["ML Validation Importance"]] <- reactable::reactable(
+        data = Validation_Importance,
+        compact = TRUE,
+        defaultPageSize = 10,
+        wrap = TRUE,
+        filterable = TRUE,
+        fullWidth = TRUE,
+        highlight = TRUE,
+        pagination = TRUE,
+        resizable = TRUE,
+        searchable = TRUE,
+        selection = "multiple",
+        showPagination = TRUE,
+        showSortable = TRUE,
+        showSortIcon = TRUE,
+        sortable = TRUE,
+        striped = TRUE,
+        theme = reactable::reactableTheme(
+          color = FontColor$flv,
+          backgroundColor = "#4f4f4f26",
+          borderColor = "#dfe2e5",
+          stripedColor = "#4f4f4f8f",
+          highlightColor = "#8989898f",
+          cellPadding = "8px 12px",
+          style = list(
+            fontFamily = "-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif"
+          ),
+          searchInputStyle = list(width = "100%")
+        )
+      )
+    }
+
+    Train_Importance <- tryCatch({DataList[[paste0("CatBoostFC_", ModelID, "_Train_VI_Data")]]$data}, error = function(x) NULL)
+
+    # Train Importance ----
+    if(length(Train_Importance) > 0) {
+      OutputList[["ML Train Importance"]] <- reactable::reactable(
+        data = Train_Importance,
+        compact = TRUE,
+        defaultPageSize = 10,
+        wrap = TRUE,
+        filterable = TRUE,
+        fullWidth = TRUE,
+        highlight = TRUE,
+        pagination = TRUE,
+        resizable = TRUE,
+        searchable = TRUE,
+        selection = "multiple",
+        showPagination = TRUE,
+        showSortable = TRUE,
+        showSortIcon = TRUE,
+        sortable = TRUE,
+        striped = TRUE,
+        theme = reactable::reactableTheme(
+          color = FontColor$flv,
+          backgroundColor = "#4f4f4f26",
+          borderColor = "#dfe2e5",
+          stripedColor = "#4f4f4f8f",
+          highlightColor = "#8989898f",
+          cellPadding = "8px 12px",
+          style = list(
+            fontFamily = "-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif"
+          ),
+          searchInputStyle = list(width = "100%")
+        )
+      )
+    }
+
+    # Interaction Importances
+    All_Interaction <- tryCatch({DataList[[paste0("CatBoostFC_", ModelID, "_All_II_Data")]]$data}, error = function(x) NULL)
+
+    # Train Importance ----
+    if(length(All_Interaction) > 0) {
+      OutputList[["ML Interaction Importance"]] <- reactable::reactable(
+        data = All_Interaction,
+        compact = TRUE,
+        defaultPageSize = 10,
+        wrap = TRUE,
+        filterable = TRUE,
+        fullWidth = TRUE,
+        highlight = TRUE,
+        pagination = TRUE,
+        resizable = TRUE,
+        searchable = TRUE,
+        selection = "multiple",
+        showPagination = TRUE,
+        showSortable = TRUE,
+        showSortIcon = TRUE,
+        sortable = TRUE,
+        striped = TRUE,
+        theme = reactable::reactableTheme(
+          color = FontColor$flv,
+          backgroundColor = "#4f4f4f26",
+          borderColor = "#dfe2e5",
+          stripedColor = "#4f4f4f8f",
+          highlightColor = "#8989898f",
+          cellPadding = "8px 12px",
+          style = list(
+            fontFamily = "-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif"
+          ),
+          searchInputStyle = list(width = "100%")
+        )
+      )
+    }
+
+    # Evaluation Plots ----
+    if(Debug) print("FC Reports 7.1")
+    OutputList[["ScoringData Residual Histogram"]] <- AutoPlots::Plot.Residuals.Histogram(
+      dt = ScoringData,
+      AggMethod = "mean",
+      SampleSize = 30000,
+      XVar = 'Predict',
+      YVar = TargetColumnName,
+      GroupVar = NULL,
+      YVarTrans = "Identity",
+      XVarTrans = "Identity",
+      FacetRows = 1,
+      FacetCols = 1,
+      FacetLevels = NULL,
+      NumberBins = 20,
+      Height = PlotHeightinff,
+      Width = PlotWidthinff,
+      Title = "Residuals Histogram",
+      ShowLabels = FALSE,
+      Title.YAxis = TargetColumnName,
+      Title.XAxis = 'Predict',
+      EchartsTheme = Theme,
+      TimeLine = FALSE,
+      X_Scroll = TRUE,
+      Y_Scroll = FALSE,
+      TextColor = "white",
+      title.fontSize = 22,
+      title.fontWeight = "bold",
+      title.textShadowColor = "#63aeff",
+      title.textShadowBlur = 3,
+      title.textShadowOffsetY = 1,
+      title.textShadowOffsetX = -1,
+      xaxis.fontSize = 14,
+      yaxis.fontSize = 14,
+      Debug = Debug)
+
+    if(Debug) print("FC Reports 7.3")
+
+    OutputList[["ScoringData Calibration Plot"]] <- AutoPlots::Plot.Calibration.Line(
+      dt = ScoringData,
+      AggMethod = "mean",
+      XVar = 'Predict',
+      YVar = TargetColumnName,
+      GroupVar = GroupVariableInclude,
+      YVarTrans = "Identity",
+      XVarTrans = "Identity",
+      FacetRows = 1,
+      FacetCols = 1,
+      FacetLevels = NULL,
+      NumberBins = 20,
+      Height = PlotHeighta,
+      Width = PlotWidtha,
+      Title = "Calibration Line Plot",
+      ShowLabels = FALSE,
+      Title.YAxis = TargetColumnName,
+      Title.XAxis = "Predict",
+      EchartsTheme = Theme,
+      TimeLine = FALSE,
+      X_Scroll = TRUE,
+      Y_Scroll = TRUE,
+      TextColor = "white",
+      Debug = Debug)
+
+    if(Debug) print("FC Reports 7.5")
+
+    OutputList[["ScoringData Calibration Box Plot"]] <- AutoPlots::Plot.Calibration.Box(
+      dt = ScoringData,
+      SampleSize = 30000L,
+      AggMethod = "mean",
+      XVar = 'Predict',
+      YVar = TargetColumnName,
+      GroupVar = NULL,
+      YVarTrans = "Identity",
+      XVarTrans = "Identity",
+      FacetRows = 1,
+      FacetCols = 1,
+      FacetLevels = NULL,
+      NumberBins = 20,
+      Height = PlotHeighta,
+      Width = PlotWidtha,
+      Title = "Calibration Plot",
+      ShowLabels = FALSE,
+      Title.YAxis = TargetColumnName,
+      Title.XAxis = "Predict",
+      EchartsTheme = Theme,
+      TimeLine = FALSE,
+      X_Scroll = TRUE,
+      Y_Scroll = TRUE,
+      TextColor = "white",
+      Debug = Debug)
+
+    # Add Plots
+    if(!is.null(ScoringData) && !is.null(FeatureColumnNames)) {
+      for(g in FeatureColumnNames) {
+        if(is.numeric(ScoringData[[g]])) {
+          OutputList[[paste0('ScoringData Partial Dependence Line Plot: ', g)]] <- AutoPlots::Plot.PartialDependence.Line(
+            dt = ScoringData,
+            XVar = g,
+            YVar = TargetColumnName,
+            ZVar = 'Predict',
+            YVarTrans = "Identity",
+            XVarTrans = "Identity",
+            ZVarTrans = "Identity",
+            FacetRows = 1,
+            FacetCols = 1,
+            FacetLevels = NULL,
+            GroupVar = GroupVariableInclude,
+            NumberBins = 20,
+            AggMethod = "mean",
+            Height = PlotHeighta,
+            Width = PlotWidtha,
+            Title = "Partial Dependence Line",
+            ShowLabels = FALSE,
+            Title.YAxis = TargetColumnName,
+            Title.XAxis = g,
+            EchartsTheme = Theme,
+            TimeLine = FALSE,
+            X_Scroll = TRUE,
+            Y_Scroll = TRUE,
+            TextColor = "white",
+            Debug = Debug)
+        }
+      }
+    }
+
+    # Add Plots
+    if(!is.null(ScoringData) && !is.null(FeatureColumnNames)) {
+      for(g in FeatureColumnNames) {
+        if(is.numeric(ScoringData[[g]])) {
+          if(Debug) print(paste0("g = ", g))
+          OutputList[[paste0('ScoringData Partial Dependence Box Plot: ', g)]] <- AutoPlots::Plot.PartialDependence.Box(
+            dt = ScoringData,
+            XVar = g,
+            YVar = TargetColumnName,
+            ZVar = 'Predict',
+            YVarTrans = "Identity",
+            XVarTrans = "Identity",
+            ZVarTrans = "Identity",
+            FacetRows = 1,
+            FacetCols = 1,
+            FacetLevels = NULL,
+            GroupVar = GroupVariableInclude,
+            NumberBins = 20,
+            AggMethod = "mean",
+            Height = PlotHeighta,
+            Width = PlotWidtha,
+            Title = "Partial Dependence Line",
+            ShowLabels = FALSE,
+            Title.YAxis = TargetColumnName,
+            Title.XAxis = g,
+            EchartsTheme = Theme,
+            TimeLine = FALSE,
+            X_Scroll = TRUE,
+            Y_Scroll = TRUE,
+            TextColor = "white",
+            Debug = Debug)
+        }
+      }
+    }
+
+    # Add Plots
+    if(!is.null(ScoringData) && !is.null(FeatureColumnNames)) {
+      for(g in FeatureColumnNames) {
+        if(!is.numeric(ScoringData[[g]])) {
+          OutputList[[paste0('ScoringData Partial Dependence Heatmap: ', g)]] <- AutoPlots::Plot.PartialDependence.HeatMap(
+            dt = ScoringData,
+            XVar = g,
+            YVar = TargetColumnName,
+            ZVar = 'Predict',
+            YVarTrans = "Identity",
+            XVarTrans = "Identity",
+            ZVarTrans = "Identity",
+            FacetRows = 1,
+            FacetCols = 1,
+            FacetLevels = NULL,
+            GroupVar = GroupVariableInclude,
+            NumberBins = 20,
+            AggMethod = "mean",
+            Height = PlotHeighta,
+            Width = PlotWidtha,
+            Title = "Partial Dependence Line",
+            ShowLabels = FALSE,
+            Title.YAxis = TargetColumnName,
+            Title.XAxis = g,
+            EchartsTheme = Theme,
+            TimeLine = FALSE,
+            X_Scroll = TRUE,
+            Y_Scroll = TRUE,
+            TextColor = "white",
+            Debug = Debug)
+        }
+      }
+    }
+  }
+
+  # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
+  # Backtest Outputs                                                          ----
+  # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
+
+  # ----
+
+  # BT_Rollup
+  BT_Rollup <- tryCatch({DataList[[paste0(ModelID, "_BT_Rollup")]]$data}, error = function(x) NULL)
+  if(length(BT_Rollup) > 0L) {
+    OutputList[["Back Test Metrics"]] <- reactable::reactable(
+      data = BT_Rollup,
+      compact = TRUE,
+      defaultPageSize = 10,
+      wrap = TRUE,
+      filterable = TRUE,
+      fullWidth = TRUE,
+      highlight = TRUE,
+      pagination = TRUE,
+      resizable = TRUE,
+      searchable = TRUE,
+      selection = "multiple",
+      showPagination = TRUE,
+      showSortable = TRUE,
+      showSortIcon = TRUE,
+      sortable = TRUE,
+      striped = TRUE,
+      theme = reactable::reactableTheme(
+        color = FontColor$flv,
+        backgroundColor = "#4f4f4f26",
+        borderColor = "#dfe2e5",
+        stripedColor = "#4f4f4f8f",
+        highlightColor = "#8989898f",
+        cellPadding = "8px 12px",
+        style = list(
+          fontFamily = "-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif"
+        ),
+        searchInputStyle = list(width = "100%")
+      )
+    )
+  }
+
+  # BT_Raw
+  BT_Raw <- tryCatch({DataList[[paste0(ModelID, "_BT_Raw")]]$data}, error = function(x) NULL)
+  if(length(BT_Raw) > 0L) {
+
+    # Backtest
+    minD <- BT_Raw[DataSet == "Evaluation", min(get(DateColumnName))]
+    p1 <- AutoPlots::Plot.Line(
+      dt = BT_Raw,
+      AggMethod = "mean",
+      PreAgg = FALSE,
+      XVar = DateColumnName,
+      YVar = c(TargetColumnName, "Predictions"),
+      DualYVar = NULL,
+      GroupVar = NULL,
+      YVarTrans = "Identity",
+      DualYVarTrans = "Identity",
+      XVarTrans = "Identity",
+      FacetRows = 1,
+      FacetCols = 1,
+      FacetLevels = NULL,
+      Height = NULL,
+      Width = NULL,
+      Title = "Line Plot",
+      ShowLabels = FALSE,
+      Title.YAxis = paste0(TargetColumnName, " | Predict"),
+      Title.XAxis = DateColumnName,
+      EchartsTheme = Theme,
+      X_Scroll = FALSE,
+      Y_Scroll = FALSE,
+      TimeLine = TRUE,
+      Area = FALSE,
+      Alpha = 0.5,
+      Smooth = TRUE,
+      ShowSymbol = FALSE,
+      TextColor = "white",
+      title.fontSize = 22,
+      title.fontWeight = "bold",
+      title.textShadowColor = "#63aeff",
+      title.textShadowBlur = 3,
+      title.textShadowOffsetY = 1,
+      title.textShadowOffsetX = -1,
+      xaxis.fontSize = 14,
+      yaxis.fontSize = 14,
+      xaxis.rotate = 0,
+      yaxis.rotate = 0,
+      ContainLabel = TRUE,
+      DarkMode = FALSE,
+      Debug = FALSE)
+    OutputList[["Backtest LinePlot"]] <- echarts4r::e_mark_line(e = p1, data = list(xAxis = minD), title = "")
+
+    # Backtest AvgError
+    p2 <- AutoPlots::Plot.Box(
+      dt = BT_Raw,
+      SampleSize = 100000L,
+      XVar = DateColumnName,
+      YVar = "AvgError",
+      GroupVar = NULL,
+      YVarTrans = "Identity",
+      XVarTrans = "Identity",
+      FacetRows = 1,
+      FacetCols = 1,
+      FacetLevels = NULL,
+      Height = NULL,
+      Width = NULL,
+      Title = "Box Plot: Avg Error",
+      ShowLabels = FALSE,
+      Title.YAxis = paste0(TargetColumnName, " - Predicted"),
+      Title.XAxis = DateColumnName,
+      EchartsTheme = Theme,
+      TimeLine = FALSE,
+      X_Scroll = TRUE,
+      Y_Scroll = TRUE,
+      TextColor = "white",
+      title.fontSize = 22,
+      title.fontWeight = "bold",
+      title.textShadowColor = "#63aeff",
+      title.textShadowBlur = 3,
+      title.textShadowOffsetY = 1,
+      title.textShadowOffsetX = -1,
+      xaxis.fontSize = 14,
+      yaxis.fontSize = 14,
+      xaxis.rotate = 0,
+      yaxis.rotate = 0,
+      ContainLabel = TRUE,
+      Debug = FALSE)
+    OutputList[["Backtest LinePlot"]] <- echarts4r::e_mark_line(e = p2, data = list(xAxis = minD), title = "")
+
+    # Backtest MAE
+    p3 <- AutoPlots::Plot.Line(
+      dt = BT_Raw,
+      AggMethod = "mean",
+      PreAgg = FALSE,
+      XVar = DateColumnName,
+      YVar = "MAE",
+      DualYVar = NULL,
+      GroupVar = NULL,
+      YVarTrans = "Identity",
+      DualYVarTrans = "Identity",
+      XVarTrans = "Identity",
+      FacetRows = 1,
+      FacetCols = 1,
+      FacetLevels = NULL,
+      Height = NULL,
+      Width = NULL,
+      Title = "Line Plot",
+      ShowLabels = FALSE,
+      Title.YAxis = "Absolute Error",
+      Title.XAxis = DateColumnName,
+      EchartsTheme = Theme,
+      X_Scroll = FALSE,
+      Y_Scroll = FALSE,
+      TimeLine = TRUE,
+      Area = FALSE,
+      Alpha = 0.5,
+      Smooth = TRUE,
+      ShowSymbol = FALSE,
+      TextColor = "white",
+      title.fontSize = 22,
+      title.fontWeight = "bold",
+      title.textShadowColor = "#63aeff",
+      title.textShadowBlur = 3,
+      title.textShadowOffsetY = 1,
+      title.textShadowOffsetX = -1,
+      xaxis.fontSize = 14,
+      yaxis.fontSize = 14,
+      xaxis.rotate = 0,
+      yaxis.rotate = 0,
+      ContainLabel = TRUE,
+      DarkMode = FALSE,
+      Debug = FALSE)
+    OutputList[["Backtest MAE LinePlot"]] <- echarts4r::e_mark_line(e = p3, data = list(xAxis = minD), title = "")
+
+    # Backtest RMSE
+    temp <- BT_Raw[, list(RMSE = sqrt(mean(RMSE))), by = DateColumnName]
+    p4 <- AutoPlots::Plot.Line(
+      dt = temp,
+      AggMethod = "mean",
+      PreAgg = TRUE,
+      XVar = DateColumnName,
+      YVar = "RMSE",
+      DualYVar = NULL,
+      GroupVar = NULL,
+      YVarTrans = "Identity",
+      DualYVarTrans = "Identity",
+      XVarTrans = "Identity",
+      FacetRows = 1,
+      FacetCols = 1,
+      FacetLevels = NULL,
+      Height = NULL,
+      Width = NULL,
+      Title = "Line Plot",
+      ShowLabels = FALSE,
+      Title.YAxis = "MSE",
+      Title.XAxis = DateColumnName,
+      EchartsTheme = Theme,
+      X_Scroll = FALSE,
+      Y_Scroll = FALSE,
+      TimeLine = TRUE,
+      Area = FALSE,
+      Alpha = 0.5,
+      Smooth = TRUE,
+      ShowSymbol = FALSE,
+      TextColor = "white",
+      title.fontSize = 22,
+      title.fontWeight = "bold",
+      title.textShadowColor = "#63aeff",
+      title.textShadowBlur = 3,
+      title.textShadowOffsetY = 1,
+      title.textShadowOffsetX = -1,
+      xaxis.fontSize = 14,
+      yaxis.fontSize = 14,
+      xaxis.rotate = 0,
+      yaxis.rotate = 0,
+      ContainLabel = TRUE,
+      DarkMode = FALSE,
+      Debug = FALSE)
+    OutputList[["Backtest MSE LinePlot"]] <- echarts4r::e_mark_line(e = p4, data = list(xAxis = minD), title = "")
+
+    # Backtest RMSE
+    temp1 <- BT_Raw[, list(MAPE = mean(MAPE)), by = DateColumnName]
+    p5 <- AutoPlots::Plot.Line(
+      dt = temp1,
+      AggMethod = "mean",
+      PreAgg = TRUE,
+      XVar = DateColumnName,
+      YVar = "MAPE",
+      DualYVar = NULL,
+      GroupVar = NULL,
+      YVarTrans = "Identity",
+      DualYVarTrans = "Identity",
+      XVarTrans = "Identity",
+      FacetRows = 1,
+      FacetCols = 1,
+      FacetLevels = NULL,
+      Height = NULL,
+      Width = NULL,
+      Title = "Line Plot",
+      ShowLabels = FALSE,
+      Title.YAxis = "MAPE",
+      Title.XAxis = DateColumnName,
+      EchartsTheme = Theme,
+      X_Scroll = FALSE,
+      Y_Scroll = FALSE,
+      TimeLine = TRUE,
+      Area = FALSE,
+      Alpha = 0.5,
+      Smooth = TRUE,
+      ShowSymbol = FALSE,
+      TextColor = "white",
+      title.fontSize = 22,
+      title.fontWeight = "bold",
+      title.textShadowColor = "#63aeff",
+      title.textShadowBlur = 3,
+      title.textShadowOffsetY = 1,
+      title.textShadowOffsetX = -1,
+      xaxis.fontSize = 14,
+      yaxis.fontSize = 14,
+      xaxis.rotate = 0,
+      yaxis.rotate = 0,
+      ContainLabel = TRUE,
+      DarkMode = FALSE,
+      Debug = FALSE)
+    OutputList[["Backtest MAPE LinePlot"]] <- echarts4r::e_mark_line(e = p5, data = list(xAxis = minD), title = "")
+
+    # Backtest RMSE
+    temp2 <- BT_Raw[, list(SMAPE = mean(SMAPE)), by = DateColumnName]
+    p6 <- AutoPlots::Plot.Line(
+      dt = temp2,
+      AggMethod = "mean",
+      PreAgg = TRUE,
+      XVar = DateColumnName,
+      YVar = "SMAPE",
+      DualYVar = NULL,
+      GroupVar = NULL,
+      YVarTrans = "Identity",
+      DualYVarTrans = "Identity",
+      XVarTrans = "Identity",
+      FacetRows = 1,
+      FacetCols = 1,
+      FacetLevels = NULL,
+      Height = NULL,
+      Width = NULL,
+      Title = "Line Plot",
+      ShowLabels = FALSE,
+      Title.YAxis = "SMAPE",
+      Title.XAxis = DateColumnName,
+      EchartsTheme = Theme,
+      X_Scroll = FALSE,
+      Y_Scroll = FALSE,
+      TimeLine = TRUE,
+      Area = FALSE,
+      Alpha = 0.5,
+      Smooth = TRUE,
+      ShowSymbol = FALSE,
+      TextColor = "white",
+      title.fontSize = 22,
+      title.fontWeight = "bold",
+      title.textShadowColor = "#63aeff",
+      title.textShadowBlur = 3,
+      title.textShadowOffsetY = 1,
+      title.textShadowOffsetX = -1,
+      xaxis.fontSize = 14,
+      yaxis.fontSize = 14,
+      xaxis.rotate = 0,
+      yaxis.rotate = 0,
+      ContainLabel = TRUE,
+      DarkMode = FALSE,
+      Debug = FALSE)
+    OutputList[["Backtest SMAPE LinePlot"]] <- echarts4r::e_mark_line(e = p6, data = list(xAxis = minD), title = "")
+
+  }
+
+  # ----
+
+  # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
+  # FE Test Outputs                                                           ----
+  # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
+  # ----
+
+  # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
+  # Cross Eval Outputs                                                        ----
+  # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
+  # ----
+
+  # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
+  # Forecast Outputs                                                          ----
+  # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
+  # ----
+
+  # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
+  # Return                                                                    ----
+  # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
+  returnList <- list()
+  returnList[["OutputList"]] <- OutputList
+  returnList[["DataList"]] <- DataList
+  returnList[["CodeList"]] <- CodeList
+  return(returnList)
+
+  # ----
+
+}
+
+# ----
+
+# ----
+

@@ -13853,7 +13853,7 @@ CatBoostCARMA_Modal_Fun <- function(id,
                       ),
                       Quantico:::BlankRow(12L),
                       shiny::fluidRow(
-                        shiny::column(12L, align = 'center', Quantico:::SelectizeInput(InputID = "CatBoostCARMA_BootStrapType", Label = "Boot strap type", Choices = CatBoostCARMA_BootStrapType_Choices, SelectedDefault = CatBoostCARMA_BootStrapType_Selected, Multiple = TRUE, MaxVars = 1L))
+                        shiny::column(12L, align = 'center', Quantico:::SelectizeInput(InputID = "CatBoostCARMA_BootStrapType", Label = "Bootstrap type", Choices = CatBoostCARMA_BootStrapType_Choices, SelectedDefault = CatBoostCARMA_BootStrapType_Selected, Multiple = TRUE, MaxVars = 1L))
                       ),
                       Quantico:::BlankRow(12L),
                       shiny::fluidRow(
@@ -20225,7 +20225,7 @@ EDAPanels <- function(id, Page, AppWidth=12L, DL = NULL) {
 #' @param DL numeric
 #'
 #' @export
-FCPanels <- function(id, Page, AppWidth=12L, IOL = NULL) {
+FCPanels <- function(id, Page, AppWidth=12L, MOL = NULL) {
   ns <- shiny::NS(id)
   shiny::tabPanel(
     title = paste0('FC ',Page),
@@ -20247,25 +20247,25 @@ FCPanels <- function(id, Page, AppWidth=12L, IOL = NULL) {
               style = "min-height: 240px; padding-top: 0px;",
               shiny::fluidRow(
                 style = "padding-top: 78px; padding-bottom: 33px;",
-                Quantico::PickerInput(InputID = paste0('FCReportsModelSelection',Page), Label = 'FC Output', Choices = tryCatch({names(IOL)}, error = function(x) NULL), Multiple = FALSE, MaxVars = 1L)
+                Quantico::PickerInput(InputID = paste0('FCReportsModelSelection',Page), Label = 'FC Output', Choices = tryCatch({names(MOL)}, error = function(x) NULL), Multiple = FALSE, MaxVars = 1L)
               )
             )
           ),
 
           shiny::column(
             width = 1L, align = 'center',
-            style = "padding-top: 73px; padding-left: 0px; padding-right: 0px; background-color: #0000;",
+            style = "padding-top: 20px; padding-left: 0px; padding-right: 0px; background-color: #0000;",
             shiny::fluidRow(
               shiny::actionButton(
                 inputId = paste0('FCOutputExecute',Page),
                 label = "Run", icon = shiny::icon("chevron-right")),
             ),
-            # shiny::fluidRow(
-            #   style = "padding-top: 30px;",
-            #   shiny::actionButton(
-            #     inputId = paste0('FCMarkdownExecute',Page),
-            #     label = "Save", icon = shiny::icon("chevron-right")),
-            # ),
+            shiny::fluidRow(
+              style = "padding-top: 30px;",
+              shiny::actionButton(
+                inputId = paste0('FCMarkdownExecute',Page),
+                label = "Save", icon = shiny::icon("chevron-right")),
+            ),
             shiny::tags$style(
               paste0(
                 "
@@ -20290,35 +20290,33 @@ FCPanels <- function(id, Page, AppWidth=12L, IOL = NULL) {
                   box-shadow: 0px 0px 20px #858a9c6e;
                   border-radius: 25px;
                   font-size: x-large;
+                  }
+
+                  #", paste0('FCMarkdownExecute',Page), " {
+                  padding-left: 0px;
+                  padding-right: 0px;
+                  background-color: #858a9c6e;
+                    margin-top: 29px;
+                  height: 50px;
+                  width: 95px;
+                  border-radius: 25px;
+                  font-size: x-large;
+                  }
+
+                  #", paste0('FCMarkdownExecute',Page), ":hover {
+                  padding-left: 0px;
+                  padding-right: 0px;
+                  background-color: #858a9c6e;
+                    margin-top: 29px;
+                  height: 50px;
+                  width: 95px;
+                  box-shadow: 0px 0px 20px #858a9c6e;
+                  border-radius: 25px;
+                  font-size: x-large;
                   }"
               )
             )
           ),
-
-
-          # #", paste0('FCMarkdownExecute',Page), " {
-          # padding-left: 0px;
-          # padding-right: 0px;
-          # background-color: #858a9c6e;
-          #   margin-top: 29px;
-          # height: 50px;
-          # width: 95px;
-          # border-radius: 25px;
-          # font-size: x-large;
-          # }
-          #
-          # #", paste0('FCMarkdownExecute',Page), ":hover {
-          # padding-left: 0px;
-          # padding-right: 0px;
-          # background-color: #858a9c6e;
-          #   margin-top: 29px;
-          # height: 50px;
-          # width: 95px;
-          # box-shadow: 0px 0px 20px #858a9c6e;
-          # border-radius: 25px;
-          # font-size: x-large;
-          # }
-
 
           shiny::column(
             width = 2L,
@@ -20327,11 +20325,11 @@ FCPanels <- function(id, Page, AppWidth=12L, IOL = NULL) {
               style = "min-height: 240px; padding-top: 0px;",
               shiny::fluidRow(
                 style = "padding-top: 63px;",
-                shiny::column(12L, align = "left", style = "padding-left: 30px;", shinyWidgets::materialSwitch(inputId = paste0("Striped", Page), label = 'Striped', status = "danger", right = FALSE, value = TRUE), shiny::tags$style("padding-left: 40px;"))
+                shiny::column(12L, align = "left", style = "padding-left: 30px;", shinyWidgets::materialSwitch(inputId = paste0("Stripedd", Page), label = 'Striped', status = "danger", right = FALSE, value = TRUE), shiny::tags$style("padding-left: 40px;"))
               ),
               shiny::fluidRow(
                 style = "padding-top: 40px; padding-bottom: 20px;",
-                shiny::column(12L, align = 'center', shiny::numericInput(inputId = paste0("MinRowsa", Page), label = 'Records per Page', value = 10, min = 10, max = 1000, step = 10))
+                shiny::column(12L, align = 'center', shiny::numericInput(inputId = paste0("MinRowsaa", Page), label = 'Records per Page', value = 10, min = 10, max = 1000, step = 10))
               )
             )
           ),
@@ -20342,10 +20340,10 @@ FCPanels <- function(id, Page, AppWidth=12L, IOL = NULL) {
               style = "min-height: 240px; padding-top: 0px;",
               shiny::fluidRow(
                 style = "padding-top: 63px; padding-bottom: 68px",
-                shiny::column(12L, align = "left", style = "padding-left: 30px;", shinyWidgets::materialSwitch(inputId = paste0("Compact", Page), label = 'Compact', status = "danger", right = FALSE, value = TRUE), shiny::tags$style("padding-left: 40px;"))
+                shiny::column(12L, align = "left", style = "padding-left: 30px;", shinyWidgets::materialSwitch(inputId = paste0("Compactt", Page), label = 'Compact', status = "danger", right = FALSE, value = TRUE), shiny::tags$style("padding-left: 40px;"))
               ),
               shiny::fluidRow(
-                shiny::column(12L, align = "left", style = "padding-left: 30px;", shinyWidgets::materialSwitch(inputId = paste0("Filterable", Page), label = 'Filterable', status = "danger", right = FALSE, value = TRUE), shiny::tags$style("padding-left: 40px;"))
+                shiny::column(12L, align = "left", style = "padding-left: 30px;", shinyWidgets::materialSwitch(inputId = paste0("Filterablee", Page), label = 'Filterable', status = "danger", right = FALSE, value = TRUE), shiny::tags$style("padding-left: 40px;"))
               )
             )
           ),
@@ -20357,10 +20355,10 @@ FCPanels <- function(id, Page, AppWidth=12L, IOL = NULL) {
               style = "min-height: 240px; padding-top: 0px;",
               shiny::fluidRow(
                 style = "padding-top: 15px; padding-bottom: 15px;",
-                shiny::column(12L, align = 'center', shiny::sliderInput(inputId = paste0("PlotWidthinf",Page), label = 'Plot Width', value = 1450, min = 100, max = 2800))
+                shiny::column(12L, align = 'center', shiny::sliderInput(inputId = paste0("PlotWidthinff",Page), label = 'Plot Width', value = 1450, min = 100, max = 2800))
               ),
               shiny::fluidRow(
-                shiny::column(12L, align = "center", shiny::sliderInput(inputId = paste0("PlotHeightinf",Page), label = 'Plot Height', value = 950, min = 100, max = 2800))
+                shiny::column(12L, align = "center", shiny::sliderInput(inputId = paste0("PlotHeightinff",Page), label = 'Plot Height', value = 950, min = 100, max = 2800))
               )
             )
           )

@@ -255,36 +255,36 @@ For the plots that enable faceting you only have to select the number of columns
 
 ### Aggregation Methods
 Since the software will automatically aggregate your data (for some of the plot types) you can specify how you'd like your data aggregated. Below is a list of options:
-1. 'count' Counts of values by group. Here, you need to select any of the numeric YVars available in your data just so it doesn't create an error for a missing YVar
-2. 'proportion' Proportion of total by group. Here, you need to select any of the numeric YVars available in your data just so it doesn't create an error for a missing YVar
-3. 'mean'
-4. 'meanabs' (absolute values are taken first, then the measure)
-5. 'median'
-6. 'medianabs' (absolute values are taken first, then the measure)
-7. 'sum'
-8. 'sumabs' (absolute values are taken first, then the measure)
-9. 'sd' (standard deviation)
-10. 'sdabs' (absolute values are taken first, then the measure)
-11. 'skewness'
-12. 'skewnessabs' (absolute values are taken first, then the measure)
-13. 'kurtosis'
-14. 'kurtosisabs' (absolute values are taken first, then the measure)
-15. 'CoeffVar' (coefficient of variation)
-16. 'CoeffVarabs' (absolute values are taken first, then the measure)
+1. `count` Counts of values by group. Here, you need to select any of the numeric YVars available in your data just so it doesn`t create an error for a missing YVar
+2. `proportion` Proportion of total by group. Here, you need to select any of the numeric YVars available in your data just so it doesn`t create an error for a missing YVar
+3. `mean`
+4. `meanabs` (absolute values are taken first, then the measure)
+5. `median`
+6. `medianabs` (absolute values are taken first, then the measure)
+7. `sum`
+8. `sumabs` (absolute values are taken first, then the measure)
+9. `sd` (standard deviation)
+10. `sdabs` (absolute values are taken first, then the measure)
+11. `skewness`
+12. `skewnessabs` (absolute values are taken first, then the measure)
+13. `kurtosis`
+14. `kurtosisabs` (absolute values are taken first, then the measure)
+15. `CoeffVar` (coefficient of variation)
+16. `CoeffVarabs` (absolute values are taken first, then the measure)
 
 ### Datetime Aggregation
 If you have a numeric X-Variable you can choose to display your plot on a higher grain datetime. For example, if you have daily data and you are looking to build a barplot time series, you can switch the default date aggregate parameter from "as-is" to "month" to display monthly aggregated time series.
 
 ### Variable Transformation Methods
 For numeric variables you can choose to have them transformed automatically
-1. 'Asinh': inverse hyperbolic sine
-2. 'Log': natural logarithm
-3. 'LogPlus1' (natural log(x + absolute value of minimum value if min value is negative))
-4. 'Sqrt': square root
-5. 'Asin': inverse sine
-6. 'Logit'
-7. 'BoxCox'
-8. 'YeoJohnson'
+1. `Asinh`: inverse hyperbolic sine
+2. `Log`: natural logarithm
+3. `LogPlus1` (natural log(x + absolute value of minimum value if min value is negative))
+4. `Sqrt`: square root
+5. `Asin`: inverse sine
+6. `Logit`
+7. `BoxCox`
+8. `YeoJohnson`
 
 ### Plot Inputs
 In the plotting panel you simply click on the top buttons (e.g. Plot 1, Plot 2, ...) and select a plot type from the dropdown menu. Then you click the button below to fill out the necessary parameters for your plot. Lastly, drop the newly created box in the dragula pane and move it to the bottom row in order for it to display.

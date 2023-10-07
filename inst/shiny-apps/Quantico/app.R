@@ -3243,7 +3243,7 @@ server <- function(input, output, session) {
       CatBoostCARMA_XREGS_Selected = if(length(input$CatBoostCARMA_XREGS) > 0L) input$CatBoostCARMA_XREGS else NULL,
       CatBoostCARMA_RunMode_Selected = if(length(input$CatBoostCARMA_RunMode) > 0L) input$CatBoostCARMA_RunMode else 'Train New Model',
       CatBoostCARMA_ArgsList_Selected = if(length(input$CatBoostCARMA_ArgsList) > 0L) input$CatBoostCARMA_ArgsList else NULL,
-      CatBoostCARMA_TimeUnit_Selected = if(length(input$CatBoostCARMA_TimeUnit) > 0L) input$CatBoostCARMA_TimeUnit else "Daily",
+      CatBoostCARMA_TimeUnit_Selected = if(length(input$CatBoostCARMA_TimeUnit) > 0L) input$CatBoostCARMA_TimeUnit else NULL,
       CatBoostCARMA_FCPeriods_Selected = if(length(input$CatBoostCARMA_FCPeriods) > 0L) input$CatBoostCARMA_FCPeriods else 5L,
       CatBoostCARMA_EncodingMethod_Selected = if(length(input$CatBoostCARMA_EncodingMethod) > 0L) input$CatBoostCARMA_EncodingMethod else 'credibility',
       CatBoostCARMA_ZeroPadSeries_Selected = if(length(input$CatBoostCARMA_ZeroPadSeries) > 0L) input$CatBoostCARMA_ZeroPadSeries else 'maxmax',
@@ -3372,7 +3372,7 @@ server <- function(input, output, session) {
       XGBoostCARMA_ValidationData_Selected = if(length(input$XGBoostCARMA_ValidationData) > 0L) input$XGBoostCARMA_ValidationData else NULL,
       XGBoostCARMA_XREGS_Selected = if(length(input$XGBoostCARMA_XREGS) > 0L) input$XGBoostCARMA_XREGS else NULL,
       XGBoostCARMA_RunMode_Selected = if(length(input$XGBoostCARMA_RunMode) > 0L) input$XGBoostCARMA_RunMode else 'Train New Model',
-      XGBoostCARMA_TimeUnit_Selected = if(length(input$XGBoostCARMA_TimeUnit) > 0L) input$XGBoostCARMA_TimeUnit else "Daily",
+      XGBoostCARMA_TimeUnit_Selected = if(length(input$XGBoostCARMA_TimeUnit) > 0L) input$XGBoostCARMA_TimeUnit else NULL,
       XGBoostCARMA_FCPeriods_Selected = if(length(input$XGBoostCARMA_FCPeriods) > 0L) input$XGBoostCARMA_FCPeriods else 5L,
       XGBoostCARMA_TaskType_Selected = if(length(input$XGBoostCARMA_TaskType) > 0L) input$XGBoostCARMA_TaskType else "CPU",
       XGBoostCARMA_NumGPU_Selected = if(length(input$XGBoostCARMA_NumGPU) > 0L) input$XGBoostCARMA_NumGPU else 1,
@@ -3493,7 +3493,7 @@ server <- function(input, output, session) {
       LightGBMCARMA_ValidationData_Selected = if(length(input$LightGBMCARMA_ValidationData) > 0L) input$LightGBMCARMA_ValidationData else NULL,
       LightGBMCARMA_XREGS_Selected = if(length(input$LightGBMCARMA_XREGS) > 0L) input$LightGBMCARMA_XREGS else NULL,
       LightGBMCARMA_RunMode_Selected = if(length(input$LightGBMCARMA_RunMode) > 0L) input$LightGBMCARMA_RunMode else 'Train New Model',
-      LightGBMCARMA_TimeUnit_Selected = if(length(input$LightGBMCARMA_TimeUnit) > 0L) input$LightGBMCARMA_TimeUnit else "Daily",
+      LightGBMCARMA_TimeUnit_Selected = if(length(input$LightGBMCARMA_TimeUnit) > 0L) input$LightGBMCARMA_TimeUnit else NULL,
       LightGBMCARMA_FCPeriods_Selected = if(length(input$LightGBMCARMA_FCPeriods) > 0L) input$LightGBMCARMA_FCPeriods else 5L,
       LightGBMCARMA_TaskType_Selected = if(length(input$LightGBMCARMA_TaskType) > 0L) input$LightGBMCARMA_TaskType else "CPU",
       LightGBMCARMA_NumGPU_Selected = if(length(input$LightGBMCARMA_NumGPU) > 0L) input$LightGBMCARMA_NumGPU else 1,
@@ -9493,13 +9493,17 @@ server <- function(input, output, session) {
         FCModelSelection <- Quantico:::ReturnParam(xx = tryCatch({input[[paste0('FCReportsModelSelection',Page)]]}, error = function(x) NULL), Type = "character", Default = NULL)
         FontColorData <- Quantico:::rgba2hex(Quantico:::ReturnParam(xx = input[["ColorFont"]], Type = "character", Default = "#e2e2e2"))
         EchartsTheme <- Quantico:::ReturnParam(xx = input[["EchartsTheme"]], Type = "character", Default = "dark")
+        PlotHeightinff <- Quantico:::ReturnParam(xx = input[[paste0("PlotHeightinff", Page)]], Type = "numeric", Default = 850)
+        PlotWidthinff <- Quantico:::ReturnParam(xx = input[[paste0("PlotWidthinff", Page)]], Type = "numeric", Default = 1450)
+        PlotHeightinff <- paste0(PlotHeightinff, "px")
+        PlotWidthinff <- paste0(PlotWidthinff, "px")
 
         if(Debug) {
           print("FC Panel Report 2")
           print(names(ModelOutputList))
         }
 
-        saveRDS(object = DataList, file = file.path(WorkingDirectory, "DataList.rds"))
+        # saveRDS(object = DataList, file = file.path(WorkingDirectory, "DataList.rds"))
 
         # Run Quantico:::Shiny.FC.ReportOutput
         if(Debug) {
@@ -9510,7 +9514,9 @@ server <- function(input, output, session) {
             ModelID = FCModelSelection,
             RunMode = RunMode,
             Theme = EchartsTheme,
-            FontColor = FontColorData)
+            FontColor = FontColorData,
+            PlotWidth = PlotWidthinff,
+            PlotHeight = PlotHeightinff)
         } else {
           FCOut <- tryCatch({
             Quantico:::Shiny.FC.ReportOutput(
@@ -9520,7 +9526,9 @@ server <- function(input, output, session) {
               ModelID = FCModelSelection,
               RunMode = RunMode,
               Theme = EchartsTheme,
-              FontColor = FontColorData)
+              FontColor = FontColorData,
+              PlotWidth = PlotWidthinff,
+              PlotHeight = PlotHeightinff)
           }, error = function(x) NULL)
         }
 

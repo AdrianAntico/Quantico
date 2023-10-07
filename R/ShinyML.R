@@ -6007,12 +6007,12 @@ Shiny.FC.Panel.Metrics.Agg <- function(DataList,
   if(CrossEval) {
     x <- paste0(ModelID, '_CE_Raw')
     xx <- paste0(ModelID, '_CE_Rollup')
+    vars <- c(ArgsList[['DateColumnName']], ArgsList[['TargetColumnName']], 'Predictions', Metrics)
   } else {
     x <- paste0(ModelID, '_BT_Raw')
     xx <- paste0(ModelID, '_BT_Rollup')
+    vars <- c(ArgsList[['TargetColumnName']], 'Predictions', Metrics)
   }
-
-  vars <- c(ArgsList[['TargetColumnName']], 'Predictions', Metrics)
 
   # Rollup Metrics
   if(length(GroupVariables) == 0L) {
@@ -6025,7 +6025,7 @@ Shiny.FC.Panel.Metrics.Agg <- function(DataList,
   aggD[, eval(ArgsList[['TargetColumnName']]) := round(get(ArgsList[['TargetColumnName']]), 4)]
   aggD[, Predictions := round(Predictions, 4)]
   aggD[, RMSE := round(sqrt(RMSE), 2)]
-  aggD[, MAPE := paste0(round(MAPE, 4)*100, "%")]
+  aggD[, MAPE := NULL]
   aggD[, SMAPE := paste0(round(SMAPE, 4)*100, "%")]
   aggD[, AvgError := round(AvgError, 2)]
   aggD[, AccumError := round(AccumError, 2)]
@@ -6356,12 +6356,14 @@ Shiny.FC.Panel.Forecast <- function(NewDataName, ArgsList, CodeList, DataList, M
     # Build model
     if(DebugFC) {print("Shiny.FC.Panel.Forecast 2"); print(ArgsList$Model)}
     if(tolower(Algo) == 'catboost') {
-      Output <- AutoQuant::AutoCatBoostCARMA(data = DataList[[NewDataName]][['data']], FC_Periods = ArgsList$FC_Periods, TrainOnFull = TRUE, SaveModel = sm, ArgsList = ArgsList)
+      Output <- tryCatch({AutoQuant::AutoCatBoostCARMA(data = DataList[[NewDataName]][['data']], FC_Periods = ArgsList$FC_Periods, TrainOnFull = TRUE, SaveModel = sm, ArgsList = ArgsList)}, error = function(x) NULL)
     } else if(tolower(Algo) == 'xgboost') {
-      Output <- AutoQuant::AutoXGBoostCARMA(data = DataList[[NewDataName]][['data']], FC_Periods = ArgsList$FC_Periods, TrainOnFull = TRUE, SaveModel = sm, ArgsList = ArgsList)
+      Output <- tryCatch({AutoQuant::AutoXGBoostCARMA(data = DataList[[NewDataName]][['data']], FC_Periods = ArgsList$FC_Periods, TrainOnFull = TRUE, SaveModel = sm, ArgsList = ArgsList)}, error = function(x) NULL)
     } else if(tolower(Algo) == 'lightgbm') {
-      Output <- AutoQuant::AutoLightGBMCARMA(data = DataList[[NewDataName]][['data']], FC_Periods = ArgsList$FC_Periods, TrainOnFull = TRUE, SaveModel = sm, ArgsList = ArgsList)
+      Output <- tryCatch({AutoQuant::AutoLightGBMCARMA(data = DataList[[NewDataName]][['data']], FC_Periods = ArgsList$FC_Periods, TrainOnFull = TRUE, SaveModel = sm, ArgsList = ArgsList)}, error = function(x) NULL)
     }
+
+    if(length(Output) == 0L) return(NULL)
 
     # Code Collection
     if(DebugFC) print("Shiny.FC.Panel.Forecast 3")
@@ -7517,9 +7519,21 @@ Shiny.FC.CARMA <- function(input,
 
       DataList[[paste0(ModelID, "_FeatureEngineeringTest")]][['data']] <- LoopMetrics[get(ColToCheck) > -5L]
 
+      # Column Updates
+      DataList[[paste0(ModelID, "_FeatureEngineeringTest")]][['data']][, `AvgError On` := NULL]
+      DataList[[paste0(ModelID, "_FeatureEngineeringTest")]][['data']][, `AvgError Off` := NULL]
+      DataList[[paste0(ModelID, "_FeatureEngineeringTest")]][['data']][, `RMSE On` := round(sqrt(`RMSE On`), 2)]
+      DataList[[paste0(ModelID, "_FeatureEngineeringTest")]][['data']][, `RMSE Off` := round(sqrt(`RMSE Off`), 2)]
+      DataList[[paste0(ModelID, "_FeatureEngineeringTest")]][['data']][, `MAE On` := round(`MAE On`, 2)]
+      DataList[[paste0(ModelID, "_FeatureEngineeringTest")]][['data']][, `MAE Off` := round(`MAE Off`, 2)]
+      DataList[[paste0(ModelID, "_FeatureEngineeringTest")]][['data']][, `MAPE On` := NULL]
+      DataList[[paste0(ModelID, "_FeatureEngineeringTest")]][['data']][, `MAPE Off` := NULL]
+      DataList[[paste0(ModelID, "_FeatureEngineeringTest")]][['data']][, `SMAPE On` := paste0(round(`SMAPE On` * 100, 2), "%")]
+      DataList[[paste0(ModelID, "_FeatureEngineeringTest")]][['data']][, `SMAPE Off` := paste0(round(`SMAPE Off` * 100, 2), "%")]
+
       if(DebugFC) print('Shiny.FC.Panel.Backest.FeatureEval post step 2')
 
-      DataList[[paste0(ModelID, "_FeatureEngineeringTest")]][['data']][, TestOutcome := data.table::fifelse(`MAE On` < `MAE Off`, 'Success','Failure')]
+      DataList[[paste0(ModelID, "_FeatureEngineeringTest")]][['data']][, TestOutcome := data.table::fifelse(`SMAPE On` < `SMAPE Off`, 'Success','Failure')]
       DataList[[paste0(ModelID, "_FeatureEngineeringTest")]][['data']][, RunNumber := NULL]
       DataList[[paste0(ModelID, "_FeatureEngineeringTest")]][['data']][, Methods := NULL]
       data.table::setcolorder(
@@ -9732,7 +9746,9 @@ Shiny.FC.ReportOutput <- function(input,
                                   ModelID = NULL,
                                   RunMode = NULL,
                                   Theme = "dark",
-                                  FontColor = NULL) {
+                                  FontColor = NULL,
+                                  PlotWidth = "1450px",
+                                  PlotHeight = "850px") {
 
   # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
   # Create collection lists                                                   ----
@@ -9998,8 +10014,8 @@ Shiny.FC.ReportOutput <- function(input,
       FacetCols = 1,
       FacetLevels = NULL,
       NumberBins = 20,
-      Height = PlotHeightinff,
-      Width = PlotWidthinff,
+      Height = PlotHeight,
+      Width = PlotWidth,
       Title = "Residuals Histogram",
       ShowLabels = FALSE,
       Title.YAxis = TargetColumnName,
@@ -10026,15 +10042,15 @@ Shiny.FC.ReportOutput <- function(input,
       AggMethod = "mean",
       XVar = 'Predict',
       YVar = TargetColumnName,
-      GroupVar = GroupVariableInclude,
+      GroupVar = NULL,
       YVarTrans = "Identity",
       XVarTrans = "Identity",
       FacetRows = 1,
       FacetCols = 1,
       FacetLevels = NULL,
       NumberBins = 20,
-      Height = PlotHeighta,
-      Width = PlotWidtha,
+      Height = PlotHeight,
+      Width = PlotWidth,
       Title = "Calibration Line Plot",
       ShowLabels = FALSE,
       Title.YAxis = TargetColumnName,
@@ -10061,8 +10077,8 @@ Shiny.FC.ReportOutput <- function(input,
       FacetCols = 1,
       FacetLevels = NULL,
       NumberBins = 20,
-      Height = PlotHeighta,
-      Width = PlotWidtha,
+      Height = PlotHeight,
+      Width = PlotWidth,
       Title = "Calibration Plot",
       ShowLabels = FALSE,
       Title.YAxis = TargetColumnName,
@@ -10089,11 +10105,11 @@ Shiny.FC.ReportOutput <- function(input,
             FacetRows = 1,
             FacetCols = 1,
             FacetLevels = NULL,
-            GroupVar = GroupVariableInclude,
+            GroupVar = NULL,
             NumberBins = 20,
             AggMethod = "mean",
-            Height = PlotHeighta,
-            Width = PlotWidtha,
+            Height = PlotHeight,
+            Width = PlotWidth,
             Title = "Partial Dependence Line",
             ShowLabels = FALSE,
             Title.YAxis = TargetColumnName,
@@ -10127,8 +10143,8 @@ Shiny.FC.ReportOutput <- function(input,
             GroupVar = GroupVariableInclude,
             NumberBins = 20,
             AggMethod = "mean",
-            Height = PlotHeighta,
-            Width = PlotWidtha,
+            Height = PlotHeight,
+            Width = PlotWidth,
             Title = "Partial Dependence Line",
             ShowLabels = FALSE,
             Title.YAxis = TargetColumnName,
@@ -10158,11 +10174,11 @@ Shiny.FC.ReportOutput <- function(input,
             FacetRows = 1,
             FacetCols = 1,
             FacetLevels = NULL,
-            GroupVar = GroupVariableInclude,
+            GroupVar = NULL,
             NumberBins = 20,
             AggMethod = "mean",
-            Height = PlotHeighta,
-            Width = PlotWidtha,
+            Height = PlotHeight,
+            Width = PlotWidth,
             Title = "Partial Dependence Line",
             ShowLabels = FALSE,
             Title.YAxis = TargetColumnName,
@@ -10178,11 +10194,13 @@ Shiny.FC.ReportOutput <- function(input,
     }
   }
 
+  # ----
+
+  # ----
+
   # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
   # Backtest Outputs                                                          ----
   # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
-
-  # ----
 
   # BT_Rollup
   BT_Rollup <- tryCatch({DataList[[paste0(ModelID, "_BT_Rollup")]]$data}, error = function(x) NULL)
@@ -10239,8 +10257,8 @@ Shiny.FC.ReportOutput <- function(input,
       FacetRows = 1,
       FacetCols = 1,
       FacetLevels = NULL,
-      Height = NULL,
-      Width = NULL,
+      Height = PlotHeight,
+      Width = PlotWidth,
       Title = "Line Plot",
       ShowLabels = FALSE,
       Title.YAxis = paste0(TargetColumnName, " | Predict"),
@@ -10281,8 +10299,8 @@ Shiny.FC.ReportOutput <- function(input,
       FacetRows = 1,
       FacetCols = 1,
       FacetLevels = NULL,
-      Height = NULL,
-      Width = NULL,
+      Height = PlotHeight,
+      Width = PlotWidth,
       Title = "Box Plot: Avg Error",
       ShowLabels = FALSE,
       Title.YAxis = paste0(TargetColumnName, " - Predicted"),
@@ -10321,8 +10339,8 @@ Shiny.FC.ReportOutput <- function(input,
       FacetRows = 1,
       FacetCols = 1,
       FacetLevels = NULL,
-      Height = NULL,
-      Width = NULL,
+      Height = PlotHeight,
+      Width = PlotWidth,
       Title = "Line Plot",
       ShowLabels = FALSE,
       Title.YAxis = "Absolute Error",
@@ -10367,8 +10385,8 @@ Shiny.FC.ReportOutput <- function(input,
       FacetRows = 1,
       FacetCols = 1,
       FacetLevels = NULL,
-      Height = NULL,
-      Width = NULL,
+      Height = PlotHeight,
+      Width = PlotWidth,
       Title = "Line Plot",
       ShowLabels = FALSE,
       Title.YAxis = "MSE",
@@ -10413,8 +10431,8 @@ Shiny.FC.ReportOutput <- function(input,
       FacetRows = 1,
       FacetCols = 1,
       FacetLevels = NULL,
-      Height = NULL,
-      Width = NULL,
+      Height = PlotHeight,
+      Width = PlotWidth,
       Title = "Line Plot",
       ShowLabels = FALSE,
       Title.YAxis = "MAPE",
@@ -10459,8 +10477,8 @@ Shiny.FC.ReportOutput <- function(input,
       FacetRows = 1,
       FacetCols = 1,
       FacetLevels = NULL,
-      Height = NULL,
-      Width = NULL,
+      Height = PlotHeight,
+      Width = PlotWidth,
       Title = "Line Plot",
       ShowLabels = FALSE,
       Title.YAxis = "SMAPE",
@@ -10493,19 +10511,102 @@ Shiny.FC.ReportOutput <- function(input,
 
   # ----
 
+  # ----
+
   # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
   # FE Test Outputs                                                           ----
   # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
+
+  # FE_Test
+  FE_Test <- tryCatch({DataList[[paste0(ModelID, "_FeatureEngineeringTest")]]$data}, error = function(x) NULL)
+  if(length(FE_Test) > 0L) {
+    OutputList[["Back Test Metrics"]] <- reactable::reactable(
+      data = FE_Test,
+      compact = TRUE,
+      defaultPageSize = 10,
+      wrap = TRUE,
+      filterable = TRUE,
+      fullWidth = TRUE,
+      highlight = TRUE,
+      pagination = TRUE,
+      resizable = TRUE,
+      searchable = TRUE,
+      selection = "multiple",
+      showPagination = TRUE,
+      showSortable = TRUE,
+      showSortIcon = TRUE,
+      sortable = TRUE,
+      striped = TRUE,
+      theme = reactable::reactableTheme(
+        color = FontColor$flv,
+        backgroundColor = "#4f4f4f26",
+        borderColor = "#dfe2e5",
+        stripedColor = "#4f4f4f8f",
+        highlightColor = "#8989898f",
+        cellPadding = "8px 12px",
+        style = list(
+          fontFamily = "-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif"
+        ),
+        searchInputStyle = list(width = "100%")
+      )
+    )
+  }
+
+  # FE_Test[, ]
+
+  # ----
+
   # ----
 
   # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
   # Cross Eval Outputs                                                        ----
   # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
+  # FE_Test
+  CE_Rollup <- tryCatch({DataList[[paste0(ModelID, "_CE_Rollup")]]$data}, error = function(x) NULL)
+  if(length(CE_Rollup) > 0L) {
+    OutputList[["Cross Eval Test Metrics"]] <- reactable::reactable(
+      data = CE_Rollup,
+      compact = TRUE,
+      defaultPageSize = 10,
+      wrap = TRUE,
+      filterable = TRUE,
+      fullWidth = TRUE,
+      highlight = TRUE,
+      pagination = TRUE,
+      resizable = TRUE,
+      searchable = TRUE,
+      selection = "multiple",
+      showPagination = TRUE,
+      showSortable = TRUE,
+      showSortIcon = TRUE,
+      sortable = TRUE,
+      striped = TRUE,
+      theme = reactable::reactableTheme(
+        color = FontColor$flv,
+        backgroundColor = "#4f4f4f26",
+        borderColor = "#dfe2e5",
+        stripedColor = "#4f4f4f8f",
+        highlightColor = "#8989898f",
+        cellPadding = "8px 12px",
+        style = list(
+          fontFamily = "-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif"
+        ),
+        searchInputStyle = list(width = "100%")
+      )
+    )
+  }
+
+  # ----
+
   # ----
 
   # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
   # Forecast Outputs                                                          ----
   # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
+
+
+  # ----
+
   # ----
 
   # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
@@ -10524,4 +10625,3 @@ Shiny.FC.ReportOutput <- function(input,
 # ----
 
 # ----
-

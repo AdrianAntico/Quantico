@@ -6181,7 +6181,7 @@ Shiny.FC.Panel.Train <- function(ArgsList, CodeList, DataList, ModelID, Algo = '
     "}\n",
     "}\n"))}, error = function(x) NULL)
 
-  #ArgsList$Model <- Output$TestModel
+  ArgsList$Model <- Output$TestModel$Model
   if(DebugFC) print("Shiny.FC.Panel.Train 7")
 
   # ML Data: just like in the ML function shiny.ML.Trainer()
@@ -10267,7 +10267,6 @@ Shiny.FC.ReportOutput <- function(input,
       X_Scroll = FALSE,
       Y_Scroll = FALSE,
       TimeLine = TRUE,
-      Area = FALSE,
       Alpha = 0.5,
       Smooth = TRUE,
       ShowSymbol = FALSE,
@@ -10283,7 +10282,6 @@ Shiny.FC.ReportOutput <- function(input,
       xaxis.rotate = 0,
       yaxis.rotate = 0,
       ContainLabel = TRUE,
-      DarkMode = FALSE,
       Debug = FALSE)
     OutputList[["Backtest LinePlot"]] <- echarts4r::e_mark_line(e = p1, data = list(xAxis = minD), title = "")
 
@@ -10322,10 +10320,10 @@ Shiny.FC.ReportOutput <- function(input,
       yaxis.rotate = 0,
       ContainLabel = TRUE,
       Debug = FALSE)
-    OutputList[["Backtest LinePlot"]] <- echarts4r::e_mark_line(e = p2, data = list(xAxis = minD), title = "")
+    OutputList[["Backtest BoxPlot"]] <- echarts4r::e_mark_line(e = p2, data = list(xAxis = minD), title = "")
 
     # Backtest MAE
-    p3 <- AutoPlots::Plot.Line(
+    p3 <- AutoPlots::Plot.Area(
       dt = BT_Raw,
       AggMethod = "mean",
       PreAgg = FALSE,
@@ -10349,7 +10347,6 @@ Shiny.FC.ReportOutput <- function(input,
       X_Scroll = FALSE,
       Y_Scroll = FALSE,
       TimeLine = TRUE,
-      Area = FALSE,
       Alpha = 0.5,
       Smooth = TRUE,
       ShowSymbol = FALSE,
@@ -10365,13 +10362,12 @@ Shiny.FC.ReportOutput <- function(input,
       xaxis.rotate = 0,
       yaxis.rotate = 0,
       ContainLabel = TRUE,
-      DarkMode = FALSE,
       Debug = FALSE)
     OutputList[["Backtest MAE LinePlot"]] <- echarts4r::e_mark_line(e = p3, data = list(xAxis = minD), title = "")
 
     # Backtest RMSE
     temp <- BT_Raw[, list(RMSE = sqrt(mean(RMSE))), by = DateColumnName]
-    p4 <- AutoPlots::Plot.Line(
+    p4 <- AutoPlots::Plot.Area(
       dt = temp,
       AggMethod = "mean",
       PreAgg = TRUE,
@@ -10395,7 +10391,6 @@ Shiny.FC.ReportOutput <- function(input,
       X_Scroll = FALSE,
       Y_Scroll = FALSE,
       TimeLine = TRUE,
-      Area = FALSE,
       Alpha = 0.5,
       Smooth = TRUE,
       ShowSymbol = FALSE,
@@ -10411,13 +10406,12 @@ Shiny.FC.ReportOutput <- function(input,
       xaxis.rotate = 0,
       yaxis.rotate = 0,
       ContainLabel = TRUE,
-      DarkMode = FALSE,
       Debug = FALSE)
     OutputList[["Backtest MSE LinePlot"]] <- echarts4r::e_mark_line(e = p4, data = list(xAxis = minD), title = "")
 
-    # Backtest RMSE
+    # Backtest MAPE
     temp1 <- BT_Raw[, list(MAPE = mean(MAPE)), by = DateColumnName]
-    p5 <- AutoPlots::Plot.Line(
+    p5 <- AutoPlots::Plot.Area(
       dt = temp1,
       AggMethod = "mean",
       PreAgg = TRUE,
@@ -10441,7 +10435,6 @@ Shiny.FC.ReportOutput <- function(input,
       X_Scroll = FALSE,
       Y_Scroll = FALSE,
       TimeLine = TRUE,
-      Area = FALSE,
       Alpha = 0.5,
       Smooth = TRUE,
       ShowSymbol = FALSE,
@@ -10457,13 +10450,12 @@ Shiny.FC.ReportOutput <- function(input,
       xaxis.rotate = 0,
       yaxis.rotate = 0,
       ContainLabel = TRUE,
-      DarkMode = FALSE,
       Debug = FALSE)
     OutputList[["Backtest MAPE LinePlot"]] <- echarts4r::e_mark_line(e = p5, data = list(xAxis = minD), title = "")
 
-    # Backtest RMSE
+    # Backtest SMAPE
     temp2 <- BT_Raw[, list(SMAPE = mean(SMAPE)), by = DateColumnName]
-    p6 <- AutoPlots::Plot.Line(
+    p6 <- AutoPlots::Plot.Area(
       dt = temp2,
       AggMethod = "mean",
       PreAgg = TRUE,
@@ -10487,7 +10479,6 @@ Shiny.FC.ReportOutput <- function(input,
       X_Scroll = FALSE,
       Y_Scroll = FALSE,
       TimeLine = TRUE,
-      Area = FALSE,
       Alpha = 0.5,
       Smooth = TRUE,
       ShowSymbol = FALSE,
@@ -10503,7 +10494,6 @@ Shiny.FC.ReportOutput <- function(input,
       xaxis.rotate = 0,
       yaxis.rotate = 0,
       ContainLabel = TRUE,
-      DarkMode = FALSE,
       Debug = FALSE)
     OutputList[["Backtest SMAPE LinePlot"]] <- echarts4r::e_mark_line(e = p6, data = list(xAxis = minD), title = "")
 
@@ -10520,7 +10510,7 @@ Shiny.FC.ReportOutput <- function(input,
   # FE_Test
   FE_Test <- tryCatch({DataList[[paste0(ModelID, "_FeatureEngineeringTest")]]$data}, error = function(x) NULL)
   if(length(FE_Test) > 0L) {
-    OutputList[["Back Test Metrics"]] <- reactable::reactable(
+    OutputList[["Feature Tuning Metrics"]] <- reactable::reactable(
       data = FE_Test,
       compact = TRUE,
       defaultPageSize = 10,
@@ -10561,6 +10551,7 @@ Shiny.FC.ReportOutput <- function(input,
   # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
   # Cross Eval Outputs                                                        ----
   # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
+
   # FE_Test
   CE_Rollup <- tryCatch({DataList[[paste0(ModelID, "_CE_Rollup")]]$data}, error = function(x) NULL)
   if(length(CE_Rollup) > 0L) {

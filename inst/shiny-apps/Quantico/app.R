@@ -9503,7 +9503,9 @@ server <- function(input, output, session) {
           print(names(ModelOutputList))
         }
 
-        # saveRDS(object = DataList, file = file.path(WorkingDirectory, "DataList.rds"))
+
+        saveRDS(object = CatBoostFC, file = file.path(WorkingDirectory, "CatBoostFC.rds"))
+        #$saveRDS(object = DataList, file = file.path(WorkingDirectory, "DataList.rds"))
 
         # Run Quantico:::Shiny.FC.ReportOutput
         if(Debug) {

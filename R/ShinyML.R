@@ -6296,6 +6296,7 @@ Shiny.FC.Panel.Retrain <- function(NewDataName, ArgsList, CodeList, DataList, Al
   # ML Data: just like in the ML function shiny.ML.Trainer()
   if(DebugFC) {print("Shiny.FC.Panel.Retrain 4"); if(length(ArgsList) > 0L) print(names(ArgsList))}
 
+  ArgsList$Model <- Output$TestModel$Model
   x <- Output$ModelInformation
   Output <- Quantico:::Shiny.ML.ModelDataObjects(x, Debug, TT = 'catboost')
   DataList[[paste0('CatBoostFC_', ModelID, '_ScoringData')]][['data']] <- Output$ScoringDataCombined
@@ -6455,6 +6456,8 @@ Shiny.FC.Panel.Backtest <- function(ArgsList,
   } else if(tolower(Algo) == 'lightgbm') {
     Output <- do.call(what = AutoQuant::AutoLightGBMCARMA, args = ArgsList)
   }
+
+  ArgsList$Model <- Output$TestModel$Model
 
   if(DebugFC) print("Shiny.FC.Panel.Backtest 4")
 
@@ -6751,7 +6754,7 @@ Shiny.FC.Panel.Backest.FeatureEval <- function(LoopMetrics, ArgsList, CodeList, 
     "DebugFC <- FALSE\n",
     "for(svs in seq_along(names(Plan))) {\n  ",
     "Output <- Quantico:::BasicLoop.SingleTest(LoopMetrics, Plan, ArgsList, DataList, CodeList, ModelID, ValidationData, DebugFC, Test = names(Plan)[svs], Algo = ", Quantico:::CEP(Algo), ")\n  ",
-    "ArgsList <- Output$ArgsList; LoopMetrics <- Output$LoopMetrics\n  ",
+    "ArgsList <- Output$ArgsList; LoopMetrics <- Output$LoopMetrics\n",
     "}\n\n",
     "# Store LoopMetrics in DataList \n",
     "mcn <- paste0(ModelID, '_FeatureEngineeringTest')\n",
@@ -7060,31 +7063,32 @@ Shiny.FC.CARMA <- function(input,
   # *************************************
   # Backtest No Retrain
   # *************************************
-  if(RunMode == 'Backtest' && data.table::is.data.table(ValidationData) && length(ArgsList[['Model']]) > 0L) {
-
-    ValidationDataCheck <- TRUE
-
-    if(DebugFC) print('Shiny.FC.CARMA 8.a')
-
-    # Backtest CatBoost for Forecasting Purposes
-    if(DebugFC) {print('Backtest 1st version'); print(ArgsList[['Model']])}
-    Output <- Quantico::Shiny.FC.Panel.Backtest(ArgsList, CodeList, DataList, ModelID, VD = ValidationData, DebugFC = DebugFC, Algo = Algo)
-    DataList <- Output$DataList; CodeList <- Output$CodeList; ArgsList <- Output$ArgsList
-    for(i in seq_len(TabCount)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0("EDAData", i), Label = 'Data Selection', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
-    for(i in seq_len(TabCount)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0("DataOutputSelection", i), Label = 'Display Data', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
-
-    # Return results
-    if(DebugFC) {print('Return from Shiny.FC.CARMA')}
-    return(list(
-      DataList = DataList,
-      CodeList = CodeList,
-      ArgsList = ArgsList,
-      RunMode = RunMode,
-      ModelID = ModelID
-    ))
-  } else {
-    ValidationDataCheck <- FALSE
-  }
+  # if(RunMode == 'Backtest' && data.table::is.data.table(ValidationData) && length(ArgsList[['Model']]) > 0L) {
+  #
+  #   ValidationDataCheck <- TRUE
+  #
+  #   if(DebugFC) print('Shiny.FC.CARMA 8.a')
+  #
+  #   # Backtest CatBoost for Forecasting Purposes
+  #   if(DebugFC) {print('Backtest 1st version'); print(ArgsList[['Model']])}
+  #   Output <- Quantico::Shiny.FC.Panel.Backtest(ArgsList, CodeList, DataList, ModelID, VD = ValidationData, DebugFC = DebugFC, Algo = Algo)
+  #   DataList <- Output$DataList; CodeList <- Output$CodeList; ArgsList <- Output$ArgsList
+  #   for(i in seq_len(TabCount)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0("EDAData", i), Label = 'Data Selection', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
+  #   for(i in seq_len(TabCount)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0("DataOutputSelection", i), Label = 'Display Data', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
+  #
+  #   # Return results
+  #   if(DebugFC) {print('Return from Shiny.FC.CARMA')}
+  #   return(list(
+  #     DataList = DataList,
+  #     CodeList = CodeList,
+  #     ArgsList = ArgsList,
+  #     RunMode = RunMode,
+  #     ModelID = ModelID
+  #   ))
+  # } else {
+  #   ValidationDataCheck <- FALSE
+  # }
+  ValidationDataCheck <- FALSE
 
   # ----
 

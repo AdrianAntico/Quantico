@@ -7286,7 +7286,11 @@ server <- function(input, output, session) {
           # Get remaining elements
           if(DebugFC) print('CatBoost FC 5')
           ForecastingCode <- Output$CodeList; ForecastingCode <<- ForecastingCode; RunMode <- Output$RunMode; RunMode <<- RunMode
-          DataList <- Output$DataList; DataList <<- DataList; CatBoostFC <- Output$ArgsList; CatBoostFC <<- CatBoostFC
+          DataList <- Output$DataList; DataList <<- DataList;
+
+          #if(!exists("CatBoostFC") || runm %in% c("Train", "Retrain")) {
+          CatBoostFC <- Output$ArgsList; CatBoostFC <<- CatBoostFC
+          #}
 
           # CatBoostFC will be NULL for Backtest Simple Loop.
           # Intent isn't to store a model in that case but to
@@ -9505,7 +9509,7 @@ server <- function(input, output, session) {
 
 
         saveRDS(object = CatBoostFC, file = file.path(WorkingDirectory, "CatBoostFC.rds"))
-        #$saveRDS(object = DataList, file = file.path(WorkingDirectory, "DataList.rds"))
+        #saveRDS(object = DataList, file = file.path(WorkingDirectory, "DataList.rds"))
 
         # Run Quantico:::Shiny.FC.ReportOutput
         if(Debug) {

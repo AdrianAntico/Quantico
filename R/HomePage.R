@@ -5727,7 +5727,7 @@ SideBarUI <- function(id, AppWidth=12L) {
               shiny::tags$h5(shiny::tags$b('App Background')),
               Quantico::SelectizeInput(
                 InputID = 'BackgroundImageSelect', Label = NULL,
-                Multiple = TRUE, MaxVars = 1L, SelectedDefault = 'PalmTreesLake',
+                Multiple = TRUE, MaxVars = 1L, SelectedDefault = 'None',
                 CloseAfterSelect = FALSE,
                 Choices = unique(c('None',sort(c('River','FoggyMountains','CatMoon','PalmTreesLake','MountainLake','FoggyTrees','GreenWoods','Liminal-Train','Dock-Mountains-Sunset','SailBoat','Europe','Vacation','BeachCave','Vespa','PerformanceReview','Lightning','Country','Getaway','Outrun','Havana')))))
             )

@@ -6182,6 +6182,7 @@ Shiny.FC.Panel.Train <- function(ArgsList, CodeList, DataList, ModelID, Algo = '
     "}\n"))}, error = function(x) NULL)
 
   ArgsList$Model <- Output$TestModel$Model
+  ArgsList$FactorLevelsList <- Output$TestModel$FactorLevelsList
   if(DebugFC) print("Shiny.FC.Panel.Train 7")
 
   # ML Data: just like in the ML function shiny.ML.Trainer()
@@ -6297,6 +6298,7 @@ Shiny.FC.Panel.Retrain <- function(NewDataName, ArgsList, CodeList, DataList, Al
   if(DebugFC) {print("Shiny.FC.Panel.Retrain 4"); if(length(ArgsList) > 0L) print(names(ArgsList))}
 
   ArgsList$Model <- Output$TestModel$Model
+  ArgsList$FactorLevelsList <- Output$TestModel$FactorLevelsList
   x <- Output$ModelInformation
   Output <- Quantico:::Shiny.ML.ModelDataObjects(x, Debug, TT = 'catboost')
   DataList[[paste0('CatBoostFC_', ModelID, '_ScoringData')]][['data']] <- Output$ScoringDataCombined
@@ -9816,8 +9818,8 @@ Shiny.FC.ReportOutput <- function(input,
     MAE <- round(ScoringData[, mean(MAE, na.rm = TRUE)], 4)
     ScoringData[, MSE := (get(TargetColumnName) - Predict)^2]
     RMSE <- round(sqrt(ScoringData[, mean(MSE, na.rm = TRUE)]), 4)
-    ScoringData[, MAPE := get(TargetColumnName) / Predict - 1]
-    MAPE <- paste0(round(ScoringData[Predict != 0, mean(MAPE, na.rm = TRUE)], 4) * 100, "%")
+    # ScoringData[, MAPE := get(TargetColumnName) / Predict - 1]
+    # MAPE <- paste0(round(ScoringData[Predict != 0, mean(MAPE, na.rm = TRUE)], 4) * 100, "%")
     ScoringData[, SMAPE := 2 * MAE / (abs(get(TargetColumnName)) + abs(Predict))]
     SMAPE <- paste0(round(ScoringData[, mean(SMAPE, na.rm = TRUE)], 4) * 100, "%")
 
@@ -10413,49 +10415,49 @@ Shiny.FC.ReportOutput <- function(input,
       Debug = FALSE)
     OutputList[["Backtest MSE LinePlot"]] <- echarts4r::e_mark_line(e = p4, data = list(xAxis = minD), title = "")
 
-    # Backtest MAPE
-    temp1 <- BT_Raw[, list(MAPE = mean(MAPE)), by = DateColumnName]
-    p5 <- AutoPlots::Plot.Area(
-      dt = temp1,
-      AggMethod = "mean",
-      PreAgg = TRUE,
-      XVar = DateColumnName,
-      YVar = "MAPE",
-      DualYVar = NULL,
-      GroupVar = NULL,
-      YVarTrans = "Identity",
-      DualYVarTrans = "Identity",
-      XVarTrans = "Identity",
-      FacetRows = 1,
-      FacetCols = 1,
-      FacetLevels = NULL,
-      Height = PlotHeight,
-      Width = PlotWidth,
-      Title = "Line Plot",
-      ShowLabels = FALSE,
-      Title.YAxis = "MAPE",
-      Title.XAxis = DateColumnName,
-      EchartsTheme = Theme,
-      X_Scroll = FALSE,
-      Y_Scroll = FALSE,
-      TimeLine = TRUE,
-      Alpha = 0.5,
-      Smooth = TRUE,
-      ShowSymbol = FALSE,
-      TextColor = "white",
-      title.fontSize = 22,
-      title.fontWeight = "bold",
-      title.textShadowColor = "#63aeff",
-      title.textShadowBlur = 3,
-      title.textShadowOffsetY = 1,
-      title.textShadowOffsetX = -1,
-      xaxis.fontSize = 14,
-      yaxis.fontSize = 14,
-      xaxis.rotate = 0,
-      yaxis.rotate = 0,
-      ContainLabel = TRUE,
-      Debug = FALSE)
-    OutputList[["Backtest MAPE LinePlot"]] <- echarts4r::e_mark_line(e = p5, data = list(xAxis = minD), title = "")
+    # # Backtest MAPE
+    # temp1 <- BT_Raw[, list(MAPE = mean(MAPE)), by = DateColumnName]
+    # p5 <- AutoPlots::Plot.Area(
+    #   dt = temp1,
+    #   AggMethod = "mean",
+    #   PreAgg = TRUE,
+    #   XVar = DateColumnName,
+    #   YVar = "MAPE",
+    #   DualYVar = NULL,
+    #   GroupVar = NULL,
+    #   YVarTrans = "Identity",
+    #   DualYVarTrans = "Identity",
+    #   XVarTrans = "Identity",
+    #   FacetRows = 1,
+    #   FacetCols = 1,
+    #   FacetLevels = NULL,
+    #   Height = PlotHeight,
+    #   Width = PlotWidth,
+    #   Title = "Line Plot",
+    #   ShowLabels = FALSE,
+    #   Title.YAxis = "MAPE",
+    #   Title.XAxis = DateColumnName,
+    #   EchartsTheme = Theme,
+    #   X_Scroll = FALSE,
+    #   Y_Scroll = FALSE,
+    #   TimeLine = TRUE,
+    #   Alpha = 0.5,
+    #   Smooth = TRUE,
+    #   ShowSymbol = FALSE,
+    #   TextColor = "white",
+    #   title.fontSize = 22,
+    #   title.fontWeight = "bold",
+    #   title.textShadowColor = "#63aeff",
+    #   title.textShadowBlur = 3,
+    #   title.textShadowOffsetY = 1,
+    #   title.textShadowOffsetX = -1,
+    #   xaxis.fontSize = 14,
+    #   yaxis.fontSize = 14,
+    #   xaxis.rotate = 0,
+    #   yaxis.rotate = 0,
+    #   ContainLabel = TRUE,
+    #   Debug = FALSE)
+    # OutputList[["Backtest MAPE LinePlot"]] <- echarts4r::e_mark_line(e = p5, data = list(xAxis = minD), title = "")
 
     # Backtest SMAPE
     temp2 <- BT_Raw[, list(SMAPE = mean(SMAPE)), by = DateColumnName]

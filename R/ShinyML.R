@@ -9823,7 +9823,7 @@ Shiny.FC.ReportOutput <- function(input,
     ScoringData[, SMAPE := 2 * MAE / (abs(get(TargetColumnName)) + abs(Predict))]
     SMAPE <- paste0(round(ScoringData[, mean(SMAPE, na.rm = TRUE)], 4) * 100, "%")
 
-    MetricsTable <- data.table::data.table(AvgError, MAE, RMSE, MAPE, SMAPE)
+    MetricsTable <- data.table::data.table(AvgError, MAE, RMSE, SMAPE)
 
     # Evaluation Metrics ----
     OutputList[["ML Evaluation Metrics"]] <- reactable::reactable(
@@ -10167,9 +10167,23 @@ Shiny.FC.ReportOutput <- function(input,
 
     # Add Plots
     if(!is.null(ScoringData) && !is.null(FeatureColumnNames)) {
+      if("GroupVar" %in% names(ScoringData)) {
+        data.table::setnames(ScoringData, "GroupVar", "GroupVariable")
+        FeatureColumnNames <- FeatureColumnNames[!FeatureColumnNames %in% "GroupVar"]
+        FeatureColumnNames[[length(FeatureColumnNames) + 1]] <- "GroupVariable"
+      } else if("GroupVariable" %in% names(ScoringData)) {
+        FeatureColumnNames <- FeatureColumnNames[!FeatureColumnNames %in% "GroupVar"]
+        FeatureColumnNames[[length(FeatureColumnNames) + 1]] <- "GroupVariable"
+      }
+      print(FeatureColumnNames)
+      print(names(ScoringData))
+      print(ScoringData)
+      data.table::fwrite(ScoringData, file = "C:/Users/Bizon/Documents/GitHub/rappwd/Scoring.csv")
       for(g in FeatureColumnNames) {
         if(!is.numeric(ScoringData[[g]])) {
-          OutputList[[paste0('ScoringData Partial Dependence Heatmap: ', g)]] <- AutoPlots::Plot.PartialDependence.HeatMap(
+          print(TargetColumnName)
+          print(g)
+          OutputList[[paste0('ScoringData Partial Dependence BarPlot: ', g)]] <- AutoPlots::Plot.PartialDependence.HeatMap(
             dt = ScoringData,
             XVar = g,
             YVar = TargetColumnName,
@@ -10185,7 +10199,7 @@ Shiny.FC.ReportOutput <- function(input,
             AggMethod = "mean",
             Height = PlotHeight,
             Width = PlotWidth,
-            Title = "Partial Dependence Line",
+            Title = "Partial Dependence BarPlot",
             ShowLabels = FALSE,
             Title.YAxis = TargetColumnName,
             Title.XAxis = g,
@@ -10209,6 +10223,7 @@ Shiny.FC.ReportOutput <- function(input,
   # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
 
   # BT_Rollup
+  if(Debug) print("Backtesting Outputs")
   BT_Rollup <- tryCatch({DataList[[paste0(ModelID, "_BT_Rollup")]]$data}, error = function(x) NULL)
   if(length(BT_Rollup) > 0L) {
     OutputList[["Back Test Metrics"]] <- reactable::reactable(
@@ -10514,6 +10529,7 @@ Shiny.FC.ReportOutput <- function(input,
   # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
 
   # FE_Test
+  if(Debug) print("Feature Tuning Outputs")
   FE_Test <- tryCatch({DataList[[paste0(ModelID, "_FeatureEngineeringTest")]]$data}, error = function(x) NULL)
   if(length(FE_Test) > 0L) {
     OutputList[["Feature Tuning Metrics"]] <- reactable::reactable(
@@ -10559,6 +10575,7 @@ Shiny.FC.ReportOutput <- function(input,
   # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
 
   # FE_Test
+  if(Debug) print("Cross Eval Outputs")
   CE_Rollup <- tryCatch({DataList[[paste0(ModelID, "_CE_Rollup")]]$data}, error = function(x) NULL)
   if(length(CE_Rollup) > 0L) {
     OutputList[["Cross Eval Test Metrics"]] <- reactable::reactable(
@@ -10601,6 +10618,92 @@ Shiny.FC.ReportOutput <- function(input,
   # Forecast Outputs                                                          ----
   # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
 
+  # FC Data Output
+  if(Debug) print("Forecasting Outputs")
+  FCData <- tryCatch({DataList[[paste0("FC_", ModelID)]][['data']]}, error = function(x) NULL)
+  if(length(FCData) > 0L) {
+    if(Debug) print("Panel Forecast Data")
+    OutputList[["Panel Forecast Data"]] <- reactable::reactable(
+      data = FCData,
+      compact = TRUE,
+      defaultPageSize = 10,
+      wrap = TRUE,
+      filterable = TRUE,
+      fullWidth = TRUE,
+      highlight = TRUE,
+      pagination = TRUE,
+      resizable = TRUE,
+      searchable = TRUE,
+      selection = "multiple",
+      showPagination = TRUE,
+      showSortable = TRUE,
+      showSortIcon = TRUE,
+      sortable = TRUE,
+      striped = TRUE,
+      theme = reactable::reactableTheme(
+        color = FontColor$flv,
+        backgroundColor = "#4f4f4f26",
+        borderColor = "#dfe2e5",
+        stripedColor = "#4f4f4f8f",
+        highlightColor = "#8989898f",
+        cellPadding = "8px 12px",
+        style = list(
+          fontFamily = "-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif"
+        ),
+        searchInputStyle = list(width = "100%")
+      )
+    )
+
+    # Backtest
+    if(Debug) print("Forecast LinePlot 1")
+    minD <- FCData[is.na(get(TargetColumnName)), min(get(DateColumnName), na.rm = TRUE)]
+    if(Debug) {
+      print("Forecast LinePlot 2")
+      print(FCData)
+    }
+    p7 <- AutoPlots::Plot.Line(
+      dt = FCData,
+      AggMethod = "mean",
+      PreAgg = FALSE,
+      XVar = DateColumnName,
+      YVar = c(TargetColumnName, "Predictions"),
+      DualYVar = NULL,
+      GroupVar = NULL,
+      YVarTrans = "Identity",
+      DualYVarTrans = "Identity",
+      XVarTrans = "Identity",
+      FacetRows = 1,
+      FacetCols = 1,
+      FacetLevels = NULL,
+      Height = PlotHeight,
+      Width = PlotWidth,
+      Title = "Line Plot",
+      ShowLabels = FALSE,
+      Title.YAxis = paste0(TargetColumnName, " | Predict"),
+      Title.XAxis = DateColumnName,
+      EchartsTheme = Theme,
+      X_Scroll = FALSE,
+      Y_Scroll = FALSE,
+      TimeLine = TRUE,
+      Alpha = 0.5,
+      Smooth = TRUE,
+      ShowSymbol = FALSE,
+      TextColor = "white",
+      title.fontSize = 22,
+      title.fontWeight = "bold",
+      title.textShadowColor = "#63aeff",
+      title.textShadowBlur = 3,
+      title.textShadowOffsetY = 1,
+      title.textShadowOffsetX = -1,
+      xaxis.fontSize = 14,
+      yaxis.fontSize = 14,
+      xaxis.rotate = 0,
+      yaxis.rotate = 0,
+      ContainLabel = TRUE,
+      Debug = FALSE)
+    if(Debug) print("Forecast LinePlot 3")
+    OutputList[["Forecast LinePlot"]] <- echarts4r::e_mark_line(e = p7, data = list(xAxis = minD), title = "")
+  }
 
   # ----
 

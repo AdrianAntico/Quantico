@@ -14469,6 +14469,10 @@ XGBoostCARMA_Modal_Fun <- function(id,
                         shiny::column(12L, align = 'center', Quantico:::SelectizeInput(InputID = "XGBoostCARMA_HolidayVariables", Label = "Holiday variables", Choices = XGBoostCARMA_HolidayVariables_Choices, SelectedDefault = XGBoostCARMA_HolidayVariables_Selected, Multiple = TRUE, MaxVars = 100L))
                       ),
                       Quantico:::BlankRow(11L),
+                      shiny::fluidRow(
+                        shiny::column(12L, align = 'center', Quantico:::NumericInput(InputID = "XGBoostCARMA_Lookback", Label = "Holiday Window (days)", Value = XGBoostCARMA_Lookback_Selected, Min = 1, Max = 50, Step = 1))
+                      ),
+                      Quantico:::BlankRow(11L),
                       Quantico:::BlankRow(11L)
                     )
                   ),
@@ -14476,10 +14480,7 @@ XGBoostCARMA_Modal_Fun <- function(id,
                     6L,
                     shinydashboard::box(
                       title = NULL, solidHeader = TRUE, collapsible = FALSE, status = NULL, width = 12L,
-                      Quantico:::BlankRow(11L),
-                      shiny::fluidRow(
-                        shiny::column(12L, align = 'center', Quantico:::NumericInput(InputID = "XGBoostCARMA_Lookback", Label = "Holiday Window (days)", Value = XGBoostCARMA_Lookback_Selected, Min = 1, Max = 50, Step = 1))
-                      ),
+
                       Quantico:::BlankRow(11L),
                       shiny::fluidRow(
                         shiny::column(12L, align = 'center', Quantico:::SelectizeInput(InputID = "XGBoostCARMA_TimeTrend", Label = "Time trend", Choices = XGBoostCARMA_TimeTrend_Choices, SelectedDefault = XGBoostCARMA_TimeTrend_Selected, Multiple = TRUE, MaxVars = 1L))

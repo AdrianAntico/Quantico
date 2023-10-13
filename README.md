@@ -552,3 +552,7 @@ There are various Run modes to train, backtest, and forecast:
 ##### Forecasting Options
 1. <b>Forecast:</b> if you have a trained model you can call it to generate a forecast for you
 2. <b>Retrain + Forecast:</b> if you have a model you can refresh it and have it generate a forecast for you
+
+<img src="https://github.com/AdrianAntico/Quantico/blob/main/inst/PanelFC_Report1.PNG" align="center" width="800" />
+
+<img src="https://github.com/AdrianAntico/Quantico/blob/main/inst/PanelFC_Report2.PNG" align="center" width="800" />

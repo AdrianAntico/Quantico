@@ -14536,7 +14536,7 @@ XGBoostCARMA_Modal_Fun <- function(id,
                       ),
                       Quantico:::BlankRow(12L),
                       shiny::fluidRow(
-                        shiny::column(12L, align = 'center', Quantico:::SelectizeInput(InputID = "XGBoostCARMA_Quantiles_Selected", Label = "Select percentiles", Value = XGBoostCARMA_Quantiles_Selected_Selected, Min = 0, Max = 10000, Step = 1))
+                        shiny::column(12L, align = 'center', Quantico:::SelectizeInput(InputID = "XGBoostCARMA_Quantiles_Selected", Label = "Select percentiles", Choices = XGBoostCARMA_Quantiles_Selected_Choices, SelectedDefault = XGBoostCARMA_Quantiles_Selected_Selected, Multiple = TRUE, MaxVars = 100L))
                       ),
                       Quantico:::BlankRow(12L),
                       shiny::fluidRow(
@@ -14569,7 +14569,7 @@ XGBoostCARMA_Modal_Fun <- function(id,
                       ),
                       Quantico:::BlankRow(12L),
                       shiny::fluidRow(
-                        shiny::column(12L, align = 'center', Quantico:::NumericInput(InputID = "XGBoostCARMA_MaxDepth", Label = "Max Depth", Choices = XGBoostCARMA_MaxDepth_Choices, SelectedDefault = XGBoostCARMA_MaxDepth_Selected, Multiple = TRUE, MaxVars = 1L))
+                        shiny::column(12L, align = 'center', Quantico:::NumericInput(InputID = "XGBoostCARMA_MaxDepth", Label = "Max Depth", Value = XGBoostCARMA_MaxDepth_Selected, Min = 2, Max = 20, Step = 1))
                       ),
                       Quantico:::BlankRow(12L),
                       shiny::fluidRow(

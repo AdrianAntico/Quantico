@@ -3187,8 +3187,8 @@ server <- function(input, output, session) {
       CatBoostCARMA_ArgsList_Choices = tryCatch({names(ModelOutputList)}, error = function(x) NULL),
       CatBoostCARMA_TimeUnit_Choices = c("1-Minute","5-Minutes","10-Minutes","15-Minutes","30-Minutes","Hourly","Daily","Weekly","Monthly","Quarterly","Yearly"),
       CatBoostCARMA_FCPeriods_Choices = c(1L:60L, seq(65L,1000L,5L)),
-      CatBoostCARMA_EncodingMethod_Choices = c('meow','credibility','target_encoding','binary','woe','poly_encode','backward_difference','helmert'),
-      CatBoostCARMA_ZeroPadSeries_Choices = c('dynamic:meow','dynamic:target_encoding','dynamic:credibility','maxmax','maxmin','minmax','minmin'),
+      CatBoostCARMA_EncodingMethod_Choices = c('credibility','target_encoding','binary','woe','poly_encode','backward_difference','helmert'),
+      CatBoostCARMA_ZeroPadSeries_Choices = c('dynamic:target_encoding','dynamic:credibility','maxmax','maxmin','minmax','minmin'),
       CatBoostCARMA_Methods_Choices = c("Standardize", "Asinh", "Log", "LogPlus1", "Sqrt", "Asin", "Logit"),
       CatBoostCARMA_Difference_Choices = c(FALSE,TRUE),
       CatBoostCARMA_TimeWeights_Choices = c(1,0.9999,0.9995,0.999,0.995,0.99,0.975,0.95),
@@ -3237,7 +3237,7 @@ server <- function(input, output, session) {
       CatBoostCARMA_LossFunctionValue_Choices = seq(1,2,0.01),
 
       # Updaters
-      CatBoostCARMA_ModelID_Selected = if(length(input$CatBoostCARMA_ModelID) > 0L) input$CatBoostCARMA_ModelID else "FC1",
+      CatBoostCARMA_ModelID_Selected = if(length(input$CatBoostCARMA_ModelID) > 0L) input$CatBoostCARMA_ModelID else NULL,
       CatBoostCARMA_TrainData_Selected = if(length(input$CatBoostCARMA_TrainData) > 0L) input$CatBoostCARMA_TrainData else NULL,
       CatBoostCARMA_ValidationData_Selected = if(length(input$CatBoostCARMA_ValidationData) > 0L) input$CatBoostCARMA_ValidationData else NULL,
       CatBoostCARMA_XREGS_Selected = if(length(input$CatBoostCARMA_XREGS) > 0L) input$CatBoostCARMA_XREGS else NULL,
@@ -3245,7 +3245,7 @@ server <- function(input, output, session) {
       CatBoostCARMA_ArgsList_Selected = if(length(input$CatBoostCARMA_ArgsList) > 0L) input$CatBoostCARMA_ArgsList else NULL,
       CatBoostCARMA_TimeUnit_Selected = if(length(input$CatBoostCARMA_TimeUnit) > 0L) input$CatBoostCARMA_TimeUnit else NULL,
       CatBoostCARMA_FCPeriods_Selected = if(length(input$CatBoostCARMA_FCPeriods) > 0L) input$CatBoostCARMA_FCPeriods else 5L,
-      CatBoostCARMA_EncodingMethod_Selected = if(length(input$CatBoostCARMA_EncodingMethod) > 0L) input$CatBoostCARMA_EncodingMethod else 'credibility',
+      CatBoostCARMA_EncodingMethod_Selected = if(length(input$CatBoostCARMA_EncodingMethod) > 0L) input$CatBoostCARMA_EncodingMethod else 'target_encoding',
       CatBoostCARMA_ZeroPadSeries_Selected = if(length(input$CatBoostCARMA_ZeroPadSeries) > 0L) input$CatBoostCARMA_ZeroPadSeries else 'maxmax',
       CatBoostCARMA_Methods_Selected = if(length(input$CatBoostCARMA_Methods) > 0L) input$CatBoostCARMA_Methods else NULL,
       CatBoostCARMA_Difference_Selected = if(length(input$CatBoostCARMA_Difference) > 0L) input$CatBoostCARMA_Difference else FALSE,
@@ -3349,8 +3349,8 @@ server <- function(input, output, session) {
       XGBoostCARMA_AnomalyDetection_LowThreshold_Choices = c(0,-2,-3,-4,-5,-6,-7,-8,-9,-10),
       XGBoostCARMA_TimeTrend_Choices = c(FALSE,TRUE),
       XGBoostCARMA_DataTruncate_Choices = c(FALSE,TRUE),
-      XGBoostCARMA_EncodingMethod_Choices = c('meow','credibility','target_encoding','binary','woe','poly_encode','backward_difference','helmert'),
-      XGBoostCARMA_ZeroPadSeries_Choices = c('dynamic:meow','dynamic:target_encoding','dynamic:credibility','maxmax','maxmin','minmax','minmin'),
+      XGBoostCARMA_EncodingMethod_Choices = c('credibility','target_encoding','binary','woe','poly_encode','backward_difference','helmert'),
+      XGBoostCARMA_ZeroPadSeries_Choices = c('dynamic:target_encoding','dynamic:credibility','maxmax','maxmin','minmax','minmin'),
       XGBoostCARMA_CrossEvalModelUpdate_Choices = c(TRUE,FALSE),
       XGBoostCARMA_CrossEvalValuesUpdate_Choices = c(TRUE,FALSE),
       XGBoostCARMA_CrossEvalModelUpdateFreq_Choices = 1L:365L,
@@ -3367,7 +3367,7 @@ server <- function(input, output, session) {
       XGBoostCARMA_alpha_Choices = seq(1.0,50.0,0.5),
 
       # Updaters
-      XGBoostCARMA_ModelID_Selected = if(length(input$XGBoostCARMA_ModelID) > 0L) input$XGBoostCARMA_ModelID else "FC1",
+      XGBoostCARMA_ModelID_Selected = if(length(input$XGBoostCARMA_ModelID) > 0L) input$XGBoostCARMA_ModelID else "FC001",
       XGBoostCARMA_TrainData_Selected = if(length(input$XGBoostCARMA_TrainData) > 0L) input$XGBoostCARMA_TrainData else NULL,
       XGBoostCARMA_ValidationData_Selected = if(length(input$XGBoostCARMA_ValidationData) > 0L) input$XGBoostCARMA_ValidationData else NULL,
       XGBoostCARMA_XREGS_Selected = if(length(input$XGBoostCARMA_XREGS) > 0L) input$XGBoostCARMA_XREGS else NULL,
@@ -3377,7 +3377,7 @@ server <- function(input, output, session) {
       XGBoostCARMA_TaskType_Selected = if(length(input$XGBoostCARMA_TaskType) > 0L) input$XGBoostCARMA_TaskType else "CPU",
       XGBoostCARMA_NumGPU_Selected = if(length(input$XGBoostCARMA_NumGPU) > 0L) input$XGBoostCARMA_NumGPU else 1,
       XGBoostCARMA_SaveModel_Selected = if(length(input$XGBoostCARMA_SaveModel) > 0L) input$XGBoostCARMA_SaveModel else FALSE,
-      XGBoostCARMA_ArgsList_Selected = if(length(input$XGBoostCARMA_ArgsList) > 0L) input$XGBoostCARMA_ArgsList else tryCatch({names(ModelOutputList)}, error = function(x) NULL),
+      XGBoostCARMA_ArgsList_Selected = if(length(input$XGBoostCARMA_ArgsList) > 0L) input$XGBoostCARMA_ArgsList else NULL,
       XGBoostCARMA_TimeWeights_Selected = if(length(input$XGBoostCARMA_TimeWeights) > 0L) input$XGBoostCARMA_TimeWeights else 1,
       XGBoostCARMA_Methods_Selected = if(length(input$XGBoostCARMA_Methods) > 0L) input$XGBoostCARMA_Methods else NULL,
       XGBoostCARMA_Difference_Selected = if(length(input$XGBoostCARMA_Difference) > 0L) input$XGBoostCARMA_Difference else FALSE,
@@ -3397,7 +3397,7 @@ server <- function(input, output, session) {
       XGBoostCARMA_AnomalyDetection_LowThreshold_Selected = if(length(input$XGBoostCARMA_AnomalyDetection_LowThreshold) > 0L) input$XGBoostCARMA_AnomalyDetection_LowThreshold else NULL,
       XGBoostCARMA_TimeTrend_Selected = if(length(input$XGBoostCARMA_TimeTrend) > 0L) input$XGBoostCARMA_TimeTrend else FALSE,
       XGBoostCARMA_DataTruncate_Selected = if(length(input$XGBoostCARMA_DataTruncate) > 0L) input$XGBoostCARMA_DataTruncate else FALSE,
-      XGBoostCARMA_EncodingMethod_Selected = if(length(input$XGBoostCARMA_EncodingMethod) > 0L) input$XGBoostCARMA_EncodingMethod else 'credibility',
+      XGBoostCARMA_EncodingMethod_Selected = if(length(input$XGBoostCARMA_EncodingMethod) > 0L) input$XGBoostCARMA_EncodingMethod else 'target_encoding',
       XGBoostCARMA_ZeroPadSeries_Selected = if(length(input$XGBoostCARMA_ZeroPadSeries) > 0L) input$XGBoostCARMA_ZeroPadSeries else 'maxmax',
       XGBoostCARMA_CrossEvalModelUpdate_Selected = if(length(input$XGBoostCARMA_CrossEvalModelUpdate) > 0L) input$XGBoostCARMA_CrossEvalModelUpdate else FALSE,
       XGBoostCARMA_CrossEvalValuesUpdate_Selected = if(length(input$XGBoostCARMA_CrossEvalValuesUpdate) > 0L) input$XGBoostCARMA_CrossEvalValuesUpdate else FALSE,
@@ -3468,14 +3468,14 @@ server <- function(input, output, session) {
       LightGBMCARMA_AnomalyDetection_LowThreshold_Choices = c(0,-2,-3,-4,-5,-6,-7,-8,-9,-10),
       LightGBMCARMA_TimeTrend_Choices = c(FALSE,TRUE),
       LightGBMCARMA_DataTruncate_Choices = c(FALSE,TRUE),
-      LightGBMCARMA_EncodingMethod_Choices = c('meow','credibility','target_encoding','binary','woe','poly_encode','backward_difference','helmert'),
-      LightGBMCARMA_ZeroPadSeries_Choices = c('dynamic:meow','dynamic:target_encoding','dynamic:credibility','maxmax','maxmin','minmax','minmin'),
+      LightGBMCARMA_EncodingMethod_Choices = c('credibility','target_encoding','binary','woe','poly_encode','backward_difference','helmert'),
+      LightGBMCARMA_ZeroPadSeries_Choices = c('dynamic:target_encoding','dynamic:credibility','maxmax','maxmin','minmax','minmin'),
       LightGBMCARMA_CrossEvalModelUpdate_Choices = c(TRUE,FALSE),
       LightGBMCARMA_CrossEvalValuesUpdate_Choices = c(TRUE,FALSE),
       LightGBMCARMA_CrossEvalModelUpdateFreq_Choices = 1L:365L,
       LightGBMCARMA_CrossEvalValuesUpdateFreq_Choices = 1L:365L,
       LightGBMCARMA_EvalMetric_Choices = c("RMSE","MAE","MAPE","Poisson","Quantile","LogLinQuantile","Lq","NumErrors","SMAPE","R2","MSLE","MedianAbsoluteError"),
-      LightGBMCARMA_LossFunction_Choices = c('reg:squarederror','reg:squaredlogerror','reg:pseudohubererror','count:poisson','reg:gamma','reg:tweedie'),
+      LightGBMCARMA_LossFunction_Choices = c('regression', 'mean_squared_error', 'regression_l1', 'mean_absolute_error', 'mae', 'mean_absolute_percentage_error', 'huber', 'fair', 'poisson', 'quantile', 'gamma', 'tweedie'),
       LightGBMCARMA_Trees_Choices = seq(50,5000,50),
       LightGBMCARMA_Max_Depth_Choices = 2L:16L,
       LightGBMCARMA_ETA_Choices = seq(0.0,0.99,0.01),
@@ -3488,7 +3488,7 @@ server <- function(input, output, session) {
       LightGBMCARMA_Lambda_L2_Choices = seq(0,50,0.5),
 
       # Reactives
-      LightGBMCARMA_ModelID_Selected = if(length(input$LightGBMCARMA_ModelID) > 0L) input$LightGBMCARMA_ModelID else "FC1",
+      LightGBMCARMA_ModelID_Selected = if(length(input$LightGBMCARMA_ModelID) > 0L) input$LightGBMCARMA_ModelID else "FC001",
       LightGBMCARMA_TrainData_Selected = if(length(input$LightGBMCARMA_TrainData) > 0L) input$LightGBMCARMA_TrainData else NULL,
       LightGBMCARMA_ValidationData_Selected = if(length(input$LightGBMCARMA_ValidationData) > 0L) input$LightGBMCARMA_ValidationData else NULL,
       LightGBMCARMA_XREGS_Selected = if(length(input$LightGBMCARMA_XREGS) > 0L) input$LightGBMCARMA_XREGS else NULL,
@@ -3498,7 +3498,7 @@ server <- function(input, output, session) {
       LightGBMCARMA_TaskType_Selected = if(length(input$LightGBMCARMA_TaskType) > 0L) input$LightGBMCARMA_TaskType else "CPU",
       LightGBMCARMA_NumGPU_Selected = if(length(input$LightGBMCARMA_NumGPU) > 0L) input$LightGBMCARMA_NumGPU else 1,
       LightGBMCARMA_SaveModel_Selected = if(length(input$LightGBMCARMA_SaveModel) > 0L) input$LightGBMCARMA_SaveModel else FALSE,
-      LightGBMCARMA_ArgsList_Selected = if(length(input$LightGBMCARMA_ArgsList) > 0L) input$LightGBMCARMA_ArgsList else tryCatch({names(ModelOutputList)}, error = function(x) NULL),
+      LightGBMCARMA_ArgsList_Selected = if(length(input$LightGBMCARMA_ArgsList) > 0L) input$LightGBMCARMA_ArgsList else NULL,
       LightGBMCARMA_TimeWeights_Selected = if(length(input$LightGBMCARMA_TimeWeights) > 0L) input$LightGBMCARMA_TimeWeights else 1,
       LightGBMCARMA_Methods_Selected = if(length(input$LightGBMCARMA_Methods) > 0L) input$LightGBMCARMA_Methods else NULL,
       LightGBMCARMA_Difference_Selected = if(length(input$LightGBMCARMA_Difference) > 0L) input$LightGBMCARMA_Difference else FALSE,
@@ -3518,14 +3518,14 @@ server <- function(input, output, session) {
       LightGBMCARMA_AnomalyDetection_LowThreshold_Selected = if(length(input$LightGBMCARMA_AnomalyDetection_LowThreshold) > 0L) input$LightGBMCARMA_AnomalyDetection_LowThreshold else NULL,
       LightGBMCARMA_TimeTrend_Selected = if(length(input$LightGBMCARMA_TimeTrend) > 0L) input$LightGBMCARMA_TimeTrend else FALSE,
       LightGBMCARMA_DataTruncate_Selected = if(length(input$LightGBMCARMA_DataTruncate) > 0L) input$LightGBMCARMA_DataTruncate else FALSE,
-      LightGBMCARMA_EncodingMethod_Selected = if(length(input$LightGBMCARMA_EncodingMethod) > 0L) input$LightGBMCARMA_EncodingMethod else 'credibility',
+      LightGBMCARMA_EncodingMethod_Selected = if(length(input$LightGBMCARMA_EncodingMethod) > 0L) input$LightGBMCARMA_EncodingMethod else 'target_encoding',
       LightGBMCARMA_ZeroPadSeries_Selected = if(length(input$LightGBMCARMA_ZeroPadSeries) > 0L) input$LightGBMCARMA_ZeroPadSeries else 'maxmax',
       LightGBMCARMA_CrossEvalModelUpdate_Selected = if(length(input$LightGBMCARMA_CrossEvalModelUpdate) > 0L) input$LightGBMCARMA_CrossEvalModelUpdate else FALSE,
       LightGBMCARMA_CrossEvalValuesUpdate_Selected = if(length(input$LightGBMCARMA_CrossEvalValuesUpdate) > 0L) input$LightGBMCARMA_CrossEvalValuesUpdate else FALSE,
       LightGBMCARMA_CrossEvalModelUpdateFreq_Selected = if(length(input$LightGBMCARMA_CrossEvalModelUpdateFreq) > 0L) input$LightGBMCARMA_CrossEvalModelUpdateFreq else 1L,
       LightGBMCARMA_CrossEvalValuesUpdateFreq_Selected = if(length(input$LightGBMCARMA_CrossEvalValuesUpdateFreq) > 0L) input$LightGBMCARMA_CrossEvalValuesUpdateFreq else 1L,
       LightGBMCARMA_EvalMetric_Selected = if(length(input$LightGBMCARMA_EvalMetric) > 0L) input$LightGBMCARMA_EvalMetric else 'RMSE',
-      LightGBMCARMA_LossFunction_Selected = 'reg:squarederror',
+      LightGBMCARMA_LossFunction_Selected = 'regression',
       LightGBMCARMA_Trees_Selected = if(length(input$LightGBMCARMA_Trees) > 0L) input$LightGBMCARMA_Trees else 500L,
       LightGBMCARMA_Max_Depth_Selected = if(length(input$LightGBMCARMA_Max_Depth) > 0L) input$LightGBMCARMA_Max_Depth else 6L,
       LightGBMCARMA_ETA_Selected = if(length(input$LightGBMCARMA_ETA) > 0L) input$LightGBMCARMA_ETA else 0.10,
@@ -3544,8 +3544,8 @@ server <- function(input, output, session) {
       ChoiceList <- list()
       ColTypes <- unique(Quantico:::ColTypes(LightGBMCARMA_TrainDataReactive()))
       for(i in seq_along(ColTypes)) ChoiceList[[ColTypes[i]]] <- Quantico:::ColNameFilter(LightGBMCARMA_TrainDataReactive(), Types = ColTypes[i])
-      Quantico:::PickerInput(session = session, Update = TRUE, InputID = "LightGBMCARMA_TargetColumnName", Label = "Target Variable", Choices = ChoiceList, SelectedDefault = if(length(input$LightGBMCARMA_TargetColumnName) > 0L) input$LightGBMCARMA_TargetColumnName else NULL, Multiple = TRUE, Debug = Debug)
-      Quantico:::PickerInput(session = session, Update = TRUE, InputID = "LightGBMCARMA_DateColumnName", Label = "Date Variable", Choices = ChoiceList, SelectedDefault = if(length(input$LightGBMCARMA_DateColumnName) > 0L) input$LightGBMCARMA_DateColumnName else NULL, Multiple = TRUE, Debug = Debug)
+      Quantico:::PickerInput(session = session, Update = TRUE, InputID = "LightGBMCARMA_TargetColumnName", Label = "Target Variable", Choices = ChoiceList, SelectedDefault = if(length(input$LightGBMCARMA_TargetColumnName) > 0L) input$LightGBMCARMA_TargetColumnName else NULL, Multiple = TRUE, MaxVars = 1, Debug = Debug)
+      Quantico:::PickerInput(session = session, Update = TRUE, InputID = "LightGBMCARMA_DateColumnName", Label = "Date Variable", Choices = ChoiceList, SelectedDefault = if(length(input$LightGBMCARMA_DateColumnName) > 0L) input$LightGBMCARMA_DateColumnName else NULL, Multiple = TRUE, MaxVars = 1, Debug = Debug)
       Quantico:::PickerInput(session = session, Update = TRUE, InputID = "LightGBMCARMA_GroupVariables", Label = "Group Variables", Choices = ChoiceList, SelectedDefault = if(length(input$LightGBMCARMA_GroupVariables) > 0L) input$LightGBMCARMA_GroupVariables else NULL, Multiple = TRUE, Debug = Debug)
     }, ignoreInit = FALSE)
 
@@ -7371,7 +7371,7 @@ server <- function(input, output, session) {
           # see which parameter set is best to train a keeper
           if(DebugFC) print('XGBoost FC 7 DONE')
           if(length(XGBoostFC) > 0L) {
-            ModelOutputList[[XGBoostFC$ModelID]] <- XGBoostFC; ModelOutputList[[paste0(XGBoostFC$ModelID, "_MLOutput")]] <- XGBoostFC[[paste0(XGBoostFC$ModelID, "_Meta")]]
+            ModelOutputList[[XGBoostFC$ModelID]] <- XGBoostFC#; ModelOutputList[[paste0(XGBoostFC$ModelID, "_MLOutput")]] <- XGBoostFC[[paste0(XGBoostFC$ModelID, "_Meta")]]
             ModelOutputList <<- ModelOutputList; rm(Output); gc()
             for(i in seq_len(NumTabs)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0("DataOutputSelection",i) , Label = 'Display Data', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
             for(i in seq_len(NumTabs)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0('FCReportsModelSelection',i), Label = 'FC Output', Choices = names(ModelOutputList), Multiple = TRUE, MaxVars = 100L)
@@ -9504,11 +9504,10 @@ server <- function(input, output, session) {
 
         if(Debug) {
           print("FC Panel Report 2")
-          print(names(ModelOutputList))
+          print(names(ModelOutputList[[FCModelSelection]]))
         }
 
-
-        saveRDS(object = CatBoostFC, file = file.path(WorkingDirectory, "CatBoostFC.rds"))
+        saveRDS(object = ModelOutputList, file = file.path(WorkingDirectory, "ModelOutputList.rds"))
         #saveRDS(object = DataList, file = file.path(WorkingDirectory, "DataList.rds"))
 
         # Run Quantico:::Shiny.FC.ReportOutput

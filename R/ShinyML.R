@@ -6114,12 +6114,12 @@ Shiny.FC.Panel.Metric.Rollup <- function(ModelID,ArgsList,DataList,CodeList,Debu
 #' @param CodeList From app
 #' @param DataList From app
 #' @param ModelID From Panel Forecasting Common Args Section of Shiny.FC.Trainer
-#' @param Algo 'catboost', 'xgboost', 'lightgbm'
+#' @param Algo 'CatBoost', 'XGBoost', 'LightGBM'
 #' @param VD ValidationData
 #' @param DebugFC From app
 #'
 #' @export
-Shiny.FC.Panel.Train <- function(ArgsList, CodeList, DataList, ModelID, Algo = 'catboost', VD = NULL, DebugFC = FALSE) {
+Shiny.FC.Panel.Train <- function(ArgsList, CodeList, DataList, ModelID, Algo = 'CatBoost', VD = NULL, DebugFC = FALSE) {
 
   if(missing(ModelID) || length(ModelID) == 0L || is.na(ModelID)) {
     ModelID <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0(Algo, 'CARMA_ModelID')]]}, error=function(x) NULL), Type='character', Default='FC001')
@@ -6147,6 +6147,7 @@ Shiny.FC.Panel.Train <- function(ArgsList, CodeList, DataList, ModelID, Algo = '
   if(DebugFC) print("Shiny.FC.Panel.Train 2")
   dtc <- data.table::copy(ArgsList[['data']])
   ArgsList$TrainOnFull <- FALSE
+  ArgsList$Model <- NULL
   if(DebugFC) print("Shiny.FC.Panel.Train 3")
 
   # saveRDS(object = ArgsList, file = "C:/Users/Bizon/Documents/GitHub/CatBoostFC_ArgsList.rds")
@@ -6186,46 +6187,46 @@ Shiny.FC.Panel.Train <- function(ArgsList, CodeList, DataList, ModelID, Algo = '
   if(DebugFC) print("Shiny.FC.Panel.Train 7")
 
   # ML Data: just like in the ML function shiny.ML.Trainer()
-  Output <- Quantico:::Shiny.ML.ModelDataObjects(Output$TestModel, DebugFC, TT = 'catboost')
+  Output <- Quantico:::Shiny.ML.ModelDataObjects(Output$TestModel, DebugFC, TT = Algo)
 
   if(DebugFC) print("Shiny.FC.Panel.Train 8")
   if(length(Output$ScoringDataCombined) > 0L) {
     if(DebugFC) print("Shiny.FC.Panel.Train 8.a")
-    DataList[[paste0('CatBoostFC_', ModelID, '_ScoringData')]][['data']] <- Output$ScoringDataCombined
+    DataList[[paste0(Algo, 'FC_', ModelID, '_ScoringData')]][['data']] <- Output$ScoringDataCombined
     if(DebugFC) print("Shiny.FC.Panel.Train 8.b")
-    DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, paste0('CatBoostFC_', ModelID, '_ScoringData'))}, error = function(x) {print(names(DataList)); return(DataList)})
+    DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, paste0(Algo, 'FC_', ModelID, '_ScoringData'))}, error = function(x) {print(names(DataList)); return(DataList)})
   }
 
   if(DebugFC) print("Shiny.FC.Panel.Train 9")
   if(length(Output$VI_Train) > 0L) {
     if(DebugFC) print("Shiny.FC.Panel.Train 9.a")
-    DataList[[paste0('CatBoostFC_', ModelID, '_Test_VI_Data')]][['data']] <- Output$VI_Train
+    DataList[[paste0(Algo, 'FC_', ModelID, '_Test_VI_Data')]][['data']] <- Output$VI_Train
     if(DebugFC) print("Shiny.FC.Panel.Train 9.b")
-    DataList <- Quantico:::DM.DataListUpdate(DataList, paste0('CatBoostFC_', ModelID, '_Test_VI_Data'), Sample = FALSE)
+    DataList <- Quantico:::DM.DataListUpdate(DataList, paste0(Algo, 'FC_', ModelID, '_Test_VI_Data'), Sample = FALSE)
   }
 
   if(DebugFC) print("Shiny.FC.Panel.Train 10")
   if(length(Output$VI_Validation) > 0L) {
     if(DebugFC) print("Shiny.FC.Panel.Train 10.a")
-    DataList[[paste0('CatBoostFC_', ModelID, '_Train_VI_Data')]][['data']] <- Output$VI_Validation
+    DataList[[paste0(Algo, 'FC_', ModelID, '_Train_VI_Data')]][['data']] <- Output$VI_Validation
     if(DebugFC) print("Shiny.FC.Panel.Train 10.b")
-    DataList <- Quantico:::DM.DataListUpdate(DataList, paste0('CatBoostFC_', ModelID, '_Train_VI_Data'), Sample = FALSE)
+    DataList <- Quantico:::DM.DataListUpdate(DataList, paste0(Algo, 'FC_', ModelID, '_Train_VI_Data'), Sample = FALSE)
   }
 
   if(DebugFC) print("Shiny.FC.Panel.Train 11")
   if(length(Output$VI_Test) > 0L) {
     if(DebugFC) print("Shiny.FC.Panel.Train 11.a")
-    DataList[[paste0('CatBoostFC_', ModelID, '_Validation_VI_Data')]][['data']] <- Output$VI_Test
+    DataList[[paste0(Algo, 'FC_', ModelID, '_Validation_VI_Data')]][['data']] <- Output$VI_Test
     if(DebugFC) print("Shiny.FC.Panel.Train 11.b")
-    DataList <- Quantico:::DM.DataListUpdate(DataList, paste0('CatBoostFC_', ModelID, '_Validation_VI_Data'), Sample = FALSE)
+    DataList <- Quantico:::DM.DataListUpdate(DataList, paste0(Algo, 'FC_', ModelID, '_Validation_VI_Data'), Sample = FALSE)
   }
 
   if(DebugFC) print("Shiny.FC.Panel.Train 12")
   if(length(Output$II_Train) > 0L) {
     if(DebugFC) print("Shiny.FC.Panel.Train 12.a")
-    DataList[[paste0('CatBoostFC_', ModelID, '_All_II_Data')]][['data']] <- Output$II_Train
+    DataList[[paste0(Algo, 'FC_', ModelID, '_All_II_Data')]][['data']] <- Output$II_Train
     if(DebugFC) print("Shiny.FC.Panel.Train 12.b")
-    DataList <- Quantico:::DM.DataListUpdate(DataList, paste0('CatBoostFC_', ModelID, '_All_II_Data'), Sample = FALSE)
+    DataList <- Quantico:::DM.DataListUpdate(DataList, paste0(Algo, 'FC_', ModelID, '_All_II_Data'), Sample = FALSE)
   }
 
   if(DebugFC) print("Shiny.FC.Panel.Train return")
@@ -6423,6 +6424,8 @@ Shiny.FC.Panel.Backtest <- function(ArgsList,
                                     VD = NULL,
                                     CrossEval = FALSE,
                                     DebugFC = FALSE) {
+
+  ArgsList <- list()
 
   # Check if VD is NULL
   if(DebugFC) print("Shiny.FC.Panel.Backtest 0 Start")
@@ -6881,7 +6884,7 @@ Shiny.FC.Panel.Backest.RollingEval <- function(ArgsList, DataList, CodeList, Mod
 #' @param ArgsList ArgsList
 #' @param CodeList CodeList from app
 #' @param DebugFC DebugFC from app
-#' @param Algo 'CatBoost', 'XGBoost', 'LightGBM', 'H2O_DRF', 'H2O_GBM'
+#' @param Algo 'CatBoost', 'XGBoost', 'LightGBM'
 #'
 #' @return a list of columns names by data type
 #'
@@ -6916,7 +6919,7 @@ Shiny.FC.CARMA <- function(input,
   xregs <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0(Algo, 'CARMA_XREGS')]]}, error=function(x) NULL), Type='character', Default=NULL)
   ArgsList[["XREGS"]] <- xregs
   RunMode <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0(Algo, 'CARMA_RunMode')]]}, error=function(x) NULL), Type='character', Default='Train New Model')
-  ModelID <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0(Algo, 'ModelID')]]}, error=function(x) NULL), Type='character', Default="FC001")
+  ModelID <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0(Algo, 'CARMA_ModelID')]]}, error=function(x) NULL), Type='character', Default="FC001")
 
   if(DebugFC) print('Shiny.FC.CARMA 1')
 
@@ -9779,16 +9782,29 @@ Shiny.FC.ReportOutput <- function(input,
   # DateCol
   DateColumnName <- MOL[[ModelID]]$DateColumnName
 
+  # Algo
+  temp_algo <- class(MOL[[ModelID]]$Model)[1L]
+  if(temp_algo == "catboost.Model") {
+    Algo <- "CatBoost"
+  } else if(temp_algo == "xgb.Booster") {
+    Algo <- "XGBoost"
+  } else if(temp_algo == "lgb.Booster") {
+    Algo <- "LightGBM"
+  }
+
   # Group Var
   GroupVariableInclude <- "GroupVar"
 
   # Data sets
   if(Debug) print("FC Reports 2")
 
-  if(Debug) print("FC Reports 2.1")
-  TestData <- DataList[[paste0("CatBoostFC_", ModelID, "_ScoringData")]]$data
-  # print(TestData)
-  if(Debug) print("FC Reports 2.2")
+  if(tolower(Algo) == "catboost") {
+    TestData <- DataList[[paste0("CatBoostFC_", ModelID, "_ScoringData")]]$data
+  } else if(tolower(Algo) == "xgboost") {
+    TestData <- DataList[[paste0("XGBoostFC_", ModelID, "_ScoringData")]]$data
+  } else if(tolower(Algo) == "lightgbm") {
+    TestData <- DataList[[paste0("LightGBMFC_", ModelID, "_ScoringData")]]$data
+  }
 
   OutputList <- list()
 
@@ -9807,8 +9823,14 @@ Shiny.FC.ReportOutput <- function(input,
   # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
   # Train Outputs                                                             ----
   # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
+  if(tolower(Algo) == "catboost") {
+    ScoringData <- tryCatch({DataList[[paste0("CatBoostFC_", ModelID, "_ScoringData")]]$data}, error = function(x) NULL)
+  } else if(tolower(Algo) == "xgboost") {
+    ScoringData <- tryCatch({DataList[[paste0("XGBoostFC_", ModelID, "_ScoringData")]]$data}, error = function(x) NULL)
+  } else if(tolower(Algo) == "lightgbm") {
+    ScoringData <- tryCatch({DataList[[paste0("LightGBMFC_", ModelID, "_ScoringData")]]$data}, error = function(x) NULL)
+  }
 
-  ScoringData <- tryCatch({DataList[[paste0("CatBoostFC_", ModelID, "_ScoringData")]]$data}, error = function(x) NULL)
   if(length(ScoringData) > 0L) {
 
     # Metrics
@@ -9860,7 +9882,13 @@ Shiny.FC.ReportOutput <- function(input,
     if(Debug) print("FC Reports 4")
 
     # Variable Importance
-    Test_Importance <- DataList[[paste0("CatBoostFC_", ModelID, "_Test_VI_Data")]]$data
+    if(tolower(Algo) == "catboost") {
+      Test_Importance <- DataList[[paste0("CatBoostFC_", ModelID, "_Test_VI_Data")]]$data
+    } else if(tolower(Algo) == "xgboost") {
+      Test_Importance <- DataList[[paste0("XGBoostFC_", ModelID, "_Test_VI_Data")]]$data
+    } else if(tolower(Algo) == "lightgbm") {
+      Test_Importance <- DataList[[paste0("LightGBMFC_", ModelID, "_Test_VI_Data")]]$data
+    }
 
     # Test Importance ----
     OutputList[["ML Test Importance"]] <- reactable::reactable(
@@ -9895,6 +9923,7 @@ Shiny.FC.ReportOutput <- function(input,
     )
 
     if(Debug) print("FC Reports 6")
+
 
     Validation_Importance <- tryCatch({DataList[[paste0("CatBoostFC_", ModelID, "_Validation_VI_Data")]]$data}, error = function(x) NULL)
 
@@ -9971,7 +10000,7 @@ Shiny.FC.ReportOutput <- function(input,
     # Interaction Importances
     All_Interaction <- tryCatch({DataList[[paste0("CatBoostFC_", ModelID, "_All_II_Data")]]$data}, error = function(x) NULL)
 
-    # Train Importance ----
+    # Interaction Importance ----
     if(length(All_Interaction) > 0) {
       OutputList[["ML Interaction Importance"]] <- reactable::reactable(
         data = All_Interaction,
@@ -10175,14 +10204,20 @@ Shiny.FC.ReportOutput <- function(input,
         FeatureColumnNames <- FeatureColumnNames[!FeatureColumnNames %in% "GroupVar"]
         FeatureColumnNames[[length(FeatureColumnNames) + 1]] <- "GroupVariable"
       }
-      print(FeatureColumnNames)
-      print(names(ScoringData))
-      print(ScoringData)
-      data.table::fwrite(ScoringData, file = "C:/Users/Bizon/Documents/GitHub/rappwd/Scoring.csv")
+
+      if(Debug) {
+        print(FeatureColumnNames)
+        print(names(ScoringData))
+        print(ScoringData)
+        data.table::fwrite(ScoringData, file = "C:/Users/Bizon/Documents/GitHub/rappwd/Scoring.csv")
+      }
+
       for(g in FeatureColumnNames) {
-        if(!is.numeric(ScoringData[[g]])) {
-          print(TargetColumnName)
-          print(g)
+        if(g %in% names(ScoringData) && !is.numeric(ScoringData[[g]])) {
+          if(Debug) {
+            print(TargetColumnName)
+            print(g)
+          }
           OutputList[[paste0('ScoringData Partial Dependence BarPlot: ', g)]] <- AutoPlots::Plot.PartialDependence.HeatMap(
             dt = ScoringData,
             XVar = g,

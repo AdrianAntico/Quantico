@@ -14,7 +14,7 @@ At a high level the app enables:
 * Session Saving / Loading
 * Code Generation
 * Plotting
-* Tables viewer
+* Tables Viewer
 * Data Wrangling
 * Feature Engineering
 * Machine Learning
@@ -24,9 +24,9 @@ At a high level the app enables:
 Automated output reports are included for:
 1. Plotting
 2. Exploratory Data Analysis
-3. Inference (specific to the tests)
-4. Machine Learning (specific to target type)
-5. Forecasting (specific to procedure)
+3. Inference
+4. Machine Learning
+5. Forecasting
 
 <br>
 

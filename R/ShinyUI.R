@@ -15011,11 +15011,11 @@ LightGBMCARMA_Modal_Fun <- function(id,
                       # Data Names
                       Quantico:::BlankRow(12L),
                       shiny::fluidRow(
-                        shiny::column(12L, align = 'center', Quantico:::PickerInput(InputID = "LightGBMCARMA_TargetColumnName", Label = "Target Variable", Choices = NULL, SelectedDefault = LightGBMCARMA_TargetColumnName_Selected, Multiple = TRUE, MaxVars = 1L))
+                        shiny::column(12L, align = 'center', Quantico:::PickerInput(InputID = "LightGBMCARMA_TargetColumnName", Label = "Target Variable", Choices = NULL, SelectedDefault = LightGBMCARMA_TargetColumnName_Selected, Multiple = TRUE, MaxVars = 1))
                       ),
                       Quantico:::BlankRow(12L),
                       shiny::fluidRow(
-                        shiny::column(12L, align = 'center', Quantico:::PickerInput(InputID = "LightGBMCARMA_DateColumnName", Label = "Date Variable", Choices = NULL, SelectedDefault = LightGBMCARMA_DateColumnName_Selected, Multiple = TRUE, MaxVars = 1L))
+                        shiny::column(12L, align = 'center', Quantico:::PickerInput(InputID = "LightGBMCARMA_DateColumnName", Label = "Date Variable", Choices = NULL, SelectedDefault = LightGBMCARMA_DateColumnName_Selected, Multiple = TRUE, MaxVars = 1))
                       ),
                       Quantico:::BlankRow(12L),
                       Quantico:::BlankRow(12L)
@@ -15145,6 +15145,10 @@ LightGBMCARMA_Modal_Fun <- function(id,
                         shiny::column(12L, align = 'center', Quantico:::SelectizeInput(InputID = "LightGBMCARMA_HolidayVariables", Label = "Holiday variables", Choices = LightGBMCARMA_HolidayVariables_Choices, SelectedDefault = LightGBMCARMA_HolidayVariables_Selected, Multiple = TRUE, MaxVars = 100L))
                       ),
                       Quantico:::BlankRow(11L),
+                      shiny::fluidRow(
+                        shiny::column(12L, align = 'center', Quantico:::NumericInput(InputID = "LightGBMCARMA_Lookback", Label = "Holiday Window (days)", Value = LightGBMCARMA_Lookback_Selected, Min = 1, Max = 50, Step = 1))
+                      ),
+                      Quantico:::BlankRow(11L),
                       Quantico:::BlankRow(11L)
                     )
                   ),
@@ -15152,10 +15156,6 @@ LightGBMCARMA_Modal_Fun <- function(id,
                     6L,
                     shinydashboard::box(
                       title = NULL, solidHeader = TRUE, collapsible = FALSE, status = NULL, width = 12L,
-                      Quantico:::BlankRow(11L),
-                      shiny::fluidRow(
-                        shiny::column(12L, align = 'center', Quantico:::NumericInput(InputID = "LightGBMCARMA_Lookback", Label = "Holiday Window (days)", Value = LightGBMCARMA_Lookback_Selected, Min = 1, Max = 50, Step = 1))
-                      ),
                       Quantico:::BlankRow(11L),
                       shiny::fluidRow(
                         shiny::column(12L, align = 'center', Quantico:::SelectizeInput(InputID = "LightGBMCARMA_TimeTrend", Label = "Time trend", Choices = LightGBMCARMA_TimeTrend_Choices, SelectedDefault = LightGBMCARMA_TimeTrend_Selected, Multiple = TRUE, MaxVars = 1L))

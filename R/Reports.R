@@ -21,13 +21,67 @@ Run_FC_Report <- function(DataList = NULL,
                           OutputPath = NULL) {
 
   appDir <- system.file("r-markdowns", package = "Quantico")
-  print(names(DataList))
-  print(names(MOL))
-  print(ModelID)
-
   DataList <- DataList
   MOL <- MOL
   ModelID <- ModelID
+
+  # Checks
+  if(length(ModelID) == 0L) return(NULL)
+
+  # temp_model_rdata$ArgsList$TargetColumnName
+  TargetColumnName <- MOL[["TargetColumnName"]]
+
+  # temp_model_rdata$ArgsList$
+  PredictionColumnName <- "Predict"
+
+  # temp_model_rdata$ArgsList$FeatureColNames
+  FeatureColumnNames <- MOL[["FeatureColNames"]]
+
+  # DateCol
+  DateColumnName <- MOL$DateColumnName
+
+  # Algo
+  temp_algo <- class(MOL$Model)[1L]
+  if(temp_algo == "catboost.Model") {
+    Algo <- "CatBoost"
+  } else if(temp_algo == "xgb.Booster") {
+    Algo <- "XGBoost"
+  } else if(temp_algo == "lgb.Booster") {
+    Algo <- "LightGBM"
+  }
+
+  # Group Var
+  GroupVariableInclude <- "GroupVar"
+
+  # Data sets
+  if(tolower(Algo) == "catboost") {
+    TestData <- DataList[[paste0("CatBoostFC_", ModelID, "_ScoringData")]]$data
+  } else if(tolower(Algo) == "xgboost") {
+    TestData <- DataList[[paste0("XGBoostFC_", ModelID, "_ScoringData")]]$data
+  } else if(tolower(Algo) == "lightgbm") {
+    TestData <- DataList[[paste0("LightGBMFC_", ModelID, "_ScoringData")]]$data
+  }
+
+  OutputList <- list()
+
+  # Args
+  PlotWidth <- "975px"
+  PlotHeight <- "600px"
+
+  # ----
+
+  # ----
+
+  # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
+  # Train Outputs                                                             ----
+  # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
+  if(tolower(Algo) == "catboost") {
+    ScoringData <- tryCatch({DataList[[paste0("CatBoostFC_", ModelID, "_ScoringData")]]$data}, error = function(x) NULL)
+  } else if(tolower(Algo) == "xgboost") {
+    ScoringData <- tryCatch({DataList[[paste0("XGBoostFC_", ModelID, "_ScoringData")]]$data}, error = function(x) NULL)
+  } else if(tolower(Algo) == "lightgbm") {
+    ScoringData <- tryCatch({DataList[[paste0("LightGBMFC_", ModelID, "_ScoringData")]]$data}, error = function(x) NULL)
+  }
 
   OutputPathName <- file.path(OutputPath, paste0('FCReport-', ModelID, '.html'))
   rmarkdown::render(

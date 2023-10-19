@@ -1,5 +1,5 @@
 ---
-title: "Regression ML Report"
+title: "Forecast Report"
 author: "Provided by Quantico"
 date: "`r format(Sys.time(), '%Y-%m-%d')`"
 output:
@@ -319,83 +319,11 @@ a:hover {
 ```
 
 ```{r FC_Objects, echo = FALSE}
-
-print("FC_Objects 1")
-print(names(MOL))
-
 if(length(MOL) > 0L && length(DataList) > 0L) {
   
   # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
   # Create collection lists                                                   ----
   # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
-
-  print("FC Reports 1")
-
-  # Checks
-  if(length(ModelID) == 0L) return(NULL)
-  if(!exists("DataList")) return(NULL)
-  if(!exists("CodeList")) return(NULL)
-
-  # temp_model_rdata$ArgsList$TargetColumnName
-  TargetColumnName <- MOL[[ModelID]][["TargetColumnName"]]
-
-  # temp_model_rdata$ArgsList$
-  PredictionColumnName <- "Predict"
-
-  # temp_model_rdata$ArgsList$FeatureColNames
-  FeatureColumnNames <- MOL[[ModelID]][["FeatureColNames"]]
-
-  # DateCol
-  DateColumnName <- MOL[[ModelID]]$DateColumnName
-
-  # Algo
-  temp_algo <- class(MOL[[ModelID]]$Model)[1L]
-  if(temp_algo == "catboost.Model") {
-    Algo <- "CatBoost"
-  } else if(temp_algo == "xgb.Booster") {
-    Algo <- "XGBoost"
-  } else if(temp_algo == "lgb.Booster") {
-    Algo <- "LightGBM"
-  }
-
-  # Group Var
-  GroupVariableInclude <- "GroupVar"
-
-  # Data sets
-  print("FC Reports 2")
-
-  if(tolower(Algo) == "catboost") {
-    TestData <- DataList[[paste0("CatBoostFC_", ModelID, "_ScoringData")]]$data
-  } else if(tolower(Algo) == "xgboost") {
-    TestData <- DataList[[paste0("XGBoostFC_", ModelID, "_ScoringData")]]$data
-  } else if(tolower(Algo) == "lightgbm") {
-    TestData <- DataList[[paste0("LightGBMFC_", ModelID, "_ScoringData")]]$data
-  }
-
-  OutputList <- list()
-
-  print("FC Reports 3")
-
-  # Args
-  PlotWidthinff <- "975px"
-  PlotHeightinff <- "600px"
-
-  print("ML Reports 7")
-
-  # ----
-
-  # ----
-
-  # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
-  # Train Outputs                                                             ----
-  # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
-  if(tolower(Algo) == "catboost") {
-    ScoringData <- tryCatch({DataList[[paste0("CatBoostFC_", ModelID, "_ScoringData")]]$data}, error = function(x) NULL)
-  } else if(tolower(Algo) == "xgboost") {
-    ScoringData <- tryCatch({DataList[[paste0("XGBoostFC_", ModelID, "_ScoringData")]]$data}, error = function(x) NULL)
-  } else if(tolower(Algo) == "lightgbm") {
-    ScoringData <- tryCatch({DataList[[paste0("LightGBMFC_", ModelID, "_ScoringData")]]$data}, error = function(x) NULL)
-  }
 
   if(length(ScoringData) > 0L) {
 
@@ -432,7 +360,7 @@ if(length(MOL) > 0L && length(DataList) > 0L) {
       sortable = TRUE,
       striped = TRUE,
       theme = reactable::reactableTheme(
-        color = FontColor$flv,
+        color = "black",
         backgroundColor = "#4f4f4f26",
         borderColor = "#dfe2e5",
         stripedColor = "#4f4f4f8f",
@@ -444,8 +372,6 @@ if(length(MOL) > 0L && length(DataList) > 0L) {
         searchInputStyle = list(width = "100%")
       )
     )
-
-    print("FC Reports 4")
 
     # Variable Importance
     if(tolower(Algo) == "catboost") {
@@ -475,7 +401,7 @@ if(length(MOL) > 0L && length(DataList) > 0L) {
       sortable = TRUE,
       striped = TRUE,
       theme = reactable::reactableTheme(
-        color = FontColor$flv,
+        color = "black",
         backgroundColor = "#4f4f4f26",
         borderColor = "#dfe2e5",
         stripedColor = "#4f4f4f8f",
@@ -487,8 +413,6 @@ if(length(MOL) > 0L && length(DataList) > 0L) {
         searchInputStyle = list(width = "100%")
       )
     )
-
-    print("FC Reports 6")
 
 
     Validation_Importance <- tryCatch({DataList[[paste0("CatBoostFC_", ModelID, "_Validation_VI_Data")]]$data}, error = function(x) NULL)
@@ -513,7 +437,7 @@ if(length(MOL) > 0L && length(DataList) > 0L) {
         sortable = TRUE,
         striped = TRUE,
         theme = reactable::reactableTheme(
-          color = FontColor$flv,
+          color = "black",
           backgroundColor = "#4f4f4f26",
           borderColor = "#dfe2e5",
           stripedColor = "#4f4f4f8f",
@@ -549,7 +473,7 @@ if(length(MOL) > 0L && length(DataList) > 0L) {
         sortable = TRUE,
         striped = TRUE,
         theme = reactable::reactableTheme(
-          color = FontColor$flv,
+          color = "black",
           backgroundColor = "#4f4f4f26",
           borderColor = "#dfe2e5",
           stripedColor = "#4f4f4f8f",
@@ -586,7 +510,7 @@ if(length(MOL) > 0L && length(DataList) > 0L) {
         sortable = TRUE,
         striped = TRUE,
         theme = reactable::reactableTheme(
-          color = FontColor$flv,
+          color = "black",
           backgroundColor = "#4f4f4f26",
           borderColor = "#dfe2e5",
           stripedColor = "#4f4f4f8f",
@@ -601,7 +525,6 @@ if(length(MOL) > 0L && length(DataList) > 0L) {
     }
 
     # Evaluation Plots ----
-    print("FC Reports 7.1")
     ScoringData_Residual_Histogram <- AutoPlots::Plot.Residuals.Histogram(
       dt = ScoringData,
       AggMethod = "mean",
@@ -615,13 +538,13 @@ if(length(MOL) > 0L && length(DataList) > 0L) {
       FacetCols = 1,
       FacetLevels = NULL,
       NumberBins = 20,
-      Height = PlotHeight,
-      Width = PlotWidth,
+      Height = "600px",
+      Width = "975px",
       Title = "Residuals Histogram",
       ShowLabels = FALSE,
       Title.YAxis = TargetColumnName,
       Title.XAxis = 'Predict',
-      EchartsTheme = Theme,
+      EchartsTheme = "wef",
       TimeLine = FALSE,
       X_Scroll = TRUE,
       Y_Scroll = FALSE,
@@ -634,9 +557,7 @@ if(length(MOL) > 0L && length(DataList) > 0L) {
       title.textShadowOffsetX = -1,
       xaxis.fontSize = 14,
       yaxis.fontSize = 14,
-      Debug = Debug)
-
-    print("FC Reports 7.3")
+      Debug = FALSE)
 
     ScoringData_Calibration_Plot <- AutoPlots::Plot.Calibration.Line(
       dt = ScoringData,
@@ -650,20 +571,18 @@ if(length(MOL) > 0L && length(DataList) > 0L) {
       FacetCols = 1,
       FacetLevels = NULL,
       NumberBins = 20,
-      Height = PlotHeight,
-      Width = PlotWidth,
+      Height = "600px",
+      Width = "975px",
       Title = "Calibration Line Plot",
       ShowLabels = FALSE,
       Title.YAxis = TargetColumnName,
       Title.XAxis = "Predict",
-      EchartsTheme = Theme,
+      EchartsTheme = "wef",
       TimeLine = FALSE,
       X_Scroll = TRUE,
       Y_Scroll = TRUE,
       TextColor = "white",
-      Debug = Debug)
-
-    print("FC Reports 7.5")
+      Debug = FALSE)
 
     ScoringData_Calibration_Box_Plot <- AutoPlots::Plot.Calibration.Box(
       dt = ScoringData,
@@ -678,18 +597,18 @@ if(length(MOL) > 0L && length(DataList) > 0L) {
       FacetCols = 1,
       FacetLevels = NULL,
       NumberBins = 20,
-      Height = PlotHeight,
-      Width = PlotWidth,
+      Height = "600px",
+      Width = "975px",
       Title = "Calibration Plot",
       ShowLabels = FALSE,
       Title.YAxis = TargetColumnName,
       Title.XAxis = "Predict",
-      EchartsTheme = Theme,
+      EchartsTheme = "wef",
       TimeLine = FALSE,
       X_Scroll = TRUE,
       Y_Scroll = TRUE,
       TextColor = "white",
-      Debug = Debug)
+      Debug = FALSE)
 
     # Add Plots
     if(!is.null(ScoringData) && !is.null(FeatureColumnNames)) {
@@ -710,18 +629,18 @@ if(length(MOL) > 0L && length(DataList) > 0L) {
             GroupVar = NULL,
             NumberBins = 20,
             AggMethod = "mean",
-            Height = PlotHeight,
-            Width = PlotWidth,
+            Height = "600px",
+            Width = "975px",
             Title = "Partial Dependence Line",
             ShowLabels = FALSE,
             Title.YAxis = TargetColumnName,
             Title.XAxis = g,
-            EchartsTheme = Theme,
+            EchartsTheme = "wef",
             TimeLine = FALSE,
             X_Scroll = TRUE,
             Y_Scroll = TRUE,
             TextColor = "white",
-            Debug = Debug)
+            Debug = FALSE)
         }
       }
     }
@@ -731,7 +650,6 @@ if(length(MOL) > 0L && length(DataList) > 0L) {
       ScoringData_Partial_Dependence_Box_Plot <- list()
       for(g in FeatureColumnNames) {
         if(is.numeric(ScoringData[[g]])) {
-          print(paste0("g = ", g))
           ScoringData_Partial_Dependence_Box_Plot[[g]] <- AutoPlots::Plot.PartialDependence.Box(
             dt = ScoringData,
             XVar = g,
@@ -746,18 +664,18 @@ if(length(MOL) > 0L && length(DataList) > 0L) {
             GroupVar = GroupVariableInclude,
             NumberBins = 20,
             AggMethod = "mean",
-            Height = PlotHeight,
-            Width = PlotWidth,
+            Height = "600px",
+            Width = "975px",
             Title = "Partial Dependence Line",
             ShowLabels = FALSE,
             Title.YAxis = TargetColumnName,
             Title.XAxis = g,
-            EchartsTheme = Theme,
+            EchartsTheme = "wef",
             TimeLine = FALSE,
             X_Scroll = TRUE,
             Y_Scroll = TRUE,
             TextColor = "white",
-            Debug = Debug)
+            Debug = FALSE)
         }
       }
     }
@@ -773,20 +691,9 @@ if(length(MOL) > 0L && length(DataList) > 0L) {
         FeatureColumnNames[[length(FeatureColumnNames) + 1]] <- "GroupVariable"
       }
 
-      {
-        print(FeatureColumnNames)
-        print(names(ScoringData))
-        print(ScoringData)
-        data.table::fwrite(ScoringData, file = "C:/Users/Bizon/Documents/GitHub/rappwd/Scoring.csv")
-      }
-
       ScoringData_Partial_Dependence_Bar_Plot <- list()
       for(g in FeatureColumnNames) {
         if(g %in% names(ScoringData) && !is.numeric(ScoringData[[g]])) {
-          {
-            print(TargetColumnName)
-            print(g)
-          }
           ScoringData_Partial_Dependence_Bar_Plot[[g]] <- AutoPlots::Plot.PartialDependence.HeatMap(
             dt = ScoringData,
             XVar = g,
@@ -801,21 +708,33 @@ if(length(MOL) > 0L && length(DataList) > 0L) {
             GroupVar = NULL,
             NumberBins = 20,
             AggMethod = "mean",
-            Height = PlotHeight,
-            Width = PlotWidth,
+            Height = "600px",
+            Width = "975px",
             Title = "Partial Dependence BarPlot",
             ShowLabels = FALSE,
             Title.YAxis = TargetColumnName,
             Title.XAxis = g,
-            EchartsTheme = Theme,
+            EchartsTheme = "wef",
             TimeLine = FALSE,
             X_Scroll = TRUE,
             Y_Scroll = TRUE,
             TextColor = "white",
-            Debug = Debug)
+            Debug = FALSE)
         }
       }
     }
+  } else {
+    ML_Evaluation_Metrics <- NULL
+    ML_Test_Importance <- NULL
+    ML_Validation_Importance <- NULL
+    ML_Train_Importance <- NULL
+    ML_Interaction_Importance <- NULL
+    ScoringData_Residual_Histogram <- NULL
+    ScoringData_Calibration_Plot <- NULL
+    ScoringData_Calibration_Box_Plot <- NULL
+    ScoringData_Partial_Dependence_Line_Plot <- NULL
+    ScoringData_Partial_Dependence_Box_Plot <- NULL
+    ScoringData_Partial_Dependence_Bar_Plot <- NULL
   }
 
   # ----
@@ -827,7 +746,6 @@ if(length(MOL) > 0L && length(DataList) > 0L) {
   # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
 
   # BT_Rollup
-  print("Backtesting Outputs")
   BT_Rollup <- tryCatch({DataList[[paste0(ModelID, "_BT_Rollup")]]$data}, error = function(x) NULL)
   if(length(BT_Rollup) > 0L) {
     Back_Test_Metrics <- reactable::reactable(
@@ -848,7 +766,7 @@ if(length(MOL) > 0L && length(DataList) > 0L) {
       sortable = TRUE,
       striped = TRUE,
       theme = reactable::reactableTheme(
-        color = FontColor$flv,
+        color = "black",
         backgroundColor = "#4f4f4f26",
         borderColor = "#dfe2e5",
         stripedColor = "#4f4f4f8f",
@@ -860,6 +778,13 @@ if(length(MOL) > 0L && length(DataList) > 0L) {
         searchInputStyle = list(width = "100%")
       )
     )
+  } else {
+    Back_Test_Metrics <- NULL
+    p1 <- NULL
+    p2 <- NULL
+    p3 <- NULL
+    p4 <- NULL
+    p6 <- NULL
   }
 
   # BT_Raw
@@ -882,13 +807,13 @@ if(length(MOL) > 0L && length(DataList) > 0L) {
       FacetRows = 1,
       FacetCols = 1,
       FacetLevels = NULL,
-      Height = PlotHeight,
-      Width = PlotWidth,
+      Height = "600px",
+      Width = "975px",
       Title = "Line Plot",
       ShowLabels = FALSE,
       Title.YAxis = paste0(TargetColumnName, " | Predict"),
       Title.XAxis = DateColumnName,
-      EchartsTheme = Theme,
+      EchartsTheme = "wef",
       X_Scroll = FALSE,
       Y_Scroll = FALSE,
       TimeLine = TRUE,
@@ -922,13 +847,13 @@ if(length(MOL) > 0L && length(DataList) > 0L) {
       FacetRows = 1,
       FacetCols = 1,
       FacetLevels = NULL,
-      Height = PlotHeight,
-      Width = PlotWidth,
+      Height = "600px",
+      Width = "975px",
       Title = "Box Plot: Avg Error",
       ShowLabels = FALSE,
       Title.YAxis = paste0(TargetColumnName, " - Predicted"),
       Title.XAxis = DateColumnName,
-      EchartsTheme = Theme,
+      EchartsTheme = "wef",
       TimeLine = FALSE,
       X_Scroll = TRUE,
       Y_Scroll = TRUE,
@@ -962,13 +887,13 @@ if(length(MOL) > 0L && length(DataList) > 0L) {
       FacetRows = 1,
       FacetCols = 1,
       FacetLevels = NULL,
-      Height = PlotHeight,
-      Width = PlotWidth,
+      Height = "600px",
+      Width = "975px",
       Title = "Line Plot",
       ShowLabels = FALSE,
       Title.YAxis = "Absolute Error",
       Title.XAxis = DateColumnName,
-      EchartsTheme = Theme,
+      EchartsTheme = "wef",
       X_Scroll = FALSE,
       Y_Scroll = FALSE,
       TimeLine = TRUE,
@@ -1006,13 +931,13 @@ if(length(MOL) > 0L && length(DataList) > 0L) {
       FacetRows = 1,
       FacetCols = 1,
       FacetLevels = NULL,
-      Height = PlotHeight,
-      Width = PlotWidth,
+      Height = "600px",
+      Width = "975px",
       Title = "Line Plot",
       ShowLabels = FALSE,
       Title.YAxis = "MSE",
       Title.XAxis = DateColumnName,
-      EchartsTheme = Theme,
+      EchartsTheme = "wef",
       X_Scroll = FALSE,
       Y_Scroll = FALSE,
       TimeLine = TRUE,
@@ -1050,13 +975,13 @@ if(length(MOL) > 0L && length(DataList) > 0L) {
     #   FacetRows = 1,
     #   FacetCols = 1,
     #   FacetLevels = NULL,
-    #   Height = PlotHeight,
-    #   Width = PlotWidth,
+    #   Height = "600px",
+    #   Width = "975px",
     #   Title = "Line Plot",
     #   ShowLabels = FALSE,
     #   Title.YAxis = "MAPE",
     #   Title.XAxis = DateColumnName,
-    #   EchartsTheme = Theme,
+    #   EchartsTheme = "wef",
     #   X_Scroll = FALSE,
     #   Y_Scroll = FALSE,
     #   TimeLine = TRUE,
@@ -1094,13 +1019,13 @@ if(length(MOL) > 0L && length(DataList) > 0L) {
       FacetRows = 1,
       FacetCols = 1,
       FacetLevels = NULL,
-      Height = PlotHeight,
-      Width = PlotWidth,
+      Height = "600px",
+      Width = "975px",
       Title = "Line Plot",
       ShowLabels = FALSE,
       Title.YAxis = "SMAPE",
       Title.XAxis = DateColumnName,
-      EchartsTheme = Theme,
+      EchartsTheme = "wef",
       X_Scroll = FALSE,
       Y_Scroll = FALSE,
       TimeLine = TRUE,
@@ -1133,7 +1058,6 @@ if(length(MOL) > 0L && length(DataList) > 0L) {
   # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
 
   # FE_Test
-  print("Feature Tuning Outputs")
   FE_Test <- tryCatch({DataList[[paste0(ModelID, "_FeatureEngineeringTest")]]$data}, error = function(x) NULL)
   if(length(FE_Test) > 0L) {
     Feature_Tuning_Metrics <- reactable::reactable(
@@ -1154,7 +1078,7 @@ if(length(MOL) > 0L && length(DataList) > 0L) {
       sortable = TRUE,
       striped = TRUE,
       theme = reactable::reactableTheme(
-        color = FontColor$flv,
+        color = "black",
         backgroundColor = "#4f4f4f26",
         borderColor = "#dfe2e5",
         stripedColor = "#4f4f4f8f",
@@ -1166,7 +1090,7 @@ if(length(MOL) > 0L && length(DataList) > 0L) {
         searchInputStyle = list(width = "100%")
       )
     )
-  }
+  } else {Feature_Tuning_Metrics <- NULL}
 
   # FE_Test[, ]
 
@@ -1179,7 +1103,6 @@ if(length(MOL) > 0L && length(DataList) > 0L) {
   # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
 
   # FE_Test
-  print("Cross Eval Outputs")
   CE_Rollup <- tryCatch({DataList[[paste0(ModelID, "_CE_Rollup")]]$data}, error = function(x) NULL)
   if(length(CE_Rollup) > 0L) {
     Cross_Eval_Test_Metrics <- reactable::reactable(
@@ -1200,7 +1123,7 @@ if(length(MOL) > 0L && length(DataList) > 0L) {
       sortable = TRUE,
       striped = TRUE,
       theme = reactable::reactableTheme(
-        color = FontColor$flv,
+        color = "black",
         backgroundColor = "#4f4f4f26",
         borderColor = "#dfe2e5",
         stripedColor = "#4f4f4f8f",
@@ -1212,7 +1135,7 @@ if(length(MOL) > 0L && length(DataList) > 0L) {
         searchInputStyle = list(width = "100%")
       )
     )
-  }
+  } else {Cross_Eval_Test_Metrics <- NULL}
 
   # ----
 
@@ -1223,10 +1146,8 @@ if(length(MOL) > 0L && length(DataList) > 0L) {
   # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
 
   # FC Data Output
-  print("Forecasting Outputs")
   FCData <- tryCatch({DataList[[paste0("FC_", ModelID)]][['data']]}, error = function(x) NULL)
   if(length(FCData) > 0L) {
-    print("Panel Forecast Data")
     Panel_Forecast_Data <- reactable::reactable(
       data = FCData,
       compact = TRUE,
@@ -1245,7 +1166,7 @@ if(length(MOL) > 0L && length(DataList) > 0L) {
       sortable = TRUE,
       striped = TRUE,
       theme = reactable::reactableTheme(
-        color = FontColor$flv,
+        color = "black",
         backgroundColor = "#4f4f4f26",
         borderColor = "#dfe2e5",
         stripedColor = "#4f4f4f8f",
@@ -1259,12 +1180,7 @@ if(length(MOL) > 0L && length(DataList) > 0L) {
     )
 
     # Backtest
-    print("Forecast LinePlot 1")
     minD <- FCData[is.na(get(TargetColumnName)), min(get(DateColumnName), na.rm = TRUE)]
-    {
-      print("Forecast LinePlot 2")
-      print(FCData)
-    }
     p7 <- AutoPlots::Plot.Line(
       dt = FCData,
       AggMethod = "mean",
@@ -1279,13 +1195,13 @@ if(length(MOL) > 0L && length(DataList) > 0L) {
       FacetRows = 1,
       FacetCols = 1,
       FacetLevels = NULL,
-      Height = PlotHeight,
-      Width = PlotWidth,
+      Height = "600px",
+      Width = "975px",
       Title = "Line Plot",
       ShowLabels = FALSE,
       Title.YAxis = paste0(TargetColumnName, " | Predict"),
       Title.XAxis = DateColumnName,
-      EchartsTheme = Theme,
+      EchartsTheme = "wef",
       X_Scroll = FALSE,
       Y_Scroll = FALSE,
       TimeLine = TRUE,
@@ -1305,14 +1221,18 @@ if(length(MOL) > 0L && length(DataList) > 0L) {
       yaxis.rotate = 0,
       ContainLabel = TRUE,
       Debug = FALSE)
-    print("Forecast LinePlot 3")
     p7 <- echarts4r::e_mark_line(e = p7, data = list(xAxis = minD), title = "")
+  } else {
+    Panel_Forecast_Data <- NULL
+    p7 <- NULL
   }
 
   # ----
 
   # ----
+  
 } else {
+  
   ML_Evaluation_Metrics <- NULL
   ML_Test_Importance <- NULL
   ML_Validation_Importance <- NULL
@@ -1359,28 +1279,22 @@ However, not all relationships are linear and sometimes the user doesn't specifi
 
 
 
-##  <font size="5">Evaluation Metrics Tables</font>
-
-<details><summary>Model Metrics Tables</summary>
+##  <font size="5">Evaluation Metrics</font>
 <p>
 
-
-### **TestData**
-<p>
-
-<details><summary>Performance Metrics</summary>
+<details><summary>Evaluation Metrics</summary>
 <p>
 
 ```{r ML_Evaluation_Metrics, echo=FALSE}
 if(!is.null(ML_Evaluation_Metrics)) {
   eval(ML_Evaluation_Metrics)
-} else {
-  print('Test_EvalMetrics is NULL')
 }
 ```
 
 </details>
 </p>
+
+
 
 
 ##  <font size="5">Variable Importance Tables</font>
@@ -1392,8 +1306,6 @@ if(!is.null(ML_Evaluation_Metrics)) {
 ```{r ML_Test_Importance, echo=FALSE}
 if(!is.null(ML_Test_Importance)) {
   ML_Test_Importance
-} else {
-  print("No importance data was provided")
 }
 ```
 
@@ -1408,7 +1320,6 @@ if(!is.null(ML_Test_Importance)) {
 <details><summary>Interaction Importance Tables</summary>
 <p>
 
-
 ```{r ML_Interaction_Importance, echo=FALSE}
 if(exists("All_Interaction") && !is.null(All_Interaction)) {
   ML_Interaction_Importance
@@ -1417,8 +1328,6 @@ if(exists("All_Interaction") && !is.null(All_Interaction)) {
 }
 ```
 
-
-
 </details>
 </p>
 
@@ -1426,6 +1335,8 @@ if(exists("All_Interaction") && !is.null(All_Interaction)) {
 
 </details>
 </p>
+
+
 
 
 
@@ -1476,10 +1387,8 @@ if(!is.null(ScoringData_Calibration_Plot)) {
 ## <font size="5">Calibration BoxPlots</font>
 <p>
 
-
 <details><summary>Expand</summary>
 <p>
-
 
 ```{r ScoringData_Calibration_Box_Plot, echo=FALSE}
 if(!is.null(ScoringData_Calibration_Box_Plot)) {
@@ -1492,11 +1401,12 @@ if(!is.null(ScoringData_Calibration_Box_Plot)) {
 
 
 
-
-
-
 </details>
 </p>
+
+
+
+
 
 
 # <font size="6">Model Interpretation</font>
@@ -1515,13 +1425,6 @@ if(!is.null(ScoringData_Calibration_Box_Plot)) {
 
 
 ### Partial Dependence Line Plots
-<p>
-
-<details><summary>Expand</summary>
-<p>
-
-
-#### **TestData**
 <p>
 
 <details><summary>Partital Dependence Line Plots</summary>
@@ -1545,13 +1448,6 @@ options(warn = 1)
 <details><summary>Expand</summary>
 <p>
 
-
-#### **TestData**
-<p>
-
-<details><summary>Partital Dependence Box Plots</summary>
-<p>
-
 ```{r ScoringData_Partial_Dependence_Box_Plot, echo=FALSE}
 options(warn = -1)
 if(!is.null(ScoringData_Partial_Dependence_Box_Plot) && length(ScoringData_Partial_Dependence_Box_Plot) > 0) {
@@ -1567,12 +1463,6 @@ options(warn = 1)
 ## <font size="5">Partial Partial Dependence Plots: Categorical-Features</font> 
 <p>
 
-<details><summary>Expand</summary>
-<p>
-
-
-### **TestData**
-<p>
 
 <details><summary>Partital Dependence Bar Plots</summary>
 <p>

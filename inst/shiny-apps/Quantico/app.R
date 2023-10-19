@@ -9579,12 +9579,13 @@ server <- function(input, output, session) {
         if(Debug) {
           print(FCModelSelection)
           print(names(ModelOutputList))
+          print(names(DataList))
         }
 
         # Build report
         Quantico::FCReport(
           DataList = DataList,
-          MOL = ModelOutputList,
+          MOL = ModelOutputList[[FCModelSelection]],
           ModelID = FCModelSelection,
           OutputPath = WorkingDirectory)
 

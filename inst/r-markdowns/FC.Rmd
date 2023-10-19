@@ -1259,19 +1259,46 @@ if(length(MOL) > 0L && length(DataList) > 0L) {
 
 The two main goals with this document are to provide a wide range of output to investigate high level performance and insights, and to deliver a high quality report design layout to increase user experience. The metrics provided are intended to be semi-comprehensive. One can always dig deeper into results to gain further insights. In light of that, the results are intended to provide information that one can come to a reasonable conclusion about their model or to find the areas where they need to dig a little deeper. 
 
-## Evaluation Metrics
+## ML Training Evaluation
+### Evaluation Metrics
 This section contains statistics and variable importance measures to help the user understand model performance at a high level. Train Data results are included and can be used to compare against the Test Data results to identify over / under fitting of models.
 
-## Evaluation Plots 
+### Evaluation Plots 
 This section contains visualizations that span the range of predicted values and the associated accuracies across that range. The predicted values range is broken up into every 5th percentile to provide a wide range for evaluation.
 
-## Model Interpretation sections 
+### Model Interpretation sections 
 This section contains visualizations intended to open up the black box of your algorithm. When one inspects coefficients from a regression model, the insights they gain are two-fold: 
 - get an understanding about statistics significance
 - gain an understanding of the variable's effect on the target variable
 However, not all relationships are linear and sometimes the user doesn't specifiy an appropriate model structure to fully capture the nature of the relationship, which can lead to incorrect conclusions about both statistical signifance and the nature of the relationship. These visualizations provide a way to understand what the exact nature of those relationships are (in a visual manner) and if the user chooses, they can attempt to fit the relationship more precisely with an appropriate statistical model in order to gain a better understanding of statistical significance.
 
-# <font size="6">Evaluation Metrics</font>
+## Backtesting Evaluation
+The backtesting evaluation consists of several outputs:
+- Table of Metrics
+- Line Plot of Target Variable and Predictions
+- Line Plot of Average Error
+- Line Plot of Absolute Error
+- Line Plot of Squared Error
+- Line Plot of SMAPE
+
+## Feature Tuning Evaluation
+This procedure produces a table of metrics that compare the performance of including / excluding various features from the forecasting model. If a feature is successful then it remains in the model moving forward while testing additional features. If not, it is excluded when testing new features. 
+
+## Cross Validation Evaluation
+This procedure produces a table of metrics for evaluating your updating strategy over time. For example, if you generate predictions on a weekly basis you can supply updated data, retrain your model, or both. You can specify the frequency at which both are updated. The table produces the metrics for you to understand the effectiveness of the updating strategy. Consider if you update both the values and model on a weekly basis but you don't see any gains over updating them monthly. From a cost perspective, you might as well update them monthly.
+
+## Forecasting Evaluation
+The forecasting procedure is for production purposes. Data output is supplied and a line plot of target and predicted is also supplied.
+
+
+#<font size="6">ML Training Evaluation</font>
+
+<details><summary>Expand</summary>
+
+
+
+
+## <font size="6">Evaluation Metrics</font>
 <p>
 
 <details><summary>Expand</summary>
@@ -1279,7 +1306,7 @@ However, not all relationships are linear and sometimes the user doesn't specifi
 
 
 
-##  <font size="5">Evaluation Metrics</font>
+###  <font size="5">Evaluation Metrics</font>
 <p>
 
 <details><summary>Evaluation Metrics</summary>
@@ -1297,7 +1324,7 @@ if(!is.null(ML_Evaluation_Metrics)) {
 
 
 
-##  <font size="5">Variable Importance Tables</font>
+###  <font size="5">Variable Importance Tables</font>
 <p>
 
 <details><summary>Variable Importance Table</summary>
@@ -1315,7 +1342,7 @@ if(!is.null(ML_Test_Importance)) {
 
 
 
-##  <font size="5">Interaction Importance Tables</font>
+###  <font size="5">Interaction Importance Tables</font>
 
 <details><summary>Interaction Importance Tables</summary>
 <p>
@@ -1342,7 +1369,7 @@ if(exists("All_Interaction") && !is.null(All_Interaction)) {
 
 
 
-# <font size="6">Evaluation Plots</font>
+## <font size="6">Evaluation Plots</font>
 <p>
 
 <details><summary>Expand</summary>
@@ -1409,7 +1436,7 @@ if(!is.null(ScoringData_Calibration_Box_Plot)) {
 
 
 
-# <font size="6">Model Interpretation</font>
+## <font size="6">Model Interpretation</font>
 <p>
 
 <details><summary>Expand</summary>
@@ -1417,7 +1444,7 @@ if(!is.null(ScoringData_Calibration_Box_Plot)) {
 
 
 
-## <font size="5">Partial Dependence Plots: Numeric-Features</font>
+### <font size="5">Partial Dependence Plots: Numeric-Features</font>
 <p>
 
 <details><summary>Expand</summary>
@@ -1460,7 +1487,7 @@ options(warn = 1)
 </p>
 
 
-## <font size="5">Partial Partial Dependence Plots: Categorical-Features</font> 
+### <font size="5">Partial Partial Dependence Plots: Categorical-Features</font> 
 <p>
 
 

@@ -1,4 +1,70 @@
 # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
+# FC Reports                                                      ----
+# @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
+
+#' @title Run_FC_Report
+#'
+#' @description Run_FC_Report is an Rmarkdown report for FC
+#'
+#' @author Adrian Antico
+#' @family Reports
+#'
+#' @param DataList DataList from app
+#' @param MOL ModelObjectList from app
+#' @param ModelID from app
+#' @param OutputPath Path to directory where the html will be saved
+#'
+#' @noRd
+Run_FC_Report <- function(DataList = NULL,
+                          MOL = NULL,
+                          ModelID = NULL,
+                          OutputPath = NULL) {
+
+  appDir <- system.file("r-markdowns", package = "Quantico")
+  print(names(DataList))
+  print(names(MOL))
+  print(ModelID)
+
+  DataList <- DataList
+  MOL <- MOL
+  ModelID <- ModelID
+
+  OutputPathName <- file.path(OutputPath, paste0('FCReport-', ModelID, '.html'))
+  rmarkdown::render(
+    input = file.path(appDir, 'FC.Rmd'),
+    output_file = OutputPathName)
+}
+
+#' @title FCReport
+#'
+#' @description FCReport is an Rmarkdown report for viewing FC results
+#'
+#' @author Adrian Antico
+#' @family Reports
+#'
+#' @param DataList DataList from app
+#' @param MOL ModelObjectList from app
+#' @param ModelID from app
+#' @param OutputPath List of output objects
+#'
+#' @export
+FCReport <- function(DataList = NULL,
+                     MOL = NULL,
+                     ModelID = NULL,
+                     OutputPath = NULL) {
+  Run_FC_Report(
+    DataList = DataList,
+    MOL = MOL,
+    ModelID = ModelID,
+    OutputPath = OutputPath
+  )
+}
+
+# ----
+
+# ----
+
+# @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
 # ML Reports                                                      ----
 # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
 

@@ -29,7 +29,7 @@ Shiny.FC.CARMA(
 
 \item{DebugFC}{DebugFC from app}
 
-\item{Algo}{'CatBoost', 'XGBoost', 'LightGBM', 'H2O_DRF', 'H2O_GBM'}
+\item{Algo}{'CatBoost', 'XGBoost', 'LightGBM'}
 }
 \value{
 a list of columns names by data type

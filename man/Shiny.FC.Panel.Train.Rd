@@ -9,7 +9,7 @@ Shiny.FC.Panel.Train(
   CodeList,
   DataList,
   ModelID,
-  Algo = "catboost",
+  Algo = "CatBoost",
   VD = NULL,
   DebugFC = FALSE
 )
@@ -23,7 +23,7 @@ Shiny.FC.Panel.Train(
 
 \item{ModelID}{From Panel Forecasting Common Args Section of Shiny.FC.Trainer}
 
-\item{Algo}{'catboost', 'xgboost', 'lightgbm'}
+\item{Algo}{'CatBoost', 'XGBoost', 'LightGBM'}
 
 \item{VD}{ValidationData}
 

@@ -37,6 +37,7 @@ EDAReport is an Rmarkdown report for viewing EDA results
 }
 \seealso{
 Other Reports: 
+\code{\link{FCReport}()},
 \code{\link{ModelInsightsReport}()},
 \code{\link{PlottingReport}()},
 \code{\link{TablesReport}()}

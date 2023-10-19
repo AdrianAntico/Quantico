@@ -1,0 +1,24 @@
+{
+    "id": "187ABA48",
+    "path": "~/GitHub/Quantico/R/Reports.R",
+    "project_path": "R/Reports.R",
+    "type": "r_source",
+    "hash": "204715717",
+    "contents": "",
+    "dirty": false,
+    "created": 1697653300144.0,
+    "source_on_save": false,
+    "relative_order": 4,
+    "properties": {
+        "source_window_id": "",
+        "Source": "Source"
+    },
+    "folds": "66|66|66|70|\n67|66|67|70|\n68|66|210|0|\n211|2|212|0|\n213|2|214|0|\n215|66|215|70|\n216|66|216|70|\n243|47|286|0|\n325|2|326|0|\n327|2|328|0|\n329|66|329|70|\n330|66|330|70|\n331|66|373|0|\n374|2|375|0|\n376|2|377|0|\n378|66|378|70|\n379|66|379|70|\n380|66|428|0|\n429|2|430|0|\n431|2|432|0|\n",
+    "lastKnownWriteTime": 1697670720,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1697670720846,
+    "read_only": false,
+    "read_only_alternatives": []
+}

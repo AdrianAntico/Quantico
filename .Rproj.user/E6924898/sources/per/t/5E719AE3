@@ -1,0 +1,24 @@
+{
+    "id": "5E719AE3",
+    "path": "~/GitHub/Quantico/R/SimpleApps.R",
+    "project_path": "R/SimpleApps.R",
+    "type": "r_source",
+    "hash": "433933306",
+    "contents": "",
+    "dirty": false,
+    "created": 1695411361288.0,
+    "source_on_save": false,
+    "relative_order": 8,
+    "properties": {
+        "source_window_id": "",
+        "Source": "Source"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1695411509,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1695411509819,
+    "read_only": false,
+    "read_only_alternatives": []
+}

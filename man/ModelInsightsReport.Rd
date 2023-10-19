@@ -41,6 +41,7 @@ ModelInsightsReport is an Rmarkdown report for viewing the model insights genera
 \seealso{
 Other Reports: 
 \code{\link{EDAReport}()},
+\code{\link{FCReport}()},
 \code{\link{PlottingReport}()},
 \code{\link{TablesReport}()}
 }

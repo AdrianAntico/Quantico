@@ -5448,6 +5448,8 @@ FC.TimeUnit <- function(ArgsList) {
 #' @export
 FC.Backtest.CalendarGroups <- function(ArgsList) {
 
+  if(length(ArgsList$TimeUnit) == 0L) return(NULL)
+
   # 1min
   if(ArgsList$TimeUnit[[1L]] %in% c('1min')) {
     if(ArgsList$FC_Periods >= 360 * 24 * 60) {
@@ -5639,6 +5641,8 @@ FC.Backtest.CalendarGroups <- function(ArgsList) {
 #'
 #' @export
 FC.Backtest.DateGroups <- function(ArgsList) {
+
+  if(length(ArgsList$TimeUnit) == 0L) return(NULL)
 
   # 1min
   if(ArgsList$TimeUnit[[1L]] %in% c('1min')) {
@@ -6175,7 +6179,8 @@ Shiny.FC.Panel.Train <- function(ArgsList, CodeList, DataList, ModelID, Algo = '
     "dtc <- data.table::copy(ArgsList[['data']])\n",
     "Output <- do.call(what = AutoQuant::AutoCatBoostCARMA, args = ArgsList)\n",
     "ArgsList <- Output$ArgsList\n",
-    "ArgsList[[", Quantico:::CEP(ModelID), "_Meta)]] <- Output$TestModel\n",
+    "ArgsList$Model <- Output$TestModel$Model\n",
+    "ArgsList$FactorLevelsList <- Output$TestModel$FactorLevelsList\n",
     "if(!(length(ArgsList$data) > 0 && data.table::is.data.table(ArgsList$data))) {\n  ",
     "if(length(VD) > 0L) {\n    ",
     "ArgsList[['data']] <- unique(data.table::rbindlist(list(dtc, VD), use.names = TRUE, fill = TRUE))\n  ",
@@ -7309,11 +7314,11 @@ Shiny.FC.CARMA <- function(input,
     "ArgsList[['Quantiles_Selected']] <- ", Quantico:::ExpandText(ArgsList[['Quantiles_Selected']]), "\n",
 
     "ArgsList[['Lags']] <- ", Quantico:::ExpandText(ArgsList[['Lags']]), "\n",
-    "ArgsList[['MA_Periods']] <- ", Quantico:::ExpandText(ArgsList[['MovingAverages']]), "\n",
-    "ArgsList[['SD_Periods']] <- ", Quantico:::ExpandText(ArgsList[['MovingSD']]), "\n",
-    "ArgsList[['Kurt_Periods']] <- ", Quantico:::ExpandText(ArgsList[['MovingKurt']]), "\n",
-    "ArgsList[['Skew_Periods']] <- ", Quantico:::ExpandText(ArgsList[['MovingSkew']]), "\n",
-    "ArgsList[['Quantile_Periods']] <- ", Quantico:::ExpandText(ArgsList[['MovingQuantiles']]), "\n",
+    "ArgsList[['MA_Periods']] <- ", Quantico:::ExpandText(ArgsList[['MA_Periods']] ), "\n",
+    "ArgsList[['SD_Periods']] <- ", Quantico:::ExpandText(ArgsList[['SD_Periods']]), "\n",
+    "ArgsList[['Kurt_Periods']] <- ", Quantico:::ExpandText(ArgsList[['Kurt_Periods']]), "\n",
+    "ArgsList[['Skew_Periods']] <- ", Quantico:::ExpandText(ArgsList[['Skew_Periods']]), "\n",
+    "ArgsList[['Quantile_Periods']] <- ", Quantico:::ExpandText(ArgsList[['Quantile_Periods']]), "\n",
 
     "ArgsList[['DataTruncate']] <- ", Quantico:::CEPP(ArgsList[['DataTruncate']]), "\n",
     "ArgsList[['TimeTrend']] <- ", Quantico:::CEPP(ArgsList[['TimeTrend']]), "\n",
@@ -9817,6 +9822,8 @@ Shiny.FC.ReportOutput <- function(input,
   PlotHeightinff <- paste0(PlotHeightinff, "px")
 
   if(Debug) print("ML Reports 7")
+
+  # ----
 
   # ----
 

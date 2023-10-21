@@ -8018,7 +8018,6 @@ Shiny.FC.SS <- function(input,
       #   "DataSetName", "BoxCox", "IncludeDrift", "SeasonalDifferences", "SeasonalMovingAverages",
       #   "SeasonalLags", "MaxFourierTerms", "Differences", "MovingAverages	Lags"
       # Experimental Grid Features from App
-      #   TODO
       TBATS_Artifacts_Build <- tryCatch({
         AutoQuant:::TimeSeriesDataPrepare(
           data = data,
@@ -8613,8 +8612,8 @@ Shiny.FC.SS <- function(input,
     }
 
     if(DebugFC) {
-      if(DebugFC) print('here 10.58')
-      if(DebugFC) print(tryCatch({ExperimentGrid}, error = function(x) NULL))
+      print('here 10.58')
+      print(tryCatch({ExperimentGrid}, error = function(x) NULL))
     }
 
     if(!exists("ExperimentGrid")) return(NULL)
@@ -8858,17 +8857,17 @@ Shiny.FC.SS <- function(input,
 
       # Features
       if(DebugFC) {
-        if(DebugFC) print(paste0("TargetName == ", ArgsList[['TargetColumnName']]))
-        if(DebugFC) print(paste0("DateName == ", ArgsList[['DateColumnName']]))
-        if(DebugFC) print(paste0("Lags == ", as.integer(ExperimentGrid[1L, Lags])))
-        if(DebugFC) print(paste0("MovingAverages == ", as.integer(ExperimentGrid[1L, MovingAverages])))
-        if(DebugFC) print(paste0("TimeUnit == ", ArgsList[['TimeUnit']]))
-        if(DebugFC) print(paste0("FCPeriods == ", FCPeriods))
-        if(DebugFC) print(paste0("HoldOutPeriods == ", 0))
-        if(DebugFC) print(paste0("TSClean == ", TRUE))
-        if(DebugFC) print(paste0("ModelFreq == ", TRUE))
-        if(DebugFC) print(paste0("FinalBuild == ", TRUE))
-        if(DebugFC) print(paste0("ArgsList[['EvaluationMetric']] == ", ArgsList[['EvaluationMetric']]))
+        print(paste0("TargetName == ", ArgsList[['TargetColumnName']]))
+        print(paste0("DateName == ", ArgsList[['DateColumnName']]))
+        print(paste0("Lags == ", as.integer(ExperimentGrid[1L, Lags])))
+        print(paste0("MovingAverages == ", as.integer(ExperimentGrid[1L, MovingAverages])))
+        print(paste0("TimeUnit == ", ArgsList[['TimeUnit']]))
+        print(paste0("FCPeriods == ", FCPeriods))
+        print(paste0("HoldOutPeriods == ", 0))
+        print(paste0("TSClean == ", TRUE))
+        print(paste0("ModelFreq == ", TRUE))
+        print(paste0("FinalBuild == ", TRUE))
+        print(paste0("ArgsList[['EvaluationMetric']] == ", ArgsList[['EvaluationMetric']]))
       }
 
       # Data Prepare
@@ -9733,7 +9732,7 @@ Shiny.FC.SS <- function(input,
 # FC Reporting                                                                               ----
 # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
 
-#' @title Shiny.FC.ReportOutput
+#' @title Shiny.FC.Panel.ReportOutput
 #'
 #' @description Shiny FC Report
 #'
@@ -9750,19 +9749,19 @@ Shiny.FC.SS <- function(input,
 #' @return a list of columns names by data type
 #'
 #' @export
-Shiny.FC.ReportOutput <- function(input,
-                                  output,
-                                  DataList,
-                                  CodeList,
-                                  Page,
-                                  Debug = FALSE,
-                                  MOL = NULL,
-                                  ModelID = NULL,
-                                  RunMode = NULL,
-                                  Theme = "dark",
-                                  FontColor = NULL,
-                                  PlotWidth = "1450px",
-                                  PlotHeight = "850px") {
+Shiny.FC.Panel.ReportOutput <- function(input,
+                                        output,
+                                        DataList,
+                                        CodeList,
+                                        Page,
+                                        Debug = FALSE,
+                                        MOL = NULL,
+                                        ModelID = NULL,
+                                        RunMode = NULL,
+                                        Theme = "dark",
+                                        FontColor = NULL,
+                                        PlotWidth = "1450px",
+                                        PlotHeight = "850px") {
 
   # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
   # Create collection lists                                                   ----

@@ -6866,6 +6866,7 @@ server <- function(input, output, session) {
               ModelOutputList[[paste0("TBATS_", TBATSFC$ModelID)]] <- TBATSFC
               ModelOutputList <<- ModelOutputList; rm(Output); gc()
               for(i in seq_len(NumTabs)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0("DataOutputSelection",i), Label = 'Display Data', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
+              for(i in seq_len(NumTabs)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0('FCReportsModelSelection',i), Label = 'FC Output', Choices = names(ModelOutputList), Multiple = TRUE, MaxVars = 100L)
               Quantico:::SelectizeInput(session = session, input = input, Update = TRUE, InputID = "TBATS_ArgsList", Label = "Tuning Grid", Choices = names(ModelOutputList), SelectedDefault = NULL, Multiple = TRUE, MaxVars = 100L)
               shinyWidgets::sendSweetAlert(session, title = NULL, text = paste0('Model: ', TBATSFC$TBATS_ModelID, "\n", TBATSFC$TBATS_RunMode, " ran successfully"), type = NULL, btn_labels = paste0("Success"), btn_colors = NULL, html = FALSE, closeOnClickOutside = TRUE, showCloseButton = TRUE, width = "40%")
             } else {
@@ -6913,7 +6914,6 @@ server <- function(input, output, session) {
 
         # NULL out SARIMAFC or set it to ArgsList from ModelOutputList
         if(DebugFC) print('SARIMA FC 4')
-        print(alname)
         check <- length(ModelOutputList) > 0L && length(alname) > 0L && runm == "Forecast"
         Skipp <- FALSE
         if(check) {
@@ -6948,6 +6948,7 @@ server <- function(input, output, session) {
               ModelOutputList[[paste0("SARIMA_", SARIMAFC$ModelID)]] <- SARIMAFC
               ModelOutputList <<- ModelOutputList; rm(Output); gc()
               for(i in seq_len(NumTabs)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0("DataOutputSelection",i), Label = 'Display Data', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
+              for(i in seq_len(NumTabs)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0('FCReportsModelSelection',i), Label = 'FC Output', Choices = names(ModelOutputList), Multiple = TRUE, MaxVars = 100L)
               Quantico:::SelectizeInput(session = session, input = input, Update = TRUE, InputID = "SARIMA_ArgsList", Label = "Tuning Grid", Choices = names(ModelOutputList), SelectedDefault = NULL, Multiple = TRUE, MaxVars = 100L)
               shinyWidgets::sendSweetAlert(session, title = NULL, text = paste0('Model: ', SARIMAFC$SARIMA_ModelID, "\n", SARIMAFC$SARIMA_RunMode, " ran successfully"), type = NULL, btn_labels = paste0("Success"), btn_colors = NULL, html = FALSE, closeOnClickOutside = TRUE, showCloseButton = TRUE, width = "40%")
             } else {
@@ -7029,6 +7030,7 @@ server <- function(input, output, session) {
               ModelOutputList[[paste0("ETS_", ETSFC$ModelID)]] <- ETSFC
               ModelOutputList <<- ModelOutputList; rm(Output); gc()
               for(i in seq_len(NumTabs)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0("DataOutputSelection",i), Label = 'Display Data', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
+              for(i in seq_len(NumTabs)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0('FCReportsModelSelection',i), Label = 'FC Output', Choices = names(ModelOutputList), Multiple = TRUE, MaxVars = 100L)
               Quantico:::SelectizeInput(session = session, input = input, Update = TRUE, InputID = "ETS_ArgsList", Label = "Tuning Grid", Choices = names(ModelOutputList), SelectedDefault = NULL, Multiple = TRUE, MaxVars = 100L)
               shinyWidgets::sendSweetAlert(session, title = NULL, text = paste0('Model: ', ETSFC$ETS_ModelID, "\n", ETSFC$ETS_RunMode, " ran successfully"), type = NULL, btn_labels = paste0("Success"), btn_colors = NULL, html = FALSE, closeOnClickOutside = TRUE, showCloseButton = TRUE, width = "40%")
             } else {
@@ -7122,6 +7124,7 @@ server <- function(input, output, session) {
               ModelOutputList[[paste0("ARFIMA_", ARFIMAFC$ModelID)]] <- ARFIMAFC
               ModelOutputList <<- ModelOutputList; rm(Output); gc()
               for(i in seq_len(NumTabs)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0("DataOutputSelection",i), Label = 'Display Data', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
+              for(i in seq_len(NumTabs)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0('FCReportsModelSelection',i), Label = 'FC Output', Choices = names(ModelOutputList), Multiple = TRUE, MaxVars = 100L)
               Quantico:::SelectizeInput(session = session, input = input, Update = TRUE, InputID = "ARFIMA_ArgsList", Label = "Tuning Grid", Choices = names(ModelOutputList), SelectedDefault = NULL, Multiple = TRUE, MaxVars = 100L)
               shinyWidgets::sendSweetAlert(session, title = NULL, text = paste0('Model: ', ARFIMAFC$ARFIMA_ModelID, "\n", ARFIMAFC$ARFIMA_RunMode, " ran successfully"), type = NULL, btn_labels = paste0("Success"), btn_colors = NULL, html = FALSE, closeOnClickOutside = TRUE, showCloseButton = TRUE, width = "40%")
             } else {
@@ -7209,8 +7212,8 @@ server <- function(input, output, session) {
             if(length(NNETFC) > 0L) {
               ModelOutputList[[paste0("NNET_", NNETFC$ModelID)]] <- NNETFC
               ModelOutputList <<- ModelOutputList; rm(Output); gc()
-              print(names(ModelOutputList))
               for(i in seq_len(NumTabs)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0("DataOutputSelection",i), Label = 'Display Data', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
+              for(i in seq_len(NumTabs)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0('FCReportsModelSelection',i), Label = 'FC Output', Choices = names(ModelOutputList), Multiple = TRUE, MaxVars = 100L)
               Quantico:::SelectizeInput(session = session, input = input, Update = TRUE, InputID = "NNET_ArgsList", Label = "Tuning Grid", Choices = names(ModelOutputList), SelectedDefault = NULL, Multiple = TRUE, MaxVars = 100L)
               shinyWidgets::sendSweetAlert(session, title = NULL, text = paste0('Model: ', NNETFC$NNET_ModelID, "\n", NNETFC$NNET_RunMode, " ran successfully"), type = NULL, btn_labels = paste0("Success"), btn_colors = NULL, html = FALSE, closeOnClickOutside = TRUE, showCloseButton = TRUE, width = "40%")
             } else {
@@ -9506,24 +9509,24 @@ server <- function(input, output, session) {
           print(names(ModelOutputList[[FCModelSelection]]))
         }
 
-        saveRDS(object = ModelOutputList, file = file.path(WorkingDirectory, "ModelOutputList.rds"))
-        #saveRDS(object = DataList, file = file.path(WorkingDirectory, "DataList.rds"))
+        # saveRDS(object = ModelOutputList, file = file.path(WorkingDirectory, "ModelOutputList.rds"))
+        # saveRDS(object = DataList, file = file.path(WorkingDirectory, "DataList.rds"))
 
-        # Run Quantico:::Shiny.FC.ReportOutput
-        if(Debug) {
-          FCOut <- Quantico:::Shiny.FC.ReportOutput(
-            input, output, DataList, MachineLearningCode, Page,
-            Debug = Debug,
-            MOL = ModelOutputList,
-            ModelID = FCModelSelection,
-            RunMode = RunMode,
-            Theme = EchartsTheme,
-            FontColor = FontColorData,
-            PlotWidth = PlotWidthinff,
-            PlotHeight = PlotHeightinff)
+        tbats_check <- grepl(pattern = "TBATS", x = FCModelSelection)
+        sarima_check <- grepl(pattern = "SARIMA", x = FCModelSelection)
+        ets_check <- grepl(pattern = "ETS", x = FCModelSelection)
+        arfima_check <- grepl(pattern = "ARFIMA", x = FCModelSelection)
+        nnet_check <- grepl(pattern = "NNET", x = FCModelSelection)
+
+        if(any(tbats_check, sarima_check, ets_check, arfima_check, nnet_check)) {
+
+          # Generate FC SS Report
+
         } else {
-          FCOut <- tryCatch({
-            Quantico:::Shiny.FC.ReportOutput(
+
+          # Generate FC Panel Report
+          if(Debug) {
+            FCOut <- Quantico:::Shiny.FC.Panel.ReportOutput(
               input, output, DataList, MachineLearningCode, Page,
               Debug = Debug,
               MOL = ModelOutputList,
@@ -9533,7 +9536,20 @@ server <- function(input, output, session) {
               FontColor = FontColorData,
               PlotWidth = PlotWidthinff,
               PlotHeight = PlotHeightinff)
-          }, error = function(x) NULL)
+          } else {
+            FCOut <- tryCatch({
+              Quantico:::Shiny.FC.Panel.ReportOutput(
+                input, output, DataList, MachineLearningCode, Page,
+                Debug = Debug,
+                MOL = ModelOutputList,
+                ModelID = FCModelSelection,
+                RunMode = RunMode,
+                Theme = EchartsTheme,
+                FontColor = FontColorData,
+                PlotWidth = PlotWidthinff,
+                PlotHeight = PlotHeightinff)
+            }, error = function(x) NULL)
+          }
         }
 
         if(Debug) print("FC Panel Report 3")
@@ -9550,7 +9566,6 @@ server <- function(input, output, session) {
           }
 
           # Render Function
-          #if(length(FCOutputList) > 0L) {
           Quantico:::Shiny.Display(
             input, output, session,
             FCOutputList[[Page]], Debug,
@@ -9558,7 +9573,6 @@ server <- function(input, output, session) {
             Cols = 1,
             FontColor = FontColorData$flv,
             PM = names(FCOutputList[[Page]]))
-          #}
 
           if(Debug) print("FC Panel Report 5")
 

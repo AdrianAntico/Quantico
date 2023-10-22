@@ -37,7 +37,7 @@ Shiny.FC.Panel.ReportOutput(
 a list of columns names by data type
 }
 \description{
-Shiny FC Report
+Shiny FC Panel Report
 }
 \seealso{
 Other FC: 
@@ -59,6 +59,7 @@ Other FC:
 \code{\link{Shiny.FC.Panel.Metrics.Raw}()},
 \code{\link{Shiny.FC.Panel.Retrain}()},
 \code{\link{Shiny.FC.Panel.Train}()},
+\code{\link{Shiny.FC.SS.ReportOutput}()},
 \code{\link{Shiny.FC.SS}()},
 \code{\link{Shiny.ML.ReportOutput}()}
 }

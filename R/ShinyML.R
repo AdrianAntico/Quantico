@@ -9734,7 +9734,7 @@ Shiny.FC.SS <- function(input,
 
 #' @title Shiny.FC.Panel.ReportOutput
 #'
-#' @description Shiny FC Report
+#' @description Shiny FC Panel Report
 #'
 #' @author Adrian Antico
 #' @family FC
@@ -9764,7 +9764,7 @@ Shiny.FC.Panel.ReportOutput <- function(input,
                                         PlotHeight = "850px") {
 
   # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
-  # Create collection lists                                                   ----
+  # Organize Objects                                                          ----
   # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
 
   if(Debug) print("FC Reports 1")
@@ -9813,14 +9813,6 @@ Shiny.FC.Panel.ReportOutput <- function(input,
   OutputList <- list()
 
   if(Debug) print("FC Reports 3")
-
-  # Args
-  PlotWidthinff <- Quantico:::ReturnParam(xx = tryCatch({input[[paste0('PlotWidthinff',Page)]]}, error = function(x) NULL), Type = "numeric", Default = NULL)
-  PlotWidthinff <- paste0(PlotWidthinff, "px")
-  PlotHeightinff <- Quantico:::ReturnParam(xx = tryCatch({input[[paste0('PlotHeightinff',Page)]]}, error = function(x) NULL), Type = "numeric", Default = NULL)
-  PlotHeightinff <- paste0(PlotHeightinff, "px")
-
-  if(Debug) print("ML Reports 7")
 
   # ----
 
@@ -10761,6 +10753,173 @@ Shiny.FC.Panel.ReportOutput <- function(input,
 
   # ----
 
+}
+
+#' @title Shiny.FC.SS.ReportOutput
+#'
+#' @description Shiny FC SS Report
+#'
+#' @author Adrian Antico
+#' @family FC
+#'
+#' @param input shiny input
+#' @param output shiny output
+#' @param DataList DataList stores data in app
+#' @param ArgsList ArgsList
+#' @param CodeList CodeList from app
+#' @param Debug DebugFC from app
+#'
+#' @return a list of columns names by data type
+#'
+#' @export
+Shiny.FC.SS.ReportOutput <- function(input,
+                                     output,
+                                     DataList,
+                                     CodeList,
+                                     Page,
+                                     Debug = FALSE,
+                                     MOL = NULL,
+                                     Algo = NULL,
+                                     ModelID = NULL,
+                                     RunMode = NULL,
+                                     Theme = "dark",
+                                     FontColor = NULL,
+                                     PlotWidth = "1450px",
+                                     PlotHeight = "850px") {
+
+  # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
+  # Organize Objects                                                          ----
+  # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
+
+  if(Debug) print("FC Reports 1")
+
+  # Checks
+  if(length(ModelID) == 0L) return(NULL)
+  if(!exists("DataList")) return(NULL)
+  if(!exists("CodeList")) return(NULL)
+
+  EG <- paste0(Algo, "_", ModelID, "_ExperimentGrid")
+  FCD <- paste0(Algo, "_", ModelID, "_Forecast")
+  if(EG %in% names(DataList)) {
+    GridTune_proc <- TRUE
+  }
+  if(FC %in% names(DataList)) {
+    Forecast_proc <- TRUE
+  }
+
+  # temp_model_rdata$ArgsList$TargetColumnName
+  TargetColumnName <- MOL[[ModelID]][["TargetColumnName"]]
+
+  # temp_model_rdata$ArgsList$
+  PredictionColumnName <- "Forecast"
+
+  # DateCol
+  DateColumnName <- MOL[[ModelID]]$DateColumnName
+
+  # Collection List
+  OutputList <- list()
+
+  if(Debug) print("FC Reports 2")
+
+  # ----
+
+  # ----
+
+  # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
+  # Grid Tuning Output                                                        ----
+  # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
+
+  # Evaluation Metrics ----
+  OutputList[["Experiment Grid"]] <- reactable::reactable(
+    data = DataList[[EG]]$data,
+    compact = TRUE,
+    defaultPageSize = 10,
+    wrap = TRUE,
+    filterable = TRUE,
+    fullWidth = TRUE,
+    highlight = TRUE,
+    pagination = TRUE,
+    resizable = TRUE,
+    searchable = TRUE,
+    selection = "multiple",
+    showPagination = TRUE,
+    showSortable = TRUE,
+    showSortIcon = TRUE,
+    sortable = TRUE,
+    striped = TRUE,
+    theme = reactable::reactableTheme(
+      color = FontColor$flv,
+      backgroundColor = "#4f4f4f26",
+      borderColor = "#dfe2e5",
+      stripedColor = "#4f4f4f8f",
+      highlightColor = "#8989898f",
+      cellPadding = "8px 12px",
+      style = list(
+        fontFamily = "-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif"
+      ),
+      searchInputStyle = list(width = "100%")
+    )
+  )
+
+  # ----
+
+  # ----
+
+  # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
+  # Forecasting Output                                                        ----
+  # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
+
+  # Forecast Data ----
+  OutputList[["Forecast Data"]] <- reactable::reactable(
+    data = DataList[[FCD]]$data,
+    compact = TRUE,
+    defaultPageSize = 10,
+    wrap = TRUE,
+    filterable = TRUE,
+    fullWidth = TRUE,
+    highlight = TRUE,
+    pagination = TRUE,
+    resizable = TRUE,
+    searchable = TRUE,
+    selection = "multiple",
+    showPagination = TRUE,
+    showSortable = TRUE,
+    showSortIcon = TRUE,
+    sortable = TRUE,
+    striped = TRUE,
+    theme = reactable::reactableTheme(
+      color = FontColor$flv,
+      backgroundColor = "#4f4f4f26",
+      borderColor = "#dfe2e5",
+      stripedColor = "#4f4f4f8f",
+      highlightColor = "#8989898f",
+      cellPadding = "8px 12px",
+      style = list(
+        fontFamily = "-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif"
+      ),
+      searchInputStyle = list(width = "100%")
+    )
+  )
+
+  # Plot with Prediction Intervals
+  OutputList[["Forecast Plot"]] <- AutoPlots::Plot.Line
+
+  # ----
+
+  # ----
+
+  # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
+  # Return                                                                    ----
+  # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
+  returnList <- list()
+  returnList[["OutputList"]] <- OutputList
+  returnList[["DataList"]] <- DataList
+  returnList[["CodeList"]] <- CodeList
+  return(returnList)
+
+  # ----
+
+  # ----
 }
 
 # ----

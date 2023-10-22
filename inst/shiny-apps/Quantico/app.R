@@ -9520,7 +9520,46 @@ server <- function(input, output, session) {
 
         if(any(tbats_check, sarima_check, ets_check, arfima_check, nnet_check)) {
 
+          if(tbats_check) {
+            Algo <- "TBATS"
+          } else if(sarima_check) {
+            Algo <- "SARIMA"
+          } else if(ets_check) {
+            Algo <- "ETS"
+          } else if(arfima_check) {
+            Algo <- "ARFIMA"
+          } else {
+            Algo <- "NNET"
+          }
+
           # Generate FC SS Report
+          if(Debug) {
+            FCOut <- Quantico:::Shiny.FC.SS.ReportOutput(
+              input, output, DataList, MachineLearningCode, Page,
+              Debug = Debug,
+              MOL = ModelOutputList,
+              Algo = Algo,
+              ModelID = FCModelSelection,
+              RunMode = RunMode,
+              Theme = EchartsTheme,
+              FontColor = FontColorData,
+              PlotWidth = PlotWidthinff,
+              PlotHeight = PlotHeightinff)
+          } else {
+            FCOut <- tryCatch({
+              Quantico:::Shiny.FC.SS.ReportOutput(
+                input, output, DataList, MachineLearningCode, Page,
+                Debug = Debug,
+                MOL = ModelOutputList,
+                Algo = Algo,
+                ModelID = FCModelSelection,
+                RunMode = RunMode,
+                Theme = EchartsTheme,
+                FontColor = FontColorData,
+                PlotWidth = PlotWidthinff,
+                PlotHeight = PlotHeightinff)
+            }, error = function(x) NULL)
+          }
 
         } else {
 
@@ -9552,7 +9591,7 @@ server <- function(input, output, session) {
           }
         }
 
-        if(Debug) print("FC Panel Report 3")
+        if(Debug) print("FC Report 3")
 
         # Collect output
         if(length(FCOut) > 0L) {
@@ -9574,7 +9613,7 @@ server <- function(input, output, session) {
             FontColor = FontColorData$flv,
             PM = names(FCOutputList[[Page]]))
 
-          if(Debug) print("FC Panel Report 5")
+          if(Debug) print("FC Report 4")
 
         }
       })

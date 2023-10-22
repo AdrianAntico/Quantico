@@ -50,6 +50,7 @@ Other FC:
 \code{\link{Shiny.FC.Panel.ReportOutput}()},
 \code{\link{Shiny.FC.Panel.Retrain}()},
 \code{\link{Shiny.FC.Panel.Train}()},
+\code{\link{Shiny.FC.SS.ReportOutput}()},
 \code{\link{Shiny.FC.SS}()},
 \code{\link{Shiny.ML.ReportOutput}()}
 }

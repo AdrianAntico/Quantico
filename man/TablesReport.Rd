@@ -19,9 +19,10 @@ TablesReport is an Rmarkdown report for viewing Tables results
 \seealso{
 Other Reports: 
 \code{\link{EDAReport}()},
-\code{\link{FCReport}()},
 \code{\link{ModelInsightsReport}()},
-\code{\link{PlottingReport}()}
+\code{\link{PanelFCReport}()},
+\code{\link{PlottingReport}()},
+\code{\link{SSFCReport}()}
 }
 \author{
 Adrian Antico

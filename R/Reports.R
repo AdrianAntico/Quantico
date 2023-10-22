@@ -1,10 +1,10 @@
 # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
-# FC Reports                                                      ----
+# Single Series FC Reports                                        ----
 # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
 
-#' @title Run_FC_Report
+#' @title Run_SSFC_Report
 #'
-#' @description Run_FC_Report is an Rmarkdown report for FC
+#' @description Run_SSFC_Report is an Rmarkdown report for FC
 #'
 #' @author Adrian Antico
 #' @family Reports
@@ -15,10 +15,151 @@
 #' @param OutputPath Path to directory where the html will be saved
 #'
 #' @noRd
-Run_FC_Report <- function(DataList = NULL,
-                          MOL = NULL,
-                          ModelID = NULL,
-                          OutputPath = NULL) {
+Run_SSFC_Report <- function(DataList = NULL,
+                            MOL = NULL,
+                            ModelID = NULL,
+                            OutputPath = NULL) {
+
+  appDir <- system.file("r-markdowns", package = "Quantico")
+  DataList <- DataList
+  MOL <- MOL
+  ModelID <- ModelID
+
+  # Checks
+  if(length(ModelID) == 0L) return(NULL)
+  if(!exists("DataList")) return(NULL)
+
+  EG <- paste0(ModelID, "_ExperimentGrid")
+  FCD <- paste0(ModelID, "_Forecast")
+  if(EG %in% names(DataList)) {
+    GridTune_proc <- TRUE
+  }
+  if(FCD %in% names(DataList)) {
+    Forecast_proc <- TRUE
+  }
+
+  # temp_model_rdata$ArgsList$TargetColumnName
+  TargetColumnName <- MOL[["TargetColumnName"]]
+
+  # temp_model_rdata$ArgsList$
+  PredictionColumnName <- "Forecast"
+
+  # DateCol
+  DateColumnName <- MOL[["DateColumnName"]]
+
+  # Collection List
+  OutputList <- list()
+
+  if(Forecast_proc) {
+
+    # Plot with Prediction Intervals
+    Forecast_Plot <- AutoPlots::Plot.Line(
+      dt = DataList[[FCD]]$data,
+      AggMethod = "mean",
+      PreAgg = TRUE,
+      XVar = DateColumnName,
+      YVar = c(TargetColumnName,"Forecast","Low95","Low80","High80","High95"),
+      DualYVar = NULL,
+      GroupVar = NULL,
+      YVarTrans = "Identity",
+      DualYVarTrans = "Identity",
+      XVarTrans = "Identity",
+      FacetRows = 1,
+      FacetCols = 1,
+      FacetLevels = NULL,
+      Height = "600px",
+      Width = "975px",
+      Title = "Forecast Line Plot",
+      ShowLabels = FALSE,
+      Title.YAxis = TargetColumnName,
+      Title.XAxis = DateColumnName,
+      EchartsTheme = "wef",
+      X_Scroll = FALSE,
+      Y_Scroll = FALSE,
+      TimeLine = TRUE,
+      Alpha = 0.5,
+      Smooth = TRUE,
+      ShowSymbol = FALSE,
+      TextColor = "white",
+      title.fontSize = 22,
+      title.fontWeight = "bold",
+      title.textShadowColor = "#63aeff",
+      title.textShadowBlur = 3,
+      title.textShadowOffsetY = 1,
+      title.textShadowOffsetX = -1,
+      xaxis.fontSize = 14,
+      yaxis.fontSize = 14,
+      xaxis.rotate = 0,
+      yaxis.rotate = 0,
+      ContainLabel = TRUE,
+      Debug = TRUE)
+
+    # ----
+
+    # ----
+
+  } else {
+
+    Forecast_Plot <- NULL
+
+  }
+
+  OutputPathName <- file.path(OutputPath, paste0('SSFCReport-', ModelID, '.html'))
+  rmarkdown::render(
+    input = file.path(appDir, 'SingleSeriesFC.Rmd'),
+    output_file = OutputPathName)
+}
+
+#' @title SSFCReport
+#'
+#' @description SSFCReport is an Rmarkdown report for viewing FC results
+#'
+#' @author Adrian Antico
+#' @family Reports
+#'
+#' @param DataList DataList from app
+#' @param MOL ModelObjectList from app
+#' @param ModelID from app
+#' @param OutputPath List of output objects
+#'
+#' @export
+SSFCReport <- function(DataList = NULL,
+                       MOL = NULL,
+                       ModelID = NULL,
+                       OutputPath = NULL) {
+  Run_SSFC_Report(
+    DataList = DataList,
+    MOL = MOL,
+    ModelID = ModelID,
+    OutputPath = OutputPath
+  )
+}
+
+# ----
+
+# ----
+
+# @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
+# Panel FC Reports                                                ----
+# @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
+
+#' @title Run_PanelFC_Report
+#'
+#' @description Run_PanelFC_Report is an Rmarkdown report for FC
+#'
+#' @author Adrian Antico
+#' @family Reports
+#'
+#' @param DataList DataList from app
+#' @param MOL ModelObjectList from app
+#' @param ModelID from app
+#' @param OutputPath Path to directory where the html will be saved
+#'
+#' @noRd
+Run_PanelFC_Report <- function(DataList = NULL,
+                               MOL = NULL,
+                               ModelID = NULL,
+                               OutputPath = NULL) {
 
   appDir <- system.file("r-markdowns", package = "Quantico")
   DataList <- DataList
@@ -83,15 +224,15 @@ Run_FC_Report <- function(DataList = NULL,
     ScoringData <- tryCatch({DataList[[paste0("LightGBMFC_", ModelID, "_ScoringData")]]$data}, error = function(x) NULL)
   }
 
-  OutputPathName <- file.path(OutputPath, paste0('FCReport-', ModelID, '.html'))
+  OutputPathName <- file.path(OutputPath, paste0('PanelFCReport-', ModelID, '.html'))
   rmarkdown::render(
-    input = file.path(appDir, 'FC.Rmd'),
+    input = file.path(appDir, 'PanelFC.Rmd'),
     output_file = OutputPathName)
 }
 
-#' @title FCReport
+#' @title PanelFCReport
 #'
-#' @description FCReport is an Rmarkdown report for viewing FC results
+#' @description PanelFCReport is an Rmarkdown report for viewing FC results
 #'
 #' @author Adrian Antico
 #' @family Reports
@@ -102,11 +243,11 @@ Run_FC_Report <- function(DataList = NULL,
 #' @param OutputPath List of output objects
 #'
 #' @export
-FCReport <- function(DataList = NULL,
-                     MOL = NULL,
-                     ModelID = NULL,
-                     OutputPath = NULL) {
-  Run_FC_Report(
+PanelFCReport <- function(DataList = NULL,
+                          MOL = NULL,
+                          ModelID = NULL,
+                          OutputPath = NULL) {
+  Run_PanelFC_Report(
     DataList = DataList,
     MOL = MOL,
     ModelID = ModelID,

@@ -9378,7 +9378,7 @@ server <- function(input, output, session) {
 
         # Run Quantico:::Shiny.ML.ReportOutput
         if(Debug) {
-          MLOut <- Quantico:::Shiny.ML.ReportOutput(
+          MLOut <- Quantico::Shiny.ML.ReportOutput(
             input, output, DataList, MachineLearningCode, Page,
             Debug = Debug,
             MOL = ModelOutputList,
@@ -9387,7 +9387,7 @@ server <- function(input, output, session) {
             FontColor = FontColorData)
         } else {
           MLOut <- tryCatch({
-            Quantico:::Shiny.ML.ReportOutput(
+            Quantico::Shiny.ML.ReportOutput(
               input, output, DataList, MachineLearningCode, Page,
               Debug = Debug,
               MOL = ModelOutputList,
@@ -9411,15 +9411,13 @@ server <- function(input, output, session) {
           }
 
           # Render Function
-          #if(length(MLOutputList) > 0L) {
-            Quantico:::Shiny.Display(
-              input, output, session,
-              MLOutputList[[Page]], Debug,
-              OutputId = paste0("MLOutput",Page),
-              Cols = 1,
-              FontColor = FontColorData$flv,
-              PM = names(MLOutputList[[Page]]))
-          #}
+          Quantico:::Shiny.Display(
+            input, output, session,
+            MLOutputList[[Page]], Debug,
+            OutputId = paste0("MLOutput",Page),
+            Cols = 1,
+            FontColor = FontColorData$flv,
+            PM = names(MLOutputList[[Page]]))
 
           if(Debug) print("ML Panel Report 5")
 
@@ -9519,18 +9517,6 @@ server <- function(input, output, session) {
         nnet_check <- grepl(pattern = "NNET", x = FCModelSelection)
 
         if(any(tbats_check, sarima_check, ets_check, arfima_check, nnet_check)) {
-
-          if(tbats_check) {
-            Algo <- "TBATS"
-          } else if(sarima_check) {
-            Algo <- "SARIMA"
-          } else if(ets_check) {
-            Algo <- "ETS"
-          } else if(arfima_check) {
-            Algo <- "ARFIMA"
-          } else {
-            Algo <- "NNET"
-          }
 
           # Generate FC SS Report
           if(Debug) {
@@ -9635,22 +9621,50 @@ server <- function(input, output, session) {
           print(names(DataList))
         }
 
-        # Build report
-        Quantico::FCReport(
-          DataList = DataList,
-          MOL = ModelOutputList[[FCModelSelection]],
-          ModelID = FCModelSelection,
-          OutputPath = WorkingDirectory)
+        tbats_check <- grepl(pattern = "TBATS", x = FCModelSelection)
+        sarima_check <- grepl(pattern = "SARIMA", x = FCModelSelection)
+        ets_check <- grepl(pattern = "ETS", x = FCModelSelection)
+        arfima_check <- grepl(pattern = "ARFIMA", x = FCModelSelection)
+        nnet_check <- grepl(pattern = "NNET", x = FCModelSelection)
 
-        # Code Collect
-        MachineLearningCode <- Quantico:::Shiny.CodePrint.Collect(y = MachineLearningCode, x = paste0(
-          "\n",
-          "# FC Build Model\n",
-          "Quantico::FCReport(\n\n  ",
-          "DataList = DataList,\n  ",
-          "MOL = ModelOutputList,\n  ",
-          "ModelID = ", Quantico:::CEP(FCModelSelection), ",\n  ",
-          "OutputPath = ", Quantico:::CEP(WorkingDirectory), ")\n"))
+        if(any(tbats_check, sarima_check, ets_check, arfima_check, nnet_check)) {
+
+          # Build report
+          Quantico::SSFCReport(
+            DataList = DataList,
+            MOL = ModelOutputList[[FCModelSelection]],
+            ModelID = FCModelSelection,
+            OutputPath = WorkingDirectory)
+
+          # Code Collect
+          MachineLearningCode <- Quantico:::Shiny.CodePrint.Collect(y = MachineLearningCode, x = paste0(
+            "\n",
+            "# FC Build Model\n",
+            "Quantico::SSFCReport(\n\n  ",
+            "DataList = DataList,\n  ",
+            "MOL = ModelOutputList,\n  ",
+            "ModelID = ", Quantico:::CEP(FCModelSelection), ",\n  ",
+            "OutputPath = ", Quantico:::CEP(WorkingDirectory), ")\n"))
+
+        } else {
+
+          # Build report
+          Quantico::PanelFCReport(
+            DataList = DataList,
+            MOL = ModelOutputList[[FCModelSelection]],
+            ModelID = FCModelSelection,
+            OutputPath = WorkingDirectory)
+
+          # Code Collect
+          MachineLearningCode <- Quantico:::Shiny.CodePrint.Collect(y = MachineLearningCode, x = paste0(
+            "\n",
+            "# FC Build Model\n",
+            "Quantico::PanelFCReport(\n\n  ",
+            "DataList = DataList,\n  ",
+            "MOL = ModelOutputList,\n  ",
+            "ModelID = ", Quantico:::CEP(FCModelSelection), ",\n  ",
+            "OutputPath = ", Quantico:::CEP(WorkingDirectory), ")\n"))
+        }
 
         if(Debug) print("FC Markdown 2")
       })
@@ -10010,12 +10024,9 @@ server <- function(input, output, session) {
     if(!exists('ForecastingCode')) ForecastingCode <- list()
     if(!exists('PlotterCode')) PlotterCode <- list()
     MasterSet <- tryCatch({Quantico:::Shiny.CodePrint.OrganizeCode(DM = DataMgtCode, DW = DataWranglingCode, FE = FeatureEngineeringCode, ML = MachineLearningCode, FC = ForecastingCode, PL = PlotterCode)}, error = function(x) NULL)
-    if(Debug) {
-      print(length(MasterSet))
-      print(length(MasterSet$Code))
-      print(MasterSet)
-      print(class(MasterSet))
-    }
+    # objects remained...
+    # .rs.restartR()
+    # rm(list = ls())
     # if(is.data.table(MasterSet)) data.table::fwrite(MasterSet, file = file.path("C:/Users/Bizon/Documents/GitHub", paste0("Guest", "_", format(Sys.time(), "%Y%m%d_%H%M%S_"), ".csv")))
   })
 

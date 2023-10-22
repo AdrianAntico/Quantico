@@ -12026,7 +12026,7 @@ TBATS_Modal_Fun <- function(id,
                 ),
                 shiny::column(width = 5L),
                 shiny::column(
-                  width = 1L, align = "center",
+                  width = 1L, align = "center", style = "padding-top: 30px;",
                   shiny::actionButton(
                     inputId = paste0('BuildModels_TBATS'), label = paste0('Run'), icon = shiny::icon('chevron-right', lib='font-awesome')
                   )
@@ -12048,7 +12048,6 @@ TBATS_Modal_Fun <- function(id,
                       6L,
                       shinydashboard::box(
                         title = NULL, solidHeader = TRUE, collapsible = FALSE, status = NULL, width = 12L,
-                        Quantico:::BlankRow(12L),
                         Quantico:::BlankRow(12L),
                         shiny::fluidRow(
                           shiny::column(12L, align = 'center', Quantico:::SelectizeInput(InputID = 'TBATS_Data', Label = 'Select Data', Choices = data_Choices, SelectedDefault = data_Selected, Multiple = TRUE, MaxVars = 1L))
@@ -12294,7 +12293,7 @@ Sarima_Modal_Fun <- function(id,
                 ),
                 shiny::column(width = 5L),
                 shiny::column(
-                  width = 1L, align = "center",
+                  width = 1L, align = "center", style = "padding-top: 30px;",
                   shiny::actionButton(
                     inputId = paste0('BuildModels_SARIMA'), label = paste0('Run'), icon = shiny::icon('chevron-right', lib='font-awesome')
                   )
@@ -12316,7 +12315,6 @@ Sarima_Modal_Fun <- function(id,
                       6L,
                       shinydashboard::box(
                         title = NULL, solidHeader = TRUE, collapsible = FALSE, status = NULL, width = 12L,
-                        Quantico:::BlankRow(12L),
                         Quantico:::BlankRow(12L),
                         shiny::fluidRow(
                           shiny::column(12L, align = 'center', Quantico:::SelectizeInput(InputID = 'SARIMA_Data', Label = 'Select Data', Choices = data_Choices, SelectedDefault = data_Selected, Multiple = TRUE, MaxVars = 1L))
@@ -12595,7 +12593,7 @@ ETS_Modal_Fun <- function(id,
                 ),
                 shiny::column(width = 5L),
                 shiny::column(
-                  width = 1L, align = "center",
+                  width = 1L, align = "center", style = "padding-top: 30px;",
                   shiny::actionButton(
                     inputId = paste0('BuildModels_ETS'), label = paste0('Run'), icon = shiny::icon('chevron-right', lib='font-awesome')
                   )
@@ -12617,7 +12615,6 @@ ETS_Modal_Fun <- function(id,
                       6L,
                       shinydashboard::box(
                         title = NULL, solidHeader = TRUE, collapsible = FALSE, status = NULL, width = 12L,
-                        Quantico:::BlankRow(12L),
                         Quantico:::BlankRow(12L),
                         shiny::fluidRow(
                           shiny::column(12L, align = 'center', Quantico:::SelectizeInput(InputID = 'ETS_Data', Label = 'Select Data', Choices = data_Choices, SelectedDefault = data_Selected, Multiple = TRUE, MaxVars = 1L))
@@ -12817,7 +12814,7 @@ ARFIMA_Modal_Fun <- function(id,
                 ),
                 shiny::column(width = 5L),
                 shiny::column(
-                  width = 1L, align = "center",
+                  width = 1L, align = "center", style = "padding-top: 30px;",
                   shiny::actionButton(
                     inputId = paste0('BuildModels_ARFIMA'), label = paste0('Run'), icon = shiny::icon('chevron-right', lib='font-awesome')
                   )
@@ -12839,7 +12836,6 @@ ARFIMA_Modal_Fun <- function(id,
                       6L,
                       shinydashboard::box(
                         title = NULL, solidHeader = TRUE, collapsible = FALSE, status = NULL, width = 12L,
-                        Quantico:::BlankRow(12L),
                         Quantico:::BlankRow(12L),
                         shiny::fluidRow(
                           shiny::column(12L, align = 'center', Quantico:::SelectizeInput(InputID = 'ARFIMA_Data', Label = 'Select Data', Choices = data_Choices, SelectedDefault = data_Selected, Multiple = TRUE, MaxVars = 1L))
@@ -13077,7 +13073,7 @@ NNET_Modal_Fun <- function(id,
                 ),
                 shiny::column(width = 5L),
                 shiny::column(
-                  width = 1L, align = "center",
+                  width = 1L, align = "center", style = "padding-top: 30px;",
                   shiny::actionButton(
                     inputId = paste0('BuildModels_NNET'), label = paste0('Run'), icon = shiny::icon('chevron-right', lib='font-awesome')
                   )
@@ -13099,7 +13095,6 @@ NNET_Modal_Fun <- function(id,
                       6L,
                       shinydashboard::box(
                         title = NULL, solidHeader = TRUE, collapsible = FALSE, status = NULL, width = 12L,
-                        Quantico:::BlankRow(12L),
                         Quantico:::BlankRow(12L),
                         shiny::fluidRow(
                           shiny::column(12L, align = 'center', Quantico:::SelectizeInput(InputID = 'NNET_Data', Label = 'Select Data', Choices = data_Choices, SelectedDefault = data_Selected, Multiple = TRUE, MaxVars = 1L))

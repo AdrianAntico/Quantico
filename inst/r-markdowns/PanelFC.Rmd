@@ -1,5 +1,5 @@
 ---
-title: "Forecast Report"
+title: "Panel Forecast Report"
 author: "Provided by Quantico"
 date: "`r format(Sys.time(), '%Y-%m-%d')`"
 output:

@@ -12024,8 +12024,7 @@ TBATS_Modal_Fun <- function(id,
                   width = 3L, align = 'center',
                   Quantico:::SelectizeInput(InputID = "TBATS_ArgsList", Label = "Tuning Grid", Choices = ArgsList_Choices, SelectedDefault = ArgsList_Selected, Multiple = TRUE, MaxVars = 100L)
                 ),
-                shiny::column(
-                  width = 5L),
+                shiny::column(width = 5L),
                 shiny::column(
                   width = 1L, align = "center",
                   shiny::actionButton(

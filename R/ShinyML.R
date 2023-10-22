@@ -10798,12 +10798,12 @@ Shiny.FC.SS.ReportOutput <- function(input,
   if(!exists("DataList")) return(NULL)
   if(!exists("CodeList")) return(NULL)
 
-  EG <- paste0(Algo, "_", ModelID, "_ExperimentGrid")
-  FCD <- paste0(Algo, "_", ModelID, "_Forecast")
+  EG <- paste0(ModelID, "_ExperimentGrid")
+  FCD <- paste0(ModelID, "_Forecast")
   if(EG %in% names(DataList)) {
     GridTune_proc <- TRUE
   }
-  if(FC %in% names(DataList)) {
+  if(FCD %in% names(DataList)) {
     Forecast_proc <- TRUE
   }
 
@@ -10830,6 +10830,8 @@ Shiny.FC.SS.ReportOutput <- function(input,
   # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
 
   # Evaluation Metrics ----
+  print(names(DataList))
+  print(EG)
   OutputList[["Experiment Grid"]] <- reactable::reactable(
     data = DataList[[EG]]$data,
     compact = TRUE,
@@ -10902,7 +10904,46 @@ Shiny.FC.SS.ReportOutput <- function(input,
   )
 
   # Plot with Prediction Intervals
-  OutputList[["Forecast Plot"]] <- AutoPlots::Plot.Line
+  OutputList[["Forecast Plot"]] <- AutoPlots::Plot.Line(
+    dt = DataList[[FCD]]$data,
+    AggMethod = "mean",
+    PreAgg = TRUE,
+    XVar = DateColumnName,
+    YVar = c(TargetColumnName,"Forecast","Low95","Low80","High80","High95"),
+    DualYVar = NULL,
+    GroupVar = NULL,
+    YVarTrans = "Identity",
+    DualYVarTrans = "Identity",
+    XVarTrans = "Identity",
+    FacetRows = 1,
+    FacetCols = 1,
+    FacetLevels = NULL,
+    Height = PlotHeight,
+    Width = PlotWidth,
+    Title = "Line Plot",
+    ShowLabels = FALSE,
+    Title.YAxis = TargetColumnName,
+    Title.XAxis = DateColumnName,
+    EchartsTheme = Theme,
+    X_Scroll = FALSE,
+    Y_Scroll = FALSE,
+    TimeLine = TRUE,
+    Alpha = 0.5,
+    Smooth = TRUE,
+    ShowSymbol = FALSE,
+    TextColor = "white",
+    title.fontSize = 22,
+    title.fontWeight = "bold",
+    title.textShadowColor = "#63aeff",
+    title.textShadowBlur = 3,
+    title.textShadowOffsetY = 1,
+    title.textShadowOffsetX = -1,
+    xaxis.fontSize = 14,
+    yaxis.fontSize = 14,
+    xaxis.rotate = 0,
+    yaxis.rotate = 0,
+    ContainLabel = TRUE,
+    Debug = FALSE)
 
   # ----
 

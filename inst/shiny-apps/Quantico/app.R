@@ -5422,11 +5422,7 @@ server <- function(input, output, session) {
   # TextSummary()
   shiny::observeEvent(input$NLPButton_TextSummary, {
     if(!exists('FeatureEngineeringCode')) FeatureEngineeringCode <- list()
-    if(Debug) {
-      Output <- Quantico:::Shiny.NLP.TextSummary(input,output,session,DataList,FeatureEngineeringCode,CacheDir=CacheDir,CacheName=CacheName,Debug=Debug)
-    } else {
-      Output <- tryCatch({Quantico:::Shiny.NLP.TextSummary(input,output,session,DataList,FeatureEngineeringCode,CacheDir=CacheDir,CacheName=CacheName,Debug=Debug)}, error = function(x) NULL)
-    }
+    Output <- tryCatch({Quantico:::Shiny.NLP.TextSummary(input,output,session,DataList,FeatureEngineeringCode,CacheDir=CacheDir,CacheName=CacheName,Debug=Debug)}, error = function(x) NULL)
     if(length(Output) > 0L) {
       FeatureEngineeringCode <- Output$CodeList; FeatureEngineeringCode <<- FeatureEngineeringCode; DataList <- Output$DataList; DataList <<- DataList
       shinyWidgets::sendSweetAlert(session, title = NULL, text = NULL, type = NULL, btn_labels = "Success", btn_colors = NULL, html = FALSE, closeOnClickOutside = TRUE, showCloseButton = TRUE, width = "40%")
@@ -5438,11 +5434,7 @@ server <- function(input, output, session) {
   # Sentiment()
   shiny::observeEvent(input$NLPButton_Sentiment, {
     if(!exists('FeatureEngineeringCode')) FeatureEngineeringCode <- list()
-    if(Debug) {
-      Output <- Quantico:::Shiny.NLP.Sentiment(input,output,session,DataList,FeatureEngineeringCode,CacheDir=CacheDir,CacheName=CacheName,Debug=Debug)
-    } else {
-      Output <- tryCatch({Quantico:::Shiny.NLP.Sentiment(input,output,session,DataList,FeatureEngineeringCode,CacheDir=CacheDir,CacheName=CacheName,Debug=Debug)}, error = function(x) NULL)
-    }
+    Output <- tryCatch({Quantico:::Shiny.NLP.Sentiment(input,output,session,DataList,FeatureEngineeringCode,CacheDir=CacheDir,CacheName=CacheName,Debug=Debug)}, error = function(x) NULL)
     if(length(Output) > 0L) {
       FeatureEngineeringCode <- Output$CodeList; FeatureEngineeringCode <<- FeatureEngineeringCode; DataList <- Output$DataList; DataList <<- DataList
       shinyWidgets::sendSweetAlert(session, title = NULL, text = NULL, type = NULL, btn_labels = "Success", btn_colors = NULL, html = FALSE, closeOnClickOutside = TRUE, showCloseButton = TRUE, width = "40%")
@@ -5454,11 +5446,7 @@ server <- function(input, output, session) {
   # Readability()
   shiny::observeEvent(input$NLPButton_Readability, {
     if(!exists('FeatureEngineeringCode')) FeatureEngineeringCode <- list()
-    if(Debug) {
-      Output <- Quantico:::Shiny.NLP.Readability(input,output,session,DataList,FeatureEngineeringCode,CacheDir=CacheDir,CacheName=CacheName,Debug=Debug)
-    } else {
-      Output <- tryCatch({Quantico:::Shiny.NLP.Readability(input,output,session,DataList,FeatureEngineeringCode,CacheDir=CacheDir,CacheName=CacheName,Debug=Debug)}, error = function(x) NULL)
-    }
+    Output <- tryCatch({Quantico:::Shiny.NLP.Readability(input,output,session,DataList,FeatureEngineeringCode,CacheDir=CacheDir,CacheName=CacheName,Debug=Debug)}, error = function(x) NULL)
     if(length(Output) > 0L) {
       FeatureEngineeringCode <- Output$CodeList; FeatureEngineeringCode <<- FeatureEngineeringCode; DataList <- Output$DataList; DataList <<- DataList
       shinyWidgets::sendSweetAlert(session, title = NULL, text = NULL, type = NULL, btn_labels = "Success", btn_colors = NULL, html = FALSE, closeOnClickOutside = TRUE, showCloseButton = TRUE, width = "40%")
@@ -5470,11 +5458,7 @@ server <- function(input, output, session) {
   # LexicalDiversity()
   shiny::observeEvent(input$NLPButton_LexicalDiversity, {
     if(!exists('FeatureEngineeringCode')) FeatureEngineeringCode <- list()
-    if(Debug) {
-      Output <- Quantico:::Shiny.NLP.LexicalDiversity(input,output,session,DataList,FeatureEngineeringCode,CacheDir=CacheDir,CacheName=CacheName,Debug=Debug)
-    } else {
-      Output <- tryCatch({Quantico:::Shiny.NLP.LexicalDiversity(input,output,session,DataList,FeatureEngineeringCode,CacheDir=CacheDir,CacheName=CacheName,Debug=Debug)}, error = function(x) NULL)
-    }
+    Output <- tryCatch({Quantico:::Shiny.NLP.LexicalDiversity(input,output,session,DataList,FeatureEngineeringCode,CacheDir=CacheDir,CacheName=CacheName,Debug=Debug)}, error = function(x) NULL)
     if(length(Output) > 0L) {
       FeatureEngineeringCode <- Output$CodeList; FeatureEngineeringCode <<- FeatureEngineeringCode; DataList <- Output$DataList; DataList <<- DataList
       shinyWidgets::sendSweetAlert(session, title = NULL, text = NULL, type = NULL, btn_labels = "Success", btn_colors = NULL, html = FALSE, closeOnClickOutside = TRUE, showCloseButton = TRUE, width = "40%")
@@ -5525,7 +5509,7 @@ server <- function(input, output, session) {
       # Run function
       if(Debug) print("inference 0")
       if(!exists("InferenceOutputList")) InferenceOutputList <- list()
-      InferenceOutputList[[Normality_InferenceID]] <- Quantico::Normality.Analysis(
+      InferenceOutputList[[Normality_InferenceID]] <- tryCatch({Quantico::Normality.Analysis(
         dt = Normality_SelectData,
         YVars = Normality_YVars,
         EchartsTheme = EchartsTheme,
@@ -5543,40 +5527,44 @@ server <- function(input, output, session) {
         SampleSize.JBT = SampleSize.JBT,
         Samples.JBT = Samples.JBT,
         SampleSize.AT = SampleSize.AT,
-        Samples.AT = Samples.AT)
+        Samples.AT = Samples.AT)}, error = function(x) NULL)
 
-      if(Debug) print("inference 1")
+      if(length(InferenceOutputList[[Normality_InferenceID]]) > 0L) {
+        if(Debug) print("inference 1")
 
-      MachineLearningCode <- tryCatch({Quantico:::Shiny.CodePrint.Collect(y = MachineLearningCode, x = paste0(
-        "\n",
-        "# Normality Testing\n",
-        "Normality_SelectData <- DataList[[", Quantico:::CEP(temp), "]][['data']]\n",
-        "Output <- Quantico::Normality.Analysis(, \n  ",
-        "dt = Normality_SelectData, \n  ",
-        "YVars = ", Quantico:::ExpandText(Normality_YVars), ",\n  ",
-        "EchartsTheme = ", Quantico:::CEP(EchartsTheme), ",\n  ",
-        "TextColor = ", Quantico:::CEP(FontColorData$flv), ",\n  ",
-        "PlotHeight = ", Quantico:::CEP(PlotHeightINF), ",\n  ",
-        "PlotWidth = ", Quantico:::CEP(PlotWidthINF), ",\n  ",
-        "SampleSize.ADT = ", Quantico:::CEPP(SampleSize.ADT), ",\n  ",
-        "Samples.ADT = ", Quantico:::CEPP(Samples.ADT), ",\n  ",
-        "SampleSize.CVMT = ", Quantico:::CEPP(SampleSize.CVMT), ",\n  ",
-        "Samples.CVMT = ", Quantico:::CEPP(Samples.CVMT), ",\n  ",
-        "SampleSize.KST = ", Quantico:::CEPP(SampleSize.KST), ",\n  ",
-        "Samples.KST = ", Quantico:::CEPP(Samples.KST), ",\n  ",
-        "SampleSize.ST = ", Quantico:::CEPP(SampleSize.ST), ",\n  ",
-        "Samples.ST = ", Quantico:::CEPP(Samples.ST), ",\n  ",
-        "SampleSize.JBT = ", Quantico:::CEPP(SampleSize.JBT), ",\n  ",
-        "Samples.JBT = ", Quantico:::CEPP(Samples.JBT), ",\n  ",
-        "SampleSize.AT = ", Quantico:::CEPP(SampleSize.AT), ",\n  ",
-        "Samples.AT = Samples.AT)\n"))}, error = function(x) MachineLearningCode)
+        MachineLearningCode <- tryCatch({Quantico:::Shiny.CodePrint.Collect(y = MachineLearningCode, x = paste0(
+          "\n",
+          "# Normality Testing\n",
+          "Normality_SelectData <- DataList[[", Quantico:::CEP(temp), "]][['data']]\n",
+          "Output <- Quantico::Normality.Analysis(, \n  ",
+          "dt = Normality_SelectData, \n  ",
+          "YVars = ", Quantico:::ExpandText(Normality_YVars), ",\n  ",
+          "EchartsTheme = ", Quantico:::CEP(EchartsTheme), ",\n  ",
+          "TextColor = ", Quantico:::CEP(FontColorData$flv), ",\n  ",
+          "PlotHeight = ", Quantico:::CEP(PlotHeightINF), ",\n  ",
+          "PlotWidth = ", Quantico:::CEP(PlotWidthINF), ",\n  ",
+          "SampleSize.ADT = ", Quantico:::CEPP(SampleSize.ADT), ",\n  ",
+          "Samples.ADT = ", Quantico:::CEPP(Samples.ADT), ",\n  ",
+          "SampleSize.CVMT = ", Quantico:::CEPP(SampleSize.CVMT), ",\n  ",
+          "Samples.CVMT = ", Quantico:::CEPP(Samples.CVMT), ",\n  ",
+          "SampleSize.KST = ", Quantico:::CEPP(SampleSize.KST), ",\n  ",
+          "Samples.KST = ", Quantico:::CEPP(Samples.KST), ",\n  ",
+          "SampleSize.ST = ", Quantico:::CEPP(SampleSize.ST), ",\n  ",
+          "Samples.ST = ", Quantico:::CEPP(Samples.ST), ",\n  ",
+          "SampleSize.JBT = ", Quantico:::CEPP(SampleSize.JBT), ",\n  ",
+          "Samples.JBT = ", Quantico:::CEPP(Samples.JBT), ",\n  ",
+          "SampleSize.AT = ", Quantico:::CEPP(SampleSize.AT), ",\n  ",
+          "Samples.AT = Samples.AT)\n"))}, error = function(x) MachineLearningCode)
 
-      # Update Available Outputs for Inference Tab
-      if(Debug) print("inference 2")
-      for(i in seq_len(NumTabs)) Quantico::PickerInput(session = session, input = input, Update = TRUE, InputID = paste0('InferenceReportsModelSelection',i), Label = 'Testing Output', Choices = tryCatch({names(InferenceOutputList)}, error = function(x) NULL), Multiple = FALSE, MaxVars = 1L)
-      InferenceOutputList <<- InferenceOutputList
-      MachineLearningCode <<- MachineLearningCode
-      shinyWidgets::sendSweetAlert(session, title = NULL, text = "", type = NULL, btn_labels = "Success", btn_colors = NULL, html = FALSE, closeOnClickOutside = TRUE, showCloseButton = TRUE, width = "40%")
+        # Update Available Outputs for Inference Tab
+        if(Debug) print("inference 2")
+        for(i in seq_len(NumTabs)) Quantico::PickerInput(session = session, input = input, Update = TRUE, InputID = paste0('InferenceReportsModelSelection',i), Label = 'Testing Output', Choices = tryCatch({names(InferenceOutputList)}, error = function(x) NULL), Multiple = FALSE, MaxVars = 1L)
+        InferenceOutputList <<- InferenceOutputList
+        MachineLearningCode <<- MachineLearningCode
+        shinyWidgets::sendSweetAlert(session, title = NULL, text = "", type = NULL, btn_labels = "Success", btn_colors = NULL, html = FALSE, closeOnClickOutside = TRUE, showCloseButton = TRUE, width = "40%")
+      } else {
+        shinyWidgets::sendSweetAlert(session, title = NULL, text = "Procedure was not successful", type = NULL, btn_labels = "Error", btn_colors = NULL, html = FALSE, closeOnClickOutside = TRUE, showCloseButton = TRUE, width = "40%")
+      }
 
     } else {
       shinyWidgets::sendSweetAlert(session, title = NULL, text = "Data not available", type = NULL, btn_labels = "Error", btn_colors = NULL, html = FALSE, closeOnClickOutside = TRUE, showCloseButton = TRUE, width = "40%")
@@ -5616,7 +5604,7 @@ server <- function(input, output, session) {
       # Run function
       if(Debug) print("inference 0")
       if(!exists("InferenceOutputList")) InferenceOutputList <- list()
-      InferenceOutputList[[Correlation_InferenceID]] <- Quantico::Correlation.Analysis(
+      InferenceOutputList[[Correlation_InferenceID]] <- tryCatch({Quantico::Correlation.Analysis(
         dt = Correlation_SelectData,
         CorrVars = Correlation_CorrVars,
         DateVar = Correlation_DateVar,
@@ -5630,36 +5618,40 @@ server <- function(input, output, session) {
         MultiLevel = Correlation_MultiLevel,
         Include_Factors = Correlation_Include_Factors,
         Partial = Correlation_Partial,
-        Partial_Bayesian = Correlation_Partial_Bayesian)
+        Partial_Bayesian = Correlation_Partial_Bayesian)}, error = function(x) NULL)
 
-      if(Debug) print("inference 1")
+      if(length(InferenceOutputList[[Correlation_InferenceID]]) > 0L) {
+        if(Debug) print("inference 1")
 
-      MachineLearningCode <- tryCatch({Quantico:::Shiny.CodePrint.Collect(y = MachineLearningCode, x = paste0(
-        "\n",
-        "# Normality Testing\n",
-        "Normality_SelectData <- DataList[[", Quantico:::CEP(temp), "]][['data']]\n",
-        "Output <- Quantico::Correlation.Analysis(, \n  ",
-        "dt = Normality_SelectData, \n  ",
-        "CorrVars = ", Quantico:::ExpandText(Correlation_CorrVars), ",\n  ",
-        "DateVar = ", Quantico:::ExpandText(Correlation_DateVar), ",\n  ",
-        "EchartsTheme = ", Quantico:::CEP(Correlation_EchartsTheme), ",\n  ",
-        "TextColor = ", Quantico:::CEP(Correlation_FontColorData$flv), ",\n  ",
-        "PlotHeight = ", Quantico:::CEP(Correlation_PlotHeightINF), ",\n  ",
-        "PlotWidth = ", Quantico:::CEP(Correlation_PlotWidthINF), ",\n  ",
-        "P_Adjust = ", Quantico:::CEP(Correlation_P_Adjust), ",\n  ",
-        "Bayesian = ", Quantico:::CEP(Correlation_Bayesian), ",\n  ",
-        "Bayesian_Prior = ", Quantico:::CEP(Correlation_Bayesian_Prior), ",\n  ",
-        "MultiLevel = ", Quantico:::CEP(Correlation_MultiLevel), ",\n  ",
-        "Include_Factors = ", Quantico:::CEP(Correlation_Include_Factors), ",\n  ",
-        "Partial = ", Quantico:::CEP(Correlation_Partial), ",\n  ",
-        "Partial_Bayesian = ", Quantico:::CEP(Correlation_Partial_Bayesian), ")\n"))}, error = function(x) MachineLearningCode)
+        MachineLearningCode <- tryCatch({Quantico:::Shiny.CodePrint.Collect(y = MachineLearningCode, x = paste0(
+          "\n",
+          "# Normality Testing\n",
+          "Normality_SelectData <- DataList[[", Quantico:::CEP(temp), "]][['data']]\n",
+          "Output <- Quantico::Correlation.Analysis(, \n  ",
+          "dt = Normality_SelectData, \n  ",
+          "CorrVars = ", Quantico:::ExpandText(Correlation_CorrVars), ",\n  ",
+          "DateVar = ", Quantico:::ExpandText(Correlation_DateVar), ",\n  ",
+          "EchartsTheme = ", Quantico:::CEP(Correlation_EchartsTheme), ",\n  ",
+          "TextColor = ", Quantico:::CEP(Correlation_FontColorData$flv), ",\n  ",
+          "PlotHeight = ", Quantico:::CEP(Correlation_PlotHeightINF), ",\n  ",
+          "PlotWidth = ", Quantico:::CEP(Correlation_PlotWidthINF), ",\n  ",
+          "P_Adjust = ", Quantico:::CEP(Correlation_P_Adjust), ",\n  ",
+          "Bayesian = ", Quantico:::CEP(Correlation_Bayesian), ",\n  ",
+          "Bayesian_Prior = ", Quantico:::CEP(Correlation_Bayesian_Prior), ",\n  ",
+          "MultiLevel = ", Quantico:::CEP(Correlation_MultiLevel), ",\n  ",
+          "Include_Factors = ", Quantico:::CEP(Correlation_Include_Factors), ",\n  ",
+          "Partial = ", Quantico:::CEP(Correlation_Partial), ",\n  ",
+          "Partial_Bayesian = ", Quantico:::CEP(Correlation_Partial_Bayesian), ")\n"))}, error = function(x) MachineLearningCode)
 
-      # Update Available Outputs for Inference Tab
-      if(Debug) print("inference 2")
-      for(i in seq_len(NumTabs)) Quantico::PickerInput(session = session, input = input, Update = TRUE, InputID = paste0('InferenceReportsModelSelection',i), Label = 'Testing Output', Choices = tryCatch({names(InferenceOutputList)}, error = function(x) NULL), Multiple = FALSE, MaxVars = 1L)
-      InferenceOutputList <<- InferenceOutputList
-      MachineLearningCode <<- MachineLearningCode
-      shinyWidgets::sendSweetAlert(session, title = NULL, text = "", type = NULL, btn_labels = "Success", btn_colors = NULL, html = FALSE, closeOnClickOutside = TRUE, showCloseButton = TRUE, width = "40%")
+        # Update Available Outputs for Inference Tab
+        if(Debug) print("inference 2")
+        for(i in seq_len(NumTabs)) Quantico::PickerInput(session = session, input = input, Update = TRUE, InputID = paste0('InferenceReportsModelSelection',i), Label = 'Testing Output', Choices = tryCatch({names(InferenceOutputList)}, error = function(x) NULL), Multiple = FALSE, MaxVars = 1L)
+        InferenceOutputList <<- InferenceOutputList
+        MachineLearningCode <<- MachineLearningCode
+        shinyWidgets::sendSweetAlert(session, title = NULL, text = "", type = NULL, btn_labels = "Success", btn_colors = NULL, html = FALSE, closeOnClickOutside = TRUE, showCloseButton = TRUE, width = "40%")
+      } else {
+        shinyWidgets::sendSweetAlert(session, title = NULL, text = "Procedure was not successful", type = NULL, btn_labels = "Error", btn_colors = NULL, html = FALSE, closeOnClickOutside = TRUE, showCloseButton = TRUE, width = "40%")
+      }
 
     } else {
       shinyWidgets::sendSweetAlert(session, title = NULL, text = "Data not available", type = NULL, btn_labels = "Error", btn_colors = NULL, html = FALSE, closeOnClickOutside = TRUE, showCloseButton = TRUE, width = "40%")
@@ -5695,7 +5687,7 @@ server <- function(input, output, session) {
       # Run function
       if(Debug) print("inference 0")
       if(!exists("InferenceOutputList")) InferenceOutputList <- list()
-      InferenceOutputList[[OneSampleTTest_InferenceID]] <- Quantico::One.Sample.TTest(
+      InferenceOutputList[[OneSampleTTest_InferenceID]] <- tryCatch({Quantico::One.Sample.TTest(
         dt = OneSampleTTest_SelectData,
         Variable = OneSampleTTest_Variable,
         NullValue = OneSampleTTest_NullValue,
@@ -5706,33 +5698,37 @@ server <- function(input, output, session) {
         EchartsTheme = OneSampleTTest_EchartsTheme,
         TextColor = OneSampleTTest_FontColorData$flv,
         PlotHeight = OneSampleTTest_PlotHeightINF,
-        PlotWidth = OneSampleTTest_PlotWidthINF)
+        PlotWidth = OneSampleTTest_PlotWidthINF)}, error = function(x) NULL)
 
-      if(Debug) print("inference 1")
+      if(length(InferenceOutputList[[OneSampleTTest_InferenceID]]) > 0L) {
+        if(Debug) print("inference 1")
 
-      MachineLearningCode <- tryCatch({Quantico:::Shiny.CodePrint.Collect(y = MachineLearningCode, x = paste0(
-        "\n",
-        "# Normality Testing\n",
-        "OneSampleTTest_SelectData <- DataList[[", Quantico:::CEP(temp), "]][['data']]\n",
-        "Output <- Quantico::One.Sample.TTest(, \n  ",
-        "dt = OneSampleTTest_SelectData, \n  ",
-        "Variable = ", Quantico:::ExpandText(OneSampleTTest_Variable), ",\n  ",
-        "EchartsTheme = ", Quantico:::CEP(OneSampleTTest_EchartsTheme), ",\n  ",
-        "TextColor = ", Quantico:::CEP(OneSampleTTest_FontColorData$flv), ",\n  ",
-        "PlotHeight = ", Quantico:::CEP(OneSampleTTest_PlotHeightINF), ",\n  ",
-        "PlotWidth = ", Quantico:::CEP(OneSampleTTest_PlotWidthINF), ",\n  ",
-        "NullValue = ", Quantico:::CEPP(OneSampleTTest_NullValue), ",\n  ",
-        "Alternative = ", Quantico:::CEP(OneSampleTTest_Alternative), ",\n  ",
-        "ConfidenceLevel = ", Quantico:::CEPP(OneSampleTTest_ConfidenceLevel), ",\n  ",
-        "SampleSize = ", Quantico:::CEP(OneSampleTTest_SampleSize), ",\n  ",
-        "Samples = ", Quantico:::CEP(OneSampleTTest_Samples), ")\n"))}, error = function(x) MachineLearningCode)
+        MachineLearningCode <- tryCatch({Quantico:::Shiny.CodePrint.Collect(y = MachineLearningCode, x = paste0(
+          "\n",
+          "# Normality Testing\n",
+          "OneSampleTTest_SelectData <- DataList[[", Quantico:::CEP(temp), "]][['data']]\n",
+          "Output <- Quantico::One.Sample.TTest(, \n  ",
+          "dt = OneSampleTTest_SelectData, \n  ",
+          "Variable = ", Quantico:::ExpandText(OneSampleTTest_Variable), ",\n  ",
+          "EchartsTheme = ", Quantico:::CEP(OneSampleTTest_EchartsTheme), ",\n  ",
+          "TextColor = ", Quantico:::CEP(OneSampleTTest_FontColorData$flv), ",\n  ",
+          "PlotHeight = ", Quantico:::CEP(OneSampleTTest_PlotHeightINF), ",\n  ",
+          "PlotWidth = ", Quantico:::CEP(OneSampleTTest_PlotWidthINF), ",\n  ",
+          "NullValue = ", Quantico:::CEPP(OneSampleTTest_NullValue), ",\n  ",
+          "Alternative = ", Quantico:::CEP(OneSampleTTest_Alternative), ",\n  ",
+          "ConfidenceLevel = ", Quantico:::CEPP(OneSampleTTest_ConfidenceLevel), ",\n  ",
+          "SampleSize = ", Quantico:::CEP(OneSampleTTest_SampleSize), ",\n  ",
+          "Samples = ", Quantico:::CEP(OneSampleTTest_Samples), ")\n"))}, error = function(x) MachineLearningCode)
 
-      # Update Available Outputs for Inference Tab
-      if(Debug) print("inference 2")
-      for(i in seq_len(NumTabs)) Quantico::PickerInput(session = session, input = input, Update = TRUE, InputID = paste0('InferenceReportsModelSelection',i), Label = 'Testing Output', Choices = tryCatch({names(InferenceOutputList)}, error = function(x) NULL), Multiple = FALSE, MaxVars = 1L)
-      InferenceOutputList <<- InferenceOutputList
-      MachineLearningCode <<- MachineLearningCode
-      shinyWidgets::sendSweetAlert(session, title = NULL, text = "", type = NULL, btn_labels = "Success", btn_colors = NULL, html = FALSE, closeOnClickOutside = TRUE, showCloseButton = TRUE, width = "40%")
+        # Update Available Outputs for Inference Tab
+        if(Debug) print("inference 2")
+        for(i in seq_len(NumTabs)) Quantico::PickerInput(session = session, input = input, Update = TRUE, InputID = paste0('InferenceReportsModelSelection',i), Label = 'Testing Output', Choices = tryCatch({names(InferenceOutputList)}, error = function(x) NULL), Multiple = FALSE, MaxVars = 1L)
+        InferenceOutputList <<- InferenceOutputList
+        MachineLearningCode <<- MachineLearningCode
+        shinyWidgets::sendSweetAlert(session, title = NULL, text = "", type = NULL, btn_labels = "Success", btn_colors = NULL, html = FALSE, closeOnClickOutside = TRUE, showCloseButton = TRUE, width = "40%")
+      } else {
+        shinyWidgets::sendSweetAlert(session, title = NULL, text = "Procedure was not successful", type = NULL, btn_labels = "Error", btn_colors = NULL, html = FALSE, closeOnClickOutside = TRUE, showCloseButton = TRUE, width = "40%")
+      }
 
     } else {
       shinyWidgets::sendSweetAlert(session, title = NULL, text = "Data not available", type = NULL, btn_labels = "Error", btn_colors = NULL, html = FALSE, closeOnClickOutside = TRUE, showCloseButton = TRUE, width = "40%")
@@ -5771,7 +5767,7 @@ server <- function(input, output, session) {
       # Run function
       if(Debug) print("inference 0")
       if(!exists("InferenceOutputList")) InferenceOutputList <- list()
-      InferenceOutputList[[TwoSampleTTest_InferenceID]] <- Quantico::Two.Sample.TTest(
+      InferenceOutputList[[TwoSampleTTest_InferenceID]] <- tryCatch({Quantico::Two.Sample.TTest(
         dt = TwoSampleTTest_SelectData,
         Variable1 = TwoSampleTTest_Variable1,
         Variable2 = TwoSampleTTest_Variable2,
@@ -5785,36 +5781,40 @@ server <- function(input, output, session) {
         EchartsTheme = TwoSampleTTest_EchartsTheme,
         TextColor = TwoSampleTTest_FontColorData$flv,
         PlotHeight = TwoSampleTTest_PlotHeightINF,
-        PlotWidth = TwoSampleTTest_PlotWidthINF)
+        PlotWidth = TwoSampleTTest_PlotWidthINF)}, error = function(x) NULL)
 
-      if(Debug) print("inference 1")
+      if(length(InferenceOutputList[[TwoSampleTTest_InferenceID]]) > 0L) {
+        if(Debug) print("inference 1")
 
-      MachineLearningCode <- tryCatch({Quantico:::Shiny.CodePrint.Collect(y = MachineLearningCode, x = paste0(
-        "\n",
-        "# Normality Testing\n",
-        "TwoSampleTTest_SelectData <- DataList[[", Quantico:::CEP(temp), "]][['data']]\n",
-        "Output <- Quantico::Two.Sample.TTest(, \n  ",
-        "dt = TwoSampleTTest_SelectData, \n  ",
-        "Variable1 = ", Quantico:::ExpandText(TwoSampleTTest_Variable1), ",\n  ",
-        "Variable2 = ", Quantico:::ExpandText(TwoSampleTTest_Variable2), ",\n  ",
-        "EchartsTheme = ", Quantico:::CEP(TwoSampleTTest_EchartsTheme), ",\n  ",
-        "TextColor = ", Quantico:::CEP(TwoSampleTTest_FontColorData$flv), ",\n  ",
-        "PlotHeight = ", Quantico:::CEP(TwoSampleTTest_PlotHeightINF), ",\n  ",
-        "PlotWidth = ", Quantico:::CEP(TwoSampleTTest_PlotWidthINF), ",\n  ",
-        "MeanDifference = ", Quantico:::CEPP(TwoSampleTTest_NullValue), ",\n  ",
-        "EqualVariance = ", Quantico:::CEPP(TwoSampleTTest_EqualVariance), ",\n  ",
-        "Paired = ", Quantico:::CEPP(TwoSampleTTest_Paired), ",\n  ",
-        "Alternative = ", Quantico:::CEP(TwoSampleTTest_Alternative), ",\n  ",
-        "ConfidenceLevel = ", Quantico:::CEPP(TwoSampleTTest_ConfidenceLevel), ",\n  ",
-        "SampleSize = ", Quantico:::CEP(TwoSampleTTest_SampleSize), ",\n  ",
-        "Samples = ", Quantico:::CEP(TwoSampleTTest_Samples), ")\n"))}, error = function(x) MachineLearningCode)
+        MachineLearningCode <- tryCatch({Quantico:::Shiny.CodePrint.Collect(y = MachineLearningCode, x = paste0(
+          "\n",
+          "# Normality Testing\n",
+          "TwoSampleTTest_SelectData <- DataList[[", Quantico:::CEP(temp), "]][['data']]\n",
+          "Output <- Quantico::Two.Sample.TTest(, \n  ",
+          "dt = TwoSampleTTest_SelectData, \n  ",
+          "Variable1 = ", Quantico:::ExpandText(TwoSampleTTest_Variable1), ",\n  ",
+          "Variable2 = ", Quantico:::ExpandText(TwoSampleTTest_Variable2), ",\n  ",
+          "EchartsTheme = ", Quantico:::CEP(TwoSampleTTest_EchartsTheme), ",\n  ",
+          "TextColor = ", Quantico:::CEP(TwoSampleTTest_FontColorData$flv), ",\n  ",
+          "PlotHeight = ", Quantico:::CEP(TwoSampleTTest_PlotHeightINF), ",\n  ",
+          "PlotWidth = ", Quantico:::CEP(TwoSampleTTest_PlotWidthINF), ",\n  ",
+          "MeanDifference = ", Quantico:::CEPP(TwoSampleTTest_NullValue), ",\n  ",
+          "EqualVariance = ", Quantico:::CEPP(TwoSampleTTest_EqualVariance), ",\n  ",
+          "Paired = ", Quantico:::CEPP(TwoSampleTTest_Paired), ",\n  ",
+          "Alternative = ", Quantico:::CEP(TwoSampleTTest_Alternative), ",\n  ",
+          "ConfidenceLevel = ", Quantico:::CEPP(TwoSampleTTest_ConfidenceLevel), ",\n  ",
+          "SampleSize = ", Quantico:::CEP(TwoSampleTTest_SampleSize), ",\n  ",
+          "Samples = ", Quantico:::CEP(TwoSampleTTest_Samples), ")\n"))}, error = function(x) MachineLearningCode)
 
-      # Update Available Outputs for Inference Tab
-      if(Debug) print("inference 2")
-      for(i in seq_len(NumTabs)) Quantico::PickerInput(session = session, input = input, Update = TRUE, InputID = paste0('InferenceReportsModelSelection',i), Label = 'Testing Output', Choices = tryCatch({names(InferenceOutputList)}, error = function(x) NULL), Multiple = FALSE, MaxVars = 1L)
-      InferenceOutputList <<- InferenceOutputList
-      MachineLearningCode <<- MachineLearningCode
-      shinyWidgets::sendSweetAlert(session, title = NULL, text = "", type = NULL, btn_labels = "Success", btn_colors = NULL, html = FALSE, closeOnClickOutside = TRUE, showCloseButton = TRUE, width = "40%")
+        # Update Available Outputs for Inference Tab
+        if(Debug) print("inference 2")
+        for(i in seq_len(NumTabs)) Quantico::PickerInput(session = session, input = input, Update = TRUE, InputID = paste0('InferenceReportsModelSelection',i), Label = 'Testing Output', Choices = tryCatch({names(InferenceOutputList)}, error = function(x) NULL), Multiple = FALSE, MaxVars = 1L)
+        InferenceOutputList <<- InferenceOutputList
+        MachineLearningCode <<- MachineLearningCode
+        shinyWidgets::sendSweetAlert(session, title = NULL, text = "", type = NULL, btn_labels = "Success", btn_colors = NULL, html = FALSE, closeOnClickOutside = TRUE, showCloseButton = TRUE, width = "40%")
+      } else {
+        shinyWidgets::sendSweetAlert(session, title = NULL, text = "Procedure was not successful", type = NULL, btn_labels = "Error", btn_colors = NULL, html = FALSE, closeOnClickOutside = TRUE, showCloseButton = TRUE, width = "40%")
+      }
 
     } else {
       shinyWidgets::sendSweetAlert(session, title = NULL, text = "Data not available", type = NULL, btn_labels = "Error", btn_colors = NULL, html = FALSE, closeOnClickOutside = TRUE, showCloseButton = TRUE, width = "40%")
@@ -5851,7 +5851,7 @@ server <- function(input, output, session) {
       # Run function
       if(Debug) print("inference 0")
       if(!exists("InferenceOutputList")) InferenceOutputList <- list()
-      InferenceOutputList[[FTest_InferenceID]] <- Quantico::F.Test(
+      InferenceOutputList[[FTest_InferenceID]] <- tryCatch({Quantico::F.Test(
         dt = FTest_SelectData,
         Variable1 = FTest_Variable1,
         Variable2 = FTest_Variable2,
@@ -5863,34 +5863,38 @@ server <- function(input, output, session) {
         EchartsTheme = FTest_EchartsTheme,
         TextColor = FTest_FontColorData$flv,
         PlotHeight = FTest_PlotHeightINF,
-        PlotWidth = FTest_PlotWidthINF)
+        PlotWidth = FTest_PlotWidthINF)}, error = function(x) NULL)
 
-      if(Debug) print("inference 1")
+      if(length(InferenceOutputList[[FTest_InferenceID]]) > 0L) {
+        if(Debug) print("inference 1")
 
-      MachineLearningCode <- tryCatch({Quantico:::Shiny.CodePrint.Collect(y = MachineLearningCode, x = paste0(
-        "\n",
-        "# Normality Testing\n",
-        "FTest_SelectData <- DataList[[", Quantico:::CEP(temp), "]][['data']]\n",
-        "Output <- Quantico::F.Test(, \n  ",
-        "dt = FTest_SelectData, \n  ",
-        "Variable1 = ", Quantico:::ExpandText(FTest_Variable1), ",\n  ",
-        "Variable2 = ", Quantico:::ExpandText(FTest_Variable2), ",\n  ",
-        "EchartsTheme = ", Quantico:::CEP(FTest_EchartsTheme), ",\n  ",
-        "TextColor = ", Quantico:::CEP(FTest_FontColorData$flv), ",\n  ",
-        "PlotHeight = ", Quantico:::CEP(FTest_PlotHeightINF), ",\n  ",
-        "PlotWidth = ", Quantico:::CEP(FTest_PlotWidthINF), ",\n  ",
-        "RatioVariances = ", Quantico:::CEPP(FTest_RatioVariances), ",\n  ",
-        "Alternative = ", Quantico:::CEP(FTest_Alternative), ",\n  ",
-        "ConfidenceLevel = ", Quantico:::CEPP(FTest_ConfidenceLevel), ",\n  ",
-        "SampleSize = ", Quantico:::CEP(FTest_SampleSize), ",\n  ",
-        "Samples = ", Quantico:::CEP(FTest_Samples), ")\n"))}, error = function(x) MachineLearningCode)
+        MachineLearningCode <- tryCatch({Quantico:::Shiny.CodePrint.Collect(y = MachineLearningCode, x = paste0(
+          "\n",
+          "# Normality Testing\n",
+          "FTest_SelectData <- DataList[[", Quantico:::CEP(temp), "]][['data']]\n",
+          "Output <- Quantico::F.Test(, \n  ",
+          "dt = FTest_SelectData, \n  ",
+          "Variable1 = ", Quantico:::ExpandText(FTest_Variable1), ",\n  ",
+          "Variable2 = ", Quantico:::ExpandText(FTest_Variable2), ",\n  ",
+          "EchartsTheme = ", Quantico:::CEP(FTest_EchartsTheme), ",\n  ",
+          "TextColor = ", Quantico:::CEP(FTest_FontColorData$flv), ",\n  ",
+          "PlotHeight = ", Quantico:::CEP(FTest_PlotHeightINF), ",\n  ",
+          "PlotWidth = ", Quantico:::CEP(FTest_PlotWidthINF), ",\n  ",
+          "RatioVariances = ", Quantico:::CEPP(FTest_RatioVariances), ",\n  ",
+          "Alternative = ", Quantico:::CEP(FTest_Alternative), ",\n  ",
+          "ConfidenceLevel = ", Quantico:::CEPP(FTest_ConfidenceLevel), ",\n  ",
+          "SampleSize = ", Quantico:::CEP(FTest_SampleSize), ",\n  ",
+          "Samples = ", Quantico:::CEP(FTest_Samples), ")\n"))}, error = function(x) MachineLearningCode)
 
-      # Update Available Outputs for Inference Tab
-      if(Debug) print("inference 2")
-      for(i in seq_len(NumTabs)) Quantico::PickerInput(session = session, input = input, Update = TRUE, InputID = paste0('InferenceReportsModelSelection',i), Label = 'Testing Output', Choices = tryCatch({names(InferenceOutputList)}, error = function(x) NULL), Multiple = FALSE, MaxVars = 1L)
-      InferenceOutputList <<- InferenceOutputList
-      MachineLearningCode <<- MachineLearningCode
-      shinyWidgets::sendSweetAlert(session, title = NULL, text = "", type = NULL, btn_labels = "Success", btn_colors = NULL, html = FALSE, closeOnClickOutside = TRUE, showCloseButton = TRUE, width = "40%")
+        # Update Available Outputs for Inference Tab
+        if(Debug) print("inference 2")
+        for(i in seq_len(NumTabs)) Quantico::PickerInput(session = session, input = input, Update = TRUE, InputID = paste0('InferenceReportsModelSelection',i), Label = 'Testing Output', Choices = tryCatch({names(InferenceOutputList)}, error = function(x) NULL), Multiple = FALSE, MaxVars = 1L)
+        InferenceOutputList <<- InferenceOutputList
+        MachineLearningCode <<- MachineLearningCode
+        shinyWidgets::sendSweetAlert(session, title = NULL, text = "", type = NULL, btn_labels = "Success", btn_colors = NULL, html = FALSE, closeOnClickOutside = TRUE, showCloseButton = TRUE, width = "40%")
+      } else {
+        shinyWidgets::sendSweetAlert(session, title = NULL, text = "Procedure was not successful", type = NULL, btn_labels = "Error", btn_colors = NULL, html = FALSE, closeOnClickOutside = TRUE, showCloseButton = TRUE, width = "40%")
+      }
 
     } else {
       shinyWidgets::sendSweetAlert(session, title = NULL, text = "Data not available", type = NULL, btn_labels = "Error", btn_colors = NULL, html = FALSE, closeOnClickOutside = TRUE, showCloseButton = TRUE, width = "40%")
@@ -5927,7 +5931,7 @@ server <- function(input, output, session) {
       if(Debug) print("inference 0")
       if(!exists("InferenceOutputList")) InferenceOutputList <- list()
       print(ChiSquareTest_InferenceID)
-      InferenceOutputList[[ChiSquareTest_InferenceID]] <- Quantico::ChiSq.Test(
+      InferenceOutputList[[ChiSquareTest_InferenceID]] <- tryCatch({Quantico::ChiSq.Test(
         dt = ChiSquareTest_SelectData,
         Variable1 = ChiSquareTest_Variable1,
         Variable2 = ChiSquareTest_Variable2,
@@ -5938,33 +5942,37 @@ server <- function(input, output, session) {
         EchartsTheme = ChiSquareTest_EchartsTheme,
         TextColor = ChiSquareTest_FontColorData$flv,
         PlotHeight = ChiSquareTest_PlotHeightINF,
-        PlotWidth = ChiSquareTest_PlotWidthINF)
+        PlotWidth = ChiSquareTest_PlotWidthINF)}, error = function(x) NULL)
 
-      if(Debug) print("inference 1")
+      if(length(InferenceOutputList[[ChiSquareTest_InferenceID]]) > 0L) {
+        if(Debug) print("inference 1")
 
-      MachineLearningCode <- tryCatch({Quantico:::Shiny.CodePrint.Collect(y = MachineLearningCode, x = paste0(
-        "\n",
-        "# Normality Testing\n",
-        "ChiSquareTest_SelectData <- DataList[[", Quantico:::CEP(temp), "]][['data']]\n",
-        "Output <- Quantico::ChiSq.Test(, \n  ",
-        "dt = ChiSquareTest_SelectData, \n  ",
-        "Variable1 = ", Quantico:::ExpandText(ChiSquareTest_Variable1), ",\n  ",
-        "Variable2 = ", Quantico:::ExpandText(ChiSquareTest_Variable2), ",\n  ",
-        "EchartsTheme = ", Quantico:::CEP(ChiSquareTest_EchartsTheme), ",\n  ",
-        "TextColor = ", Quantico:::CEP(ChiSquareTest_FontColorData$flv), ",\n  ",
-        "PlotHeight = ", Quantico:::CEP(ChiSquareTest_PlotHeightINF), ",\n  ",
-        "PlotWidth = ", Quantico:::CEP(ChiSquareTest_PlotWidthINF), ",\n  ",
-        "Alternative = ", Quantico:::CEP(ChiSquareTest_Alternative), ",\n  ",
-        "ConfidenceLevel = ", Quantico:::CEPP(ChiSquareTest_ConfidenceLevel), ",\n  ",
-        "SampleSize = ", Quantico:::CEP(ChiSquareTest_SampleSize), ",\n  ",
-        "Samples = ", Quantico:::CEP(ChiSquareTest_Samples), ")\n"))}, error = function(x) MachineLearningCode)
+        MachineLearningCode <- tryCatch({Quantico:::Shiny.CodePrint.Collect(y = MachineLearningCode, x = paste0(
+          "\n",
+          "# Normality Testing\n",
+          "ChiSquareTest_SelectData <- DataList[[", Quantico:::CEP(temp), "]][['data']]\n",
+          "Output <- Quantico::ChiSq.Test(, \n  ",
+          "dt = ChiSquareTest_SelectData, \n  ",
+          "Variable1 = ", Quantico:::ExpandText(ChiSquareTest_Variable1), ",\n  ",
+          "Variable2 = ", Quantico:::ExpandText(ChiSquareTest_Variable2), ",\n  ",
+          "EchartsTheme = ", Quantico:::CEP(ChiSquareTest_EchartsTheme), ",\n  ",
+          "TextColor = ", Quantico:::CEP(ChiSquareTest_FontColorData$flv), ",\n  ",
+          "PlotHeight = ", Quantico:::CEP(ChiSquareTest_PlotHeightINF), ",\n  ",
+          "PlotWidth = ", Quantico:::CEP(ChiSquareTest_PlotWidthINF), ",\n  ",
+          "Alternative = ", Quantico:::CEP(ChiSquareTest_Alternative), ",\n  ",
+          "ConfidenceLevel = ", Quantico:::CEPP(ChiSquareTest_ConfidenceLevel), ",\n  ",
+          "SampleSize = ", Quantico:::CEP(ChiSquareTest_SampleSize), ",\n  ",
+          "Samples = ", Quantico:::CEP(ChiSquareTest_Samples), ")\n"))}, error = function(x) MachineLearningCode)
 
-      # Update Available Outputs for Inference Tab
-      if(Debug) print("inference 2")
-      for(i in seq_len(NumTabs)) Quantico::PickerInput(session = session, input = input, Update = TRUE, InputID = paste0('InferenceReportsModelSelection',i), Label = 'Testing Output', Choices = tryCatch({names(InferenceOutputList)}, error = function(x) NULL), Multiple = FALSE, MaxVars = 1L)
-      InferenceOutputList <<- InferenceOutputList
-      MachineLearningCode <<- MachineLearningCode
-      shinyWidgets::sendSweetAlert(session, title = NULL, text = "", type = NULL, btn_labels = "Success", btn_colors = NULL, html = FALSE, closeOnClickOutside = TRUE, showCloseButton = TRUE, width = "40%")
+        # Update Available Outputs for Inference Tab
+        if(Debug) print("inference 2")
+        for(i in seq_len(NumTabs)) Quantico::PickerInput(session = session, input = input, Update = TRUE, InputID = paste0('InferenceReportsModelSelection',i), Label = 'Testing Output', Choices = tryCatch({names(InferenceOutputList)}, error = function(x) NULL), Multiple = FALSE, MaxVars = 1L)
+        InferenceOutputList <<- InferenceOutputList
+        MachineLearningCode <<- MachineLearningCode
+        shinyWidgets::sendSweetAlert(session, title = NULL, text = "", type = NULL, btn_labels = "Success", btn_colors = NULL, html = FALSE, closeOnClickOutside = TRUE, showCloseButton = TRUE, width = "40%")
+      } else {
+        shinyWidgets::sendSweetAlert(session, title = NULL, text = "Procedure was not successful", type = NULL, btn_labels = "Error", btn_colors = NULL, html = FALSE, closeOnClickOutside = TRUE, showCloseButton = TRUE, width = "40%")
+      }
 
     } else {
       shinyWidgets::sendSweetAlert(session, title = NULL, text = "Data not available", type = NULL, btn_labels = "Error", btn_colors = NULL, html = FALSE, closeOnClickOutside = TRUE, showCloseButton = TRUE, width = "40%")
@@ -7303,6 +7311,11 @@ server <- function(input, output, session) {
             ModelOutputList <<- ModelOutputList; rm(Output); gc()
             for(i in seq_len(NumTabs)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0("DataOutputSelection",i), Label = 'Display Data', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
             for(i in seq_len(NumTabs)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0('FCReportsModelSelection',i), Label = 'FC Output', Choices = names(ModelOutputList), Multiple = TRUE, MaxVars = 100L)
+            Quantico:::SelectizeInput(
+              Update = TRUE, session = session, input = input,
+              InputID = "CatBoostCARMA_ArgsList", Label = "Existing Models",
+              Choices = tryCatch({names(ModelOutputList)}, error = function(x) NULL),
+              SelectedDefault = NULL, Multiple = TRUE, MaxVars = 100L)
             shinyWidgets::sendSweetAlert(session, title = NULL, text = paste0('Model: ', CatBoostFC$CatBoostCARMA_ModelID, "\n", CatBoostFC$CatBoostCARMA_RunMode, " ran successfully"), type = NULL, btn_labels = paste0("Success"), btn_colors = NULL, html = FALSE, closeOnClickOutside = TRUE, showCloseButton = TRUE, width = "40%")
           } else {
             shinyWidgets::sendSweetAlert(session, title = NULL, text = paste0("Forecasting task was unsuccessful"), type = NULL, btn_labels = paste0("No Success"), btn_colors = NULL, html = FALSE, closeOnClickOutside = TRUE, showCloseButton = TRUE, width = "40%")
@@ -7377,6 +7390,11 @@ server <- function(input, output, session) {
             ModelOutputList <<- ModelOutputList; rm(Output); gc()
             for(i in seq_len(NumTabs)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0("DataOutputSelection",i) , Label = 'Display Data', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
             for(i in seq_len(NumTabs)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0('FCReportsModelSelection',i), Label = 'FC Output', Choices = names(ModelOutputList), Multiple = TRUE, MaxVars = 100L)
+            Quantico:::SelectizeInput(
+              Update = TRUE, session = session, input = input,
+              InputID = "XGBoostCARMA_ArgsList", Label = "Existing Models",
+              Choices = tryCatch({names(ModelOutputList)}, error = function(x) NULL),
+              SelectedDefault = NULL, Multiple = TRUE, MaxVars = 100L)
             shinyWidgets::sendSweetAlert(session, title = NULL, text = paste0('Model: ', XGBoostFC$XGBoostCARMA_ModelID, "\n", XGBoostFC$XGBoostCARMA_RunMode, " ran successfully"), type = NULL, btn_labels = paste0("Success"), btn_colors = NULL, html = FALSE, closeOnClickOutside = TRUE, showCloseButton = TRUE, width = "40%")
           } else {
             shinyWidgets::sendSweetAlert(session, title = NULL, text = paste0("Process ran successfully"), type = NULL, btn_labels = paste0("Success"), btn_colors = NULL, html = FALSE, closeOnClickOutside = TRUE, showCloseButton = TRUE, width = "40%")
@@ -7451,6 +7469,11 @@ server <- function(input, output, session) {
             ModelOutputList <<- ModelOutputList; rm(Output); gc()
             for(i in seq_len(NumTabs)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0("DataOutputSelection",i), Label = 'Display Data', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
             for(i in seq_len(NumTabs)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0('FCReportsModelSelection',i), Label = 'FC Output', Choices = names(ModelOutputList), Multiple = TRUE, MaxVars = 100L)
+            Quantico:::SelectizeInput(
+              Update = TRUE, session = session, input = input,
+              InputID = "LightGBMCARMA_ArgsList", Label = "Existing Models",
+              Choices = tryCatch({names(ModelOutputList)}, error = function(x) NULL),
+              SelectedDefault = NULL, Multiple = TRUE, MaxVars = 100L)
             shinyWidgets::sendSweetAlert(session, title = NULL, text = paste0('Model: ', LightGBMFC$LightGBMCARMA_ModelID, "\n", LightGBMFC$LightGBMCARMA_RunMode, " ran successfully"), type = NULL, btn_labels = paste0("Success"), btn_colors = NULL, html = FALSE, closeOnClickOutside = TRUE, showCloseButton = TRUE, width = "40%")
           } else {
             shinyWidgets::sendSweetAlert(session, title = NULL, text = paste0("Process ran successfully"), type = NULL, btn_labels = paste0("Success"), btn_colors = NULL, html = FALSE, closeOnClickOutside = TRUE, showCloseButton = TRUE, width = "40%")

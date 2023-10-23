@@ -2573,7 +2573,7 @@ Shiny.FC.SS <- function(input,
   # ModelID
   #
   # Note: ArgsList is forced to NULL as an Argument to this function when Grid Tune is on
-  if(length(ArgsList) > 0L) {
+  if(length(ArgsList) > 1L) {
     if(DebugFC) print("ArgsList > 0")
     ModelID <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0(Algo, '_ArgsList')]]}, error=function(x) NULL), Type='character', Default=NULL); if(DebugFC) print('here 3.2')
     if(DebugFC) print('here 3.2')

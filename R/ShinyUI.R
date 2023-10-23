@@ -250,7 +250,7 @@ Local_Modal_Fun <- function(id,
                       shiny::column(
                         width = 3L,
                         align = 'center',
-                        shiny::fileInput("ImportLocalCSV", "Load .csv", accept = c('text/csv', 'text/comma-separated-values,text/plain'))
+                        shiny::fileInput("ImportLocalCSV", "Load Data", accept = c('text/csv', 'text/comma-separated-values,text/plain'))
                       ),
                       shiny::column(width = 4L),
                       shiny::column(
@@ -503,20 +503,18 @@ PostGRE_Modal_Fun <- function(id,
                           selected = "cobalt"))),
                     shiny::fluidRow(
                       shiny::column(
-                        8L,
+                        12L,
                         shinyAce::aceEditor(
                           "sql_code",
                           mode = "sql",
                           wordWrap = TRUE,
                           theme = "cobalt",
-                          height = "160px",
+                          height = "860px",
                           tabSize = 2,
                           minLines = 100,
                           fontSize = 14,
                           autoComplete = "live"))),
 
-                    Quantico:::BlankRow(12L),
-                    Quantico:::BlankRow(12L),
                     Quantico:::BlankRow(12L),
                     Quantico:::BlankRow(12L)))),
 
@@ -3437,27 +3435,25 @@ Misc_Modal_Fun <- function(id,
                             choices = shinyAce::getAceThemes(),
                             selected = "cobalt"))),
                       Quantico:::BlankRow(12L)),
+                    Quantico:::BlankRow(12L),
                     shinydashboard::box(
                       title = NULL, solidHeader = TRUE, collapsible = FALSE, status = "danger", width = 12L,
                       Quantico:::BlankRow(12L),
                       shiny::fluidRow(
                         shiny::column(
-                          8L, align = 'center',
+                          12L, align = 'center',
                           shinyAce::aceEditor(
                             "MetaProgramming_TextCode",
                             mode = "r",
                             wordWrap = TRUE,
                             theme = "cobalt",
-                            height = "160px",
+                            height = "860px",
                             tabSize = 2,
                             minLines = 100,
                             fontSize = 14,
                             autoComplete = "live")))),
 
                     # Blank space
-                    Quantico:::BlankRow(12L),
-                    Quantico:::BlankRow(12L),
-                    Quantico:::BlankRow(12L),
                     Quantico:::BlankRow(12L),
                     Quantico:::BlankRow(12L)
                   )
@@ -13508,16 +13504,13 @@ CatBoostCARMA_Modal_Fun <- function(id,
                   width = 3L, align = 'center',
                   Quantico:::SelectizeInput(InputID = "CatBoostCARMA_ArgsList", Label = "Existing Models", Choices = CatBoostCARMA_ArgsList_Choices, SelectedDefault = CatBoostCARMA_ArgsList_Selected, Multiple = TRUE, MaxVars = 100L)
                 ),
-                shiny::column(width = 2L),
+                shiny::column(width = 4L),
                 shiny::column(
                   width = 2L, align = 'center', tags$h3(tags$b('Build FC')),
-                  shiny::actionButton(inputId = paste0('BuildModels_CatBoostCARMA'), label = paste0('Run'), icon = shiny::icon('chevron-right', lib='font-awesome'))),
-                shiny::column(
-                  width = 2L, shinyjs::useShinyjs(), align = 'center', tags$h3(tags$b('Refresh Modal')),
                   shiny::actionButton(
-                    inputId = paste0('CatBoostCARMA_RefreshInputs'), label = paste0('Run'), icon = shiny::icon('chevron-right', lib='font-awesome')
+                    inputId = paste0('BuildModels_CatBoostCARMA'), label = paste0('Run'), icon = shiny::icon('chevron-right', lib='font-awesome')
                   )
-                )
+                ),
               )
             ), # box
 
@@ -14266,14 +14259,11 @@ XGBoostCARMA_Modal_Fun <- function(id,
                   width = 3L, align = 'center',
                   Quantico:::SelectizeInput(InputID = "XGBoostCARMA_ArgsList", Label = "Existing Models", Choices = XGBoostCARMA_ArgsList_Choices, SelectedDefault = XGBoostCARMA_ArgsList_Selected, Multiple = TRUE, MaxVars = 100L)
                 ),
-                shiny::column(width = 2L),
+                shiny::column(width = 4L),
                 shiny::column(
                   width = 2L, align = 'center', tags$h3(tags$b('Build FC')),
-                  shiny::actionButton(inputId = paste0('BuildModels_XGBoostCARMA'), label = paste0('Run'), icon = shiny::icon('chevron-right', lib='font-awesome'))),
-                shiny::column(
-                  width = 2L, shinyjs::useShinyjs(), align = 'center', tags$h3(tags$b('Refresh Modal')),
                   shiny::actionButton(
-                    inputId = paste0('XGBoostCARMA_RefreshInputs'), label = paste0('Run'), icon = shiny::icon('chevron-right', lib='font-awesome')
+                    inputId = paste0('BuildModels_XGBoostCARMA'), label = paste0('Run'), icon = shiny::icon('chevron-right', lib='font-awesome')
                   )
                 )
               )
@@ -14944,14 +14934,11 @@ LightGBMCARMA_Modal_Fun <- function(id,
                   width = 3L, align = 'center',
                   Quantico:::SelectizeInput(InputID = "LightGBMCARMA_ArgsList", Label = "Existing Models", Choices = LightGBMCARMA_ArgsList_Choices, SelectedDefault = LightGBMCARMA_ArgsList_Selected,  Multiple = TRUE, MaxVars = 100L)
                 ),
-                shiny::column(width = 2L),
+                shiny::column(width = 4L),
                 shiny::column(
                   width = 2L, align = 'center', tags$h3(tags$b('Build FC')),
-                  shiny::actionButton(inputId = paste0('BuildModels_LightGBMCARMA'), label = paste0('Run'), icon = shiny::icon('chevron-right', lib='font-awesome'))),
-                shiny::column(
-                  width = 2L, shinyjs::useShinyjs(), align = 'center', tags$h3(tags$b('Refresh Modal')),
                   shiny::actionButton(
-                    inputId = paste0('LightGBMCARMA_RefreshInputs'), label = paste0('Run'), icon = shiny::icon('chevron-right', lib='font-awesome')
+                    inputId = paste0('BuildModels_LightGBMCARMA'), label = paste0('Run'), icon = shiny::icon('chevron-right', lib='font-awesome')
                   )
                 )
               )

@@ -176,7 +176,7 @@ Quantico::runQuantico(
 
 ## App Interface
 
-src="https://github.com/AdrianAntico/Quantico/blob/main/inst/AppMain6.PNG" align="center" width="800" />
+<img src="https://github.com/AdrianAntico/Quantico/blob/main/inst/AppMain6.PNG" align="center" width="800" />
 
 <br>
 

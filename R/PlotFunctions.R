@@ -968,7 +968,7 @@ Shiny.Plot.Build <- function(input,
             }
 
             # Plot
-            PlotList[[paste0('Plot', PlotNumberss)]] <- AutoPlots::Plot.StandardPlots(
+            PlotOut <- AutoPlots::Plot.StandardPlots(
               dt = data1,
               AggMethod = AggMethod,
               SampleSize = SampleSize,
@@ -998,38 +998,11 @@ Shiny.Plot.Build <- function(input,
               FontSize = 14,
               Debug = Debug)
 
+            PlotList[[paste0('Plot', PlotNumberss)]] <- PlotOut$Plot
+
             # Code Collection
             if(CollectCode) {
-              CodeList <- tryCatch({Quantico:::Shiny.CodePrint.Collect(CodeList, paste0(
-                "\n\n",
-                "# Build Plot\n",
-                "AutoPlots::Plot.StandardPlots(", "\n  ",
-                "PlotType = ", Quantico:::CEP(PlotType), ",\n  ",
-                "dt = data1", ",\n  ",
-                "AggMethod = ", Quantico:::CEP(AggMethod), ",\n  ",
-                "SampleSize = ", Quantico:::CEPP(SampleSize), ",\n  ",
-                "PreAgg = ", Quantico:::CEPP(PreAgg), ",\n  ",
-                "YVar = ", Quantico:::ExpandText(YVar), ",\n  ",
-                "DualYVar = ", Quantico:::ExpandText(DualYVar), ",\n  ",
-                "XVar = ", Quantico:::ExpandText(XVar), ",\n  ",
-                "ZVar = ", Quantico:::ExpandText(ZVar), ",\n  ",
-                "GroupVar = ", Quantico:::ExpandText(GroupVars), ",\n  ",
-                "YVarTrans = ", Quantico:::CEP(YVarTrans), ",\n  ",
-                "DualYVarTrans = ", Quantico:::CEP(DualYVarTrans), ",\n  ",
-                "XVarTrans = ", Quantico:::CEP(XVarTrans), ",\n  ",
-                "ZVarTrans = ", Quantico:::CEP(ZVarTrans), ",\n  ",
-                "FacetRows = ", Quantico:::CEPP(FacetRows), ",\n  ",
-                "FacetCols = ", Quantico:::CEPP(FacetCols), ",\n  ",
-                "FacetLevels = ", Quantico:::ExpandText(Levels1), ",\n  ",
-                "NumberBins = ", Quantico:::CEP(NumberBins), ",\n  ",
-                "Title = ", Quantico:::CEP(Title), ",\n  ",
-                "ShowLabels = ", Quantico:::CEPP(ShowLabels), ",\n  ",
-                "Title.YAxis = ", Quantico:::CEP(YAxisTitle), ",\n  ",
-                "Title.XAxis = ", Quantico:::CEP(XAxisTitle), ",\n  ",
-                "EchartsTheme = ", Quantico:::CEP(EchartsTheme), ",\n  ",
-                "TimeLine = ", Quantico:::CEPP(Timeline), ",\n  ",
-                "FontSize = 14,\n  ",
-                "TextColor = ", Quantico:::CEP(FontColor), ")\n  "))}, error = function(x) CodeList)
+              CodeList <- tryCatch({Quantico:::Shiny.CodePrint.Collect(CodeList, PlotOut$Code)}, error = function(x) CodeList)
               CodeList <<- CodeList
             }
 

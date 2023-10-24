@@ -3,7 +3,7 @@
 [![PRsWelcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=default)](http://makeapullrequest.com)
 [![GitHubStars](https://img.shields.io/github/stars/AdrianAntico/ShinyDS.svg?style=social)](https://github.com/AdrianAntico/ShinyDS)
 
-![](https://github.com/AdrianAntico/Quantico/blob/main/inst/ezgif.com-video-to-gif.mp4)
+![](https://github.com/AdrianAntico/Quantico/blob/main/inst/AppInterface.gif)
 
 <br>
 

@@ -80,32 +80,32 @@ HomePage <- function(id, Page, AppWidth=12L) {
                     shiny::tags$summary(shiny::tags$span(shiny::tags$b('Standard Plots'))),
                     Quantico::BlankLine(12L),
 
-                    shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#standardplots", "Standard Plots")),
+                    shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#standardplots", "Standard")),
                     shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#histogramplots", "Histogram")),
-                    shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#densityplots", "Density Plots")),
-                    shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#boxplots", "Box Plots")),
-                    shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#pieplots", "Pie Plots")),
-                    shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#probabilityplots", "Probability Plots")),
-                    shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#donutplots", "Donut Plots")),
-                    shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#rosetypeplots", "Rosetype Plots")),
-                    shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#wordcloudplots", "Word Cloud Plots")),
-                    shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#areaplots", "Area Plots")),
-                    shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#lineplots", "Line Plots")),
-                    shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#riverplots", "River Plots")),
-                    shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#stepplots", "Step Plots")),
-                    shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#autocorrplots", "Autocorr Plots")),
-                    shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#partialautocorrplots", "PartialAutocorr Plots")),
-                    shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#barplots", "Bar Plots")),
-                    shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#stackedbarplots", "Stacked Bar Plots")),
-                    shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#3dbarplots", "3D Bar Plots")),
-                    shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#radarplots", "Radar Plots")),
-                    shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#scatterplots", "Scatter Plots")),
-                    shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#3dscatterplots", "3D Scatter Plots")),
-                    shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#copulaplots", "Copula Plots")),
-                    shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#3dcopulaplots", "3D Copula Plots")),
-                    shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#heatmapplots", "Heatmap Plots")),
-                    shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#parallelplots", "Parallel Plots")),
-                    shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#correlogramplots", "Correlogram Plots"))),
+                    shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#densityplots", "Density")),
+                    shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#boxplots", "Box")),
+                    shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#pieplots", "Pie")),
+                    shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#probabilityplots", "Probability")),
+                    shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#donutplots", "Donut")),
+                    shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#rosetypeplots", "Rosetype")),
+                    shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#wordcloudplots", "Word Cloud")),
+                    shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#areaplots", "Area")),
+                    shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#lineplots", "Line")),
+                    shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#riverplots", "River")),
+                    shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#stepplots", "Step")),
+                    shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#autocorrplots", "Autocorr")),
+                    shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#partialautocorrplots", "PartialAutocorr")),
+                    shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#barplots", "Bar")),
+                    shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#stackedbarplots", "Stacked Bar")),
+                    shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#3dbarplots", "3D Bar")),
+                    shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#radarplots", "Radar")),
+                    shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#scatterplots", "Scatter")),
+                    shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#3dscatterplots", "3D Scatter")),
+                    shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#copulaplots", "Copula")),
+                    shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#3dcopulaplots", "3D Copula")),
+                    shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#heatmapplots", "Heatmap")),
+                    shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#parallelplots", "Parallel")),
+                    shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#correlogramplots", "Correlogram"))),
 
                   Quantico::BlankRow(12L),
                   shiny::tags$details(
@@ -227,45 +227,6 @@ HomePage <- function(id, Page, AppWidth=12L) {
                   Quantico::BlankRow(12L),
                   shiny::tags$details(
                     style = "padding-left: 5px",
-                    shiny::tags$summary(shiny::tags$span(shiny::tags$b('Anomaly Detection'))),
-                    Quantico::BlankLine(12L),
-                    shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#anomalydetection", "Anomaly Detection"))
-                  ),
-
-                  Quantico::BlankRow(12L),
-                  shiny::tags$details(
-                    style = "padding-left: 5px",
-                    shiny::tags$summary(shiny::tags$span(shiny::tags$b('Dim Reduction'))),
-                    Quantico::BlankLine(12L),
-                    shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#dimensionalityreduction", "Dim Reduction")),
-                    shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#h2oautoencoder", "H2O Autoencoder"))
-                  ),
-
-                  Quantico::BlankRow(12L),
-                  shiny::tags$details(
-                    style = "padding-left: 5px",
-                    shiny::tags$summary(shiny::tags$span(shiny::tags$b('Clustering'))),
-                    Quantico::BlankLine(12L),
-                    shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#clustering", "Clustering")),
-                    shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#h2oclustering", "H2O Clustering"))
-                  ),
-
-                  Quantico::BlankRow(12L),
-                  shiny::tags$details(
-                    style = "padding-left: 5px",
-                    shiny::tags$summary(shiny::tags$span(shiny::tags$b('NLP'))),
-                    Quantico::BlankLine(12L),
-                    shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#nlp", "NLP")),
-                    shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#h2oword2vec", "H2O Word2Vec")),
-                    shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#textsummary", "Text Summary")),
-                    shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#sentiment", "Sentiment")),
-                    shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#readability", "Readability")),
-                    shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#lexicaldiversity", "Lexical Diversity")),
-                  ),
-
-                  Quantico::BlankRow(12L),
-                  shiny::tags$details(
-                    style = "padding-left: 5px",
                     shiny::tags$summary(shiny::tags$span(shiny::tags$b('Rolling'))),
                     Quantico::BlankLine(12L),
                     shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#rolling", "Rolling")),
@@ -305,6 +266,60 @@ HomePage <- function(id, Page, AppWidth=12L) {
                     shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#transform", "Transform Variables")),
                     shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#interaction", "Interaction Variables"))
                   )
+                ),
+
+                #  ----
+
+                #  ----
+
+                # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
+                # Unsupervised Learning Tab            ----
+                # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
+                Quantico::BlankRow(12L),
+                shiny::tags$details(
+                  style = "padding-left: 5px",
+                  shiny::tags$summary(shiny::tags$span(shiny::tags$b('Unsupervised Learning'))),
+                  Quantico::BlankLine(12L),
+                  shiny::a(shiny::icon("newspaper"), href="#unsupervisedlearning", "Unsupervised Learning"),
+
+                  Quantico::BlankRow(12L),
+                  shiny::tags$details(
+                    style = "padding-left: 5px",
+                    shiny::tags$summary(shiny::tags$span(shiny::tags$b('Anomaly Detection'))),
+                    Quantico::BlankLine(12L),
+                    shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#anomalydetection", "Anomaly Detection"))
+                  ),
+
+                  Quantico::BlankRow(12L),
+                  shiny::tags$details(
+                    style = "padding-left: 5px",
+                    shiny::tags$summary(shiny::tags$span(shiny::tags$b('Dim Reduction'))),
+                    Quantico::BlankLine(12L),
+                    shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#dimensionalityreduction", "Dim Reduction")),
+                    shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#h2oautoencoder", "H2O Autoencoder"))
+                  ),
+
+                  Quantico::BlankRow(12L),
+                  shiny::tags$details(
+                    style = "padding-left: 5px",
+                    shiny::tags$summary(shiny::tags$span(shiny::tags$b('Clustering'))),
+                    Quantico::BlankLine(12L),
+                    shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#clustering", "Clustering")),
+                    shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#h2oclustering", "H2O Clustering"))
+                  ),
+
+                  Quantico::BlankRow(12L),
+                  shiny::tags$details(
+                    style = "padding-left: 5px",
+                    shiny::tags$summary(shiny::tags$span(shiny::tags$b('NLP'))),
+                    Quantico::BlankLine(12L),
+                    shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#nlp", "NLP")),
+                    shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#h2oword2vec", "H2O Word2Vec")),
+                    shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#textsummary", "Text Summary")),
+                    shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#sentiment", "Sentiment")),
+                    shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#readability", "Readability")),
+                    shiny::fluidRow(style="padding-left: 5px", shiny::a(shiny::icon("newspaper"), href="#lexicaldiversity", "Lexical Diversity")),
+                  ),
                 ),
 
                 #  ----
@@ -2865,455 +2880,6 @@ HomePage <- function(id, Page, AppWidth=12L) {
               Quantico::BlankRow(12),
               Quantico::BlankRow(12),
 
-              # Anomaly Detection Button ----
-              shinydashboard::box(
-                title = NULL, solidHeader = TRUE, collapsible = FALSE, status = "danger", width = 12L,
-                shiny::fluidRow(
-                  shiny::column(
-                    width = 12L,
-                    shiny::a(name = "anomalydetection"),
-                    shiny::h1(tags$b("Anomaly Detection")),
-                    shiny::p("The Anomaly Detection button includes an Isolation Forest
-                           algorithm... ")
-                  )
-                )
-              ),
-
-              Quantico::BlankRow(12),
-              Quantico::BlankRow(12),
-              Quantico::BlankRow(12),
-
-              # Isolation Forest ----
-              shinydashboard::box(
-                title = NULL, solidHeader = TRUE, collapsible = FALSE, status = "danger", width = 12L,
-                shiny::fluidRow(
-                  shiny::column(
-                    width = 12L,
-                    shiny::a(name = "isolationforest"),
-                    shiny::h1(tags$b("Isolation Forest")),
-                    shiny::p("The Isolation Forest algorithm is provided by H2O. Per
-                           their documentation, 'Isolation Forest is similar in
-                           principle to Random Forest and is built on the basis of
-                           decision trees. Isolation Forest, however, identifies anomalies
-                           or outliers rather than profiling normal data points. Isolation
-                           Forest isolates observations by randomly selecting a feature and
-                           then randomly selecting a split value between the maximum and minimum
-                           values of that selected feature. This split depends on how long it
-                           takes to separate the points.'"),
-                    shiny::p("Random partitioning produces noticeably shorter paths for anomalies.
-                           When a forest of random trees collectively produces shorter path
-                           lengths for particular samples, they are highly likely to be anomalies.'... ")
-                  )
-                ),
-
-                Quantico::BlankRow(12),
-                shiny::fluidRow(shiny::column(width = 12L, shiny::h3("Isolation Forest Usage"))),
-                shiny::markdown(
-                  "
-                Isolation Forest operation is for running anomaly detection on your data
-                * Train Data: This is your training dataset. This one is required
-                * Validation Data: Optional. If you have a validation dataset supply that here
-                * Test Data: Optional. If you have a test dataset supply that here
-                * Features: Variables you want included in your anomaly detection operation
-                * Number of Trees: this is for the Random Forest that runs under the hood
-                * Anomaly Detection Threshold: this is to classify records as anomalies
-                * Max Depth: For the Random Forest
-                * Minimum Rows: For the Random Forest
-                * Row Sample Rate: For the Random Forest
-                * Column Sample Rate: For the Random Forest
-                * Column Sample Rate per Level: For the Random Forest
-                * Column Sample Rate per Tree: For the Random Forest
-                "
-                )
-              ),
-
-              Quantico::BlankRow(12),
-              Quantico::BlankRow(12),
-              Quantico::BlankRow(12),
-              Quantico::BlankRow(12),
-              Quantico::BlankRow(12),
-              Quantico::BlankRow(12),
-
-              # ----
-
-              # Dimensionality Reduction Button ----
-              shinydashboard::box(
-                title = NULL, solidHeader = TRUE, collapsible = FALSE, status = "danger", width = 12L,
-                shiny::fluidRow(
-                  shiny::column(
-                    width = 12L,
-                    shiny::a(name = "dimensionalityreduction"),
-                    shiny::h1(tags$b("Dimensionality Reduction")),
-                    shiny::p("The Dimensionality Reduction button includes an Autoencoder
-                           algorithm... ")
-                  )
-                )
-              ),
-
-              Quantico::BlankRow(12),
-              Quantico::BlankRow(12),
-              Quantico::BlankRow(12),
-
-              # Dimensionality Reduction ----
-              shinydashboard::box(
-                title = NULL, solidHeader = TRUE, collapsible = FALSE, status = "danger", width = 12L,
-                shiny::fluidRow(
-                  shiny::column(
-                    width = 12L,
-                    shiny::a(name = "h2oautoencoder"),
-                    shiny::h1(tags$b("Dimensionality Reduction")),
-                    shiny::p("The Dimensionality Reduction algorithm is provided by H2O. It
-                           utilizes their feed forward neural network multilayer perceptron model.
-                           You set one up to train without a target variable and extract one of the
-                           layers after a sufficient number of ephocs have ran...")
-                  )
-                ),
-
-                Quantico::BlankRow(12),
-                shiny::fluidRow(shiny::column(width = 12L, shiny::h3("Dimensionality Reduction Usage"))),
-                shiny::markdown(
-                  "
-                Dimensionality Reduction operation is for reducing a series of columns into a smaller set of columns
-                * Train Data: This is your training dataset. This one is required
-                * Validation Data: Optional. If you have a validation dataset supply that here
-                * Test Data: Optional. If you have a test dataset supply that here
-                * Anomaly Detection: Set to TRUE to return anomaly detection values
-                * Features: Variables you want included in your anomaly detection operation
-                * Remove Base Columns: If you want to retain the source Features set this to FALSE
-                * Anom Per-Feature: Set this to TRUE to have anomaly detection ran on all features individually as well as on the full set in aggregate
-                * Layer Returned: Pick the neural network layer you'd like returned
-                * Layer Count: How many layers do you want in your Neural Network?
-                * Shrink Base: each layer will reduce the number of nodes (dim reduction). E.g. if you have 100 features and choose a shrink rate of 0.50, then layer 2 will contain 50 features, layer 3 will contain 25 features, and so on.
-                * Epochs: number of iterations in training the neural network
-                * L2 Regularization: prevents overfitting. The higher the value the more protection (sometimes at a loss of accuracy)
-                * Elastic Averaging: Specify whether to enable elastic averaging between computing nodes, which can improve distributed model convergence
-                * Elastic Avg Rate: Only applicable if Elastic Averaging is set to TRUE
-                * Elastic Avg L2: Overfitting protection
-                "
-                )
-              ),
-
-              Quantico::BlankRow(12),
-              Quantico::BlankRow(12),
-              Quantico::BlankRow(12),
-              Quantico::BlankRow(12),
-              Quantico::BlankRow(12),
-              Quantico::BlankRow(12),
-
-              # ----
-
-              # Clustering Button ----
-              shinydashboard::box(
-                title = NULL, solidHeader = TRUE, collapsible = FALSE, status = "danger", width = 12L,
-                shiny::fluidRow(
-                  shiny::column(
-                    width = 12L,
-                    shiny::a(name = "clustering"),
-                    shiny::h1(tags$b("Clustering")),
-                    shiny::p("The Clustering button inclues a k-means clustering algorithm...")
-                  )
-                )
-              ),
-
-              Quantico::BlankRow(12),
-              Quantico::BlankRow(12),
-              Quantico::BlankRow(12),
-
-              # Clustering ----
-              shinydashboard::box(
-                title = NULL, solidHeader = TRUE, collapsible = FALSE, status = "danger", width = 12L,
-                shiny::fluidRow(
-                  shiny::column(
-                    width = 12L,
-                    shiny::a(name = "h2oclustering"),
-                    shiny::h1(tags$b("Clustering")),
-                    shiny::p("The k-means algorithm is provided by H2O...")
-                  )
-                ),
-
-                Quantico::BlankRow(12),
-                shiny::fluidRow(shiny::column(width = 12L, shiny::h3("Clustering Usage"))),
-                shiny::markdown(
-                  "
-                Clustering operation is for grouping rows together by a common key (clusters)
-                * Train Data: This is your training dataset. This one is required
-                * Validation Data: Optional. If you have a validation dataset supply that here
-                * Test Data: Optional. If you have a test dataset supply that here
-                * Features: Variables you want included in your anomaly detection operation
-                * Clustering Loss Metric: choose from:
-                  * totss: total sum of squares
-                  * betweenss: between sum of squares
-                  * withinss: within sum of squares
-                * Max Number of Clusters: set a ceiling for the potential number of clusters generated
-                "
-                )
-              ),
-
-              Quantico::BlankRow(12),
-              Quantico::BlankRow(12),
-              Quantico::BlankRow(12),
-              Quantico::BlankRow(12),
-              Quantico::BlankRow(12),
-              Quantico::BlankRow(12),
-
-              # ----
-
-              # NLP Button ----
-              shinydashboard::box(
-                title = NULL, solidHeader = TRUE, collapsible = FALSE, status = "danger", width = 12L,
-                shiny::fluidRow(
-                  shiny::column(
-                    width = 12L,
-                    shiny::a(name = "nlp"),
-                    shiny::h1(tags$b("NLP")),
-                    shiny::p("The NLP button includes a word2vec model, and functions for
-                           text summary, sentiment, readability, and lexical diversity... ")
-                  )
-                )
-              ),
-
-              # Word2Vec ----
-              shinydashboard::box(
-                title = NULL, solidHeader = TRUE, collapsible = FALSE, status = "danger", width = 12L,
-                shiny::fluidRow(
-                  shiny::column(
-                    width = 12L,
-                    shiny::a(name = "word2vec"),
-                    shiny::h1(tags$b("Word2Vec")),
-                    shiny::p("The word2vec model is provided by H2O...")
-                  )
-                ),
-
-                Quantico::BlankRow(12),
-                shiny::fluidRow(shiny::column(width = 12L, shiny::h3("Word2Vec Usage"))),
-                shiny::markdown(
-                  "
-                H2O Word2Vec operation is for converting text columns into numeric vectors suitable for modeling purposes
-                * Train Data: This is your training dataset. This one is required
-                * Validation Data: Optional. If you have a validation dataset supply that here
-                * Test Data: Optional. If you have a test dataset supply that here
-                * Text Variables: Text columns you want included in your word2vec operation
-                * Build Type:
-                  * individual: Generate a separate model for each text column
-                  * combined: Combine all text columns and build a single model
-                * Keep Text Columns: Select TRUE to retain the source text columns after the word2vec operation
-                * Number of vectors: For each text column, how many word2vec columns do you want returned?
-                * Min Word Count: For text data to be considered, it must have a minimum word count supplied by the user
-                * Window Size: For the word2vec operation, it analyzes surrounding words and that window is defined here by the user
-                * Number of Epochs: Number of iterations for training the word2vec model
-                "
-                )
-              ),
-
-              Quantico::BlankRow(12),
-              Quantico::BlankRow(12),
-              Quantico::BlankRow(12),
-
-              # Text Summary ----
-              shinydashboard::box(
-                title = NULL, solidHeader = TRUE, collapsible = FALSE, status = "danger", width = 12L,
-                shiny::fluidRow(
-                  shiny::column(
-                    width = 12L,
-                    shiny::a(name = "textsummary"),
-                    shiny::h1(tags$b("Text Summary")),
-                    shiny::p("The Text Summary function provided a number of new columns
-                           to your data set which include counts of: 'document', 'chars',
-                           'sents', 'tokens', 'types', 'puncts', 'numbers', 'symbols',
-                           'urls', 'tags', 'emojis'")
-                  )
-                ),
-
-                Quantico::BlankRow(12),
-                shiny::fluidRow(shiny::column(width = 12L, shiny::h3("Text Summary Usage"))),
-                shiny::markdown(
-                  "
-                Text Summary operation is for summarizing text columns for useful information
-                * Choose Data Set: This is your source dataset with text columns to analyze
-                * Text Columns: Select the text columns you want analyzed
-                * Remove Stats: Choose which stats to remove from the text summary output
-                "
-                )
-              ),
-
-              Quantico::BlankRow(12),
-              Quantico::BlankRow(12),
-              Quantico::BlankRow(12),
-
-              # Sentiment ----
-              shinydashboard::box(
-                title = NULL, solidHeader = TRUE, collapsible = FALSE, status = "danger", width = 12L,
-                shiny::fluidRow(
-                  shiny::column(
-                    width = 12L,
-                    shiny::a(name = "sentiment"),
-                    shiny::h1(tags$b("Sentiment")),
-                    shiny::p("The Sentiment function provided a sentiment score or a
-                           sentiment set of classifiers. One set is simply 'positive' or
-                           'negative' while the other also includes 'neutral'...")
-                  )
-                ),
-
-                Quantico::BlankRow(12),
-                shiny::fluidRow(shiny::column(width = 12L, shiny::h3("Sentiment Usage"))),
-                shiny::markdown(
-                  "
-                Sentiment operation is for analyzing text for positive, negative, or neutral expression
-                * Choose Data Set: This is your source dataset with text columns to analyze
-                * Text Columns: Select the text columns you want analyzed
-                * Output Type: Choose which stats to remove from the text summary output
-                * Remove Stopwords: Select TRUE to have the Sentiment operation ignore stopwords
-                * Apply Stemming: Select TRUE to apply stemming
-                "
-                )
-              ),
-
-              Quantico::BlankRow(12),
-              Quantico::BlankRow(12),
-              Quantico::BlankRow(12),
-
-              # Readability ----
-              shinydashboard::box(
-                title = NULL, solidHeader = TRUE, collapsible = FALSE, status = "danger", width = 12L,
-                shiny::fluidRow(
-                  shiny::column(
-                    width = 12L,
-                    shiny::a(name = "readability"),
-                    shiny::h1(tags$b("Readability")),
-                    shiny::p("The Readability function provides a readability score for a variety
-                           of readability metrics. You can choose to have a single verion returned or
-                           as many as you'd like and they're be returned as new features in your dataset.
-                           The definitions can be found in the link below..."),
-                    tags$a(target="_blank", shiny::icon("newspaper"), href="https://cran.r-project.org/web/packages/quanteda.textstats/quanteda.textstats.pdf", "Definitions Link"),
-                    shiny::p("The Readability measures include: "),
-                    shiny::markdown(
-                      "
-                  * 'Flesch'
-                  * 'ARI'
-                  * 'Bormuth.MC'
-                  * 'Bormuth.GP'
-                  * 'Coleman'
-                  * 'Coleman.C2'
-                  * 'Coleman.Liau.ECP'
-                  * 'Coleman.Liau.grade'
-                  * 'Coleman.Liau.short'
-                  * 'Dale.Chall'
-                  * 'Danielson.Bryan'
-                  * 'Dickes.Steiwer'
-                  * 'DRP'
-                  * 'ELF'
-                  * 'Farr.Jenkins.Paterson'
-                  * 'Flesch.PSK'
-                  * 'Flesch.Kincaid'
-                  * 'FOG'
-                  * 'FOG.PSK'
-                  * 'FOG.NRI'
-                  * 'FORCAST'
-                  * 'Fucks'
-                  * 'Linsear.Write'
-                  * 'LIW'
-                  * 'nWS'
-                  * 'nWS.2'
-                  * 'nWS.3'
-                  * 'nWS4'
-                  * 'RIX'
-                  * 'Scrabble'
-                  * 'SMOG'
-                  * 'SMOG.C'
-                  * 'SMOG.simple'
-                  * 'SMOG.de'
-                  * 'Spache'
-                  * 'Spache.old'
-                  * 'Strain'
-                  * 'Traenkle.Bailer'
-                  * 'Wheeler.Smith'
-                  * 'meanSentenceLength'
-                  * 'meanWordSyllables'
-                  ")
-                  )
-                ),
-
-                Quantico::BlankRow(12),
-                shiny::fluidRow(shiny::column(width = 12L, shiny::h3("Readability Usage"))),
-                shiny::markdown(
-                  "
-                Readability operation is for analyzing text for readability, based on the metrics selected
-                * Choose Data Set: This is your source dataset with text columns to analyze
-                * Text Columns: Select the text columns you want analyzed
-                * Readability Measures: Select at least one readability measure. Each readability measure will produce its own column of scores based on the measure
-                * Remove Hyphens: Text cleaning task
-                * Max Sentence Length: Text cleaning task
-                * Include Intermediate Values: Set to TRUE to have the variables that go into the readability measure returned in your data
-                "
-                )
-              ),
-
-              Quantico::BlankRow(12),
-              Quantico::BlankRow(12),
-              Quantico::BlankRow(12),
-
-              # Lexical Diversity ----
-              shinydashboard::box(
-                title = NULL, solidHeader = TRUE, collapsible = FALSE, status = "danger", width = 12L,
-                shiny::fluidRow(
-                  shiny::column(
-                    width = 12L,
-                    shiny::a(name = "lexicaldiversity"),
-                    shiny::h1(tags$b("Lexical Diversity")),
-                    shiny::p("The Lexical Diversity function provides a lexical diversity score for a variety
-                           of lexical diversity metrics. You can choose to have a single verion returned or
-                           as many as you'd like and they're be returned as new features in your dataset.
-                           Definitions for the below can be found here:"),
-                    tags$a(target="_blank", shiny::icon("newspaper"), href="https://cran.r-project.org/web/packages/quanteda.textstats/quanteda.textstats.pdf", "Definitions Link"),
-                    shiny::p("The Lexical Diversity measures include: "),
-                    shiny::markdown(
-                      "
-                    * 'TTR'
-                    * 'C'
-                    * 'R'
-                    * 'CTTR'
-                    * 'U'
-                    * 'S'
-                    * 'K'
-                    * 'I'
-                    * 'D'
-                    * 'Vm'
-                    * 'Maas'
-                    * 'MATTR'
-                    * 'MSTTR'
-                    "
-                    )
-                  )
-                ),
-
-                Quantico::BlankRow(12),
-                shiny::fluidRow(shiny::column(width = 12L, shiny::h3("Lexical Diversity Usage"))),
-                shiny::markdown(
-                  "
-                Lexical Diversity operation is for analyzing text for complexity, based on the metrics selected
-                * Choose Data Set: This is your source dataset with text columns to analyze
-                * Text Columns: Select the text columns you want analyzed
-                * Lexical Measures: Select at least one lexical diversity measure. Each measure will produce its own column of scores based on the measure
-                * Remove Hyphens: Text cleaning task
-                * Remove Symbols: Text cleaning task
-                * Remove Punctuation: Text cleaning task
-                * Remove Numbers: Text cleaning task
-                * Log Base: Some of the measures utilize logs in their calculation. Default is natural log but you can select a different base
-                * Moving Avg Window for MATTR: Only applies if you select the MATTR measure
-                * Segment size for MSTTR: Only applies if you select MSTTR measure
-                "
-                )
-              ),
-
-              Quantico::BlankRow(12),
-              Quantico::BlankRow(12),
-              Quantico::BlankRow(12),
-              Quantico::BlankRow(12),
-              Quantico::BlankRow(12),
-              Quantico::BlankRow(12),
-
-              # ----
-
               # Rolling Button ----
               shinydashboard::box(
                 title = NULL, solidHeader = TRUE, collapsible = FALSE, status = "danger", width = 12L,
@@ -3806,6 +3372,480 @@ HomePage <- function(id, Page, AppWidth=12L) {
               Quantico::BlankRow(12),
               Quantico::BlankRow(12),
               Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+
+              # ----
+
+              # ----
+
+              ################################################# ----
+              # Unsupervised Learning                           ----
+              ################################################# ----
+              shinydashboard::box(
+                title = NULL, solidHeader = TRUE, collapsible = FALSE, status = "danger", width = 12L,
+                shiny::fluidRow(
+                  shiny::column(
+                    width = 12L,
+                    shiny::a(name = "unsupervisedlearning"),
+                    shiny::h2(tags$b("Unsupervised Learning")),
+                    shiny::p("Unsupervised Learning is a vitally important aspect of this software. It's important that
+                             you know how to utilize the functionality as intended. Below are all of the available methods
+                             with descriptions about how to use each and every one for each of their intended uses. I find that
+                             feature engineering is fastest way to generate a sufficiently good model, when combined with one of
+                             the ML methods.")
+                  )
+                )
+              ),
+
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+
+              # Anomaly Detection Button ----
+              shinydashboard::box(
+                title = NULL, solidHeader = TRUE, collapsible = FALSE, status = "danger", width = 12L,
+                shiny::fluidRow(
+                  shiny::column(
+                    width = 12L,
+                    shiny::a(name = "anomalydetection"),
+                    shiny::h1(tags$b("Anomaly Detection")),
+                    shiny::p("The Anomaly Detection button includes an Isolation Forest
+                           algorithm... ")
+                  )
+                )
+              ),
+
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+
+              # Isolation Forest ----
+              shinydashboard::box(
+                title = NULL, solidHeader = TRUE, collapsible = FALSE, status = "danger", width = 12L,
+                shiny::fluidRow(
+                  shiny::column(
+                    width = 12L,
+                    shiny::a(name = "isolationforest"),
+                    shiny::h1(tags$b("Isolation Forest")),
+                    shiny::p("The Isolation Forest algorithm is provided by H2O. Per
+                           their documentation, 'Isolation Forest is similar in
+                           principle to Random Forest and is built on the basis of
+                           decision trees. Isolation Forest, however, identifies anomalies
+                           or outliers rather than profiling normal data points. Isolation
+                           Forest isolates observations by randomly selecting a feature and
+                           then randomly selecting a split value between the maximum and minimum
+                           values of that selected feature. This split depends on how long it
+                           takes to separate the points.'"),
+                    shiny::p("Random partitioning produces noticeably shorter paths for anomalies.
+                           When a forest of random trees collectively produces shorter path
+                           lengths for particular samples, they are highly likely to be anomalies.'... ")
+                  )
+                ),
+
+                Quantico::BlankRow(12),
+                shiny::fluidRow(shiny::column(width = 12L, shiny::h3("Isolation Forest Usage"))),
+                shiny::markdown(
+                  "
+                Isolation Forest operation is for running anomaly detection on your data
+                * Train Data: This is your training dataset. This one is required
+                * Validation Data: Optional. If you have a validation dataset supply that here
+                * Test Data: Optional. If you have a test dataset supply that here
+                * Features: Variables you want included in your anomaly detection operation
+                * Number of Trees: this is for the Random Forest that runs under the hood
+                * Anomaly Detection Threshold: this is to classify records as anomalies
+                * Max Depth: For the Random Forest
+                * Minimum Rows: For the Random Forest
+                * Row Sample Rate: For the Random Forest
+                * Column Sample Rate: For the Random Forest
+                * Column Sample Rate per Level: For the Random Forest
+                * Column Sample Rate per Tree: For the Random Forest
+                "
+                )
+              ),
+
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+
+              # ----
+
+              # Dimensionality Reduction Button ----
+              shinydashboard::box(
+                title = NULL, solidHeader = TRUE, collapsible = FALSE, status = "danger", width = 12L,
+                shiny::fluidRow(
+                  shiny::column(
+                    width = 12L,
+                    shiny::a(name = "dimensionalityreduction"),
+                    shiny::h1(tags$b("Dimensionality Reduction")),
+                    shiny::p("The Dimensionality Reduction button includes an Autoencoder
+                           algorithm... ")
+                  )
+                )
+              ),
+
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+
+              # Dimensionality Reduction ----
+              shinydashboard::box(
+                title = NULL, solidHeader = TRUE, collapsible = FALSE, status = "danger", width = 12L,
+                shiny::fluidRow(
+                  shiny::column(
+                    width = 12L,
+                    shiny::a(name = "h2oautoencoder"),
+                    shiny::h1(tags$b("Dimensionality Reduction")),
+                    shiny::p("The Dimensionality Reduction algorithm is provided by H2O. It
+                           utilizes their feed forward neural network multilayer perceptron model.
+                           You set one up to train without a target variable and extract one of the
+                           layers after a sufficient number of ephocs have ran...")
+                  )
+                ),
+
+                Quantico::BlankRow(12),
+                shiny::fluidRow(shiny::column(width = 12L, shiny::h3("Dimensionality Reduction Usage"))),
+                shiny::markdown(
+                  "
+                Dimensionality Reduction operation is for reducing a series of columns into a smaller set of columns
+                * Train Data: This is your training dataset. This one is required
+                * Validation Data: Optional. If you have a validation dataset supply that here
+                * Test Data: Optional. If you have a test dataset supply that here
+                * Anomaly Detection: Set to TRUE to return anomaly detection values
+                * Features: Variables you want included in your anomaly detection operation
+                * Remove Base Columns: If you want to retain the source Features set this to FALSE
+                * Anom Per-Feature: Set this to TRUE to have anomaly detection ran on all features individually as well as on the full set in aggregate
+                * Layer Returned: Pick the neural network layer you'd like returned
+                * Layer Count: How many layers do you want in your Neural Network?
+                * Shrink Base: each layer will reduce the number of nodes (dim reduction). E.g. if you have 100 features and choose a shrink rate of 0.50, then layer 2 will contain 50 features, layer 3 will contain 25 features, and so on.
+                * Epochs: number of iterations in training the neural network
+                * L2 Regularization: prevents overfitting. The higher the value the more protection (sometimes at a loss of accuracy)
+                * Elastic Averaging: Specify whether to enable elastic averaging between computing nodes, which can improve distributed model convergence
+                * Elastic Avg Rate: Only applicable if Elastic Averaging is set to TRUE
+                * Elastic Avg L2: Overfitting protection
+                "
+                )
+              ),
+
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+
+              # ----
+
+              # Clustering Button ----
+              shinydashboard::box(
+                title = NULL, solidHeader = TRUE, collapsible = FALSE, status = "danger", width = 12L,
+                shiny::fluidRow(
+                  shiny::column(
+                    width = 12L,
+                    shiny::a(name = "clustering"),
+                    shiny::h1(tags$b("Clustering")),
+                    shiny::p("The Clustering button inclues a k-means clustering algorithm...")
+                  )
+                )
+              ),
+
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+
+              # Clustering ----
+              shinydashboard::box(
+                title = NULL, solidHeader = TRUE, collapsible = FALSE, status = "danger", width = 12L,
+                shiny::fluidRow(
+                  shiny::column(
+                    width = 12L,
+                    shiny::a(name = "h2oclustering"),
+                    shiny::h1(tags$b("Clustering")),
+                    shiny::p("The k-means algorithm is provided by H2O...")
+                  )
+                ),
+
+                Quantico::BlankRow(12),
+                shiny::fluidRow(shiny::column(width = 12L, shiny::h3("Clustering Usage"))),
+                shiny::markdown(
+                  "
+                Clustering operation is for grouping rows together by a common key (clusters)
+                * Train Data: This is your training dataset. This one is required
+                * Validation Data: Optional. If you have a validation dataset supply that here
+                * Test Data: Optional. If you have a test dataset supply that here
+                * Features: Variables you want included in your anomaly detection operation
+                * Clustering Loss Metric: choose from:
+                  * totss: total sum of squares
+                  * betweenss: between sum of squares
+                  * withinss: within sum of squares
+                * Max Number of Clusters: set a ceiling for the potential number of clusters generated
+                "
+                )
+              ),
+
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+
+              # ----
+
+              # NLP Button ----
+              shinydashboard::box(
+                title = NULL, solidHeader = TRUE, collapsible = FALSE, status = "danger", width = 12L,
+                shiny::fluidRow(
+                  shiny::column(
+                    width = 12L,
+                    shiny::a(name = "nlp"),
+                    shiny::h1(tags$b("NLP")),
+                    shiny::p("The NLP button includes a word2vec model, and functions for
+                           text summary, sentiment, readability, and lexical diversity... ")
+                  )
+                )
+              ),
+
+              # Word2Vec ----
+              shinydashboard::box(
+                title = NULL, solidHeader = TRUE, collapsible = FALSE, status = "danger", width = 12L,
+                shiny::fluidRow(
+                  shiny::column(
+                    width = 12L,
+                    shiny::a(name = "word2vec"),
+                    shiny::h1(tags$b("Word2Vec")),
+                    shiny::p("The word2vec model is provided by H2O...")
+                  )
+                ),
+
+                Quantico::BlankRow(12),
+                shiny::fluidRow(shiny::column(width = 12L, shiny::h3("Word2Vec Usage"))),
+                shiny::markdown(
+                  "
+                H2O Word2Vec operation is for converting text columns into numeric vectors suitable for modeling purposes
+                * Train Data: This is your training dataset. This one is required
+                * Validation Data: Optional. If you have a validation dataset supply that here
+                * Test Data: Optional. If you have a test dataset supply that here
+                * Text Variables: Text columns you want included in your word2vec operation
+                * Build Type:
+                  * individual: Generate a separate model for each text column
+                  * combined: Combine all text columns and build a single model
+                * Keep Text Columns: Select TRUE to retain the source text columns after the word2vec operation
+                * Number of vectors: For each text column, how many word2vec columns do you want returned?
+                * Min Word Count: For text data to be considered, it must have a minimum word count supplied by the user
+                * Window Size: For the word2vec operation, it analyzes surrounding words and that window is defined here by the user
+                * Number of Epochs: Number of iterations for training the word2vec model
+                "
+                )
+              ),
+
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+
+              # Text Summary ----
+              shinydashboard::box(
+                title = NULL, solidHeader = TRUE, collapsible = FALSE, status = "danger", width = 12L,
+                shiny::fluidRow(
+                  shiny::column(
+                    width = 12L,
+                    shiny::a(name = "textsummary"),
+                    shiny::h1(tags$b("Text Summary")),
+                    shiny::p("The Text Summary function provided a number of new columns
+                           to your data set which include counts of: 'document', 'chars',
+                           'sents', 'tokens', 'types', 'puncts', 'numbers', 'symbols',
+                           'urls', 'tags', 'emojis'")
+                  )
+                ),
+
+                Quantico::BlankRow(12),
+                shiny::fluidRow(shiny::column(width = 12L, shiny::h3("Text Summary Usage"))),
+                shiny::markdown(
+                  "
+                Text Summary operation is for summarizing text columns for useful information
+                * Choose Data Set: This is your source dataset with text columns to analyze
+                * Text Columns: Select the text columns you want analyzed
+                * Remove Stats: Choose which stats to remove from the text summary output
+                "
+                )
+              ),
+
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+
+              # Sentiment ----
+              shinydashboard::box(
+                title = NULL, solidHeader = TRUE, collapsible = FALSE, status = "danger", width = 12L,
+                shiny::fluidRow(
+                  shiny::column(
+                    width = 12L,
+                    shiny::a(name = "sentiment"),
+                    shiny::h1(tags$b("Sentiment")),
+                    shiny::p("The Sentiment function provided a sentiment score or a
+                           sentiment set of classifiers. One set is simply 'positive' or
+                           'negative' while the other also includes 'neutral'...")
+                  )
+                ),
+
+                Quantico::BlankRow(12),
+                shiny::fluidRow(shiny::column(width = 12L, shiny::h3("Sentiment Usage"))),
+                shiny::markdown(
+                  "
+                Sentiment operation is for analyzing text for positive, negative, or neutral expression
+                * Choose Data Set: This is your source dataset with text columns to analyze
+                * Text Columns: Select the text columns you want analyzed
+                * Output Type: Choose which stats to remove from the text summary output
+                * Remove Stopwords: Select TRUE to have the Sentiment operation ignore stopwords
+                * Apply Stemming: Select TRUE to apply stemming
+                "
+                )
+              ),
+
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+
+              # Readability ----
+              shinydashboard::box(
+                title = NULL, solidHeader = TRUE, collapsible = FALSE, status = "danger", width = 12L,
+                shiny::fluidRow(
+                  shiny::column(
+                    width = 12L,
+                    shiny::a(name = "readability"),
+                    shiny::h1(tags$b("Readability")),
+                    shiny::p("The Readability function provides a readability score for a variety
+                           of readability metrics. You can choose to have a single verion returned or
+                           as many as you'd like and they're be returned as new features in your dataset.
+                           The definitions can be found in the link below..."),
+                    tags$a(target="_blank", shiny::icon("newspaper"), href="https://cran.r-project.org/web/packages/quanteda.textstats/quanteda.textstats.pdf", "Definitions Link"),
+                    shiny::p("The Readability measures include: "),
+                    shiny::markdown(
+                      "
+                  * 'Flesch'
+                  * 'ARI'
+                  * 'Bormuth.MC'
+                  * 'Bormuth.GP'
+                  * 'Coleman'
+                  * 'Coleman.C2'
+                  * 'Coleman.Liau.ECP'
+                  * 'Coleman.Liau.grade'
+                  * 'Coleman.Liau.short'
+                  * 'Dale.Chall'
+                  * 'Danielson.Bryan'
+                  * 'Dickes.Steiwer'
+                  * 'DRP'
+                  * 'ELF'
+                  * 'Farr.Jenkins.Paterson'
+                  * 'Flesch.PSK'
+                  * 'Flesch.Kincaid'
+                  * 'FOG'
+                  * 'FOG.PSK'
+                  * 'FOG.NRI'
+                  * 'FORCAST'
+                  * 'Fucks'
+                  * 'Linsear.Write'
+                  * 'LIW'
+                  * 'nWS'
+                  * 'nWS.2'
+                  * 'nWS.3'
+                  * 'nWS4'
+                  * 'RIX'
+                  * 'Scrabble'
+                  * 'SMOG'
+                  * 'SMOG.C'
+                  * 'SMOG.simple'
+                  * 'SMOG.de'
+                  * 'Spache'
+                  * 'Spache.old'
+                  * 'Strain'
+                  * 'Traenkle.Bailer'
+                  * 'Wheeler.Smith'
+                  * 'meanSentenceLength'
+                  * 'meanWordSyllables'
+                  ")
+                  )
+                ),
+
+                Quantico::BlankRow(12),
+                shiny::fluidRow(shiny::column(width = 12L, shiny::h3("Readability Usage"))),
+                shiny::markdown(
+                  "
+                Readability operation is for analyzing text for readability, based on the metrics selected
+                * Choose Data Set: This is your source dataset with text columns to analyze
+                * Text Columns: Select the text columns you want analyzed
+                * Readability Measures: Select at least one readability measure. Each readability measure will produce its own column of scores based on the measure
+                * Remove Hyphens: Text cleaning task
+                * Max Sentence Length: Text cleaning task
+                * Include Intermediate Values: Set to TRUE to have the variables that go into the readability measure returned in your data
+                "
+                )
+              ),
+
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+              Quantico::BlankRow(12),
+
+              # Lexical Diversity ----
+              shinydashboard::box(
+                title = NULL, solidHeader = TRUE, collapsible = FALSE, status = "danger", width = 12L,
+                shiny::fluidRow(
+                  shiny::column(
+                    width = 12L,
+                    shiny::a(name = "lexicaldiversity"),
+                    shiny::h1(tags$b("Lexical Diversity")),
+                    shiny::p("The Lexical Diversity function provides a lexical diversity score for a variety
+                           of lexical diversity metrics. You can choose to have a single verion returned or
+                           as many as you'd like and they're be returned as new features in your dataset.
+                           Definitions for the below can be found here:"),
+                    tags$a(target="_blank", shiny::icon("newspaper"), href="https://cran.r-project.org/web/packages/quanteda.textstats/quanteda.textstats.pdf", "Definitions Link"),
+                    shiny::p("The Lexical Diversity measures include: "),
+                    shiny::markdown(
+                      "
+                    * 'TTR'
+                    * 'C'
+                    * 'R'
+                    * 'CTTR'
+                    * 'U'
+                    * 'S'
+                    * 'K'
+                    * 'I'
+                    * 'D'
+                    * 'Vm'
+                    * 'Maas'
+                    * 'MATTR'
+                    * 'MSTTR'
+                    "
+                    )
+                  )
+                ),
+
+                Quantico::BlankRow(12),
+                shiny::fluidRow(shiny::column(width = 12L, shiny::h3("Lexical Diversity Usage"))),
+                shiny::markdown(
+                  "
+                Lexical Diversity operation is for analyzing text for complexity, based on the metrics selected
+                * Choose Data Set: This is your source dataset with text columns to analyze
+                * Text Columns: Select the text columns you want analyzed
+                * Lexical Measures: Select at least one lexical diversity measure. Each measure will produce its own column of scores based on the measure
+                * Remove Hyphens: Text cleaning task
+                * Remove Symbols: Text cleaning task
+                * Remove Punctuation: Text cleaning task
+                * Remove Numbers: Text cleaning task
+                * Log Base: Some of the measures utilize logs in their calculation. Default is natural log but you can select a different base
+                * Moving Avg Window for MATTR: Only applies if you select the MATTR measure
+                * Segment size for MSTTR: Only applies if you select MSTTR measure
+                "
+                )
+              ),
+
               Quantico::BlankRow(12),
               Quantico::BlankRow(12),
               Quantico::BlankRow(12),

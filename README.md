@@ -7,33 +7,43 @@
 
 <br>
 
-Quantico is a Shiny App for data science, analytics, and business intelligence. The app is non-reactive where big data can cause a poor user experience. All data operations utilize data.table and collapse for fast processing and low memory utilization. Visualizations are based on the echarts4r library and the best machine learning and forecasting models are available. Data can be accessed in several ways and session saving and restoration is available. 15 app themes are available with a large variety of background images as well. 
+Quantico is a Shiny App for data science, analytics, and business intelligence. The app is non-reactive where big data can cause a poor user experience. All data operations utilize data.table for fast processing and low memory utilization. Visualizations are based on the echarts4r library, machine learning is based on CatBoost, XGBoost, LightGBM, and some of the H2O models. Time series models are based on the forecast pacakge. Panel forecast models are ML based and utilize CatBoost, XGBoost, and LightGBM. Data can be accessed via PostGRE or locally, and session saving and restoration is available. There are 15 different colored app themes along with the inclusion of various background images.
+
+The goal of Quantico is make life easier. While there are several GUI's available in the R ecosystem, I haven't found one that really serves my needs. I want to be able to explore data quickly and produce results that can be shared across an organization, as an example. Some of the tasks can take anywhere from an hour to a full day (possible more) in a typical coding environment (dependent upon skills of course) while they can produced within minutes with Quantico. Another aspect is handling big(ish) data. The data.table package is utilized and can process big data quickly while keeping your memory footprint small, thus enabling larger datasets to be managed within the app for a given device.
+
+The way the app layout works is that the sidebar is predominantly intended to run various tasks (aside from managing settings) while the main panel is for displaying various outputs. For example, you will go to the sidebar to load new data, run data wrangling tasks, perhaps some feature engineering or modeling tasks. Then, you'll go to the appropriate main panel output tab to display output.
 
 Note: For the best user experience I recommend using Chrome and having the zoom level set to 75%
 
-At a high level the app enables:
+## App Capabilities
 * Data Management
-* Session Saving / Loading
+* Session Saving & Restoration
 * Code Generation
-* Plotting
-* Tables Viewer
+* Visualization
+* Data Viewer
 * Data Wrangling
 * Feature Engineering
 * Unsupervised Learning
 * Machine Learning
-* Inference
+* Statistical Inference
 * Forecasting
 
-Automated output reports are included for:
-1. Plotting
+Automated in-app reports are included for:
+1. Visualization
 2. Exploratory Data Analysis
-3. Inference
+3. Statistical Inference
 4. Machine Learning
 5. Forecasting
 
+Automated RMarkdown reports are included for:
+1. Visualization
+2. Exploratory Data Analysis
+3. Machine Learning
+4. Forecasting
+
 <br>
 
-## App Usage
+## Table of Contents
 - [Installation](#Installation)
 - [Quick Start](#Quickstart)
 - [App Interface](#app-interface)

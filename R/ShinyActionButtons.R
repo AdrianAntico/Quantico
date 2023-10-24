@@ -830,7 +830,7 @@ FE_NLP <- function(id='NLP_Modal',
     shiny::column(
       width = 12L,
       align=Align,
-      shiny::actionLink("NLP_Modal", label = "Text", icon = shiny::icon("right-from-bracket"))
+      shiny::actionLink("NLP_Modal", label = "NLP", icon = shiny::icon("right-from-bracket"))
   ))
 }
 

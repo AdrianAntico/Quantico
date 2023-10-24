@@ -7,13 +7,22 @@
 
 <br>
 
+#### Background
 Quantico is a Shiny App for data science, analytics, and business intelligence. The app is non-reactive where big data can cause a poor user experience. All data operations utilize data.table for fast processing and low memory utilization. Visualizations are based on the echarts4r library, machine learning is based on CatBoost, XGBoost, LightGBM, and some of the H2O models. Time series models are based on the forecast pacakge. Panel forecast models are ML based and utilize CatBoost, XGBoost, and LightGBM. Data can be accessed via PostGRE or locally, and session saving and restoration is available. There are 15 different colored app themes along with the inclusion of various background images.
 
-The goal of Quantico is make life easier. While there are several GUI's available in the R ecosystem, I haven't found one that really serves my needs. I want to be able to explore data quickly and produce results that can be shared across an organization, as an example. Some of the tasks can take anywhere from an hour to a full day (possible more) in a typical coding environment (dependent upon skills of course) while they can produced within minutes with Quantico. Another aspect is handling big(ish) data. The data.table package is utilized and can process big data quickly while keeping your memory footprint small, thus enabling larger datasets to be managed within the app for a given device.
+<br>
 
-The way the app layout works is that the sidebar is predominantly intended to run various tasks (aside from managing settings) while the main panel is for displaying various outputs. For example, you will go to the sidebar to load new data, run data wrangling tasks, perhaps some feature engineering or modeling tasks. Then, you'll go to the appropriate main panel output tab to display output.
+#### Goals
+The fundamental goal of Quantico is to make life easier. While there are several GUI's available in the R ecosystem, I haven't found one that really serves my needs. I want to be able to explore data quickly and produce results that can be shared across an organization, as an example. Some of the tasks can take anywhere from an hour to a full day in a typical coding environment (possibly more or less dependent upon one's skills of course) while they can produced within minutes with Quantico. Another aspect is handling big data. The data.table package is utilized and can process big data quickly while keeping your memory footprint small, thus enabling larger datasets to be managed within the app for a given device. Lastly, I would like to be able to transition from an in-app experience to a coding environment with ease, which is handled nicely with the code generation part of the app. If I need to take something to the next level that the app doesn't support, I can grab the code and pick up where I left off in my favorite IDE.
 
-Note: For the best user experience I recommend using Chrome and having the zoom level set to 75%
+<br>
+
+#### User Experience
+The primary goals of the app design is make it easy and fast to use, and to create a look and feel that is fun to use. The way the app layout works is that the sidebar is predominantly intended for setting up inputs and running various tasks (aside from the settings options) while the main panel is for displaying various outputs. With this design, I am able to maximize the space available for viewing output. 
+
+`Note:` For the best viewing experience I recommend using Chrome and having the zoom level set to 75%
+
+<br>
 
 ## App Capabilities
 * Data Management

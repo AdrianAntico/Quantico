@@ -58,8 +58,6 @@ Shiny.FE.Date.Calendar <- function(input,output,session,DataList,CodeList,CacheD
   }
 
   # Update meta
-  DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, SelectData)}, error = function(x) DataList)
-
   return(list(
     DataList = DataList,
     CodeList = CodeList
@@ -122,7 +120,6 @@ Shiny.FE.Date.Holiday <- function(input,output,session,DataList,CodeList,CacheDi
 
     # Return
     if(Debug) {print('FE Holiday Variables 6'); print(names(DataList)); print(CodeList)}
-    DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, SelectData)}, error = function(x) DataList)
     return(list(
       DataList = DataList,
       CodeList = CodeList
@@ -222,7 +219,6 @@ Shiny.FE.Numeric.PercentRank <- function(input,output,session,DataList,CodeList,
 
     # Return
     if(Debug) {print('FE PercRank 6'); print(names(DataList)); print(CodeList)}
-    DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, PercentRank_SelectData)}, error = function(x) DataList)
     return(list(
       DataList = DataList,
       CodeList = CodeList
@@ -326,7 +322,6 @@ Shiny.FE.Numeric.Standardize <- function(input,output,session,DataList,CodeList,
 
     # Return
     if(Debug) {print('FE Standardize 6'); print(names(DataList)); print(CodeList)}
-    DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, Standardize_SelectData)}, error = function(x) DataList)
     return(list(
       DataList = DataList,
       CodeList = CodeList
@@ -388,7 +383,6 @@ Shiny.FE.Numeric.Interactions <- function(input,output,session,DataList,CodeList
 
     # Return
     if(Debug) {print('FE Numeric Interaction 2'); print(names(DataList)); print(CodeList)}
-    DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, AutoInteraction_SelectData)}, error = function(x) DataList)
     return(list(
       DataList = DataList,
       CodeList = CodeList
@@ -507,7 +501,6 @@ Shiny.FE.Categorical.Dummify <- function(input,output,session,DataList,CodeList,
 
     # Return
     if(Debug) {print('FE Partial Dummies 2'); print(names(DataList)); print(CodeList)}
-    DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, DummifyDT_SelectData)}, error = function(x) DataList)
     return(list(
       DataList = DataList,
       CodeList = CodeList
@@ -536,14 +529,25 @@ Shiny.FE.CrossRow.CategoricalEncoding <- function(input,output,session,DataList,
   shiny::withProgress(message = 'Categorical Encoding has begun..', value = 0, {
     CategoricalEncoding_GroupVariables <- Quantico:::ReturnParam(xx = tryCatch({input[['CategoricalEncoding_GroupVariables']]}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
     if(length(CategoricalEncoding_GroupVariables) != 0) {
+
+      if(Debug) print('here 1')
+
       CategoricalEncoding_TargetVariable <- Quantico:::ReturnParam(xx = tryCatch({input[['CategoricalEncoding_TargetVariable']]}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
+      if(Debug) print('here 2')
       CategoricalEncoding_Method <- Quantico:::ReturnParam(xx = tryCatch({input[['CategoricalEncoding_Method']]}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
+      if(Debug) print('here 3')
       temp_train <- Quantico:::ReturnParam(xx = tryCatch({input$CategoricalEncoding_TrainData}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
+      if(Debug) print('here 4')
       x <- DataList[[temp_train]][['data']]
+      if(Debug) print('here 5')
       temp_validate <- Quantico:::ReturnParam(xx = tryCatch({input$CategoricalEncoding_ValidationData}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
+      if(Debug) print('here 6')
       if(length(temp_validate) > 0L) y <- DataList[[temp_validate]][['data']] else y <- NULL
+      if(Debug) print('here 7')
       temp_test <- Quantico:::ReturnParam(xx = tryCatch({input$CategoricalEncoding_TestData}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
+      if(Debug) print('here 8')
       if(length(temp_test) > 0L) z <- DataList[[temp_train]][['data']] else z <- NULL
+      if(Debug) print('here 9')
 
       # Identify target type
       if(class(x[[eval(CategoricalEncoding_TargetVariable)]])[1L] %in% c('character','factor')) {
@@ -554,8 +558,10 @@ Shiny.FE.CrossRow.CategoricalEncoding <- function(input,output,session,DataList,
         MLType <- 'Regression'
       }
 
+      if(Debug) print('here 10')
+
       # Build Features
-      Output <- Quantico:::EncodeCharacterVariables(
+      Output <- Rodeo:::EncodeCharacterVariables(
         RunMode = 'train',
         ModelType = MLType,
         TrainData = x,
@@ -569,14 +575,17 @@ Shiny.FE.CrossRow.CategoricalEncoding <- function(input,output,session,DataList,
         MetaDataPath = NULL,
         MetaDataList = NULL,
         ImputeMissingValue = 0)
-      DataList[[temp_train]][['data']] <- x
-      if(length(y) > 0L) DataList[[temp_validate]][['data']] <- y
-      if(length(z) > 0L) DataList[[temp_test]][['data']] <- z
+      if(Debug) print(Output$TrainData)
+      DataList[[temp_train]][['data']] <- Output$TrainData
+      if(length(Output$ValidationData) > 0L) DataList[[temp_validate]][['data']] <- Output$ValidationData
+      if(length(Output$TestData) > 0L) DataList[[temp_test]][['data']] <- Output$TestData
     }
+
+    if(Debug) print('here 11')
 
     # Create code
     if(Debug) print('FE Categorical Encoding 1')
-    CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+    CodeList <- tryCatch({Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
       "\n",
       "# Categorical Encoding\n",
       "temp_train <- ", Quantico:::CEP(temp_train),"\n",
@@ -607,13 +616,9 @@ Shiny.FE.CrossRow.CategoricalEncoding <- function(input,output,session,DataList,
       "ImputeMissingValue = 0)","\n",
       "TrainData <- Output$TrainData\n",
       "ValidationData <- Output$ValidationData\n",
-      "TestData <- Output$TestData; rm(Output)\n"))
+      "TestData <- Output$TestData; rm(Output)\n"))}, error = function(x) NULL)
 
     # Return
-    if(Debug) {print('FE Categorical Encoding 2'); print(names(DataList)); print(CodeList)}
-    DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, temp_train)}, error = function(x) DataList)
-    DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, temp_validate)}, error = function(x) DataList)
-    DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, temp_test)}, error = function(x) DataList)
     return(list(
       DataList = DataList,
       CodeList = CodeList
@@ -706,7 +711,6 @@ Shiny.FE.CrossRow.RollingMode <- function(input,output,session,DataList,CodeList
 
       # Return
       if(Debug) {print('FE Auto Lag Roll Mode 2'); print(names(DataList)); print(CodeList)}
-      DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, AutoLagRollMode_SelectData)}, error = function(x) DataList)
       return(list(
         DataList = DataList,
         CodeList = CodeList
@@ -820,7 +824,6 @@ Shiny.FE.CrossRow.RollingStats <- function(input,output,session,DataList,CodeLis
 
       # Return
       if(Debug) {print('FE Auto Lag Roll Stats 2'); print(names(DataList)); print(CodeList)}
-      DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, AutoLagRollStats_SelectData)}, error = function(x) DataList)
       return(list(
         DataList = DataList,
         CodeList = CodeList
@@ -893,7 +896,6 @@ Shiny.FE.CrossRow.Differencing <- function(input,output,session,DataList,CodeLis
 
     # Return
     if(Debug) {print('FE Auto Diff Lag N 2'); print(names(DataList)); print(CodeList)}
-    DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, AutoDiffLagN_SelectData)}, error = function(x) DataList)
     return(list(
       DataList = DataList,
       CodeList = CodeList
@@ -966,7 +968,6 @@ Shiny.FE.ModelDataPrep <- function(input,output,session,DataList,CodeList,CacheD
 
     # Return
     if(Debug) {print('FE Auto Diff Lag N 2'); print(names(DataList)); print(CodeList)}
-    DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, ModelDataPrep_SelectData)}, error = function(x) DataList)
     return(list(
       DataList = DataList,
       CodeList = CodeList
@@ -1042,9 +1043,6 @@ Shiny.FE.PartitionData <- function(input,output,session,DataList,CodeList,TabCou
 
       # Return
       if(Debug) {print('FE Data Partition 2'); print(names(DataList)); print(CodeList)}
-      DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, paste0(AutoDataPartition_SelectData, '_TrainData'))}, error = function(x) DataList)
-      DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, paste0(AutoDataPartition_SelectData, '_ValidationData'))}, error = function(x) DataList)
-      DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, paste0(AutoDataPartition_SelectData, '_TestData'))}, error = function(x) DataList)
 
       # Add data to DataOutputSelection Page
       for(i in seq_len(TabCount)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0("EDAData", i), Label = 'Data Selection', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
@@ -1298,9 +1296,6 @@ Shiny.FE.Word2Vec.H2O <- function(input,output,session,DataList,CodeList,CacheDi
 
       # Update meta
       if(Debug) {print('FE Word2Vec_H2O 5'); print(names(DataList)); print(CodeList)}
-      DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, temp_train)}, error = function(x) DataList)
-      DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, temp_validate)}, error = function(x) DataList)
-      DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, temp_test)}, error = function(x) DataList)
       return(list(
         DataList = DataList,
         CodeList = CodeList
@@ -1752,9 +1747,6 @@ Shiny.FE.DimReduction.AutoEncoder.H2O <- function(input,output,session,DataList,
 
     # Return
     if(Debug) {print('FE Word2Vec_H2O 5'); print(names(DataList)); print(CodeList)}
-    DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, temp_train)}, error = function(x) DataList)
-    DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, temp_validate)}, error = function(x) DataList)
-    DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, temp_test)}, error = function(x) DataList)
     return(list(
       DataList = DataList,
       CodeList = CodeList
@@ -2054,9 +2046,6 @@ Shiny.FE.AnomalyDetection.IsolationForest.H2O <- function(input,output,session,D
 
     # Return
     if(Debug) {print('FE IsolationForest H2O 6'); print(names(DataList)); print(CodeList)}
-    DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, temp_train)}, error = function(x) DataList)
-    DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, temp_validate)}, error = function(x) DataList)
-    DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, temp_test)}, error = function(x) DataList)
     return(list(
       DataList = DataList,
       CodeList = CodeList
@@ -2338,9 +2327,6 @@ Shiny.FE.Clustering.Kmeans.H2O <- function(input,output,session,DataList,CodeLis
 
     # Return
     if(Debug) {print('FE Kmeans H2O 6'); print(names(DataList)); print(CodeList)}
-    DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, temp_train)}, error = function(x) DataList)
-    DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, temp_validate)}, error = function(x) DataList)
-    DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, temp_test)}, error = function(x) DataList)
     return(list(
       DataList = DataList,
       CodeList = CodeList
@@ -2409,7 +2395,6 @@ FE.Impute.TimeSeriesFill <- function(input,output,session,DataList,CodeList,Cach
 
   # Return
   if(Debug) {print('Time Series Fill 6'); print(names(DataList)); print(CodeList)}
-  DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, SelectData)}, error = function(x) DataList)
   return(list(
     DataList = DataList,
     CodeList = CodeList
@@ -2478,7 +2463,6 @@ FE.Impute.TimeSeriesFillRoll <- function(input,output,session,DataList,CodeList,
 
   # Return
   if(Debug) {print('Time Series Fill 6'); print(names(DataList)); print(CodeList)}
-  DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, SelectData)}, error = function(x) DataList)
   return(list(
     DataList = DataList,
     CodeList = CodeList
@@ -2534,7 +2518,6 @@ Shiny.NLP.TextSummary <- function(input,output,session,DataList,CodeList,CacheDi
 
   # Return
   if(Debug) {print('NLP Text Summary 6'); print(names(DataList)); print(CodeList)}
-  DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, SelectData)}, error = function(x) DataList)
   return(list(
     DataList = DataList,
     CodeList = CodeList
@@ -2598,7 +2581,6 @@ Shiny.NLP.Sentiment <- function(input,output,session,DataList,CodeList,CacheDir=
 
   # Return
   if(Debug) {print('NLP Sentiment 6'); print(names(DataList)); print(CodeList)}
-  DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, SelectData)}, error = function(x) DataList)
   return(list(
     DataList = DataList,
     CodeList = CodeList
@@ -2663,7 +2645,6 @@ Shiny.NLP.Readability <- function(input,output,session,DataList,CodeList,CacheDi
 
   # Return
   if(Debug) {print('NLP Readability 6'); print(names(DataList)); print(CodeList)}
-  DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, SelectData)}, error = function(x) DataList)
   return(list(
     DataList = DataList,
     CodeList = CodeList
@@ -2736,7 +2717,6 @@ Shiny.NLP.LexicalDiversity <- function(input,output,session,DataList,CodeList,Ca
 
   # Return
   if(Debug) {print('NLP Lexical Diversity 6'); print(names(DataList)); print(CodeList)}
-  DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, SelectData)}, error = function(x) DataList)
   return(list(
     DataList = DataList,
     CodeList = CodeList

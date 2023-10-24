@@ -853,7 +853,6 @@ Shiny.FC.Panel.Metrics.Raw <- function(DataList,
   DataList[[x]][['data']] <- DataList[[x]][['data']][, paste0(Metrics) := lapply(.SD, round, 4L), .SDcols = c(Metrics)]
   DataList[[x]][['data']][, ModelID := eval(ModelID)]
   data.table::setcolorder(x = DataList[[x]][['data']], neworder = c(ncol(DataList[[x]][['data']]), 1L:(ncol(DataList[[x]][['data']])-1L)))
-  DataList <- Quantico:::DM.DataListUpdate(DataList, x)
 
   # Return
   if(DebugFC) print('Shiny.FC.Panel.Metrics.Raw Finsihed up with Metrics.Raw')
@@ -936,7 +935,6 @@ Shiny.FC.Panel.Metrics.Agg <- function(DataList,
   mid <- ModelID # data.table doesn't work well will Name := eval(Name) when Name is a colname and Name is a value to be used to fill. Doesn't work
   DataList[[xx]][['data']][, ModelID := eval(mid)]
   if(names(DataList[[xx]][['data']])[ncol(DataList[[xx]][['data']])] == 'ModelID') data.table::setcolorder(x = DataList[[xx]][['data']], neworder = c(ncol(DataList[[xx]][['data']]), 1L:(ncol(DataList[[xx]][['data']])-1L)))
-  DataList <- Quantico:::DM.DataListUpdate(DataList, xx)
 
   if(DebugFC) print(rep("t", 10))
   if(DebugFC) print(data.table::is.data.table(DataList[[xx]][['data']]))
@@ -1077,7 +1075,6 @@ Shiny.FC.Panel.Train <- function(ArgsList, CodeList, DataList, ModelID, Algo = '
     if(DebugFC) print("Shiny.FC.Panel.Train 8.a")
     DataList[[paste0(Algo, 'FC_', ModelID, '_ScoringData')]][['data']] <- Output$ScoringDataCombined
     if(DebugFC) print("Shiny.FC.Panel.Train 8.b")
-    DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, paste0(Algo, 'FC_', ModelID, '_ScoringData'))}, error = function(x) {print(names(DataList)); return(DataList)})
   }
 
   if(DebugFC) print("Shiny.FC.Panel.Train 9")
@@ -1085,7 +1082,6 @@ Shiny.FC.Panel.Train <- function(ArgsList, CodeList, DataList, ModelID, Algo = '
     if(DebugFC) print("Shiny.FC.Panel.Train 9.a")
     DataList[[paste0(Algo, 'FC_', ModelID, '_Test_VI_Data')]][['data']] <- Output$VI_Train
     if(DebugFC) print("Shiny.FC.Panel.Train 9.b")
-    DataList <- Quantico:::DM.DataListUpdate(DataList, paste0(Algo, 'FC_', ModelID, '_Test_VI_Data'), Sample = FALSE)
   }
 
   if(DebugFC) print("Shiny.FC.Panel.Train 10")
@@ -1093,7 +1089,6 @@ Shiny.FC.Panel.Train <- function(ArgsList, CodeList, DataList, ModelID, Algo = '
     if(DebugFC) print("Shiny.FC.Panel.Train 10.a")
     DataList[[paste0(Algo, 'FC_', ModelID, '_Train_VI_Data')]][['data']] <- Output$VI_Validation
     if(DebugFC) print("Shiny.FC.Panel.Train 10.b")
-    DataList <- Quantico:::DM.DataListUpdate(DataList, paste0(Algo, 'FC_', ModelID, '_Train_VI_Data'), Sample = FALSE)
   }
 
   if(DebugFC) print("Shiny.FC.Panel.Train 11")
@@ -1101,7 +1096,6 @@ Shiny.FC.Panel.Train <- function(ArgsList, CodeList, DataList, ModelID, Algo = '
     if(DebugFC) print("Shiny.FC.Panel.Train 11.a")
     DataList[[paste0(Algo, 'FC_', ModelID, '_Validation_VI_Data')]][['data']] <- Output$VI_Test
     if(DebugFC) print("Shiny.FC.Panel.Train 11.b")
-    DataList <- Quantico:::DM.DataListUpdate(DataList, paste0(Algo, 'FC_', ModelID, '_Validation_VI_Data'), Sample = FALSE)
   }
 
   if(DebugFC) print("Shiny.FC.Panel.Train 12")
@@ -1109,7 +1103,6 @@ Shiny.FC.Panel.Train <- function(ArgsList, CodeList, DataList, ModelID, Algo = '
     if(DebugFC) print("Shiny.FC.Panel.Train 12.a")
     DataList[[paste0(Algo, 'FC_', ModelID, '_All_II_Data')]][['data']] <- Output$II_Train
     if(DebugFC) print("Shiny.FC.Panel.Train 12.b")
-    DataList <- Quantico:::DM.DataListUpdate(DataList, paste0(Algo, 'FC_', ModelID, '_All_II_Data'), Sample = FALSE)
   }
 
   if(DebugFC) print("Shiny.FC.Panel.Train return")
@@ -1186,23 +1179,18 @@ Shiny.FC.Panel.Retrain <- function(NewDataName, ArgsList, CodeList, DataList, Al
   x <- Output$ModelInformation
   Output <- Quantico:::Shiny.ML.ModelDataObjects(x, Debug, TT = 'catboost')
   DataList[[paste0('CatBoostFC_', ModelID, '_ScoringData')]][['data']] <- Output$ScoringDataCombined
-  DataList <- Quantico:::DM.DataListUpdate(DataList, paste0(Algo, 'FC_', ModelID, '_ScoringData'), Sample = FALSE)
 
   if(DebugFC) print("Shiny.FC.Panel.Retrain 5")
   DataList[[paste0('CatBoostFC_', ModelID, '_Test_VI_Data')]][['data']] <- Output$VI_Train
-  DataList <- Quantico:::DM.DataListUpdate(DataList, paste0(Algo, 'FC_', ModelID, '_Test_VI_Data'), Sample = FALSE)
 
   if(DebugFC) print("Shiny.FC.Panel.Retrain 6")
   DataList[[paste0('CatBoostFC_', ModelID, '_Train_VI_Data')]][['data']] <- Output$VI_Validation
-  DataList <- Quantico:::DM.DataListUpdate(DataList, paste0(Algo, 'FC_', ModelID, '_Train_VI_Data'), Sample = FALSE)
 
   if(DebugFC) print("Shiny.FC.Panel.Retrain 7")
   DataList[[paste0('CatBoostFC_', ModelID, '_Validation_VI_Data')]][['data']] <- Output$VI_Test
-  DataList <- Quantico:::DM.DataListUpdate(DataList, paste0(Algo, 'FC_', ModelID, '_Validation_VI_Data'), Sample = FALSE)
 
   if(DebugFC) print("Shiny.FC.Panel.Retrain 8")
   DataList[[paste0('CatBoostFC_', ModelID, '_All_II_Data')]][['data']] <- Output$II_Train
-  DataList <- Quantico:::DM.DataListUpdate(DataList, paste0(Algo, 'FC_', ModelID, '_All_II_Data'), Sample = FALSE)
 
   # Return
   if(DebugFC) print("Shiny.FC.Panel.Retrain Return")
@@ -1268,7 +1256,6 @@ Shiny.FC.Panel.Forecast <- function(NewDataName, ArgsList, CodeList, DataList, M
     if(DebugFC) print("Shiny.FC.Panel.Forecast 4")
     DataList[[paste0('FC_', ModelID)]][['data']] <- Output$Forecast
     if(DebugFC) print("Shiny.FC.Panel.Forecast 5")
-    DataList <- Quantico:::DM.DataListUpdate(DataList, paste0('FC_', ModelID))
 
     # Return
     if(DebugFC) print("Shiny.FC.Panel.Forecast Return")
@@ -1403,7 +1390,6 @@ Shiny.FC.Panel.Backtest <- function(ArgsList,
   # Subset + Reorder Columns
   if(DebugFC) print("Shiny.FC.Panel.Backtest 9")
   if(length(DataList[[paste0(ModelID, dlrname)]]) > 0L) {
-    DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, paste0(ModelID, dlrname))}, error = function(x) DataList)
     DataList[[paste0(ModelID, dlrname)]][['sample']] <- DataList[[paste0(ModelID, dlrname)]][['data']]
   }
 
@@ -1585,7 +1571,6 @@ Shiny.FC.Panel.Backest.FeatureEval <- function(LoopMetrics, ArgsList, CodeList, 
 
   # Update DataList
   LoopMetrics[, RunNumber := seq_len(.N)]
-  DataList <- Quantico:::DM.DataListUpdate(dl = DataList, dn = paste0(ModelID, "_FeatureEngineeringTest"), Sample = TRUE)
 
   # Code Collection
   CodeList <- tryCatch({Quantico::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
@@ -1646,8 +1631,7 @@ Shiny.FC.Panel.Backest.FeatureEval <- function(LoopMetrics, ArgsList, CodeList, 
     "}\n\n",
     "# Store LoopMetrics in DataList \n",
     "mcn <- paste0(ModelID, '_FeatureEngineeringTest')\n",
-    "DataList[[mcn]][['data']] <- LoopMetrics\n",
-    "DataList <- Quantico:::DM.DataListUpdate(dl = DataList, dn = mcn, Sample = FALSE)\n"))}, error = function(x) CodeList)
+    "DataList[[mcn]][['data']] <- LoopMetrics\n"))}, error = function(x) CodeList)
 
   if(DebugFC) print('Shiny.FC.Panel.Backest.FeatureEval finished')
   if(DebugFC) print(LoopMetrics)
@@ -2435,20 +2419,10 @@ Shiny.FC.CARMA <- function(input,
           2L:(ncol(DataList[[paste0(ModelID, "_FeatureEngineeringTest")]][['data']])-1L)))
 
       if(DebugFC) print('Shiny.FC.Panel.Backest.FeatureEval post step 4')
-      #numcols <- ncol(DataList[[paste0(ModelID, "_FeatureEngineeringTest")]][['data']])
-      #data.table::setcolorder(x = DataList[[paste0(ModelID, "_FeatureEngineeringTest")]][['data']], neworder = c(numcols-1L, numcols, 2L:(numcols-2L)))
-      #if(DebugFC) print('Shiny.FC.Panel.Backest.FeatureEval post step 5')
 
       if(DebugFC) print(DataList[[paste0(ModelID, "_FeatureEngineeringTest")]][['data']])
 
-      # DataList[[paste0(ModelID, "_FeatureEngineeringTest")]][['data']] <- DataList[[paste0(ModelID, "_FeatureEngineeringTest")]][['data']][
-      #   , .SD, .SDcols = c(names(DataList[[paste0(ModelID, "_FeatureEngineeringTest")]][['data']])[c(1L,2L, (numcols-5L):numcols)])
-      # ]
-
-      # tryCatch({data.table::set(DataList[[paste0(ModelID, "_FeatureEngineeringTest")]][['data']], j = "Methods", value = NULL)}, error = function(x) NULL)
-
       if(DebugFC) print('Shiny.FC.Panel.Backest.FeatureEval post step 6')
-      DataList <- Quantico:::DM.DataListUpdate(dl = DataList, dn = paste0(ModelID, "_FeatureEngineeringTest"), Sample = TRUE)
       for(i in seq_len(TabCount)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0("EDAData", i), Label = 'Data Selection', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
       for(i in seq_len(TabCount)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0("DataOutputSelection", i), Label = 'Display Data', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
 

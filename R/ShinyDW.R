@@ -31,12 +31,10 @@ Shiny.DW.DeleteColumns <- function(input,output,session,DataList,CodeList,TabCou
   if(NewName == 'Overwrite') {
     if(all(Cols %in% names(SelectData))) data.table::set(SelectData, j = c(eval(Cols)), value = NULL)
     DataList[[SelectData]][['data']] <- SelectData
-    DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, SelectData)}, error = function(x) DataList)
   } else {
     temp <- data.table::copy(SelectData)
     if(all(Cols %in% names(temp))) data.table::set(temp, j = c(eval(Cols)), value = NULL)
     DataList[[NewName]][['data']] <- temp
-    DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, NewName)}, error = function(x) DataList)
   }
 
   # Code
@@ -49,8 +47,6 @@ Shiny.DW.DeleteColumns <- function(input,output,session,DataList,CodeList,TabCou
     "data.table::set(DataList[[SelectData]], j = c(Cols), value = NULL)\n"))
 
   # Update meta
-  DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, SelectData)}, error = function(x) DataList)
-
   for(i in seq_len(TabCount)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0("EDAData", i), Label = 'Data Selection', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
   Quantico::SelectizeInput(session, input, Update = TRUE, InputID = "ScoreML_Data", Label = 'Select Data', Choices = names(DataList))
   for(i in seq_len(TabCount)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0("DataOutputSelection", i), Label = 'Display Data', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
@@ -100,8 +96,6 @@ Shiny.DW.ConcatenateColumns <- function(input,output,session,DataList,CodeList,T
       "DataList[[", Quantico:::CEP(SelectData), "]][, paste0(Cols, collapse = '_') := do.call(paste, c(.SD, sep = ' ')), .SDcols = c(Cols)]\n"))
 
     # Update meta
-    DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, SelectData)}, error = function(x) DataList)
-
     for(i in seq_len(TabCount)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0("EDAData", i), Label = 'Data Selection', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
     Quantico::SelectizeInput(session, input, Update = TRUE, InputID = "ScoreML_Data", Label = 'Select Data', Choices = names(DataList))
     for(i in seq_len(TabCount)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0("DataOutputSelection", i), Label = 'Display Data', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
@@ -155,7 +149,6 @@ Shiny.DW.RenameColumns <- function(input,output,session,DataList,CodeList,TabCou
       "new = ", Quantico:::ExpandText(NewName), ", skip_absent = TRUE)\n"))
 
     # Update meta
-    DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, SelectData)}, error = function(x) DataList)
     for(i in seq_len(TabCount)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0("EDAData", i), Label = 'Data Selection', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
     Quantico::SelectizeInput(session, input, Update = TRUE, InputID = "ScoreML_Data", Label = 'Select Data', Choices = names(DataList))
     for(i in seq_len(TabCount)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0("DataOutputSelection", i), Label = 'Display Data', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
@@ -234,7 +227,6 @@ Shiny.DW.TimeTrendColumn <- function(input,output,session,DataList,CodeList,TabC
     }
 
     # Update meta
-    DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, SelectData)}, error = function(x) DataList)
     for(i in seq_len(TabCount)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0("EDAData", i), Label = 'Data Selection', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
     Quantico::SelectizeInput(session, input, Update = TRUE, InputID = "ScoreML_Data", Label = 'Select Data', Choices = names(DataList))
     for(i in seq_len(TabCount)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0("DataOutputSelection", i), Label = 'Display Data', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
@@ -385,7 +377,6 @@ Shiny.DW.TypeCast <- function(input,output,session,DataList,CodeList,TabCount=5L
 
     # Update meta
     if(Debug) print("Shiny.DW.TypeCast Update meta")
-    DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, SelectData)}, error = function(x) DataList)
     for(i in seq_len(TabCount)) {
       Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0("EDAData", i), Label = 'Data Selection', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
       EDAData <- Quantico::ReturnParam(xx = tryCatch({input[[paste0("EDAData", i)]]}, error = function(x) NULL), Type = "character", Default = NULL)
@@ -456,10 +447,8 @@ Shiny.DW.SampleData <- function(input,output,session,DataList,CodeList,TabCount=
     temp <- data[order(runif(.N))][seq_len(floor(.N * Rate))]
     if(NewName == 'Overwrite') {
       DataList[[SelectData]][['data']] <- temp
-      DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, SelectData)}, error = function(x) DataList)
     } else {
       DataList[[NewName]][['data']] <- temp
-      DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, NewName)}, error = function(x) DataList)
     }
     DataList <<- DataList
     CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
@@ -480,10 +469,8 @@ Shiny.DW.SampleData <- function(input,output,session,DataList,CodeList,TabCount=
               , Max_ID__temp_col := NULL]
     if(NewName == 'Overwrite') {
       DataList[[SelectData]][['data']] <- temp
-      DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, SelectData)}, error = function(x) DataList)
     } else {
       DataList[[NewName]][['data']] <- temp
-      DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, NewName)}, error = function(x) DataList)
       for(i in seq_len(TabCount)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0("EDAData", i), Label = 'Data Selection', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
       Quantico::SelectizeInput(session, input, Update = TRUE, InputID = "ScoreML_Data", Label = 'Select Data', Choices = names(DataList))
       for(i in seq_len(TabCount)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0("DataOutputSelection", i), Label = 'Display Data', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
@@ -584,12 +571,7 @@ Shiny.DW.SubsetData <- function(input,output,session,DataList,CodeList,TabCount=
 
   # Display data
   if(Debug) print('DW Subset Data')
-  if(SubsetData_NewName == 'Overwrite') {
-    DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, SubsetData_SelectData)}, error = function(x) DataList)
-  } else {
-    DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, SubsetData_NewName)}, error = function(x) DataList)
-
-    # Add data to DataOutputSelection Page
+  if(SubsetData_NewName != 'Overwrite') {
     for(i in seq_len(TabCount)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0("EDAData", i), Label = 'Data Selection', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
     Quantico::SelectizeInput(session, input, Update = TRUE, InputID = "ScoreML_Data", Label = 'Select Data', Choices = names(DataList))
     for(i in seq_len(TabCount)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0("DataOutputSelection", i), Label = 'Display Data', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
@@ -786,12 +768,7 @@ Shiny.DW.AggregateData <- function(input,output,session,DataList,CodeList,TabCou
 
   # Display data
   if(Debug) print('DW Aggregate Data')
-  if(AggregateData_NewName == 'Overwrite') {
-    DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, AggregateData_SelectData)}, error = function(x) DataList)
-  } else {
-    DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, AggregateData_NewName)}, error = function(x) DataList)
-
-    # Add data to DataOutputSelection Page
+  if(AggregateData_NewName != 'Overwrite') {
     for(i in seq_len(TabCount)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0("EDAData", i), Label = 'Data Selection', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
     Quantico::SelectizeInput(session, input, Update = TRUE, InputID = "ScoreML_Data", Label = 'Select Data', Choices = names(DataList))
     for(i in seq_len(TabCount)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0("DataOutputSelection", i), Label = 'Display Data', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
@@ -980,12 +957,8 @@ Shiny.DW.JoinData <- function(input,output,session,DataList,CodeList,TabCount=5L
   # Update DataList
   if(JoinData_NewName == 'Overwrite') {
     DataList[[JoinData_SelectData1]][['data']] <- left_table
-    DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, JoinData_NewName)}, error = function(x) DataList)
   } else {
     DataList[[JoinData_NewName]][['data']] <- left_table
-    DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, JoinData_SelectData1)}, error = function(x) DataList)
-
-    # Add data to DataOutputSelection Page
     for(i in seq_len(TabCount)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0("EDAData", i), Label = 'Data Selection', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
     Quantico::SelectizeInput(session, input, Update = TRUE, InputID = "ScoreML_Data", Label = 'Select Data', Choices = names(DataList))
     for(i in seq_len(TabCount)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0("DataOutputSelection", i), Label = 'Display Data', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
@@ -1043,12 +1016,7 @@ Shiny.DW.UnionData <- function(input,output,session,DataList,CodeList,TabCount=5
 
   # Display data
   if(Debug) print('DW Join Data')
-  if(UnionData_NewName == 'Overwrite') {
-    DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, UnionData_SelectData1)}, error = function(x) DataList)
-  } else {
-    DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, UnionData_NewName)}, error = function(x) DataList)
-
-    # Add data to DataOutputSelection Page
+  if(UnionData_NewName != 'Overwrite') {
     for(i in seq_len(TabCount)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0("EDAData", i), Label = 'Data Selection', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
     Quantico::SelectizeInput(session, input, Update = TRUE, InputID = "ScoreML_Data", Label = 'Select Data', Choices = names(DataList))
     for(i in seq_len(TabCount)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0("DataOutputSelection", i), Label = 'Display Data', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
@@ -1134,12 +1102,7 @@ Shiny.DW.MeltData <- function(input,output,session,DataList,CodeList,TabCount=5L
 
   # Display data
   if(Debug) print('DW Join Data')
-  if(MeltData_NewName == 'Overwrite') {
-    DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, MeltData_SelectData)}, error = function(x) DataList)
-  } else {
-    DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, MeltData_NewName)}, error = function(x) DataList)
-
-    # Add data to DataOutputSelection Page
+  if(MeltData_NewName != 'Overwrite') {
     for(i in seq_len(TabCount)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0("EDAData", i), Label = 'Data Selection', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
     Quantico::SelectizeInput(session, input, Update = TRUE, InputID = "ScoreML_Data", Label = 'Select Data', Choices = names(DataList))
     for(i in seq_len(TabCount)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0("DataOutputSelection", i), Label = 'Display Data', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
@@ -1210,12 +1173,7 @@ Shiny.DW.CastData <- function(input,output,session,DataList,CodeList,TabCount=5L
 
   # Display data
   if(Debug) print('DW Join Data')
-  if(CastData_NewName == 'Overwrite') {
-    DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, CastData_SelectData)}, error = function(x) DataList)
-  } else {
-    DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, CastData_NewName)}, error = function(x) DataList)
-
-    # Add data to DataOutputSelection Page
+  if(CastData_NewName != 'Overwrite') {
     for(i in seq_len(TabCount)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0("EDAData", i), Label = 'Data Selection', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
     Quantico::SelectizeInput(session, input, Update = TRUE, InputID = "ScoreML_Data", Label = 'Select Data', Choices = names(DataList))
     for(i in seq_len(TabCount)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0("DataOutputSelection", i), Label = 'Display Data', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
@@ -1367,12 +1325,7 @@ Shiny.DW.TimeSeriesFill <- function(input,output,session,DataList,CodeList,TabCo
 
   # Display data
   if(Debug) print('DW Subset Data')
-  if(TSF_NewName == 'Overwrite') {
-    DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, TSF_SelectData)}, error = function(x) DataList)
-  } else {
-    DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, TSF_NewName)}, error = function(x) DataList)
-
-    # Add data to DataOutputSelection Page
+  if(TSF_NewName != 'Overwrite') {
     for(i in seq_len(TabCount)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0("EDAData", i), Label = 'Data Selection', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
     Quantico::SelectizeInput(session, input, Update = TRUE, InputID = "ScoreML_Data", Label = 'Select Data', Choices = names(DataList))
     for(i in seq_len(TabCount)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0("DataOutputSelection", i), Label = 'Display Data', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)

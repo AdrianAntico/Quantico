@@ -7984,7 +7984,6 @@ server <- function(input, output, session) {
               for(nam in DataListNames) {
                 if(file.exists(file.path(SessionPath, paste0(gsub(pattern = '.csv', replacement = '', x = nam), '.csv')))) {
                   DataList[[nam]][['data']] <- data.table::fread(file = file.path(SessionPath, paste0(gsub(pattern = '.csv', replacement = '', x = nam), '.csv')))
-                  DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, nam)}, error = function(x) DataList)
                   DataList <<- DataList
                 }
               }
@@ -8608,7 +8607,6 @@ server <- function(input, output, session) {
         Port = PostGRE_Port, Password = PostGRE_Password)
 
       # Update DataList
-      DataList <- Quantico:::DM.DataListUpdate(DataList, PostGRE_PullTable_Table)
       DataList <<- DataList; CurrentData <<- PostGRE_PullTable_Table
 
       # Add data to DataOutputSelection Page
@@ -8981,9 +8979,6 @@ server <- function(input, output, session) {
   #         DataList[[filename]] <<- tryCatch({Quantico:::LoadCSV(Infile = file.path('/inputdata', input[['AzureBlobStorageTabular']]), Debug = Debug)}, error = function(x) NULL)
   #         if(length(DataList[[filename]]) > 0L) {
   #           xx <- tryCatch({DataList[[PostGRE_PullTable_Table]][['data']][,.N]}, error = function(x) NULL)
-  #           if(length(xx) > 0L) {
-  #             DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, PostGRE_PullTable_Table)}, error = function(x) DataList)
-  #           }
   #           break
   #         } else {
   #           Sys.sleep(5)
@@ -9040,9 +9035,6 @@ server <- function(input, output, session) {
   #           if(!is.null(ModelOutputList$TrainData) && !is.null(ModelOutputList$TestData)) {
   #             DataList[[filename]][['data']] <<- data.table::rbindlist(list(ModelOutputList$TrainData, ModelOutputList$TestData), use.names = TRUE, fill = TRUE)
   #             xx <- tryCatch({DataList[[filename]][['data']][,.N]}, error = function(x) NULL)
-  #             if(length(xx) > 0L) {
-  #               DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, filename)}, error = function(x) DataList)
-  #             }
   #             DataList <<- DataList
   #             CurrentData <<- filename
   #             DataMgtCode <- Quantico::Shiny.CodePrint.Collect(y = DataMgtCode, x = paste0(
@@ -9056,9 +9048,6 @@ server <- function(input, output, session) {
   #           } else if(is.null(ModelOutputList$TrainData) && !is.null(ModelOutputList$TestData)) {
   #             DataList[[filename]][['data']] <<- ModelOutputList$TestData
   #             xx <- tryCatch({DataList[[filename]][['data']][,.N]}, error = function(x) NULL)
-  #             if(length(xx) > 0L) {
-  #               DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, filename)}, error = function(x) DataList)
-  #             }
   #             DataList <<- DataList
   #             CurrentData <<- filename
   #             DataMgtCode <- Quantico::Shiny.CodePrint.Collect(y = DataMgtCode, x = paste0(
@@ -9072,9 +9061,6 @@ server <- function(input, output, session) {
   #           } else if(!is.null(ModelOutputList$TrainData) && is.null(ModelOutputList$TestData)) {
   #             DataList[[filename]][['data']] <<- ModelOutputList$TrainData
   #             xx <- tryCatch({DataList[[filename]][['data']][,.N]}, error = function(x) NULL)
-  #             if(length(xx) > 0L) {
-  #               DataList <- tryCatch({Quantico:::DM.DataListUpdate(DataList, filename)}, error = function(x) DataList)
-  #             }
   #             DataList <<- DataList
   #             CurrentData <<- filename
   #             DataMgtCode <- Quantico::Shiny.CodePrint.Collect(y = DataMgtCode, x = paste0(

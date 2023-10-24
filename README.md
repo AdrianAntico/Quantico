@@ -5,6 +5,8 @@
 
 <img src="https://github.com/AdrianAntico/Quantico/blob/main/inst/AppMain6.PNG" align="center" width="800" />
 
+<br>
+
 Quantico is a Shiny App for data science, analytics, and business intelligence. The app is non-reactive where big data can cause a poor user experience. All data operations utilize data.table and collapse for fast processing and low memory utilization. Visualizations are based on the echarts4r library and the best machine learning and forecasting models are available. Data can be accessed in several ways and session saving and restoration is available. 15 app themes are available with a large variety of background images as well. 
 
 Note: For the best user experience I recommend using Chrome and having the zoom level set to 75%
@@ -17,6 +19,7 @@ At a high level the app enables:
 * Tables Viewer
 * Data Wrangling
 * Feature Engineering
+* Unsupervised Learning
 * Machine Learning
 * Inference
 * Forecasting
@@ -42,6 +45,7 @@ Automated output reports are included for:
 - [Exploratory Data Analysis](#exploratory-data-analysis)
 - [Data Wrangling](#data-wrangling)
 - [Feature Engineering](#feature-engineering)
+- [Unsupervised Learning](#unsupervised-learning)
 - [Inference](#Inference)
 - [Inference Reporting](#inference-reporting)
 - [Machine Learning](#machine-learning)
@@ -395,17 +399,31 @@ Feature Engineering is a vitally important aspect of this software. It's importa
 | Windowing    | Rolling Numeric          |
 |              | Differencing             |
 |              | Rolling Categorical      |
+
+
+<br>
+
+## Unsupervised Learning
+
+#### Unsupervised Learning Basics
+Unsupervised Learning is a vitally important aspect of this software. It's important that you know how to utilize the functionality as intended. Below are all of the available methods with descriptions about how to use each and every one for each of their intended uses.
+
+### Unsupervised Learning Methods:
+
+| Category     | Method                   |
+| -------------| -------------------------|
 | Text         | Word2Vec                 |
 |              | Text Summary             |
 |              | Sentiment                |
 |              | Readability              |
 |              | Lexical Diversity        |
-| Unsupervised | Clustering               |
+| Other        | Clustering               |
 |              | Anomaly Detection        |
 |              | Dimensionality Reduction |
 
 
 <br>
+
 
 ## Inference
 

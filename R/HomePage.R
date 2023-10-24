@@ -5596,7 +5596,13 @@ SideBarUI <- function(id, AppWidth=12L) {
         shiny::fluidRow(Quantico:::FE_NumericVariables(id = 'NumericVariables', Align='left', DropDownRight=TRUE, Animate=TRUE, Status='custom', H3Color = '#FFFFFF')),
         shiny::fluidRow(Quantico:::FE_CategoricalVariables(id = 'CategoricalVariables', Align='left', DropDownRight=FALSE, Animate=TRUE, Status='custom', H3Color = '#FFFFFF')),
         shiny::fluidRow(Quantico:::FE_DateVariables(id = 'CalendarVariables', Align='left')),
-        shiny::fluidRow(Quantico:::FE_Windowing(id = 'FE_Windowing', Align = 'left')),
+        shiny::fluidRow(Quantico:::FE_Windowing(id = 'FE_Windowing', Align = 'left'))
+      ),
+
+      Quantico:::BlankRow(12L),
+      shiny::tags$details(
+        Quantico::BlankLine(12L),
+        shiny::tags$summary(shiny::tags$span(shiny::tags$b('Unsupervised Learning'))),
         shiny::fluidRow(Quantico:::FE_NLP(id = 'NLPFE', Align='left', DropDownRight=TRUE,  Animate=TRUE, Status='custom', H3Color = '#FFFFFF')),
         shiny::fluidRow(Quantico:::FE_AnomalyDetection(id = 'AnomDetectionID', Align='left', DropDownRight=TRUE,  Animate=TRUE, Status='custom', H3Color = '#FFFFFF')),
         shiny::fluidRow(Quantico:::FE_DimensionalityReduction(id = 'DimReductionID', Align='left', DropDownRight=TRUE,  Animate=TRUE, Status='custom', H3Color = '#FFFFFF')),

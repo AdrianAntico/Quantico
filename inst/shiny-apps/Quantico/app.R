@@ -7770,6 +7770,20 @@ server <- function(input, output, session) {
         InferenceTabList <<- InferenceTabList
       }
 
+      # Forecasting Panel Inupts
+      if(!exists("ForecastingTabList")) {ForecastingTabList <- list();ForecastingTabList <<- ForecastingTabList}
+      ForecastingTabList[["NumFCTabsCurrent"]] <- NumFCTabsCurrent
+      for(i in seq_len(NumFCTabsCurrent)) {
+        ForecastingTabList[[paste0("ForecastingReportsModelSelection",i)]] <- input[[paste0("ForecastingReportsModelSelection",i)]]
+        ForecastingTabList[[paste0("Stripedd",i)]] <- input[[paste0("Stripedd",i)]]
+        ForecastingTabList[[paste0("MinRowsaa",i)]] <- input[[paste0("MinRowsaa",i)]]
+        ForecastingTabList[[paste0("Compactt",i)]] <- input[[paste0("Compactt",i)]]
+        ForecastingTabList[[paste0("Filterablee",i)]] <- input[[paste0("Filterablee",i)]]
+        ForecastingTabList[[paste0("PlotWidthinff",i)]] <- input[[paste0("PlotWidthinff",i)]]
+        ForecastingTabList[[paste0("PlotHeightinff",i)]] <- input[[paste0("PlotHeightinff",i)]]
+        ForecastingTabList <<- ForecastingTabList
+      }
+
       LoadedSessionNumPlots <- NumPlotsAvailable
       LoadedSessionNumPlots <<- LoadedSessionNumPlots
 
@@ -7786,6 +7800,7 @@ server <- function(input, output, session) {
         'MLTabList', # ML Tabs
         'EDATabList', # EDA Tabs
         'InferenceOutputList', # Inference Tabs
+        'ForecastingTabList', # Forecasting Tabs
         'NumPlotTabsCurrentList', # PLOTTING
         'LoadedSessionNumPlots', # PLOTTING
         'FinanceDataList', # PLOTTING
@@ -7891,6 +7906,7 @@ server <- function(input, output, session) {
             'MLTabList', # ML Tabs
             'EDATabList', # EDA Tabs
             'InferenceOutputList', # Inference Tabs
+            'ForecastOutputList', # Forecast Tabs
             'NumPlotTabsCurrentList', # PLOTTING
             'LoadedSessionNumPlots', # PLOTTING
             'FinanceDataList', # PLOTTING
@@ -8058,8 +8074,19 @@ server <- function(input, output, session) {
             shiny::updateNumericInput(session = session, inputId = paste0("MinRowsa", Page), label = 'Records per Page', value = InferenceTabList[[paste0("MinRowsa",i)]], min = 10, max = 1000, step = 10)
             shinyWidgets::updateMaterialSwitch(session = session, inputId = paste0("Compact", Page), value = InferenceTabList[[paste0("Compact",i)]])
             shinyWidgets::updateMaterialSwitch(session = session, inputId = paste0("Filterable", Page), value = InferenceTabList[[paste0("Filterable",i)]])
-            shiny::updateSliderInput(session = session, inputId = paste0("PlotWidthinf",i), label = 'Plot Width', value = EDATabList[[paste0("PlotWidtheda",i)]], min = 100, max = 2800)
-            shiny::updateSliderInput(session = session, inputId = paste0("PlotHeightinf",i), label = 'Plot Height', value = EDATabList[[paste0("PlotHeighteda",i)]], min = 100, max = 2800)
+            shiny::updateSliderInput(session = session, inputId = paste0("PlotWidthinf",i), label = 'Plot Width', value = InferenceTabList[[paste0("PlotWidthinf",i)]], min = 100, max = 2800)
+            shiny::updateSliderInput(session = session, inputId = paste0("PlotHeightinf",i), label = 'Plot Height', value = InferenceTabList[[paste0("PlotHeightinf",i)]], min = 100, max = 2800)
+          }
+
+          # Forecast Tabs Update
+          for(i in seq_len(NumForecastTabsCurrent)) {
+            Quantico::PickerInput(session = session, input = input, Update = TRUE, InputID = paste0('FCReportsModelSelection',Page), Label = 'Forecasting Output', Choices = tryCatch({names(ModelOutputList)}, error = function(x) NULL), SelectedDefault = ForecastingTabList[[paste0("ForecastingReportsModelSelection",i)]], Multiple = FALSE, MaxVars = 1L)
+            shinyWidgets::updateMaterialSwitch(inputId = paste0("Stripedd", Page), value = ForecastingTabList[[paste0("Stripedd",i)]])
+            shiny::updateNumericInput(session = session, inputId = paste0("MinRowsaa", Page), label = 'Records per Page', value = ForecastingTabList[[paste0("MinRowsaa",i)]], min = 10, max = 1000, step = 10)
+            shinyWidgets::updateMaterialSwitch(session = session, inputId = paste0("Compactt", Page), value = ForecastingTabList[[paste0("Compactt",i)]])
+            shinyWidgets::updateMaterialSwitch(session = session, inputId = paste0("Filterablee", Page), value = ForecastingTabList[[paste0("Filterablee",i)]])
+            shiny::updateSliderInput(session = session, inputId = paste0("PlotWidthinff",i), label = 'Plot Width', value = ForecastingTabList[[paste0("PlotWidthinff",i)]], min = 100, max = 2800)
+            shiny::updateSliderInput(session = session, inputId = paste0("PlotHeightinff",i), label = 'Plot Height', value = ForecastingTabList[[paste0("PlotHeightinff",i)]], min = 100, max = 2800)
           }
 
           loadPlotPanelInputList <- PlotPanelInputsList
@@ -8113,6 +8140,7 @@ server <- function(input, output, session) {
             }
           }
 
+          # Plot Vars Updates
           if(length(PlotDropDown) > 0L) {
             for(i in seq_along(PlotDropDown)[-1L]) { # Debug is first element; i = 2
               key <- as.integer(gsub("[^\\d]+", "", names(PlotDropDown)[i], perl=TRUE))

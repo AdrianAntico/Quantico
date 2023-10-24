@@ -861,7 +861,7 @@ HomePage <- function(id, Page, AppWidth=12L) {
                 shiny::fluidRow(shiny::column(width = 12L, shiny::h3("Rosetype Plots Usage"))),
                 shiny::markdown(
                   "
-                * Word Cloud plots requires a numeric Y-Variable that is text
+                * Word Cloud plots requires a text Y-Variable that is text
                 "
                 )
               ),

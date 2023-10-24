@@ -22,7 +22,6 @@ Lists4JS <- function(l) {
   return(nameMe(out))
 }
 
-
 #' @title LinesCounter
 #'
 #' @description Run a bash script in linux

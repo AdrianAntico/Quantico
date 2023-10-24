@@ -1,3 +1,6 @@
+# @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
+# Misc                                                              ----
+# @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
 TextLabelStyle = "background-color: #0000;border: none;padding: 1px;color: white;text-align: center;font-size: 17px;"
 ButtonStyle <- "color:#FFFFFF; border-color:#979797; border-style:solid; border-width: 1px; border-radius:30px; font-size:14px;"
 LogoutButtonStyle <- "width = 100%; color: #f3f3f3; font: bold; background-color: #5b6888; border-style:solid; border-width:1px; border-radius:3%; font-size:14px;"
@@ -78,6 +81,14 @@ AnimationTypes <- c(
   "slideOutLeft",
   "slideOutRight",
   "slideOutUp")
+
+# ----
+
+# ----
+
+# @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
+# Data Mgt                                                          ----
+# @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
 
 #' @title LoginInputs
 #'
@@ -328,6 +339,14 @@ DM_AzureBlob <- function(id = 'DM_AzureBlob',
   ))
 }
 
+# ----
+
+# ----
+
+# @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
+# Data Wrangling                                                    ----
+# @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
+
 #' @title DW_ShrinkData
 #'
 #' @description Subset, Aggregate, and Sample data
@@ -547,6 +566,14 @@ DW_Columns <- function(id='DW_Columns',
   ))
 }
 
+# ----
+
+# ----
+
+# @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
+# Feature Engineering                                               ----
+# @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
+
 #' @title FE_Windowing
 #'
 #' @description Windowing args
@@ -692,6 +719,14 @@ FE_NumericVariables <- function(id='NumericVariables',
   ))
 }
 
+# ----
+
+# ----
+
+# @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
+# Unsupervised Learning                                             ----
+# @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
+
 #' @title FE_AnomalyDetection
 #'
 #' @description Unsupervised learning
@@ -833,6 +868,14 @@ FE_NLP <- function(id='NLP_Modal',
       shiny::actionLink("NLP_Modal", label = "NLP", icon = shiny::icon("right-from-bracket"))
   ))
 }
+
+# ----
+
+# ----
+
+# @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
+# Machine Learning                                                  ----
+# @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
 
 #' @title ML_CatBoostReport
 #'
@@ -1306,6 +1349,14 @@ ML_CausalMediation <- function(id='ML_CausalMediationML',
       shiny::actionLink("CausalMediation_Modal", label = "Causal Mediation", icon = shiny::icon("right-from-bracket"))# , style = ButtonStyle)
   ))
 }
+
+# ----
+
+# ----
+
+# @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
+# Forecasting                                                       ----
+# @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
 
 #' @title FC_SARIMA
 #'
@@ -1795,6 +1846,13 @@ BuildModelsButton <- function(id = 'MLBuildButton',
   ))
 }
 
+# ----
+
+# ----
+
+# @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
+# Inference                                                         ----
+# @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
 
 #' @title Inference_Normality
 #'

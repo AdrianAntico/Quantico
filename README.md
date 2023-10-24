@@ -68,13 +68,7 @@ If you are setting up R for the first time run Steps 1-3
 
 <b>Step 3:</b> install **RStudio Desktop** https://posit.co/download/rstudio-desktop/
 
-<b>Step 4:</b> Install dependencies and Quantico two ways:
-
-1. For Windows users, download DataMuse.rar, open it up, go into the DataMuse folder, and then run the installer, "Datamuse_installer_Win10x64"
-
-2. Open up an RStudio session and run the following installation commands from the list of package below. It's best to go one by one in case there is an issue installing any one of them
-
-<b>Step 5:</b> Here is a list of the dependencies to install
+<b>Step 4:</b> Install package dependencies:
 
 <details><summary> Click to expand </summary>
 

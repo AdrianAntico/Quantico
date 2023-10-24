@@ -8,7 +8,7 @@
 <br>
 
 #### Background
-Quantico is a Shiny App for data science, analytics, and business intelligence. The app is non-reactive where big data can cause a poor user experience. All data operations utilize data.table for fast processing and low memory utilization. Visualizations are based on the echarts4r library, machine learning is based on CatBoost, XGBoost, LightGBM, and some of the H2O models. Time series models are based on the forecast pacakge. Panel forecast models are ML based and utilize CatBoost, XGBoost, and LightGBM. Data can be accessed via PostGRE or locally, and session saving and restoration is available. There are 15 different colored app themes along with the inclusion of various background images.
+`Quantico` is a Shiny App for data science, analytics, and business intelligence. The app is non-reactive where big data can cause a poor user experience. All data operations utilize data.table for fast processing and low memory utilization. Visualizations are based on the echarts4r library, machine learning is based on CatBoost, XGBoost, LightGBM, and some of the H2O models. Time series models are based on the forecast pacakge. Panel forecast models are ML based and utilize CatBoost, XGBoost, and LightGBM. Data can be accessed via PostGRE or locally, and session saving and restoration is available. There are 15 different colored app themes along with the inclusion of various background images.
 
 <br>
 

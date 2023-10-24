@@ -145,7 +145,7 @@ devtools::install_github("AdrianAntico/Quantico", upgrade = FALSE, dependencies 
 
 ## Quickstart
 
-In your RStudio session, run the Quantico::runQuantico() function to kick off a Quantico session
+In your RStudio session, run the `Quantico::runQuantico()` function to kick off a Quantico session
 
 Easy start
 

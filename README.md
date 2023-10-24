@@ -77,11 +77,11 @@ Automated RMarkdown reports are included for:
 
 ## Installation
 
-Note: if you're only looking to update Quantico, you only have to reinstall the Quantico package below in Step 5.
+Note: if you're only looking to update Quantico, you only have to reinstall the Quantico package below in Step 4.
 
 If you are setting up R for the first time run Steps 1-3
 
-<b>Step 1:</b> install the "R-release" version of **rtools** and have it placed in your C:\ drive https://cran.r-project.org/bin/windows/Rtools/
+<b>Step 1:</b> install the "R-release" version of **rtools** and have it placed in your `C:\` drive https://cran.r-project.org/bin/windows/Rtools/
 
 <b>Step 2:</b> install **R** https://cran.r-project.org/bin/windows/base/
 

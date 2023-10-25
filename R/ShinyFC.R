@@ -4540,7 +4540,7 @@ Shiny.FC.SS <- function(input,
 
     # Update Output
     if(length(ForecastOutput) > 0L) {
-      data.table::setnames(ForecastOutput, c("Target","Date"), c(ArgsList[['TargetColumnName']], ArgsList[['DateColumnName']]))
+      data.table::setnames(ForecastOutput, c("Target","Date"), c(ArgsList[['TargetColumnName']], ArgsList[['DateColumnName']]), skip_absent = TRUE)
       data.table::set(ForecastOutput, j = c("ModelID", "ModelRank"), value = NULL)
       ForecastOutput[, ModelID := NULL]
       DataList[[paste0(ModelID, "_Forecast")]][['data']] <- ForecastOutput
@@ -4552,7 +4552,7 @@ Shiny.FC.SS <- function(input,
         "\n",
         "# Update Output\n",
         "if(length(ForecastOutput) > 0L) {\n  ",
-        "data.table::setnames(ForecastOutput, c('Target','Date'), c(ArgsList[['TargetColumnName']], ArgsList[['DateColumnName']]))\n  ",
+        "data.table::setnames(ForecastOutput, c('Target','Date'), c(ArgsList[['TargetColumnName']], ArgsList[['DateColumnName']]), skip_absent = TRUE)\n  ",
         "data.table::set(ForecastOutput, j = c('ModelID', 'ModelRank'), value = NULL)\n  ",
         "ForecastOutput[, ModelID := NULL]\n  ",
         "DataList[[paste0(ModelID, '_Forecast')]][['data']] <- ForecastOutput\n",
@@ -5654,9 +5654,13 @@ Shiny.FC.SS.ReportOutput <- function(input,
   FCD <- paste0(ModelID, "_Forecast")
   if(EG %in% names(DataList)) {
     GridTune_proc <- TRUE
+  } else {
+    GridTune_proc <- FALSE
   }
   if(FCD %in% names(DataList)) {
     Forecast_proc <- TRUE
+  } else {
+    Forecast_proc <- FALSE
   }
 
   # temp_model_rdata$ArgsList$TargetColumnName

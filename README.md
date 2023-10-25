@@ -229,8 +229,6 @@ You can save your session state and reload this at a later time. You can have a 
 ## Code Generation
 The Code generation tab returns the code that was used to execute the various tasks and generate output. You can select from a variety of code themes as well. This can be really helpful to those who are looking to kickstart a project and then convert to a coding environment later. Some output can simply be generated much more quickly utilizing the app so this should be a time saver even to the most seasoned programmers. 
 
-<img src="https://github.com/AdrianAntico/Quantico/blob/main/inst/CodeGeneration1.PNG" align="center" width="800" />
-
 <img src="https://github.com/AdrianAntico/Quantico/blob/main/inst/CodeGeneration2.PNG" align="center" width="800" />
 
 <br>

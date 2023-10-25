@@ -1437,7 +1437,7 @@ Shrink_Modal_Fun <- function(id,
                         shiny::column(
                           12L,
                           align = 'center',
-                          Quantico:::SelectizeInput(InputID='SampleData_Rate', Label='Sample Rate', Choices = SampleData_Rate_Choices, SelectedDefault = SampleData_Rate_Selected, MaxVars = 1L, Multiple = FALSE)
+                          Quantico:::NumericInput(InputID='SampleData_Rate', Label='Sample Rate', Value = SampleData_Rate_Selected, Min = 0.01, Max = 0.999, Step = 0.001)
                         )),
                       Quantico:::BlankRow(12L))),
 

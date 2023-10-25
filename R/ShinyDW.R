@@ -460,7 +460,6 @@ Shiny.DW.SampleData <- function(input,output,session,DataList,CodeList,TabCount=
       "DataList[[", if(NewName == 'Overwrite') Quantico:::CEP(SelectData) else Quantico:::CEP(NewName), "]] <- DataList[[", Quantico:::CEP(SelectData), "]][order(runif(.N))][seq_len(floor(.N * ", Quantico:::CEPP(Rate), "]\n"
     ))
   } else {
-    for(i in 1:20) print("ADRIAN YOOOOO")
     temp <- data[, ID__temp_col := runif(.N), by = c(StratifyColumns)][
       , Max_ID__temp_col := max(ID__temp_col), by = c(StratifyColumns)][
         order(ID__temp_col)][

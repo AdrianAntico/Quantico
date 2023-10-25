@@ -25,6 +25,8 @@ The primary goals of the app design is make it easy and fast to use, and to crea
 <br>
 
 ## App Capabilities
+
+Tasks
 * Data Management
 * Session Saving & Restoration
 * Code Generation

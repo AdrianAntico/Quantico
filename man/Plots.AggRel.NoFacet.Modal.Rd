@@ -24,6 +24,7 @@ Other Plotting Modals:
 \code{\link{Plots.3D.NoGroup.Modal}()},
 \code{\link{Plots.3D.Target.NoGroup.Modal}()},
 \code{\link{Plots.ACF.Modal}()},
+\code{\link{Plots.AggRel.Modal2}()},
 \code{\link{Plots.AggRel.Modal}()},
 \code{\link{Plots.CorrMatrix.Modal}()},
 \code{\link{Plots.Distribution.Modal}()},

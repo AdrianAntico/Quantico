@@ -23,6 +23,7 @@ Other Plotting Modals:
 \code{\link{Plots.3D.Modal}()},
 \code{\link{Plots.3D.NoGroup.Modal}()},
 \code{\link{Plots.3D.Target.NoGroup.Modal}()},
+\code{\link{Plots.AggRel.Modal2}()},
 \code{\link{Plots.AggRel.Modal}()},
 \code{\link{Plots.AggRel.NoFacet.Modal}()},
 \code{\link{Plots.CorrMatrix.Modal}()},

@@ -4777,7 +4777,7 @@ server <- function(input, output, session) {
           Quantico:::Plots.ACF.Modal(id = paste0('AutoCorr',PlotNums,PlotType), PlotNumber = PlotNums)
         } else if(PlotType %in% c("StackedBarPlot","RiverPlot","ConfusionMatrix")) {
           Quantico:::Plots.AggRel.NoFacet.Modal(id = paste0('AggRelNF',PlotNums,PlotType), PlotNumber = PlotNums)
-        } else if(PlotType %in% c("BarPlot","AreaPlot","StepPlot","LinePlot","ScatterPlot","CopulaPlot")) {
+        } else if(PlotType %in% c("AreaPlot","StepPlot","LinePlot","ScatterPlot","CopulaPlot")) {
           Quantico:::Plots.AggRel.Modal(id = paste0('AggRel',PlotNums,PlotType), PlotNumber = PlotNums)
         } else if(PlotType %in% c("BarPlot")) {
           Quantico:::Plots.AggRel.Modal2(id = paste0('AggRel',PlotNums,PlotType), PlotNumber = PlotNums)

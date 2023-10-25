@@ -39,14 +39,14 @@ Tasks
 * Statistical Inference
 * Forecasting
 
-Automated in-app reports are included for:
+In-App Output:
 1. Visualization
 2. Exploratory Data Analysis
 3. Statistical Inference
 4. Machine Learning
 5. Forecasting
 
-Automated RMarkdown reports are included for:
+Export Output:
 1. Visualization
 2. Exploratory Data Analysis
 3. Machine Learning

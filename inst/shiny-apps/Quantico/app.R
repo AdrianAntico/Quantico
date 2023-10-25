@@ -4779,6 +4779,8 @@ server <- function(input, output, session) {
           Quantico:::Plots.AggRel.NoFacet.Modal(id = paste0('AggRelNF',PlotNums,PlotType), PlotNumber = PlotNums)
         } else if(PlotType %in% c("BarPlot","AreaPlot","StepPlot","LinePlot","ScatterPlot","CopulaPlot")) {
           Quantico:::Plots.AggRel.Modal(id = paste0('AggRel',PlotNums,PlotType), PlotNumber = PlotNums)
+        } else if(PlotType %in% c("BarPlot")) {
+          Quantico:::Plots.AggRel.Modal2(id = paste0('AggRel',PlotNums,PlotType), PlotNumber = PlotNums)
         } else if(PlotType %in% c("RadarPlot")) {
           Quantico:::Plots.Radar.Modal(id = paste0('RadarPlot',PlotNums,PlotType), PlotNumber = PlotNums)
         } else if(PlotType %in% c("PartialDependenceLine")) {

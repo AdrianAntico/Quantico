@@ -4671,6 +4671,498 @@ Shiny.FC.Panel.ReportOutput <- function(input,
   # ----
 
   # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
+  # Forecast Outputs                                                          ----
+  # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
+
+  # FC Data Output
+  if(Debug) print("Forecasting Outputs")
+  FCData <- tryCatch({DataList[[paste0("FC_", ModelID)]][['data']]}, error = function(x) NULL)
+  if(length(FCData) > 0L) {
+    if(Debug) print("Panel Forecast Data")
+    OutputList[["Panel Forecast Data"]] <- reactable::reactable(
+      data = FCData,
+      compact = TRUE,
+      defaultPageSize = 10,
+      wrap = TRUE,
+      filterable = TRUE,
+      fullWidth = TRUE,
+      highlight = TRUE,
+      pagination = TRUE,
+      resizable = TRUE,
+      searchable = TRUE,
+      selection = "multiple",
+      showPagination = TRUE,
+      showSortable = TRUE,
+      showSortIcon = TRUE,
+      sortable = TRUE,
+      striped = TRUE,
+      theme = reactable::reactableTheme(
+        color = FontColor$flv,
+        backgroundColor = "#4f4f4f26",
+        borderColor = "#dfe2e5",
+        stripedColor = "#4f4f4f8f",
+        highlightColor = "#8989898f",
+        cellPadding = "8px 12px",
+        style = list(
+          fontFamily = "-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif"
+        ),
+        searchInputStyle = list(width = "100%")
+      )
+    )
+
+    # Backtest
+    if(Debug) print("Forecast LinePlot 1")
+    minD <- FCData[is.na(get(TargetColumnName)), min(get(DateColumnName), na.rm = TRUE)]
+    if(Debug) {
+      print("Forecast LinePlot 2")
+      print(FCData)
+    }
+    p7 <- AutoPlots::Plot.Line(
+      dt = FCData,
+      AggMethod = "mean",
+      PreAgg = FALSE,
+      XVar = DateColumnName,
+      YVar = c(TargetColumnName, "Predictions"),
+      DualYVar = NULL,
+      GroupVar = NULL,
+      YVarTrans = "Identity",
+      DualYVarTrans = "Identity",
+      XVarTrans = "Identity",
+      FacetRows = 1,
+      FacetCols = 1,
+      FacetLevels = NULL,
+      Height = PlotHeight,
+      Width = PlotWidth,
+      Title = "Line Plot",
+      ShowLabels = FALSE,
+      Title.YAxis = paste0(TargetColumnName, " | Predict"),
+      Title.XAxis = DateColumnName,
+      EchartsTheme = Theme,
+      X_Scroll = FALSE,
+      Y_Scroll = FALSE,
+      TimeLine = TRUE,
+      Alpha = 0.5,
+      Smooth = TRUE,
+      ShowSymbol = FALSE,
+      TextColor = "white",
+      title.fontSize = 22,
+      title.fontWeight = "bold",
+      title.textShadowColor = "#63aeff",
+      title.textShadowBlur = 3,
+      title.textShadowOffsetY = 1,
+      title.textShadowOffsetX = -1,
+      xaxis.fontSize = 14,
+      yaxis.fontSize = 14,
+      xaxis.rotate = 0,
+      yaxis.rotate = 0,
+      ContainLabel = TRUE,
+      Debug = FALSE)
+    if(Debug) print("Forecast LinePlot 3")
+    OutputList[["Forecast LinePlot"]] <- echarts4r::e_mark_line(e = p7, data = list(xAxis = minD), title = "")
+  }
+
+  # ----
+
+  # ----
+
+
+  # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
+  # Cross Eval Outputs                                                        ----
+  # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
+
+  # FE_Test
+  if(Debug) print("Cross Eval Outputs")
+  CE_Rollup <- tryCatch({DataList[[paste0(ModelID, "_CE_Rollup")]]$data}, error = function(x) NULL)
+  if(length(CE_Rollup) > 0L) {
+    OutputList[["Cross Eval Test Metrics"]] <- reactable::reactable(
+      data = CE_Rollup,
+      compact = TRUE,
+      defaultPageSize = 10,
+      wrap = TRUE,
+      filterable = TRUE,
+      fullWidth = TRUE,
+      highlight = TRUE,
+      pagination = TRUE,
+      resizable = TRUE,
+      searchable = TRUE,
+      selection = "multiple",
+      showPagination = TRUE,
+      showSortable = TRUE,
+      showSortIcon = TRUE,
+      sortable = TRUE,
+      striped = TRUE,
+      theme = reactable::reactableTheme(
+        color = FontColor$flv,
+        backgroundColor = "#4f4f4f26",
+        borderColor = "#dfe2e5",
+        stripedColor = "#4f4f4f8f",
+        highlightColor = "#8989898f",
+        cellPadding = "8px 12px",
+        style = list(
+          fontFamily = "-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif"
+        ),
+        searchInputStyle = list(width = "100%")
+      )
+    )
+  }
+
+  # ----
+
+  # ----
+
+  # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
+  # FE Test Outputs                                                           ----
+  # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
+
+  # FE_Test
+  if(Debug) print("Feature Tuning Outputs")
+  FE_Test <- tryCatch({DataList[[paste0(ModelID, "_FeatureEngineeringTest")]]$data}, error = function(x) NULL)
+  if(length(FE_Test) > 0L) {
+    OutputList[["Feature Tuning Metrics"]] <- reactable::reactable(
+      data = FE_Test,
+      compact = TRUE,
+      defaultPageSize = 10,
+      wrap = TRUE,
+      filterable = TRUE,
+      fullWidth = TRUE,
+      highlight = TRUE,
+      pagination = TRUE,
+      resizable = TRUE,
+      searchable = TRUE,
+      selection = "multiple",
+      showPagination = TRUE,
+      showSortable = TRUE,
+      showSortIcon = TRUE,
+      sortable = TRUE,
+      striped = TRUE,
+      theme = reactable::reactableTheme(
+        color = FontColor$flv,
+        backgroundColor = "#4f4f4f26",
+        borderColor = "#dfe2e5",
+        stripedColor = "#4f4f4f8f",
+        highlightColor = "#8989898f",
+        cellPadding = "8px 12px",
+        style = list(
+          fontFamily = "-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif"
+        ),
+        searchInputStyle = list(width = "100%")
+      )
+    )
+  }
+
+  # FE_Test[, ]
+
+  # ----
+
+  # ----
+
+  # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
+  # Backtest Outputs                                                          ----
+  # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
+
+  # BT_Rollup
+  if(Debug) print("Backtesting Outputs")
+  BT_Rollup <- tryCatch({DataList[[paste0(ModelID, "_BT_Rollup")]]$data}, error = function(x) NULL)
+  if(length(BT_Rollup) > 0L) {
+    OutputList[["Back Test Metrics"]] <- reactable::reactable(
+      data = BT_Rollup,
+      compact = TRUE,
+      defaultPageSize = 10,
+      wrap = TRUE,
+      filterable = TRUE,
+      fullWidth = TRUE,
+      highlight = TRUE,
+      pagination = TRUE,
+      resizable = TRUE,
+      searchable = TRUE,
+      selection = "multiple",
+      showPagination = TRUE,
+      showSortable = TRUE,
+      showSortIcon = TRUE,
+      sortable = TRUE,
+      striped = TRUE,
+      theme = reactable::reactableTheme(
+        color = FontColor$flv,
+        backgroundColor = "#4f4f4f26",
+        borderColor = "#dfe2e5",
+        stripedColor = "#4f4f4f8f",
+        highlightColor = "#8989898f",
+        cellPadding = "8px 12px",
+        style = list(
+          fontFamily = "-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif"
+        ),
+        searchInputStyle = list(width = "100%")
+      )
+    )
+  }
+
+  # BT_Raw
+  BT_Raw <- tryCatch({DataList[[paste0(ModelID, "_BT_Raw")]]$data}, error = function(x) NULL)
+  if(length(BT_Raw) > 0L) {
+
+    # Backtest
+    minD <- BT_Raw[DataSet == "Evaluation", min(get(DateColumnName))]
+    p1 <- AutoPlots::Plot.Line(
+      dt = BT_Raw,
+      AggMethod = "mean",
+      PreAgg = FALSE,
+      XVar = DateColumnName,
+      YVar = c(TargetColumnName, "Predictions"),
+      DualYVar = NULL,
+      GroupVar = NULL,
+      YVarTrans = "Identity",
+      DualYVarTrans = "Identity",
+      XVarTrans = "Identity",
+      FacetRows = 1,
+      FacetCols = 1,
+      FacetLevels = NULL,
+      Height = PlotHeight,
+      Width = PlotWidth,
+      Title = "Line Plot",
+      ShowLabels = FALSE,
+      Title.YAxis = paste0(TargetColumnName, " | Predict"),
+      Title.XAxis = DateColumnName,
+      EchartsTheme = Theme,
+      X_Scroll = FALSE,
+      Y_Scroll = FALSE,
+      TimeLine = TRUE,
+      Alpha = 0.5,
+      Smooth = TRUE,
+      ShowSymbol = FALSE,
+      TextColor = "white",
+      title.fontSize = 22,
+      title.fontWeight = "bold",
+      title.textShadowColor = "#63aeff",
+      title.textShadowBlur = 3,
+      title.textShadowOffsetY = 1,
+      title.textShadowOffsetX = -1,
+      xaxis.fontSize = 14,
+      yaxis.fontSize = 14,
+      xaxis.rotate = 0,
+      yaxis.rotate = 0,
+      ContainLabel = TRUE,
+      Debug = FALSE)
+    OutputList[["Backtest LinePlot"]] <- echarts4r::e_mark_line(e = p1, data = list(xAxis = minD), title = "")
+
+    # Backtest AvgError
+    p2 <- AutoPlots::Plot.Box(
+      dt = BT_Raw,
+      SampleSize = 100000L,
+      XVar = DateColumnName,
+      YVar = "AvgError",
+      GroupVar = NULL,
+      YVarTrans = "Identity",
+      XVarTrans = "Identity",
+      FacetRows = 1,
+      FacetCols = 1,
+      FacetLevels = NULL,
+      Height = PlotHeight,
+      Width = PlotWidth,
+      Title = "Box Plot: Avg Error",
+      ShowLabels = FALSE,
+      Title.YAxis = paste0(TargetColumnName, " - Predicted"),
+      Title.XAxis = DateColumnName,
+      EchartsTheme = Theme,
+      TimeLine = FALSE,
+      X_Scroll = TRUE,
+      Y_Scroll = TRUE,
+      TextColor = "white",
+      title.fontSize = 22,
+      title.fontWeight = "bold",
+      title.textShadowColor = "#63aeff",
+      title.textShadowBlur = 3,
+      title.textShadowOffsetY = 1,
+      title.textShadowOffsetX = -1,
+      xaxis.fontSize = 14,
+      yaxis.fontSize = 14,
+      xaxis.rotate = 0,
+      yaxis.rotate = 0,
+      ContainLabel = TRUE,
+      Debug = FALSE)
+    OutputList[["Backtest BoxPlot"]] <- echarts4r::e_mark_line(e = p2, data = list(xAxis = minD), title = "")
+
+    # Backtest MAE
+    p3 <- AutoPlots::Plot.Area(
+      dt = BT_Raw,
+      AggMethod = "mean",
+      PreAgg = FALSE,
+      XVar = DateColumnName,
+      YVar = "MAE",
+      DualYVar = NULL,
+      GroupVar = NULL,
+      YVarTrans = "Identity",
+      DualYVarTrans = "Identity",
+      XVarTrans = "Identity",
+      FacetRows = 1,
+      FacetCols = 1,
+      FacetLevels = NULL,
+      Height = PlotHeight,
+      Width = PlotWidth,
+      Title = "Line Plot",
+      ShowLabels = FALSE,
+      Title.YAxis = "Absolute Error",
+      Title.XAxis = DateColumnName,
+      EchartsTheme = Theme,
+      X_Scroll = FALSE,
+      Y_Scroll = FALSE,
+      TimeLine = TRUE,
+      Alpha = 0.5,
+      Smooth = TRUE,
+      ShowSymbol = FALSE,
+      TextColor = "white",
+      title.fontSize = 22,
+      title.fontWeight = "bold",
+      title.textShadowColor = "#63aeff",
+      title.textShadowBlur = 3,
+      title.textShadowOffsetY = 1,
+      title.textShadowOffsetX = -1,
+      xaxis.fontSize = 14,
+      yaxis.fontSize = 14,
+      xaxis.rotate = 0,
+      yaxis.rotate = 0,
+      ContainLabel = TRUE,
+      Debug = FALSE)
+    OutputList[["Backtest MAE LinePlot"]] <- echarts4r::e_mark_line(e = p3, data = list(xAxis = minD), title = "")
+
+    # Backtest RMSE
+    temp <- BT_Raw[, list(RMSE = sqrt(mean(RMSE))), by = DateColumnName]
+    p4 <- AutoPlots::Plot.Area(
+      dt = temp,
+      AggMethod = "mean",
+      PreAgg = TRUE,
+      XVar = DateColumnName,
+      YVar = "RMSE",
+      DualYVar = NULL,
+      GroupVar = NULL,
+      YVarTrans = "Identity",
+      DualYVarTrans = "Identity",
+      XVarTrans = "Identity",
+      FacetRows = 1,
+      FacetCols = 1,
+      FacetLevels = NULL,
+      Height = PlotHeight,
+      Width = PlotWidth,
+      Title = "Line Plot",
+      ShowLabels = FALSE,
+      Title.YAxis = "MSE",
+      Title.XAxis = DateColumnName,
+      EchartsTheme = Theme,
+      X_Scroll = FALSE,
+      Y_Scroll = FALSE,
+      TimeLine = TRUE,
+      Alpha = 0.5,
+      Smooth = TRUE,
+      ShowSymbol = FALSE,
+      TextColor = "white",
+      title.fontSize = 22,
+      title.fontWeight = "bold",
+      title.textShadowColor = "#63aeff",
+      title.textShadowBlur = 3,
+      title.textShadowOffsetY = 1,
+      title.textShadowOffsetX = -1,
+      xaxis.fontSize = 14,
+      yaxis.fontSize = 14,
+      xaxis.rotate = 0,
+      yaxis.rotate = 0,
+      ContainLabel = TRUE,
+      Debug = FALSE)
+    OutputList[["Backtest MSE LinePlot"]] <- echarts4r::e_mark_line(e = p4, data = list(xAxis = minD), title = "")
+
+    # # Backtest MAPE
+    # temp1 <- BT_Raw[, list(MAPE = mean(MAPE)), by = DateColumnName]
+    # p5 <- AutoPlots::Plot.Area(
+    #   dt = temp1,
+    #   AggMethod = "mean",
+    #   PreAgg = TRUE,
+    #   XVar = DateColumnName,
+    #   YVar = "MAPE",
+    #   DualYVar = NULL,
+    #   GroupVar = NULL,
+    #   YVarTrans = "Identity",
+    #   DualYVarTrans = "Identity",
+    #   XVarTrans = "Identity",
+    #   FacetRows = 1,
+    #   FacetCols = 1,
+    #   FacetLevels = NULL,
+    #   Height = PlotHeight,
+    #   Width = PlotWidth,
+    #   Title = "Line Plot",
+    #   ShowLabels = FALSE,
+    #   Title.YAxis = "MAPE",
+    #   Title.XAxis = DateColumnName,
+    #   EchartsTheme = Theme,
+    #   X_Scroll = FALSE,
+    #   Y_Scroll = FALSE,
+    #   TimeLine = TRUE,
+    #   Alpha = 0.5,
+    #   Smooth = TRUE,
+    #   ShowSymbol = FALSE,
+    #   TextColor = "white",
+    #   title.fontSize = 22,
+    #   title.fontWeight = "bold",
+    #   title.textShadowColor = "#63aeff",
+    #   title.textShadowBlur = 3,
+    #   title.textShadowOffsetY = 1,
+    #   title.textShadowOffsetX = -1,
+    #   xaxis.fontSize = 14,
+    #   yaxis.fontSize = 14,
+    #   xaxis.rotate = 0,
+    #   yaxis.rotate = 0,
+    #   ContainLabel = TRUE,
+    #   Debug = FALSE)
+    # OutputList[["Backtest MAPE LinePlot"]] <- echarts4r::e_mark_line(e = p5, data = list(xAxis = minD), title = "")
+
+    # Backtest SMAPE
+    temp2 <- BT_Raw[, list(SMAPE = mean(SMAPE)), by = DateColumnName]
+    p6 <- AutoPlots::Plot.Area(
+      dt = temp2,
+      AggMethod = "mean",
+      PreAgg = TRUE,
+      XVar = DateColumnName,
+      YVar = "SMAPE",
+      DualYVar = NULL,
+      GroupVar = NULL,
+      YVarTrans = "Identity",
+      DualYVarTrans = "Identity",
+      XVarTrans = "Identity",
+      FacetRows = 1,
+      FacetCols = 1,
+      FacetLevels = NULL,
+      Height = PlotHeight,
+      Width = PlotWidth,
+      Title = "Line Plot",
+      ShowLabels = FALSE,
+      Title.YAxis = "SMAPE",
+      Title.XAxis = DateColumnName,
+      EchartsTheme = Theme,
+      X_Scroll = FALSE,
+      Y_Scroll = FALSE,
+      TimeLine = TRUE,
+      Alpha = 0.5,
+      Smooth = TRUE,
+      ShowSymbol = FALSE,
+      TextColor = "white",
+      title.fontSize = 22,
+      title.fontWeight = "bold",
+      title.textShadowColor = "#63aeff",
+      title.textShadowBlur = 3,
+      title.textShadowOffsetY = 1,
+      title.textShadowOffsetX = -1,
+      xaxis.fontSize = 14,
+      yaxis.fontSize = 14,
+      xaxis.rotate = 0,
+      yaxis.rotate = 0,
+      ContainLabel = TRUE,
+      Debug = FALSE)
+    OutputList[["Backtest SMAPE LinePlot"]] <- echarts4r::e_mark_line(e = p6, data = list(xAxis = minD), title = "")
+
+  }
+
+  # ----
+
+  # ----
+
+  # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
   # Train Outputs                                                             ----
   # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
   if(tolower(Algo) == "catboost") {
@@ -5104,497 +5596,6 @@ Shiny.FC.Panel.ReportOutput <- function(input,
   # ----
 
   # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
-  # Backtest Outputs                                                          ----
-  # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
-
-  # BT_Rollup
-  if(Debug) print("Backtesting Outputs")
-  BT_Rollup <- tryCatch({DataList[[paste0(ModelID, "_BT_Rollup")]]$data}, error = function(x) NULL)
-  if(length(BT_Rollup) > 0L) {
-    OutputList[["Back Test Metrics"]] <- reactable::reactable(
-      data = BT_Rollup,
-      compact = TRUE,
-      defaultPageSize = 10,
-      wrap = TRUE,
-      filterable = TRUE,
-      fullWidth = TRUE,
-      highlight = TRUE,
-      pagination = TRUE,
-      resizable = TRUE,
-      searchable = TRUE,
-      selection = "multiple",
-      showPagination = TRUE,
-      showSortable = TRUE,
-      showSortIcon = TRUE,
-      sortable = TRUE,
-      striped = TRUE,
-      theme = reactable::reactableTheme(
-        color = FontColor$flv,
-        backgroundColor = "#4f4f4f26",
-        borderColor = "#dfe2e5",
-        stripedColor = "#4f4f4f8f",
-        highlightColor = "#8989898f",
-        cellPadding = "8px 12px",
-        style = list(
-          fontFamily = "-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif"
-        ),
-        searchInputStyle = list(width = "100%")
-      )
-    )
-  }
-
-  # BT_Raw
-  BT_Raw <- tryCatch({DataList[[paste0(ModelID, "_BT_Raw")]]$data}, error = function(x) NULL)
-  if(length(BT_Raw) > 0L) {
-
-    # Backtest
-    minD <- BT_Raw[DataSet == "Evaluation", min(get(DateColumnName))]
-    p1 <- AutoPlots::Plot.Line(
-      dt = BT_Raw,
-      AggMethod = "mean",
-      PreAgg = FALSE,
-      XVar = DateColumnName,
-      YVar = c(TargetColumnName, "Predictions"),
-      DualYVar = NULL,
-      GroupVar = NULL,
-      YVarTrans = "Identity",
-      DualYVarTrans = "Identity",
-      XVarTrans = "Identity",
-      FacetRows = 1,
-      FacetCols = 1,
-      FacetLevels = NULL,
-      Height = PlotHeight,
-      Width = PlotWidth,
-      Title = "Line Plot",
-      ShowLabels = FALSE,
-      Title.YAxis = paste0(TargetColumnName, " | Predict"),
-      Title.XAxis = DateColumnName,
-      EchartsTheme = Theme,
-      X_Scroll = FALSE,
-      Y_Scroll = FALSE,
-      TimeLine = TRUE,
-      Alpha = 0.5,
-      Smooth = TRUE,
-      ShowSymbol = FALSE,
-      TextColor = "white",
-      title.fontSize = 22,
-      title.fontWeight = "bold",
-      title.textShadowColor = "#63aeff",
-      title.textShadowBlur = 3,
-      title.textShadowOffsetY = 1,
-      title.textShadowOffsetX = -1,
-      xaxis.fontSize = 14,
-      yaxis.fontSize = 14,
-      xaxis.rotate = 0,
-      yaxis.rotate = 0,
-      ContainLabel = TRUE,
-      Debug = FALSE)
-    OutputList[["Backtest LinePlot"]] <- echarts4r::e_mark_line(e = p1, data = list(xAxis = minD), title = "")
-
-    # Backtest AvgError
-    p2 <- AutoPlots::Plot.Box(
-      dt = BT_Raw,
-      SampleSize = 100000L,
-      XVar = DateColumnName,
-      YVar = "AvgError",
-      GroupVar = NULL,
-      YVarTrans = "Identity",
-      XVarTrans = "Identity",
-      FacetRows = 1,
-      FacetCols = 1,
-      FacetLevels = NULL,
-      Height = PlotHeight,
-      Width = PlotWidth,
-      Title = "Box Plot: Avg Error",
-      ShowLabels = FALSE,
-      Title.YAxis = paste0(TargetColumnName, " - Predicted"),
-      Title.XAxis = DateColumnName,
-      EchartsTheme = Theme,
-      TimeLine = FALSE,
-      X_Scroll = TRUE,
-      Y_Scroll = TRUE,
-      TextColor = "white",
-      title.fontSize = 22,
-      title.fontWeight = "bold",
-      title.textShadowColor = "#63aeff",
-      title.textShadowBlur = 3,
-      title.textShadowOffsetY = 1,
-      title.textShadowOffsetX = -1,
-      xaxis.fontSize = 14,
-      yaxis.fontSize = 14,
-      xaxis.rotate = 0,
-      yaxis.rotate = 0,
-      ContainLabel = TRUE,
-      Debug = FALSE)
-    OutputList[["Backtest BoxPlot"]] <- echarts4r::e_mark_line(e = p2, data = list(xAxis = minD), title = "")
-
-    # Backtest MAE
-    p3 <- AutoPlots::Plot.Area(
-      dt = BT_Raw,
-      AggMethod = "mean",
-      PreAgg = FALSE,
-      XVar = DateColumnName,
-      YVar = "MAE",
-      DualYVar = NULL,
-      GroupVar = NULL,
-      YVarTrans = "Identity",
-      DualYVarTrans = "Identity",
-      XVarTrans = "Identity",
-      FacetRows = 1,
-      FacetCols = 1,
-      FacetLevels = NULL,
-      Height = PlotHeight,
-      Width = PlotWidth,
-      Title = "Line Plot",
-      ShowLabels = FALSE,
-      Title.YAxis = "Absolute Error",
-      Title.XAxis = DateColumnName,
-      EchartsTheme = Theme,
-      X_Scroll = FALSE,
-      Y_Scroll = FALSE,
-      TimeLine = TRUE,
-      Alpha = 0.5,
-      Smooth = TRUE,
-      ShowSymbol = FALSE,
-      TextColor = "white",
-      title.fontSize = 22,
-      title.fontWeight = "bold",
-      title.textShadowColor = "#63aeff",
-      title.textShadowBlur = 3,
-      title.textShadowOffsetY = 1,
-      title.textShadowOffsetX = -1,
-      xaxis.fontSize = 14,
-      yaxis.fontSize = 14,
-      xaxis.rotate = 0,
-      yaxis.rotate = 0,
-      ContainLabel = TRUE,
-      Debug = FALSE)
-    OutputList[["Backtest MAE LinePlot"]] <- echarts4r::e_mark_line(e = p3, data = list(xAxis = minD), title = "")
-
-    # Backtest RMSE
-    temp <- BT_Raw[, list(RMSE = sqrt(mean(RMSE))), by = DateColumnName]
-    p4 <- AutoPlots::Plot.Area(
-      dt = temp,
-      AggMethod = "mean",
-      PreAgg = TRUE,
-      XVar = DateColumnName,
-      YVar = "RMSE",
-      DualYVar = NULL,
-      GroupVar = NULL,
-      YVarTrans = "Identity",
-      DualYVarTrans = "Identity",
-      XVarTrans = "Identity",
-      FacetRows = 1,
-      FacetCols = 1,
-      FacetLevels = NULL,
-      Height = PlotHeight,
-      Width = PlotWidth,
-      Title = "Line Plot",
-      ShowLabels = FALSE,
-      Title.YAxis = "MSE",
-      Title.XAxis = DateColumnName,
-      EchartsTheme = Theme,
-      X_Scroll = FALSE,
-      Y_Scroll = FALSE,
-      TimeLine = TRUE,
-      Alpha = 0.5,
-      Smooth = TRUE,
-      ShowSymbol = FALSE,
-      TextColor = "white",
-      title.fontSize = 22,
-      title.fontWeight = "bold",
-      title.textShadowColor = "#63aeff",
-      title.textShadowBlur = 3,
-      title.textShadowOffsetY = 1,
-      title.textShadowOffsetX = -1,
-      xaxis.fontSize = 14,
-      yaxis.fontSize = 14,
-      xaxis.rotate = 0,
-      yaxis.rotate = 0,
-      ContainLabel = TRUE,
-      Debug = FALSE)
-    OutputList[["Backtest MSE LinePlot"]] <- echarts4r::e_mark_line(e = p4, data = list(xAxis = minD), title = "")
-
-    # # Backtest MAPE
-    # temp1 <- BT_Raw[, list(MAPE = mean(MAPE)), by = DateColumnName]
-    # p5 <- AutoPlots::Plot.Area(
-    #   dt = temp1,
-    #   AggMethod = "mean",
-    #   PreAgg = TRUE,
-    #   XVar = DateColumnName,
-    #   YVar = "MAPE",
-    #   DualYVar = NULL,
-    #   GroupVar = NULL,
-    #   YVarTrans = "Identity",
-    #   DualYVarTrans = "Identity",
-    #   XVarTrans = "Identity",
-    #   FacetRows = 1,
-    #   FacetCols = 1,
-    #   FacetLevels = NULL,
-    #   Height = PlotHeight,
-    #   Width = PlotWidth,
-    #   Title = "Line Plot",
-    #   ShowLabels = FALSE,
-    #   Title.YAxis = "MAPE",
-    #   Title.XAxis = DateColumnName,
-    #   EchartsTheme = Theme,
-    #   X_Scroll = FALSE,
-    #   Y_Scroll = FALSE,
-    #   TimeLine = TRUE,
-    #   Alpha = 0.5,
-    #   Smooth = TRUE,
-    #   ShowSymbol = FALSE,
-    #   TextColor = "white",
-    #   title.fontSize = 22,
-    #   title.fontWeight = "bold",
-    #   title.textShadowColor = "#63aeff",
-    #   title.textShadowBlur = 3,
-    #   title.textShadowOffsetY = 1,
-    #   title.textShadowOffsetX = -1,
-    #   xaxis.fontSize = 14,
-    #   yaxis.fontSize = 14,
-    #   xaxis.rotate = 0,
-    #   yaxis.rotate = 0,
-    #   ContainLabel = TRUE,
-    #   Debug = FALSE)
-    # OutputList[["Backtest MAPE LinePlot"]] <- echarts4r::e_mark_line(e = p5, data = list(xAxis = minD), title = "")
-
-    # Backtest SMAPE
-    temp2 <- BT_Raw[, list(SMAPE = mean(SMAPE)), by = DateColumnName]
-    p6 <- AutoPlots::Plot.Area(
-      dt = temp2,
-      AggMethod = "mean",
-      PreAgg = TRUE,
-      XVar = DateColumnName,
-      YVar = "SMAPE",
-      DualYVar = NULL,
-      GroupVar = NULL,
-      YVarTrans = "Identity",
-      DualYVarTrans = "Identity",
-      XVarTrans = "Identity",
-      FacetRows = 1,
-      FacetCols = 1,
-      FacetLevels = NULL,
-      Height = PlotHeight,
-      Width = PlotWidth,
-      Title = "Line Plot",
-      ShowLabels = FALSE,
-      Title.YAxis = "SMAPE",
-      Title.XAxis = DateColumnName,
-      EchartsTheme = Theme,
-      X_Scroll = FALSE,
-      Y_Scroll = FALSE,
-      TimeLine = TRUE,
-      Alpha = 0.5,
-      Smooth = TRUE,
-      ShowSymbol = FALSE,
-      TextColor = "white",
-      title.fontSize = 22,
-      title.fontWeight = "bold",
-      title.textShadowColor = "#63aeff",
-      title.textShadowBlur = 3,
-      title.textShadowOffsetY = 1,
-      title.textShadowOffsetX = -1,
-      xaxis.fontSize = 14,
-      yaxis.fontSize = 14,
-      xaxis.rotate = 0,
-      yaxis.rotate = 0,
-      ContainLabel = TRUE,
-      Debug = FALSE)
-    OutputList[["Backtest SMAPE LinePlot"]] <- echarts4r::e_mark_line(e = p6, data = list(xAxis = minD), title = "")
-
-  }
-
-  # ----
-
-  # ----
-
-  # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
-  # FE Test Outputs                                                           ----
-  # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
-
-  # FE_Test
-  if(Debug) print("Feature Tuning Outputs")
-  FE_Test <- tryCatch({DataList[[paste0(ModelID, "_FeatureEngineeringTest")]]$data}, error = function(x) NULL)
-  if(length(FE_Test) > 0L) {
-    OutputList[["Feature Tuning Metrics"]] <- reactable::reactable(
-      data = FE_Test,
-      compact = TRUE,
-      defaultPageSize = 10,
-      wrap = TRUE,
-      filterable = TRUE,
-      fullWidth = TRUE,
-      highlight = TRUE,
-      pagination = TRUE,
-      resizable = TRUE,
-      searchable = TRUE,
-      selection = "multiple",
-      showPagination = TRUE,
-      showSortable = TRUE,
-      showSortIcon = TRUE,
-      sortable = TRUE,
-      striped = TRUE,
-      theme = reactable::reactableTheme(
-        color = FontColor$flv,
-        backgroundColor = "#4f4f4f26",
-        borderColor = "#dfe2e5",
-        stripedColor = "#4f4f4f8f",
-        highlightColor = "#8989898f",
-        cellPadding = "8px 12px",
-        style = list(
-          fontFamily = "-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif"
-        ),
-        searchInputStyle = list(width = "100%")
-      )
-    )
-  }
-
-  # FE_Test[, ]
-
-  # ----
-
-  # ----
-
-  # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
-  # Cross Eval Outputs                                                        ----
-  # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
-
-  # FE_Test
-  if(Debug) print("Cross Eval Outputs")
-  CE_Rollup <- tryCatch({DataList[[paste0(ModelID, "_CE_Rollup")]]$data}, error = function(x) NULL)
-  if(length(CE_Rollup) > 0L) {
-    OutputList[["Cross Eval Test Metrics"]] <- reactable::reactable(
-      data = CE_Rollup,
-      compact = TRUE,
-      defaultPageSize = 10,
-      wrap = TRUE,
-      filterable = TRUE,
-      fullWidth = TRUE,
-      highlight = TRUE,
-      pagination = TRUE,
-      resizable = TRUE,
-      searchable = TRUE,
-      selection = "multiple",
-      showPagination = TRUE,
-      showSortable = TRUE,
-      showSortIcon = TRUE,
-      sortable = TRUE,
-      striped = TRUE,
-      theme = reactable::reactableTheme(
-        color = FontColor$flv,
-        backgroundColor = "#4f4f4f26",
-        borderColor = "#dfe2e5",
-        stripedColor = "#4f4f4f8f",
-        highlightColor = "#8989898f",
-        cellPadding = "8px 12px",
-        style = list(
-          fontFamily = "-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif"
-        ),
-        searchInputStyle = list(width = "100%")
-      )
-    )
-  }
-
-  # ----
-
-  # ----
-
-  # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
-  # Forecast Outputs                                                          ----
-  # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
-
-  # FC Data Output
-  if(Debug) print("Forecasting Outputs")
-  FCData <- tryCatch({DataList[[paste0("FC_", ModelID)]][['data']]}, error = function(x) NULL)
-  if(length(FCData) > 0L) {
-    if(Debug) print("Panel Forecast Data")
-    OutputList[["Panel Forecast Data"]] <- reactable::reactable(
-      data = FCData,
-      compact = TRUE,
-      defaultPageSize = 10,
-      wrap = TRUE,
-      filterable = TRUE,
-      fullWidth = TRUE,
-      highlight = TRUE,
-      pagination = TRUE,
-      resizable = TRUE,
-      searchable = TRUE,
-      selection = "multiple",
-      showPagination = TRUE,
-      showSortable = TRUE,
-      showSortIcon = TRUE,
-      sortable = TRUE,
-      striped = TRUE,
-      theme = reactable::reactableTheme(
-        color = FontColor$flv,
-        backgroundColor = "#4f4f4f26",
-        borderColor = "#dfe2e5",
-        stripedColor = "#4f4f4f8f",
-        highlightColor = "#8989898f",
-        cellPadding = "8px 12px",
-        style = list(
-          fontFamily = "-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif"
-        ),
-        searchInputStyle = list(width = "100%")
-      )
-    )
-
-    # Backtest
-    if(Debug) print("Forecast LinePlot 1")
-    minD <- FCData[is.na(get(TargetColumnName)), min(get(DateColumnName), na.rm = TRUE)]
-    if(Debug) {
-      print("Forecast LinePlot 2")
-      print(FCData)
-    }
-    p7 <- AutoPlots::Plot.Line(
-      dt = FCData,
-      AggMethod = "mean",
-      PreAgg = FALSE,
-      XVar = DateColumnName,
-      YVar = c(TargetColumnName, "Predictions"),
-      DualYVar = NULL,
-      GroupVar = NULL,
-      YVarTrans = "Identity",
-      DualYVarTrans = "Identity",
-      XVarTrans = "Identity",
-      FacetRows = 1,
-      FacetCols = 1,
-      FacetLevels = NULL,
-      Height = PlotHeight,
-      Width = PlotWidth,
-      Title = "Line Plot",
-      ShowLabels = FALSE,
-      Title.YAxis = paste0(TargetColumnName, " | Predict"),
-      Title.XAxis = DateColumnName,
-      EchartsTheme = Theme,
-      X_Scroll = FALSE,
-      Y_Scroll = FALSE,
-      TimeLine = TRUE,
-      Alpha = 0.5,
-      Smooth = TRUE,
-      ShowSymbol = FALSE,
-      TextColor = "white",
-      title.fontSize = 22,
-      title.fontWeight = "bold",
-      title.textShadowColor = "#63aeff",
-      title.textShadowBlur = 3,
-      title.textShadowOffsetY = 1,
-      title.textShadowOffsetX = -1,
-      xaxis.fontSize = 14,
-      yaxis.fontSize = 14,
-      xaxis.rotate = 0,
-      yaxis.rotate = 0,
-      ContainLabel = TRUE,
-      Debug = FALSE)
-    if(Debug) print("Forecast LinePlot 3")
-    OutputList[["Forecast LinePlot"]] <- echarts4r::e_mark_line(e = p7, data = list(xAxis = minD), title = "")
-  }
-
-  # ----
-
-  # ----
-
-  # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
   # Return                                                                    ----
   # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ----
   returnList <- list()
@@ -5660,7 +5661,7 @@ Shiny.FC.SS.ReportOutput <- function(input,
   if(FCD %in% names(DataList)) {
     Forecast_proc <- TRUE
   } else {
-    Forecast_proc <- FALSE
+    Forecast_proc <- TRUE
   }
 
   # temp_model_rdata$ArgsList$TargetColumnName

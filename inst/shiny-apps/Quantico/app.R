@@ -7765,7 +7765,7 @@ server <- function(input, output, session) {
         InferenceTabList[[paste0("InferenceReportsModelSelection",i)]] <- input[[paste0("InferenceReportsModelSelection",i)]]
         InferenceTabList[[paste0("Striped",i)]] <- input[[paste0("Striped",i)]]
         InferenceTabList[[paste0("MinRowsa",i)]] <- input[[paste0("MinRowsa",i)]]
-        InferenceTabList[[paste0("Compact",i)]] <- input[[paste0("Compact",i)]]
+        InferenceTabList[[paste0("Compacti",i)]] <- input[[paste0("Compact",i)]]
         InferenceTabList[[paste0("Filterable",i)]] <- input[[paste0("Filterable",i)]]
         InferenceTabList[[paste0("PlotWidthinf",i)]] <- input[[paste0("PlotWidthinf",i)]]
         InferenceTabList[[paste0("PlotHeightinf",i)]] <- input[[paste0("PlotHeightinf",i)]]
@@ -8073,7 +8073,7 @@ server <- function(input, output, session) {
             Quantico::PickerInput(session = session, input = input, Update = TRUE, InputID = paste0('InferenceReportsModelSelection',Page), Label = 'Inference Output', Choices = tryCatch({names(InferenceOutputList)}, error = function(x) NULL), SelectedDefault = InferenceTabList[[paste0("InferenceReportsModelSelection",i)]], Multiple = FALSE, MaxVars = 1L)
             shinyWidgets::updateMaterialSwitch(inputId = paste0("Striped", Page), value = InferenceTabList[[paste0("Striped",i)]])
             shiny::updateNumericInput(session = session, inputId = paste0("MinRowsa", Page), label = 'Records per Page', value = InferenceTabList[[paste0("MinRowsa",i)]], min = 10, max = 1000, step = 10)
-            shinyWidgets::updateMaterialSwitch(session = session, inputId = paste0("Compact", Page), value = InferenceTabList[[paste0("Compact",i)]])
+            shinyWidgets::updateMaterialSwitch(session = session, inputId = paste0("Compacti", Page), value = InferenceTabList[[paste0("Compact",i)]])
             shinyWidgets::updateMaterialSwitch(session = session, inputId = paste0("Filterable", Page), value = InferenceTabList[[paste0("Filterable",i)]])
             shiny::updateSliderInput(session = session, inputId = paste0("PlotWidthinf",i), label = 'Plot Width', value = InferenceTabList[[paste0("PlotWidthinf",i)]], min = 100, max = 2800)
             shiny::updateSliderInput(session = session, inputId = paste0("PlotHeightinf",i), label = 'Plot Height', value = InferenceTabList[[paste0("PlotHeightinf",i)]], min = 100, max = 2800)

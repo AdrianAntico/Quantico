@@ -20208,7 +20208,7 @@ InferencePanels <- function(id, Page, AppWidth=12L, IOL = NULL) {
               style = "min-height: 240px; padding-top: 0px;",
               shiny::fluidRow(
                 style = "padding-top: 63px; padding-bottom: 68px",
-                shiny::column(12L, align = "left", style = "padding-left: 30px;", shinyWidgets::materialSwitch(inputId = paste0("Compact", Page), label = 'Compact', status = "danger", right = FALSE, value = TRUE), shiny::tags$style("padding-left: 40px;"))
+                shiny::column(12L, align = "left", style = "padding-left: 30px;", shinyWidgets::materialSwitch(inputId = paste0("Compacti", Page), label = 'Compact', status = "danger", right = FALSE, value = TRUE), shiny::tags$style("padding-left: 40px;"))
               ),
               shiny::fluidRow(
                 shiny::column(12L, align = "left", style = "padding-left: 30px;", shinyWidgets::materialSwitch(inputId = paste0("Filterable", Page), label = 'Filterable', status = "danger", right = FALSE, value = TRUE), shiny::tags$style("padding-left: 40px;"))

@@ -1,7 +1,7 @@
 ![Version:1.0.0](https://img.shields.io/static/v1?label=Version&message=1.0.0&color=blue&?style=plastic)
 ![Build:Passing](https://img.shields.io/static/v1?label=Build&message=passing&color=brightgreen)
 [![PRsWelcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=default)](http://makeapullrequest.com)
-[![GitHubStars](https://img.shields.io/github/stars/AdrianAntico/ShinyDS.svg?style=social)](https://github.com/AdrianAntico/ShinyDS)
+[![GitHubStars](https://img.shields.io/github/stars/AdrianAntico/Quantico.svg?style=social)](https://github.com/AdrianAntico/Quantico)
 
 ![](https://github.com/AdrianAntico/Quantico/blob/main/inst/AppInterface.gif)
 

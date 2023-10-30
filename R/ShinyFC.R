@@ -2656,15 +2656,14 @@ Shiny.FC.SS <- function(input,
     ArgsList[['TargetColumnName']] <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0(Algo, "_TargetColumnName")]]}, error = NULL), Type = "character", Default = NULL)
     ArgsList[['DateColumnName']] <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0(Algo, "_DateColumnName")]]}, error = NULL), Type = "character", Default = NULL)
     ArgsList[['TimeUnit']] <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0(Algo, "_TimeUnit")]]}, error = NULL), Type = "character", Default = NULL)
-    #CodeList <- tryCatch({Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
-    CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+    CodeList <- tryCatch({Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
       "\n",
       "# Store ArgsList, TargetColumnName, and DateColumnName into ArgsList\n",
       "ArgsList[['ArgsList']] <- NULL\n",
       "ArgsList[['TargetColumnName']] <- ", Quantico:::CEP(ArgsList[['TargetColumnName']]), "\n",
       "ArgsList[['DateColumnName']] <- ", Quantico:::CEP(ArgsList[['DateColumnName']]), "\n",
-      "ArgsList[['TimeUnit']] <- ", Quantico:::CEP(ArgsList[['TimeUnit']], "\n")))
-    #}, error = function(x) CodeList)
+      "ArgsList[['TimeUnit']] <- ", Quantico:::CEP(ArgsList[['TimeUnit']]), "\n"))
+    }, error = function(x) CodeList)
 
     # Ensure DateVariable is a Date Type
     check <- class(ArgsList[['data']][[ArgsList[['DateColumnName']]]])[1L]

@@ -116,17 +116,19 @@ Shiny.EDA.ReportOutput <- function(input,
   # Create a sampled dataset to speed up computations
   if(data[,.N] > 100000L) {
     data1 <- data[order(runif(.N))][seq_len(100000L)]
+  } else {
+    data1 <- data
   }
 
   # Numeric
   if(Debug) print("Shiny.EDA.ReportOutput 5")
 
   # Full Data
-  x <- c(); for(i in names(data)) if(class(data[[i]])[1L] %in% c("numeric","integer")) x <- c(x, i)
+  x <- c(); for(i in names(data1)) if(class(data1[[i]])[1L] %in% c("numeric","integer")) x <- c(x, i)
   UnivariateStats <- data.table::data.table(Variables = x)
-  x <- c(); for(i in names(data)) if(class(data[[i]])[1L] %in% c("numeric","integer")) x <- c(x, data[, min(get(i), na.rm = TRUE)])
+  x <- c(); for(i in names(data1)) if(class(data1[[i]])[1L] %in% c("numeric","integer")) x <- c(x, data1[, min(get(i), na.rm = TRUE)])
   UnivariateStats[, Min := round(x,2)]
-  x <- c(); for(i in names(data)) if(class(data[[i]])[1L] %in% c("numeric","integer")) x <- c(x, data[, max(get(i), na.rm = TRUE)])
+  x <- c(); for(i in names(data1)) if(class(data1[[i]])[1L] %in% c("numeric","integer")) x <- c(x, data1[, max(get(i), na.rm = TRUE)])
   UnivariateStats[, Max := round(x,2)]
 
   # Sampled data
@@ -281,7 +283,7 @@ Shiny.EDA.ReportOutput <- function(input,
   if(Debug) print("Shiny.EDA.ReportOutput 9")
   x <- c(); for(i in CorrVars) if(class(data1[[i]])[1L] %in% c("numeric","integer")) x <- c(x, i)
   if(length(x) > 0L) {
-    OutputList[[paste0("Correlogram: ", i)]] <- tryCatch({AutoPlots::Plot.CorrMatrix(
+    OutputList[["Correlogram"]] <- tryCatch({AutoPlots::Plot.CorrMatrix(
       dt = data1,
       CorrVars = x,
       CorrVarTrans = "Identity",
@@ -310,45 +312,16 @@ Shiny.EDA.ReportOutput <- function(input,
       xaxis.fontSize = 14,
       Debug = FALSE)
       }, error = function(x) NULL)
-
-    # dt = data1
-    # CorrVars = x
-    # CorrVarTrans = "Identity"
-    # FacetRows = 1
-    # FacetCols = 1
-    # FacetLevels = NULL
-    # Method = "spearman"
-    # PreAgg = FALSE
-    # Height = NULL
-    # Width = NULL
-    # Title = "Correlation Matrix"
-    # ShowLabels = FALSE
-    # Title.YAxis = NULL
-    # Title.XAxis = NULL
-    # EchartsTheme = Theme
-    # X_Scroll = TRUE
-    # Y_Scroll = TRUE
-    # TextColor = "white"
-    # title.fontSize = 22
-    # title.fontWeight = "bold"
-    # title.textShadowColor = "#63aeff"
-    # title.textShadowBlur = 3
-    # title.textShadowOffsetY = 1
-    # title.textShadowOffsetX = -1
-    # yaxis.fontSize = 14
-    # xaxis.fontSize = 14
-    # Debug = FALSE
-
   }
 
   # Trend Stats / Plots
   if(Debug) print("Shiny.EDA.ReportOutput 10")
   if(length(TrendDateVar) > 0L) {
-    x <- c(); for(i in TrendVars) if(class(data[[i]])[1L] %in% c("numeric","integer")) x <- c(x, i)
+    x <- c(); for(i in TrendVars) if(class(data1[[i]])[1L] %in% c("numeric","integer")) x <- c(x, i)
     if(length(x) > 0L) {
       for(i in x) {
         OutputList[[paste0("Trend: ", i)]] <- tryCatch({AutoPlots::Plot.Line(
-          dt = data,
+          dt = data1,
           AggMethod = "mean",
           PreAgg = FALSE,
           XVar = TrendDateVar,

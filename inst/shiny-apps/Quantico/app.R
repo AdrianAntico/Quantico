@@ -1532,7 +1532,7 @@ server <- function(input, output, session) {
 
       # Statics
       CategoricalEncoding_TrainData_Choices = tryCatch({names(DataList)}, error = function(x) NULL),
-      CategoricalEncoding_Method_Choices = c('meow','credibility','target_encoding','woe','poly_encode','backward_difference','helmert'),
+      CategoricalEncoding_Method_Choices = c('credibility','target_encoding','woe','poly_encode','backward_difference','helmert'),
       CategoricalEncoding_ValidationData_Choices = tryCatch({names(DataList)}, error = function(x) NULL),
       CategoricalEncoding_TestData_Choices = tryCatch({names(DataList)}, error = function(x) NULL),
       DummifyDT_SelectData_Choices = tryCatch({names(DataList)}, error = function(x) NULL),

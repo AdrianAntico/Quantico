@@ -62,6 +62,7 @@ Shiny.Plot.Build <- function(input,
   PlotList <- list()
   incre <- 0L
   tempPlotType <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0('PlotID_', PlotNumbers[1L])]]}, error = function(x) NULL), Type='character', Default = PlotMap[PlotNumber == eval(PlotNumbers[1L])][["PlotType"]], Debug = TRUE)
+  if(length(PlotNumbers) > 1L) MouseScroll <- FALSE else MouseScroll <- TRUE
   if(length(DataList) > 0L) {
     for(PlotNumberss in PlotNumbers) {
 
@@ -986,6 +987,7 @@ Shiny.Plot.Build <- function(input,
               FacetLevels = Levels1,
               PlotType = PlotType,
               Title = Title,
+              MouseScroll = MouseScroll,
               ShowLabels = ShowLabels,
               Title.YAxis = YAxisTitle,
               Title.XAxis = XAxisTitle,
@@ -1064,6 +1066,7 @@ Shiny.Plot.Build <- function(input,
               Height = PlotHeight[incre],
               Width = PlotWidth[incre],
               Title = Title,
+              MouseScroll = MouseScroll,
               EchartsTheme = EchartsTheme,
               TextColor = ColorFont,
               Debug = Debug)
@@ -1246,6 +1249,7 @@ Shiny.Plot.Build <- function(input,
               Title = Title,
               FacetRows = FacetRows,
               FacetCols = FacetCols,
+              MouseScroll = MouseScroll,
               FacetLevels = Levels1,
               Height = PlotHeight[incre],
               Width = PlotWidth[incre],

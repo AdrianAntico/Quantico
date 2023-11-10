@@ -5751,6 +5751,11 @@ SideBarUI <- function(id, AppWidth=12L) {
           shiny::fluidRow(
             shiny::column(
               12L,
+              Quantico::SelectizeInput(InputID = "ScrollZoom", Label = "Zoom via Scroll", Choices = c(TRUE,FALSE), SelectedDefault = FALSE, Multiple = FALSE))),
+          Quantico::BlankRow(12L),
+          shiny::fluidRow(
+            shiny::column(
+              12L,
               Quantico::SelectizeInput(InputID = "EchartsTimeLine", Label = "Plots Timeline", Choices = c(TRUE,FALSE), SelectedDefault = FALSE, Multiple = FALSE))),
           Quantico::BlankRow(12L),
           shiny::fluidRow(

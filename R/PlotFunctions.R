@@ -35,7 +35,8 @@ Shiny.Plot.Build <- function(input,
                              EchartsTheme,
                              OutputPage = 1,
                              PlotEngine = "Plotly",
-                             Timeline = TRUE,
+                             Timeline = FALSE,
+                             MouseScroll = FALSE,
                              ColorFont = "#e2e2e2",
                              NumLevelsDisplay = 50L,
                              NumberOfBins = 30L,
@@ -62,7 +63,6 @@ Shiny.Plot.Build <- function(input,
   PlotList <- list()
   incre <- 0L
   tempPlotType <- Quantico:::ReturnParam(xx=tryCatch({input[[paste0('PlotID_', PlotNumbers[1L])]]}, error = function(x) NULL), Type='character', Default = PlotMap[PlotNumber == eval(PlotNumbers[1L])][["PlotType"]], Debug = TRUE)
-  if(length(PlotNumbers) > 1L) MouseScroll <- FALSE else MouseScroll <- TRUE
   if(length(DataList) > 0L) {
     for(PlotNumberss in PlotNumbers) {
 

@@ -9899,7 +9899,8 @@ server <- function(input, output, session) {
       gtl[["PE"]] <- Quantico:::ReturnParam(xx = tryCatch({input[["PlottingFramework"]]}, error = function(x) "Echarts"), Type = "character", Default = "Echarts")
       cf3 <- Quantico:::rgba2hex(Quantico:::ReturnParam(xx = input[["ColorFont"]], Type = "character", Default = "#e2e2e2"))
       gtl[["ColorFont"]] <- cf3$flv
-      gtl[["TL"]] <- Quantico:::ReturnParam(xx = input[["EchartsTimeLine"]],Type = "logical",Default = FALSE, Debug = FALSE)
+      gtl[["TL"]] <- Quantico:::ReturnParam(xx = input[["EchartsTimeLine"]],Type = "logical", Default = FALSE, Debug = FALSE)
+      gtl[["ZS"]] <- Quantico:::ReturnParam(xx = input[["ScrollZoom"]],Type = "logical", Default = FALSE, Debug = FALSE)
       gtl[["EchartsTheme"]] <- Quantico:::ReturnParam(xx = input[["EchartsTheme"]], Type = "character", Default = "macarons")
       gtl[["NumLevelsDisplay"]] <- Quantico:::ReturnParam(xx = input[[paste0("Number_of_Levels", TabNum)]], Type = "numeric", Default = 20L, Debug = DebugPlottingOE)
       gtl[["FontSize"]] <- Quantico:::ReturnParam(xx = input[[paste0("FontSize", TabNum)]], Type = "numeric", Default = 14L, Debug = DebugPlottingOE)
@@ -9938,7 +9939,7 @@ server <- function(input, output, session) {
           input,output,session,
           PlotNumbers, DataList, DebugPlottingOE, PlotMap,
           PlotterCode, gtl[["EchartsTheme"]], OutputPage = TabNum,
-          PlotEngine = gtl[["PE"]], Timeline = gtl[["TL"]],ColorFont = gtl[["ColorFont"]],
+          PlotEngine = gtl[["PE"]], Timeline = gtl[["TL"]], MouseScroll = gtl[["ZS"]], ColorFont = gtl[["ColorFont"]],
           NumLevelsDisplay = gtl[["NumLevelsDisplay"]], NumberOfBins = gtl[["Number_of_Bins"]],
           GlobalChange = GlobalChange, PlotHeight = out$PlotHeight, PlotWidth = out$PlotWidth,
           Args = PlotDropDown, SubsetList = SubsetList)}, error = function(x) NULL)

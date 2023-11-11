@@ -480,8 +480,8 @@ if(!is.null(TestData)) {
     Title.XAxis = "Predict",
     EchartsTheme = "wef",
     TimeLine = TRUE,
-    X_Scroll = TRUE,
-    Y_Scroll = TRUE,
+    
+    
     TextColor = "white",
     Debug = FALSE)
 
@@ -511,8 +511,8 @@ if(!is.null(TrainData)) {
     Title.XAxis = "Predict",
     EchartsTheme = "wef",
     TimeLine = TRUE,
-    X_Scroll = TRUE,
-    Y_Scroll = TRUE,
+    
+    
     TextColor = "white",
     Debug = FALSE)
 
@@ -544,8 +544,8 @@ if(!is.null(TestData)) {
     Title.XAxis = "Predict",
     EchartsTheme = "wef",
     TimeLine = TRUE,
-    X_Scroll = TRUE,
-    Y_Scroll = TRUE,
+    
+    
     TextColor = "white",
     Debug = FALSE)
   
@@ -575,8 +575,8 @@ if(!is.null(TrainData)) {
     Title.XAxis = "Predict",
     EchartsTheme = "wef",
     TimeLine = TRUE,
-    X_Scroll = TRUE,
-    Y_Scroll = TRUE,
+    
+    
     TextColor = "white",
     Debug = FALSE)
 } else {
@@ -609,8 +609,8 @@ if(!is.null(TestData)) {
     Title.XAxis = "Predict",
     EchartsTheme = "wef",
     TimeLine = TRUE,
-    X_Scroll = TRUE,
-    Y_Scroll = TRUE,
+    
+    
     TextColor = "white",
     Debug = FALSE)
 } else {
@@ -641,8 +641,8 @@ if(!is.null(TrainData)) {
     Title.XAxis = "Predict",
     EchartsTheme = "wef",
     TimeLine = TRUE,
-    X_Scroll = TRUE,
-    Y_Scroll = TRUE,
+    
+    
     TextColor = "white",
     Debug = FALSE)
 } else {
@@ -693,8 +693,8 @@ if(!is.null(TestData) && !is.null(FeatureColumnNames)) {
         Title.XAxis = g,
         EchartsTheme = "wef",
         TimeLine = TRUE,
-        X_Scroll = TRUE,
-        Y_Scroll = TRUE,
+        
+        
         TextColor = "white",
         Debug = FALSE)
     }
@@ -737,8 +737,8 @@ if(!is.null(TrainData) && !is.null(FeatureColumnNames)) {
         Title.XAxis = g,
         EchartsTheme = "wef",
         TimeLine = TRUE,
-        X_Scroll = TRUE,
-        Y_Scroll = TRUE,
+        
+        
         TextColor = "white",
         Debug = FALSE)
     }
@@ -778,8 +778,8 @@ if(!is.null(TestData) && !is.null(FeatureColumnNames)) {
         Title.XAxis = g,
         EchartsTheme = "wef",
         TimeLine = TRUE,
-        X_Scroll = TRUE,
-        Y_Scroll = TRUE,
+        
+        
         TextColor = "white",
         Debug = FALSE)}, error = function(x) NULL)
     }
@@ -817,8 +817,8 @@ if(!is.null(TrainData) && !is.null(FeatureColumnNames)) {
         Title.XAxis = g,
         EchartsTheme = "wef",
         TimeLine = TRUE,
-        X_Scroll = TRUE,
-        Y_Scroll = TRUE,
+        
+        
         TextColor = "white",
         Debug = FALSE)}, error = function(x) NULL)
     }
@@ -1150,8 +1150,8 @@ if(!is.null(Test_Importance)) {
     Title.XAxis = NULL,
     EchartsTheme = "wef",
     TimeLine = FALSE,
-    X_Scroll = TRUE,
-    Y_Scroll = TRUE,
+    
+    
     TextColor = "white",
     title.fontSize = 22,
     title.fontWeight = "bold",
@@ -1187,8 +1187,8 @@ if(!is.null(Validation_Importance)) {
     Title.XAxis = NULL,
     EchartsTheme = "wef",
     TimeLine = FALSE,
-    X_Scroll = TRUE,
-    Y_Scroll = TRUE,
+    
+    
     TextColor = "white",
     title.fontSize = 22,
     title.fontWeight = "bold",
@@ -1222,8 +1222,8 @@ if(!is.null(Train_Importance)) {
     Title.XAxis = NULL,
     EchartsTheme = "wef",
     TimeLine = FALSE,
-    X_Scroll = TRUE,
-    Y_Scroll = TRUE,
+    
+    
     TextColor = "white",
     title.fontSize = 22,
     title.fontWeight = "bold",

@@ -461,8 +461,8 @@ for(i in UnivariateVars) {
       Title.XAxis = NULL,
       EchartsTheme = "wef",
       TimeLine = FALSE,
-      X_Scroll = TRUE,
-      Y_Scroll = TRUE,
+      
+      
       TextColor = "white",
       title.fontSize = 22,
       title.fontWeight = "bold",
@@ -505,8 +505,8 @@ for(i in UnivariateVars) {# i = UnivariateVars[1]
       Title.XAxis = NULL,
       EchartsTheme = "wef",
       TimeLine = TRUE,
-      X_Scroll = TRUE,
-      Y_Scroll = TRUE,
+      
+      
       TextColor = "white",
       title.fontSize = 22,
       title.fontWeight = "bold",
@@ -543,8 +543,8 @@ if(length(x) > 0L) {
     Title.YAxis = NULL,
     Title.XAxis = NULL,
     EchartsTheme = "wef",
-    X_Scroll = TRUE,
-    Y_Scroll = TRUE,
+    
+    
     TextColor = "white",
     title.fontSize = 22,
     title.fontWeight = "bold",
@@ -584,8 +584,8 @@ if(length(TrendDateVar) > 0L) {
         Title.YAxis = NULL,
         Title.XAxis = NULL,
         EchartsTheme = "wef",
-        X_Scroll = FALSE,
-        Y_Scroll = FALSE,
+        
+        
         TimeLine = TRUE,
         Area = FALSE,
         Alpha = 0.5,

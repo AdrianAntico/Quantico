@@ -546,8 +546,8 @@ if(length(MOL) > 0L && length(DataList) > 0L) {
       Title.XAxis = 'Predict',
       EchartsTheme = "wef",
       TimeLine = FALSE,
-      X_Scroll = TRUE,
-      Y_Scroll = FALSE,
+      
+      
       TextColor = "white",
       title.fontSize = 22,
       title.fontWeight = "bold",
@@ -579,8 +579,8 @@ if(length(MOL) > 0L && length(DataList) > 0L) {
       Title.XAxis = "Predict",
       EchartsTheme = "wef",
       TimeLine = FALSE,
-      X_Scroll = TRUE,
-      Y_Scroll = TRUE,
+      
+      
       TextColor = "white",
       Debug = FALSE)
 
@@ -605,8 +605,8 @@ if(length(MOL) > 0L && length(DataList) > 0L) {
       Title.XAxis = "Predict",
       EchartsTheme = "wef",
       TimeLine = FALSE,
-      X_Scroll = TRUE,
-      Y_Scroll = TRUE,
+      
+      
       TextColor = "white",
       Debug = FALSE)
 
@@ -637,8 +637,8 @@ if(length(MOL) > 0L && length(DataList) > 0L) {
             Title.XAxis = g,
             EchartsTheme = "wef",
             TimeLine = FALSE,
-            X_Scroll = TRUE,
-            Y_Scroll = TRUE,
+            
+            
             TextColor = "white",
             Debug = FALSE)
         }
@@ -672,8 +672,8 @@ if(length(MOL) > 0L && length(DataList) > 0L) {
             Title.XAxis = g,
             EchartsTheme = "wef",
             TimeLine = FALSE,
-            X_Scroll = TRUE,
-            Y_Scroll = TRUE,
+            
+            
             TextColor = "white",
             Debug = FALSE)
         }
@@ -716,8 +716,8 @@ if(length(MOL) > 0L && length(DataList) > 0L) {
             Title.XAxis = g,
             EchartsTheme = "wef",
             TimeLine = FALSE,
-            X_Scroll = TRUE,
-            Y_Scroll = TRUE,
+            
+            
             TextColor = "white",
             Debug = FALSE)
         }
@@ -814,8 +814,8 @@ if(length(MOL) > 0L && length(DataList) > 0L) {
       Title.YAxis = paste0(TargetColumnName, " | Predict"),
       Title.XAxis = DateColumnName,
       EchartsTheme = "wef",
-      X_Scroll = FALSE,
-      Y_Scroll = FALSE,
+      
+      
       TimeLine = TRUE,
       Alpha = 0.5,
       Smooth = TRUE,
@@ -855,8 +855,8 @@ if(length(MOL) > 0L && length(DataList) > 0L) {
       Title.XAxis = DateColumnName,
       EchartsTheme = "wef",
       TimeLine = FALSE,
-      X_Scroll = TRUE,
-      Y_Scroll = TRUE,
+      
+      
       TextColor = "white",
       title.fontSize = 22,
       title.fontWeight = "bold",
@@ -894,8 +894,8 @@ if(length(MOL) > 0L && length(DataList) > 0L) {
       Title.YAxis = "Absolute Error",
       Title.XAxis = DateColumnName,
       EchartsTheme = "wef",
-      X_Scroll = FALSE,
-      Y_Scroll = FALSE,
+      
+      
       TimeLine = TRUE,
       Alpha = 0.5,
       Smooth = TRUE,
@@ -938,8 +938,8 @@ if(length(MOL) > 0L && length(DataList) > 0L) {
       Title.YAxis = "MSE",
       Title.XAxis = DateColumnName,
       EchartsTheme = "wef",
-      X_Scroll = FALSE,
-      Y_Scroll = FALSE,
+      
+      
       TimeLine = TRUE,
       Alpha = 0.5,
       Smooth = TRUE,
@@ -982,8 +982,8 @@ if(length(MOL) > 0L && length(DataList) > 0L) {
     #   Title.YAxis = "MAPE",
     #   Title.XAxis = DateColumnName,
     #   EchartsTheme = "wef",
-    #   X_Scroll = FALSE,
-    #   Y_Scroll = FALSE,
+    #   
+    #   
     #   TimeLine = TRUE,
     #   Alpha = 0.5,
     #   Smooth = TRUE,
@@ -1026,8 +1026,8 @@ if(length(MOL) > 0L && length(DataList) > 0L) {
       Title.YAxis = "SMAPE",
       Title.XAxis = DateColumnName,
       EchartsTheme = "wef",
-      X_Scroll = FALSE,
-      Y_Scroll = FALSE,
+      
+      
       TimeLine = TRUE,
       Alpha = 0.5,
       Smooth = TRUE,
@@ -1202,8 +1202,8 @@ if(length(MOL) > 0L && length(DataList) > 0L) {
       Title.YAxis = paste0(TargetColumnName, " | Predict"),
       Title.XAxis = DateColumnName,
       EchartsTheme = "wef",
-      X_Scroll = FALSE,
-      Y_Scroll = FALSE,
+      
+      
       TimeLine = TRUE,
       Alpha = 0.5,
       Smooth = TRUE,

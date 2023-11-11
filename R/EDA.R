@@ -198,156 +198,27 @@ Shiny.EDA.ReportOutput <- function(input,
   if(Debug) print("Shiny.EDA.ReportOutput 7")
   for(i in UnivariateVars) {
     if(class(data1[[i]])[1L] %in% c("numeric","integer")) {
-      OutputList[[paste0("Univariate Plots: ", i)]] <- tryCatch({AutoPlots::Plot.Box(
-        dt = data1,
-        SampleSize = 100000L,
-        XVar = TrendGroupVar,
-        YVar = i,
-        GroupVar = NULL,
-        YVarTrans = "Identity",
-        XVarTrans = "Identity",
-        FacetRows = 1,
-        FacetCols = 1,
-        FacetLevels = NULL,
-        Height = PlotHeighteda,
-        Width = PlotWidtheda,
-        Title = "Box Plot",
-        ShowLabels = FALSE,
-        Title.YAxis = i,
-        Title.XAxis = NULL,
-        EchartsTheme = Theme,
-        TimeLine = TimeLine,
-        X_Scroll = TRUE,
-        Y_Scroll = TRUE,
-        TextColor = "white",
-        title.fontSize = 22,
-        title.fontWeight = "bold",
-        title.textShadowColor = "#63aeff",
-        title.textShadowBlur = 3,
-        title.textShadowOffsetY = 1,
-        title.textShadowOffsetX = -1,
-        xaxis.fontSize = 14,
-        yaxis.fontSize = 14,
-        xaxis.rotate = 0,
-        yaxis.rotate = 0,
-        ContainLabel = TRUE,
-        Debug = FALSE)}, error = function(x) NULL)
-    }
-  }
 
-  # Bar Plots
-  if(Debug) print("Shiny.EDA.ReportOutput 8")
-  for(i in UnivariateVars) {# i = UnivariateVars[1]
-    if(class(data1[[i]])[1L] %in% c("factor","character")) {
-      data2 <- data1[, list(Counts = .N), by = c(i)]
-      OutputList[[paste0("Univariate Plots: ", i)]] <- tryCatch({AutoPlots::Plot.Bar(
-        dt = data2,
-        PreAgg = TRUE,
-        XVar = i,
-        YVar = "Counts",
-        GroupVar = NULL,
-        LabelValues = NULL,
-        YVarTrans = "Identity",
-        XVarTrans = "Identity",
-        FacetRows = 1,
-        FacetCols = 1,
-        FacetLevels = NULL,
-        AggMethod = "count",
-        Height = NULL,
-        Width = NULL,
-        Title = "Bar Plot",
-        ShowLabels = FALSE,
-        Title.YAxis = NULL,
-        Title.XAxis = NULL,
-        EchartsTheme = Theme,
-        TimeLine = TRUE,
-        X_Scroll = TRUE,
-        Y_Scroll = TRUE,
-        TextColor = "white",
-        title.fontSize = 22,
-        title.fontWeight = "bold",
-        title.textShadowColor = "#63aeff",
-        title.textShadowBlur = 3,
-        title.textShadowOffsetY = 1,
-        title.textShadowOffsetX = -1,
-        xaxis.fontSize = 14,
-        yaxis.fontSize = 14,
-        xaxis.rotate = 0,
-        yaxis.rotate = 0,
-        ContainLabel = TRUE,
-        Debug = FALSE)}, error = function(x) NULL)
-    }
-  }
-
-  # Correlation Stats / Plots
-  if(Debug) print("Shiny.EDA.ReportOutput 9")
-  x <- c(); for(i in CorrVars) if(class(data1[[i]])[1L] %in% c("numeric","integer")) x <- c(x, i)
-  if(length(x) > 0L) {
-    OutputList[["Correlogram"]] <- tryCatch({AutoPlots::Plot.CorrMatrix(
-      dt = data1,
-      CorrVars = x,
-      CorrVarTrans = "Identity",
-      FacetRows = 1,
-      FacetCols = 1,
-      FacetLevels = NULL,
-      Method = "spearman",
-      PreAgg = FALSE,
-      Height = NULL,
-      Width = NULL,
-      Title = "Correlation Matrix",
-      ShowLabels = FALSE,
-      Title.YAxis = NULL,
-      Title.XAxis = NULL,
-      EchartsTheme = Theme,
-      X_Scroll = TRUE,
-      Y_Scroll = TRUE,
-      TextColor = "white",
-      title.fontSize = 22,
-      title.fontWeight = "bold",
-      title.textShadowColor = "#63aeff",
-      title.textShadowBlur = 3,
-      title.textShadowOffsetY = 1,
-      title.textShadowOffsetX = -1,
-      yaxis.fontSize = 14,
-      xaxis.fontSize = 14,
-      Debug = FALSE)
-      }, error = function(x) NULL)
-  }
-
-  # Trend Stats / Plots
-  if(Debug) print("Shiny.EDA.ReportOutput 10")
-  if(length(TrendDateVar) > 0L) {
-    x <- c(); for(i in TrendVars) if(class(data1[[i]])[1L] %in% c("numeric","integer")) x <- c(x, i)
-    if(length(x) > 0L) {
-      for(i in x) {
-        OutputList[[paste0("Trend: ", i)]] <- tryCatch({AutoPlots::Plot.Line(
+      if(Debug) {
+        OutputList[[paste0("Univariate Plots: ", i)]] <- AutoPlots::Plot.Box(
           dt = data1,
-          AggMethod = "mean",
-          PreAgg = FALSE,
-          XVar = TrendDateVar,
+          SampleSize = 100000L,
+          XVar = TrendGroupVar,
           YVar = i,
-          DualYVar = NULL,
-          GroupVar = TrendGroupVar,
+          GroupVar = NULL,
           YVarTrans = "Identity",
-          DualYVarTrans = "Identity",
           XVarTrans = "Identity",
           FacetRows = 1,
           FacetCols = 1,
           FacetLevels = NULL,
-          Height = NULL,
-          Width = NULL,
-          Title = "Line Plot",
+          Height = PlotHeighteda,
+          Width = PlotWidtheda,
+          Title = "Box Plot",
           ShowLabels = FALSE,
-          Title.YAxis = NULL,
+          Title.YAxis = i,
           Title.XAxis = NULL,
           EchartsTheme = Theme,
-          X_Scroll = FALSE,
-          Y_Scroll = FALSE,
-          TimeLine = TRUE,
-          Area = FALSE,
-          Alpha = 0.5,
-          Smooth = TRUE,
-          ShowSymbol = FALSE,
+          TimeLine = TimeLine,
           TextColor = "white",
           title.fontSize = 22,
           title.fontWeight = "bold",
@@ -360,8 +231,278 @@ Shiny.EDA.ReportOutput <- function(input,
           xaxis.rotate = 0,
           yaxis.rotate = 0,
           ContainLabel = TRUE,
-          DarkMode = FALSE,
+          Debug = FALSE)
+      } else {
+        OutputList[[paste0("Univariate Plots: ", i)]] <- tryCatch({AutoPlots::Plot.Box(
+          dt = data1,
+          SampleSize = 100000L,
+          XVar = TrendGroupVar,
+          YVar = i,
+          GroupVar = NULL,
+          YVarTrans = "Identity",
+          XVarTrans = "Identity",
+          FacetRows = 1,
+          FacetCols = 1,
+          FacetLevels = NULL,
+          Height = PlotHeighteda,
+          Width = PlotWidtheda,
+          Title = "Box Plot",
+          ShowLabels = FALSE,
+          Title.YAxis = i,
+          Title.XAxis = NULL,
+          EchartsTheme = Theme,
+          TimeLine = TimeLine,
+          TextColor = "white",
+          title.fontSize = 22,
+          title.fontWeight = "bold",
+          title.textShadowColor = "#63aeff",
+          title.textShadowBlur = 3,
+          title.textShadowOffsetY = 1,
+          title.textShadowOffsetX = -1,
+          xaxis.fontSize = 14,
+          yaxis.fontSize = 14,
+          xaxis.rotate = 0,
+          yaxis.rotate = 0,
+          ContainLabel = TRUE,
           Debug = FALSE)}, error = function(x) NULL)
+      }
+
+    }
+  }
+
+  # Bar Plots
+  if(Debug) print("Shiny.EDA.ReportOutput 8")
+  for(i in UnivariateVars) {# i = UnivariateVars[1]
+    if(class(data1[[i]])[1L] %in% c("factor","character")) {
+      data2 <- data1[, list(Counts = .N), by = c(i)]
+      if(Debug) {
+        OutputList[[paste0("Univariate Plots: ", i)]] <- AutoPlots::Plot.Bar(
+          dt = data2,
+          PreAgg = TRUE,
+          XVar = i,
+          YVar = "Counts",
+          GroupVar = NULL,
+          LabelValues = NULL,
+          YVarTrans = "Identity",
+          XVarTrans = "Identity",
+          FacetRows = 1,
+          FacetCols = 1,
+          FacetLevels = NULL,
+          AggMethod = "count",
+          Height = NULL,
+          Width = NULL,
+          Title = "Bar Plot",
+          ShowLabels = FALSE,
+          Title.YAxis = NULL,
+          Title.XAxis = NULL,
+          EchartsTheme = Theme,
+          TimeLine = TRUE,
+          TextColor = "white",
+          title.fontSize = 22,
+          title.fontWeight = "bold",
+          title.textShadowColor = "#63aeff",
+          title.textShadowBlur = 3,
+          title.textShadowOffsetY = 1,
+          title.textShadowOffsetX = -1,
+          xaxis.fontSize = 14,
+          yaxis.fontSize = 14,
+          xaxis.rotate = 0,
+          yaxis.rotate = 0,
+          ContainLabel = TRUE,
+          Debug = FALSE)
+      } else {
+        OutputList[[paste0("Univariate Plots: ", i)]] <- tryCatch({AutoPlots::Plot.Bar(
+          dt = data2,
+          PreAgg = TRUE,
+          XVar = i,
+          YVar = "Counts",
+          GroupVar = NULL,
+          LabelValues = NULL,
+          YVarTrans = "Identity",
+          XVarTrans = "Identity",
+          FacetRows = 1,
+          FacetCols = 1,
+          FacetLevels = NULL,
+          AggMethod = "count",
+          Height = NULL,
+          Width = NULL,
+          Title = "Bar Plot",
+          ShowLabels = FALSE,
+          Title.YAxis = NULL,
+          Title.XAxis = NULL,
+          EchartsTheme = Theme,
+          TimeLine = TRUE,
+          TextColor = "white",
+          title.fontSize = 22,
+          title.fontWeight = "bold",
+          title.textShadowColor = "#63aeff",
+          title.textShadowBlur = 3,
+          title.textShadowOffsetY = 1,
+          title.textShadowOffsetX = -1,
+          xaxis.fontSize = 14,
+          yaxis.fontSize = 14,
+          xaxis.rotate = 0,
+          yaxis.rotate = 0,
+          ContainLabel = TRUE,
+          Debug = FALSE)}, error = function(x) NULL)
+      }
+
+    }
+  }
+
+  # Correlation Stats / Plots
+  if(Debug) print("Shiny.EDA.ReportOutput 9")
+  x <- c(); for(i in CorrVars) if(class(data1[[i]])[1L] %in% c("numeric","integer")) x <- c(x, i)
+  if(length(x) > 0L) {
+    if(Debug) {
+      OutputList[["Correlogram"]] <- AutoPlots::Plot.CorrMatrix(
+        dt = data1,
+        CorrVars = x,
+        CorrVarTrans = "Identity",
+        FacetRows = 1,
+        FacetCols = 1,
+        FacetLevels = NULL,
+        Method = "spearman",
+        PreAgg = FALSE,
+        Height = NULL,
+        Width = NULL,
+        Title = "Correlation Matrix",
+        ShowLabels = FALSE,
+        Title.YAxis = NULL,
+        Title.XAxis = NULL,
+        EchartsTheme = Theme,
+        TextColor = "white",
+        title.fontSize = 22,
+        title.fontWeight = "bold",
+        title.textShadowColor = "#63aeff",
+        title.textShadowBlur = 3,
+        title.textShadowOffsetY = 1,
+        title.textShadowOffsetX = -1,
+        yaxis.fontSize = 14,
+        xaxis.fontSize = 14,
+        Debug = FALSE)
+    } else {
+      OutputList[["Correlogram"]] <- tryCatch({AutoPlots::Plot.CorrMatrix(
+        dt = data1,
+        CorrVars = x,
+        CorrVarTrans = "Identity",
+        FacetRows = 1,
+        FacetCols = 1,
+        FacetLevels = NULL,
+        Method = "spearman",
+        PreAgg = FALSE,
+        Height = NULL,
+        Width = NULL,
+        Title = "Correlation Matrix",
+        ShowLabels = FALSE,
+        Title.YAxis = NULL,
+        Title.XAxis = NULL,
+        EchartsTheme = Theme,
+        TextColor = "white",
+        title.fontSize = 22,
+        title.fontWeight = "bold",
+        title.textShadowColor = "#63aeff",
+        title.textShadowBlur = 3,
+        title.textShadowOffsetY = 1,
+        title.textShadowOffsetX = -1,
+        yaxis.fontSize = 14,
+        xaxis.fontSize = 14,
+        Debug = FALSE)
+      }, error = function(x) NULL)
+    }
+
+  }
+
+  # Trend Stats / Plots
+  if(Debug) print("Shiny.EDA.ReportOutput 10")
+  if(length(TrendDateVar) > 0L) {
+    x <- c(); for(i in TrendVars) if(class(data1[[i]])[1L] %in% c("numeric","integer")) x <- c(x, i)
+    if(length(x) > 0L) {
+      for(i in x) {
+        if(Debug) {
+          OutputList[[paste0("Trend: ", i)]] <- AutoPlots::Plot.Line(
+            dt = data1,
+            AggMethod = "mean",
+            PreAgg = FALSE,
+            XVar = TrendDateVar,
+            YVar = i,
+            DualYVar = NULL,
+            GroupVar = TrendGroupVar,
+            YVarTrans = "Identity",
+            DualYVarTrans = "Identity",
+            XVarTrans = "Identity",
+            FacetRows = 1,
+            FacetCols = 1,
+            FacetLevels = NULL,
+            Height = NULL,
+            Width = NULL,
+            Title = "Line Plot",
+            ShowLabels = FALSE,
+            Title.YAxis = NULL,
+            Title.XAxis = NULL,
+            EchartsTheme = Theme,
+            TimeLine = TRUE,
+            Area = FALSE,
+            Alpha = 0.5,
+            Smooth = TRUE,
+            ShowSymbol = FALSE,
+            TextColor = "white",
+            title.fontSize = 22,
+            title.fontWeight = "bold",
+            title.textShadowColor = "#63aeff",
+            title.textShadowBlur = 3,
+            title.textShadowOffsetY = 1,
+            title.textShadowOffsetX = -1,
+            xaxis.fontSize = 14,
+            yaxis.fontSize = 14,
+            xaxis.rotate = 0,
+            yaxis.rotate = 0,
+            ContainLabel = TRUE,
+            DarkMode = FALSE,
+            Debug = FALSE)
+        } else {
+          OutputList[[paste0("Trend: ", i)]] <- tryCatch({AutoPlots::Plot.Line(
+            dt = data1,
+            AggMethod = "mean",
+            PreAgg = FALSE,
+            XVar = TrendDateVar,
+            YVar = i,
+            DualYVar = NULL,
+            GroupVar = TrendGroupVar,
+            YVarTrans = "Identity",
+            DualYVarTrans = "Identity",
+            XVarTrans = "Identity",
+            FacetRows = 1,
+            FacetCols = 1,
+            FacetLevels = NULL,
+            Height = NULL,
+            Width = NULL,
+            Title = "Line Plot",
+            ShowLabels = FALSE,
+            Title.YAxis = NULL,
+            Title.XAxis = NULL,
+            EchartsTheme = Theme,
+            TimeLine = TRUE,
+            Area = FALSE,
+            Alpha = 0.5,
+            Smooth = TRUE,
+            ShowSymbol = FALSE,
+            TextColor = "white",
+            title.fontSize = 22,
+            title.fontWeight = "bold",
+            title.textShadowColor = "#63aeff",
+            title.textShadowBlur = 3,
+            title.textShadowOffsetY = 1,
+            title.textShadowOffsetX = -1,
+            xaxis.fontSize = 14,
+            yaxis.fontSize = 14,
+            xaxis.rotate = 0,
+            yaxis.rotate = 0,
+            ContainLabel = TRUE,
+            DarkMode = FALSE,
+            Debug = FALSE)}, error = function(x) NULL)
+        }
+
       }
     }
   }

@@ -4739,8 +4739,8 @@ Shiny.FC.Panel.ReportOutput <- function(input,
       Title.YAxis = paste0(TargetColumnName, " | Predict"),
       Title.XAxis = DateColumnName,
       EchartsTheme = Theme,
-      X_Scroll = FALSE,
-      Y_Scroll = FALSE,
+
+
       TimeLine = TRUE,
       Alpha = 0.5,
       Smooth = TRUE,
@@ -4924,8 +4924,8 @@ Shiny.FC.Panel.ReportOutput <- function(input,
       Title.YAxis = paste0(TargetColumnName, " | Predict"),
       Title.XAxis = DateColumnName,
       EchartsTheme = Theme,
-      X_Scroll = FALSE,
-      Y_Scroll = FALSE,
+
+
       TimeLine = TRUE,
       Alpha = 0.5,
       Smooth = TRUE,
@@ -4965,8 +4965,8 @@ Shiny.FC.Panel.ReportOutput <- function(input,
       Title.XAxis = DateColumnName,
       EchartsTheme = Theme,
       TimeLine = FALSE,
-      X_Scroll = TRUE,
-      Y_Scroll = TRUE,
+
+
       TextColor = "white",
       title.fontSize = 22,
       title.fontWeight = "bold",
@@ -5004,8 +5004,8 @@ Shiny.FC.Panel.ReportOutput <- function(input,
       Title.YAxis = "Absolute Error",
       Title.XAxis = DateColumnName,
       EchartsTheme = Theme,
-      X_Scroll = FALSE,
-      Y_Scroll = FALSE,
+
+
       TimeLine = TRUE,
       Alpha = 0.5,
       Smooth = TRUE,
@@ -5048,8 +5048,8 @@ Shiny.FC.Panel.ReportOutput <- function(input,
       Title.YAxis = "MSE",
       Title.XAxis = DateColumnName,
       EchartsTheme = Theme,
-      X_Scroll = FALSE,
-      Y_Scroll = FALSE,
+
+
       TimeLine = TRUE,
       Alpha = 0.5,
       Smooth = TRUE,
@@ -5092,8 +5092,8 @@ Shiny.FC.Panel.ReportOutput <- function(input,
     #   Title.YAxis = "MAPE",
     #   Title.XAxis = DateColumnName,
     #   EchartsTheme = Theme,
-    #   X_Scroll = FALSE,
-    #   Y_Scroll = FALSE,
+    #
+    #
     #   TimeLine = TRUE,
     #   Alpha = 0.5,
     #   Smooth = TRUE,
@@ -5136,8 +5136,8 @@ Shiny.FC.Panel.ReportOutput <- function(input,
       Title.YAxis = "SMAPE",
       Title.XAxis = DateColumnName,
       EchartsTheme = Theme,
-      X_Scroll = FALSE,
-      Y_Scroll = FALSE,
+
+
       TimeLine = TRUE,
       Alpha = 0.5,
       Smooth = TRUE,
@@ -5400,8 +5400,8 @@ Shiny.FC.Panel.ReportOutput <- function(input,
       Title.XAxis = 'Predict',
       EchartsTheme = Theme,
       TimeLine = FALSE,
-      X_Scroll = TRUE,
-      Y_Scroll = FALSE,
+
+
       TextColor = "white",
       title.fontSize = 22,
       title.fontWeight = "bold",
@@ -5435,8 +5435,8 @@ Shiny.FC.Panel.ReportOutput <- function(input,
       Title.XAxis = "Predict",
       EchartsTheme = Theme,
       TimeLine = FALSE,
-      X_Scroll = TRUE,
-      Y_Scroll = TRUE,
+
+
       TextColor = "white",
       Debug = Debug)
 
@@ -5463,8 +5463,8 @@ Shiny.FC.Panel.ReportOutput <- function(input,
       Title.XAxis = "Predict",
       EchartsTheme = Theme,
       TimeLine = FALSE,
-      X_Scroll = TRUE,
-      Y_Scroll = TRUE,
+
+
       TextColor = "white",
       Debug = Debug)
 
@@ -5494,8 +5494,8 @@ Shiny.FC.Panel.ReportOutput <- function(input,
             Title.XAxis = g,
             EchartsTheme = Theme,
             TimeLine = FALSE,
-            X_Scroll = TRUE,
-            Y_Scroll = TRUE,
+
+
             TextColor = "white",
             Debug = Debug)
         }
@@ -5529,8 +5529,8 @@ Shiny.FC.Panel.ReportOutput <- function(input,
             Title.XAxis = g,
             EchartsTheme = Theme,
             TimeLine = FALSE,
-            X_Scroll = TRUE,
-            Y_Scroll = TRUE,
+
+
             TextColor = "white",
             Debug = Debug)
         }
@@ -5583,8 +5583,8 @@ Shiny.FC.Panel.ReportOutput <- function(input,
             Title.XAxis = g,
             EchartsTheme = Theme,
             TimeLine = FALSE,
-            X_Scroll = TRUE,
-            Y_Scroll = TRUE,
+
+
             TextColor = "white",
             Debug = Debug)
         }
@@ -5782,8 +5782,8 @@ Shiny.FC.SS.ReportOutput <- function(input,
       Title.YAxis = TargetColumnName,
       Title.XAxis = DateColumnName,
       EchartsTheme = Theme,
-      X_Scroll = FALSE,
-      Y_Scroll = FALSE,
+
+
       TimeLine = TRUE,
       Alpha = 0.5,
       Smooth = TRUE,

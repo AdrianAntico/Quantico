@@ -3563,8 +3563,8 @@ Shiny.ML.ReportOutput <- function(input,
         Title.XAxis = 'Predict',
         EchartsTheme = Theme,
         TimeLine = FALSE,
-        X_Scroll = TRUE,
-        Y_Scroll = FALSE,
+
+
         TextColor = "white",
         title.fontSize = 22,
         title.fontWeight = "bold",
@@ -3602,8 +3602,8 @@ Shiny.ML.ReportOutput <- function(input,
           Title.XAxis = 'Predict',
           EchartsTheme = Theme,
           TimeLine = FALSE,
-          X_Scroll = TRUE,
-          Y_Scroll = TRUE,
+
+
           TextColor = "white",
           title.fontSize = 22,
           title.fontWeight = "bold",
@@ -3642,8 +3642,8 @@ Shiny.ML.ReportOutput <- function(input,
         Title.XAxis = "Predict",
         EchartsTheme = Theme,
         TimeLine = FALSE,
-        X_Scroll = TRUE,
-        Y_Scroll = TRUE,
+
+
         TextColor = "white",
         Debug = Debug)
 
@@ -3672,8 +3672,8 @@ Shiny.ML.ReportOutput <- function(input,
           Title.XAxis = "Predict",
           EchartsTheme = Theme,
           TimeLine = FALSE,
-          X_Scroll = TRUE,
-          Y_Scroll = TRUE,
+
+
           TextColor = "white",
           Debug = Debug)
       }
@@ -3705,8 +3705,8 @@ Shiny.ML.ReportOutput <- function(input,
         Title.XAxis = "Predict",
         EchartsTheme = Theme,
         TimeLine = FALSE,
-        X_Scroll = TRUE,
-        Y_Scroll = TRUE,
+
+
         TextColor = "white",
         Debug = Debug)
 
@@ -3736,8 +3736,8 @@ Shiny.ML.ReportOutput <- function(input,
           Title.XAxis = g,
           EchartsTheme = Theme,
           TimeLine = FALSE,
-          X_Scroll = TRUE,
-          Y_Scroll = TRUE,
+
+
           TextColor = "white",
           Debug = Debug)
       }
@@ -3766,8 +3766,8 @@ Shiny.ML.ReportOutput <- function(input,
       #   Title.XAxis = g,
       #   EchartsTheme = Theme,
       #   TimeLine = FALSE,
-      #   X_Scroll = TRUE,
-      #   Y_Scroll = TRUE,
+      #
+      #
       #   TextColor = "white",
       #   Debug = Debug)
 
@@ -3795,8 +3795,8 @@ Shiny.ML.ReportOutput <- function(input,
       #     Title.XAxis = "Predict",
       #     EchartsTheme = Theme,
       #     TimeLine = FALSE,
-      #     X_Scroll = TRUE,
-      #     Y_Scroll = TRUE,
+      #
+      #
       #     TextColor = "white",
       #     Debug = Debug)
       # }
@@ -3831,8 +3831,8 @@ Shiny.ML.ReportOutput <- function(input,
               Title.XAxis = g,
               EchartsTheme = Theme,
               TimeLine = FALSE,
-              X_Scroll = TRUE,
-              Y_Scroll = TRUE,
+
+
               TextColor = "white",
               Debug = Debug)
           }
@@ -3865,8 +3865,8 @@ Shiny.ML.ReportOutput <- function(input,
               Title.XAxis = g,
               EchartsTheme = Theme,
               TimeLine = FALSE,
-              X_Scroll = TRUE,
-              Y_Scroll = TRUE,
+
+
               TextColor = "white",
               Debug = Debug)
           }
@@ -3900,8 +3900,8 @@ Shiny.ML.ReportOutput <- function(input,
               Title.XAxis = g,
               EchartsTheme = Theme,
               TimeLine = FALSE,
-              X_Scroll = TRUE,
-              Y_Scroll = TRUE,
+
+
               TextColor = "white",
               Debug = Debug)
           }
@@ -3934,8 +3934,8 @@ Shiny.ML.ReportOutput <- function(input,
               Title.XAxis = g,
               EchartsTheme = Theme,
               TimeLine = FALSE,
-              X_Scroll = TRUE,
-              Y_Scroll = TRUE,
+
+
               TextColor = "white",
               Debug = Debug)
           }
@@ -3968,8 +3968,8 @@ Shiny.ML.ReportOutput <- function(input,
               Title.XAxis = g,
               EchartsTheme = Theme,
               TimeLine = FALSE,
-              X_Scroll = TRUE,
-              Y_Scroll = TRUE,
+
+
               TextColor = "white",
               Debug = Debug)
           }
@@ -4002,8 +4002,8 @@ Shiny.ML.ReportOutput <- function(input,
               Title.XAxis = g,
               EchartsTheme = Theme,
               TimeLine = FALSE,
-              X_Scroll = TRUE,
-              Y_Scroll = TRUE,
+
+
               TextColor = "white",
               Debug = Debug)
           }
@@ -4194,8 +4194,8 @@ Shiny.ML.ReportOutput <- function(input,
         Title.XAxis = "Predict",
         EchartsTheme = Theme,
         TimeLine = FALSE,
-        X_Scroll = TRUE,
-        Y_Scroll = TRUE,
+
+
         TextColor = "white",
         Debug = Debug)
 
@@ -4223,8 +4223,8 @@ Shiny.ML.ReportOutput <- function(input,
           Title.XAxis = "p1",
           EchartsTheme = Theme,
           TimeLine = FALSE,
-          X_Scroll = TRUE,
-          Y_Scroll = TRUE,
+
+
           TextColor = "white",
           Debug = Debug)
       }
@@ -4252,8 +4252,8 @@ Shiny.ML.ReportOutput <- function(input,
         Title.XAxis = "1 - False Positive Rate",
         EchartsTheme = Theme,
         TimeLine = FALSE,
-        X_Scroll = TRUE,
-        Y_Scroll = TRUE,
+
+
         TextColor = "white",
         Debug = Debug)
 
@@ -4280,8 +4280,8 @@ Shiny.ML.ReportOutput <- function(input,
           Title.XAxis = "1 - False Positive Rate",
           EchartsTheme = Theme,
           TimeLine = FALSE,
-          X_Scroll = TRUE,
-          Y_Scroll = TRUE,
+
+
           TextColor = "white",
           Debug = Debug)
       }
@@ -4334,8 +4334,8 @@ Shiny.ML.ReportOutput <- function(input,
         Title.XAxis = "Positive Predicted",
         EchartsTheme = Theme,
         TimeLine = FALSE,
-        X_Scroll = TRUE,
-        Y_Scroll = TRUE,
+
+
         TextColor = "white",
         Debug = Debug)
 
@@ -4362,8 +4362,8 @@ Shiny.ML.ReportOutput <- function(input,
           Title.XAxis = "Positive Predicted",
           EchartsTheme = Theme,
           TimeLine = FALSE,
-          X_Scroll = TRUE,
-          Y_Scroll = TRUE,
+
+
           TextColor = "white",
           Debug = Debug)
       }
@@ -4390,8 +4390,8 @@ Shiny.ML.ReportOutput <- function(input,
         Title.XAxis = g,
         EchartsTheme = Theme,
         TimeLine = FALSE,
-        X_Scroll = TRUE,
-        Y_Scroll = TRUE,
+
+
         TextColor = "white",
         Debug = Debug)
 
@@ -4418,8 +4418,8 @@ Shiny.ML.ReportOutput <- function(input,
           Title.XAxis = "p1",
           EchartsTheme = Theme,
           TimeLine = FALSE,
-          X_Scroll = TRUE,
-          Y_Scroll = TRUE,
+
+
           TextColor = "white",
           Debug = Debug)
       }
@@ -4456,8 +4456,8 @@ Shiny.ML.ReportOutput <- function(input,
               Title.XAxis = g,
               EchartsTheme = Theme,
               TimeLine = FALSE,
-              X_Scroll = TRUE,
-              Y_Scroll = TRUE,
+
+
               TextColor = "white",
               Debug = Debug)
           }
@@ -4490,8 +4490,8 @@ Shiny.ML.ReportOutput <- function(input,
               Title.XAxis = g,
               EchartsTheme = Theme,
               TimeLine = FALSE,
-              X_Scroll = TRUE,
-              Y_Scroll = TRUE,
+
+
               TextColor = "white",
               Debug = Debug)
           }
@@ -4524,8 +4524,8 @@ Shiny.ML.ReportOutput <- function(input,
               Title.XAxis = g,
               EchartsTheme = Theme,
               TimeLine = FALSE,
-              X_Scroll = TRUE,
-              Y_Scroll = TRUE,
+
+
               TextColor = "white",
               Debug = Debug)
           }
@@ -4558,8 +4558,8 @@ Shiny.ML.ReportOutput <- function(input,
               Title.XAxis = g,
               EchartsTheme = Theme,
               TimeLine = FALSE,
-              X_Scroll = TRUE,
-              Y_Scroll = TRUE,
+
+
               TextColor = "white",
               Debug = Debug)
           }
@@ -4742,8 +4742,8 @@ Shiny.ML.ReportOutput <- function(input,
         Title.XAxis = "Predict",
         EchartsTheme = Theme,
         TimeLine = FALSE,
-        X_Scroll = TRUE,
-        Y_Scroll = TRUE,
+
+
         TextColor = "white",
         Debug = Debug)
 
@@ -4771,8 +4771,8 @@ Shiny.ML.ReportOutput <- function(input,
           Title.XAxis = "Predict",
           EchartsTheme = Theme,
           TimeLine = FALSE,
-          X_Scroll = TRUE,
-          Y_Scroll = TRUE,
+
+
           TextColor = "white",
           Debug = Debug)
       }
@@ -4800,8 +4800,8 @@ Shiny.ML.ReportOutput <- function(input,
         Title.XAxis = "1 - False Positive Rate",
         EchartsTheme = Theme,
         TimeLine = FALSE,
-        X_Scroll = TRUE,
-        Y_Scroll = TRUE,
+
+
         TextColor = "white",
         Debug = Debug)
 
@@ -4828,8 +4828,8 @@ Shiny.ML.ReportOutput <- function(input,
           Title.XAxis = "1 - False Positive Rate",
           EchartsTheme = Theme,
           TimeLine = FALSE,
-          X_Scroll = TRUE,
-          Y_Scroll = TRUE,
+
+
           TextColor = "white",
           Debug = Debug)
       }
@@ -4856,8 +4856,8 @@ Shiny.ML.ReportOutput <- function(input,
         Title.XAxis = "% Positive Classified",
         EchartsTheme = Theme,
         TimeLine = FALSE,
-        X_Scroll = TRUE,
-        Y_Scroll = TRUE,
+
+
         TextColor = "white",
         Debug = Debug)
 
@@ -4884,8 +4884,8 @@ Shiny.ML.ReportOutput <- function(input,
           Title.XAxis = "% Positive Classified",
           EchartsTheme = Theme,
           TimeLine = FALSE,
-          X_Scroll = TRUE,
-          Y_Scroll = TRUE,
+
+
           TextColor = "white",
           Debug = Debug)
       }
@@ -4912,8 +4912,8 @@ Shiny.ML.ReportOutput <- function(input,
         Title.XAxis = g,
         EchartsTheme = Theme,
         TimeLine = FALSE,
-        X_Scroll = TRUE,
-        Y_Scroll = TRUE,
+
+
         TextColor = "white",
         Debug = Debug)
 
@@ -4940,8 +4940,8 @@ Shiny.ML.ReportOutput <- function(input,
           Title.XAxis = "Predict",
           EchartsTheme = Theme,
           TimeLine = FALSE,
-          X_Scroll = TRUE,
-          Y_Scroll = TRUE,
+
+
           TextColor = "white",
           Debug = Debug)
       }
@@ -4982,8 +4982,8 @@ Shiny.ML.ReportOutput <- function(input,
               Title.XAxis = g,
               EchartsTheme = Theme,
               TimeLine = FALSE,
-              X_Scroll = TRUE,
-              Y_Scroll = TRUE,
+
+
               TextColor = "white",
               Debug = Debug)
           }
@@ -5018,8 +5018,8 @@ Shiny.ML.ReportOutput <- function(input,
               Title.XAxis = g,
               EchartsTheme = Theme,
               TimeLine = FALSE,
-              X_Scroll = TRUE,
-              Y_Scroll = TRUE,
+
+
               TextColor = "white",
               Debug = Debug)
           }
@@ -5054,8 +5054,8 @@ Shiny.ML.ReportOutput <- function(input,
               Title.XAxis = g,
               EchartsTheme = Theme,
               TimeLine = FALSE,
-              X_Scroll = TRUE,
-              Y_Scroll = TRUE,
+
+
               TextColor = "white",
               Debug = Debug)
           }
@@ -5090,8 +5090,8 @@ Shiny.ML.ReportOutput <- function(input,
               Title.XAxis = g,
               EchartsTheme = Theme,
               TimeLine = FALSE,
-              X_Scroll = TRUE,
-              Y_Scroll = TRUE,
+
+
               TextColor = "white",
               Debug = Debug)
           }

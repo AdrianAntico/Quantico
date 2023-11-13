@@ -345,8 +345,9 @@ The Exploratory Data Analysis Report can display a variety of data insights, by 
 1. Data dictionary information
 2. Univariate statistics
 3. Univariate box plots
-4. Correlogram
-5. Trend line plots
+4. Univariate bar plots
+5. Correlogram
+6. Trend line plots
 
 #### EDA Collapsed Output View
 <img src="https://github.com/AdrianAntico/Quantico/blob/main/inst/EDA1.PNG" align="center" width="800" /> 

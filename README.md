@@ -5,6 +5,27 @@
 
 ![](https://github.com/AdrianAntico/Quantico/blob/main/inst/AppInterface.gif)
 
+#### Collaborators
+const getUsers = () => {
+    const owner = 'fabpot',
+          repo = 'symfony';
+    axios
+        .get(
+            `https://api.github.com/repos/${owner}/${repo}/contributors`
+        )
+        .then((response) => {
+            const users = response.data;
+            const div = document.querySelector(".name");
+            div.innerHTML = users.map(u => u.login).join('<br />');
+        })
+        .catch((error) => console.error(error));
+};
+getUsers();
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+<div class="name"></div>
+
+
+
 
 
 <br>

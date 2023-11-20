@@ -5,6 +5,12 @@
 
 ![](https://github.com/AdrianAntico/Quantico/blob/main/inst/AppInterface.gif)
 
+#### Contributors
+<a href="https://github.com/AdrianAntico/Quantico/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=AdrianAntico/Quantico" />
+</a>
+
+
 <br>
 
 #### Background

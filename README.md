@@ -48,14 +48,15 @@ Tasks
 * Forecasting
 
 In-App Output:
-1. Visualization
-2. Exploratory Data Analysis
-3. Statistical Inference
-4. Machine Learning
-5. Forecasting
+1. Multi-Plot Visualization
+2. Multi-Data Viewer
+3. Exploratory Data Analysis
+4. Statistical Inference
+5. Machine Learning
+6. Forecasting
 
 Export Output:
-1. Visualization
+1. Multi-Plot Visualization
 2. Exploratory Data Analysis
 3. Machine Learning
 4. Forecasting

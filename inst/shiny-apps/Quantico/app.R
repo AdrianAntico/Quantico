@@ -5495,41 +5495,64 @@ server <- function(input, output, session) {
       Normality_SelectData <- DataList[[temp]][['data']]
       Normality_YVars <- Quantico::ReturnParam(xx = tryCatch({input$Normality_YVars}, error = function(x) NULL), Type = "character", Default = NULL)
       Normality_InferenceID <- Quantico::ReturnParam(xx = tryCatch({input$Normality_InferenceID}, error = function(x) NULL), Type = "character", Default = "INF_Normality1")
-      SampleSize.ADT <- Quantico::ReturnParam(xx = tryCatch({input$SampleSize.ADT}, error = function(x) NULL), Type = "character", Default = 1000000)
-      Samples.ADT <- Quantico::ReturnParam(xx = tryCatch({input$Samples.ADT}, error = function(x) NULL), Type = "character", Default = 1)
-      SampleSize.CVMT <- Quantico::ReturnParam(xx = tryCatch({input$SampleSize.CVMT}, error = function(x) NULL), Type = "character", Default = 1000000)
-      Samples.CVMT <- Quantico::ReturnParam(xx = tryCatch({input$Samples.CVMT}, error = function(x) NULL), Type = "character", Default = 1)
-      SampleSize.KST <- Quantico::ReturnParam(xx = tryCatch({input$SampleSize.KST}, error = function(x) NULL), Type = "character", Default = 1000000)
-      Samples.KST <- Quantico::ReturnParam(xx = tryCatch({input$Samples.KST}, error = function(x) NULL), Type = "character", Default = 1)
-      SampleSize.ST <- Quantico::ReturnParam(xx = tryCatch({input$SampleSize.ST}, error = function(x) NULL), Type = "character", Default = 5000)
-      Samples.ST <- Quantico::ReturnParam(xx = tryCatch({input$Samples.ST}, error = function(x) NULL), Type = "character", Default = 1)
-      SampleSize.JBT <- Quantico::ReturnParam(xx = tryCatch({input$SampleSize.JBT}, error = function(x) NULL), Type = "character", Default = 1000000)
-      Samples.JBT <- Quantico::ReturnParam(xx = tryCatch({input$Samples.JBT}, error = function(x) NULL), Type = "character", Default = 1)
-      SampleSize.AT <- Quantico::ReturnParam(xx = tryCatch({input$SampleSize.AT}, error = function(x) NULL), Type = "character", Default = 46340)
-      Samples.AT <- Quantico::ReturnParam(xx = tryCatch({input$Samples.AT}, error = function(x) NULL), Type = "character", Default = 1)
+      SampleSize.ADT <- Quantico::ReturnParam(xx = tryCatch({input$SampleSize.ADT}, error = function(x) NULL), Type = "numeric", Default = 1000000)
+      Samples.ADT <- Quantico::ReturnParam(xx = tryCatch({input$Samples.ADT}, error = function(x) NULL), Type = "numeric", Default = 1)
+      SampleSize.CVMT <- Quantico::ReturnParam(xx = tryCatch({input$SampleSize.CVMT}, error = function(x) NULL), Type = "numeric", Default = 1000000)
+      Samples.CVMT <- Quantico::ReturnParam(xx = tryCatch({input$Samples.CVMT}, error = function(x) NULL), Type = "numeric", Default = 1)
+      SampleSize.KST <- Quantico::ReturnParam(xx = tryCatch({input$SampleSize.KST}, error = function(x) NULL), Type = "numeric", Default = 1000000)
+      Samples.KST <- Quantico::ReturnParam(xx = tryCatch({input$Samples.KST}, error = function(x) NULL), Type = "numeric", Default = 1)
+      SampleSize.ST <- Quantico::ReturnParam(xx = tryCatch({input$SampleSize.ST}, error = function(x) NULL), Type = "numeric", Default = 5000)
+      Samples.ST <- Quantico::ReturnParam(xx = tryCatch({input$Samples.ST}, error = function(x) NULL), Type = "numeric", Default = 1)
+      SampleSize.JBT <- Quantico::ReturnParam(xx = tryCatch({input$SampleSize.JBT}, error = function(x) NULL), Type = "numeric", Default = 1000000)
+      Samples.JBT <- Quantico::ReturnParam(xx = tryCatch({input$Samples.JBT}, error = function(x) NULL), Type = "numeric", Default = 1)
+      SampleSize.AT <- Quantico::ReturnParam(xx = tryCatch({input$SampleSize.AT}, error = function(x) NULL), Type = "numeric", Default = 46340)
+      Samples.AT <- Quantico::ReturnParam(xx = tryCatch({input$Samples.AT}, error = function(x) NULL), Type = "numeric", Default = 1)
 
       # Run function
       if(Debug) print("inference 0")
       if(!exists("InferenceOutputList")) InferenceOutputList <- list()
-      InferenceOutputList[[Normality_InferenceID]] <- tryCatch({Quantico::Normality.Analysis(
-        dt = Normality_SelectData,
-        YVars = Normality_YVars,
-        EchartsTheme = EchartsTheme,
-        TextColor = FontColorData$flv,
-        PlotHeight = PlotHeightINF,
-        PlotWidth = PlotWidthINF,
-        SampleSize.ADT = SampleSize.ADT,
-        Samples.ADT = Samples.ADT,
-        SampleSize.CVMT = SampleSize.CVMT,
-        Samples.CVMT = Samples.CVMT,
-        SampleSize.KST = SampleSize.KST,
-        Samples.KST = Samples.KST,
-        SampleSize.ST = SampleSize.ST,
-        Samples.ST = Samples.ST,
-        SampleSize.JBT = SampleSize.JBT,
-        Samples.JBT = Samples.JBT,
-        SampleSize.AT = SampleSize.AT,
-        Samples.AT = Samples.AT)}, error = function(x) NULL)
+      if(Debug) {
+        InferenceOutputList[[Normality_InferenceID]] <- Quantico::Normality.Analysis(
+          dt = Normality_SelectData,
+          YVars = Normality_YVars,
+          EchartsTheme = EchartsTheme,
+          TextColor = FontColorData$flv,
+          PlotHeight = PlotHeightINF,
+          PlotWidth = PlotWidthINF,
+          SampleSize.ADT = SampleSize.ADT,
+          Samples.ADT = Samples.ADT,
+          SampleSize.CVMT = SampleSize.CVMT,
+          Samples.CVMT = Samples.CVMT,
+          SampleSize.KST = SampleSize.KST,
+          Samples.KST = Samples.KST,
+          SampleSize.ST = SampleSize.ST,
+          Samples.ST = Samples.ST,
+          SampleSize.JBT = SampleSize.JBT,
+          Samples.JBT = Samples.JBT,
+          SampleSize.AT = SampleSize.AT,
+          Samples.AT = Samples.AT,
+          Debug = TRUE)
+      } else {
+        InferenceOutputList[[Normality_InferenceID]] <- tryCatch({Quantico::Normality.Analysis(
+          dt = Normality_SelectData,
+          YVars = Normality_YVars,
+          EchartsTheme = EchartsTheme,
+          TextColor = FontColorData$flv,
+          PlotHeight = PlotHeightINF,
+          PlotWidth = PlotWidthINF,
+          SampleSize.ADT = SampleSize.ADT,
+          Samples.ADT = Samples.ADT,
+          SampleSize.CVMT = SampleSize.CVMT,
+          Samples.CVMT = Samples.CVMT,
+          SampleSize.KST = SampleSize.KST,
+          Samples.KST = Samples.KST,
+          SampleSize.ST = SampleSize.ST,
+          Samples.ST = Samples.ST,
+          SampleSize.JBT = SampleSize.JBT,
+          Samples.JBT = Samples.JBT,
+          SampleSize.AT = SampleSize.AT,
+          Samples.AT = Samples.AT)}, error = function(x) NULL)
+      }
 
       if(length(InferenceOutputList[[Normality_InferenceID]]) > 0L) {
         if(Debug) print("inference 1")
@@ -5682,25 +5705,41 @@ server <- function(input, output, session) {
       OneSampleTTest_SampleSize <- Quantico::ReturnParam(xx = tryCatch({input$OneSampleTTest_SampleSize}, error = function(x) NULL), Type = "numeric", Default = 100000)
       OneSampleTTest_Samples <- Quantico::ReturnParam(xx = tryCatch({input$OneSampleTTest_Samples}, error = function(x) NULL), Type = "numeric", Default = 1)
       OneSampleTTest_NullValue <- Quantico::ReturnParam(xx = tryCatch({input$OneSampleTTest_NullValue}, error = function(x) NULL), Type = "numeric", Default = 0)
-      OneSampleTTest_Alternative <- Quantico::ReturnParam(xx = tryCatch({input$OneSampleTTest_Alternative}, error = function(x) NULL), Type = "character", Default = 1)
+      OneSampleTTest_Alternative <- Quantico::ReturnParam(xx = tryCatch({input$OneSampleTTest_Alternative}, error = function(x) NULL), Type = "character", Default = "two.sided")
       OneSampleTTest_ConfidenceLevel <- Quantico::ReturnParam(xx = tryCatch({input$OneSampleTTest_ConfidenceLevel}, error = function(x) NULL), Type = "numeric", Default = 0.95)
 
 
       # Run function
       if(Debug) print("inference 0")
       if(!exists("InferenceOutputList")) InferenceOutputList <- list()
-      InferenceOutputList[[OneSampleTTest_InferenceID]] <- tryCatch({Quantico::One.Sample.TTest(
-        dt = OneSampleTTest_SelectData,
-        Variable = OneSampleTTest_Variable,
-        NullValue = OneSampleTTest_NullValue,
-        Alternative = OneSampleTTest_Alternative,
-        ConfidenceLevel = OneSampleTTest_ConfidenceLevel,
-        SampleSize = OneSampleTTest_SampleSize,
-        Samples = OneSampleTTest_Samples,
-        EchartsTheme = OneSampleTTest_EchartsTheme,
-        TextColor = OneSampleTTest_FontColorData$flv,
-        PlotHeight = OneSampleTTest_PlotHeightINF,
-        PlotWidth = OneSampleTTest_PlotWidthINF)}, error = function(x) NULL)
+      if(Debug) {
+        InferenceOutputList[[OneSampleTTest_InferenceID]] <- Quantico::One.Sample.TTest(
+          dt = OneSampleTTest_SelectData,
+          Variable = OneSampleTTest_Variable,
+          NullValue = OneSampleTTest_NullValue,
+          Alternative = OneSampleTTest_Alternative,
+          ConfidenceLevel = OneSampleTTest_ConfidenceLevel,
+          SampleSize = OneSampleTTest_SampleSize,
+          Samples = OneSampleTTest_Samples,
+          EchartsTheme = OneSampleTTest_EchartsTheme,
+          TextColor = OneSampleTTest_FontColorData$flv,
+          PlotHeight = OneSampleTTest_PlotHeightINF,
+          PlotWidth = OneSampleTTest_PlotWidthINF,
+          Debug = TRUE)
+      } else {
+        InferenceOutputList[[OneSampleTTest_InferenceID]] <- tryCatch({Quantico::One.Sample.TTest(
+          dt = OneSampleTTest_SelectData,
+          Variable = OneSampleTTest_Variable,
+          NullValue = OneSampleTTest_NullValue,
+          Alternative = OneSampleTTest_Alternative,
+          ConfidenceLevel = OneSampleTTest_ConfidenceLevel,
+          SampleSize = OneSampleTTest_SampleSize,
+          Samples = OneSampleTTest_Samples,
+          EchartsTheme = OneSampleTTest_EchartsTheme,
+          TextColor = OneSampleTTest_FontColorData$flv,
+          PlotHeight = OneSampleTTest_PlotHeightINF,
+          PlotWidth = OneSampleTTest_PlotWidthINF)}, error = function(x) NULL)
+      }
 
       if(length(InferenceOutputList[[OneSampleTTest_InferenceID]]) > 0L) {
         if(Debug) print("inference 1")
@@ -5762,7 +5801,7 @@ server <- function(input, output, session) {
       TwoSampleTTest_NullValue <- Quantico::ReturnParam(xx = tryCatch({input$TwoSampleTTest_NullValue}, error = function(x) NULL), Type = "numeric", Default = 0)
       TwoSampleTTest_Paired <- Quantico::ReturnParam(xx = tryCatch({input$TwoSampleTTest_Paired}, error = function(x) NULL), Type = "logical", Default = FALSE)
       TwoSampleTTest_EqualVariance <- Quantico::ReturnParam(xx = tryCatch({input$TwoSampleTTest_EqualVariance}, error = function(x) NULL), Type = "logical", Default = FALSE)
-      TwoSampleTTest_Alternative <- Quantico::ReturnParam(xx = tryCatch({input$TwoSampleTTest_Alternative}, error = function(x) NULL), Type = "character", Default = 1)
+      TwoSampleTTest_Alternative <- Quantico::ReturnParam(xx = tryCatch({input$TwoSampleTTest_Alternative}, error = function(x) NULL), Type = "character", Default = "two.sided")
       TwoSampleTTest_ConfidenceLevel <- Quantico::ReturnParam(xx = tryCatch({input$TwoSampleTTest_ConfidenceLevel}, error = function(x) NULL), Type = "numeric", Default = 0.95)
 
 
@@ -5846,7 +5885,7 @@ server <- function(input, output, session) {
       FTest_SampleSize <- Quantico::ReturnParam(xx = tryCatch({input$FTest_SampleSize}, error = function(x) NULL), Type = "numeric", Default = 100000)
       FTest_Samples <- Quantico::ReturnParam(xx = tryCatch({input$FTest_Samples}, error = function(x) NULL), Type = "numeric", Default = 1)
       FTest_RatioVariances <- Quantico::ReturnParam(xx = tryCatch({input$FTest_RatioVariances}, error = function(x) NULL), Type = "numeric", Default = 1)
-      FTest_Alternative <- Quantico::ReturnParam(xx = tryCatch({input$FTest_Alternative}, error = function(x) NULL), Type = "character", Default = 1)
+      FTest_Alternative <- Quantico::ReturnParam(xx = tryCatch({input$FTest_Alternative}, error = function(x) NULL), Type = "character", Default = "two.sided")
       FTest_ConfidenceLevel <- Quantico::ReturnParam(xx = tryCatch({input$FTest_ConfidenceLevel}, error = function(x) NULL), Type = "numeric", Default = 0.95)
 
 
@@ -5925,7 +5964,7 @@ server <- function(input, output, session) {
 
       ChiSquareTest_SampleSize <- Quantico::ReturnParam(xx = tryCatch({input$ChiSquareTest_SampleSize}, error = function(x) NULL), Type = "numeric", Default = 100000)
       ChiSquareTest_Samples <- Quantico::ReturnParam(xx = tryCatch({input$ChiSquareTest_Samples}, error = function(x) NULL), Type = "numeric", Default = 1)
-      ChiSquareTest_Alternative <- Quantico::ReturnParam(xx = tryCatch({input$ChiSquareTest_Alternative}, error = function(x) NULL), Type = "character", Default = 1)
+      ChiSquareTest_Alternative <- Quantico::ReturnParam(xx = tryCatch({input$ChiSquareTest_Alternative}, error = function(x) NULL), Type = "character", Default = "two.sided")
       ChiSquareTest_ConfidenceLevel <- Quantico::ReturnParam(xx = tryCatch({input$ChiSquareTest_ConfidenceLevel}, error = function(x) NULL), Type = "numeric", Default = 0.95)
 
 
@@ -7310,6 +7349,7 @@ server <- function(input, output, session) {
           if(DebugFC) print('CatBoost FC 6 DONE')
           if(length(CatBoostFC) > 0L) {
             ModelOutputList[[CatBoostFC$ModelID]] <- CatBoostFC#; ModelOutputList[[paste0(CatBoostFC$ModelID, "_MLOutput")]] <- CatBoostFC[[paste0(CatBoostFC$ModelID, "_Meta")]]
+            ModelOutputList[[CatBoostFC$ModelID]]$Algo <- "CatBoost"
             ModelOutputList <<- ModelOutputList; rm(Output); gc()
             for(i in seq_len(NumTabs)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0("DataOutputSelection",i), Label = 'Display Data', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
             for(i in seq_len(NumTabs)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0('FCReportsModelSelection',i), Label = 'FC Output', Choices = names(ModelOutputList), Multiple = TRUE, MaxVars = 100L)
@@ -7389,6 +7429,7 @@ server <- function(input, output, session) {
           if(DebugFC) print('XGBoost FC 7 DONE')
           if(length(XGBoostFC) > 0L) {
             ModelOutputList[[XGBoostFC$ModelID]] <- XGBoostFC#; ModelOutputList[[paste0(XGBoostFC$ModelID, "_MLOutput")]] <- XGBoostFC[[paste0(XGBoostFC$ModelID, "_Meta")]]
+            ModelOutputList[[XGBoostFC$ModelID]]$Algo <- "XGBoost"
             ModelOutputList <<- ModelOutputList; rm(Output); gc()
             for(i in seq_len(NumTabs)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0("DataOutputSelection",i) , Label = 'Display Data', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
             for(i in seq_len(NumTabs)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0('FCReportsModelSelection',i), Label = 'FC Output', Choices = names(ModelOutputList), Multiple = TRUE, MaxVars = 100L)
@@ -7468,6 +7509,7 @@ server <- function(input, output, session) {
           if(DebugFC) print('LightGBM FC 7 DONE')
           if(length(LightGBMFC) > 0L) {
             ModelOutputList[[LightGBMFC$ModelID]] <- LightGBMFC; ModelOutputList[[paste0(LightGBMFC$ModelID, "_MLOutput")]] <- LightGBMFC[[paste0(LightGBMFC$ModelID, "_Meta")]]
+            ModelOutputList[[LightGBMFC$ModelID]]$Algo <- "LightGBM"
             ModelOutputList <<- ModelOutputList; rm(Output); gc()
             for(i in seq_len(NumTabs)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0("DataOutputSelection",i), Label = 'Display Data', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
             for(i in seq_len(NumTabs)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0('FCReportsModelSelection',i), Label = 'FC Output', Choices = names(ModelOutputList), Multiple = TRUE, MaxVars = 100L)
@@ -9176,7 +9218,6 @@ server <- function(input, output, session) {
 
         if(Debug) {
           print("EDA Panel Report 2")
-          print(names(ModelOutputList))
         }
 
         # Run Quantico:::Shiny.ML.ReportOutput

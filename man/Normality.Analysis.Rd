@@ -22,7 +22,8 @@ Normality.Analysis(
   SampleSize.JBT = NULL,
   Samples.JBT = 1,
   SampleSize.AT = NULL,
-  Samples.AT = 1
+  Samples.AT = 1,
+  Debug = FALSE
 )
 }
 \description{

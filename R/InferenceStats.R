@@ -326,7 +326,8 @@ Normality.Analysis <- function(dt = NULL,
                                SampleSize.JBT = NULL,
                                Samples.JBT = 1,
                                SampleSize.AT = NULL,
-                               Samples.AT = 1) {
+                               Samples.AT = 1,
+                               Debug = FALSE) {
 
   # library(Quantico)
   # dt <- data.table::fread(file.choose())
@@ -351,10 +352,14 @@ Normality.Analysis <- function(dt = NULL,
   # KS Test throws warnings for duplicate values
   options(warn = -1)
 
+  if(Debug) print("Normality 1")
+
   # Convert to data.table
   if(!data.table::is.data.table(dt)) tryCatch({data.table::setDT(dt)}, error = function(x) {
     dt <- data.table::as.data.table(dt)
   })
+
+  if(Debug) print("Normality 2")
 
   # YVars to Test
   YVars2Test <- c()
@@ -363,6 +368,8 @@ Normality.Analysis <- function(dt = NULL,
       YVars2Test <- c(YVars2Test, i)
     }
   }
+
+  if(Debug) print("Normality 3")
 
   # Results table
   gg <- data.table::CJ(
@@ -376,6 +383,8 @@ Normality.Analysis <- function(dt = NULL,
     P_Value = c(-1.0)
   )
 
+  if(Debug) print("Normality 4")
+
   # Loop through testing and results gathering
   OutputList <- list()
   for(val in YVars2Test) {# val = "Daily Margin"
@@ -384,25 +393,41 @@ Normality.Analysis <- function(dt = NULL,
     Vals <- dt[[val]] # unique(dt[[val]])
 
     # Run tests
+    if(Debug) print("Normality 4.1")
+    print(Vals)
+    print(SampleSize.ADT)
+    print(Samples.ADT)
     x1 <- Anderson.Darling.Test(Vals, SampleSize = SampleSize.ADT, Samples = Samples.ADT)
+    if(Debug) print("Normality 4.1.1")
     gg <- gg[Variable == eval(val) & Test == "Anderson.Darling.Test", P_Value := mean(x1$P_Value, na.rm = TRUE)]
 
+    if(Debug) print("Normality 4.1.2")
     x1 <- Cramer.Von.Mises.Test(Vals, SampleSize = SampleSize.CVMT, Samples = Samples.CVMT)
+    if(Debug) print("Normality 4.1.3")
     gg <- gg[Variable == eval(val) & Test == "Cramer.Von.Mises.Test", P_Value := mean(x1$P_Value, na.rm = TRUE)]
 
+    if(Debug) print("Normality 4.1.4")
     x1 <- Kolmogorov.Smirnov.Test(Vals, SampleSize = SampleSize.KST, Samples = Samples.KST)
+    if(Debug) print("Normality 4.1.5")
     gg <- gg[Variable == eval(val) & Test == "Kolmogorov.Smirnov.Test", P_Value := mean(x1$P_Value_2s, na.rm = TRUE)]
 
+    if(Debug) print("Normality 4.1.6")
     x1 <- Shapiro.Test(Vals, SampleSize = SampleSize.ST, Samples = Samples.ST)
+    if(Debug) print("Normality 4.1.7")
     gg <- gg[Variable == eval(val) & Test == "Shapiro.Test", P_Value := mean(x1$P_Value, na.rm = TRUE)]
 
+    if(Debug) print("Normality 4.1.8")
     x1 <- Jarque.Bera.Test(Vals, SampleSize = SampleSize.JBT, Samples = Samples.JBT)
+    if(Debug) print("Normality 4.1.9")
     gg <- gg[Variable == eval(val) & Test == "Jarque.Bera.Test", P_Value := mean(x1$P_Value, na.rm = TRUE)]
 
+    if(Debug) print("Normality 4.1.10")
     x1 <- Agostino.Test(Vals, SampleSize = SampleSize.AT, Samples = Samples.AT)
+    if(Debug) print("Normality 4.1.11")
     gg <- gg[Variable == eval(val) & Test == "Agostino.Test", P_Value := mean(x1$P_Value_2s, na.rm = TRUE)]
 
     # Radar plot of P_Values
+    if(Debug) print("Normality 4.2")
     OutputList[[paste0("Radar_", val)]] <- AutoPlots::Plot.Radar(
       dt = gg[Variable == eval(val)],
       PreAgg = TRUE,
@@ -414,6 +439,7 @@ Normality.Analysis <- function(dt = NULL,
       Width = PlotWidth)
 
     # Normal Probability Plot of Vals
+    if(Debug) print("Normality 4.3")
     OutputList[[paste0("Probability_", val)]] <- AutoPlots::Plot.ProbabilityPlot(
       dt = dt,
       SampleSize = 2500,
@@ -423,6 +449,8 @@ Normality.Analysis <- function(dt = NULL,
       Height = PlotHeight,
       Width = PlotWidth)
   }
+
+  if(Debug) print("Normality 5")
 
   # FontColor <- list()
   # FontColor$flv = "black"
@@ -457,10 +485,14 @@ Normality.Analysis <- function(dt = NULL,
     )
   )
 
+  if(Debug) print("Normality 6")
+
   # Reorder elements and return
   v <- names(OutputList)
   v <- v[c(length(v), 1:(length(v)-1))]
   OutputList <- OutputList[v]
+
+  if(Debug) print("Normality 7")
   return(OutputList)
 }
 
@@ -912,11 +944,13 @@ One.Sample.TTest <- function(dt = NULL,
                              EchartsTheme = "macarons",
                              TextColor = "black",
                              PlotHeight = "850px",
-                             PlotWidth = "1450px") {
+                             PlotWidth = "1450px",
+                             Debug = FALSE) {
 
   OutputList <- list()
 
   # Sample Size
+  if(Debug) print("1STT 1")
   if(length(SampleSize) == 0L) {
     SampleSize <- length(dt[,get(Variable)])
     Samples <- 1
@@ -926,6 +960,7 @@ One.Sample.TTest <- function(dt = NULL,
   }
 
   # Collection Table
+  if(Debug) print("1STT 2")
   sampsize <- rep(-1.0, Samples)
   sampsizechar <- rep("a", Samples)
   ostt_dt <- data.table::data.table(
@@ -942,19 +977,23 @@ One.Sample.TTest <- function(dt = NULL,
   )
 
   # Ensure no missing values
+  if(Debug) print("1STT 3")
   Vals <- dt[[Variable]]
   Vals <- sort(x = Vals[complete.cases(Vals)], decreasing = FALSE)
   n <- length(Vals)
   if(n < 8) return(NULL)
+  if(Debug) print("1STT 4")
   for(i in seq_len(Samples)) {
 
     # Sample
+    if(Debug) print("1STT 4.1")
     if(length(Vals) > SampleSize) {
       samp <- sample(x = Vals, size = SampleSize)
     } else {
       samp <- Vals
     }
 
+    if(Debug) print("1STT 4.2")
     output <- t.test(
       x = samp,
       y = NULL,
@@ -964,6 +1003,7 @@ One.Sample.TTest <- function(dt = NULL,
       var.equal = FALSE,
       conf.level = ConfidenceLevel)
 
+    if(Debug) print("1STT 4.3")
     data.table::set(ostt_dt, i = i, j = "Statistic", value = round(output$statistic, 4)) # t = -1.0842
     data.table::set(ostt_dt, i = i, j = "Parameter", value = round(output$parameter, 4)) # df = 9999
     data.table::set(ostt_dt, i = i, j = "P_Value", value = round(output$p.value, 4)) # 0.2783
@@ -977,6 +1017,7 @@ One.Sample.TTest <- function(dt = NULL,
 
   }
 
+  if(Debug) print("1STT 5")
   if(Samples > 1L) {
     MetricsAgg <- ostt_dt[
       , lapply(.SD, mean, na.rm = TRUE),
@@ -991,6 +1032,7 @@ One.Sample.TTest <- function(dt = NULL,
       by = c("Alternative",
              "Method")]
 
+    if(Debug) print("1STT 6")
     data.table::set(MetricsAgg, j = "Statistic", value = round(output$Statistic, 4))
     data.table::set(MetricsAgg, j = "Parameter", value = round(output$Parameter, 4))
     data.table::set(MetricsAgg, j = "P_Value", value = round(output$P_Value, 4))
@@ -999,6 +1041,7 @@ One.Sample.TTest <- function(dt = NULL,
     data.table::set(MetricsAgg, j = "Estimate", value = round(output$Estimate, 4))
     data.table::set(MetricsAgg, j = "StdErr", value = round(output$StdErr, 4))
 
+    if(Debug) print("1STT 7")
     OutputList[["Boostrap Aggregate Metrics"]] <- reactable::reactable(
       data = MetricsAgg,
       compact = TRUE,
@@ -1031,6 +1074,7 @@ One.Sample.TTest <- function(dt = NULL,
     )
   }
 
+  if(Debug) print("1STT 8")
   OutputList[["Metrics"]] <- reactable::reactable(
     data = ostt_dt,
     compact = TRUE,
@@ -1063,6 +1107,7 @@ One.Sample.TTest <- function(dt = NULL,
   )
 
   # Density Plot: Values
+  if(Debug) print("1STT 9")
   OutputList[[paste0("Density Plot: ", Variable)]] <- AutoPlots::Plot.Density(
     dt = dt,
     SampleSize = 100000L,
@@ -1082,8 +1127,6 @@ One.Sample.TTest <- function(dt = NULL,
     Title.XAxis = Variable,
     EchartsTheme = EchartsTheme,
     TimeLine = FALSE,
-
-
     TextColor = TextColor,
     title.fontSize = 22,
     title.fontWeight = "bold",
@@ -1099,6 +1142,7 @@ One.Sample.TTest <- function(dt = NULL,
     Debug = FALSE)
 
   # Probability Plot: Estimate
+  if(Debug) print("1STT 10")
   OutputList[[paste0("Probability Plot: ", Variable)]] <- AutoPlots::Plot.ProbabilityPlot(
     dt = dt,
     SampleSize = 5000L,
@@ -1109,7 +1153,6 @@ One.Sample.TTest <- function(dt = NULL,
     Title = paste0("Probability Plot: ", Variable),
     ShowLabels = FALSE,
     EchartsTheme = EchartsTheme,
-
     TextColor = TextColor,
     title.fontSize = 22,
     title.fontWeight = "bold",
@@ -1123,9 +1166,11 @@ One.Sample.TTest <- function(dt = NULL,
     Debug = FALSE)
 
   # Density plots for bootstrap analysis
+  if(Debug) print("1STT 11")
   if(Samples > 1L) {
 
     # Density Plot: Estimate
+    if(Debug) print("1STT 11.1")
     OutputList[["Boostrap Density Plot: Estimates"]] <- AutoPlots::Plot.Density(
       dt = ostt_dt,
       SampleSize = 100000L,
@@ -1145,8 +1190,6 @@ One.Sample.TTest <- function(dt = NULL,
       Title.XAxis = "Estimate",
       EchartsTheme = EchartsTheme,
       TimeLine = FALSE,
-
-
       TextColor = TextColor,
       title.fontSize = 22,
       title.fontWeight = "bold",
@@ -1162,6 +1205,7 @@ One.Sample.TTest <- function(dt = NULL,
       Debug = FALSE)
 
     # Density Plot: P_Value
+    if(Debug) print("1STT 11.2")
     OutputList[["Bootstrap Density Plot: P-Values"]] <- AutoPlots::Plot.Density(
       dt = ostt_dt,
       SampleSize = 100000L,
@@ -1181,8 +1225,6 @@ One.Sample.TTest <- function(dt = NULL,
       Title.XAxis = "P-Value",
       EchartsTheme = EchartsTheme,
       TimeLine = FALSE,
-
-
       TextColor = TextColor,
       title.fontSize = 22,
       title.fontWeight = "bold",
@@ -1199,6 +1241,7 @@ One.Sample.TTest <- function(dt = NULL,
   }
 
   # Return
+  if(Debug) print("1STT 12")
   return(OutputList)
 }
 

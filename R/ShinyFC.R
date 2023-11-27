@@ -1295,7 +1295,7 @@ Shiny.FC.Panel.Backtest <- function(ArgsList,
                                     CrossEval = FALSE,
                                     DebugFC = FALSE) {
 
-  ArgsList <- list()
+  # ArgsList <- list()
 
   # Check if VD is NULL
   if(DebugFC) print("Shiny.FC.Panel.Backtest 0 Start")
@@ -4641,12 +4641,19 @@ Shiny.FC.Panel.ReportOutput <- function(input,
 
   # Algo
   temp_algo <- class(MOL[[ModelID]]$Model)[1L]
+  print(temp_algo)
   if(temp_algo == "catboost.Model") {
     Algo <- "CatBoost"
   } else if(temp_algo == "xgb.Booster") {
     Algo <- "XGBoost"
   } else if(temp_algo == "lgb.Booster") {
     Algo <- "LightGBM"
+  }
+
+  if(!exists("Algo")) {
+    print("FC Reports 1.1")
+    print(MOL[[ModelID]]$Algo)
+    Algo <- MOL[[ModelID]]$Algo
   }
 
   # Group Var

@@ -15,7 +15,8 @@ One.Sample.TTest(
   EchartsTheme = "macarons",
   TextColor = "black",
   PlotHeight = "850px",
-  PlotWidth = "1450px"
+  PlotWidth = "1450px",
+  Debug = FALSE
 )
 }
 \arguments{

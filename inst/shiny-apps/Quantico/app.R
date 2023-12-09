@@ -4610,7 +4610,7 @@ server <- function(input, output, session) {
       Quantico::PickerInput(
         session = session, input = input, Update = TRUE,
         InputID = paste0('EDAGroupVar',Page),
-        Label = 'Trend By-Variable', Choices = ChoiceList, Multiple = TRUE, MaxVars = 100L)
+        Label = 'By-Variable', Choices = ChoiceList, Multiple = TRUE, MaxVars = 100L)
     }
   })
 

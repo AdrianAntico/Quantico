@@ -3,14 +3,12 @@
 [![PRsWelcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=default)](http://makeapullrequest.com)
 [![GitHubStars](https://img.shields.io/github/stars/AdrianAntico/Quantico.svg?style=social)](https://github.com/AdrianAntico/Quantico)
 
+<br>
 
-![](https://github.com/AdrianAntico/Quantico/blob/main/inst/AppInterface.gif)
+https://github.com/AdrianAntico/Quantico/assets/42076988/42867741-9dec-4bb2-a3c4-a8d5137c581d
 
 <br>
 
-https://github.com/AdrianAntico/Quantico/assets/42076988/1c09756b-d811-4326-a7fe-6f58a6f8c802
-
-<br>
 
 #### Contributors
 <a href="https://github.com/AdrianAntico/Quantico/graphs/contributors">

@@ -3,7 +3,12 @@
 [![PRsWelcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=default)](http://makeapullrequest.com)
 [![GitHubStars](https://img.shields.io/github/stars/AdrianAntico/Quantico.svg?style=social)](https://github.com/AdrianAntico/Quantico)
 
+
 ![](https://github.com/AdrianAntico/Quantico/blob/main/inst/AppInterface.gif)
+
+<br>
+
+https://github.com/AdrianAntico/Quantico/assets/42076988/1c09756b-d811-4326-a7fe-6f58a6f8c802
 
 <br>
 

@@ -3,8 +3,6 @@
 [![PRsWelcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=default)](http://makeapullrequest.com)
 [![GitHubStars](https://img.shields.io/github/stars/AdrianAntico/Quantico.svg?style=social)](https://github.com/AdrianAntico/Quantico)
 
-<br>
-
 #### Plotting Video
 https://github.com/AdrianAntico/Quantico/assets/42076988/90a62ed9-a17e-43a0-a172-aeaac04f1582
 

@@ -8,6 +8,10 @@ https://github.com/AdrianAntico/Quantico/assets/42076988/90a62ed9-a17e-43a0-a172
 
 <br>
 
+#### EDA Video
+https://github.com/AdrianAntico/Quantico/assets/42076988/285dba4f-1f51-4fd1-b519-31345c2f8b97
+
+<br>
 
 #### Contributors
 <a href="https://github.com/AdrianAntico/Quantico/graphs/contributors">

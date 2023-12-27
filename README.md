@@ -5,8 +5,8 @@
 
 <br>
 
-#### Plotting & EDA Video
-https://github.com/AdrianAntico/Quantico/assets/42076988/42867741-9dec-4bb2-a3c4-a8d5137c581d
+#### Plotting Video
+https://github.com/AdrianAntico/Quantico/assets/42076988/90a62ed9-a17e-43a0-a172-aeaac04f1582
 
 <br>
 

@@ -232,8 +232,6 @@ Shiny.Plot.Build <- function(input,
           date_check <- class(data1[[XVar]])[1L]
           if(tolower(date_check) %in% c("date","posix","idate","idatetime")) {
             if(PlotDateAgg == "second") {
-              data1[, paste0(XVar, "_second") := lubridate::floor_date(get(XVar), unit = "second")]
-              XVar <- paste0(XVar, "_second")
               CodeList <- tryCatch({Quantico:::Shiny.CodePrint.Collect(CodeList, paste0(
                 "\n",
                 "# Date Aggregation Setup\n",
@@ -241,9 +239,10 @@ Shiny.Plot.Build <- function(input,
                 "data1[, paste0(XVar, '_second') := lubridate::floor_date(get(XVar), unit = 'second')]\n",
                 "XVar <- paste0(XVar, '_second')\n"))
               }, error = function(x) CodeList)
+              data1[, paste0(XVar, "_second") := lubridate::floor_date(get(XVar), unit = "second")]
+              XVar <- paste0(XVar, "_second")
+
             } else if(PlotDateAgg == "minute") {
-              data1[, paste0(XVar, "_minute") := lubridate::floor_date(get(XVar), unit = "minute")]
-              XVar <- paste0(XVar, "_minute")
               CodeList <- tryCatch({Quantico:::Shiny.CodePrint.Collect(CodeList, paste0(
                 "\n",
                 "# Date Aggregation Setup\n",
@@ -251,9 +250,10 @@ Shiny.Plot.Build <- function(input,
                 "data1[, paste0(XVar, '_minute') := lubridate::floor_date(get(XVar), unit = 'minute')]\n",
                 "XVar <- paste0(XVar, '_minute')\n"))
               }, error = function(x) CodeList)
+              data1[, paste0(XVar, "_minute") := lubridate::floor_date(get(XVar), unit = "minute")]
+              XVar <- paste0(XVar, "_minute")
+
             } else if(PlotDateAgg == "hour") {
-              data1[, paste0(XVar, "_hour") := lubridate::floor_date(get(XVar), unit = "hour")]
-              XVar <- paste0(XVar, "_hour")
               CodeList <- tryCatch({Quantico:::Shiny.CodePrint.Collect(CodeList, paste0(
                 "\n",
                 "# Date Aggregation Setup\n",
@@ -261,9 +261,10 @@ Shiny.Plot.Build <- function(input,
                 "data1[, paste0(XVar, '_hour') := lubridate::floor_date(get(XVar), unit = 'hour')]\n",
                 "XVar <- paste0(XVar, '_hour')\n"))
               }, error = function(x) CodeList)
+              data1[, paste0(XVar, "_hour") := lubridate::floor_date(get(XVar), unit = "hour")]
+              XVar <- paste0(XVar, "_hour")
+
             } else if(PlotDateAgg == "day") {
-              data1[, paste0(XVar, "_day") := lubridate::floor_date(get(XVar), unit = "day")]
-              XVar <- paste0(XVar, "_day")
               CodeList <- tryCatch({Quantico:::Shiny.CodePrint.Collect(CodeList, paste0(
                 "\n",
                 "# Date Aggregation Setup\n",
@@ -271,9 +272,10 @@ Shiny.Plot.Build <- function(input,
                 "data1[, paste0(XVar, '_day') := lubridate::floor_date(get(XVar), unit = 'day')]\n",
                 "XVar <- paste0(XVar, '_day')\n"))
               }, error = function(x) CodeList)
+              data1[, paste0(XVar, "_day") := lubridate::floor_date(get(XVar), unit = "day")]
+              XVar <- paste0(XVar, "_day")
+
             } else if(PlotDateAgg == "week") {
-              data1[, paste0(XVar, "_week") := lubridate::floor_date(get(XVar), unit = "week")]
-              XVar <- paste0(XVar, "_week")
               CodeList <- tryCatch({Quantico:::Shiny.CodePrint.Collect(CodeList, paste0(
                 "\n",
                 "# Date Aggregation Setup\n",
@@ -281,9 +283,10 @@ Shiny.Plot.Build <- function(input,
                 "data1[, paste0(XVar, '_week') := lubridate::floor_date(get(XVar), unit = 'week')]\n",
                 "XVar <- paste0(XVar, '_week')\n"))
               }, error = function(x) CodeList)
+              data1[, paste0(XVar, "_week") := lubridate::floor_date(get(XVar), unit = "week")]
+              XVar <- paste0(XVar, "_week")
+
             } else if(PlotDateAgg == "month") {
-              data1[, paste0(XVar, "_month") := lubridate::floor_date(get(XVar), unit = "month")]
-              XVar <- paste0(XVar, "_month")
               CodeList <- tryCatch({Quantico:::Shiny.CodePrint.Collect(CodeList, paste0(
                 "\n",
                 "# Date Aggregation Setup\n",
@@ -291,9 +294,10 @@ Shiny.Plot.Build <- function(input,
                 "data1[, paste0(XVar, '_month') := lubridate::floor_date(get(XVar), unit = 'month')]\n",
                 "XVar <- paste0(XVar, '_month')\n"))
               }, error = function(x) CodeList)
+              data1[, paste0(XVar, "_month") := lubridate::floor_date(get(XVar), unit = "month")]
+              XVar <- paste0(XVar, "_month")
+
             } else if(PlotDateAgg == "quarter") {
-              data1[, paste0(XVar, "_quarter") := lubridate::floor_date(get(XVar), unit = "quarter")]
-              XVar <- paste0(XVar, "_quarter")
               CodeList <- tryCatch({Quantico:::Shiny.CodePrint.Collect(CodeList, paste0(
                 "\n",
                 "# Date Aggregation Setup\n",
@@ -301,9 +305,10 @@ Shiny.Plot.Build <- function(input,
                 "data1[, paste0(XVar, '_quarter') := lubridate::floor_date(get(XVar), unit = 'quarter')]\n",
                 "XVar <- paste0(XVar, '_quarter')\n"))
               }, error = function(x) CodeList)
+              data1[, paste0(XVar, "_quarter") := lubridate::floor_date(get(XVar), unit = "quarter")]
+              XVar <- paste0(XVar, "_quarter")
+
             } else if(PlotDateAgg == "year") {
-              data1[, paste0(XVar, "_year") := lubridate::floor_date(get(XVar), unit = "year")]
-              XVar <- paste0(XVar, "_year")
               CodeList <- tryCatch({Quantico:::Shiny.CodePrint.Collect(CodeList, paste0(
                 "\n",
                 "# Date Aggregation Setup\n",
@@ -311,6 +316,8 @@ Shiny.Plot.Build <- function(input,
                 "data1[, paste0(XVar, '_year') := lubridate::floor_date(get(XVar), unit = 'year')]\n",
                 "XVar <- paste0(XVar, '_year')\n"))
               }, error = function(x) CodeList)
+              data1[, paste0(XVar, "_year") := lubridate::floor_date(get(XVar), unit = "year")]
+              XVar <- paste0(XVar, "_year")
             }
 
           }

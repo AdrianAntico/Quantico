@@ -994,6 +994,9 @@ Shiny.FE.ModelDataPrep <- function(input,output,session,DataList,CodeList,CacheD
 #' @export
 Shiny.FE.PartitionData <- function(input,output,session,DataList,CodeList,TabCount=5L,CacheDir=NULL,CacheName='data',Debug=FALSE) {
   shiny::withProgress(message = 'Data Partitioning has begun..', value = 0, {
+
+    if(Debug) print('Shiny.FE.PartitionData 1')
+
     AutoDataPartition_NumDataSets <- Quantico:::ReturnParam(xx = tryCatch({input[['AutoDataPartition_NumDataSets']]}, error=function(x) NULL), Type = 'numeric', Default = 3L, Debug = Debug)
     AutoDataPartition_Ratios_Train <- Quantico:::ReturnParam(xx = tryCatch({input[['AutoDataPartition_Ratios_Train']]}, error=function(x) NULL), Type = 'numeric', Default = c(0.70), Debug = Debug)
     AutoDataPartition_Ratios_Validation <- Quantico:::ReturnParam(xx = tryCatch({input[['AutoDataPartition_Ratios_Validation']]}, error=function(x) NULL), Type = 'numeric', Default = c(0.20), Debug = Debug)
@@ -1003,14 +1006,29 @@ Shiny.FE.PartitionData <- function(input,output,session,DataList,CodeList,TabCou
     AutoDataPartition_TimeColumnName <- Quantico:::ReturnParam(xx = tryCatch({input[['AutoDataPartition_TimeColumnName']]}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
     AutoDataPartition_SelectData <- Quantico:::ReturnParam(xx = tryCatch({input$AutoDataPartition_SelectData}, error=function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
 
+    if(Debug) print('Shiny.FE.PartitionData 2')
+
     if(AutoDataPartition_NumDataSets == 2L) {
-      xx <- AutoDataPartition_Ratios_Train + AutoDataPartition_Ratios_Validation < 1 || AutoDataPartition_Ratios_Train + AutoDataPartition_Ratios_Validation > 1
+      xx <- round(AutoDataPartition_Ratios_Train + AutoDataPartition_Ratios_Validation, 10) == 1
       AutoDataPartition_Ratios_Test <- NULL
     } else {
-      xx <- AutoDataPartition_Ratios_Train + AutoDataPartition_Ratios_Validation + AutoDataPartition_Ratios_Test < 1 || AutoDataPartition_Ratios_Train + AutoDataPartition_Ratios_Validation + AutoDataPartition_Ratios_Test > 1
+      xx <- round(AutoDataPartition_Ratios_Train + AutoDataPartition_Ratios_Validation + AutoDataPartition_Ratios_Test, 10) == 1
     }
 
-    if(!xx) {
+    if(Debug) {
+      print('Shiny.FE.PartitionData 3')
+      print(xx)
+      print(AutoDataPartition_NumDataSets)
+      print(c(AutoDataPartition_Ratios_Train, AutoDataPartition_Ratios_Validation, AutoDataPartition_Ratios_Test))
+      print(AutoDataPartition_PartitionType)
+      print(AutoDataPartition_StratifyColumnNames)
+      print(AutoDataPartition_TimeColumnName)
+    }
+
+    if(xx) {
+
+      if(Debug) print('Shiny.FE.PartitionData 4')
+
       DataSets <- Rodeo::AutoDataPartition(
         DataList[[AutoDataPartition_SelectData]][['data']],
         NumDataSets = AutoDataPartition_NumDataSets,
@@ -1020,8 +1038,10 @@ Shiny.FE.PartitionData <- function(input,output,session,DataList,CodeList,TabCou
         TimeColumnName = AutoDataPartition_TimeColumnName)
       DataList[[paste0(AutoDataPartition_SelectData, '_TrainData')]][['data']] <- DataSets[['TrainData']]
       DataList[[paste0(AutoDataPartition_SelectData, '_ValidationData')]][['data']] <- DataSets[['ValidationData']]
-      DataList[[paste0(AutoDataPartition_SelectData, '_TestData')]][['data']] <- DataSets[['TestData']]
+      DataList[[paste0(AutoDataPartition_SelectData, '_TestData')]][['data']] <- tryCatch({DataSets[['TestData']]}, error = function(x) NULL)
       rm(DataSets)
+
+      if(Debug) print('Shiny.FE.PartitionData 5')
 
       # Create code
       if(Debug) print('FE Auto Diff Lag N 1')
@@ -1041,8 +1061,7 @@ Shiny.FE.PartitionData <- function(input,output,session,DataList,CodeList,TabCou
         "DataList[[paste0(temp, '_TestData')]] <- DataSets[['TestData']]\n",
         "rm(DataSets)\n"))
 
-      # Return
-      if(Debug) {print('FE Data Partition 2'); print(names(DataList)); print(CodeList)}
+      if(Debug) print('Shiny.FE.PartitionData 6')
 
       # Add data to DataOutputSelection Page
       for(i in seq_len(TabCount)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0("EDAData", i), Label = 'Data Selection', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)

@@ -612,6 +612,7 @@ Shiny.DW.AggregateData <- function(input,output,session,DataList,CodeList,TabCou
   Aggregate_TimeAgg <- Quantico:::ReturnParam(xx = tryCatch({input$Aggregate_TimeAgg}, error = function(x) NULL), Type = 'character', Default = NULL, Debug = Debug)
 
   # Time Agg Prep Work
+  DataName <- if(length(AggregateData_NewName) > 0L) AggregateData_NewName else AggregateData_SelectData
   if(length(Aggregate_DateVariable) > 0L && length(Aggregate_TimeAgg) > 0L) {
 
     # Ensure DateVar is the correct class type
@@ -619,13 +620,29 @@ Shiny.DW.AggregateData <- function(input,output,session,DataList,CodeList,TabCou
     if(!date_class %in% c("Date","POSIXct","POSIXt")) {
       if(Aggregate_TimeAgg %in% c("second", "minute", "hour")) {
         DataList[[AggregateData_SelectData]][['data']][, eval(Aggregate_DateVariable) := as.POSIXct(get(Aggregate_DateVariable))]
+        CodeList <- Quantico:::Shiny.CodePrint.Collect(CodeList, paste0(
+          "\n",
+          "# Date Column Update ", Quantico:::CEP(AggregateData_SelectData), "\n",
+          "DataList[[", Quantico:::CEP(AggregateData_SelectData), "]][, ", Quantico:::CEP(Aggregate_DateVariable), " := as.POSIXct(", Quantico:::CEP(Aggregate_DateVariable),"]\n"
+        ))
       } else {
         DataList[[AggregateData_SelectData]][['data']][, eval(Aggregate_DateVariable) := as.Date(get(Aggregate_DateVariable))]
+        CodeList <- Quantico:::Shiny.CodePrint.Collect(CodeList, paste0(
+          "\n",
+          "# Date Column Update ", Quantico:::CEP(AggregateData_SelectData), "\n",
+          "DataList[[", Quantico:::CEP(AggregateData_SelectData), "]][, ", Quantico:::CEP(Aggregate_DateVariable), " := as.Date(", Quantico:::CEP(Aggregate_DateVariable),"]\n"
+        ))
       }
     }
 
     # Floor Date
-    DataList[[AggregateData_SelectData]][['data']][, eval(Aggregate_DateVariable) := lubridate::floor_date(get(Aggregate_DateVariable), unit = eval(Aggregate_TimeAgg))]
+    DataList[[AggregateData_SelectData]][['data']][, paste0(Aggregate_DateVariable, "_", Aggregate_TimeAgg) := lubridate::floor_date(get(Aggregate_DateVariable), unit = eval(Aggregate_TimeAgg))]
+    Aggregate_DateVariable <- paste0(Aggregate_DateVariable, "_", Aggregate_TimeAgg)
+    CodeList <- Quantico:::Shiny.CodePrint.Collect(CodeList, paste0(
+      "\n",
+      "# Floor Date ", Quantico:::CEP(AggregateData_SelectData), "\n",
+      "DataList[[", Quantico:::CEP(AggregateData_SelectData), "]][, ", Quantico:::CEP(Aggregate_DateVariable), " := lubridate::floor_date(", Quantico:::CEP(Aggregate_DateVariable), ", unit = ", Quantico:::CEP(Aggregate_TimeAgg), ")]\n"
+    ))
   }
 
   # Update by-vars to include date
@@ -634,6 +651,23 @@ Shiny.DW.AggregateData <- function(input,output,session,DataList,CodeList,TabCou
   # Agg
   if(Aggregate_Stat == 'mean') {
     temp <- DataList[[AggregateData_SelectData]][['data']][, lapply(.SD, mean, na.rm = TRUE), .SDcols = c(Aggregate_Columns), keyby = c(Aggregate_ByVariables)]
+    if(AggregateData_NewName == 'Overwrite') {
+      DataList[[AggregateData_SelectData]][['data']] <- temp
+      CodeList <- Quantico:::Shiny.CodePrint.Collect(CodeList, paste0(
+        "\n",
+        "# Aggregate ", Quantico:::CEP(AggregateData_SelectData), "\n",
+        "DataList[[", Quantico:::CEP(AggregateData_SelectData), "]] <- DataList[[", Quantico:::CEP(AggregateData_SelectData), "]][, lapply(.SD, mean, na.rm = TRUE), .SDcols = ", Quantico:::ExpandText(Aggregate_Columns), ", keyby = ", Quantico:::ExpandText(Aggregate_ByVariables), "]\n"
+      ))
+    } else {
+      DataList[[AggregateData_NewName]][['data']] <- temp
+      CodeList <- Quantico:::Shiny.CodePrint.Collect(CodeList, paste0(
+        "\n",
+        "# Aggregate ", Quantico:::CEP(AggregateData_SelectData), "\n",
+        "DataList[[", Quantico:::CEP(AggregateData_NewName), "]] <- DataList[[", Quantico:::CEP(AggregateData_SelectData), "]][, lapply(.SD, mean, na.rm = TRUE), .SDcols = ", Quantico:::ExpandText(Aggregate_Columns), ", keyby = ", Quantico:::ExpandText(Aggregate_ByVariables), "]\n"
+      ))
+    }
+  } else if(Aggregate_Stat == 'sum') {
+    temp <- DataList[[AggregateData_SelectData]][['data']][, lapply(.SD, sum, na.rm = TRUE), .SDcols = c(Aggregate_Columns), keyby = c(Aggregate_ByVariables)]
     if(AggregateData_NewName == 'Overwrite') {
       DataList[[AggregateData_SelectData]][['data']] <- temp
       CodeList <- Quantico:::Shiny.CodePrint.Collect(CodeList, paste0(

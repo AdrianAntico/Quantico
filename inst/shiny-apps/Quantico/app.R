@@ -949,7 +949,7 @@ server <- function(input, output, session) {
 
       # Statics
       AggregateData_SelectData_Choices = tryCatch({names(DataList)}, error = function(x) NULL),
-      Aggregate_Stat_Choices = c('mean','count','median','sd','max','min','first','last'),
+      Aggregate_Stat_Choices = c('mean','sum','count','median','sd','max','min','first','last'),
       Aggregate_TimeAgg_Choices = c("second", "minute", "hour", "day", "week", "month", "bimonth", "quarter", "season", "halfyear", "year"),
       SubsetData_FilterLogic1_Choices = c('<','>','<=','>=','%in%','%like%','%between%','not %between%'),
       SubsetData_FilterLogic2_Choices = c('<','>','<=','>=','%in%','%like%','%between%','not %between%'),

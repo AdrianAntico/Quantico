@@ -112,9 +112,37 @@ devtools::install_github("AdrianAntico/Quantico", upgrade = FALSE, dependencies 
 
 <br>
 
+## Quickstart
+
+In your RStudio session, run the function `Quantico::runQuantico()` to kick off a Quantico session
+
+Easy start
+
+```r
+# Optionally, you can change up the WorkingDirectory argument for your desired file path location
+# Note: For the best user experience I recommend using Chrome and having the zoom level set to 75%
+Quantico::runQuantico(WorkingDirectory = getwd())
+```
+
+If you have a PostGRE installation you can add in the PostGRE parameters (or just pass them in while in session)
+
+```r
+# Optionally, you can change up the WorkingDirectory argument for your desired file path location (don't forget to use these "/" instead of these "\" in your path)
+# Note: For the best user experience I recommend using Chrome and having the zoom level set to 75%
+Quantico::runQuantico(
+  MaxTabs = 2L,
+  WorkingDirectory = getwd(),
+  PostGRE_DBNames = NULL, # list of database names you want connected
+  PostGRE_Host = 'localhost',
+  PostGRE_Port = 54321,
+  PostGRE_User = '...',
+  PostGRE_Password = '...')
+```
+
+<br>
+
 ## Table of Contents
 - [Background](#Background)
-- [Quick Start](#Quickstart)
 - [App Interface](#app-interface)
 - [Documentation](#Documentation)
 - [Data Management](#data-management)
@@ -180,35 +208,6 @@ Export Output:
 2. Exploratory Data Analysis
 3. Machine Learning
 4. Forecasting
-
-<br>
-
-## Quickstart
-
-In your RStudio session, run the function `Quantico::runQuantico()` to kick off a Quantico session
-
-Easy start
-
-```r
-# Optionally, you can change up the WorkingDirectory argument for your desired file path location
-# Note: For the best user experience I recommend using Chrome and having the zoom level set to 75%
-Quantico::runQuantico(WorkingDirectory = getwd())
-```
-
-If you have a PostGRE installation you can add in the PostGRE parameters (or just pass them in while in session)
-
-```r
-# Optionally, you can change up the WorkingDirectory argument for your desired file path location (don't forget to use these "/" instead of these "\" in your path)
-# Note: For the best user experience I recommend using Chrome and having the zoom level set to 75%
-Quantico::runQuantico(
-  MaxTabs = 2L,
-  WorkingDirectory = getwd(),
-  PostGRE_DBNames = NULL, # list of database names you want connected
-  PostGRE_Host = 'localhost',
-  PostGRE_Port = 54321,
-  PostGRE_User = '...',
-  PostGRE_Password = '...')
-```
 
 <br>
 

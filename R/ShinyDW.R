@@ -25,26 +25,31 @@ Shiny.DW.DeleteColumns <- function(input,output,session,DataList,CodeList,TabCou
 
   # Dispatch
   if(Debug) print(Cols)
+  print(NewName)
 
   # Run code
   if(Debug) print('Shiny.DW.DeleteColumns 2')
   if(NewName == 'Overwrite') {
     data.table::set(SelectData, j = c(eval(Cols)), value = NULL)
     DataList[[SelectData]][['data']] <- SelectData
+    CodeList <- tryCatch({Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+      "\n",
+      "# Delete Columns\n",
+      "SelectData <- ", Quantico:::CEP(input$DeleteVariables_SelectData), "\n",
+      "Cols <- c(", Quantico:::ExpandText(Cols), ")\n",
+      "data.table::set(DataList[[SelectData]], j = c(Cols), value = NULL)\n"))}, error = function(x) CodeList)
   } else {
     temp <- data.table::copy(SelectData)
     data.table::set(temp, j = c(eval(Cols)), value = NULL)
     DataList[[NewName]][['data']] <- temp
+    CodeList <- tryCatch({Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
+      "\n",
+      "# Delete Columns\n",
+      "temp <- data.table::copy(", Quantico:::CEP(input$DeleteVariables_SelectData), "), \n",
+      "Cols <- c(", Quantico:::ExpandText(Cols), ")\n",
+      "data.table::set(temp, j = c(Cols), value = NULL)\n",
+      "DataList[[", Quantico:::CEP(input$DeleteVariables_SelectData), "]][['data']] <- temp", ))}, error = function(x) CodeList)
   }
-
-  # Code
-  if(Debug) print('Shiny.DW.DeleteColumns 5')
-  CodeList <- tryCatch({Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
-    "\n",
-    "# Delete Columns\n",
-    "SelectData <- ", Quantico:::CEP(input$DeleteVariables_SelectData), "\n",
-    "Cols <- c(", Quantico:::ExpandText(Cols), ")\n",
-    "data.table::set(DataList[[SelectData]], j = c(Cols), value = NULL)\n"))}, error = function(x) CodeList)
 
   # Update meta
   for(i in seq_len(TabCount)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0("EDAData", i), Label = 'Data Selection', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)

@@ -673,14 +673,14 @@ Shiny.DW.AggregateData <- function(input,output,session,DataList,CodeList,TabCou
       CodeList <- Quantico:::Shiny.CodePrint.Collect(CodeList, paste0(
         "\n",
         "# Aggregate ", Quantico:::CEP(AggregateData_SelectData), "\n",
-        "DataList[[", Quantico:::CEP(AggregateData_SelectData), "]] <- DataList[[", Quantico:::CEP(AggregateData_SelectData), "]][, lapply(.SD, mean, na.rm = TRUE), .SDcols = ", Quantico:::ExpandText(Aggregate_Columns), ", keyby = ", Quantico:::ExpandText(Aggregate_ByVariables), "]\n"
+        "DataList[[", Quantico:::CEP(AggregateData_SelectData), "]] <- DataList[[", Quantico:::CEP(AggregateData_SelectData), "]][, lapply(.SD, sum, na.rm = TRUE), .SDcols = ", Quantico:::ExpandText(Aggregate_Columns), ", keyby = ", Quantico:::ExpandText(Aggregate_ByVariables), "]\n"
       ))
     } else {
       DataList[[AggregateData_NewName]][['data']] <- temp
       CodeList <- Quantico:::Shiny.CodePrint.Collect(CodeList, paste0(
         "\n",
         "# Aggregate ", Quantico:::CEP(AggregateData_SelectData), "\n",
-        "DataList[[", Quantico:::CEP(AggregateData_NewName), "]] <- DataList[[", Quantico:::CEP(AggregateData_SelectData), "]][, lapply(.SD, mean, na.rm = TRUE), .SDcols = ", Quantico:::ExpandText(Aggregate_Columns), ", keyby = ", Quantico:::ExpandText(Aggregate_ByVariables), "]\n"
+        "DataList[[", Quantico:::CEP(AggregateData_NewName), "]] <- DataList[[", Quantico:::CEP(AggregateData_SelectData), "]][, lapply(.SD, sum, na.rm = TRUE), .SDcols = ", Quantico:::ExpandText(Aggregate_Columns), ", keyby = ", Quantico:::ExpandText(Aggregate_ByVariables), "]\n"
       ))
     }
   } else if(Aggregate_Stat == 'count') {

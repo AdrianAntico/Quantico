@@ -42,7 +42,7 @@ Shiny.DW.DeleteColumns <- function(input,output,session,DataList,CodeList,TabCou
   CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
     "\n",
     "# Delete Columns\n",
-    "SelectData <- ", Quantico:::CEP(input$DeleteVariables_SelectData), "\n",
+    "SelectData <- ", Quantico:::CEP(SelectData), "\n",
     "Cols <- c(", Quantico:::ExpandText(Cols), ")\n",
     "data.table::set(DataList[[SelectData]], j = c(Cols), value = NULL)\n"))
 

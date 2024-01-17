@@ -25,13 +25,18 @@ Shiny.DW.DeleteColumns <- function(input,output,session,DataList,CodeList,TabCou
 
   # Dispatch
   if(Debug) print(Cols)
-  print(NewName)
 
   # Run code
   if(Debug) print('Shiny.DW.DeleteColumns 2')
   if(NewName == 'Overwrite') {
+    if(Debug) print("here 1")
     data.table::set(SelectData, j = c(eval(Cols)), value = NULL)
-    DataList[[SelectData]][['data']] <- SelectData
+    if(Debug) {
+      print("here 2")
+      print(SelectData)
+    }
+    DataList[[input$DeleteVariables_SelectData]][['data']] <- SelectData
+    if(Debug) print("here 3")
     CodeList <- tryCatch({Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
       "\n",
       "# Delete Columns\n",
@@ -39,9 +44,13 @@ Shiny.DW.DeleteColumns <- function(input,output,session,DataList,CodeList,TabCou
       "Cols <- c(", Quantico:::ExpandText(Cols), ")\n",
       "data.table::set(DataList[[SelectData]], j = c(Cols), value = NULL)\n"))}, error = function(x) CodeList)
   } else {
+    if(Debug) print("here 11")
     temp <- data.table::copy(SelectData)
+    if(Debug) print("here 22")
     data.table::set(temp, j = c(eval(Cols)), value = NULL)
+    if(Debug) print("here 33")
     DataList[[NewName]][['data']] <- temp
+    if(Debug) print("here 44")
     CodeList <- tryCatch({Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
       "\n",
       "# Delete Columns\n",
@@ -475,9 +484,6 @@ Shiny.DW.SampleData <- function(input,output,session,DataList,CodeList,TabCount=
       DataList[[SelectData]][['data']] <- temp
     } else {
       DataList[[NewName]][['data']] <- temp
-      for(i in seq_len(TabCount)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0("EDAData", i), Label = 'Data Selection', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
-      Quantico::SelectizeInput(session, input, Update = TRUE, InputID = "ScoreML_Data", Label = 'Select Data', Choices = names(DataList))
-      for(i in seq_len(TabCount)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0("DataOutputSelection", i), Label = 'Display Data', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
     }
     DataList <<- DataList
     CodeList <- Quantico:::Shiny.CodePrint.Collect(y = CodeList, x = paste0(
@@ -496,6 +502,10 @@ Shiny.DW.SampleData <- function(input,output,session,DataList,CodeList,TabCount=
       ", Max_ID__temp_col := NULL]\n"
     ))
   }
+
+  for(i in seq_len(TabCount)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0("EDAData", i), Label = 'Data Selection', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
+  Quantico::SelectizeInput(session, input, Update = TRUE, InputID = "ScoreML_Data", Label = 'Select Data', Choices = names(DataList))
+  for(i in seq_len(TabCount)) Quantico::PickerInput(session, input, Update = TRUE, InputID = paste0("DataOutputSelection", i), Label = 'Display Data', Choices = names(DataList), Multiple = TRUE, MaxVars = 100L)
 
   # Return
   return(list(

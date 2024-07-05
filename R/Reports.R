@@ -334,7 +334,7 @@ Run_ModelInsightsReport <- function(TrainDataInclude = FALSE,
   OutputPathName <- file.path(OutputPath, paste0('MLReport-', ModelID, '-', TargetType, '.html'))
 
   # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-  # Select Rmarkdown Report and Run it ----
+  # Select Rmarkdown Report and Run it
   # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
   # Regression Markdown

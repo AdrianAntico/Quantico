@@ -1350,7 +1350,11 @@ Shiny.ML.Trainer <- function(input,
           "ArgsList[['PrimaryDateColumn']] <- ArgsList[['PrimaryDateColumn']]\n",
           "ArgsList[['EncodeMethod']] <- ArgsList[['EncodeMethod']]\n",
           "ModelOutputList <- do.call(AutoQuant::AutoCatBoostMultiClass, ArgsList)\n\n"))}, error = function(x) CodeList)
+
+        print("MultiClass here 1")
       }
+
+      print(names(Output))
 
       # Store in DataList
       KeyName <- paste0(TT, "_", ArgsList[['ModelID']])

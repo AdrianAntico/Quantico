@@ -19,6 +19,15 @@
   z-index: 9900;
 }
 
+.box-body {
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 3px;
+	border-bottom-left-radius: 3px;
+	padding: 10px;
+	min-height: 166px;
+}
+
 .selectize-dropdown .optgroup-header {
   line-height: 1.42857143;
   font-size: 20px;
@@ -9851,15 +9860,6 @@ a:focus {
 
 .btn-box-tool.btn:active {
 	box-shadow: none
-}
-
-.box-body {
-	border-top-left-radius: 0;
-	border-top-right-radius: 0;
-	border-bottom-right-radius: 3px;
-	border-bottom-left-radius: 3px;
-	padding: 10px;
-	min-height: 166px;
 }
 
 .no-header .box-body {

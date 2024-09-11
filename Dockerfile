@@ -1,6 +1,6 @@
 FROM rocker/shiny:4.4.1
 
-# Install system requirements for index.R as needed
+# Install system requirements
 RUN apt-get update && apt-get install -y \
     --no-install-recommends \
     git-core \
@@ -80,11 +80,6 @@ RUN R -e "devtools::install_github('AdrianAntico/Rodeo', upgrade = FALSE, depend
 RUN R -e "devtools::install_github('AdrianAntico/RemixAutoML', upgrade = FALSE, dependencies = FALSE, force = TRUE)"
 RUN R -e "devtools::install_github('AdrianAntico/Quantico', upgrade = FALSE, dependencies = FALSE, force = TRUE)"
 
-#WORKDIR /RemixAutoAI-Dockerfile
-#COPY /ShinyTesting.R $HOME
-#COPY /- $HOME
-
 CMD /bin/bash \
-# && R -e "options('shiny.port'=3838,shiny.host='127.0.0.1'); library(Quantico); Quantico::runQuantico(MaxTabs = 2L, WorkingDirectory = getwd())"
 && R -e "options('shiny.port'=3838,shiny.host='0.0.0.0'); library(Quantico); Quantico::runQuantico(MaxTabs = 2L, WorkingDirectory = getwd())"
 EXPOSE 3838
